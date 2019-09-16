@@ -17,9 +17,9 @@ namespace BusinessSystemDBEntityModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Office()
         {
+            this.CompanyVehicles = new HashSet<CompanyVehicle>();
             this.Employees = new HashSet<Employee>();
             this.MeetingRooms = new HashSet<MeetingRoom>();
-            this.CompanyVehicles = new HashSet<CompanyVehicle>();
         }
     
         public int officeID { get; set; }
@@ -27,10 +27,10 @@ namespace BusinessSystemDBEntityModel
         public string office_address { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CompanyVehicle> CompanyVehicles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MeetingRoom> MeetingRooms { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CompanyVehicle> CompanyVehicles { get; set; }
     }
 }
