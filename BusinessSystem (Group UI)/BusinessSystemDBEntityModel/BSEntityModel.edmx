@@ -1507,6 +1507,7 @@
             <End Role="SuggestionHistory" EntitySet="SuggestionHistories" />
           </AssociationSet>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <EntitySet Name="sysdiagrams" EntityType="BusinessDataBaseModel.sysdiagram" />
           <EntitySet Name="Events" EntityType="BusinessDataBaseModel.Event" />
 <<<<<<< HEAD
@@ -1565,12 +1566,15 @@
           </AssociationSet>
 =======
 >>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
+=======
+>>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
           <EntitySet Name="CompanyVehicles" EntityType="BusinessDataBaseModel.CompanyVehicle" />
           <AssociationSet Name="FK_Company_vehicle_Office" Association="BusinessDataBaseModel.FK_Company_vehicle_Office">
             <End Role="Office" EntitySet="Offices" />
             <End Role="CompanyVehicle" EntitySet="CompanyVehicles" />
           </AssociationSet>
         </EntityContainer>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <EntityType Name="sysdiagram">
           <Key>
@@ -1631,6 +1635,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+=======
+>>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
 =======
 >>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
         <EntityType Name="CompanyVehicle">
@@ -1896,6 +1902,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -1956,6 +1963,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+=======
+>>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
 =======
 >>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
           <EntitySetMapping Name="CompanyVehicles">

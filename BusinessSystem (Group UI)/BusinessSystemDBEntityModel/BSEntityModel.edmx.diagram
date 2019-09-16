@@ -6,10 +6,15 @@
     <edmx:Diagrams>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <Diagram DiagramId="0d2d51b4f1af428e9c820d7c2553b789" Name="Diagram1" ZoomLevel="81">
 =======
       <Diagram DiagramId="0d2d51b4f1af428e9c820d7c2553b789" Name="Diagram1" ZoomLevel="34">
 >>>>>>> develop
+=======
+      <Diagram DiagramId="0d2d51b4f1af428e9c820d7c2553b789" Name="Diagram1" ZoomLevel="88">
+        <EntityTypeShape EntityType="BusinessDataBaseModel.Account" Width="1.5" PointX="6" PointY="12.75" IsExpanded="true" />
+>>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
 =======
       <Diagram DiagramId="0d2d51b4f1af428e9c820d7c2553b789" Name="Diagram1" ZoomLevel="88">
         <EntityTypeShape EntityType="BusinessDataBaseModel.Account" Width="1.5" PointX="6" PointY="12.75" IsExpanded="true" />
@@ -63,6 +68,7 @@
         <AssociationConnector Association="BusinessDataBaseModel.FK_RequisitionMain_ReportMain" ManuallyRouted="false" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Suggestion_history_Suggestion" ManuallyRouted="false" />
 <<<<<<< HEAD
+<<<<<<< HEAD
         <EntityTypeShape EntityType="BusinessDataBaseModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Event" Width="1.5" PointX="2.75" PointY="0.75" />
 <<<<<<< HEAD
@@ -79,6 +85,10 @@
         <EntityTypeShape EntityType="BusinessDataBaseModel.Account" Width="1.5" PointX="4.125" PointY="13" />
 >>>>>>> develop
         <AssociationConnector Association="BusinessDataBaseModel.FK_Employee_Account" />
+=======
+        <EntityTypeShape EntityType="BusinessDataBaseModel.CompanyVehicle" Width="1.5" PointX="8.25" PointY="23.75" />
+        <AssociationConnector Association="BusinessDataBaseModel.FK_Company_vehicle_Office" />
+>>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
 =======
         <EntityTypeShape EntityType="BusinessDataBaseModel.CompanyVehicle" Width="1.5" PointX="8.25" PointY="23.75" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Company_vehicle_Office" />

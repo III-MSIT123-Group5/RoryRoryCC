@@ -52,6 +52,7 @@ namespace BusinessSystemDBEntityModel
         public virtual DbSet<SurveyMain> SurveyMains { get; set; }
         public virtual DbSet<CompanyVehicle> CompanyVehicles { get; set; }
 <<<<<<< HEAD
+<<<<<<< HEAD
         public virtual DbSet<Account> Accounts { get; set; }
 
     
@@ -208,6 +209,8 @@ namespace BusinessSystemDBEntityModel
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateReport", reportID, employeeIDParameter, applyDateTimeParameter, eventHoursParameter, eventIDParameter, noteParameter);
         }
 
+=======
+>>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
 =======
 >>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
     }

@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿using BusinessSystem.ReportTimeSystem;
+=======
+﻿using BusinessSystem.companycars;
+>>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
 =======
 ﻿using BusinessSystem.companycars;
 >>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
@@ -37,6 +41,9 @@ namespace BusinessSystem
 
 
 
+<<<<<<< HEAD
+>>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
+=======
 >>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
 
         }

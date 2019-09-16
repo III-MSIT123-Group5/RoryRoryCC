@@ -94,6 +94,7 @@
     </Compile>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Compile Include="FrmRequisition.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,11 +103,16 @@
 =======
     <Compile Include="ClsRoundRectangleF.cs" />
     <Compile Include="ReportTimeSystem\FormAdd.cs">
+=======
+    <Compile Include="Tools\ClsRoundRectangleF.cs" />
+    <Compile Include="SonForm.cs">
+>>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReportTimeSystem\FormAdd.Designer.cs">
       <DependentUpon>FormAdd.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="ReportTimeSystem\FormShow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,8 @@
     <Compile Include="SonForm.Designer.cs">
       <DependentUpon>SonForm.cs</DependentUpon>
     </Compile>
+=======
+>>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
     <Compile Include="Tools\ClsTransparenter.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +144,7 @@
       <HintPath>C:\Users\III\Desktop\CheckBoxComboBox\bin\Debug\CheckBoxComboBox.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       <HintPath>E:\專題\專題-1\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -148,6 +157,12 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\BusinessSystemDBEntityModel\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
 >>>>>>> develop
+=======
+      <HintPath>..\..\..\..\LINQ\Solution1\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\..\..\LINQ\Solution1\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+>>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
 =======
       <HintPath>..\..\..\..\LINQ\Solution1\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>

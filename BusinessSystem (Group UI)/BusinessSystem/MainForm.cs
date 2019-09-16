@@ -33,6 +33,7 @@ namespace BusinessSystem
             Width = 870;
             Height = 680;
 <<<<<<< HEAD
+<<<<<<< HEAD
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
@@ -45,6 +46,9 @@ namespace BusinessSystem
         {
 
         }
+=======
+        }      
+>>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
 =======
         }      
 >>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
