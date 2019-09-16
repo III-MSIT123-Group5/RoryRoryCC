@@ -14,11 +14,14 @@ namespace BusinessSystemDBEntityModel
     
     public partial class CompanyVehicle
     {
-        public string license_number { get; set; }
+        public string LicenseNumber { get; set; }
+        public Nullable<int> VehicleYear { get; set; }
+        public Nullable<System.DateTime> PurchaseDate { get; set; }
         public string brand { get; set; }
         public string serial { get; set; }
-        public string max_passenger { get; set; }
+        public string MaxPassenger { get; set; }
         public Nullable<int> officeID { get; set; }
+        public byte[] VehiclePhoto { get; set; }
     
         public virtual Office Office { get; set; }
     }
