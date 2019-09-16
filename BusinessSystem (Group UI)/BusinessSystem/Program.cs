@@ -18,6 +18,7 @@ namespace BusinessSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new BullitinBoard_2());
+            Application.Run(new MainForm());
         }
     }
 }
