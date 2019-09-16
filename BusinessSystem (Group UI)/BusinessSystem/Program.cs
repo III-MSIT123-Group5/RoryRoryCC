@@ -20,6 +20,9 @@ namespace BusinessSystem
 <<<<<<< HEAD
             Application.Run(new MainForm());
             //Application.Run(new CompanyCarForm());
+=======
+            Application.Run(new CreateEmployeeForm ());
+>>>>>>> develop
         }
     }
 }
