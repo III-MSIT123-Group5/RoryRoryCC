@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0E8E8405-AA03-4341-9FDF-54CC5447471E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>BusinessSystem</RootNamespace>
     <AssemblyName>BusinessSystem</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
@@ -41,20 +44,6 @@
     </Compile>
     <Compile Include="ClsAltoButton.cs">
       <SubType>Component</SubType>
-    </Compile>
-<<<<<<< HEAD
-    <Compile Include="CompanyVehicle\CompanyCarForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CompanyVehicle\CompanyCarForm.designer.cs">
-      <DependentUpon>CompanyCarForm.cs</DependentUpon>
-=======
-    <Compile Include="CreateEmployeeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CreateEmployeeForm.Designer.cs">
-      <DependentUpon>CreateEmployeeForm.cs</DependentUpon>
->>>>>>> develop
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -76,13 +65,19 @@
       <DependentUpon>SonForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ClsTransparenter.cs" />
+    <Compile Include="暫放.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="暫放.Designer.cs">
+      <DependentUpon>暫放.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>C:\Users\III\Desktop\Solution1\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\OOP元件開發\NewWinFormSolution\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>C:\Users\III\Desktop\Solution1\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\OOP元件開發\NewWinFormSolution\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -94,14 +89,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <EmbeddedResource Include="CompanyVehicle\CompanyCarForm.resx">
-      <DependentUpon>CompanyCarForm.cs</DependentUpon>
-=======
-    <EmbeddedResource Include="CreateEmployeeForm.resx">
-      <DependentUpon>CreateEmployeeForm.cs</DependentUpon>
->>>>>>> develop
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -111,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SonForm.resx">
       <DependentUpon>SonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="暫放.resx">
+      <DependentUpon>暫放.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
