@@ -1,6 +1,6 @@
 ﻿namespace BusinessSystem
 {
-    partial class BulletinBoard_2
+    partial class BullitinBoard_2
     {
         /// <summary>
         /// Required designer variable.

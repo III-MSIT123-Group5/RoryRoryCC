@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace BusinessSystem
 {
-    public partial class BulletinBoard_2 : SonForm
+    public partial class BullitinBoard_2 : SonForm
     {
-        public BulletinBoard_2()
+        public BullitinBoard_2()
         {
             InitializeComponent();
         }
@@ -38,11 +38,11 @@ namespace BusinessSystem
 
             try
             {
-                var q = new BusinessSystemDBEntityModel.BulletinBoard
+                var q = new BulletinBoard
                 {
-                    EmployeeID = 1002,
-                    GroupID = 2,
-                    DepartmentID = 2,
+                    EmployeeID = 1001,
+                    GroupID = 01,
+                    DepartmentID = 1,
                     PostTime = DateTime.Now,
                     Content = this.richTextBox1.Text
                 };
