@@ -31,11 +31,7 @@ namespace BusinessSystem.ReportTimeSystem
         
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
-            var q = from reptime in dbcontext.ReportTimeSystems
-                    join eve in dbcontext.Events
-                    on reptime.EventID equals eve.EventID
-                    select eve.EventName;
-            comboBox1.DataSource = q.ToList();
+          
 
             dbcontext.ReportTimeSystems.Add(
                 new BusinessSystemDBEntityModel.ReportTimeSystem
@@ -107,7 +103,8 @@ namespace BusinessSystem.ReportTimeSystem
 
         private void FormAdd_Load(object sender, EventArgs e)
         {
-
+            comboBox1.DataSource = dbcontext.Events.Select(n=>n.EventName).Distinct().ToList();
+           
         }
     }
 }

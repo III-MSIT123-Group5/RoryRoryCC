@@ -27,11 +27,9 @@ namespace BusinessSystemDBEntityModel
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<ApprovalChild> ApprovalChilds { get; set; }
         public virtual DbSet<ApprovalOrder> ApprovalOrders { get; set; }
         public virtual DbSet<BulletinBoard> BulletinBoards { get; set; }
-        public virtual DbSet<CompanyVehicle> CompanyVehicles { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
@@ -53,6 +51,8 @@ namespace BusinessSystemDBEntityModel
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<ReportTimeSystem> ReportTimeSystems { get; set; }
+        public virtual DbSet<CompanyVehicle> CompanyVehicles { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
     
         public virtual int AddReport(ObjectParameter reportID, Nullable<int> employeeID, Nullable<System.DateTime> applyDateTime, Nullable<double> eventHours, Nullable<int> eventID, string note)
         {
