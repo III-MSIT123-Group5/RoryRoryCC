@@ -269,7 +269,7 @@
             this.label3.BackColor = System.Drawing.Color.MediumAquamarine;
             this.label3.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(674, 365);
+            this.label3.Location = new System.Drawing.Point(674, 327);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(123, 35);
@@ -365,7 +365,7 @@
             this.label9.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.label9.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label9.ForeColor = System.Drawing.SystemColors.Control;
-            this.label9.Location = new System.Drawing.Point(472, 140);
+            this.label9.Location = new System.Drawing.Point(490, 139);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(96, 35);
@@ -381,12 +381,12 @@
             this.label10.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.label10.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label10.ForeColor = System.Drawing.SystemColors.Control;
-            this.label10.Location = new System.Drawing.Point(188, 348);
+            this.label10.Location = new System.Drawing.Point(160, 348);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(96, 35);
+            this.label10.Size = new System.Drawing.Size(123, 35);
             this.label10.TabIndex = 20;
-            this.label10.Text = "行事曆";
+            this.label10.Text = "內部訊息";
             // 
             // MainForm
             // 
