@@ -24,6 +24,7 @@
         <EntityTypeShape EntityType="BusinessDataBaseModel.Suggestion" Width="1.5" PointX="11.25" PointY="10.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.File" Width="1.5" PointX="10.5" PointY="21.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.MeetingRoomHistory" Width="1.5" PointX="13.5" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.ReportTimeSystem" Width="1.5" PointX="10.5" PointY="27.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.SuggestionHistory" Width="1.5" PointX="13.5" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.SurveyMain" Width="1.5" PointX="5.125" PointY="8.75" IsExpanded="true" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_ApprovalChild_ApprovalOrder" ManuallyRouted="false" />
@@ -43,6 +44,7 @@
         <AssociationConnector Association="BusinessDataBaseModel.FK_Message_Employee" ManuallyRouted="false" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Recipient_Employee" ManuallyRouted="false" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_ReportMain_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="BusinessDataBaseModel.FK_ReportTimeSystem_Employee" ManuallyRouted="false" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Suggestion_history_Employee" ManuallyRouted="false" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Meeting_room_history_Meeting_room" ManuallyRouted="false" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Meeting_room_Office" ManuallyRouted="false" />
@@ -52,17 +54,12 @@
         <AssociationConnector Association="BusinessDataBaseModel.FK_Suggestion_history_Suggestion" ManuallyRouted="false" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Event" Width="1.5" PointX="2.75" PointY="0.75" />
-
         <EntityTypeShape EntityType="BusinessDataBaseModel.RequisitionChild" Width="1.5" PointX="0.75" PointY="4" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_RequisitionMain_RequisitionChild" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.CompanyVehicle" Width="1.5" PointX="8.25" PointY="23.75" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Company_vehicle_Office" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Account" Width="1.5" PointX="4.125" PointY="13" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Employee_Account" />
-
-        <EntityTypeShape EntityType="BusinessDataBaseModel.ReportTimeSystem" Width="1.5" PointX="10.5" PointY="24.875" />
-        <AssociationConnector Association="BusinessDataBaseModel.FK_ReportTimeSystem_Employee" />
-
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
