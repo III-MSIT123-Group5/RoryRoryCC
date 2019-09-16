@@ -54,6 +54,12 @@
             this.cmbDepartmentID = new System.Windows.Forms.ComboBox();
             this.cmbPositionID = new System.Windows.Forms.ComboBox();
             this.cmbEmployed = new System.Windows.Forms.ComboBox();
+            this.btnCreate = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtConfirmPassword = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -151,7 +157,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label7.Location = new System.Drawing.Point(355, 171);
+            this.label7.Location = new System.Drawing.Point(356, 219);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(79, 22);
@@ -163,7 +169,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label8.Location = new System.Drawing.Point(356, 123);
+            this.label8.Location = new System.Drawing.Point(357, 171);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(79, 22);
@@ -174,7 +180,7 @@
             // textBox7
             // 
             this.textBox7.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox7.Location = new System.Drawing.Point(468, 216);
+            this.textBox7.Location = new System.Drawing.Point(469, 264);
             this.textBox7.Margin = new System.Windows.Forms.Padding(4);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(206, 30);
@@ -185,7 +191,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label9.Location = new System.Drawing.Point(356, 219);
+            this.label9.Location = new System.Drawing.Point(357, 267);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(113, 22);
@@ -197,7 +203,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label10.Location = new System.Drawing.Point(356, 267);
+            this.label10.Location = new System.Drawing.Point(357, 315);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(78, 22);
@@ -231,7 +237,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label12.Location = new System.Drawing.Point(25, 411);
+            this.label12.Location = new System.Drawing.Point(357, 123);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(93, 22);
@@ -242,7 +248,7 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox2.Location = new System.Drawing.Point(468, 315);
+            this.textBox2.Location = new System.Drawing.Point(469, 363);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(206, 30);
@@ -253,7 +259,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label13.Location = new System.Drawing.Point(355, 315);
+            this.label13.Location = new System.Drawing.Point(356, 363);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(79, 22);
@@ -279,8 +285,9 @@
             // 
             // cmbOfficeID
             // 
+            this.cmbOfficeID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOfficeID.FormattingEnabled = true;
-            this.cmbOfficeID.Location = new System.Drawing.Point(121, 408);
+            this.cmbOfficeID.Location = new System.Drawing.Point(469, 120);
             this.cmbOfficeID.Name = "cmbOfficeID";
             this.cmbOfficeID.Size = new System.Drawing.Size(206, 30);
             this.cmbOfficeID.TabIndex = 28;
@@ -288,8 +295,9 @@
             // 
             // cmbDepartmentID
             // 
+            this.cmbDepartmentID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDepartmentID.FormattingEnabled = true;
-            this.cmbDepartmentID.Location = new System.Drawing.Point(468, 115);
+            this.cmbDepartmentID.Location = new System.Drawing.Point(469, 163);
             this.cmbDepartmentID.Name = "cmbDepartmentID";
             this.cmbDepartmentID.Size = new System.Drawing.Size(206, 30);
             this.cmbDepartmentID.TabIndex = 29;
@@ -297,8 +305,9 @@
             // 
             // cmbPositionID
             // 
+            this.cmbPositionID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPositionID.FormattingEnabled = true;
-            this.cmbPositionID.Location = new System.Drawing.Point(468, 168);
+            this.cmbPositionID.Location = new System.Drawing.Point(469, 216);
             this.cmbPositionID.Name = "cmbPositionID";
             this.cmbPositionID.Size = new System.Drawing.Size(206, 30);
             this.cmbPositionID.TabIndex = 30;
@@ -306,18 +315,93 @@
             // 
             // cmbEmployed
             // 
+            this.cmbEmployed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEmployed.Enabled = false;
             this.cmbEmployed.FormattingEnabled = true;
-            this.cmbEmployed.Location = new System.Drawing.Point(468, 267);
+            this.cmbEmployed.Items.AddRange(new object[] {
+            "離職",
+            "在職"});
+            this.cmbEmployed.Location = new System.Drawing.Point(469, 315);
             this.cmbEmployed.Name = "cmbEmployed";
             this.cmbEmployed.Size = new System.Drawing.Size(206, 30);
             this.cmbEmployed.TabIndex = 31;
             this.toolTip1.SetToolTip(this.cmbEmployed, "employed");
             // 
+            // btnCreate
+            // 
+            this.btnCreate.Location = new System.Drawing.Point(375, 431);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(137, 39);
+            this.btnCreate.TabIndex = 32;
+            this.btnCreate.Text = "新增";
+            this.toolTip1.SetToolTip(this.btnCreate, "新增員工資料至資料庫");
+            this.btnCreate.UseVisualStyleBackColor = true;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(538, 431);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(137, 39);
+            this.btnClear.TabIndex = 33;
+            this.btnClear.Text = "重新輸入";
+            this.toolTip1.SetToolTip(this.btnClear, "重新輸入表格");
+            this.btnClear.UseVisualStyleBackColor = true;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.txtPassword.Location = new System.Drawing.Point(121, 398);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(206, 30);
+            this.txtPassword.TabIndex = 35;
+            this.toolTip1.SetToolTip(this.txtPassword, "password");
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label14.Location = new System.Drawing.Point(25, 401);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(95, 22);
+            this.label14.TabIndex = 34;
+            this.label14.Text = "員工密碼：";
+            this.toolTip1.SetToolTip(this.label14, "password");
+            // 
+            // txtConfirmPassword
+            // 
+            this.txtConfirmPassword.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.txtConfirmPassword.Location = new System.Drawing.Point(121, 436);
+            this.txtConfirmPassword.Margin = new System.Windows.Forms.Padding(4);
+            this.txtConfirmPassword.Name = "txtConfirmPassword";
+            this.txtConfirmPassword.Size = new System.Drawing.Size(206, 30);
+            this.txtConfirmPassword.TabIndex = 37;
+            this.toolTip1.SetToolTip(this.txtConfirmPassword, "請再輸入一次password");
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label15.Location = new System.Drawing.Point(25, 439);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(95, 22);
+            this.label15.TabIndex = 36;
+            this.label15.Text = "確認密碼：";
+            this.toolTip1.SetToolTip(this.label15, "confirm password");
+            // 
             // CreateEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 660);
+            this.ClientSize = new System.Drawing.Size(721, 487);
+            this.Controls.Add(this.txtConfirmPassword);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.cmbEmployed);
             this.Controls.Add(this.cmbPositionID);
             this.Controls.Add(this.cmbDepartmentID);
@@ -346,6 +430,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CreateEmployeeForm";
             this.Text = "新增員工資料";
+            this.Load += new System.EventHandler(this.CreateEmployeeForm_Load);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.txtEmployeeID, 0);
             this.Controls.SetChildIndex(this.label3, 0);
@@ -370,6 +455,12 @@
             this.Controls.SetChildIndex(this.cmbDepartmentID, 0);
             this.Controls.SetChildIndex(this.cmbPositionID, 0);
             this.Controls.SetChildIndex(this.cmbEmployed, 0);
+            this.Controls.SetChildIndex(this.btnCreate, 0);
+            this.Controls.SetChildIndex(this.btnClear, 0);
+            this.Controls.SetChildIndex(this.label14, 0);
+            this.Controls.SetChildIndex(this.txtPassword, 0);
+            this.Controls.SetChildIndex(this.label15, 0);
+            this.Controls.SetChildIndex(this.txtConfirmPassword, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -402,5 +493,11 @@
         private System.Windows.Forms.ComboBox cmbDepartmentID;
         private System.Windows.Forms.ComboBox cmbPositionID;
         private System.Windows.Forms.ComboBox cmbEmployed;
+        private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtConfirmPassword;
+        private System.Windows.Forms.Label label15;
     }
 }

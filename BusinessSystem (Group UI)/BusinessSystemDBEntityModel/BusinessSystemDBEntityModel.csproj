@@ -126,6 +126,9 @@
     <Compile Include="ReportTimeSystem.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="RequisitionChild.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="RequisitionMain.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>

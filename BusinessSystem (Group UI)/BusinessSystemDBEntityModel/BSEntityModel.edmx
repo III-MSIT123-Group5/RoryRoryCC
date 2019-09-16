@@ -9,8 +9,9 @@
           <Key>
             <PropertyRef Name="account" />
           </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="account" Type="nvarchar" MaxLength="12" Nullable="false" />
-          <Property Name="password" Type="nvarchar" MaxLength="12" />
+          <Property Name="password" Type="varbinary" MaxLength="32" />
         </EntityType>
         <EntityType Name="ApprovalChild">
           <Key>
@@ -44,13 +45,16 @@
         </EntityType>
         <EntityType Name="CompanyVehicle">
           <Key>
-            <PropertyRef Name="license number" />
+            <PropertyRef Name="LicenseNumber" />
           </Key>
-          <Property Name="license number" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="LicenseNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VehicleYear" Type="int" />
+          <Property Name="PurchaseDate" Type="date" />
           <Property Name="brand" Type="nchar" MaxLength="10" />
           <Property Name="serial" Type="nchar" MaxLength="10" />
-          <Property Name="max passenger" Type="nchar" MaxLength="10" />
+          <Property Name="MaxPassenger" Type="nchar" MaxLength="10" />
           <Property Name="officeID" Type="int" />
+          <Property Name="VehiclePhoto" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -205,6 +209,18 @@
           <Property Name="EventHours" Type="float" Nullable="false" />
           <Property Name="EventID" Type="int" Nullable="false" />
           <Property Name="Note" Type="nvarchar" MaxLength="100" />
+          <Property Name="Discontinue" Type="bit" />
+        </EntityType>
+        <EntityType Name="RequisitionChild">
+          <Key>
+            <PropertyRef Name="RequisitionID" />
+          </Key>
+          <Property Name="RequisitionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UnitPrice" Type="money" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Note" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="RequisitionMain">
           <Key>
@@ -549,6 +565,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RequisitionMain_RequisitionChild">
+          <End Role="RequisitionChild" Type="Self.RequisitionChild" Multiplicity="1" />
+          <End Role="RequisitionMain" Type="Self.RequisitionMain" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="RequisitionChild">
+              <PropertyRef Name="RequisitionID" />
+            </Principal>
+            <Dependent Role="RequisitionMain">
+              <PropertyRef Name="RequisitionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Suggestion history_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
           <End Role="SuggestionHistory" Type="Self.SuggestionHistory" Multiplicity="*" />
@@ -649,6 +677,7 @@
           <EntitySet Name="Recipient" EntityType="Self.Recipient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReportCategory" EntityType="Self.ReportCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReportMain" EntityType="Self.ReportMain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequisitionChild" EntityType="Self.RequisitionChild" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RequisitionMain" EntityType="Self.RequisitionMain" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RewardandPunishment" EntityType="Self.RewardandPunishment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suggestion" EntityType="Self.Suggestion" Schema="dbo" store:Type="Tables" />
@@ -684,7 +713,8 @@
     [ReportTimeSystem].[ApplyDateTime] AS [ApplyDateTime], 
     [ReportTimeSystem].[EventHours] AS [EventHours], 
     [ReportTimeSystem].[EventID] AS [EventID], 
-    [ReportTimeSystem].[Note] AS [Note]
+    [ReportTimeSystem].[Note] AS [Note], 
+    [ReportTimeSystem].[Discontinue] AS [Discontinue]
     FROM [dbo].[ReportTimeSystem] AS [ReportTimeSystem]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="SuggestionHistory" EntityType="Self.SuggestionHistory" store:Type="Tables" store:Schema="dbo">
@@ -799,6 +829,10 @@
             <End Role="ReportMain" EntitySet="ReportMain" />
             <End Role="RequisitionMain" EntitySet="RequisitionMain" />
           </AssociationSet>
+          <AssociationSet Name="FK_RequisitionMain_RequisitionChild" Association="Self.FK_RequisitionMain_RequisitionChild">
+            <End Role="RequisitionChild" EntitySet="RequisitionChild" />
+            <End Role="RequisitionMain" EntitySet="RequisitionMain" />
+          </AssociationSet>
           <AssociationSet Name="FK_Suggestion history_Department" Association="Self.FK_Suggestion history_Department">
             <End Role="Department" EntitySet="Department" />
             <End Role="SuggestionHistory" EntitySet="SuggestionHistory" />
@@ -816,14 +850,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BusinessDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="account1" />
-          </Key>
-          <Property Name="account1" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Account" FromRole="Account" ToRole="Employee" />
-        </EntityType>
         <EntityType Name="ApprovalChild">
           <Key>
             <PropertyRef Name="ApprovalStatusID" />
@@ -860,17 +886,6 @@
           <NavigationProperty Name="Employee" Relationship="Self.FK_Bulletin_board_Employee" FromRole="BulletinBoard" ToRole="Employee" />
           <NavigationProperty Name="Group" Relationship="Self.FK_Bulletin_board_Group" FromRole="BulletinBoard" ToRole="Group" />
         </EntityType>
-        <EntityType Name="CompanyVehicle">
-          <Key>
-            <PropertyRef Name="license_number" />
-          </Key>
-          <Property Name="license_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="brand" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="serial" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="max_passenger" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="officeID" Type="Int32" />
-          <NavigationProperty Name="Office" Relationship="Self.FK_Company_vehicle_Office" FromRole="CompanyVehicle" ToRole="Office" />
-        </EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="departmentID" />
@@ -898,7 +913,6 @@
           <Property Name="managerID" Type="Int32" />
           <Property Name="employed" Type="Boolean" />
           <Property Name="groupID" Type="Int32" />
-          <NavigationProperty Name="Account1" Relationship="Self.FK_Employee_Account" FromRole="Employee" ToRole="Account" />
           <NavigationProperty Name="BulletinBoards" Relationship="Self.FK_Bulletin_board_Employee" FromRole="Employee" ToRole="BulletinBoard" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
           <NavigationProperty Name="Employee1" Relationship="Self.FK_Employee_Employee" FromRole="Employee" ToRole="Employee1" />
@@ -913,6 +927,7 @@
           <NavigationProperty Name="ReportMains" Relationship="Self.FK_ReportMain_Employee" FromRole="Employee" ToRole="ReportMain" />
           <NavigationProperty Name="ReportTimeSystems" Relationship="Self.FK_ReportTimeSystem_Employee" FromRole="Employee" ToRole="ReportTimeSystem" />
           <NavigationProperty Name="SuggestionHistories" Relationship="Self.FK_Suggestion_history_Employee" FromRole="Employee" ToRole="SuggestionHistory" />
+          <NavigationProperty Name="Account1" Relationship="BusinessDataBaseModel.FK_Employee_Account" FromRole="Employee" ToRole="Account" />
         </EntityType>
         <EntityType Name="Group">
           <Key>
@@ -962,9 +977,9 @@
           <Property Name="officeID" Type="Int32" Nullable="false" />
           <Property Name="office_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="office_address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CompanyVehicles" Relationship="Self.FK_Company_vehicle_Office" FromRole="Office" ToRole="CompanyVehicle" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Office" FromRole="Office" ToRole="Employee" />
           <NavigationProperty Name="MeetingRooms" Relationship="Self.FK_Meeting_room_Office" FromRole="Office" ToRole="MeetingRoom" />
+          <NavigationProperty Name="CompanyVehicles" Relationship="BusinessDataBaseModel.FK_Company_vehicle_Office" FromRole="Office" ToRole="CompanyVehicle" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -1016,6 +1031,7 @@
           <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ReportMain" Relationship="Self.FK_RequisitionMain_ReportMain" FromRole="RequisitionMain" ToRole="ReportMain" />
+          <NavigationProperty Name="RequisitionChild" Relationship="BusinessDataBaseModel.FK_RequisitionMain_RequisitionChild" FromRole="RequisitionMain" ToRole="RequisitionChild" />
         </EntityType>
         <EntityType Name="RewardandPunishment">
           <Key>
@@ -1075,6 +1091,7 @@
           <Property Name="EventID" Type="Int32" Nullable="false" />
           <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_ReportTimeSystem_Employee" FromRole="ReportTimeSystem" ToRole="Employee" />
+          <Property Name="Discontinue" Type="Boolean" />
         </EntityType>
         <EntityType Name="SuggestionHistory">
           <Key>
@@ -1097,18 +1114,6 @@
           <Property Name="QuestionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Question" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="FK_Employee_Account">
-          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
-          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="account1" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="account" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ApprovalChild_ApprovalOrder">
           <End Role="ApprovalOrder" Type="Self.ApprovalOrder" Multiplicity="0..1" />
           <End Role="ApprovalChild" Type="Self.ApprovalChild" Multiplicity="*" />
@@ -1166,18 +1171,6 @@
             </Principal>
             <Dependent Role="BulletinBoard">
               <PropertyRef Name="GroupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Company_vehicle_Office">
-          <End Role="Office" Type="Self.Office" Multiplicity="0..1" />
-          <End Role="CompanyVehicle" Type="Self.CompanyVehicle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Office">
-              <PropertyRef Name="officeID" />
-            </Principal>
-            <Dependent Role="CompanyVehicle">
-              <PropertyRef Name="officeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1422,11 +1415,9 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BusinessDataBaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="ApprovalChilds" EntityType="Self.ApprovalChild" />
           <EntitySet Name="ApprovalOrders" EntityType="Self.ApprovalOrder" />
           <EntitySet Name="BulletinBoards" EntityType="Self.BulletinBoard" />
-          <EntitySet Name="CompanyVehicles" EntityType="Self.CompanyVehicle" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="Groups" EntityType="Self.Group" />
@@ -1446,10 +1437,6 @@
           <EntitySet Name="ReportTimeSystems" EntityType="Self.ReportTimeSystem" />
           <EntitySet Name="SuggestionHistories" EntityType="Self.SuggestionHistory" />
           <EntitySet Name="SurveyMains" EntityType="Self.SurveyMain" />
-          <AssociationSet Name="FK_Employee_Account" Association="Self.FK_Employee_Account">
-            <End Role="Account" EntitySet="Accounts" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
           <AssociationSet Name="FK_ApprovalChild_ApprovalOrder" Association="Self.FK_ApprovalChild_ApprovalOrder">
             <End Role="ApprovalOrder" EntitySet="ApprovalOrders" />
             <End Role="ApprovalChild" EntitySet="ApprovalChilds" />
@@ -1469,10 +1456,6 @@
           <AssociationSet Name="FK_Bulletin_board_Group" Association="Self.FK_Bulletin_board_Group">
             <End Role="Group" EntitySet="Groups" />
             <End Role="BulletinBoard" EntitySet="BulletinBoards" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Company_vehicle_Office" Association="Self.FK_Company_vehicle_Office">
-            <End Role="Office" EntitySet="Offices" />
-            <End Role="CompanyVehicle" EntitySet="CompanyVehicles" />
           </AssociationSet>
           <AssociationSet Name="FK_Employee_Department" Association="Self.FK_Employee_Department">
             <End Role="Department" EntitySet="Departments" />
@@ -1602,6 +1585,21 @@
             <Parameter Name="EventID" Mode="In" Type="Int32" />
             <Parameter Name="Note" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="RequisitionChilds" EntityType="BusinessDataBaseModel.RequisitionChild" />
+          <AssociationSet Name="FK_RequisitionMain_RequisitionChild" Association="BusinessDataBaseModel.FK_RequisitionMain_RequisitionChild">
+            <End Role="RequisitionChild" EntitySet="RequisitionChilds" />
+            <End Role="RequisitionMain" EntitySet="RequisitionMains" />
+          </AssociationSet>
+          <EntitySet Name="CompanyVehicles" EntityType="BusinessDataBaseModel.CompanyVehicle" />
+          <AssociationSet Name="FK_Company_vehicle_Office" Association="BusinessDataBaseModel.FK_Company_vehicle_Office">
+            <End Role="Office" EntitySet="Offices" />
+            <End Role="CompanyVehicle" EntitySet="CompanyVehicles" />
+          </AssociationSet>
+          <EntitySet Name="Accounts" EntityType="BusinessDataBaseModel.Account" />
+          <AssociationSet Name="FK_Employee_Account" Association="BusinessDataBaseModel.FK_Employee_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="sysdiagram">
           <Key>
@@ -1631,20 +1629,83 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="RequisitionChild">
+          <Key>
+            <PropertyRef Name="RequisitionID" />
+          </Key>
+          <Property Name="RequisitionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RequisitionMain" Relationship="BusinessDataBaseModel.FK_RequisitionMain_RequisitionChild" FromRole="RequisitionChild" ToRole="RequisitionMain" />
+        </EntityType>
+        <Association Name="FK_RequisitionMain_RequisitionChild">
+          <End Type="BusinessDataBaseModel.RequisitionChild" Role="RequisitionChild" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.RequisitionMain" Role="RequisitionMain" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="RequisitionChild">
+              <PropertyRef Name="RequisitionID" />
+            </Principal>
+            <Dependent Role="RequisitionMain">
+              <PropertyRef Name="RequisitionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CompanyVehicle">
+          <Key>
+            <PropertyRef Name="LicenseNumber" />
+          </Key>
+          <Property Name="LicenseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VehicleYear" Type="Int32" />
+          <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
+          <Property Name="brand" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="serial" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MaxPassenger" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="officeID" Type="Int32" />
+          <Property Name="VehiclePhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Office" Relationship="BusinessDataBaseModel.FK_Company_vehicle_Office" FromRole="CompanyVehicle" ToRole="Office" />
+        </EntityType>
+        <Association Name="FK_Company_vehicle_Office">
+          <End Type="BusinessDataBaseModel.Office" Role="Office" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.CompanyVehicle" Role="CompanyVehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="officeID" />
+            </Principal>
+            <Dependent Role="CompanyVehicle">
+              <PropertyRef Name="officeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="account1" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="account1" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="Binary" MaxLength="32" FixedLength="false" />
+          <NavigationProperty Name="Employees" Relationship="BusinessDataBaseModel.FK_Employee_Account" FromRole="Account" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_Employee_Account">
+          <End Type="BusinessDataBaseModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="account1" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BusinessDataBaseModelStoreContainer" CdmEntityContainer="BusinessDataBaseEntities">
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="account1" ColumnName="account" />
-                <ScalarProperty Name="password" ColumnName="password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ApprovalChilds">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.ApprovalChild">
               <MappingFragment StoreEntitySet="ApprovalChild">
@@ -1675,17 +1736,6 @@
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="PostTime" ColumnName="PostTime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CompanyVehicles">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.CompanyVehicle">
-              <MappingFragment StoreEntitySet="CompanyVehicle">
-                <ScalarProperty Name="license_number" ColumnName="license number" />
-                <ScalarProperty Name="brand" ColumnName="brand" />
-                <ScalarProperty Name="serial" ColumnName="serial" />
-                <ScalarProperty Name="max_passenger" ColumnName="max passenger" />
-                <ScalarProperty Name="officeID" ColumnName="officeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1849,6 +1899,7 @@
           <EntitySetMapping Name="ReportTimeSystems">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.ReportTimeSystem">
               <MappingFragment StoreEntitySet="ReportTimeSystem">
+                <ScalarProperty Name="Discontinue" ColumnName="Discontinue" />
                 <ScalarProperty Name="ReportID" ColumnName="ReportID" />
                 <ScalarProperty Name="employeeID" ColumnName="employeeID" />
                 <ScalarProperty Name="ApplyDateTime" ColumnName="ApplyDateTime" />
@@ -1923,6 +1974,41 @@
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="BusinessDataBaseModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="BusinessDataBaseModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="UpdateReport" FunctionName="BusinessDataBaseModel.Store.UpdateReport" />
+          <EntitySetMapping Name="RequisitionChilds">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.RequisitionChild">
+              <MappingFragment StoreEntitySet="RequisitionChild">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="RequisitionID" ColumnName="RequisitionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyVehicles">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.CompanyVehicle">
+              <MappingFragment StoreEntitySet="CompanyVehicle">
+                <ScalarProperty Name="VehiclePhoto" ColumnName="VehiclePhoto" />
+                <ScalarProperty Name="officeID" ColumnName="officeID" />
+                <ScalarProperty Name="MaxPassenger" ColumnName="MaxPassenger" />
+                <ScalarProperty Name="serial" ColumnName="serial" />
+                <ScalarProperty Name="brand" ColumnName="brand" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="VehicleYear" ColumnName="VehicleYear" />
+                <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="account1" ColumnName="account" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
