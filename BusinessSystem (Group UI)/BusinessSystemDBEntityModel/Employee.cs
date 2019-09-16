@@ -62,8 +62,10 @@ namespace BusinessSystemDBEntityModel
         public virtual ICollection<ReportMain> ReportMains { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReportTimeSystem> ReportTimeSystems { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+        
         public virtual ICollection<SuggestionHistory> SuggestionHistories { get; set; }
+
         public virtual Account Account1 { get; set; }
     }
 }

@@ -927,6 +927,7 @@
           <NavigationProperty Name="ReportMains" Relationship="Self.FK_ReportMain_Employee" FromRole="Employee" ToRole="ReportMain" />
           <NavigationProperty Name="ReportTimeSystems" Relationship="Self.FK_ReportTimeSystem_Employee" FromRole="Employee" ToRole="ReportTimeSystem" />
           <NavigationProperty Name="SuggestionHistories" Relationship="Self.FK_Suggestion_history_Employee" FromRole="Employee" ToRole="SuggestionHistory" />
+          <NavigationProperty Name="ReportTimeSystems" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Employee" FromRole="Employee" ToRole="ReportTimeSystem" />
           <NavigationProperty Name="Account1" Relationship="BusinessDataBaseModel.FK_Employee_Account" FromRole="Employee" ToRole="Account" />
         </EntityType>
         <EntityType Name="Group">
@@ -1600,6 +1601,16 @@
             <End Role="Account" EntitySet="Accounts" />
             <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
+          <EntitySet Name="CompanyVehicles" EntityType="BusinessDataBaseModel.CompanyVehicle" />
+          <AssociationSet Name="FK_Company_vehicle_Office" Association="BusinessDataBaseModel.FK_Company_vehicle_Office">
+            <End Role="Office" EntitySet="Offices" />
+            <End Role="CompanyVehicle" EntitySet="CompanyVehicles" />
+          </AssociationSet>
+          <EntitySet Name="Accounts" EntityType="BusinessDataBaseModel.Account" />
+          <AssociationSet Name="FK_Employee_Account" Association="BusinessDataBaseModel.FK_Employee_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="sysdiagram">
           <Key>
@@ -1684,6 +1695,52 @@
             <PropertyRef Name="account1" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="account1" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="Binary" MaxLength="32" FixedLength="false" />
+          <NavigationProperty Name="Employees" Relationship="BusinessDataBaseModel.FK_Employee_Account" FromRole="Account" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_Employee_Account">
+          <End Type="BusinessDataBaseModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="account1" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CompanyVehicle">
+          <Key>
+            <PropertyRef Name="LicenseNumber" />
+          </Key>
+          <Property Name="LicenseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VehicleYear" Type="Int32" />
+          <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
+          <Property Name="brand" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="serial" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MaxPassenger" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="officeID" Type="Int32" />
+          <Property Name="VehiclePhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Office" Relationship="BusinessDataBaseModel.FK_Company_vehicle_Office" FromRole="CompanyVehicle" ToRole="Office" />
+        </EntityType>
+        <Association Name="FK_Company_vehicle_Office">
+          <End Type="BusinessDataBaseModel.Office" Role="Office" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.CompanyVehicle" Role="CompanyVehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="officeID" />
+            </Principal>
+            <Dependent Role="CompanyVehicle">
+              <PropertyRef Name="officeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="account1" />
+          </Key>
           <Property Name="account1" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="Binary" MaxLength="32" FixedLength="false" />
           <NavigationProperty Name="Employees" Relationship="BusinessDataBaseModel.FK_Employee_Account" FromRole="Account" ToRole="Employee" />
@@ -2006,6 +2063,28 @@
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="account1" ColumnName="account" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyVehicles">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.CompanyVehicle">
+              <MappingFragment StoreEntitySet="CompanyVehicle">
+                <ScalarProperty Name="VehiclePhoto" ColumnName="VehiclePhoto" />
+                <ScalarProperty Name="officeID" ColumnName="officeID" />
+                <ScalarProperty Name="MaxPassenger" ColumnName="MaxPassenger" />
+                <ScalarProperty Name="serial" ColumnName="serial" />
+                <ScalarProperty Name="brand" ColumnName="brand" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="VehicleYear" ColumnName="VehicleYear" />
+                <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="account1" ColumnName="account" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

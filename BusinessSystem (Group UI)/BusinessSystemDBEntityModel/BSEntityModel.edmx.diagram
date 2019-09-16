@@ -4,7 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0d2d51b4f1af428e9c820d7c2553b789" Name="Diagram1" ZoomLevel="34">
+
+      <Diagram DiagramId="0d2d51b4f1af428e9c820d7c2553b789" Name="Diagram1" ZoomLevel="88">
+
         <EntityTypeShape EntityType="BusinessDataBaseModel.ApprovalChild" Width="1.5" PointX="15" PointY="22.625" IsExpanded="true" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.ApprovalOrder" Width="1.5" PointX="12.75" PointY="22.625" IsExpanded="true" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.BulletinBoard" Width="1.5" PointX="5.25" PointY="15.75" IsExpanded="true" />
@@ -54,11 +56,18 @@
         <AssociationConnector Association="BusinessDataBaseModel.FK_Suggestion_history_Suggestion" ManuallyRouted="false" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Event" Width="1.5" PointX="2.75" PointY="0.75" />
+
         <EntityTypeShape EntityType="BusinessDataBaseModel.RequisitionChild" Width="1.5" PointX="0.75" PointY="4" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_RequisitionMain_RequisitionChild" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.CompanyVehicle" Width="1.5" PointX="8.25" PointY="23.75" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Company_vehicle_Office" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Account" Width="1.5" PointX="4.125" PointY="13" />
+
+        <EntityTypeShape EntityType="BusinessDataBaseModel.ReportTimeSystem" Width="1.5" PointX="10.5" PointY="24.875" />
+        <AssociationConnector Association="BusinessDataBaseModel.FK_ReportTimeSystem_Employee" />
+  
+
+
         <AssociationConnector Association="BusinessDataBaseModel.FK_Employee_Account" />
       </Diagram>
     </edmx:Diagrams>
