@@ -42,6 +42,12 @@
     <Compile Include="ClsAltoButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CreateEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateEmployeeForm.Designer.cs">
+      <DependentUpon>CreateEmployeeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CreateEmployeeForm.resx">
+      <DependentUpon>CreateEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
