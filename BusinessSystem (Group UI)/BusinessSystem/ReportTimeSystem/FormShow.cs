@@ -8,16 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BusinessSystem
+namespace BusinessSystem.ReportTimeSystem
 {
-    public partial class MainForm : Form
+    public partial class FormShow : SonForm
     {
-        public MainForm()
+        public FormShow()
         {
             InitializeComponent();
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void FormShow_Load(object sender, EventArgs e)
         {
 
         }

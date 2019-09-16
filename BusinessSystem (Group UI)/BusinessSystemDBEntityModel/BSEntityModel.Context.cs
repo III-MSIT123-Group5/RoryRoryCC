@@ -12,6 +12,8 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class BusinessDataBaseEntities : DbContext
     {
@@ -25,11 +27,9 @@ namespace BusinessSystemDBEntityModel
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<ApprovalChild> ApprovalChilds { get; set; }
         public virtual DbSet<ApprovalOrder> ApprovalOrders { get; set; }
         public virtual DbSet<BulletinBoard> BulletinBoards { get; set; }
-        public virtual DbSet<CompanyVehicle> CompanyVehicles { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
@@ -49,5 +49,163 @@ namespace BusinessSystemDBEntityModel
         public virtual DbSet<ReportTimeSystem> ReportTimeSystems { get; set; }
         public virtual DbSet<SuggestionHistory> SuggestionHistories { get; set; }
         public virtual DbSet<SurveyMain> SurveyMains { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<RequisitionChild> RequisitionChilds { get; set; }
+        public virtual DbSet<CompanyVehicle> CompanyVehicles { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
+    
+        public virtual int AddReport(ObjectParameter reportID, Nullable<int> employeeID, Nullable<System.DateTime> applyDateTime, Nullable<double> eventHours, Nullable<int> eventID, string note)
+        {
+            var employeeIDParameter = employeeID.HasValue ?
+                new ObjectParameter("employeeID", employeeID) :
+                new ObjectParameter("employeeID", typeof(int));
+    
+            var applyDateTimeParameter = applyDateTime.HasValue ?
+                new ObjectParameter("ApplyDateTime", applyDateTime) :
+                new ObjectParameter("ApplyDateTime", typeof(System.DateTime));
+    
+            var eventHoursParameter = eventHours.HasValue ?
+                new ObjectParameter("EventHours", eventHours) :
+                new ObjectParameter("EventHours", typeof(double));
+    
+            var eventIDParameter = eventID.HasValue ?
+                new ObjectParameter("EventID", eventID) :
+                new ObjectParameter("EventID", typeof(int));
+    
+            var noteParameter = note != null ?
+                new ObjectParameter("Note", note) :
+                new ObjectParameter("Note", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddReport", reportID, employeeIDParameter, applyDateTimeParameter, eventHoursParameter, eventIDParameter, noteParameter);
+        }
+    
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual int UpdateReport(ObjectParameter reportID, Nullable<int> employeeID, Nullable<System.DateTime> applyDateTime, Nullable<double> eventHours, Nullable<int> eventID, string note)
+        {
+            var employeeIDParameter = employeeID.HasValue ?
+                new ObjectParameter("employeeID", employeeID) :
+                new ObjectParameter("employeeID", typeof(int));
+    
+            var applyDateTimeParameter = applyDateTime.HasValue ?
+                new ObjectParameter("ApplyDateTime", applyDateTime) :
+                new ObjectParameter("ApplyDateTime", typeof(System.DateTime));
+    
+            var eventHoursParameter = eventHours.HasValue ?
+                new ObjectParameter("EventHours", eventHours) :
+                new ObjectParameter("EventHours", typeof(double));
+    
+            var eventIDParameter = eventID.HasValue ?
+                new ObjectParameter("EventID", eventID) :
+                new ObjectParameter("EventID", typeof(int));
+    
+            var noteParameter = note != null ?
+                new ObjectParameter("Note", note) :
+                new ObjectParameter("Note", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateReport", reportID, employeeIDParameter, applyDateTimeParameter, eventHoursParameter, eventIDParameter, noteParameter);
+        }
     }
 }
