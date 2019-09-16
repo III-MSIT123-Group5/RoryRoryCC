@@ -17,12 +17,8 @@ namespace BusinessSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-<<<<<<< HEAD
             //Application.Run(new MainForm());
             Application.Run(new CompanyCarForm());
-=======
-            Application.Run(new MainForm());
->>>>>>> aabeaa10cd7f4d27c6832ccea4217ddfcfc71a4c
         }
     }
 }
