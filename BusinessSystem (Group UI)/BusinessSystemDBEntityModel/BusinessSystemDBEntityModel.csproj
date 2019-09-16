@@ -86,6 +86,9 @@
     <Compile Include="Employee.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Event.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="File.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
@@ -129,6 +132,12 @@
     <Compile Include="RewardandPunishment.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Suggestion.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
@@ -136,6 +145,9 @@
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SurveyMain.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

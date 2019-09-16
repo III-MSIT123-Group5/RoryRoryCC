@@ -56,6 +56,8 @@
         <AssociationConnector Association="BusinessDataBaseModel.FK_ReportMain_ReportCategory" ManuallyRouted="false" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_RequisitionMain_ReportMain" ManuallyRouted="false" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Suggestion_history_Suggestion" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.Event" Width="1.5" PointX="2.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
