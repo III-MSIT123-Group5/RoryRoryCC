@@ -36,39 +36,39 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BulletinBoard\Bulletin_board.cs" />
-    <Compile Include="BulletinBoard\BulletinBoard-01.cs">
+    <Compile Include="Bulletin_board.cs" />
+    <Compile Include="BulletinBoard-01.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BulletinBoard\BulletinBoard-01.designer.cs">
+    <Compile Include="BulletinBoard-01.designer.cs">
       <DependentUpon>BulletinBoard-01.cs</DependentUpon>
     </Compile>
-    <Compile Include="BulletinBoard\BulletinBoard-02.cs">
+    <Compile Include="BulletinBoard-02.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BulletinBoard\BulletinBoard-02.designer.cs">
+    <Compile Include="BulletinBoard-02.designer.cs">
       <DependentUpon>BulletinBoard-02.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tools\CCBoxItem.cs" />
-    <Compile Include="Tools\CheckedComboBox.cs">
+    <Compile Include="CCBoxItem.cs" />
+    <Compile Include="CheckedComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Tools\ClsRoundButton.cs">
+    <Compile Include="ClsRoundButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Tools\ClsAltoButton.cs">
+    <Compile Include="ClsAltoButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CompanyCars\CompanyCarForm.cs">
+    <Compile Include="companycars\CompanyCarForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CompanyCars\CompanyCarForm.designer.cs">
+    <Compile Include="companycars\CompanyCarForm.designer.cs">
       <DependentUpon>CompanyCarForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CompanyCars\text123.cs">
+    <Compile Include="companycars\text123.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CompanyCars\text123.Designer.cs">
+    <Compile Include="companycars\text123.Designer.cs">
       <DependentUpon>text123.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
@@ -89,14 +89,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Tools\ClsRoundRectangleF.cs" />
+    <Compile Include="ClsRoundRectangleF.cs" />
     <Compile Include="SonForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SonForm.Designer.cs">
       <DependentUpon>SonForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tools\ClsTransparenter.cs" />
+    <Compile Include="ClsTransparenter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CheckBoxComboBox">
@@ -118,16 +118,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BulletinBoard\BulletinBoard-01.resx">
+    <EmbeddedResource Include="BulletinBoard-01.resx">
       <DependentUpon>BulletinBoard-01.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BulletinBoard\BulletinBoard-02.resx">
+    <EmbeddedResource Include="BulletinBoard-02.resx">
       <DependentUpon>BulletinBoard-02.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CompanyCars\CompanyCarForm.resx">
+    <EmbeddedResource Include="companycars\CompanyCarForm.resx">
       <DependentUpon>CompanyCarForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CompanyCars\text123.resx">
+    <EmbeddedResource Include="companycars\text123.resx">
       <DependentUpon>text123.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
