@@ -117,7 +117,7 @@
             this.rectangleShape_MeetingRoom,
             this.rectangleShape4,
             this.rectangleShape_date});
-            this.shapeContainer1.Size = new System.Drawing.Size(929, 648);
+            this.shapeContainer1.Size = new System.Drawing.Size(1239, 810);
             this.shapeContainer1.TabIndex = 7;
             this.shapeContainer1.TabStop = false;
             // 
@@ -213,10 +213,9 @@
             this.label2.BackColor = System.Drawing.Color.MediumAquamarine;
             this.label2.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(472, 588);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(629, 735);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 35);
+            this.label2.Size = new System.Drawing.Size(155, 43);
             this.label2.TabIndex = 10;
             this.label2.Text = "文件上傳";
             // 
@@ -224,10 +223,10 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.MediumAquamarine;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(458, 438);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox2.Location = new System.Drawing.Point(611, 548);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox2.Size = new System.Drawing.Size(200, 188);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 9;
             this.pictureBox2.TabStop = false;
@@ -241,10 +240,9 @@
             this.label1.BackColor = System.Drawing.Color.CornflowerBlue;
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(248, 587);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(331, 734);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(150, 35);
+            this.label1.Size = new System.Drawing.Size(189, 43);
             this.label1.TabIndex = 12;
             this.label1.Text = "公務車租借";
             // 
@@ -252,10 +250,10 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.CornflowerBlue;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(237, 434);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(316, 542);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(172, 169);
+            this.pictureBox1.Size = new System.Drawing.Size(229, 211);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
@@ -269,10 +267,9 @@
             this.label3.BackColor = System.Drawing.Color.MediumAquamarine;
             this.label3.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(674, 365);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(899, 456);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(123, 35);
+            this.label3.Size = new System.Drawing.Size(155, 43);
             this.label3.TabIndex = 13;
             this.label3.Text = "文件上傳";
             // 
@@ -285,10 +282,9 @@
             this.label4.BackColor = System.Drawing.Color.MediumAquamarine;
             this.label4.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label4.ForeColor = System.Drawing.SystemColors.Control;
-            this.label4.Location = new System.Drawing.Point(188, 97);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(251, 121);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 35);
+            this.label4.Size = new System.Drawing.Size(87, 43);
             this.label4.TabIndex = 14;
             this.label4.Text = "日期";
             // 
@@ -301,10 +297,9 @@
             this.label5.BackColor = System.Drawing.Color.MediumAquamarine;
             this.label5.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label5.ForeColor = System.Drawing.SystemColors.Control;
-            this.label5.Location = new System.Drawing.Point(47, 513);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(63, 641);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(150, 35);
+            this.label5.Size = new System.Drawing.Size(189, 43);
             this.label5.TabIndex = 15;
             this.label5.Text = "會議室租借";
             // 
@@ -317,10 +312,9 @@
             this.label6.BackColor = System.Drawing.Color.CornflowerBlue;
             this.label6.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label6.ForeColor = System.Drawing.SystemColors.Control;
-            this.label6.Location = new System.Drawing.Point(452, 365);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(603, 456);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(150, 35);
+            this.label6.Size = new System.Drawing.Size(189, 43);
             this.label6.TabIndex = 16;
             this.label6.Text = "公務車租借";
             // 
@@ -333,10 +327,9 @@
             this.label7.BackColor = System.Drawing.Color.CornflowerBlue;
             this.label7.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label7.ForeColor = System.Drawing.SystemColors.Control;
-            this.label7.Location = new System.Drawing.Point(699, 97);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(932, 121);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 35);
+            this.label7.Size = new System.Drawing.Size(87, 43);
             this.label7.TabIndex = 17;
             this.label7.Text = "員工";
             // 
@@ -349,10 +342,9 @@
             this.label8.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.label8.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label8.ForeColor = System.Drawing.SystemColors.Control;
-            this.label8.Location = new System.Drawing.Point(674, 568);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(899, 710);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(123, 35);
+            this.label8.Size = new System.Drawing.Size(155, 43);
             this.label8.TabIndex = 18;
             this.label8.Text = "請購系統";
             // 
@@ -365,10 +357,9 @@
             this.label9.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.label9.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label9.ForeColor = System.Drawing.SystemColors.Control;
-            this.label9.Location = new System.Drawing.Point(472, 140);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Location = new System.Drawing.Point(629, 175);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(96, 35);
+            this.label9.Size = new System.Drawing.Size(121, 43);
             this.label9.TabIndex = 19;
             this.label9.Text = "行事曆";
             // 
@@ -381,18 +372,17 @@
             this.label10.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.label10.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label10.ForeColor = System.Drawing.SystemColors.Control;
-            this.label10.Location = new System.Drawing.Point(188, 348);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Location = new System.Drawing.Point(251, 435);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(96, 35);
+            this.label10.Size = new System.Drawing.Size(121, 43);
             this.label10.TabIndex = 20;
             this.label10.Text = "行事曆";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(929, 648);
+            this.ClientSize = new System.Drawing.Size(1239, 810);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -406,7 +396,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.shapeContainer1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
