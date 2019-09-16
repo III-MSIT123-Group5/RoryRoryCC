@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessSystem.ReportTimeSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +18,14 @@ namespace BusinessSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
-            Application.Run(new BulletinBoard_2());
-            Application.Run(new CompanyCarForm());
+
+            //Application.Run(new MainForm());
+            //Application.Run(new BulletinBoard_2());
+            //Application.Run(new CompanyCarForm());
+
+
+            //Application.Run(new FormAdd ());
+            Application.Run(new CreateEmployeeForm());
 
         }
     }

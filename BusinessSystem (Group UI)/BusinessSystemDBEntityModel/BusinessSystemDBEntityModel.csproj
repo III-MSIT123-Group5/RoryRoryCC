@@ -135,6 +135,12 @@
     <Compile Include="RewardandPunishment.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Suggestion.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
@@ -155,7 +161,9 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="BSEntityModel.edmx.diagram">
       <DependentUpon>BSEntityModel.edmx</DependentUpon>
     </None>

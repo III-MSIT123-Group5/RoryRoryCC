@@ -39,5 +39,10 @@ namespace BusinessSystem
             FrmRequisition frmRequisition = new FrmRequisition();
             frmRequisition.Show();
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
