@@ -7,20 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BusinessSystemDBEntityModel
+namespace BusinessSystem
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class ReportTimeSystem
+    public partial class Bulletin_board
     {
-        public int ReportID { get; set; }
-        public int employeeID { get; set; }
-        public System.DateTime ApplyDateTime { get; set; }
-        public double EventHours { get; set; }
-        public int EventID { get; set; }
-        public string Note { get; set; }
-    
-        public virtual Employee Employee { get; set; }
+        public int Num { get; set; }
+        public string EmployeeID { get; set; }
+        public string DepartmentID { get; set; }
+        public string GroupID { get; set; }
+        public string Content { get; set; }
+        public Nullable<System.DateTime> PostTime { get; set; }
     }
 }
