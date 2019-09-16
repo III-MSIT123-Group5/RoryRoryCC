@@ -90,10 +90,6 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "更改按鈕",
-            "開會",
-            "出差"});
             this.comboBox1.Location = new System.Drawing.Point(198, 128);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(126, 23);
@@ -166,6 +162,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormAdd";
             this.Text = "FormAdd";
+            this.Load += new System.EventHandler(this.FormAdd_Load);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.label3, 0);

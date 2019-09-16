@@ -210,6 +210,7 @@
           <Property Name="EventID" Type="int" Nullable="false" />
           <Property Name="Note" Type="nvarchar" MaxLength="100" />
           <Property Name="Discontinue" Type="bit" />
+
         </EntityType>
         <EntityType Name="RequisitionChild">
           <Key>
@@ -221,6 +222,8 @@
           <Property Name="Quantity" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Discount" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Note" Type="nvarchar(max)" />
+
+
         </EntityType>
         <EntityType Name="RequisitionMain">
           <Key>
@@ -886,6 +889,25 @@
           <NavigationProperty Name="Employee" Relationship="Self.FK_Bulletin_board_Employee" FromRole="BulletinBoard" ToRole="Employee" />
           <NavigationProperty Name="Group" Relationship="Self.FK_Bulletin_board_Group" FromRole="BulletinBoard" ToRole="Group" />
         </EntityType>
+
+        <EntityType Name="CompanyVehicle">
+          <Key>
+            <PropertyRef Name="license_number" />
+            <PropertyRef Name="LicenseNumber" />
+          </Key>
+          <Property Name="license_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="brand" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="serial" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="max_passenger" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="officeID" Type="Int32" />
+          <NavigationProperty Name="Office" Relationship="Self.FK_Company_vehicle_Office" FromRole="CompanyVehicle" ToRole="Office" />
+          <Property Name="LicenseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VehicleYear" Type="Int32" />
+          <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
+          <Property Name="MaxPassenger" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="VehiclePhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="departmentID" />
@@ -925,9 +947,12 @@
           <NavigationProperty Name="Messages" Relationship="Self.FK_Message_Employee" FromRole="Employee" ToRole="Message" />
           <NavigationProperty Name="Recipients" Relationship="Self.FK_Recipient_Employee" FromRole="Employee" ToRole="Recipient" />
           <NavigationProperty Name="ReportMains" Relationship="Self.FK_ReportMain_Employee" FromRole="Employee" ToRole="ReportMain" />
-          <NavigationProperty Name="ReportTimeSystems" Relationship="Self.FK_ReportTimeSystem_Employee" FromRole="Employee" ToRole="ReportTimeSystem" />
           <NavigationProperty Name="SuggestionHistories" Relationship="Self.FK_Suggestion_history_Employee" FromRole="Employee" ToRole="SuggestionHistory" />
+
           <NavigationProperty Name="Account1" Relationship="BusinessDataBaseModel.FK_Employee_Account" FromRole="Employee" ToRole="Account" />
+
+          <NavigationProperty Name="ReportTimeSystems" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Employee" FromRole="Employee" ToRole="ReportTimeSystem" />
+
         </EntityType>
         <EntityType Name="Group">
           <Key>
@@ -1076,6 +1101,7 @@
           <NavigationProperty Name="Employee" Relationship="Self.FK_Meeting_room_history_Employee" FromRole="MeetingRoomHistory" ToRole="Employee" />
           <NavigationProperty Name="MeetingRoom" Relationship="Self.FK_Meeting_room_history_Meeting_room" FromRole="MeetingRoomHistory" ToRole="MeetingRoom" />
         </EntityType>
+
         <EntityType Name="ReportTimeSystem">
           <Key>
             <PropertyRef Name="ReportID" />
@@ -1093,6 +1119,7 @@
           <NavigationProperty Name="Employee" Relationship="Self.FK_ReportTimeSystem_Employee" FromRole="ReportTimeSystem" ToRole="Employee" />
           <Property Name="Discontinue" Type="Boolean" />
         </EntityType>
+
         <EntityType Name="SuggestionHistory">
           <Key>
             <PropertyRef Name="num" />
@@ -1318,18 +1345,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ReportTimeSystem_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
-          <End Role="ReportTimeSystem" Type="Self.ReportTimeSystem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="ReportTimeSystem">
-              <PropertyRef Name="employeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Suggestion_history_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="SuggestionHistory" Type="Self.SuggestionHistory" Multiplicity="*" />
@@ -1434,7 +1449,6 @@
           <EntitySet Name="Suggestions" EntityType="Self.Suggestion" />
           <EntitySet Name="Files" EntityType="Self.File" />
           <EntitySet Name="MeetingRoomHistories" EntityType="Self.MeetingRoomHistory" />
-          <EntitySet Name="ReportTimeSystems" EntityType="Self.ReportTimeSystem" />
           <EntitySet Name="SuggestionHistories" EntityType="Self.SuggestionHistory" />
           <EntitySet Name="SurveyMains" EntityType="Self.SurveyMain" />
           <AssociationSet Name="FK_ApprovalChild_ApprovalOrder" Association="Self.FK_ApprovalChild_ApprovalOrder">
@@ -1504,10 +1518,6 @@
           <AssociationSet Name="FK_ReportMain_Employee" Association="Self.FK_ReportMain_Employee">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="ReportMain" EntitySet="ReportMains" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReportTimeSystem_Employee" Association="Self.FK_ReportTimeSystem_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="ReportTimeSystem" EntitySet="ReportTimeSystems" />
           </AssociationSet>
           <AssociationSet Name="FK_Suggestion_history_Employee" Association="Self.FK_Suggestion_history_Employee">
             <End Role="Employee" EntitySet="Employees" />
@@ -1585,6 +1595,7 @@
             <Parameter Name="EventID" Mode="In" Type="Int32" />
             <Parameter Name="Note" Mode="In" Type="String" />
           </FunctionImport>
+
           <EntitySet Name="RequisitionChilds" EntityType="BusinessDataBaseModel.RequisitionChild" />
           <AssociationSet Name="FK_RequisitionMain_RequisitionChild" Association="BusinessDataBaseModel.FK_RequisitionMain_RequisitionChild">
             <End Role="RequisitionChild" EntitySet="RequisitionChilds" />
@@ -1599,6 +1610,12 @@
           <AssociationSet Name="FK_Employee_Account" Association="BusinessDataBaseModel.FK_Employee_Account">
             <End Role="Account" EntitySet="Accounts" />
             <End Role="Employee" EntitySet="Employees" />
+
+          <EntitySet Name="ReportTimeSystems" EntityType="BusinessDataBaseModel.ReportTimeSystem" />
+          <AssociationSet Name="FK_ReportTimeSystem_Employee" Association="BusinessDataBaseModel.FK_ReportTimeSystem_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="ReportTimeSystem" EntitySet="ReportTimeSystems" />
+
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="sysdiagram">
@@ -1629,6 +1646,7 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+
         <EntityType Name="RequisitionChild">
           <Key>
             <PropertyRef Name="RequisitionID" />
@@ -1697,6 +1715,34 @@
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="account" />
+
+        <EntityType Name="ReportTimeSystem">
+          <Key>
+            <PropertyRef Name="ReportID" />
+            <PropertyRef Name="employeeID" />
+            <PropertyRef Name="ApplyDateTime" />
+            <PropertyRef Name="EventHours" />
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeID" Type="Int32" Nullable="false" />
+          <Property Name="ApplyDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EventHours" Type="Double" Nullable="false" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Discontinue" Type="Boolean" />
+          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Employee" FromRole="ReportTimeSystem" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_ReportTimeSystem_Employee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.ReportTimeSystem" Role="ReportTimeSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="ReportTimeSystem">
+              <PropertyRef Name="employeeID" />
+
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1739,6 +1785,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+
+          <EntitySetMapping Name="CompanyVehicles">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.CompanyVehicle">
+              <MappingFragment StoreEntitySet="CompanyVehicle">
+                <ScalarProperty Name="VehiclePhoto" ColumnName="VehiclePhoto" />
+                <ScalarProperty Name="MaxPassenger" ColumnName="MaxPassenger" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="VehicleYear" ColumnName="VehicleYear" />
+                <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
+                <ScalarProperty Name="brand" ColumnName="brand" />
+                <ScalarProperty Name="serial" ColumnName="serial" />
+                <ScalarProperty Name="officeID" ColumnName="officeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+
           <EntitySetMapping Name="Departments">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.Department">
               <MappingFragment StoreEntitySet="Department">
@@ -1896,6 +1958,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+
           <EntitySetMapping Name="ReportTimeSystems">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.ReportTimeSystem">
               <MappingFragment StoreEntitySet="ReportTimeSystem">
@@ -1909,6 +1972,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+
           <EntitySetMapping Name="SuggestionHistories">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.SuggestionHistory">
               <MappingFragment StoreEntitySet="SuggestionHistory">
@@ -1974,6 +2038,7 @@
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="BusinessDataBaseModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="BusinessDataBaseModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="UpdateReport" FunctionName="BusinessDataBaseModel.Store.UpdateReport" />
+
           <EntitySetMapping Name="RequisitionChilds">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.RequisitionChild">
               <MappingFragment StoreEntitySet="RequisitionChild">
@@ -2006,10 +2071,22 @@
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="account1" ColumnName="account" />
                 <ScalarProperty Name="id" ColumnName="id" />
+
+          <EntitySetMapping Name="ReportTimeSystems">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.ReportTimeSystem">
+              <MappingFragment StoreEntitySet="ReportTimeSystem">
+                <ScalarProperty Name="Discontinue" ColumnName="Discontinue" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="EventHours" ColumnName="EventHours" />
+                <ScalarProperty Name="ApplyDateTime" ColumnName="ApplyDateTime" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+              </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
