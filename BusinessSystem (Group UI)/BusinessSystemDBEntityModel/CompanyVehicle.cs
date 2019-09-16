@@ -19,6 +19,11 @@ namespace BusinessSystemDBEntityModel
         public string serial { get; set; }
         public string max_passenger { get; set; }
         public Nullable<int> officeID { get; set; }
+        public string LicenseNumber { get; set; }
+        public Nullable<int> VehicleYear { get; set; }
+        public Nullable<System.DateTime> PurchaseDate { get; set; }
+        public string MaxPassenger { get; set; }
+        public byte[] VehiclePhoto { get; set; }
     
         public virtual Office Office { get; set; }
     }

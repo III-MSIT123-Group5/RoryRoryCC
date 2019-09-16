@@ -48,11 +48,11 @@ namespace BusinessSystemDBEntityModel
         public virtual DbSet<Suggestion> Suggestions { get; set; }
         public virtual DbSet<File> Files { get; set; }
         public virtual DbSet<MeetingRoomHistory> MeetingRoomHistories { get; set; }
-        public virtual DbSet<ReportTimeSystem> ReportTimeSystems { get; set; }
         public virtual DbSet<SuggestionHistory> SuggestionHistories { get; set; }
         public virtual DbSet<SurveyMain> SurveyMains { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<ReportTimeSystem> ReportTimeSystems { get; set; }
     
         public virtual int AddReport(ObjectParameter reportID, Nullable<int> employeeID, Nullable<System.DateTime> applyDateTime, Nullable<double> eventHours, Nullable<int> eventID, string note)
         {

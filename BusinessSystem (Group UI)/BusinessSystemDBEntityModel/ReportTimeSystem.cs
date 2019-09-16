@@ -20,6 +20,7 @@ namespace BusinessSystemDBEntityModel
         public double EventHours { get; set; }
         public int EventID { get; set; }
         public string Note { get; set; }
+        public Nullable<bool> Discontinue { get; set; }
     
         public virtual Employee Employee { get; set; }
     }
