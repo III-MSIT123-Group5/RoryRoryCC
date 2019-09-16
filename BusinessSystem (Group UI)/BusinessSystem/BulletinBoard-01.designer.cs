@@ -1,6 +1,6 @@
 ﻿namespace BusinessSystem
 {
-    partial class BullitinBoard
+    partial class BulletinBoard
     {
         /// <summary>
         /// Required designer variable.
@@ -30,11 +30,13 @@
         {
             this.listView1 = new System.Windows.Forms.ListView();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.CBGroup = new BusinessSystem.CheckedComboBox();
+            this.CBDepartment = new BusinessSystem.CheckedComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // listView1
@@ -47,30 +49,50 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.CBGroup);
+            this.panel2.Controls.Add(this.CBDepartment);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.comboBox2);
-            this.panel2.Controls.Add(this.comboBox1);
             this.panel2.Location = new System.Drawing.Point(0, 64);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(800, 70);
             this.panel2.TabIndex = 3;
             // 
-            // comboBox1
+            // CBGroup
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(93, 27);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 0;
+            this.CBGroup.CheckOnClick = true;
+            this.CBGroup.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.CBGroup.DropDownHeight = 1;
+            this.CBGroup.FormattingEnabled = true;
+            this.CBGroup.IntegralHeight = false;
+            this.CBGroup.Location = new System.Drawing.Point(450, 27);
+            this.CBGroup.Name = "CBGroup";
+            this.CBGroup.Size = new System.Drawing.Size(208, 26);
+            this.CBGroup.TabIndex = 9;
+            this.CBGroup.ValueSeparator = ", ";
             // 
-            // comboBox2
+            // CBDepartment
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(284, 27);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 23);
-            this.comboBox2.TabIndex = 4;
+            this.CBDepartment.CheckOnClick = true;
+            this.CBDepartment.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.CBDepartment.DropDownHeight = 1;
+            this.CBDepartment.FormattingEnabled = true;
+            this.CBDepartment.IntegralHeight = false;
+            this.CBDepartment.Location = new System.Drawing.Point(93, 27);
+            this.CBDepartment.Name = "CBDepartment";
+            this.CBDepartment.Size = new System.Drawing.Size(278, 26);
+            this.CBDepartment.TabIndex = 8;
+            this.CBDepartment.ValueSeparator = ", ";
+            this.CBDepartment.DropDownClosed += new System.EventHandler(this.CBDepartment_DropDownClosed);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(403, 30);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 15);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "組別:";
             // 
             // label2
             // 
@@ -81,28 +103,32 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "部門:";
             // 
-            // label3
+            // dataGridView1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(237, 30);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 15);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "組別:";
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(93, 168);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 27;
+            this.dataGridView1.Size = new System.Drawing.Size(498, 268);
+            this.dataGridView1.TabIndex = 4;
             // 
-            // BullitinBoard
+            // BulletinBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 499);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.listView1);
-            this.Name = "BullitinBoard";
-            this.Text = "BullitinBoard";
+            this.Name = "BulletinBoard";
+            this.Text = "BulletinBoard";
+            this.Load += new System.EventHandler(this.BulletinBoard_Load);
             this.Controls.SetChildIndex(this.listView1, 0);
             this.Controls.SetChildIndex(this.panel2, 0);
+            this.Controls.SetChildIndex(this.dataGridView1, 0);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -113,7 +139,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private CheckedComboBox CBGroup;
+        private CheckedComboBox CBDepartment;
     }
 }

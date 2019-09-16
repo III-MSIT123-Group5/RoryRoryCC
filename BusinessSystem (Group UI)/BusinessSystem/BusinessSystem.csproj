@@ -49,6 +49,10 @@
     <Compile Include="BulletinBoard-02.designer.cs">
       <DependentUpon>BulletinBoard-02.cs</DependentUpon>
     </Compile>
+    <Compile Include="CCBoxItem.cs" />
+    <Compile Include="CheckedComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ClsRoundButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -89,6 +93,9 @@
     <Compile Include="ClsTransparenter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="CheckBoxComboBox">
+      <HintPath>C:\Users\III\Desktop\CheckBoxComboBox\bin\Debug\CheckBoxComboBox.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\..\..\..\LINQ\Solution1\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
