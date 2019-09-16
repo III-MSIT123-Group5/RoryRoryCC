@@ -12,14 +12,9 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class RequisitionMain
+    public partial class Event
     {
-        public string ReportID { get; set; }
-        public int RequisitionID { get; set; }
-        public Nullable<decimal> TotalPrice { get; set; }
-        public string Note { get; set; }
-    
-        public virtual ReportMain ReportMain { get; set; }
-        public virtual RequisitionChild RequisitionChild { get; set; }
+        public int EventID { get; set; }
+        public string EventName { get; set; }
     }
 }
