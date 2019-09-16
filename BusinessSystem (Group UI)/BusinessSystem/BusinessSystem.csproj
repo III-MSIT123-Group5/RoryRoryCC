@@ -39,6 +39,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BulletinBoard\Bulletin_board.cs" />
     <Compile Include="BulletinBoard\BulletinBoard-01.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -51,7 +52,16 @@
     <Compile Include="BulletinBoard\BulletinBoard-02.designer.cs">
       <DependentUpon>BulletinBoard-02.cs</DependentUpon>
     </Compile>
-    <Compile Include="BulletinBoard\Bulletin_board.cs" />
+    <Compile Include="Tools\CCBoxItem.cs" />
+    <Compile Include="Tools\CheckedComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\ClsRoundButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\ClsAltoButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CompanyCars\CompanyCarForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,7 +71,7 @@
     <Compile Include="CompanyCars\text123.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CompanyCars\text123.designer.cs">
+    <Compile Include="CompanyCars\text123.Designer.cs">
       <DependentUpon>text123.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
@@ -82,6 +92,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <Compile Include="FrmRequisition.cs">
       <SubType>Form</SubType>
@@ -109,27 +120,23 @@
       <DependentUpon>FormUpdate.cs</DependentUpon>
 >>>>>>> develop
     </Compile>
+=======
+    <Compile Include="Tools\ClsRoundRectangleF.cs" />
+>>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
     <Compile Include="SonForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SonForm.Designer.cs">
       <DependentUpon>SonForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tools\CCBoxItem.cs" />
-    <Compile Include="Tools\CheckedComboBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Tools\ClsAltoButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Tools\ClsRoundButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Tools\ClsRoundRectangleF.cs" />
     <Compile Include="Tools\ClsTransparenter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="CheckBoxComboBox">
+      <HintPath>C:\Users\III\Desktop\CheckBoxComboBox\bin\Debug\CheckBoxComboBox.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
+<<<<<<< HEAD
 <<<<<<< HEAD
       <HintPath>E:\專題\專題-1\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -141,6 +148,12 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\BusinessSystemDBEntityModel\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
 >>>>>>> develop
+=======
+      <HintPath>..\..\..\..\LINQ\Solution1\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\..\..\LINQ\Solution1\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+>>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -164,9 +177,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CompanyCars\text123.resx">
       <DependentUpon>text123.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmRequisition.resx">
-      <DependentUpon>FrmRequisition.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

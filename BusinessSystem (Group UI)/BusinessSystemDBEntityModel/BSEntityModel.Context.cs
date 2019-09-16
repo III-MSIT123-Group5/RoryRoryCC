@@ -27,6 +27,7 @@ namespace BusinessSystemDBEntityModel
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<ApprovalChild> ApprovalChilds { get; set; }
         public virtual DbSet<ApprovalOrder> ApprovalOrders { get; set; }
         public virtual DbSet<BulletinBoard> BulletinBoards { get; set; }
@@ -49,10 +50,8 @@ namespace BusinessSystemDBEntityModel
         public virtual DbSet<ReportTimeSystem> ReportTimeSystems { get; set; }
         public virtual DbSet<SuggestionHistory> SuggestionHistories { get; set; }
         public virtual DbSet<SurveyMain> SurveyMains { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<Event> Events { get; set; }
-        public virtual DbSet<RequisitionChild> RequisitionChilds { get; set; }
         public virtual DbSet<CompanyVehicle> CompanyVehicles { get; set; }
+<<<<<<< HEAD
         public virtual DbSet<Account> Accounts { get; set; }
 
     
@@ -209,5 +208,7 @@ namespace BusinessSystemDBEntityModel
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateReport", reportID, employeeIDParameter, applyDateTimeParameter, eventHoursParameter, eventIDParameter, noteParameter);
         }
 
+=======
+>>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
     }
 }

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿using BusinessSystem.ReportTimeSystem;
+=======
+﻿using BusinessSystem.companycars;
+>>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +22,7 @@ namespace BusinessSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+<<<<<<< HEAD
 
             //Application.Run(new MainForm());
             //Application.Run(new BulletinBoard_2());
@@ -26,6 +31,13 @@ namespace BusinessSystem
 
             //Application.Run(new FormAdd ());
             Application.Run(new CreateEmployeeForm());
+=======
+            Application.Run(new MainForm());
+
+
+
+
+>>>>>>> parent of 98ed476... 2019.09.16(ChenWei)
 
         }
     }
