@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BusinessDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BusinessDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="account" />
@@ -31,6 +31,19 @@
           <Property Name="ApprovalStageID" Type="int" Nullable="false" />
           <Property Name="ApprovalOrder" Type="nvarchar(max)" />
         </EntityType>
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'BusinessDataBase.dbo.ApprovalStatus' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="ApprovalStatus">
+          <Property Name="ReportID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApprovalStatusID" Type="int" />
+          <Property Name="ApprovalStatus" Type="nvarchar(max)" />
+        </EntityType>-->
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'BusinessDataBase.dbo.ApprovantStatus' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="ApprovantStatus">
+          <Property Name="ApprovantStatusID" Type="int" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
         <EntityType Name="BulletinBoard">
           <Key>
             <PropertyRef Name="Num" />
@@ -42,6 +55,15 @@
           <Property Name="Content" Type="nvarchar" MaxLength="50" />
           <Property Name="PostTime" Type="datetime" />
         </EntityType>
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'BusinessDataBase.dbo.BusinessTrip' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="BusinessTrip">
+          <Property Name="employeeID" Type="int" />
+          <Property Name="start_date_time" Type="datetime" />
+          <Property Name="end_date_time" Type="datetime" />
+          <Property Name="adress" Type="nchar" MaxLength="10" />
+          <Property Name="description" Type="nvarchar(max)" />
+        </EntityType>-->
         <EntityType Name="CompanyVehicle">
           <Key>
             <PropertyRef Name="license number" />
@@ -118,6 +140,13 @@
           <Property Name="leaveID" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="leave_name" Type="nchar" MaxLength="20" />
         </EntityType>
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'BusinessDataBase.dbo.LeaveHistory' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="LeaveHistory">
+          <Property Name="employeeID" Type="int" />
+          <Property Name="leaveID" Type="nchar" MaxLength="10" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>-->
         <EntityType Name="MeetingRoom">
           <Key>
             <PropertyRef Name="meetingID" />
@@ -163,6 +192,14 @@
           <Property Name="positionID" Type="int" Nullable="false" />
           <Property Name="position" Type="nchar" MaxLength="30" />
         </EntityType>
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'BusinessDataBase.dbo.PurchasingOrder' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="PurchasingOrder">
+          <Property Name="employeeID" Type="int" />
+          <Property Name="items" Type="nchar" MaxLength="10" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="unit price" Type="money" />
+        </EntityType>-->
         <EntityType Name="Recipient">
           <Key>
             <PropertyRef Name="MessageID" />
@@ -206,6 +243,16 @@
           <Property Name="EventID" Type="int" Nullable="false" />
           <Property Name="Note" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'BusinessDataBase.dbo.RequisitionChild' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="RequisitionChild">
+          <Property Name="RequisitionID" Type="int" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UnitPrice" Type="money" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Note" Type="nvarchar(max)" />
+        </EntityType>-->
         <EntityType Name="RequisitionMain">
           <Key>
             <PropertyRef Name="RequisitionID" />
@@ -222,6 +269,15 @@
           <Property Name="Reward/PunishmentID" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Reward/PunishmentName" Type="nchar" MaxLength="10" />
         </EntityType>
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'BusinessDataBase.dbo.RewardandPunishmentHistory' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="RewardandPunishmentHistory">
+          <Property Name="employeeID" Type="int" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Reward/Punishment" Type="nchar" MaxLength="10" />
+          <Property Name="managerID" Type="nchar" MaxLength="10" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>-->
         <EntityType Name="Suggestion">
           <Key>
             <PropertyRef Name="suggestionID" />
@@ -242,6 +298,12 @@
           <Property Name="content" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'BusinessDataBase.dbo.SurveyChild' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="SurveyChild">
+          <Property Name="SurveyID" Type="int" />
+          <Property Name="Survey" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
+        <!--產生期間發現錯誤:
 警告 6002: 資料表/檢視 'BusinessDataBase.dbo.SurveyMain' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="SurveyMain">
           <Key>
@@ -251,6 +313,14 @@
           <Property Name="QuestionID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Question" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'BusinessDataBase.dbo.WorkingHours' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="WorkingHours">
+          <Property Name="employeeID" Type="int" />
+          <Property Name="clock_in_time" Type="datetime" />
+          <Property Name="clock_out_time" Type="datetime" />
+          <Property Name="leaveID" Type="nchar" MaxLength="10" />
+        </EntityType>-->
         <Association Name="FK_ApprovalChild_ApprovalOrder">
           <End Role="ApprovalOrder" Type="Self.ApprovalOrder" Multiplicity="0..1" />
           <End Role="ApprovalChild" Type="Self.ApprovalChild" Multiplicity="*" />
@@ -275,6 +345,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.ApprovalStatus' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_ApprovalStatus_ReportMain" />-->
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.ApprovantStatus' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_ApprovantStatus_ApprovalChild" />-->
         <Association Name="FK_Bulletin board_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
           <End Role="BulletinBoard" Type="Self.BulletinBoard" Multiplicity="*" />
@@ -311,6 +387,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.BusinessTrip' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_Business Trip_Employee" />-->
         <!--產生期間發現錯誤:
 錯誤 6004: 資料表 'BusinessDataBase.dbo.CompanyVehicleHistory' 被某個關聯性參考，但是找不到。
         <Association Name="FK_Company vehicle history_Company vehicle" />-->
@@ -425,6 +504,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.LeaveHistory' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_LeaveHistory_Employee" />-->
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.LeaveHistory' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_LeaveHistory_Leave" />-->
         <Association Name="FK_Meeting room history_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="MeetingRoomHistory" Type="Self.MeetingRoomHistory" Multiplicity="*" />
@@ -473,6 +558,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.PurchasingOrder' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_Purchasing Order_Employee" />-->
         <Association Name="FK_Recipient_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Recipient" Type="Self.Recipient" Multiplicity="*" />
@@ -533,6 +621,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.RequisitionChild' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_RequisitionChild_RequisitionMain" />-->
         <Association Name="FK_RequisitionMain_ReportMain">
           <End Role="ReportMain" Type="Self.ReportMain" Multiplicity="0..1" />
           <End Role="RequisitionMain" Type="Self.RequisitionMain" Multiplicity="*" />
@@ -545,6 +636,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.RewardandPunishmentHistory' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_RewardandPunishmentHistory_Employee" />-->
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.RewardandPunishmentHistory' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_RewardandPunishmentHistory_RewardandPunishment" />-->
         <Association Name="FK_Suggestion history_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
           <End Role="SuggestionHistory" Type="Self.SuggestionHistory" Multiplicity="*" />
@@ -581,6 +678,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.WorkingHours' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_Working hours_Employee" />-->
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.WorkingHours' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_Working hours_Leave" />-->
         <EntityContainer Name="BusinessDataBaseModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ApprovalChild" EntityType="Self.ApprovalChild" Schema="dbo" store:Type="Tables" />
@@ -754,7 +857,8 @@
             <End Role="SuggestionHistory" EntitySet="SuggestionHistory" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BusinessDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
