@@ -52,20 +52,20 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("新細明體", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(96, 244);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
+            this.dateTimePicker1.Location = new System.Drawing.Point(128, 305);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(136, 25);
+            this.dateTimePicker1.Size = new System.Drawing.Size(180, 29);
             this.dateTimePicker1.TabIndex = 20;
             // 
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("微軟正黑體", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox3.ForeColor = System.Drawing.Color.Silver;
-            this.textBox3.Location = new System.Drawing.Point(96, 186);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox3.Location = new System.Drawing.Point(128, 232);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(136, 26);
+            this.textBox3.Size = new System.Drawing.Size(180, 30);
             this.textBox3.TabIndex = 18;
             this.textBox3.Text = " : 請輸入引擎編號";
             this.textBox3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox3_MouseClick);
@@ -75,10 +75,10 @@
             // 
             this.textBox2.Font = new System.Drawing.Font("微軟正黑體", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox2.ForeColor = System.Drawing.Color.Silver;
-            this.textBox2.Location = new System.Drawing.Point(96, 134);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox2.Location = new System.Drawing.Point(128, 168);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(136, 26);
+            this.textBox2.Size = new System.Drawing.Size(180, 30);
             this.textBox2.TabIndex = 17;
             this.textBox2.Text = " : 請輸入年分";
             this.textBox2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox2_MouseClick);
@@ -88,10 +88,10 @@
             // 
             this.textBox1.Font = new System.Drawing.Font("微軟正黑體", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox1.ForeColor = System.Drawing.Color.Silver;
-            this.textBox1.Location = new System.Drawing.Point(96, 85);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Location = new System.Drawing.Point(128, 106);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(136, 26);
+            this.textBox1.Size = new System.Drawing.Size(180, 30);
             this.textBox1.TabIndex = 16;
             this.textBox1.Text = " : 請輸入車號";
             this.textBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseClick);
@@ -102,10 +102,9 @@
             this.label6.BackColor = System.Drawing.Color.White;
             this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label6.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(328, 274);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(437, 342);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(256, 23);
+            this.label6.Size = new System.Drawing.Size(341, 28);
             this.label6.TabIndex = 25;
             this.label6.Text = "C:\\Net\\Licenses";
             // 
@@ -113,10 +112,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label5.Location = new System.Drawing.Point(22, 244);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(29, 305);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 18);
+            this.label5.Size = new System.Drawing.Size(90, 22);
             this.label5.TabIndex = 24;
             this.label5.Text = "購入日期 : ";
             // 
@@ -124,10 +122,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label4.Location = new System.Drawing.Point(21, 189);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(28, 236);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 18);
+            this.label4.Size = new System.Drawing.Size(90, 22);
             this.label4.TabIndex = 23;
             this.label4.Text = "引擎編號 : ";
             // 
@@ -135,10 +132,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(21, 137);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(28, 171);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 18);
+            this.label3.Size = new System.Drawing.Size(90, 22);
             this.label3.TabIndex = 22;
             this.label3.Text = "車輛年份 : ";
             // 
@@ -146,10 +142,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(22, 87);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(29, 109);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 18);
+            this.label2.Size = new System.Drawing.Size(90, 22);
             this.label2.TabIndex = 21;
             this.label2.Text = "車牌號碼 : ";
             // 
@@ -157,10 +152,10 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Gainsboro;
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Location = new System.Drawing.Point(328, 75);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox2.Location = new System.Drawing.Point(437, 94);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(256, 180);
+            this.pictureBox2.Size = new System.Drawing.Size(341, 224);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 19;
             this.pictureBox2.TabStop = false;
@@ -175,16 +170,17 @@
             this.clsAltoButton2.ForeColor = System.Drawing.Color.Black;
             this.clsAltoButton2.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.clsAltoButton2.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.clsAltoButton2.Location = new System.Drawing.Point(479, 314);
-            this.clsAltoButton2.Margin = new System.Windows.Forms.Padding(2);
+            this.clsAltoButton2.Location = new System.Drawing.Point(639, 392);
+            this.clsAltoButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.clsAltoButton2.Name = "clsAltoButton2";
             this.clsAltoButton2.Radius = 10;
-            this.clsAltoButton2.Size = new System.Drawing.Size(104, 32);
+            this.clsAltoButton2.Size = new System.Drawing.Size(139, 40);
             this.clsAltoButton2.Stroke = false;
             this.clsAltoButton2.StrokeColor = System.Drawing.Color.Gray;
             this.clsAltoButton2.TabIndex = 15;
             this.clsAltoButton2.Text = "完成";
             this.clsAltoButton2.Transparency = false;
+            this.clsAltoButton2.Click += new System.EventHandler(this.clsAltoButton2_Click);
             // 
             // clsAltoButton1
             // 
@@ -196,11 +192,11 @@
             this.clsAltoButton1.ForeColor = System.Drawing.Color.Black;
             this.clsAltoButton1.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.clsAltoButton1.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.clsAltoButton1.Location = new System.Drawing.Point(362, 314);
-            this.clsAltoButton1.Margin = new System.Windows.Forms.Padding(2);
+            this.clsAltoButton1.Location = new System.Drawing.Point(483, 392);
+            this.clsAltoButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.clsAltoButton1.Name = "clsAltoButton1";
             this.clsAltoButton1.Radius = 10;
-            this.clsAltoButton1.Size = new System.Drawing.Size(104, 32);
+            this.clsAltoButton1.Size = new System.Drawing.Size(139, 40);
             this.clsAltoButton1.Stroke = false;
             this.clsAltoButton1.StrokeColor = System.Drawing.Color.Gray;
             this.clsAltoButton1.TabIndex = 14;
@@ -214,19 +210,20 @@
             this.label8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label8.Font = new System.Drawing.Font("微軟正黑體", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label8.ForeColor = System.Drawing.Color.Blue;
-            this.label8.Location = new System.Drawing.Point(546, 277);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(728, 346);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(36, 18);
+            this.label8.Size = new System.Drawing.Size(44, 22);
             this.label8.TabIndex = 27;
             this.label8.Text = "變更";
             this.label8.Click += new System.EventHandler(this.label8_Click);
+            this.label8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label8_MouseDown);
+            this.label8.MouseUp += new System.Windows.Forms.MouseEventHandler(this.label8_MouseUp);
             // 
             // CompanyCarForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(616, 368);
+            this.ClientSize = new System.Drawing.Size(821, 460);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.textBox3);
@@ -240,6 +237,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.clsAltoButton2);
             this.Controls.Add(this.clsAltoButton1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "CompanyCarForm";
             this.Text = "CompanyCarForm";
             this.Controls.SetChildIndex(this.clsAltoButton1, 0);

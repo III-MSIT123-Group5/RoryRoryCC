@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessSystemDBEntityModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,21 +24,24 @@ namespace BusinessSystem
         string txt1 = " : 請輸入車號";
         string txt2 = " : 請輸入年分";
         string txt3 = " : 請輸入引擎編號";
-
-        
         //===============================
+
+
+        //
+        //滑鼠點擊"變更"後，按下滑鼠與鬆開ForeColor Change
+        //
         private void label8_MouseDown(object sender, MouseEventArgs e)
         {
             this.label8.ForeColor = Color.LightSkyBlue;
         }
-
         private void label8_MouseUp(object sender, MouseEventArgs e)
         {
             this.label8.ForeColor = Color.Blue;
         }
 
-        
-
+        //
+        //"變更"按鈕對pictureBox資料路徑的文字及圖片更新
+        //
         private void label8_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -50,6 +54,10 @@ namespace BusinessSystem
             }
         }
 
+
+        //
+        //滑鼠點擊textBox觸發事件重置文字Or清空textBox
+        //
         private void textBox1_MouseClick(object sender, MouseEventArgs e)
         {
             if (this.textBox1.Text == txt1 )
@@ -132,6 +140,10 @@ namespace BusinessSystem
             }
         }
 
+
+        //
+        //控制textBox的ForeColor
+        //
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (textBox1.Text == "" || this.textBox1.Focused)
@@ -170,5 +182,16 @@ namespace BusinessSystem
                 this.textBox3.Text = txt3;
             }
         }
+
+        //
+        //將Form內新增資料存入DataBase功能
+        //
+        private void clsAltoButton2_Click(object sender, EventArgs e)
+        {
+            BusinessDataBaseEntities db = new BusinessDataBaseEntities();
+            
+        }
+
+        
     }
 }
