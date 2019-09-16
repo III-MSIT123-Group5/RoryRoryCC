@@ -86,9 +86,6 @@
     <Compile Include="Employee.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Event.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="File.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
@@ -126,9 +123,6 @@
     <Compile Include="ReportTimeSystem.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="RequisitionChild.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="RequisitionMain.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
@@ -142,9 +136,6 @@
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SurveyMain.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
