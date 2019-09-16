@@ -12,17 +12,15 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class CompanyVehicle
+    public partial class RequisitionChild
     {
-        public string LicenseNumber { get; set; }
-        public Nullable<int> VehicleYear { get; set; }
-        public Nullable<System.DateTime> PurchaseDate { get; set; }
-        public string brand { get; set; }
-        public string serial { get; set; }
-        public string MaxPassenger { get; set; }
-        public Nullable<int> officeID { get; set; }
-        public byte[] VehiclePhoto { get; set; }
+        public int RequisitionID { get; set; }
+        public string ProductName { get; set; }
+        public Nullable<decimal> UnitPrice { get; set; }
+        public Nullable<decimal> Quantity { get; set; }
+        public Nullable<decimal> Discount { get; set; }
+        public string Note { get; set; }
     
-        public virtual Office Office { get; set; }
+        public virtual RequisitionMain RequisitionMain { get; set; }
     }
 }

@@ -80,6 +80,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ClsRoundRectangleF.cs" />
+    <Compile Include="FrmRequisition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRequisition.Designer.cs">
+      <DependentUpon>FrmRequisition.cs</DependentUpon>
+    </Compile>
     <Compile Include="SonForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,10 +96,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>..\..\..\..\LINQ\Solution1\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>E:\專題\專題-1\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\..\..\..\LINQ\Solution1\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>E:\專題\專題-1\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -113,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CompanyVehicle\CompanyCarForm.resx">
       <DependentUpon>CompanyCarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRequisition.resx">
+      <DependentUpon>FrmRequisition.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
