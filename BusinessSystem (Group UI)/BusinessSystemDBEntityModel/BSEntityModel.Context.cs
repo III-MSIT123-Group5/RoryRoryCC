@@ -29,7 +29,6 @@ namespace BusinessSystemDBEntityModel
         public virtual DbSet<ApprovalChild> ApprovalChilds { get; set; }
         public virtual DbSet<ApprovalOrder> ApprovalOrders { get; set; }
         public virtual DbSet<BulletinBoard> BulletinBoards { get; set; }
-        public virtual DbSet<CompanyVehicle> CompanyVehicles { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
@@ -49,5 +48,6 @@ namespace BusinessSystemDBEntityModel
         public virtual DbSet<ReportTimeSystem> ReportTimeSystems { get; set; }
         public virtual DbSet<SuggestionHistory> SuggestionHistories { get; set; }
         public virtual DbSet<SurveyMain> SurveyMains { get; set; }
+        public virtual DbSet<CompanyVehicle> CompanyVehicles { get; set; }
     }
 }

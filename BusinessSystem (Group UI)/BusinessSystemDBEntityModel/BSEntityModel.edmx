@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BusinessDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BusinessDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="account" />
@@ -31,19 +31,6 @@
           <Property Name="ApprovalStageID" Type="int" Nullable="false" />
           <Property Name="ApprovalOrder" Type="nvarchar(max)" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.ApprovalStatus' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="ApprovalStatus">
-          <Property Name="ReportID" Type="nvarchar" MaxLength="50" />
-          <Property Name="ApprovalStatusID" Type="int" />
-          <Property Name="ApprovalStatus" Type="nvarchar(max)" />
-        </EntityType>-->
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.ApprovantStatus' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="ApprovantStatus">
-          <Property Name="ApprovantStatusID" Type="int" />
-          <Property Name="Status" Type="nvarchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="BulletinBoard">
           <Key>
             <PropertyRef Name="Num" />
@@ -55,34 +42,19 @@
           <Property Name="Content" Type="nvarchar" MaxLength="50" />
           <Property Name="PostTime" Type="datetime" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.BusinessTrip' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="BusinessTrip">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="start_date_time" Type="datetime" />
-          <Property Name="end_date_time" Type="datetime" />
-          <Property Name="adress" Type="nchar" MaxLength="10" />
-          <Property Name="description" Type="nvarchar(max)" />
-        </EntityType>-->
         <EntityType Name="CompanyVehicle">
           <Key>
-            <PropertyRef Name="license number" />
+            <PropertyRef Name="LicenseNumber" />
           </Key>
-          <Property Name="license number" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="LicenseNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VehicleYear" Type="int" />
+          <Property Name="PurchaseDate" Type="date" />
           <Property Name="brand" Type="nchar" MaxLength="10" />
           <Property Name="serial" Type="nchar" MaxLength="10" />
-          <Property Name="max passenger" Type="nchar" MaxLength="10" />
+          <Property Name="MaxPassenger" Type="nchar" MaxLength="10" />
           <Property Name="officeID" Type="int" />
+          <Property Name="VehiclePhoto" Type="varbinary(max)" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.CompanyVehicleHistory' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="CompanyVehicleHistory">
-          <Property Name="license number" Type="nchar" MaxLength="10" />
-          <Property Name="start_date_time" Type="datetime" />
-          <Property Name="end_date_time" Type="datetime" />
-          <Property Name="employeeID" Type="int" />
-          <Property Name="purpose" Type="nvarchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="departmentID" />
@@ -140,13 +112,6 @@
           <Property Name="leaveID" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="leave_name" Type="nchar" MaxLength="20" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.LeaveHistory' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="LeaveHistory">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="leaveID" Type="nchar" MaxLength="10" />
-          <Property Name="Description" Type="nvarchar(max)" />
-        </EntityType>-->
         <EntityType Name="MeetingRoom">
           <Key>
             <PropertyRef Name="meetingID" />
@@ -192,14 +157,6 @@
           <Property Name="positionID" Type="int" Nullable="false" />
           <Property Name="position" Type="nchar" MaxLength="30" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.PurchasingOrder' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="PurchasingOrder">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="items" Type="nchar" MaxLength="10" />
-          <Property Name="quantity" Type="int" />
-          <Property Name="unit price" Type="money" />
-        </EntityType>-->
         <EntityType Name="Recipient">
           <Key>
             <PropertyRef Name="MessageID" />
@@ -243,16 +200,6 @@
           <Property Name="EventID" Type="int" Nullable="false" />
           <Property Name="Note" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.RequisitionChild' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="RequisitionChild">
-          <Property Name="RequisitionID" Type="int" />
-          <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
-          <Property Name="UnitPrice" Type="money" />
-          <Property Name="Quantity" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Discount" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Note" Type="nvarchar(max)" />
-        </EntityType>-->
         <EntityType Name="RequisitionMain">
           <Key>
             <PropertyRef Name="RequisitionID" />
@@ -269,15 +216,6 @@
           <Property Name="Reward/PunishmentID" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Reward/PunishmentName" Type="nchar" MaxLength="10" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.RewardandPunishmentHistory' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="RewardandPunishmentHistory">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="Date" Type="datetime" />
-          <Property Name="Reward/Punishment" Type="nchar" MaxLength="10" />
-          <Property Name="managerID" Type="nchar" MaxLength="10" />
-          <Property Name="Description" Type="nvarchar(max)" />
-        </EntityType>-->
         <EntityType Name="Suggestion">
           <Key>
             <PropertyRef Name="suggestionID" />
@@ -298,12 +236,6 @@
           <Property Name="content" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.SurveyChild' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="SurveyChild">
-          <Property Name="SurveyID" Type="int" />
-          <Property Name="Survey" Type="nvarchar" MaxLength="50" />
-        </EntityType>-->
-        <!--產生期間發現錯誤:
 警告 6002: 資料表/檢視 'BusinessDataBase.dbo.SurveyMain' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="SurveyMain">
           <Key>
@@ -313,14 +245,6 @@
           <Property Name="QuestionID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Question" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.WorkingHours' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="WorkingHours">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="clock_in_time" Type="datetime" />
-          <Property Name="clock_out_time" Type="datetime" />
-          <Property Name="leaveID" Type="nchar" MaxLength="10" />
-        </EntityType>-->
         <Association Name="FK_ApprovalChild_ApprovalOrder">
           <End Role="ApprovalOrder" Type="Self.ApprovalOrder" Multiplicity="0..1" />
           <End Role="ApprovalChild" Type="Self.ApprovalChild" Multiplicity="*" />
@@ -345,12 +269,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.ApprovalStatus' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_ApprovalStatus_ReportMain" />-->
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.ApprovantStatus' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_ApprovantStatus_ApprovalChild" />-->
         <Association Name="FK_Bulletin board_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
           <End Role="BulletinBoard" Type="Self.BulletinBoard" Multiplicity="*" />
@@ -387,15 +305,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.BusinessTrip' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_Business Trip_Employee" />-->
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.CompanyVehicleHistory' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_Company vehicle history_Company vehicle" />-->
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.CompanyVehicleHistory' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_Company vehicle history_Employee" />-->
         <Association Name="FK_Company vehicle_Office">
           <End Role="Office" Type="Self.Office" Multiplicity="0..1" />
           <End Role="CompanyVehicle" Type="Self.CompanyVehicle" Multiplicity="*" />
@@ -504,12 +413,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.LeaveHistory' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_LeaveHistory_Employee" />-->
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.LeaveHistory' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_LeaveHistory_Leave" />-->
         <Association Name="FK_Meeting room history_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="MeetingRoomHistory" Type="Self.MeetingRoomHistory" Multiplicity="*" />
@@ -558,9 +461,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.PurchasingOrder' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_Purchasing Order_Employee" />-->
         <Association Name="FK_Recipient_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Recipient" Type="Self.Recipient" Multiplicity="*" />
@@ -621,9 +521,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.RequisitionChild' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_RequisitionChild_RequisitionMain" />-->
         <Association Name="FK_RequisitionMain_ReportMain">
           <End Role="ReportMain" Type="Self.ReportMain" Multiplicity="0..1" />
           <End Role="RequisitionMain" Type="Self.RequisitionMain" Multiplicity="*" />
@@ -636,12 +533,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.RewardandPunishmentHistory' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_RewardandPunishmentHistory_Employee" />-->
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.RewardandPunishmentHistory' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_RewardandPunishmentHistory_RewardandPunishment" />-->
         <Association Name="FK_Suggestion history_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
           <End Role="SuggestionHistory" Type="Self.SuggestionHistory" Multiplicity="*" />
@@ -678,12 +569,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.WorkingHours' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_Working hours_Employee" />-->
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.WorkingHours' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_Working hours_Leave" />-->
         <EntityContainer Name="BusinessDataBaseModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ApprovalChild" EntityType="Self.ApprovalChild" Schema="dbo" store:Type="Tables" />
@@ -857,8 +742,7 @@
             <End Role="SuggestionHistory" EntitySet="SuggestionHistory" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BusinessDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -905,17 +789,6 @@
           <NavigationProperty Name="Department" Relationship="Self.FK_Bulletin_board_Department" FromRole="BulletinBoard" ToRole="Department" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Bulletin_board_Employee" FromRole="BulletinBoard" ToRole="Employee" />
           <NavigationProperty Name="Group" Relationship="Self.FK_Bulletin_board_Group" FromRole="BulletinBoard" ToRole="Group" />
-        </EntityType>
-        <EntityType Name="CompanyVehicle">
-          <Key>
-            <PropertyRef Name="license_number" />
-          </Key>
-          <Property Name="license_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="brand" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="serial" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="max_passenger" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="officeID" Type="Int32" />
-          <NavigationProperty Name="Office" Relationship="Self.FK_Company_vehicle_Office" FromRole="CompanyVehicle" ToRole="Office" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -1008,9 +881,9 @@
           <Property Name="officeID" Type="Int32" Nullable="false" />
           <Property Name="office_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="office_address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CompanyVehicles" Relationship="Self.FK_Company_vehicle_Office" FromRole="Office" ToRole="CompanyVehicle" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Office" FromRole="Office" ToRole="Employee" />
           <NavigationProperty Name="MeetingRooms" Relationship="Self.FK_Meeting_room_Office" FromRole="Office" ToRole="MeetingRoom" />
+          <NavigationProperty Name="CompanyVehicles" Relationship="BusinessDataBaseModel.FK_Company_vehicle_Office" FromRole="Office" ToRole="CompanyVehicle" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -1212,18 +1085,6 @@
             </Principal>
             <Dependent Role="BulletinBoard">
               <PropertyRef Name="GroupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Company_vehicle_Office">
-          <End Role="Office" Type="Self.Office" Multiplicity="0..1" />
-          <End Role="CompanyVehicle" Type="Self.CompanyVehicle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Office">
-              <PropertyRef Name="officeID" />
-            </Principal>
-            <Dependent Role="CompanyVehicle">
-              <PropertyRef Name="officeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1472,7 +1333,6 @@
           <EntitySet Name="ApprovalChilds" EntityType="Self.ApprovalChild" />
           <EntitySet Name="ApprovalOrders" EntityType="Self.ApprovalOrder" />
           <EntitySet Name="BulletinBoards" EntityType="Self.BulletinBoard" />
-          <EntitySet Name="CompanyVehicles" EntityType="Self.CompanyVehicle" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="Groups" EntityType="Self.Group" />
@@ -1515,10 +1375,6 @@
           <AssociationSet Name="FK_Bulletin_board_Group" Association="Self.FK_Bulletin_board_Group">
             <End Role="Group" EntitySet="Groups" />
             <End Role="BulletinBoard" EntitySet="BulletinBoards" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Company_vehicle_Office" Association="Self.FK_Company_vehicle_Office">
-            <End Role="Office" EntitySet="Offices" />
-            <End Role="CompanyVehicle" EntitySet="CompanyVehicles" />
           </AssociationSet>
           <AssociationSet Name="FK_Employee_Department" Association="Self.FK_Employee_Department">
             <End Role="Department" EntitySet="Departments" />
@@ -1600,7 +1456,38 @@
             <End Role="Suggestion" EntitySet="Suggestions" />
             <End Role="SuggestionHistory" EntitySet="SuggestionHistories" />
           </AssociationSet>
+          <EntitySet Name="CompanyVehicles" EntityType="BusinessDataBaseModel.CompanyVehicle" />
+          <AssociationSet Name="FK_Company_vehicle_Office" Association="BusinessDataBaseModel.FK_Company_vehicle_Office">
+            <End Role="Office" EntitySet="Offices" />
+            <End Role="CompanyVehicle" EntitySet="CompanyVehicles" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="CompanyVehicle">
+          <Key>
+            <PropertyRef Name="LicenseNumber" />
+          </Key>
+          <Property Name="LicenseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VehicleYear" Type="Int32" />
+          <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
+          <Property Name="brand" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="serial" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MaxPassenger" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="officeID" Type="Int32" />
+          <Property Name="VehiclePhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Office" Relationship="BusinessDataBaseModel.FK_Company_vehicle_Office" FromRole="CompanyVehicle" ToRole="Office" />
+        </EntityType>
+        <Association Name="FK_Company_vehicle_Office">
+          <End Type="BusinessDataBaseModel.Office" Role="Office" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.CompanyVehicle" Role="CompanyVehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="officeID" />
+            </Principal>
+            <Dependent Role="CompanyVehicle">
+              <PropertyRef Name="officeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1645,17 +1532,6 @@
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="PostTime" ColumnName="PostTime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CompanyVehicles">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.CompanyVehicle">
-              <MappingFragment StoreEntitySet="CompanyVehicle">
-                <ScalarProperty Name="license_number" ColumnName="license number" />
-                <ScalarProperty Name="brand" ColumnName="brand" />
-                <ScalarProperty Name="serial" ColumnName="serial" />
-                <ScalarProperty Name="max_passenger" ColumnName="max passenger" />
-                <ScalarProperty Name="officeID" ColumnName="officeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1845,6 +1721,20 @@
                 <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
                 <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
                 <ScalarProperty Name="Question" ColumnName="Question" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyVehicles">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.CompanyVehicle">
+              <MappingFragment StoreEntitySet="CompanyVehicle">
+                <ScalarProperty Name="VehiclePhoto" ColumnName="VehiclePhoto" />
+                <ScalarProperty Name="officeID" ColumnName="officeID" />
+                <ScalarProperty Name="MaxPassenger" ColumnName="MaxPassenger" />
+                <ScalarProperty Name="serial" ColumnName="serial" />
+                <ScalarProperty Name="brand" ColumnName="brand" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="VehicleYear" ColumnName="VehicleYear" />
+                <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -55,11 +55,17 @@
     <Compile Include="ClsAltoButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CompanyVehicle\CompanyCarForm.cs">
+    <Compile Include="companycars\CompanyCarForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CompanyVehicle\CompanyCarForm.designer.cs">
+    <Compile Include="companycars\CompanyCarForm.designer.cs">
       <DependentUpon>CompanyCarForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="companycars\text123.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="companycars\text123.Designer.cs">
+      <DependentUpon>text123.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -111,8 +117,11 @@
     <EmbeddedResource Include="BulletinBoard-02.resx">
       <DependentUpon>BulletinBoard-02.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CompanyVehicle\CompanyCarForm.resx">
+    <EmbeddedResource Include="companycars\CompanyCarForm.resx">
       <DependentUpon>CompanyCarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="companycars\text123.resx">
+      <DependentUpon>text123.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
