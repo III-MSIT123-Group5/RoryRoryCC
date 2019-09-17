@@ -51,6 +51,9 @@ namespace BusinessSystemDBEntityModel
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<RequisitionChild> RequisitionChilds { get; set; }
         public virtual DbSet<CompanyVehicle> CompanyVehicles { get; set; }
+        public virtual DbSet<ApprovalStatu> ApprovalStatus { get; set; }
+        public virtual DbSet<ApprovantStatu> ApprovantStatus { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<CompanyVehicleHistory> CompanyVehicleHistories { get; set; }
     }
 }

@@ -26,6 +26,7 @@ namespace BusinessSystemDBEntityModel
             this.ReportMains = new HashSet<ReportMain>();
             this.ReportTimeSystems = new HashSet<ReportTimeSystem>();
             this.SuggestionHistories = new HashSet<SuggestionHistory>();
+            this.CompanyVehicleHistories = new HashSet<CompanyVehicleHistory>();
         }
     
         public int employeeID { get; set; }
@@ -65,5 +66,7 @@ namespace BusinessSystemDBEntityModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SuggestionHistory> SuggestionHistories { get; set; }
         public virtual Account Account1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CompanyVehicleHistory> CompanyVehicleHistories { get; set; }
     }
 }

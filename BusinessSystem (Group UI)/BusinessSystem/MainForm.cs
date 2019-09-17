@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessSystem.ReportTimeSystem;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,6 +39,12 @@ namespace BusinessSystem
         {
             FrmRequisition frmRequisition = new FrmRequisition();
             frmRequisition.Show();
+        }
+
+        private void rectangleShape_Schedule_Click(object sender, EventArgs e)
+        {
+            FormMainRTS formMainRTS = new FormMainRTS();
+            formMainRTS.ShowDialog();
         }
     }
 }
