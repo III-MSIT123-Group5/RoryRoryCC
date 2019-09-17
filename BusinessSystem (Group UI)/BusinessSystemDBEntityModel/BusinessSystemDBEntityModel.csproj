@@ -59,6 +59,12 @@
     <Compile Include="ApprovalOrder.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ApprovalStatu.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ApprovantStatu.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="BSEntityModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,6 +84,9 @@
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CompanyVehicle.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyVehicleHistory.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Department.cs">
