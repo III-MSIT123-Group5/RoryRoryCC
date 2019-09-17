@@ -41,6 +41,7 @@ namespace BusinessSystemDBEntityModel
         public Nullable<int> managerID { get; set; }
         public Nullable<bool> employed { get; set; }
         public Nullable<int> groupID { get; set; }
+        public byte[] EmployeePhoto { get; set; }
     
         public virtual Account Account1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

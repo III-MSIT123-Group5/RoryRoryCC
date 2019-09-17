@@ -41,6 +41,7 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
+            this.clsAltoButton1 = new BusinessSystem.ClsAltoButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -176,11 +177,34 @@
             this.textBox5.Size = new System.Drawing.Size(100, 22);
             this.textBox5.TabIndex = 18;
             // 
+            // clsAltoButton1
+            // 
+            this.clsAltoButton1.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.clsAltoButton1.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.clsAltoButton1.BackColor = System.Drawing.Color.Transparent;
+            this.clsAltoButton1.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.clsAltoButton1.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
+            this.clsAltoButton1.ForeColor = System.Drawing.Color.White;
+            this.clsAltoButton1.Inactive1 = System.Drawing.Color.DarkSlateBlue;
+            this.clsAltoButton1.Inactive2 = System.Drawing.Color.DarkSlateBlue;
+            this.clsAltoButton1.Location = new System.Drawing.Point(202, 343);
+            this.clsAltoButton1.Margin = new System.Windows.Forms.Padding(2);
+            this.clsAltoButton1.Name = "clsAltoButton1";
+            this.clsAltoButton1.Radius = 10;
+            this.clsAltoButton1.Size = new System.Drawing.Size(88, 24);
+            this.clsAltoButton1.Stroke = false;
+            this.clsAltoButton1.StrokeColor = System.Drawing.Color.Gray;
+            this.clsAltoButton1.TabIndex = 20;
+            this.clsAltoButton1.Text = "Show";
+            this.clsAltoButton1.Transparency = false;
+            this.clsAltoButton1.Click += new System.EventHandler(this.clsAltoButton1_Click);
+            // 
             // FrmRequisition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.clsAltoButton1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label5);
@@ -209,6 +233,7 @@
             this.Controls.SetChildIndex(this.label5, 0);
             this.Controls.SetChildIndex(this.textBox5, 0);
             this.Controls.SetChildIndex(this.label6, 0);
+            this.Controls.SetChildIndex(this.clsAltoButton1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -230,5 +255,6 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox5;
+        private ClsAltoButton clsAltoButton1;
     }
 }

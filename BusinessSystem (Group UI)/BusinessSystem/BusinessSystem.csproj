@@ -94,10 +94,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="FrmRequisition.cs">
+    <Compile Include="Requisition\FrmRequisition.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmRequisition.Designer.cs">
+    <Compile Include="Requisition\FrmRequisition.Designer.cs">
       <DependentUpon>FrmRequisition.cs</DependentUpon>
     </Compile>
     <Compile Include="SonForm.cs">
@@ -154,7 +154,7 @@
     <EmbeddedResource Include="EmployeeSystem\CreateEmployeeForm.resx">
       <DependentUpon>CreateEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmRequisition.resx">
+    <EmbeddedResource Include="Requisition\FrmRequisition.resx">
       <DependentUpon>FrmRequisition.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeSystem\Login.resx">

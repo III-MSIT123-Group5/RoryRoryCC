@@ -23,6 +23,7 @@ namespace BusinessSystem
             BusinessDataBaseEntities dbContext;
             dbContext = new BusinessDataBaseEntities();
 
+
             CBDepartment.ItemCheck += CBDepartment_ItemCheck;
 
             var q = from d in dbContext.Departments
