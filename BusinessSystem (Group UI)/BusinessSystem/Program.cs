@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessSystem.companycars;
+using BusinessSystem.CompanyCars;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,10 +19,12 @@ namespace BusinessSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            //Application.Run(new MainForm());
             //Application.Run(new BulletinBoard_2());
             //Application.Run(new CompanyCarForm());
             //Application.Run(new CreateEmployeeForm ());
+            Application.Run(new CompanyVehicleBorrowForm());
+            Application.Run(new text123());
         }
     }
 }

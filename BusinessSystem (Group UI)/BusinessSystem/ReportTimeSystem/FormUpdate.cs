@@ -21,8 +21,41 @@ namespace BusinessSystem.ReportTimeSystem
 
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
-           
-            
+            string strconn = ConfigurationManager.ConnectionStrings["BusinessSystem"].ConnectionString;
+            string stradd = "UpdateReport";
+            SqlConnection conn = new SqlConnection(strconn);
+            SqlCommand cmd = new SqlCommand(stradd, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter pReturnValue = new SqlParameter("@RETURN_VALUE", SqlDbType.Int);
+            pReturnValue.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(pReturnValue);
+
+            SqlParameter pApplyDateTime = new SqlParameter("@ApplyDateTime", SqlDbType.DateTime);
+            pApplyDateTime.Direction = ParameterDirection.Input;
+            pApplyDateTime.Value = DateTime.Now;
+            cmd.Parameters.Add(pApplyDateTime);
+
+            SqlParameter pEventHours = new SqlParameter("@EventHours", SqlDbType.Float);
+            pEventHours.Direction = ParameterDirection.Input;
+            pEventHours.Value = float.Parse(comboBox2.Text);
+            cmd.Parameters.Add(pEventHours);
+
+            SqlParameter pEventID = new SqlParameter("@EventID", SqlDbType.Int);
+            pEventID.Direction = ParameterDirection.Input;
+            pEventID.Value = comboBox1.SelectedIndex;
+            cmd.Parameters.Add(pEventID);
+
+
+            SqlParameter pemployeeID = new SqlParameter("@employeeID", SqlDbType.Int);
+            pemployeeID.Direction = ParameterDirection.Input;
+            pemployeeID.Value = DateTime.Now;
+            cmd.Parameters.Add(pemployeeID);
+
+            SqlParameter pNote = new SqlParameter("@departmentID", SqlDbType.NVarChar, 100);
+            pNote.Direction = ParameterDirection.Input;
+            pNote.Value = richTextBox1.Text;
+            cmd.Parameters.Add(pNote);
 
         }
     }
