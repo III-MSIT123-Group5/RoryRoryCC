@@ -20,7 +20,8 @@ namespace BusinessSystem
         }
 
         BusinessDataBaseEntities dbcontext;
-
+        int EmID;
+        string AccountName;
         private void CreateEmployeeForm_Load(object sender, EventArgs e)
         {
             dbcontext = new BusinessDataBaseEntities();
@@ -36,9 +37,94 @@ namespace BusinessSystem
             //顯示EmployeeID
             var q = from em in dbcontext.Employees
                     select em;
-            this.txtEmployeeID.Text = $"{ q.Count() + 1001 }"; //ID自動產生，不允許變更
+            EmID = q.Count()+1001;
+            this.txtEmployeeID.Text = $"{EmID }"; //ID自動產生，不允許變更
+
+            this.txtAccount.MaxLength = 12; //txtAccount最大值
+
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e) //btn 新增
+        {
+
+
+
+
+
+
+
+            var addEmp = new BusinessSystemDBEntityModel.Employee
+            {
+                employeeID = EmID,
+                employee_name = this.txtEmployeeName.Text,
+                gender = this.cmbGender.Text,
+                birth = this.dTPicBirth.Value,
+                hire_date = this.dTPicHireDate.Value,
+                account = AccountName,
+                officeID = this.offID(this.cmbOfficeID.SelectedIndex),
+                //departmentID =                ,
+                //positionID =                ,
+                //managerID =                ,
+                //employed =                ,
+                //groupID =
+            };
+
+
 
 
         }
+
+       
+
+        private void btnCheckAccount_Click(object sender, EventArgs e)    //檢查帳號
+        {
+            if (String.IsNullOrEmpty (this.txtAccount.Text ))
+            {
+                MessageBox.Show("請輸入正確的資料。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.txtAccount.Focus();                
+            }
+            else if (this.checkAccount (this.txtAccount .Text))
+            {
+                MessageBox.Show  ("此帳號可以使用！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                this.btnCreate .Enabled = true;
+                AccountName = this.txtAccount.Text.Replace(" ", "");   //清除字串中的空格
+            }
+            else
+            {
+                MessageBox.Show("此帳號已被使用！請嚐試別組帳號！", "提示", MessageBoxButtons.OK , MessageBoxIcon.Error );
+                this.txtAccount.Focus();
+            }
+        }
+
+        bool   checkAccount(string @account)    //檢查帳號的方法
+        {
+            var q = from ac in dbcontext.Employees
+                    where ac.account == @account
+                    select ac;
+            if (q.Any()  )
+            {
+                return false ;
+            }
+            else
+            {
+                return true ;
+            }
+        }
+
+      int  offID (int cmbOfiiceIndex)   //officeID轉資料
+        {
+            int result = 1;
+            if (cmbOfiiceIndex == 1)
+            {
+                result = 1;
+            }              
+            if (cmbOfiiceIndex == 0)
+            {
+                result = 2;
+            }
+            return result;
+        }
+
+
     }
 }

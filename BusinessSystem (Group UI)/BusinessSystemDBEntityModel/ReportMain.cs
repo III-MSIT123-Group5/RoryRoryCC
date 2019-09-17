@@ -29,7 +29,6 @@ namespace BusinessSystemDBEntityModel
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ApprovalOrder> ApprovalOrders { get; set; }
-        public virtual ApprovalStatu ApprovalStatu { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual ReportCategory ReportCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

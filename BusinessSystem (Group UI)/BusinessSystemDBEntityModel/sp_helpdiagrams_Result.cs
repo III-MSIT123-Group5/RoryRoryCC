@@ -10,14 +10,13 @@
 namespace BusinessSystemDBEntityModel
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ApprovalStatu
+    public partial class sp_helpdiagrams_Result
     {
-        public string ReportID { get; set; }
-        public Nullable<int> ApprovalStatusID { get; set; }
-        public string ApprovalStatus { get; set; }
-    
-        public virtual ReportMain ReportMain { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }
