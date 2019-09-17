@@ -12,26 +12,18 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class ReportMain
+    public partial class ReportCategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ReportMain()
+        public ReportCategory()
         {
-            this.ApprovalOrders = new HashSet<ApprovalOrder>();
-            this.RequisitionMains = new HashSet<RequisitionMain>();
+            this.ReportMains = new HashSet<ReportMain>();
         }
     
-        public string ReportID { get; set; }
         public string ReportCategoryID { get; set; }
-        public Nullable<int> ApplicantID { get; set; }
-        public Nullable<System.DateTime> ApplyDate { get; set; }
-        public Nullable<System.DateTime> FinishDate { get; set; }
+        public string Category { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ApprovalOrder> ApprovalOrders { get; set; }
-        public virtual Employee Employee { get; set; }
-        public virtual ReportCategory ReportCategory { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RequisitionMain> RequisitionMains { get; set; }
+        public virtual ICollection<ReportMain> ReportMains { get; set; }
     }
 }

@@ -10,16 +10,10 @@
 namespace BusinessSystemDBEntityModel
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class RequisitionMain
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public string ReportID { get; set; }
-        public int RequisitionID { get; set; }
-        public Nullable<decimal> TotalPrice { get; set; }
-        public string Note { get; set; }
-    
-        public virtual ReportMain ReportMain { get; set; }
-        public virtual RequisitionChild RequisitionChild { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

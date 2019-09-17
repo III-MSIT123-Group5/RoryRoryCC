@@ -12,17 +12,20 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class CompanyVehicle
+    public partial class MeetingRoom
     {
-        public string LicenseNumber { get; set; }
-        public Nullable<int> VehicleYear { get; set; }
-        public Nullable<System.DateTime> PurchaseDate { get; set; }
-        public string brand { get; set; }
-        public string serial { get; set; }
-        public string MaxPassenger { get; set; }
-        public Nullable<int> officeID { get; set; }
-        public byte[] VehiclePhoto { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public MeetingRoom()
+        {
+            this.MeetingRoomHistories = new HashSet<MeetingRoomHistory>();
+        }
     
+        public string meetingID { get; set; }
+        public Nullable<int> officeID { get; set; }
+        public Nullable<int> max_member { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MeetingRoomHistory> MeetingRoomHistories { get; set; }
         public virtual Office Office { get; set; }
     }
 }

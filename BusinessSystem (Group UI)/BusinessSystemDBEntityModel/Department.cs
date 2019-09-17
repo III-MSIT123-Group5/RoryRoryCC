@@ -12,26 +12,27 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class ReportMain
+    public partial class Department
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ReportMain()
+        public Department()
         {
-            this.ApprovalOrders = new HashSet<ApprovalOrder>();
-            this.RequisitionMains = new HashSet<RequisitionMain>();
+            this.BulletinBoards = new HashSet<BulletinBoard>();
+            this.Employees = new HashSet<Employee>();
+            this.Groups = new HashSet<Group>();
+            this.SuggestionHistories = new HashSet<SuggestionHistory>();
         }
     
-        public string ReportID { get; set; }
-        public string ReportCategoryID { get; set; }
-        public Nullable<int> ApplicantID { get; set; }
-        public Nullable<System.DateTime> ApplyDate { get; set; }
-        public Nullable<System.DateTime> FinishDate { get; set; }
+        public int departmentID { get; set; }
+        public string name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ApprovalOrder> ApprovalOrders { get; set; }
-        public virtual Employee Employee { get; set; }
-        public virtual ReportCategory ReportCategory { get; set; }
+        public virtual ICollection<BulletinBoard> BulletinBoards { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RequisitionMain> RequisitionMains { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Group> Groups { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SuggestionHistory> SuggestionHistories { get; set; }
     }
 }

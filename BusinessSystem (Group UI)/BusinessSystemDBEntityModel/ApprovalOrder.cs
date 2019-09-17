@@ -12,14 +12,21 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class RequisitionMain
+    public partial class ApprovalOrder
     {
-        public string ReportID { get; set; }
-        public int RequisitionID { get; set; }
-        public Nullable<decimal> TotalPrice { get; set; }
-        public string Note { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ApprovalOrder()
+        {
+            this.ApprovalChilds = new HashSet<ApprovalChild>();
+        }
     
+        public string ReportID { get; set; }
+        public Nullable<int> ApprovalCategoryID { get; set; }
+        public int ApprovalStageID { get; set; }
+        public string ApprovalOrder1 { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ApprovalChild> ApprovalChilds { get; set; }
         public virtual ReportMain ReportMain { get; set; }
-        public virtual RequisitionChild RequisitionChild { get; set; }
     }
 }

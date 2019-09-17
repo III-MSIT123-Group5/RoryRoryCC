@@ -12,25 +12,19 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Office
+    public partial class Account
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Office()
+        public Account()
         {
             this.Employees = new HashSet<Employee>();
-            this.MeetingRooms = new HashSet<MeetingRoom>();
-            this.CompanyVehicles = new HashSet<CompanyVehicle>();
         }
     
-        public int officeID { get; set; }
-        public string office_name { get; set; }
-        public string office_address { get; set; }
+        public int id { get; set; }
+        public string account1 { get; set; }
+        public byte[] password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MeetingRoom> MeetingRooms { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CompanyVehicle> CompanyVehicles { get; set; }
     }
 }
