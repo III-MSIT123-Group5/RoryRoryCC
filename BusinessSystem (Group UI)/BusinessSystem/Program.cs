@@ -20,7 +20,7 @@ namespace BusinessSystem
             Application.Run(new MainForm());
             Application.Run(new BulletinBoard_2());
             Application.Run(new CompanyCarForm());
-
+            Application.Run(new CreateEmployeeForm ());
         }
     }
 }
