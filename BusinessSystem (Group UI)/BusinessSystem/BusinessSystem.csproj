@@ -199,12 +199,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BusinessSystemDBEntityModel\BusinessSystemDBEntityModel.csproj">
-      <Project>{846de6ff-c319-46dc-a49e-f7213d9f4c60}</Project>
-      <Name>BusinessSystemDBEntityModel</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup />
