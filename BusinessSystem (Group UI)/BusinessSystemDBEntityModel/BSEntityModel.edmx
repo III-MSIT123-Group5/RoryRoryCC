@@ -26,7 +26,7 @@
           <Key>
             <PropertyRef Name="ApprovalStageID" />
           </Key>
-          <Property Name="ReportID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReportID" Type="int" />
           <Property Name="ApprovalCategoryID" Type="int" />
           <Property Name="ApprovalStageID" Type="int" Nullable="false" />
           <Property Name="ApprovalOrder" Type="nvarchar(max)" />
@@ -35,7 +35,7 @@
           <Key>
             <PropertyRef Name="ReportID" />
           </Key>
-          <Property Name="ReportID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReportID" Type="int" Nullable="false" />
           <Property Name="ApprovalStatusID" Type="int" />
           <Property Name="ApprovalStatus" Type="nvarchar(max)" />
         </EntityType>
@@ -104,7 +104,7 @@
           <Property Name="employee_name" Type="nvarchar" MaxLength="50" />
           <Property Name="gender" Type="nvarchar" MaxLength="10" />
           <Property Name="birth" Type="date" />
-          <Property Name="hire_date" Type="date" />
+          <Property Name="hire_date" Type="datetime" />
           <Property Name="account" Type="nvarchar" MaxLength="12" />
           <Property Name="officeID" Type="int" />
           <Property Name="departmentID" Type="int" />
@@ -112,6 +112,7 @@
           <Property Name="managerID" Type="int" />
           <Property Name="employed" Type="bit" />
           <Property Name="groupID" Type="int" />
+          <Property Name="photo" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -233,7 +234,7 @@
           <Key>
             <PropertyRef Name="ReportID" />
           </Key>
-          <Property Name="ReportID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ReportCategoryID" Type="nvarchar" MaxLength="50" />
           <Property Name="ApplicantID" Type="int" />
           <Property Name="ApplyDate" Type="datetime" />
@@ -262,19 +263,19 @@
             <PropertyRef Name="ChildID" />
           </Key>
           <Property Name="RequisitionID" Type="int" Nullable="false" />
+          <Property Name="ChildID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
           <Property Name="UnitPrice" Type="money" />
           <Property Name="Quantity" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Discount" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Note" Type="nvarchar(max)" />
-          <Property Name="ChildID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="RequisitionMain">
           <Key>
             <PropertyRef Name="RequisitionID" />
           </Key>
-          <Property Name="ReportID" Type="nvarchar" MaxLength="50" />
-          <Property Name="RequisitionID" Type="int" Nullable="false" />
+          <Property Name="ReportID" Type="int" />
+          <Property Name="RequisitionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TotalPrice" Type="money" />
           <Property Name="Note" Type="nvarchar(max)" />
         </EntityType>
@@ -428,6 +429,18 @@
             </Principal>
             <Dependent Role="BulletinBoard">
               <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BulletinBoard_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="BulletinBoard" Type="Self.BulletinBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="BulletinBoard">
+              <PropertyRef Name="EmployeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -866,6 +879,10 @@
             <End Role="Group" EntitySet="Group" />
             <End Role="BulletinBoard" EntitySet="BulletinBoard" />
           </AssociationSet>
+          <AssociationSet Name="FK_BulletinBoard_Employee" Association="Self.FK_BulletinBoard_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="BulletinBoard" EntitySet="BulletinBoard" />
+          </AssociationSet>
           <AssociationSet Name="FK_Company vehicle history_Company vehicle" Association="Self.FK_Company vehicle history_Company vehicle">
             <End Role="CompanyVehicle" EntitySet="CompanyVehicle" />
             <End Role="CompanyVehicleHistory" EntitySet="CompanyVehicleHistory" />
@@ -1000,7 +1017,7 @@
           <Key>
             <PropertyRef Name="ApprovalStageID" />
           </Key>
-          <Property Name="ReportID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportID" Type="Int32" />
           <Property Name="ApprovalCategoryID" Type="Int32" />
           <Property Name="ApprovalStageID" Type="Int32" Nullable="false" />
           <Property Name="ApprovalOrder1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -1011,7 +1028,7 @@
           <Key>
             <PropertyRef Name="ReportID" />
           </Key>
-          <Property Name="ReportID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReportID" Type="Int32" Nullable="false" />
           <Property Name="ApprovalStatusID" Type="Int32" />
           <Property Name="ApprovalStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ReportMain" Relationship="Self.FK_ApprovalStatus_ReportMain" FromRole="ApprovalStatus" ToRole="ReportMain" />
@@ -1037,6 +1054,7 @@
           <NavigationProperty Name="Department" Relationship="Self.FK_Bulletin_board_Department" FromRole="BulletinBoard" ToRole="Department" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Bulletin_board_Employee" FromRole="BulletinBoard" ToRole="Employee" />
           <NavigationProperty Name="Group" Relationship="Self.FK_Bulletin_board_Group" FromRole="BulletinBoard" ToRole="Group" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK_BulletinBoard_Employee" FromRole="BulletinBoard" ToRole="Employee" />
         </EntityType>
         <EntityType Name="CompanyVehicle">
           <Key>
@@ -1084,7 +1102,7 @@
           <Property Name="employee_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="birth" Type="DateTime" Precision="0" />
-          <Property Name="hire_date" Type="DateTime" Precision="0" />
+          <Property Name="hire_date" Type="DateTime" Precision="3" />
           <Property Name="account" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
           <Property Name="officeID" Type="Int32" />
           <Property Name="departmentID" Type="Int32" />
@@ -1092,8 +1110,10 @@
           <Property Name="managerID" Type="Int32" />
           <Property Name="employed" Type="Boolean" />
           <Property Name="groupID" Type="Int32" />
+          <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Account1" Relationship="Self.FK_Employee_Account" FromRole="Employee" ToRole="Account" />
           <NavigationProperty Name="BulletinBoards" Relationship="Self.FK_Bulletin_board_Employee" FromRole="Employee" ToRole="BulletinBoard" />
+          <NavigationProperty Name="BulletinBoards1" Relationship="Self.FK_BulletinBoard_Employee" FromRole="Employee" ToRole="BulletinBoard" />
           <NavigationProperty Name="CompanyVehicleHistories" Relationship="Self.FK_Company_vehicle_history_Employee" FromRole="Employee" ToRole="CompanyVehicleHistory" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
           <NavigationProperty Name="Employee1" Relationship="Self.FK_Employee_Employee" FromRole="Employee" ToRole="Employee1" />
@@ -1200,7 +1220,7 @@
           <Key>
             <PropertyRef Name="ReportID" />
           </Key>
-          <Property Name="ReportID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ReportCategoryID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ApplicantID" Type="Int32" />
           <Property Name="ApplyDate" Type="DateTime" Precision="3" />
@@ -1216,20 +1236,20 @@
             <PropertyRef Name="ChildID" />
           </Key>
           <Property Name="RequisitionID" Type="Int32" Nullable="false" />
+          <Property Name="ChildID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Discount" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ChildID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="RequisitionMain" Relationship="Self.FK_RequisitionChild_RequisitionMain1" FromRole="RequisitionChild" ToRole="RequisitionMain" />
         </EntityType>
         <EntityType Name="RequisitionMain">
           <Key>
             <PropertyRef Name="RequisitionID" />
           </Key>
-          <Property Name="ReportID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RequisitionID" Type="Int32" Nullable="false" />
+          <Property Name="ReportID" Type="Int32" />
+          <Property Name="RequisitionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ReportMain" Relationship="Self.FK_RequisitionMain_ReportMain" FromRole="RequisitionMain" ToRole="ReportMain" />
@@ -1420,6 +1440,18 @@
             </Principal>
             <Dependent Role="BulletinBoard">
               <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BulletinBoard_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="BulletinBoard" Type="Self.BulletinBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="BulletinBoard">
+              <PropertyRef Name="EmployeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1786,6 +1818,10 @@
             <End Role="Group" EntitySet="Groups" />
             <End Role="BulletinBoard" EntitySet="BulletinBoards" />
           </AssociationSet>
+          <AssociationSet Name="FK_BulletinBoard_Employee" Association="Self.FK_BulletinBoard_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="BulletinBoard" EntitySet="BulletinBoards" />
+          </AssociationSet>
           <AssociationSet Name="FK_Company_vehicle_history_Company_vehicle" Association="Self.FK_Company_vehicle_history_Company_vehicle">
             <End Role="CompanyVehicle" EntitySet="CompanyVehicles" />
             <End Role="CompanyVehicleHistory" EntitySet="CompanyVehicleHistories" />
@@ -1999,6 +2035,7 @@
                 <ScalarProperty Name="managerID" ColumnName="managerID" />
                 <ScalarProperty Name="employed" ColumnName="employed" />
                 <ScalarProperty Name="groupID" ColumnName="groupID" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2097,12 +2134,12 @@
             <EntityTypeMapping TypeName="BSEntityModel.RequisitionChild">
               <MappingFragment StoreEntitySet="RequisitionChild">
                 <ScalarProperty Name="RequisitionID" ColumnName="RequisitionID" />
+                <ScalarProperty Name="ChildID" ColumnName="ChildID" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="ChildID" ColumnName="ChildID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
