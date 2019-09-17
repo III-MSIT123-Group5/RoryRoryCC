@@ -1,5 +1,4 @@
-﻿using BusinessSystem.ReportTimeSystem;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,14 +18,7 @@ namespace BusinessSystem
 
             rectangleShape_date.Location = new Point(10, 10);           
             rectangleShape_messange.Location = new Point(10, 220);
-            rectangleShape_MeetingRoom.Location = new Point(10, 430);
-            rectangleShape_Car.Location = new Point(220, 430);
-            rectangleShape_Calender.Location = new Point(430, 10);
-            rectangleShape_Leave.Location = new Point(430, 220);
-            rectangleShape_File.Location = new Point(430, 430);
-            rectangleShape_Employee.Location = new Point(640, 10);
-            rectangleShape_Schedule.Location = new Point(640, 220);
-            rectangleShape_Requisition.Location = new Point(640, 430);
+         
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -41,10 +33,9 @@ namespace BusinessSystem
             frmRequisition.Show();
         }
 
-        private void rectangleShape_Schedule_Click(object sender, EventArgs e)
+        private void mainControls1_Load(object sender, EventArgs e)
         {
-            FormMainRTS formMainRTS = new FormMainRTS();
-            formMainRTS.ShowDialog();
+
         }
     }
 }

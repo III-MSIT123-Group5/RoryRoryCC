@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BusinessSystem.Properties {
+namespace MainControls.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace BusinessSystem.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BusinessSystem.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MainControls.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -106,16 +106,6 @@ namespace BusinessSystem.Properties {
         internal static System.Drawing.Bitmap chair_2_128 {
             get {
                 object obj = ResourceManager.GetObject("chair-2-128", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
-        /// </summary>
-        internal static System.Drawing.Bitmap neutral_dicision_128 {
-            get {
-                object obj = ResourceManager.GetObject("neutral-dicision-128", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

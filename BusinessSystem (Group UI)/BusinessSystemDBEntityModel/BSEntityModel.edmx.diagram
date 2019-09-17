@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fd2cf0d538b240f787b848260c936642" Name="Diagram1" ZoomLevel="167">
+        <EntityTypeShape EntityType="BSEntityModel.Account" Width="1.5" PointX="6" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.ApprovalChild" Width="1.5" PointX="18" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.ApprovalOrder" Width="1.5" PointX="15.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.ApprovalStatu" Width="1.5" PointX="15.75" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.ApprovantStatu" Width="1.5" PointX="20.25" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.BulletinBoard" Width="1.5" PointX="5.25" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.CompanyVehicle" Width="1.5" PointX="8.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.CompanyVehicleHistory" Width="1.5" PointX="10.5" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.Department" Width="1.5" PointX="0.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.Employee" Width="1.5" PointX="8.25" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.Event" Width="1.5" PointX="8.25" PointY="28.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.Group" Width="1.5" PointX="3" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.Leave" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.MeetingRoom" Width="1.5" PointX="11.25" PointY="32.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.Message" Width="1.5" PointX="10.5" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.Office" Width="1.5" PointX="6" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.Position" Width="1.5" PointX="6" PointY="30" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.Recipient" Width="1.5" PointX="12.75" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.ReportCategory" Width="1.5" PointX="11.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.ReportMain" Width="1.5" PointX="13.5" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.RequisitionChild" Width="1.5" PointX="18" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.RequisitionMain" Width="1.5" PointX="15.75" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.RewardandPunishment" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.Suggestion" Width="1.5" PointX="8.25" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.sysdiagram" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.File" Width="1.5" PointX="10.5" PointY="36.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.MeetingRoomHistory" Width="1.5" PointX="13.5" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.ReportTimeSystem" Width="1.5" PointX="10.5" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.SuggestionHistory" Width="1.5" PointX="10.5" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BSEntityModel.SurveyMain" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="BSEntityModel.FK_Employee_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_ApprovalChild_ApprovalOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_ApprovantStatus_ApprovalChild" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_ApprovalOrder_ReportMain" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_ApprovalStatus_ReportMain" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Bulletin_board_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Bulletin_board_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Bulletin_board_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Company_vehicle_history_Company_vehicle" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Company_vehicle_Office" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Company_vehicle_history_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Employee_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Group_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Suggestion_history_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Employee_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Employee_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Employee_Office" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Employee_Position" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_File_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Meeting_room_history_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Message_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Recipient_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_ReportMain_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_ReportTimeSystem_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Suggestion_history_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_ReportTimeSystem_Event" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Meeting_room_history_Meeting_room" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Meeting_room_Office" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Recipient_Message" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_ReportMain_ReportCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_RequisitionMain_ReportMain" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_RequisitionChild_RequisitionMain1" ManuallyRouted="false" />
+        <AssociationConnector Association="BSEntityModel.FK_Suggestion_history_Suggestion" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

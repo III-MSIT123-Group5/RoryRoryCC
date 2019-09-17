@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
-using System.Data.Entity.Core.EntityClient;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -18,52 +17,63 @@ namespace BusinessSystem.ReportTimeSystem
 {
     public partial class FormAdd : SonForm
     {
-        BusinessDataBaseEntities dbcontext = new BusinessDataBaseEntities();
-        BusinessSystemDBEntityModel.ReportTimeSystem rts = new BusinessSystemDBEntityModel.ReportTimeSystem();
-
-      
+        BusinessSystemDBEntityModel.BusinessDataBaseEntities dbcontext = new BusinessDataBaseEntities();
         public FormAdd()
         {
             InitializeComponent();
-           
-            
+            var q = from reptime in dbcontext.ReportTimeSystems
+                    join eve in dbcontext.Events
+                    on reptime.EventID equals eve.EventID
+                    select eve.EventName;
+            comboBox1.DataSource = q.ToList();
         }
-        
+
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
-          
+            string strconn = ConfigurationManager.ConnectionStrings["BusinessSystem"].ConnectionString;
+            string stradd = "AddReport";
+            SqlConnection conn = new SqlConnection(strconn);
+            SqlCommand cmd = new SqlCommand(stradd, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
 
-            dbcontext.ReportTimeSystems.Add(
-                new BusinessSystemDBEntityModel.ReportTimeSystem
-                {
-                    employeeID = 0,
-                    ApplyDateTime = DateTime.Now,
-                    EventHours = int.Parse(comboBox2.Text),
-                    EventID = FindID(comboBox1.Text),
-                    Note = richTextBox1.Text,
-                    Discontinue = true
-                });
-             
-           
-            dbcontext.SaveChanges();
-            
-        }
+            SqlParameter pReturnValue = new SqlParameter("@RETURN_VALUE", SqlDbType.Int);
+            pReturnValue.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(pReturnValue);
 
-        private int FindID(string Text)
-        {
-            int result=0;
+            SqlParameter pApplyDateTime = new SqlParameter("@ApplyDateTime", SqlDbType.DateTime);
+            pApplyDateTime.Direction = ParameterDirection.Input;
+            pApplyDateTime.Value = DateTime.Now;
+            cmd.Parameters.Add(pApplyDateTime);
 
-            if (dbcontext.Events.First().EventName == Text)
-            {
-                result = dbcontext.Events.First().EventID;
-            } 
-            return result;
-           
+            SqlParameter pEventHours = new SqlParameter("@EventHours", SqlDbType.Float);
+            pEventHours.Direction = ParameterDirection.Input;
+            pEventHours.Value = float.Parse(comboBox2.Text);
+            cmd.Parameters.Add(pEventHours);
+
+            SqlParameter pEventID = new SqlParameter("@EventID", SqlDbType.Int);
+            pEventID.Direction = ParameterDirection.Input;
+            pEventID.Value = comboBox1.SelectedIndex;
+            cmd.Parameters.Add(pEventID);
+
+
+
+
+            SqlParameter pemployeeID = new SqlParameter("@employeeID", SqlDbType.Int);
+            pemployeeID.Direction = ParameterDirection.Input;
+            pemployeeID.Value = DateTime.Now;
+            cmd.Parameters.Add(pemployeeID);
+
+            SqlParameter pNote = new SqlParameter("@departmentID", SqlDbType.NVarChar, 100);
+            pNote.Direction = ParameterDirection.Input;
+            pNote.Value = richTextBox1.Text;
+            cmd.Parameters.Add(pNote);
+
+
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -99,12 +109,6 @@ namespace BusinessSystem.ReportTimeSystem
         private void label1_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void FormAdd_Load(object sender, EventArgs e)
-        {
-            comboBox1.DataSource = dbcontext.Events.Select(n=>n.EventName).Distinct().ToList();
-           
         }
     }
 }
