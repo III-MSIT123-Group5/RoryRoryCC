@@ -12,14 +12,12 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class RequisitionMain
+    public partial class sysdiagram
     {
-        public string ReportID { get; set; }
-        public int RequisitionID { get; set; }
-        public Nullable<decimal> TotalPrice { get; set; }
-        public string Note { get; set; }
-    
-        public virtual ReportMain ReportMain { get; set; }
-        public virtual RequisitionChild RequisitionChild { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

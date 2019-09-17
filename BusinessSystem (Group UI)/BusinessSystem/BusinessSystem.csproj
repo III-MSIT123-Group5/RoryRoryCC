@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0E8E8405-AA03-4341-9FDF-54CC5447471E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>BusinessSystem</RootNamespace>
     <AssemblyName>BusinessSystem</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -32,49 +32,48 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bulletin_board.cs" />
-    <Compile Include="BulletinBoard-01.cs">
+    <Compile Include="BulletinBoard\BulletinBoard-01.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BulletinBoard-01.designer.cs">
+    <Compile Include="BulletinBoard\BulletinBoard-01.designer.cs">
       <DependentUpon>BulletinBoard-01.cs</DependentUpon>
     </Compile>
-    <Compile Include="BulletinBoard-02.cs">
+    <Compile Include="BulletinBoard\BulletinBoard-02.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BulletinBoard-02.designer.cs">
+    <Compile Include="BulletinBoard\BulletinBoard-02.designer.cs">
       <DependentUpon>BulletinBoard-02.cs</DependentUpon>
     </Compile>
-    <Compile Include="CCBoxItem.cs" />
-    <Compile Include="CheckedComboBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ClsRoundButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ClsAltoButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="companycars\CompanyCarForm.cs">
+    <Compile Include="BulletinBoard\Bulletin_board.cs" />
+    <Compile Include="CompanyCars\CompanyCarForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="companycars\CompanyCarForm.designer.cs">
+    <Compile Include="CompanyCars\CompanyCarForm.designer.cs">
       <DependentUpon>CompanyCarForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="companycars\text123.cs">
+    <Compile Include="CompanyCars\text123.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="companycars\text123.Designer.cs">
+    <Compile Include="CompanyCars\text123.designer.cs">
       <DependentUpon>text123.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="EmployeeSystem\CreateEmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.designer.cs">
+    <Compile Include="EmployeeSystem\CreateEmployeeForm.designer.cs">
+      <DependentUpon>CreateEmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeSystem\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeSystem\Login.designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
@@ -89,24 +88,37 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ClsRoundRectangleF.cs" />
+    <Compile Include="FrmRequisition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRequisition.Designer.cs">
+      <DependentUpon>FrmRequisition.cs</DependentUpon>
+    </Compile>
     <Compile Include="SonForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SonForm.Designer.cs">
       <DependentUpon>SonForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ClsTransparenter.cs" />
+    <Compile Include="Tools\CCBoxItem.cs" />
+    <Compile Include="Tools\CheckedComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\ClsAltoButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\ClsRoundButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\ClsRoundRectangleF.cs" />
+    <Compile Include="Tools\ClsTransparenter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="CheckBoxComboBox">
-      <HintPath>C:\Users\III\Desktop\CheckBoxComboBox\bin\Debug\CheckBoxComboBox.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework">
-      <HintPath>..\..\..\..\LINQ\Solution1\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\..\..\..\LINQ\Solution1\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -118,19 +130,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BulletinBoard-01.resx">
+    <EmbeddedResource Include="BulletinBoard\BulletinBoard-01.resx">
       <DependentUpon>BulletinBoard-01.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BulletinBoard-02.resx">
+    <EmbeddedResource Include="BulletinBoard\BulletinBoard-02.resx">
       <DependentUpon>BulletinBoard-02.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="companycars\CompanyCarForm.resx">
+    <EmbeddedResource Include="CompanyCars\CompanyCarForm.resx">
       <DependentUpon>CompanyCarForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="companycars\text123.resx">
+    <EmbeddedResource Include="CompanyCars\text123.resx">
       <DependentUpon>text123.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="EmployeeSystem\CreateEmployeeForm.resx">
+      <DependentUpon>CreateEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRequisition.resx">
+      <DependentUpon>FrmRequisition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeSystem\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
