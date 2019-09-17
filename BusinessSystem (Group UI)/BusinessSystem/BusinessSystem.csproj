@@ -172,6 +172,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessSystemDBEntityModel\BusinessSystemDBEntityModel.csproj">
+      <Project>{f15169fd-5172-4d9f-98b1-c0b2734677a4}</Project>
+      <Name>BusinessSystemDBEntityModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Controls\Controls.csproj">
       <Project>{1902C417-BF2F-4EBD-B834-C2FCA45A6E00}</Project>
       <Name>Controls</Name>
