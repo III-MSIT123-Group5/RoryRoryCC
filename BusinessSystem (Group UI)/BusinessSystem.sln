@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28307.705
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessSystem", "BusinessSystem\BusinessSystem.csproj", "{0E8E8405-AA03-4341-9FDF-54CC5447471E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessSystemControlLibrary", "BusinessSystemControlLibrary\BusinessSystemControlLibrary.csproj", "{70516E7C-314F-4907-B5FC-3801EB00F60A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controls", "Controls\Controls.csproj", "{1902C417-BF2F-4EBD-B834-C2FCA45A6E00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainControls", "MainControls\MainControls.csproj", "{F9B06959-355D-4641-BF4C-47135DD5EF57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessSystemDBEntityModel", "BusinessSystemDBEntityModel\BusinessSystemDBEntityModel.csproj", "{C2AA4388-71E2-4A2F-8F88-CEE446CFD338}"
 EndProject

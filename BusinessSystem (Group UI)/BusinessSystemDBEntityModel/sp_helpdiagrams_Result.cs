@@ -10,17 +10,13 @@
 namespace BusinessSystemDBEntityModel
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class CompanyVehicleHistory
+    public partial class sp_helpdiagrams_Result
     {
-        public string LicenseNumber { get; set; }
-        public Nullable<System.DateTime> StartDateTime { get; set; }
-        public Nullable<System.DateTime> EndDateTime { get; set; }
-        public Nullable<int> employeeID { get; set; }
-        public string purpose { get; set; }
+        public int ReportID { get; set; }
+        public Nullable<int> ApprovalStatusID { get; set; }
+        public string ApprovalStatus { get; set; }
     
-        public virtual CompanyVehicle CompanyVehicle { get; set; }
-        public virtual Employee Employee { get; set; }
+        public virtual ReportMain ReportMain { get; set; }
     }
 }

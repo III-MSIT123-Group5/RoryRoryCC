@@ -41,18 +41,16 @@ namespace BusinessSystem
                     select new { Group = g.GroupName, Department = d.name, em.employee_name, b.Content, b.PostTime };
             //dataGridView1.DataSource = q.ToList();
 
+
+         
+
+
     }
 
         private void CBDepartment_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             CCBoxItem item = CBDepartment.Items[e.Index] as CCBoxItem;
 
-
-        }
-
-        private void CBGroup_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            CCBoxItem item2 = CBGroup.Items[e.Index] as CCBoxItem;
         }
 
         private void BulletinBoard_Load(object sender, EventArgs e)
