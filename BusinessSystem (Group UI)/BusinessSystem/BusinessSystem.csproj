@@ -174,5 +174,15 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessSystemControlLibrary\BusinessSystemControlLibrary.csproj">
+      <Project>{70516e7c-314f-4907-b5fc-3801eb00f60a}</Project>
+      <Name>BusinessSystemControlLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BusinessSystemDBEntityModel\BusinessSystemDBEntityModel.csproj">
+      <Project>{f15169fd-5172-4d9f-98b1-c0b2734677a4}</Project>
+      <Name>BusinessSystemDBEntityModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
