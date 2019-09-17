@@ -19,12 +19,13 @@ namespace MainControls
 
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
-
+            this.OnClick(e);
         }
+        
 
         private void label1_Click(object sender, EventArgs e)
         {
-
+            this.OnClick(e);
         }
 
         public string Title
@@ -40,6 +41,12 @@ namespace MainControls
             }
         }
         
+        
+
+
+
+
+
         private Color m_backgroundcolor1;
         public Color backgroundcolor
         {
@@ -91,6 +98,24 @@ namespace MainControls
             }
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.OnClick(e);
+        }
 
+        private void label1_MouseEnter(object sender, EventArgs e)
+        {
+            this.OnMouseEnter(e);
+        }
+
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            this.OnMouseEnter(e);
+        }
+
+        private void clsAltoButton1_MouseEnter(object sender, EventArgs e)
+        {
+            this.OnMouseEnter(e);
+        }
     }
 }

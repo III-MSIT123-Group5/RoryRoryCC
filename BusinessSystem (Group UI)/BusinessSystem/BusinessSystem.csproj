@@ -106,6 +106,12 @@
     <Compile Include="ReportTimeSystem\FormAdd.designer.cs">
       <DependentUpon>FormAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportTimeSystem\FormMainRTS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportTimeSystem\FormMainRTS.Designer.cs">
+      <DependentUpon>FormMainRTS.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportTimeSystem\FormShow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportTimeSystem\FormAdd.resx">
       <DependentUpon>FormAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTimeSystem\FormMainRTS.resx">
+      <DependentUpon>FormMainRTS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportTimeSystem\FormShow.resx">
       <DependentUpon>FormShow.cs</DependentUpon>

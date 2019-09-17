@@ -37,11 +37,11 @@
             this.mainControls8 = new MainControls.MainControls();
             this.mainControls7 = new MainControls.MainControls();
             this.mainControls6 = new MainControls.MainControls();
-            this.mainControls5 = new MainControls.MainControls();
             this.mainControls4 = new MainControls.MainControls();
             this.mainControls3 = new MainControls.MainControls();
             this.mainControls2 = new MainControls.MainControls();
             this.mainControls1 = new MainControls.MainControls();
+            this.mainControls5 = new MainControls.MainControls();
             this.SuspendLayout();
             // 
             // shapeContainer1
@@ -144,18 +144,6 @@
             this.mainControls6.Title = "行事曆";
             this.mainControls6.TitleColor = System.Drawing.Color.Empty;
             // 
-            // mainControls5
-            // 
-            this.mainControls5.backgroundcolor = System.Drawing.Color.SteelBlue;
-            this.mainControls5.ForeColor = System.Drawing.Color.White;
-            this.mainControls5.image = global::BusinessSystem.Properties.Resources.cart_5_128;
-            this.mainControls5.Location = new System.Drawing.Point(643, 480);
-            this.mainControls5.Name = "mainControls5";
-            this.mainControls5.Size = new System.Drawing.Size(200, 200);
-            this.mainControls5.TabIndex = 39;
-            this.mainControls5.Title = "請購系統";
-            this.mainControls5.TitleColor = System.Drawing.Color.Empty;
-            // 
             // mainControls4
             // 
             this.mainControls4.backgroundcolor = System.Drawing.Color.SlateGray;
@@ -197,23 +185,36 @@
             this.mainControls1.backgroundcolor = System.Drawing.Color.SlateGray;
             this.mainControls1.ForeColor = System.Drawing.Color.White;
             this.mainControls1.image = global::BusinessSystem.Properties.Resources.briefcase_128;
-            this.mainControls1.Location = new System.Drawing.Point(643, 274);
+            this.mainControls1.Location = new System.Drawing.Point(643, 271);
             this.mainControls1.Name = "mainControls1";
             this.mainControls1.Size = new System.Drawing.Size(200, 200);
             this.mainControls1.TabIndex = 35;
             this.mainControls1.Title = "工時回報";
             this.mainControls1.TitleColor = System.Drawing.Color.Empty;
-            this.mainControls1.Load += new System.EventHandler(this.mainControls1_Load_1);
+            this.mainControls1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mainControls1_MouseClick);
+            // 
+            // mainControls5
+            // 
+            this.mainControls5.backgroundcolor = System.Drawing.Color.SteelBlue;
+            this.mainControls5.image = global::BusinessSystem.Properties.Resources.cart_5_128;
+            this.mainControls5.Location = new System.Drawing.Point(648, 480);
+            this.mainControls5.Name = "mainControls5";
+            this.mainControls5.Size = new System.Drawing.Size(200, 200);
+            this.mainControls5.TabIndex = 43;
+            this.mainControls5.Title = "請購系統";
+            this.mainControls5.TitleColor = System.Drawing.Color.Empty;
+            this.mainControls5.Click += new System.EventHandler(this.mainControls5_Click);
+            this.mainControls5.MouseEnter += new System.EventHandler(this.mainControls5_MouseEnter);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(892, 710);
+            this.Controls.Add(this.mainControls5);
             this.Controls.Add(this.mainControls8);
             this.Controls.Add(this.mainControls7);
             this.Controls.Add(this.mainControls6);
-            this.Controls.Add(this.mainControls5);
             this.Controls.Add(this.mainControls4);
             this.Controls.Add(this.mainControls3);
             this.Controls.Add(this.mainControls2);
@@ -240,9 +241,9 @@
         private MainControls.MainControls mainControls2;
         private MainControls.MainControls mainControls3;
         private MainControls.MainControls mainControls4;
-        private MainControls.MainControls mainControls5;
         private MainControls.MainControls mainControls6;
         private MainControls.MainControls mainControls7;
         private MainControls.MainControls mainControls8;
+        private MainControls.MainControls mainControls5;
     }
 }

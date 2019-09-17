@@ -46,6 +46,7 @@
             this.label1.Text = "label";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.MouseEnter += new System.EventHandler(this.label1_MouseEnter);
             // 
             // pictureBox1
             // 
@@ -60,6 +61,8 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
             // 
             // clsAltoButton1
             // 
@@ -83,6 +86,7 @@
             this.clsAltoButton1.TabIndex = 9;
             this.clsAltoButton1.Transparency = false;
             this.clsAltoButton1.Click += new System.EventHandler(this.clsAltoButton1_Click);
+            this.clsAltoButton1.MouseEnter += new System.EventHandler(this.clsAltoButton1_MouseEnter);
             // 
             // MainControls
             // 
