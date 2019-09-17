@@ -100,6 +100,24 @@
     <Compile Include="FrmRequisition.Designer.cs">
       <DependentUpon>FrmRequisition.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportTimeSystem\FormAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportTimeSystem\FormAdd.designer.cs">
+      <DependentUpon>FormAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTimeSystem\FormShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportTimeSystem\FormShow.Designer.cs">
+      <DependentUpon>FormShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTimeSystem\FormUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportTimeSystem\FormUpdate.designer.cs">
+      <DependentUpon>FormUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="SonForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +184,15 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTimeSystem\FormAdd.resx">
+      <DependentUpon>FormAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTimeSystem\FormShow.resx">
+      <DependentUpon>FormShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTimeSystem\FormUpdate.resx">
+      <DependentUpon>FormUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SonForm.resx">
       <DependentUpon>SonForm.cs</DependentUpon>

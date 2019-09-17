@@ -203,6 +203,7 @@
             this.mainControls1.TabIndex = 35;
             this.mainControls1.Title = "工時回報";
             this.mainControls1.TitleColor = System.Drawing.Color.Empty;
+            this.mainControls1.Load += new System.EventHandler(this.mainControls1_Load_1);
             // 
             // MainForm
             // 

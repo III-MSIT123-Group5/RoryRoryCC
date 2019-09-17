@@ -37,5 +37,10 @@ namespace BusinessSystem
         {
 
         }
+
+        private void mainControls1_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
