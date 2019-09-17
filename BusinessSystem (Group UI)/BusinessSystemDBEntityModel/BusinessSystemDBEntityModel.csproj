@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{846DE6FF-C319-46DC-A49E-F7213D9F4C60}</ProjectGuid>
+    <ProjectGuid>{12D153CE-31F1-4710-BF36-98359618CBE7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BusinessSystemDBEntityModel</RootNamespace>
@@ -51,135 +51,135 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ApprovalChild.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ApprovalOrder.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ApprovalStatu.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ApprovantStatu.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BSEntityModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BSEntityModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BSEntityModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BSEntityModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BSEntityModel.edmx</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="BulletinBoard.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessDataBaseEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessDataBaseEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessDataBaseEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessDataBaseEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessDataBaseEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="CompanyVehicle.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="CompanyVehicleHistory.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Department.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Employee.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Event.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="File.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Group.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Leave.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="MeetingRoom.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="MeetingRoomHistory.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Message.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Office.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Position.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipient.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ReportCategory.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ReportMain.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ReportTimeSystem.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="RequisitionChild.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="RequisitionMain.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="RewardandPunishment.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Suggestion.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SuggestionHistory.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SurveyMain.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagram.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
+      <DependentUpon>BusinessDataBaseEntities.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="BSEntityModel.edmx">
+    <EntityDeploy Include="BusinessDataBaseEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BSEntityModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>BusinessDataBaseEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="BSEntityModel.edmx.diagram">
-      <DependentUpon>BSEntityModel.edmx</DependentUpon>
+    <None Include="BusinessDataBaseEntities.edmx.diagram">
+      <DependentUpon>BusinessDataBaseEntities.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BSEntityModel.Context.tt">
+    <Content Include="BusinessDataBaseEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BSEntityModel.Context.cs</LastGenOutput>
-      <DependentUpon>BSEntityModel.edmx</DependentUpon>
+      <LastGenOutput>BusinessDataBaseEntities.Context.cs</LastGenOutput>
+      <DependentUpon>BusinessDataBaseEntities.edmx</DependentUpon>
     </Content>
-    <Content Include="BSEntityModel.tt">
+    <Content Include="BusinessDataBaseEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BSEntityModel.edmx</DependentUpon>
-      <LastGenOutput>BSEntityModel.cs</LastGenOutput>
+      <DependentUpon>BusinessDataBaseEntities.edmx</DependentUpon>
+      <LastGenOutput>BusinessDataBaseEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

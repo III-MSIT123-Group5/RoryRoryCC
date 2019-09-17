@@ -15,15 +15,15 @@ namespace BusinessSystemDBEntityModel
     public partial class CompanyVehicle
     {
         public string LicenseNumber { get; set; }
-        public Nullable<int> VehicleYear { get; set; }
-        public Nullable<System.DateTime> PurchaseDate { get; set; }
+        public int VehicleYear { get; set; }
+        public System.DateTime PurchaseDate { get; set; }
         public string brand { get; set; }
         public string serial { get; set; }
         public string MaxPassenger { get; set; }
-        public Nullable<int> officeID { get; set; }
+        public int officeID { get; set; }
         public byte[] VehiclePhoto { get; set; }
     
-        public virtual Office Office { get; set; }
         public virtual CompanyVehicleHistory CompanyVehicleHistory { get; set; }
+        public virtual Office Office { get; set; }
     }
 }

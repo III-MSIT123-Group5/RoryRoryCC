@@ -121,10 +121,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.dll</HintPath>
+      <HintPath>E:\專題\專題-1\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>E:\專題\專題-1\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -172,13 +172,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BusinessSystemDBEntityModel\BusinessSystemDBEntityModel.csproj">
-      <Project>{846de6ff-c319-46dc-a49e-f7213d9f4c60}</Project>
-      <Name>BusinessSystemDBEntityModel</Name>
-    </ProjectReference>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
+    <ProjectReference Include="..\BusinessSystemControlLibrary\BusinessSystemControlLibrary.csproj">
+      <Project>{70516e7c-314f-4907-b5fc-3801eb00f60a}</Project>
+      <Name>BusinessSystemControlLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BusinessSystemDBEntityModel\BusinessSystemDBEntityModel.csproj">
+      <Project>{12d153ce-31f1-4710-bf36-98359618cbe7}</Project>
+      <Name>BusinessSystemDBEntityModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
