@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{846DE6FF-C319-46DC-A49E-F7213D9F4C60}</ProjectGuid>
+    <ProjectGuid>{F15169FD-5172-4D9F-98B1-C0B2734677A4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BusinessSystemDBEntityModel</RootNamespace>
