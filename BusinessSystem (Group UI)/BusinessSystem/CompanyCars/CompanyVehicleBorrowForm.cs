@@ -182,7 +182,6 @@ namespace BusinessSystem.CompanyCars
                 x.licNu = pphoto[i].LicenseNumber;
                 this.flowLayoutPanel1.Controls.Add(x);
                 x.Scclick += new UserControl1.mmouse(x_Scclick);
-                
             }
             
         }
@@ -269,12 +268,18 @@ namespace BusinessSystem.CompanyCars
         {
             mytime1();
             mytime2();
-            if (this.dateTimePicker1.Value < this.dateTimePicker2.Value)
-            {
-                MessageBox.Show(((this.dateTimePicker2.Value- this.dateTimePicker1.Value).Hours ).ToString());
-                MessageBox.Show(this.dateTimePicker1.Value.ToString());
-                MessageBox.Show(this.dateTimePicker2.Value.ToString());
-            }
+            mypic();
+            
+                        //if (this.dateTimePicker1.Value < this.dateTimePicker2.Value)
+                        //{
+                        //    MessageBox.Show(((this.dateTimePicker2.Value- this.dateTimePicker1.Value).Hours ).ToString());
+                        //    MessageBox.Show(this.dateTimePicker1.Value.ToString());
+                        //    MessageBox.Show(this.dateTimePicker2.Value.ToString());
+                        //}
+                        
+           
+            
+            
             
             
             
