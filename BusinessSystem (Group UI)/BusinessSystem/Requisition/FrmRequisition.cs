@@ -29,30 +29,31 @@ namespace BusinessSystem
             {
                 var newReportMain = new ReportMain
                 {
-                    ApplicantID = 1001,
-                    ApplyDate=DateTime.Now
+                    ApplicantID = 1008,                    
+                    ApplyDate=DateTime.Now     
                 };
 
                 var newRequisitionMain = new RequisitionMain
-                {
+                {                       
                     ReportMain=newReportMain
                 };
 
                 var newRequisitionChild = new RequisitionChild
-                {   
-                    //RequisitionID=100
+                {          
                     ProductName = textBox1.Text,
                     UnitPrice = decimal.Parse(textBox2.Text),
                     Quantity = decimal.Parse(textBox3.Text),
-                    Discount = decimal.Parse(textBox4.Text),
-                    Note = textBox5.Text,
-                    RequisitionMain=newRequisitionMain
+                    Discount = decimal.Parse(textBox4.Text),                   
+                    Note = textBox5.Text,                    
+                    RequisitionMain=newRequisitionMain                    
                 };
 
                 dbContext.RequisitionChilds.Add(newRequisitionChild);
                 dbContext.SaveChanges();
 
-                MessageBox.Show("XXXX");
+                MessageBox.Show("購案新增成功");
+
+                
             }
             catch (Exception ex)
             {
@@ -62,22 +63,27 @@ namespace BusinessSystem
 
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
-            dbContext = new BusinessDataBaseEntities();
-
             var q = from RM in this.dbContext.ReportMains
                     join RQM in this.dbContext.RequisitionMains on RM.ReportID equals RQM.ReportID
                     join RC in this.dbContext.RequisitionChilds on RQM.RequisitionID equals RC.RequisitionID
-                    //from RQM in dbContext.RequisitionMains
-                    //from RC in dbContext.RequisitionChilds
                     select new
                     {
                         EmployeeID=RM.ApplicantID,
-                        ReportID= RQM.ReportID,
-                        RequisitionID=RC.RequisitionID,
-                        ProductName=RC.ProductName
+                        ReportID = RQM.ReportID,
+                        RequisitionID = RC.RequisitionID,
+                        ProductName = RC.ProductName,
+                        UnitPrice = RC.UnitPrice,
+                        Quantity = RC.Quantity,
+                        Dincount = RC.Discount,
+                        Note = RC.Note
                     };
-            dataGridView1.DataSource = q.ToList();
 
+            dataGridView1.DataSource = q.ToList();
+        }
+
+        private void altoButton2_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = "";
         }
     }
 }

@@ -25,7 +25,6 @@ namespace BusinessSystem
 
             dbContext = new BusinessDataBaseEntities();
 
-
             CBDepartment.ItemCheck += CBDepartment_ItemCheck;
 
 
@@ -50,12 +49,6 @@ namespace BusinessSystem
         {
             CCBoxItem item = CBDepartment.Items[e.Index] as CCBoxItem;
 
-
-        }
-
-        private void CBGroup_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            CCBoxItem item2 = CBGroup.Items[e.Index] as CCBoxItem;
         }
 
         private void BulletinBoard_Load(object sender, EventArgs e)
