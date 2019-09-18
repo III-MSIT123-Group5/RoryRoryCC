@@ -19,7 +19,7 @@ namespace MainControls
            
             m_buttoncolor1 = Color.SteelBlue;
 
-
+            
 
         }
 

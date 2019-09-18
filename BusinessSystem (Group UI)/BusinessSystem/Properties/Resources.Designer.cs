@@ -113,6 +113,16 @@ namespace BusinessSystem.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap edit_property_128 {
+            get {
+                object obj = ResourceManager.GetObject("edit-property-128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap neutral_dicision_128 {
             get {
                 object obj = ResourceManager.GetObject("neutral-dicision-128", resourceCulture);
