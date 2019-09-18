@@ -41,9 +41,9 @@
             // 
             // listView1
             // 
-            this.listView1.Location = new System.Drawing.Point(29, 140);
+            this.listView1.Location = new System.Drawing.Point(0, 140);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(739, 333);
+            this.listView1.Size = new System.Drawing.Size(800, 360);
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
@@ -86,6 +86,7 @@
             this.CBDepartment.Size = new System.Drawing.Size(293, 31);
             this.CBDepartment.TabIndex = 8;
             this.CBDepartment.ValueSeparator = ", ";
+            this.CBDepartment.DropDown += new System.EventHandler(this.CBDepartment_DropDown);
             this.CBDepartment.DropDownClosed += new System.EventHandler(this.CBDepartment_DropDownClosed);
             // 
             // label3
@@ -110,11 +111,14 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(151, 180);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 140);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(498, 268);
+            this.dataGridView1.Size = new System.Drawing.Size(800, 360);
             this.dataGridView1.TabIndex = 4;
             // 
             // BulletinBoard
