@@ -1,6 +1,4 @@
-﻿using BusinessSystem.CompanyCars;
-using BusinessSystem.ReportTimeSystem;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,32 +27,15 @@ namespace BusinessSystem
             Height = 680;
         }
 
-        private void mainControls1_MouseClick(object sender, MouseEventArgs e)
+        private void pictureBox4_Click(object sender, EventArgs e)
         {
-            FormMainRTS formshow =new FormMainRTS();
-            formshow.ShowDialog();
+            FrmRequisition frmRequisition = new FrmRequisition();
+            frmRequisition.Show();
         }
 
-        private void mainControls5_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void mainControls5_MouseEnter(object sender, EventArgs e)
+        private void mainControls1_Load(object sender, EventArgs e)
         {
 
-        }
-
-        private void mainControls1_Click(object sender, EventArgs e)
-        {
-            FrmRequisition formshow = new FrmRequisition();
-            formshow.ShowDialog();
-        }
-
-        private void mainControls8_Click(object sender, EventArgs e)
-        {
-            FrmRequisition formshow = new FrmRequisition();
-            formshow.ShowDialog();
         }
     }
 }
