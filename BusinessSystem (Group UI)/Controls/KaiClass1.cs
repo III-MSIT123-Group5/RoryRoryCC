@@ -9,5 +9,8 @@ namespace Controls
     public class KaiClass1
     {
         public int Ddate { get; set; }
+        
+        
     }
+    
 }
