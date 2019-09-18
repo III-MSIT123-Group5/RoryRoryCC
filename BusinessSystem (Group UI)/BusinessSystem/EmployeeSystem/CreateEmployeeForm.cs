@@ -22,6 +22,7 @@ namespace BusinessSystem
         BusinessDataBaseEntities dbcontext;
         int EmID;
         string AccountName;
+        string resultPichureFile;
         private void CreateEmployeeForm_Load(object sender, EventArgs e)
         {
             dbcontext = new BusinessDataBaseEntities();
@@ -124,7 +125,6 @@ namespace BusinessSystem
             }
             return result;
         }
-
 
     }
 }
