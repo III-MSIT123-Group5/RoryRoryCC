@@ -38,10 +38,8 @@ namespace BusinessSystem
             //顯示EmployeeID
             var q = from em in dbcontext.Employees
                     select em;
-            EmID = q.Count()+1001;
-            this.txtEmployeeID.Text = $"{EmID }"; //ID自動產生，不允許變更
+            this.txtEmployeeID.Text = $"{ q.Count() + 1001 }"; //ID自動產生，不允許變更
 
-            this.txtAccount.MaxLength = 12; //txtAccount最大值
 
         }
 

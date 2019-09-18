@@ -12,15 +12,12 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class ApprovalChild
+    public partial class ApprovalStatu
     {
-        public Nullable<int> ApprovalStageID { get; set; }
-        public Nullable<int> ApprovalID { get; set; }
-        public int ApprovalStatusID { get; set; }
-        public Nullable<System.DateTime> ApproveDate { get; set; }
-        public string Note { get; set; }
+        public int ReportID { get; set; }
+        public Nullable<int> ApprovalStatusID { get; set; }
+        public string ApprovalStatus { get; set; }
     
-        public virtual ApprovalOrder ApprovalOrder { get; set; }
-        public virtual ApprovantStatu ApprovantStatu { get; set; }
+        public virtual ReportMain ReportMain { get; set; }
     }
 }
