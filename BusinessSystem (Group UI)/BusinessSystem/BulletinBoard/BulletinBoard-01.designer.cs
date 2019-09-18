@@ -63,27 +63,24 @@
             this.CBGroup.CheckOnClick = true;
             this.CBGroup.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.CBGroup.DropDownHeight = 1;
-            this.CBGroup.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.CBGroup.FormattingEnabled = true;
             this.CBGroup.IntegralHeight = false;
-            this.CBGroup.Location = new System.Drawing.Point(467, 27);
+            this.CBGroup.Location = new System.Drawing.Point(450, 27);
             this.CBGroup.Name = "CBGroup";
-            this.CBGroup.Size = new System.Drawing.Size(232, 31);
+            this.CBGroup.Size = new System.Drawing.Size(208, 26);
             this.CBGroup.TabIndex = 9;
             this.CBGroup.ValueSeparator = ", ";
-            this.CBGroup.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.CBGroup_ItemCheck);
             // 
             // CBDepartment
             // 
             this.CBDepartment.CheckOnClick = true;
             this.CBDepartment.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.CBDepartment.DropDownHeight = 1;
-            this.CBDepartment.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.CBDepartment.FormattingEnabled = true;
             this.CBDepartment.IntegralHeight = false;
             this.CBDepartment.Location = new System.Drawing.Point(93, 27);
             this.CBDepartment.Name = "CBDepartment";
-            this.CBDepartment.Size = new System.Drawing.Size(293, 31);
+            this.CBDepartment.Size = new System.Drawing.Size(278, 26);
             this.CBDepartment.TabIndex = 8;
             this.CBDepartment.ValueSeparator = ", ";
             this.CBDepartment.DropDownClosed += new System.EventHandler(this.CBDepartment_DropDownClosed);
@@ -91,27 +88,25 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(417, 29);
+            this.label3.Location = new System.Drawing.Point(403, 30);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 22);
+            this.label3.Size = new System.Drawing.Size(41, 15);
             this.label3.TabIndex = 7;
             this.label3.Text = "組別:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(43, 29);
+            this.label2.Location = new System.Drawing.Point(46, 30);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 22);
+            this.label2.Size = new System.Drawing.Size(41, 15);
             this.label2.TabIndex = 6;
             this.label2.Text = "部門:";
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(151, 180);
+            this.dataGridView1.Location = new System.Drawing.Point(93, 168);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 27;
             this.dataGridView1.Size = new System.Drawing.Size(498, 268);

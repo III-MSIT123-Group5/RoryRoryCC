@@ -49,7 +49,7 @@ namespace BusinessSystem
                     RequisitionMain=newRequisitionMain                    
                 };
 
-                dbContext.RequisitionChilds.Add(newRequisitionChild);
+                dbContext.RequisitionChilds.Add(q);
                 dbContext.SaveChanges();
 
                 MessageBox.Show("購案新增成功");

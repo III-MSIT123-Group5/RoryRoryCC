@@ -20,7 +20,7 @@ namespace BusinessSystemDBEntityModel
             this.ApprovalChilds = new HashSet<ApprovalChild>();
         }
     
-        public Nullable<int> ReportID { get; set; }
+        public string ReportID { get; set; }
         public Nullable<int> ApprovalCategoryID { get; set; }
         public int ApprovalStageID { get; set; }
         public string ApprovalOrder1 { get; set; }

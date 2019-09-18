@@ -21,6 +21,5 @@ namespace BusinessSystemDBEntityModel
         public string Note { get; set; }
     
         public virtual ApprovalOrder ApprovalOrder { get; set; }
-        public virtual ApprovantStatu ApprovantStatu { get; set; }
     }
 }
