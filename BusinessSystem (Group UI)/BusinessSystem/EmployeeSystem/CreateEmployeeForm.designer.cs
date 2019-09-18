@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label2 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.txtEmployeeID = new System.Windows.Forms.TextBox();
             this.txtEmployeeName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -39,13 +37,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtManagerID = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtAccount = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.dTPicBirth = new System.Windows.Forms.DateTimePicker();
             this.dTPicHireDate = new System.Windows.Forms.DateTimePicker();
@@ -61,35 +58,13 @@
             this.label15 = new System.Windows.Forms.Label();
             this.btnCheckAccount = new System.Windows.Forms.Button();
             this.cmbGender = new System.Windows.Forms.ComboBox();
+            this.cmbGroupID = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(25, 83);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 22);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "員工ID：";
-            this.toolTip1.SetToolTip(this.label2, "employeeID");
-            // 
-            // txtEmployeeID
-            // 
-            this.txtEmployeeID.Enabled = false;
-            this.txtEmployeeID.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtEmployeeID.Location = new System.Drawing.Point(121, 80);
-            this.txtEmployeeID.Margin = new System.Windows.Forms.Padding(4);
-            this.txtEmployeeID.Name = "txtEmployeeID";
-            this.txtEmployeeID.Size = new System.Drawing.Size(206, 30);
-            this.txtEmployeeID.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.txtEmployeeID, "employeeID");
             // 
             // txtEmployeeName
             // 
             this.txtEmployeeName.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtEmployeeName.Location = new System.Drawing.Point(121, 128);
+            this.txtEmployeeName.Location = new System.Drawing.Point(123, 80);
             this.txtEmployeeName.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmployeeName.Name = "txtEmployeeName";
             this.txtEmployeeName.Size = new System.Drawing.Size(206, 30);
@@ -100,7 +75,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(25, 131);
+            this.label3.Location = new System.Drawing.Point(27, 83);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 22);
@@ -112,7 +87,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label4.Location = new System.Drawing.Point(25, 179);
+            this.label4.Location = new System.Drawing.Point(27, 131);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 22);
@@ -124,7 +99,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label5.Location = new System.Drawing.Point(25, 227);
+            this.label5.Location = new System.Drawing.Point(27, 179);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 22);
@@ -136,7 +111,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label6.Location = new System.Drawing.Point(25, 275);
+            this.label6.Location = new System.Drawing.Point(27, 227);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(95, 22);
@@ -168,15 +143,15 @@
             this.label8.Text = "部門ID：";
             this.toolTip1.SetToolTip(this.label8, "departmentID");
             // 
-            // textBox7
+            // txtManagerID
             // 
-            this.textBox7.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox7.Location = new System.Drawing.Point(503, 224);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(206, 30);
-            this.textBox7.TabIndex = 16;
-            this.toolTip1.SetToolTip(this.textBox7, "managerID");
+            this.txtManagerID.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.txtManagerID.Location = new System.Drawing.Point(503, 224);
+            this.txtManagerID.Margin = new System.Windows.Forms.Padding(4);
+            this.txtManagerID.Name = "txtManagerID";
+            this.txtManagerID.Size = new System.Drawing.Size(206, 30);
+            this.txtManagerID.TabIndex = 16;
+            this.toolTip1.SetToolTip(this.txtManagerID, "managerID");
             // 
             // label9
             // 
@@ -205,7 +180,7 @@
             // txtAccount
             // 
             this.txtAccount.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtAccount.Location = new System.Drawing.Point(121, 320);
+            this.txtAccount.Location = new System.Drawing.Point(123, 272);
             this.txtAccount.Margin = new System.Windows.Forms.Padding(4);
             this.txtAccount.Name = "txtAccount";
             this.txtAccount.Size = new System.Drawing.Size(206, 30);
@@ -216,7 +191,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label11.Location = new System.Drawing.Point(25, 323);
+            this.label11.Location = new System.Drawing.Point(27, 275);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(95, 22);
@@ -236,16 +211,6 @@
             this.label12.Text = "OfficeID：";
             this.toolTip1.SetToolTip(this.label12, "officeID");
             // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox2.Location = new System.Drawing.Point(503, 323);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(206, 30);
-            this.textBox2.TabIndex = 25;
-            this.toolTip1.SetToolTip(this.textBox2, "groupID");
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -260,7 +225,7 @@
             // 
             // dTPicBirth
             // 
-            this.dTPicBirth.Location = new System.Drawing.Point(121, 227);
+            this.dTPicBirth.Location = new System.Drawing.Point(123, 179);
             this.dTPicBirth.Name = "dTPicBirth";
             this.dTPicBirth.Size = new System.Drawing.Size(206, 30);
             this.dTPicBirth.TabIndex = 26;
@@ -268,7 +233,7 @@
             // 
             // dTPicHireDate
             // 
-            this.dTPicHireDate.Location = new System.Drawing.Point(121, 275);
+            this.dTPicHireDate.Location = new System.Drawing.Point(123, 227);
             this.dTPicHireDate.Name = "dTPicHireDate";
             this.dTPicHireDate.Size = new System.Drawing.Size(206, 30);
             this.dTPicHireDate.TabIndex = 27;
@@ -321,7 +286,7 @@
             // btnCreate
             // 
             this.btnCreate.Enabled = false;
-            this.btnCreate.Location = new System.Drawing.Point(409, 387);
+            this.btnCreate.Location = new System.Drawing.Point(367, 387);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(137, 39);
             this.btnCreate.TabIndex = 32;
@@ -332,7 +297,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(572, 387);
+            this.btnClear.Location = new System.Drawing.Point(534, 387);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(137, 39);
             this.btnClear.TabIndex = 33;
@@ -343,7 +308,7 @@
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtPassword.Location = new System.Drawing.Point(121, 358);
+            this.txtPassword.Location = new System.Drawing.Point(123, 310);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(206, 30);
@@ -354,7 +319,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label14.Location = new System.Drawing.Point(25, 361);
+            this.label14.Location = new System.Drawing.Point(27, 313);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(95, 22);
@@ -365,7 +330,7 @@
             // txtConfirmPassword
             // 
             this.txtConfirmPassword.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtConfirmPassword.Location = new System.Drawing.Point(121, 396);
+            this.txtConfirmPassword.Location = new System.Drawing.Point(123, 348);
             this.txtConfirmPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.Size = new System.Drawing.Size(206, 30);
@@ -376,7 +341,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label15.Location = new System.Drawing.Point(25, 399);
+            this.label15.Location = new System.Drawing.Point(27, 351);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(95, 22);
@@ -387,7 +352,7 @@
             // btnCheckAccount
             // 
             this.btnCheckAccount.Font = new System.Drawing.Font("微軟正黑體", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnCheckAccount.Location = new System.Drawing.Point(329, 360);
+            this.btnCheckAccount.Location = new System.Drawing.Point(333, 272);
             this.btnCheckAccount.Name = "btnCheckAccount";
             this.btnCheckAccount.Size = new System.Drawing.Size(51, 30);
             this.btnCheckAccount.TabIndex = 38;
@@ -403,17 +368,32 @@
             this.cmbGender.Items.AddRange(new object[] {
             "F",
             "M"});
-            this.cmbGender.Location = new System.Drawing.Point(121, 176);
+            this.cmbGender.Location = new System.Drawing.Point(123, 128);
             this.cmbGender.Name = "cmbGender";
             this.cmbGender.Size = new System.Drawing.Size(206, 30);
             this.cmbGender.TabIndex = 39;
             this.toolTip1.SetToolTip(this.cmbGender, "F:女性 M:男性");
+            // 
+            // cmbGroupID
+            // 
+            this.cmbGroupID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGroupID.Enabled = false;
+            this.cmbGroupID.FormattingEnabled = true;
+            this.cmbGroupID.Items.AddRange(new object[] {
+            "離職",
+            "在職"});
+            this.cmbGroupID.Location = new System.Drawing.Point(503, 323);
+            this.cmbGroupID.Name = "cmbGroupID";
+            this.cmbGroupID.Size = new System.Drawing.Size(206, 30);
+            this.cmbGroupID.TabIndex = 40;
+            this.toolTip1.SetToolTip(this.cmbGroupID, "GroupID");
             // 
             // CreateEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(721, 449);
+            this.Controls.Add(this.cmbGroupID);
             this.Controls.Add(this.cmbGender);
             this.Controls.Add(this.btnCheckAccount);
             this.Controls.Add(this.txtConfirmPassword);
@@ -428,13 +408,12 @@
             this.Controls.Add(this.cmbOfficeID);
             this.Controls.Add(this.dTPicHireDate);
             this.Controls.Add(this.dTPicBirth);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.txtAccount);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.txtManagerID);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -443,15 +422,11 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtEmployeeName);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtEmployeeID);
-            this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CreateEmployeeForm";
             this.Text = "新增員工資料";
             this.Load += new System.EventHandler(this.CreateEmployeeForm_Load);
-            this.Controls.SetChildIndex(this.label2, 0);
-            this.Controls.SetChildIndex(this.txtEmployeeID, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.txtEmployeeName, 0);
             this.Controls.SetChildIndex(this.label4, 0);
@@ -460,13 +435,12 @@
             this.Controls.SetChildIndex(this.label7, 0);
             this.Controls.SetChildIndex(this.label8, 0);
             this.Controls.SetChildIndex(this.label9, 0);
-            this.Controls.SetChildIndex(this.textBox7, 0);
+            this.Controls.SetChildIndex(this.txtManagerID, 0);
             this.Controls.SetChildIndex(this.label10, 0);
             this.Controls.SetChildIndex(this.label11, 0);
             this.Controls.SetChildIndex(this.txtAccount, 0);
             this.Controls.SetChildIndex(this.label12, 0);
             this.Controls.SetChildIndex(this.label13, 0);
-            this.Controls.SetChildIndex(this.textBox2, 0);
             this.Controls.SetChildIndex(this.dTPicBirth, 0);
             this.Controls.SetChildIndex(this.dTPicHireDate, 0);
             this.Controls.SetChildIndex(this.cmbOfficeID, 0);
@@ -481,16 +455,14 @@
             this.Controls.SetChildIndex(this.txtConfirmPassword, 0);
             this.Controls.SetChildIndex(this.btnCheckAccount, 0);
             this.Controls.SetChildIndex(this.cmbGender, 0);
+            this.Controls.SetChildIndex(this.cmbGroupID, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.TextBox txtEmployeeID;
         private System.Windows.Forms.TextBox txtEmployeeName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -498,13 +470,12 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtManagerID;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtAccount;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.DateTimePicker dTPicBirth;
         private System.Windows.Forms.DateTimePicker dTPicHireDate;
@@ -520,5 +491,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnCheckAccount;
         private System.Windows.Forms.ComboBox cmbGender;
+        private System.Windows.Forms.ComboBox cmbGroupID;
     }
 }

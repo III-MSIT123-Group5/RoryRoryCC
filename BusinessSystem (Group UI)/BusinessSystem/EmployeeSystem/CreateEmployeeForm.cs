@@ -20,15 +20,15 @@ namespace BusinessSystem
         }
 
         BusinessDataBaseEntities dbcontext;
-        int EmID;
+        //int EmID;  //將於"變更員工資料"中顯示
         string AccountName;
-        string resultPichureFile;
+         int  magID ;
         private void CreateEmployeeForm_Load(object sender, EventArgs e)
         {
             dbcontext = new BusinessDataBaseEntities();
             //預設Office combobox內容 
             this.cmbOfficeID.DataSource = dbcontext.Offices.OrderBy  (p=>p.officeID).Select(p => p.office_name ).Distinct ().ToList();
-            this.cmbOfficeID.SelectedIndex = 1;  // index 0 為Branch office ID應輸入 2，index 1 為Head office ID應輸入 1
+            this.cmbOfficeID.SelectedIndex = 1; 
             //預設Department combobox內容 // if index==0 , 值為總經理，departmentID應輸入 index+1 累推
             this.cmbDepartmentID.DataSource = dbcontext.Departments.OrderBy(p => p.departmentID).Select(p => p.name).ToList();
             //預設Employed combobox內容
@@ -38,44 +38,57 @@ namespace BusinessSystem
             //顯示EmployeeID
             var q = from em in dbcontext.Employees
                     select em;
-            EmID = q.Count()+1001;
-            this.txtEmployeeID.Text = $"{EmID }"; //ID自動產生，不允許變更
+            //預設GroupID內容
+                //this.cmbGroupID.DataSource =this.dbcontext.Groups.OrderBy (p=>p.GroupID ).
 
+            //=====================================
+            //EmID = q.Count()+1001;      //將於"變更員工資料"中顯示
+            //this.txtEmployeeID.Text = $"{EmID }"; //ID自動產生，不允許變更
+            //=====================================
             this.txtAccount.MaxLength = 12; //txtAccount最大值
 
         }
 
         private void btnCreate_Click(object sender, EventArgs e) //btn 新增
         {
+            if ((this.txtManagerID.Text is null) ==false) //判斷ManagerID是否為空值
+            {
+                int m_magID = 0;
+                bool chkMagInput = int.TryParse(this.txtManagerID.Text, out m_magID); //確認輸入值ok
+                                                                                      //確認managerID輸入的ID在employee內有資料
+                var q = this.dbcontext.Employees.Where(p => p.employeeID == m_magID).Select(p => new { p.employeeID }).Any();
 
-
-
-
-
+                if (chkMagInput && q)
+                {
+                    magID = m_magID;
+                }
+                else
+                {
+                    MessageBox.Show("請輸入正確的主管EmployeeID。", "請輸入正確的ManagerID", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.txtManagerID.Focus();
+                    this.txtManagerID.SelectAll();                    
+                    return;
+                }
+            }
+            
 
 
             var addEmp = new BusinessSystemDBEntityModel.Employee
             {
-                employeeID = EmID,
+                //employeeID = EmID,   //將於"變更員工資料"中顯示
                 employee_name = this.txtEmployeeName.Text,
                 gender = this.cmbGender.Text,
                 birth = this.dTPicBirth.Value,
                 hire_date = this.dTPicHireDate.Value,
                 account = AccountName,
                 officeID = this.offID(this.cmbOfficeID.SelectedIndex),
-                //departmentID =                ,
-                //positionID =                ,
-                //managerID =                ,
-                //employed =                ,
+                departmentID = this.cmbDepartmentID.SelectedIndex,
+                positionID = this.cmbPositionID.SelectedIndex + 1,
+                managerID = magID,
+                employed = this.transEmployed(this.cmbEmployed.SelectedIndex),
                 //groupID =
             };
-
-
-
-
-        }
-
-       
+        }      
 
         private void btnCheckAccount_Click(object sender, EventArgs e)    //檢查帳號
         {
@@ -95,6 +108,21 @@ namespace BusinessSystem
                 MessageBox.Show("此帳號已被使用！請嚐試別組帳號！", "提示", MessageBoxButtons.OK , MessageBoxIcon.Error );
                 this.txtAccount.Focus();
             }
+        }
+
+        bool transEmployed (int @cmbEmpoyedIndex)
+        {
+            bool f = false;
+            switch ( cmbEmpoyedIndex)
+            {
+                case 0:
+                    f = false;
+                    break;
+                case 1:
+                    f = true;
+                    break;
+            }
+            return f;
         }
 
         bool   checkAccount(string @account)    //檢查帳號的方法
@@ -125,6 +153,7 @@ namespace BusinessSystem
             }
             return result;
         }
+       
 
     }
 }
