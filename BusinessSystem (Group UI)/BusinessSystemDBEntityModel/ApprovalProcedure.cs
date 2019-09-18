@@ -12,14 +12,14 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class ApprovalChild
+    public partial class ApprovalProcedure
     {
-        public Nullable<int> ApprovalStageID { get; set; }
-        public Nullable<int> ApprovalID { get; set; }
-        public int ApprovalStatusID { get; set; }
-        public Nullable<System.DateTime> ApproveDate { get; set; }
-        public string Note { get; set; }
-    
-        public virtual ApprovalOrder ApprovalOrder { get; set; }
+        public int ApprovalID { get; set; }
+        public Nullable<int> PositionID { get; set; }
+        public string ApprovalReportName { get; set; }
+        public Nullable<bool> ApprovalSupervisor { get; set; }
+        public Nullable<bool> ApprovalDirector { get; set; }
+        public Nullable<bool> ApprovalGenalManager { get; set; }
+        public Nullable<bool> ApprovalFinancialDirector { get; set; }
     }
 }

@@ -17,13 +17,13 @@ namespace BusinessSystemDBEntityModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ReportCategory()
         {
-            this.ReportMains = new HashSet<ReportMain>();
+            this.RequisitionMains = new HashSet<RequisitionMain>();
         }
     
-        public string ReportCategoryID { get; set; }
-        public string Category { get; set; }
+        public int ReportID { get; set; }
+        public string ReportName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ReportMain> ReportMains { get; set; }
+        public virtual ICollection<RequisitionMain> RequisitionMains { get; set; }
     }
 }

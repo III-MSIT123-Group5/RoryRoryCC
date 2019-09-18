@@ -24,5 +24,6 @@ namespace BusinessSystemDBEntityModel
         public virtual Department Department { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual Group Group { get; set; }
+        public virtual Employee Employee1 { get; set; }
     }
 }

@@ -12,14 +12,15 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class RequisitionChild
+    public partial class OrderDetail
     {
-        public int RequisitionID { get; set; }
-        public string ProductName { get; set; }
-        public Nullable<decimal> UnitPrice { get; set; }
-        public Nullable<decimal> Quantity { get; set; }
-        public Nullable<decimal> Discount { get; set; }
+        public int OrderDetailID { get; set; }
+        public Nullable<int> OrderID { get; set; }
         public string Note { get; set; }
+        public string ProductName { get; set; }
+        public decimal UnitPrice { get; set; }
+        public int Quantity { get; set; }
+        public Nullable<decimal> TotalPrice { get; set; }
     
         public virtual RequisitionMain RequisitionMain { get; set; }
     }

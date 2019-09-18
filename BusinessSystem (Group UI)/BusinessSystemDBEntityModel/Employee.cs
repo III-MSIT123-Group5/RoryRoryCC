@@ -18,13 +18,15 @@ namespace BusinessSystemDBEntityModel
         public Employee()
         {
             this.BulletinBoards = new HashSet<BulletinBoard>();
+            this.BulletinBoards1 = new HashSet<BulletinBoard>();
+            this.CompanyVehicleHistories = new HashSet<CompanyVehicleHistory>();
             this.Employee1 = new HashSet<Employee>();
             this.Files = new HashSet<File>();
             this.MeetingRoomHistories = new HashSet<MeetingRoomHistory>();
             this.Messages = new HashSet<Message>();
             this.Recipients = new HashSet<Recipient>();
-            this.ReportMains = new HashSet<ReportMain>();
             this.ReportTimeSystems = new HashSet<ReportTimeSystem>();
+            this.RequisitionMains = new HashSet<RequisitionMain>();
             this.SuggestionHistories = new HashSet<SuggestionHistory>();
         }
     
@@ -40,9 +42,19 @@ namespace BusinessSystemDBEntityModel
         public Nullable<int> managerID { get; set; }
         public Nullable<bool> employed { get; set; }
         public Nullable<int> groupID { get; set; }
+        public string photo { get; set; }
+        public Nullable<int> LeaveLessThreeDaysID { get; set; }
+        public Nullable<int> LeaveOverThreeDaysID { get; set; }
+        public Nullable<int> ApprovalLessTenKID { get; set; }
+        public Nullable<int> ApprovalOverTenKID { get; set; }
     
+        public virtual Account Account1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BulletinBoard> BulletinBoards { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BulletinBoard> BulletinBoards1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CompanyVehicleHistory> CompanyVehicleHistories { get; set; }
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employee1 { get; set; }
@@ -59,11 +71,10 @@ namespace BusinessSystemDBEntityModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Recipient> Recipients { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ReportMain> ReportMains { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReportTimeSystem> ReportTimeSystems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RequisitionMain> RequisitionMains { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SuggestionHistory> SuggestionHistories { get; set; }
-        public virtual Account Account1 { get; set; }
     }
 }
