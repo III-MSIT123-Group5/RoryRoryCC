@@ -1,5 +1,6 @@
 ﻿using BusinessSystemControlLibrary;
 using BusinessSystemDBEntityModel;
+using Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace BusinessSystem.CompanyCars
 {
@@ -124,6 +126,13 @@ namespace BusinessSystem.CompanyCars
                 }
                 
             }
+        }
+
+        private void clsAltoButton1_Click(object sender, EventArgs e)
+        {
+            KaiClass1 ddate = new KaiClass1();
+            string Tmm = this.comboBox3.Text;
+            
         }
     }
 }
