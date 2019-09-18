@@ -23,5 +23,6 @@ namespace BusinessSystemDBEntityModel
         public Nullable<bool> Discontinue { get; set; }
     
         public virtual Employee Employee { get; set; }
+        public virtual Event Event { get; set; }
     }
 }

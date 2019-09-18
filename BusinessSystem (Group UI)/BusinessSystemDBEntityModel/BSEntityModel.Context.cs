@@ -27,33 +27,33 @@ namespace BusinessSystemDBEntityModel
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ApprovalChild> ApprovalChilds { get; set; }
-        public virtual DbSet<ApprovalOrder> ApprovalOrders { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<ApprovalProcedure> ApprovalProcedures { get; set; }
+        public virtual DbSet<ApprovalStatu> ApprovalStatus { get; set; }
         public virtual DbSet<BulletinBoard> BulletinBoards { get; set; }
+        public virtual DbSet<CompanyVehicle> CompanyVehicles { get; set; }
+        public virtual DbSet<CompanyVehicleHistory> CompanyVehicleHistories { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<File> Files { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<Leave> Leaves { get; set; }
         public virtual DbSet<MeetingRoom> MeetingRooms { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Office> Offices { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
         public virtual DbSet<Recipient> Recipients { get; set; }
         public virtual DbSet<ReportCategory> ReportCategories { get; set; }
-        public virtual DbSet<ReportMain> ReportMains { get; set; }
+        public virtual DbSet<ReportTimeSystem> ReportTimeSystems { get; set; }
         public virtual DbSet<RequisitionMain> RequisitionMains { get; set; }
         public virtual DbSet<RewardandPunishment> RewardandPunishments { get; set; }
         public virtual DbSet<Suggestion> Suggestions { get; set; }
-        public virtual DbSet<File> Files { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<MeetingRoomHistory> MeetingRoomHistories { get; set; }
-        public virtual DbSet<ReportTimeSystem> ReportTimeSystems { get; set; }
         public virtual DbSet<SuggestionHistory> SuggestionHistories { get; set; }
         public virtual DbSet<SurveyMain> SurveyMains { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<Event> Events { get; set; }
-        public virtual DbSet<RequisitionChild> RequisitionChilds { get; set; }
-        public virtual DbSet<CompanyVehicle> CompanyVehicles { get; set; }
-        public virtual DbSet<Account> Accounts { get; set; }
     
         public virtual int AddReport(ObjectParameter reportID, Nullable<int> employeeID, Nullable<System.DateTime> applyDateTime, Nullable<double> eventHours, Nullable<int> eventID, string note)
         {

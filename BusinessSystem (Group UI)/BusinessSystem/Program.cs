@@ -19,7 +19,7 @@ namespace BusinessSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CompanyVehicleBorrowForm());
+            Application.Run(new MainForm());            
         }
     }
 }

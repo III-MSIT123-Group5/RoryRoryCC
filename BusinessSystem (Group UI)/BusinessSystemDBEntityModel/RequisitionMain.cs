@@ -14,12 +14,21 @@ namespace BusinessSystemDBEntityModel
     
     public partial class RequisitionMain
     {
-        public string ReportID { get; set; }
-        public int RequisitionID { get; set; }
-        public Nullable<decimal> TotalPrice { get; set; }
-        public string Note { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public RequisitionMain()
+        {
+            this.OrderDetails = new HashSet<OrderDetail>();
+        }
     
-        public virtual ReportMain ReportMain { get; set; }
-        public virtual RequisitionChild RequisitionChild { get; set; }
+        public int OrderID { get; set; }
+        public Nullable<int> ReportID { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
+        public Nullable<int> ApprovalStatusID { get; set; }
+    
+        public virtual ApprovalStatu ApprovalStatu { get; set; }
+        public virtual Employee Employee { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ReportCategory ReportCategory { get; set; }
     }
 }
