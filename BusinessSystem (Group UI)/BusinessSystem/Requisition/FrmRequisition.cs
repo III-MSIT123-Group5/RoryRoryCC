@@ -27,29 +27,17 @@ namespace BusinessSystem
 
             try
             {
-                var newReportMain = new ReportMain
-                {
-                    ApplicantID = 1001,
-                    ApplyDate=DateTime.Now
-                };
-
-                var newRequisitionMain = new RequisitionMain
-                {
-                    ReportMain=newReportMain
-                };
-
-                var newRequisitionChild = new RequisitionChild
+                var q = new RequisitionChild
                 {   
                     //RequisitionID=100
                     ProductName = textBox1.Text,
                     UnitPrice = decimal.Parse(textBox2.Text),
                     Quantity = decimal.Parse(textBox3.Text),
                     Discount = decimal.Parse(textBox4.Text),
-                    Note = textBox5.Text,
-                    RequisitionMain=newRequisitionMain
+                    Note = textBox5.Text
                 };
 
-                dbContext.RequisitionChilds.Add(newRequisitionChild);
+                dbContext.RequisitionChilds.Add(q);
                 dbContext.SaveChanges();
 
                 MessageBox.Show("XXXX");
@@ -64,20 +52,25 @@ namespace BusinessSystem
         {
             dbContext = new BusinessDataBaseEntities();
 
-            var q = from RM in this.dbContext.ReportMains
-                    join RQM in this.dbContext.RequisitionMains on RM.ReportID equals RQM.ReportID
-                    join RC in this.dbContext.RequisitionChilds on RQM.RequisitionID equals RC.RequisitionID
-                    //from RQM in dbContext.RequisitionMains
-                    //from RC in dbContext.RequisitionChilds
+            var q = from RM in dbContext.RequisitionMains
+                    from RC in dbContext.RequisitionChilds
                     select new
                     {
-                        EmployeeID=RM.ApplicantID,
-                        ReportID= RQM.ReportID,
+                        ReportID=RM.ReportID,
                         RequisitionID=RC.RequisitionID,
-                        ProductName=RC.ProductName
+                        ProductName=RC.ProductName,
+
                     };
             dataGridView1.DataSource = q.ToList();
 
+
+
+            //var q = from d in dbContext.Departments
+            //        from g in d.Groups
+            //        from b in g.BulletinBoards
+            //        select new { GroupList = g.GroupName, b.GroupID, DepartmentList = d.name, b.DepartmentID, b.Content };
+
+            //dataGridView1.DataSource = q.ToList();
         }
     }
 }

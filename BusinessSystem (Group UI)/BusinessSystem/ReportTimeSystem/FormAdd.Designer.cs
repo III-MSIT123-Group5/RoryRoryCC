@@ -76,8 +76,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(126, 23);
             this.comboBox2.TabIndex = 21;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
-            // 
+           // 
             // richTextBox1
             // 
             this.richTextBox1.Location = new System.Drawing.Point(48, 236);
@@ -85,20 +84,14 @@
             this.richTextBox1.Size = new System.Drawing.Size(637, 185);
             this.richTextBox1.TabIndex = 20;
             this.richTextBox1.Text = "";
-            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "更改按鈕",
-            "開會",
-            "出差"});
             this.comboBox1.Location = new System.Drawing.Point(198, 128);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(126, 23);
             this.comboBox1.TabIndex = 19;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -108,7 +101,6 @@
             this.label8.Size = new System.Drawing.Size(52, 15);
             this.label8.TabIndex = 18;
             this.label8.Text = "申請人";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label4
             // 
@@ -118,7 +110,6 @@
             this.label4.Size = new System.Drawing.Size(37, 15);
             this.label4.TabIndex = 17;
             this.label4.Text = "備註";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
@@ -128,7 +119,6 @@
             this.label3.Size = new System.Drawing.Size(67, 15);
             this.label3.TabIndex = 16;
             this.label3.Text = "所需時間";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -138,7 +128,6 @@
             this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 15;
             this.label2.Text = "申請專案";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -148,8 +137,7 @@
             this.label1.Size = new System.Drawing.Size(52, 15);
             this.label1.TabIndex = 14;
             this.label1.Text = "申請人";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
+           // 
             // FormAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -166,6 +154,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormAdd";
             this.Text = "FormAdd";
+            this.Load += new System.EventHandler(this.FormAdd_Load);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.label3, 0);

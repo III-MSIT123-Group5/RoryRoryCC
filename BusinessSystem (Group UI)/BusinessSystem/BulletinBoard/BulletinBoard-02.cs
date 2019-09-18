@@ -51,11 +51,14 @@ namespace BusinessSystem
                 dbContext.SaveChanges();
 
                 MessageBox.Show("Succeed");
-            }
-            catch (Exception ex)
+        }
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }
+
+
+
+}
     }
 }
