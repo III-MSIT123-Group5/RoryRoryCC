@@ -26,7 +26,7 @@
           <Key>
             <PropertyRef Name="ApprovalStageID" />
           </Key>
-          <Property Name="ReportID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReportID" Type="int" />
           <Property Name="ApprovalCategoryID" Type="int" />
           <Property Name="ApprovalStageID" Type="int" Nullable="false" />
           <Property Name="ApprovalOrder" Type="nvarchar(max)" />
@@ -35,7 +35,7 @@
           <Key>
             <PropertyRef Name="ReportID" />
           </Key>
-          <Property Name="ReportID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReportID" Type="int" Nullable="false" />
           <Property Name="ApprovalStatusID" Type="int" />
           <Property Name="ApprovalStatus" Type="nvarchar(max)" />
         </EntityType>
@@ -103,7 +103,7 @@
           <Property Name="managerID" Type="int" />
           <Property Name="employed" Type="bit" />
           <Property Name="groupID" Type="int" />
-          <Property Name="EmployeePhoto" Type="image" />
+          <Property Name="photo" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -210,7 +210,7 @@
           <Key>
             <PropertyRef Name="ReportID" />
           </Key>
-          <Property Name="ReportID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ReportCategoryID" Type="nvarchar" MaxLength="50" />
           <Property Name="ApplicantID" Type="int" />
           <Property Name="ApplyDate" Type="datetime" />
@@ -250,7 +250,7 @@
           <Key>
             <PropertyRef Name="RequisitionID" />
           </Key>
-          <Property Name="ReportID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReportID" Type="int" />
           <Property Name="RequisitionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TotalPrice" Type="money" />
           <Property Name="Note" Type="nvarchar(max)" />
@@ -945,7 +945,7 @@
           <Key>
             <PropertyRef Name="ApprovalStageID" />
           </Key>
-          <Property Name="ReportID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportID" Type="Int32" />
           <Property Name="ApprovalCategoryID" Type="Int32" />
           <Property Name="ApprovalStageID" Type="Int32" Nullable="false" />
           <Property Name="ApprovalOrder1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -956,7 +956,7 @@
           <Key>
             <PropertyRef Name="ReportID" />
           </Key>
-          <Property Name="ReportID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReportID" Type="Int32" Nullable="false" />
           <Property Name="ApprovalStatusID" Type="Int32" />
           <Property Name="ApprovalStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ReportMain" Relationship="Self.FK_ApprovalStatus_ReportMain" FromRole="ApprovalStatus" ToRole="ReportMain" />
@@ -1053,7 +1053,7 @@
           <NavigationProperty Name="ReportMains" Relationship="Self.FK_ReportMain_Employee" FromRole="Employee" ToRole="ReportMain" />
           <NavigationProperty Name="ReportTimeSystems" Relationship="Self.FK_ReportTimeSystem_Employee" FromRole="Employee" ToRole="ReportTimeSystem" />
           <NavigationProperty Name="SuggestionHistories" Relationship="Self.FK_Suggestion_history_Employee" FromRole="Employee" ToRole="SuggestionHistory" />
-          <Property Name="EmployeePhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -1146,7 +1146,7 @@
           <Key>
             <PropertyRef Name="ReportID" />
           </Key>
-          <Property Name="ReportID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReportID" Type="Int32" Nullable="false" />
           <Property Name="ReportCategoryID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ApplicantID" Type="Int32" />
           <Property Name="ApplyDate" Type="DateTime" Precision="3" />
@@ -1174,7 +1174,7 @@
           <Key>
             <PropertyRef Name="RequisitionID" />
           </Key>
-          <Property Name="ReportID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportID" Type="Int32" />
           <Property Name="RequisitionID" Type="Int32" Nullable="false" />
           <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -1933,7 +1933,7 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="BSEntityModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="EmployeePhoto" ColumnName="EmployeePhoto" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
                 <ScalarProperty Name="employeeID" ColumnName="employeeID" />
                 <ScalarProperty Name="employee_name" ColumnName="employee_name" />
                 <ScalarProperty Name="gender" ColumnName="gender" />

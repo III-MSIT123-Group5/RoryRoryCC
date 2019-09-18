@@ -14,7 +14,7 @@ namespace BusinessSystemDBEntityModel
     
     public partial class ApprovalStatu
     {
-        public string ReportID { get; set; }
+        public int ReportID { get; set; }
         public Nullable<int> ApprovalStatusID { get; set; }
         public string ApprovalStatus { get; set; }
     

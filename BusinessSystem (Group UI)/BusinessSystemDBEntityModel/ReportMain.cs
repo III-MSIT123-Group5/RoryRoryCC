@@ -21,7 +21,7 @@ namespace BusinessSystemDBEntityModel
             this.RequisitionMains = new HashSet<RequisitionMain>();
         }
     
-        public string ReportID { get; set; }
+        public int ReportID { get; set; }
         public string ReportCategoryID { get; set; }
         public Nullable<int> ApplicantID { get; set; }
         public Nullable<System.DateTime> ApplyDate { get; set; }

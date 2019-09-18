@@ -20,7 +20,7 @@ namespace BusinessSystemDBEntityModel
             this.RequisitionChilds = new HashSet<RequisitionChild>();
         }
     
-        public string ReportID { get; set; }
+        public Nullable<int> ReportID { get; set; }
         public int RequisitionID { get; set; }
         public Nullable<decimal> TotalPrice { get; set; }
         public string Note { get; set; }
