@@ -95,12 +95,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="FrmRequisition.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmRequisition.Designer.cs">
-      <DependentUpon>FrmRequisition.cs</DependentUpon>
-    </Compile>
     <Compile Include="ReportTimeSystem\FormAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +118,12 @@
     </Compile>
     <Compile Include="ReportTimeSystem\FormUpdate.designer.cs">
       <DependentUpon>FormUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Requisition\FrmRequisition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Requisition\FrmRequisition.designer.cs">
+      <DependentUpon>FrmRequisition.cs</DependentUpon>
     </Compile>
     <Compile Include="SonForm.cs">
       <SubType>Form</SubType>
@@ -179,9 +179,6 @@
     <EmbeddedResource Include="EmployeeSystem\CreateEmployeeForm.resx">
       <DependentUpon>CreateEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmRequisition.resx">
-      <DependentUpon>FrmRequisition.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="EmployeeSystem\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -203,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportTimeSystem\FormUpdate.resx">
       <DependentUpon>FormUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Requisition\FrmRequisition.resx">
+      <DependentUpon>FrmRequisition.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SonForm.resx">
       <DependentUpon>SonForm.cs</DependentUpon>

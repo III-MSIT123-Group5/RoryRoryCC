@@ -34,8 +34,7 @@ namespace BusinessSystem
                 };
 
                 var newRequisitionMain = new RequisitionMain
-                {   
-                    TotalPrice=2500,
+                {                       
                     ReportMain=newReportMain
                 };
 
@@ -49,7 +48,7 @@ namespace BusinessSystem
                     RequisitionMain=newRequisitionMain                    
                 };
 
-                dbContext.RequisitionChilds.Add(q);
+                dbContext.RequisitionChilds.Add(newRequisitionChild);
                 dbContext.SaveChanges();
 
                 MessageBox.Show("購案新增成功");
