@@ -40,9 +40,9 @@ namespace BusinessSystem
             {
                 var q = new BusinessSystemDBEntityModel.BulletinBoard
                 {
-                    EmployeeID = 1009,
-                    DepartmentID = 3,
+                    EmployeeID = 1002,
                     GroupID = 2,
+                    DepartmentID = 2,
                     PostTime = DateTime.Now,
                     Content = this.richTextBox1.Text
                 };
