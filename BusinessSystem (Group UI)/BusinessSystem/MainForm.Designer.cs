@@ -110,7 +110,7 @@
             // 
             // mainControls8
             // 
-            this.mainControls8.backgroundcolor = System.Drawing.Color.DarkSlateBlue;
+            this.mainControls8.ButtonColor = System.Drawing.Color.DarkSlateBlue;
             this.mainControls8.ForeColor = System.Drawing.Color.White;
             this.mainControls8.image = global::BusinessSystem.Properties.Resources.neutral_dicision_128;
             this.mainControls8.Location = new System.Drawing.Point(643, 62);
@@ -122,7 +122,7 @@
             // 
             // mainControls7
             // 
-            this.mainControls7.backgroundcolor = System.Drawing.Color.LightSkyBlue;
+            this.mainControls7.ButtonColor = System.Drawing.Color.LightSkyBlue;
             this.mainControls7.ForeColor = System.Drawing.Color.White;
             this.mainControls7.image = global::BusinessSystem.Properties.Resources.report_3_128;
             this.mainControls7.Location = new System.Drawing.Point(19, 480);
@@ -134,7 +134,7 @@
             // 
             // mainControls6
             // 
-            this.mainControls6.backgroundcolor = System.Drawing.Color.SteelBlue;
+            this.mainControls6.ButtonColor = System.Drawing.Color.SteelBlue;
             this.mainControls6.ForeColor = System.Drawing.Color.White;
             this.mainControls6.image = global::BusinessSystem.Properties.Resources.calendar_3_128;
             this.mainControls6.Location = new System.Drawing.Point(437, 62);
@@ -146,7 +146,7 @@
             // 
             // mainControls5
             // 
-            this.mainControls5.backgroundcolor = System.Drawing.Color.SteelBlue;
+            this.mainControls5.ButtonColor = System.Drawing.Color.SteelBlue;
             this.mainControls5.ForeColor = System.Drawing.Color.White;
             this.mainControls5.image = global::BusinessSystem.Properties.Resources.cart_5_128;
             this.mainControls5.Location = new System.Drawing.Point(643, 480);
@@ -158,7 +158,7 @@
             // 
             // mainControls4
             // 
-            this.mainControls4.backgroundcolor = System.Drawing.Color.SlateGray;
+            this.mainControls4.ButtonColor = System.Drawing.Color.SlateGray;
             this.mainControls4.ForeColor = System.Drawing.Color.White;
             this.mainControls4.image = global::BusinessSystem.Properties.Resources.chair_2_128;
             this.mainControls4.Location = new System.Drawing.Point(437, 480);
@@ -170,7 +170,7 @@
             // 
             // mainControls3
             // 
-            this.mainControls3.backgroundcolor = System.Drawing.Color.DarkSlateBlue;
+            this.mainControls3.ButtonColor = System.Drawing.Color.DarkSlateBlue;
             this.mainControls3.ForeColor = System.Drawing.Color.White;
             this.mainControls3.image = global::BusinessSystem.Properties.Resources.car_128;
             this.mainControls3.Location = new System.Drawing.Point(230, 480);
@@ -182,7 +182,7 @@
             // 
             // mainControls2
             // 
-            this.mainControls2.backgroundcolor = System.Drawing.Color.DarkSlateBlue;
+            this.mainControls2.ButtonColor = System.Drawing.Color.DarkSlateBlue;
             this.mainControls2.ForeColor = System.Drawing.Color.White;
             this.mainControls2.image = global::BusinessSystem.Properties.Resources.time_8_128;
             this.mainControls2.Location = new System.Drawing.Point(437, 274);
@@ -194,7 +194,7 @@
             // 
             // mainControls1
             // 
-            this.mainControls1.backgroundcolor = System.Drawing.Color.SlateGray;
+            this.mainControls1.ButtonColor = System.Drawing.Color.SlateGray;
             this.mainControls1.ForeColor = System.Drawing.Color.White;
             this.mainControls1.image = global::BusinessSystem.Properties.Resources.briefcase_128;
             this.mainControls1.Location = new System.Drawing.Point(643, 274);
