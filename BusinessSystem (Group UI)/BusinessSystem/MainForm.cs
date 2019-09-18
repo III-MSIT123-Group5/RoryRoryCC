@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessSystem.CompanyCars;
+using BusinessSystem.ReportTimeSystem;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,14 +20,7 @@ namespace BusinessSystem
 
             rectangleShape_date.Location = new Point(10, 10);           
             rectangleShape_messange.Location = new Point(10, 220);
-            rectangleShape_MeetingRoom.Location = new Point(10, 430);
-            rectangleShape_Car.Location = new Point(220, 430);
-            rectangleShape_Calender.Location = new Point(430, 10);
-            rectangleShape_Leave.Location = new Point(430, 220);
-            rectangleShape_File.Location = new Point(430, 430);
-            rectangleShape_Employee.Location = new Point(640, 10);
-            rectangleShape_Schedule.Location = new Point(640, 220);
-            rectangleShape_Requisition.Location = new Point(640, 430);
+         
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -34,10 +29,32 @@ namespace BusinessSystem
             Height = 680;
         }
 
-        private void pictureBox4_Click(object sender, EventArgs e)
+        private void mainControls1_MouseClick(object sender, MouseEventArgs e)
         {
-            FrmRequisition frmRequisition = new FrmRequisition();
-            frmRequisition.Show();
+            FormMainRTS formshow =new FormMainRTS();
+            formshow.ShowDialog();
+        }
+
+        private void mainControls5_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void mainControls5_MouseEnter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mainControls1_Click(object sender, EventArgs e)
+        {
+            FrmRequisition formshow = new FrmRequisition();
+            formshow.ShowDialog();
+        }
+
+        private void mainControls8_Click(object sender, EventArgs e)
+        {
+            FrmRequisition formshow = new FrmRequisition();
+            formshow.ShowDialog();
         }
     }
 }
