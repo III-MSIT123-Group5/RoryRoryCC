@@ -10,13 +10,10 @@
 namespace BusinessSystemDBEntityModel
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ApprovantStatu
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int ApprovantStatusID { get; set; }
-        public string Status { get; set; }
-    
-        public virtual ApprovalChild ApprovalChild { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
