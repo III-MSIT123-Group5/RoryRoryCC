@@ -25,5 +25,10 @@ namespace BusinessSystem.ReportTimeSystem
             
 
         }
+
+        private void FormUpdate_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
