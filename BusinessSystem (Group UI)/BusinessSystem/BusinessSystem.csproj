@@ -58,12 +58,19 @@
     <Compile Include="CompanyCars\CompanyCarForm.designer.cs">
       <DependentUpon>CompanyCarForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CompanyCars\CompanyVehicleBorrowForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompanyCars\CompanyVehicleBorrowForm.Designer.cs">
+      <DependentUpon>CompanyVehicleBorrowForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CompanyCars\text123.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CompanyCars\text123.designer.cs">
       <DependentUpon>text123.cs</DependentUpon>
     </Compile>
+    <Compile Include="CompanyCars\VehicleClass.cs" />
     <Compile Include="EmployeeSystem\CreateEmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +146,9 @@
     <EmbeddedResource Include="CompanyCars\CompanyCarForm.resx">
       <DependentUpon>CompanyCarForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CompanyCars\CompanyVehicleBorrowForm.resx">
+      <DependentUpon>CompanyVehicleBorrowForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CompanyCars\text123.resx">
       <DependentUpon>text123.cs</DependentUpon>
     </EmbeddedResource>
@@ -163,6 +173,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessSystemControlLibrary\BusinessSystemControlLibrary.csproj">
+      <Project>{70516e7c-314f-4907-b5fc-3801eb00f60a}</Project>
+      <Name>BusinessSystemControlLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BusinessSystemDBEntityModel\BusinessSystemDBEntityModel.csproj">
       <Project>{846de6ff-c319-46dc-a49e-f7213d9f4c60}</Project>
       <Name>BusinessSystemDBEntityModel</Name>

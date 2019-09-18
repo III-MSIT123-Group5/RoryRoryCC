@@ -185,5 +185,11 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessSystemControlLibrary\BusinessSystemControlLibrary.csproj">
+      <Project>{70516e7c-314f-4907-b5fc-3801eb00f60a}</Project>
+      <Name>BusinessSystemControlLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

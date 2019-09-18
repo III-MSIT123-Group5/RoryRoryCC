@@ -35,6 +35,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.ImageLocation = "https://images.chinatimes.com/newsphoto/2019-03-20/900/20190320001845.jpg";
             this.pictureBox1.Location = new System.Drawing.Point(244, 81);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(489, 304);
