@@ -26,6 +26,7 @@ namespace BusinessSystemDBEntityModel
         public string Note { get; set; }
     
         public virtual ReportMain ReportMain { get; set; }
-        public virtual RequisitionChild RequisitionChild { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RequisitionChild> RequisitionChilds { get; set; }
     }
 }

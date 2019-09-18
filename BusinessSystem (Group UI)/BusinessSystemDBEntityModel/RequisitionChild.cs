@@ -15,12 +15,12 @@ namespace BusinessSystemDBEntityModel
     public partial class RequisitionChild
     {
         public int RequisitionID { get; set; }
-        public int ChildID { get; set; }
         public string ProductName { get; set; }
         public Nullable<decimal> UnitPrice { get; set; }
         public Nullable<decimal> Quantity { get; set; }
         public Nullable<decimal> Discount { get; set; }
         public string Note { get; set; }
+        public int ChildID { get; set; }
     
         public virtual RequisitionMain RequisitionMain { get; set; }
     }

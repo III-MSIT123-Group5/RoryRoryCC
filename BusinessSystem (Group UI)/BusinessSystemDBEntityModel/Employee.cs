@@ -18,7 +18,6 @@ namespace BusinessSystemDBEntityModel
         public Employee()
         {
             this.BulletinBoards = new HashSet<BulletinBoard>();
-            this.BulletinBoards1 = new HashSet<BulletinBoard>();
             this.CompanyVehicleHistories = new HashSet<CompanyVehicleHistory>();
             this.Employee1 = new HashSet<Employee>();
             this.Files = new HashSet<File>();
@@ -44,10 +43,9 @@ namespace BusinessSystemDBEntityModel
         public Nullable<int> groupID { get; set; }
         public string photo { get; set; }
     
+        public virtual Account Account1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BulletinBoard> BulletinBoards { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BulletinBoard> BulletinBoards1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompanyVehicleHistory> CompanyVehicleHistories { get; set; }
         public virtual Department Department { get; set; }
@@ -71,6 +69,5 @@ namespace BusinessSystemDBEntityModel
         public virtual ICollection<ReportTimeSystem> ReportTimeSystems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SuggestionHistory> SuggestionHistories { get; set; }
-        public virtual Account Account1 { get; set; }
     }
 }
