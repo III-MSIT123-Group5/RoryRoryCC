@@ -15,6 +15,12 @@ namespace MainControls
         public MainControls()
         {
             InitializeComponent();
+            m_TitleColor = Color.White;
+           
+            m_buttoncolor1 = Color.SteelBlue;
+
+
+
         }
 
         private void clsAltoButton1_Click(object sender, EventArgs e)
@@ -40,15 +46,10 @@ namespace MainControls
 
             }
         }
-        
-        
-
-
-
 
 
         private Color m_backgroundcolor1;
-        public Color backgroundcolor
+        public Color BackgroundColor
         {
             get
             {
@@ -58,10 +59,29 @@ namespace MainControls
             {
 
                 m_backgroundcolor1 = value;
-                this.clsAltoButton1.Inactive1 = m_backgroundcolor1;
-                this.clsAltoButton1.Inactive2 = m_backgroundcolor1;
-                this.label1.BackColor = m_backgroundcolor1;
-                this.pictureBox1.BackColor = m_backgroundcolor1;
+                this.BackColor = m_backgroundcolor1;
+                
+            }
+        }
+
+
+
+
+        private Color m_buttoncolor1;
+        public Color ButtonColor
+        {
+            get
+            {
+                return m_buttoncolor1;
+            }
+            set
+            {
+
+                m_buttoncolor1 = value;
+                this.clsAltoButton1.Inactive1 = m_buttoncolor1;
+                this.clsAltoButton1.Inactive2 = m_buttoncolor1;
+                this.label1.BackColor = m_buttoncolor1;
+                this.pictureBox1.BackColor = m_buttoncolor1;
                 this.clsAltoButton1.Invalidate();
             }
         }
@@ -117,5 +137,69 @@ namespace MainControls
         {
             this.OnMouseEnter(e);
         }
+
+        private void clsAltoButton1_MouseLeave(object sender, EventArgs e)
+        {
+            this.OnMouseLeave(e);
+        }
+
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+            this.OnMouseLeave(e);
+        }
+
+        private void label1_MouseLeave(object sender, EventArgs e)
+        {
+            this.OnMouseLeave(e);
+        }
+
+        private void clsAltoButton1_MouseHover(object sender, EventArgs e)
+        {
+            this.OnMouseHover(e);
+
+        }
+
+        private void pictureBox1_MouseHover(object sender, EventArgs e)
+        {
+            this.OnMouseHover(e);
+        }
+
+        private void label1_MouseHover(object sender, EventArgs e)
+        {
+            this.OnMouseHover(e);
+        }
+
+        private void label1_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.OnMouseDown(e);
+        }
+
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.OnMouseDown(e);
+        }
+
+        private void clsAltoButton1_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.OnMouseDown(e);
+        }
+
+        private void clsAltoButton1_MouseUp(object sender, MouseEventArgs e)
+        {
+            this.OnMouseUp(e);
+        }
+
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            this.OnMouseUp(e);
+        }
+
+        private void label1_MouseUp(object sender, MouseEventArgs e)
+        {
+            this.OnMouseUp(e);
+        }
+        
+       
+
     }
 }

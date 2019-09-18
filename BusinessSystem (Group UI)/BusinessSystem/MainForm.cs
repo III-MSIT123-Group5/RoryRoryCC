@@ -37,14 +37,24 @@ namespace BusinessSystem
 
         private void mainControls5_Click(object sender, EventArgs e)
         {
-            FrmRequisition formshow = new FrmRequisition();
-            formshow.ShowDialog();
+           
         }
 
         private void mainControls5_MouseEnter(object sender, EventArgs e)
         {
-            this.mainControls5.backgroundcolor = Color.Yellow;
-            this.mainControls5.ForeColor = Color.Black;
+
+        }
+
+        private void mainControls1_Click(object sender, EventArgs e)
+        {
+            FrmRequisition formshow = new FrmRequisition();
+            formshow.ShowDialog();
+        }
+
+        private void mainControls8_Click(object sender, EventArgs e)
+        {
+            FrmRequisition formshow = new FrmRequisition();
+            formshow.ShowDialog();
         }
     }
 }

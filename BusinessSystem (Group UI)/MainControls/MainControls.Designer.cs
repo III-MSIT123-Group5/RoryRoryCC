@@ -46,7 +46,11 @@
             this.label1.Text = "label";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label1_MouseDown);
             this.label1.MouseEnter += new System.EventHandler(this.label1_MouseEnter);
+            this.label1.MouseLeave += new System.EventHandler(this.label1_MouseLeave);
+            this.label1.MouseHover += new System.EventHandler(this.label1_MouseHover);
+            this.label1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.label1_MouseUp);
             // 
             // pictureBox1
             // 
@@ -62,7 +66,11 @@
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
+            this.pictureBox1.MouseHover += new System.EventHandler(this.pictureBox1_MouseHover);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // clsAltoButton1
             // 
@@ -86,7 +94,11 @@
             this.clsAltoButton1.TabIndex = 9;
             this.clsAltoButton1.Transparency = false;
             this.clsAltoButton1.Click += new System.EventHandler(this.clsAltoButton1_Click);
+            this.clsAltoButton1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.clsAltoButton1_MouseDown);
             this.clsAltoButton1.MouseEnter += new System.EventHandler(this.clsAltoButton1_MouseEnter);
+            this.clsAltoButton1.MouseLeave += new System.EventHandler(this.clsAltoButton1_MouseLeave);
+            this.clsAltoButton1.MouseHover += new System.EventHandler(this.clsAltoButton1_MouseHover);
+            this.clsAltoButton1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.clsAltoButton1_MouseUp);
             // 
             // MainControls
             // 
