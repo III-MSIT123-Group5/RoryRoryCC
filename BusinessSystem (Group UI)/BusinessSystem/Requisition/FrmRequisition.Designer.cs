@@ -42,6 +42,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.clsAltoButton1 = new BusinessSystem.ClsAltoButton();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +56,7 @@
             this.altoButton2.ForeColor = System.Drawing.Color.White;
             this.altoButton2.Inactive1 = System.Drawing.Color.DarkSlateBlue;
             this.altoButton2.Inactive2 = System.Drawing.Color.DarkSlateBlue;
-            this.altoButton2.Location = new System.Drawing.Point(76, 390);
+            this.altoButton2.Location = new System.Drawing.Point(31, 390);
             this.altoButton2.Margin = new System.Windows.Forms.Padding(2);
             this.altoButton2.Name = "altoButton2";
             this.altoButton2.Radius = 10;
@@ -65,6 +66,7 @@
             this.altoButton2.TabIndex = 8;
             this.altoButton2.Text = "Clear";
             this.altoButton2.Transparency = false;
+            this.altoButton2.Click += new System.EventHandler(this.altoButton2_Click);
             // 
             // altoButton1
             // 
@@ -76,7 +78,7 @@
             this.altoButton1.ForeColor = System.Drawing.Color.White;
             this.altoButton1.Inactive1 = System.Drawing.Color.DarkSlateBlue;
             this.altoButton1.Inactive2 = System.Drawing.Color.DarkSlateBlue;
-            this.altoButton1.Location = new System.Drawing.Point(202, 390);
+            this.altoButton1.Location = new System.Drawing.Point(157, 390);
             this.altoButton1.Margin = new System.Windows.Forms.Padding(2);
             this.altoButton1.Name = "altoButton1";
             this.altoButton1.Radius = 10;
@@ -91,15 +93,15 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(374, 72);
+            this.dataGridView1.Location = new System.Drawing.Point(254, 72);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(404, 354);
+            this.dataGridView1.Size = new System.Drawing.Size(534, 354);
             this.dataGridView1.TabIndex = 9;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(183, 93);
+            this.textBox1.Location = new System.Drawing.Point(148, 89);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 22);
             this.textBox1.TabIndex = 10;
@@ -107,7 +109,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(47, 93);
+            this.label2.Location = new System.Drawing.Point(12, 89);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 11;
@@ -116,7 +118,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(47, 144);
+            this.label3.Location = new System.Drawing.Point(12, 140);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 12);
             this.label3.TabIndex = 13;
@@ -124,7 +126,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(183, 144);
+            this.textBox2.Location = new System.Drawing.Point(148, 140);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 22);
             this.textBox2.TabIndex = 12;
@@ -132,7 +134,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(45, 191);
+            this.label4.Location = new System.Drawing.Point(10, 187);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 12);
             this.label4.TabIndex = 15;
@@ -140,7 +142,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(181, 191);
+            this.textBox3.Location = new System.Drawing.Point(146, 187);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 22);
             this.textBox3.TabIndex = 14;
@@ -148,7 +150,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(45, 243);
+            this.label5.Location = new System.Drawing.Point(10, 239);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 12);
             this.label5.TabIndex = 17;
@@ -156,7 +158,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(181, 243);
+            this.textBox4.Location = new System.Drawing.Point(146, 239);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 22);
             this.textBox4.TabIndex = 16;
@@ -164,7 +166,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(45, 298);
+            this.label6.Location = new System.Drawing.Point(10, 294);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 12);
             this.label6.TabIndex = 19;
@@ -172,7 +174,7 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(181, 298);
+            this.textBox5.Location = new System.Drawing.Point(146, 294);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(100, 22);
             this.textBox5.TabIndex = 18;
@@ -187,7 +189,7 @@
             this.clsAltoButton1.ForeColor = System.Drawing.Color.White;
             this.clsAltoButton1.Inactive1 = System.Drawing.Color.DarkSlateBlue;
             this.clsAltoButton1.Inactive2 = System.Drawing.Color.DarkSlateBlue;
-            this.clsAltoButton1.Location = new System.Drawing.Point(202, 343);
+            this.clsAltoButton1.Location = new System.Drawing.Point(157, 343);
             this.clsAltoButton1.Margin = new System.Windows.Forms.Padding(2);
             this.clsAltoButton1.Name = "clsAltoButton1";
             this.clsAltoButton1.Radius = 10;
@@ -199,11 +201,19 @@
             this.clsAltoButton1.Transparency = false;
             this.clsAltoButton1.Click += new System.EventHandler(this.clsAltoButton1_Click);
             // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(31, 345);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(100, 22);
+            this.textBox6.TabIndex = 21;
+            // 
             // FrmRequisition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBox6);
             this.Controls.Add(this.clsAltoButton1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox5);
@@ -234,6 +244,7 @@
             this.Controls.SetChildIndex(this.textBox5, 0);
             this.Controls.SetChildIndex(this.label6, 0);
             this.Controls.SetChildIndex(this.clsAltoButton1, 0);
+            this.Controls.SetChildIndex(this.textBox6, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -256,5 +267,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox5;
         private ClsAltoButton clsAltoButton1;
+        private System.Windows.Forms.TextBox textBox6;
     }
 }
