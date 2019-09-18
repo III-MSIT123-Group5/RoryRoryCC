@@ -34,14 +34,14 @@
             this.rectangleShape_date = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.label4 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.mainControls5 = new MainControls.MainControls();
-            this.mainControls10 = new MainControls.MainControls();
-            this.mainControls1 = new MainControls.MainControls();
-            this.mainControls4 = new MainControls.MainControls();
+            this.mainControls8 = new MainControls.MainControls();
             this.mainControls7 = new MainControls.MainControls();
             this.mainControls6 = new MainControls.MainControls();
-            this.mainControls2 = new MainControls.MainControls();
+            this.mainControls5 = new MainControls.MainControls();
+            this.mainControls4 = new MainControls.MainControls();
             this.mainControls3 = new MainControls.MainControls();
+            this.mainControls2 = new MainControls.MainControls();
+            this.mainControls1 = new MainControls.MainControls();
             this.SuspendLayout();
             // 
             // shapeContainer1
@@ -108,123 +108,115 @@
             this.label10.TabIndex = 20;
             this.label10.Text = "內部訊息";
             // 
+            // mainControls8
+            // 
+            this.mainControls8.ButtonColor = System.Drawing.Color.DarkSlateBlue;
+            this.mainControls8.ForeColor = System.Drawing.Color.White;
+            this.mainControls8.image = global::BusinessSystem.Properties.Resources.neutral_dicision_128;
+            this.mainControls8.Location = new System.Drawing.Point(643, 62);
+            this.mainControls8.Name = "mainControls8";
+            this.mainControls8.Size = new System.Drawing.Size(200, 200);
+            this.mainControls8.TabIndex = 42;
+            this.mainControls8.Title = "名字";
+            this.mainControls8.TitleColor = System.Drawing.Color.Empty;
+            // 
+            // mainControls7
+            // 
+            this.mainControls7.ButtonColor = System.Drawing.Color.LightSkyBlue;
+            this.mainControls7.ForeColor = System.Drawing.Color.White;
+            this.mainControls7.image = global::BusinessSystem.Properties.Resources.report_3_128;
+            this.mainControls7.Location = new System.Drawing.Point(19, 480);
+            this.mainControls7.Name = "mainControls7";
+            this.mainControls7.Size = new System.Drawing.Size(200, 200);
+            this.mainControls7.TabIndex = 41;
+            this.mainControls7.Title = "文件上傳";
+            this.mainControls7.TitleColor = System.Drawing.Color.Empty;
+            // 
+            // mainControls6
+            // 
+            this.mainControls6.ButtonColor = System.Drawing.Color.SteelBlue;
+            this.mainControls6.ForeColor = System.Drawing.Color.White;
+            this.mainControls6.image = global::BusinessSystem.Properties.Resources.calendar_3_128;
+            this.mainControls6.Location = new System.Drawing.Point(437, 62);
+            this.mainControls6.Name = "mainControls6";
+            this.mainControls6.Size = new System.Drawing.Size(200, 200);
+            this.mainControls6.TabIndex = 40;
+            this.mainControls6.Title = "行事曆";
+            this.mainControls6.TitleColor = System.Drawing.Color.Empty;
+            // 
             // mainControls5
             // 
-            this.mainControls5.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls5.ButtonColor = System.Drawing.Color.SteelBlue;
             this.mainControls5.ForeColor = System.Drawing.Color.White;
             this.mainControls5.image = global::BusinessSystem.Properties.Resources.cart_5_128;
             this.mainControls5.Location = new System.Drawing.Point(643, 480);
             this.mainControls5.Name = "mainControls5";
             this.mainControls5.Size = new System.Drawing.Size(200, 200);
-            this.mainControls5.TabIndex = 50;
+            this.mainControls5.TabIndex = 39;
             this.mainControls5.Title = "請購系統";
-            this.mainControls5.TitleColor = System.Drawing.Color.White;
-            // 
-            // mainControls10
-            // 
-            this.mainControls10.BackgroundColor = System.Drawing.Color.Empty;
-            this.mainControls10.ButtonColor = System.Drawing.Color.SteelBlue;
-            this.mainControls10.ForeColor = System.Drawing.Color.White;
-            this.mainControls10.image = global::BusinessSystem.Properties.Resources.calendar_3_128;
-            this.mainControls10.Location = new System.Drawing.Point(437, 63);
-            this.mainControls10.Name = "mainControls10";
-            this.mainControls10.Size = new System.Drawing.Size(200, 200);
-            this.mainControls10.TabIndex = 51;
-            this.mainControls10.Title = "行事曆";
-            this.mainControls10.TitleColor = System.Drawing.Color.White;
-            // 
-            // mainControls1
-            // 
-            this.mainControls1.BackgroundColor = System.Drawing.Color.Empty;
-            this.mainControls1.ButtonColor = System.Drawing.Color.LightSkyBlue;
-            this.mainControls1.ForeColor = System.Drawing.Color.White;
-            this.mainControls1.image = global::BusinessSystem.Properties.Resources.briefcase_128;
-            this.mainControls1.Location = new System.Drawing.Point(643, 272);
-            this.mainControls1.Name = "mainControls1";
-            this.mainControls1.Size = new System.Drawing.Size(200, 200);
-            this.mainControls1.TabIndex = 52;
-            this.mainControls1.Title = "工時回報";
-            this.mainControls1.TitleColor = System.Drawing.Color.White;
+            this.mainControls5.TitleColor = System.Drawing.Color.Empty;
             // 
             // mainControls4
             // 
-            this.mainControls4.BackgroundColor = System.Drawing.Color.Empty;
-            this.mainControls4.ButtonColor = System.Drawing.Color.LightSkyBlue;
+            this.mainControls4.ButtonColor = System.Drawing.Color.SlateGray;
             this.mainControls4.ForeColor = System.Drawing.Color.White;
-            this.mainControls4.image = global::BusinessSystem.Properties.Resources.report_3_128;
-            this.mainControls4.Location = new System.Drawing.Point(24, 480);
+            this.mainControls4.image = global::BusinessSystem.Properties.Resources.chair_2_128;
+            this.mainControls4.Location = new System.Drawing.Point(437, 480);
             this.mainControls4.Name = "mainControls4";
             this.mainControls4.Size = new System.Drawing.Size(200, 200);
-            this.mainControls4.TabIndex = 53;
-            this.mainControls4.Title = "文件上傳";
-            this.mainControls4.TitleColor = System.Drawing.Color.White;
-            // 
-            // mainControls7
-            // 
-            this.mainControls7.BackgroundColor = System.Drawing.Color.Empty;
-            this.mainControls7.ButtonColor = System.Drawing.Color.SlateGray;
-            this.mainControls7.ForeColor = System.Drawing.Color.White;
-            this.mainControls7.image = global::BusinessSystem.Properties.Resources.chair_2_128;
-            this.mainControls7.Location = new System.Drawing.Point(437, 480);
-            this.mainControls7.Name = "mainControls7";
-            this.mainControls7.Size = new System.Drawing.Size(200, 200);
-            this.mainControls7.TabIndex = 54;
-            this.mainControls7.Title = "會議室租借";
-            this.mainControls7.TitleColor = System.Drawing.Color.White;
-            // 
-            // mainControls6
-            // 
-            this.mainControls6.BackgroundColor = System.Drawing.Color.Empty;
-            this.mainControls6.ButtonColor = System.Drawing.Color.DarkSlateBlue;
-            this.mainControls6.ForeColor = System.Drawing.Color.White;
-            this.mainControls6.image = global::BusinessSystem.Properties.Resources.time_8_128;
-            this.mainControls6.Location = new System.Drawing.Point(437, 272);
-            this.mainControls6.Name = "mainControls6";
-            this.mainControls6.Size = new System.Drawing.Size(200, 200);
-            this.mainControls6.TabIndex = 55;
-            this.mainControls6.Title = "請假";
-            this.mainControls6.TitleColor = System.Drawing.Color.White;
-            // 
-            // mainControls2
-            // 
-            this.mainControls2.BackgroundColor = System.Drawing.Color.Empty;
-            this.mainControls2.ButtonColor = System.Drawing.Color.DarkSlateBlue;
-            this.mainControls2.ForeColor = System.Drawing.Color.White;
-            this.mainControls2.image = global::BusinessSystem.Properties.Resources.car_128;
-            this.mainControls2.Location = new System.Drawing.Point(231, 480);
-            this.mainControls2.Name = "mainControls2";
-            this.mainControls2.Size = new System.Drawing.Size(200, 200);
-            this.mainControls2.TabIndex = 56;
-            this.mainControls2.Title = "公務車租借";
-            this.mainControls2.TitleColor = System.Drawing.Color.White;
+            this.mainControls4.TabIndex = 38;
+            this.mainControls4.Title = "會議室租借";
+            this.mainControls4.TitleColor = System.Drawing.Color.Empty;
             // 
             // mainControls3
             // 
-            this.mainControls3.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls3.ButtonColor = System.Drawing.Color.DarkSlateBlue;
             this.mainControls3.ForeColor = System.Drawing.Color.White;
-            this.mainControls3.image = global::BusinessSystem.Properties.Resources.neutral_dicision_128;
-            this.mainControls3.Location = new System.Drawing.Point(643, 66);
+            this.mainControls3.image = global::BusinessSystem.Properties.Resources.car_128;
+            this.mainControls3.Location = new System.Drawing.Point(230, 480);
             this.mainControls3.Name = "mainControls3";
             this.mainControls3.Size = new System.Drawing.Size(200, 200);
-            this.mainControls3.TabIndex = 57;
+            this.mainControls3.TabIndex = 37;
             this.mainControls3.Title = "公務車租借";
-            this.mainControls3.TitleColor = System.Drawing.Color.White;
+            this.mainControls3.TitleColor = System.Drawing.Color.Empty;
+            // 
+            // mainControls2
+            // 
+            this.mainControls2.ButtonColor = System.Drawing.Color.DarkSlateBlue;
+            this.mainControls2.ForeColor = System.Drawing.Color.White;
+            this.mainControls2.image = global::BusinessSystem.Properties.Resources.time_8_128;
+            this.mainControls2.Location = new System.Drawing.Point(437, 274);
+            this.mainControls2.Name = "mainControls2";
+            this.mainControls2.Size = new System.Drawing.Size(200, 200);
+            this.mainControls2.TabIndex = 36;
+            this.mainControls2.Title = "請假";
+            this.mainControls2.TitleColor = System.Drawing.Color.Empty;
+            // 
+            // mainControls1
+            // 
+            this.mainControls1.ButtonColor = System.Drawing.Color.SlateGray;
+            this.mainControls1.ForeColor = System.Drawing.Color.White;
+            this.mainControls1.image = global::BusinessSystem.Properties.Resources.briefcase_128;
+            this.mainControls1.Location = new System.Drawing.Point(643, 274);
+            this.mainControls1.Name = "mainControls1";
+            this.mainControls1.Size = new System.Drawing.Size(200, 200);
+            this.mainControls1.TabIndex = 35;
+            this.mainControls1.Title = "工時回報";
+            this.mainControls1.TitleColor = System.Drawing.Color.Empty;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(892, 710);
+            this.Controls.Add(this.mainControls8);
+            this.Controls.Add(this.mainControls7);
+            this.Controls.Add(this.mainControls6);
+            this.Controls.Add(this.mainControls5);
+            this.Controls.Add(this.mainControls4);
             this.Controls.Add(this.mainControls3);
             this.Controls.Add(this.mainControls2);
-            this.Controls.Add(this.mainControls6);
-            this.Controls.Add(this.mainControls7);
-            this.Controls.Add(this.mainControls4);
             this.Controls.Add(this.mainControls1);
-            this.Controls.Add(this.mainControls10);
-            this.Controls.Add(this.mainControls5);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.shapeContainer1);
@@ -243,13 +235,13 @@
         private System.Windows.Forms.Label label10;
         private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape_date;
         private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape_messange;
-        private MainControls.MainControls mainControls5;
-        private MainControls.MainControls mainControls10;
         private MainControls.MainControls mainControls1;
-        private MainControls.MainControls mainControls4;
-        private MainControls.MainControls mainControls7;
-        private MainControls.MainControls mainControls6;
         private MainControls.MainControls mainControls2;
         private MainControls.MainControls mainControls3;
+        private MainControls.MainControls mainControls4;
+        private MainControls.MainControls mainControls5;
+        private MainControls.MainControls mainControls6;
+        private MainControls.MainControls mainControls7;
+        private MainControls.MainControls mainControls8;
     }
 }

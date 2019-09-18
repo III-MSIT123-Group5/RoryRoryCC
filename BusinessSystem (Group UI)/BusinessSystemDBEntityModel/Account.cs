@@ -20,6 +20,7 @@ namespace BusinessSystemDBEntityModel
             this.Employees = new HashSet<Employee>();
         }
     
+        public int id { get; set; }
         public string account1 { get; set; }
         public byte[] password { get; set; }
     

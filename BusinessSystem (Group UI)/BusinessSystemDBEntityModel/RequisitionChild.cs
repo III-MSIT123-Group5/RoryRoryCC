@@ -20,7 +20,6 @@ namespace BusinessSystemDBEntityModel
         public Nullable<decimal> Quantity { get; set; }
         public Nullable<decimal> Discount { get; set; }
         public string Note { get; set; }
-        public int ChildID { get; set; }
     
         public virtual RequisitionMain RequisitionMain { get; set; }
     }
