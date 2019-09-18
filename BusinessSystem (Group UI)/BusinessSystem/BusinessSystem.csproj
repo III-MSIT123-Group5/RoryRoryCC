@@ -101,6 +101,30 @@
     <Compile Include="FrmRequisition.Designer.cs">
       <DependentUpon>FrmRequisition.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportTimeSystem\FormAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportTimeSystem\FormAdd.designer.cs">
+      <DependentUpon>FormAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTimeSystem\FormMainRTS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportTimeSystem\FormMainRTS.Designer.cs">
+      <DependentUpon>FormMainRTS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTimeSystem\FormShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportTimeSystem\FormShow.Designer.cs">
+      <DependentUpon>FormShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTimeSystem\FormUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportTimeSystem\FormUpdate.designer.cs">
+      <DependentUpon>FormUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="SonForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +192,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportTimeSystem\FormAdd.resx">
+      <DependentUpon>FormAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTimeSystem\FormMainRTS.resx">
+      <DependentUpon>FormMainRTS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTimeSystem\FormShow.resx">
+      <DependentUpon>FormShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTimeSystem\FormUpdate.resx">
+      <DependentUpon>FormUpdate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SonForm.resx">
       <DependentUpon>SonForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -178,12 +214,47 @@
       <Name>BusinessSystemControlLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\BusinessSystemDBEntityModel\BusinessSystemDBEntityModel.csproj">
-      <Project>{846de6ff-c319-46dc-a49e-f7213d9f4c60}</Project>
+      <Project>{f15169fd-5172-4d9f-98b1-c0b2734677a4}</Project>
       <Name>BusinessSystemDBEntityModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Controls\Controls.csproj">
+      <Project>{1902C417-BF2F-4EBD-B834-C2FCA45A6E00}</Project>
+      <Name>Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MainControls\MainControls.csproj">
+      <Project>{F9B06959-355D-4641-BF4C-47135DD5EF57}</Project>
+      <Name>MainControls</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\briefcase-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\time-8-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chair-2-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cart-5-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-3-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-3-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\neutral-dicision-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit-property-128.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

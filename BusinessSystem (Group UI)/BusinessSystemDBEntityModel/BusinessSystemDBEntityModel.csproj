@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{846DE6FF-C319-46DC-A49E-F7213D9F4C60}</ProjectGuid>
+    <ProjectGuid>{F15169FD-5172-4D9F-98B1-C0B2734677A4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BusinessSystemDBEntityModel</RootNamespace>
@@ -59,12 +59,6 @@
     <Compile Include="ApprovalOrder.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ApprovalStatu.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ApprovantStatu.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="BSEntityModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -84,9 +78,6 @@
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CompanyVehicle.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CompanyVehicleHistory.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Department.cs">
@@ -142,6 +133,12 @@
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RewardandPunishment.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Suggestion.cs">

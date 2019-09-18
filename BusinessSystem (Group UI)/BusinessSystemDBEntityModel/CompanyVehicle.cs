@@ -24,6 +24,5 @@ namespace BusinessSystemDBEntityModel
         public byte[] VehiclePhoto { get; set; }
     
         public virtual Office Office { get; set; }
-        public virtual CompanyVehicleHistory CompanyVehicleHistory { get; set; }
     }
 }

@@ -9,6 +9,7 @@
           <Key>
             <PropertyRef Name="account" />
           </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="account" Type="nvarchar" MaxLength="12" Nullable="false" />
           <Property Name="password" Type="varbinary" MaxLength="32" />
         </EntityType>
@@ -30,21 +31,6 @@
           <Property Name="ApprovalCategoryID" Type="int" />
           <Property Name="ApprovalStageID" Type="int" Nullable="false" />
           <Property Name="ApprovalOrder" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="ApprovalStatus">
-          <Key>
-            <PropertyRef Name="ReportID" />
-          </Key>
-          <Property Name="ReportID" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ApprovalStatusID" Type="int" />
-          <Property Name="ApprovalStatus" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="ApprovantStatus">
-          <Key>
-            <PropertyRef Name="ApprovantStatusID" />
-          </Key>
-          <Property Name="ApprovantStatusID" Type="int" Nullable="false" />
-          <Property Name="Status" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="BulletinBoard">
           <Key>
@@ -70,16 +56,6 @@
           <Property Name="officeID" Type="int" />
           <Property Name="VehiclePhoto" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="CompanyVehicleHistory">
-          <Key>
-            <PropertyRef Name="LicenseNumber" />
-          </Key>
-          <Property Name="LicenseNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="StartDateTime" Type="datetime" />
-          <Property Name="EndDateTime" Type="datetime" />
-          <Property Name="employeeID" Type="int" />
-          <Property Name="purpose" Type="nvarchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="departmentID" />
@@ -104,6 +80,8 @@
           <Property Name="employed" Type="bit" />
           <Property Name="groupID" Type="int" />
         </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'BusinessDataBase.dbo.Event' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="EventID" />
@@ -323,30 +301,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ApprovalStatus_ReportMain">
-          <End Role="ReportMain" Type="Self.ReportMain" Multiplicity="1" />
-          <End Role="ApprovalStatus" Type="Self.ApprovalStatus" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="ReportMain">
-              <PropertyRef Name="ReportID" />
-            </Principal>
-            <Dependent Role="ApprovalStatus">
-              <PropertyRef Name="ReportID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ApprovantStatus_ApprovalChild">
-          <End Role="ApprovalChild" Type="Self.ApprovalChild" Multiplicity="1" />
-          <End Role="ApprovantStatus" Type="Self.ApprovantStatus" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="ApprovalChild">
-              <PropertyRef Name="ApprovalStatusID" />
-            </Principal>
-            <Dependent Role="ApprovantStatus">
-              <PropertyRef Name="ApprovantStatusID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Bulletin board_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
           <End Role="BulletinBoard" Type="Self.BulletinBoard" Multiplicity="*" />
@@ -380,30 +334,6 @@
             </Principal>
             <Dependent Role="BulletinBoard">
               <PropertyRef Name="GroupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Company vehicle history_Company vehicle">
-          <End Role="CompanyVehicle" Type="Self.CompanyVehicle" Multiplicity="1" />
-          <End Role="CompanyVehicleHistory" Type="Self.CompanyVehicleHistory" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="CompanyVehicle">
-              <PropertyRef Name="LicenseNumber" />
-            </Principal>
-            <Dependent Role="CompanyVehicleHistory">
-              <PropertyRef Name="LicenseNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Company vehicle history_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="CompanyVehicleHistory" Type="Self.CompanyVehicleHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="CompanyVehicleHistory">
-              <PropertyRef Name="employeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -623,18 +553,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ReportTimeSystem_Event">
-          <End Role="Event" Type="Self.Event" Multiplicity="1" />
-          <End Role="ReportTimeSystem" Type="Self.ReportTimeSystem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Event">
-              <PropertyRef Name="EventID" />
-            </Principal>
-            <Dependent Role="ReportTimeSystem">
-              <PropertyRef Name="EventID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_RequisitionMain_ReportMain">
           <End Role="ReportMain" Type="Self.ReportMain" Multiplicity="0..1" />
           <End Role="RequisitionMain" Type="Self.RequisitionMain" Multiplicity="*" />
@@ -695,18 +613,61 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="AddReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ReportID" Type="bigint" Mode="InOut" />
+          <Parameter Name="employeeID" Type="int" Mode="In" />
+          <Parameter Name="ApplyDateTime" Type="datetime" Mode="In" />
+          <Parameter Name="EventHours" Type="float" Mode="In" />
+          <Parameter Name="EventID" Type="int" Mode="In" />
+          <Parameter Name="Note" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UpdateReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ReportID" Type="int" Mode="InOut" />
+          <Parameter Name="employeeID" Type="int" Mode="In" />
+          <Parameter Name="ApplyDateTime" Type="datetime" Mode="In" />
+          <Parameter Name="EventHours" Type="float" Mode="In" />
+          <Parameter Name="EventID" Type="int" Mode="In" />
+          <Parameter Name="Note" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="BusinessDataBaseModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ApprovalChild" EntityType="Self.ApprovalChild" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ApprovalOrder" EntityType="Self.ApprovalOrder" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ApprovalStatus" EntityType="Self.ApprovalStatus" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ApprovantStatus" EntityType="Self.ApprovantStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BulletinBoard" EntityType="Self.BulletinBoard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyVehicle" EntityType="Self.CompanyVehicle" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CompanyVehicleHistory" EntityType="Self.CompanyVehicleHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Leave" EntityType="Self.Leave" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MeetingRoom" EntityType="Self.MeetingRoom" Schema="dbo" store:Type="Tables" />
@@ -721,6 +682,12 @@
           <EntitySet Name="RewardandPunishment" EntityType="Self.RewardandPunishment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suggestion" EntityType="Self.Suggestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Event].[EventID] AS [EventID], 
+    [Event].[EventName] AS [EventName]
+    FROM [dbo].[Event] AS [Event]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="File" EntityType="Self.File" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [File].[FileID] AS [FileID], 
@@ -774,14 +741,6 @@
             <End Role="ReportMain" EntitySet="ReportMain" />
             <End Role="ApprovalOrder" EntitySet="ApprovalOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK_ApprovalStatus_ReportMain" Association="Self.FK_ApprovalStatus_ReportMain">
-            <End Role="ReportMain" EntitySet="ReportMain" />
-            <End Role="ApprovalStatus" EntitySet="ApprovalStatus" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ApprovantStatus_ApprovalChild" Association="Self.FK_ApprovantStatus_ApprovalChild">
-            <End Role="ApprovalChild" EntitySet="ApprovalChild" />
-            <End Role="ApprovantStatus" EntitySet="ApprovantStatus" />
-          </AssociationSet>
           <AssociationSet Name="FK_Bulletin board_Department" Association="Self.FK_Bulletin board_Department">
             <End Role="Department" EntitySet="Department" />
             <End Role="BulletinBoard" EntitySet="BulletinBoard" />
@@ -793,14 +752,6 @@
           <AssociationSet Name="FK_Bulletin board_Group" Association="Self.FK_Bulletin board_Group">
             <End Role="Group" EntitySet="Group" />
             <End Role="BulletinBoard" EntitySet="BulletinBoard" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Company vehicle history_Company vehicle" Association="Self.FK_Company vehicle history_Company vehicle">
-            <End Role="CompanyVehicle" EntitySet="CompanyVehicle" />
-            <End Role="CompanyVehicleHistory" EntitySet="CompanyVehicleHistory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Company vehicle history_Employee" Association="Self.FK_Company vehicle history_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="CompanyVehicleHistory" EntitySet="CompanyVehicleHistory" />
           </AssociationSet>
           <AssociationSet Name="FK_Company vehicle_Office" Association="Self.FK_Company vehicle_Office">
             <End Role="Office" EntitySet="Office" />
@@ -874,10 +825,6 @@
             <End Role="Employee" EntitySet="Employee" />
             <End Role="ReportTimeSystem" EntitySet="ReportTimeSystem" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReportTimeSystem_Event" Association="Self.FK_ReportTimeSystem_Event">
-            <End Role="Event" EntitySet="Event" />
-            <End Role="ReportTimeSystem" EntitySet="ReportTimeSystem" />
-          </AssociationSet>
           <AssociationSet Name="FK_RequisitionMain_ReportMain" Association="Self.FK_RequisitionMain_ReportMain">
             <End Role="ReportMain" EntitySet="ReportMain" />
             <End Role="RequisitionMain" EntitySet="RequisitionMain" />
@@ -913,7 +860,6 @@
           <Property Name="ApproveDate" Type="DateTime" Precision="3" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ApprovalOrder" Relationship="Self.FK_ApprovalChild_ApprovalOrder" FromRole="ApprovalChild" ToRole="ApprovalOrder" />
-          <NavigationProperty Name="ApprovantStatu" Relationship="BusinessDataBaseModel.FK_ApprovantStatus_ApprovalChild" FromRole="ApprovalChild" ToRole="ApprovantStatu" />
         </EntityType>
         <EntityType Name="ApprovalOrder">
           <Key>
@@ -982,7 +928,6 @@
           <NavigationProperty Name="ReportTimeSystems" Relationship="Self.FK_ReportTimeSystem_Employee" FromRole="Employee" ToRole="ReportTimeSystem" />
           <NavigationProperty Name="SuggestionHistories" Relationship="Self.FK_Suggestion_history_Employee" FromRole="Employee" ToRole="SuggestionHistory" />
           <NavigationProperty Name="Account1" Relationship="BusinessDataBaseModel.FK_Employee_Account" FromRole="Employee" ToRole="Account" />
-          <NavigationProperty Name="CompanyVehicleHistories" Relationship="BusinessDataBaseModel.FK_Company_vehicle_history_Employee" FromRole="Employee" ToRole="CompanyVehicleHistory" />
         </EntityType>
         <EntityType Name="Group">
           <Key>
@@ -1076,7 +1021,6 @@
           <NavigationProperty Name="Employee" Relationship="Self.FK_ReportMain_Employee" FromRole="ReportMain" ToRole="Employee" />
           <NavigationProperty Name="ReportCategory" Relationship="Self.FK_ReportMain_ReportCategory" FromRole="ReportMain" ToRole="ReportCategory" />
           <NavigationProperty Name="RequisitionMains" Relationship="Self.FK_RequisitionMain_ReportMain" FromRole="ReportMain" ToRole="RequisitionMain" />
-          <NavigationProperty Name="ApprovalStatu" Relationship="BusinessDataBaseModel.FK_ApprovalStatus_ReportMain" FromRole="ReportMain" ToRole="ApprovalStatu" />
         </EntityType>
         <EntityType Name="RequisitionMain">
           <Key>
@@ -1148,7 +1092,6 @@
           <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_ReportTimeSystem_Employee" FromRole="ReportTimeSystem" ToRole="Employee" />
           <Property Name="Discontinue" Type="Boolean" />
-          <NavigationProperty Name="Event" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Event" FromRole="ReportTimeSystem" ToRole="Event" />
         </EntityType>
         <EntityType Name="SuggestionHistory">
           <Key>
@@ -1596,6 +1539,52 @@
           </AssociationSet>
           <EntitySet Name="sysdiagrams" EntityType="BusinessDataBaseModel.sysdiagram" />
           <EntitySet Name="Events" EntityType="BusinessDataBaseModel.Event" />
+          <FunctionImport Name="AddReport">
+            <Parameter Name="ReportID" Mode="InOut" Type="Int64" />
+            <Parameter Name="employeeID" Mode="In" Type="Int32" />
+            <Parameter Name="ApplyDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="EventHours" Mode="In" Type="Double" />
+            <Parameter Name="EventID" Mode="In" Type="Int32" />
+            <Parameter Name="Note" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(BusinessDataBaseModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(BusinessDataBaseModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="UpdateReport">
+            <Parameter Name="ReportID" Mode="InOut" Type="Int32" />
+            <Parameter Name="employeeID" Mode="In" Type="Int32" />
+            <Parameter Name="ApplyDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="EventHours" Mode="In" Type="Double" />
+            <Parameter Name="EventID" Mode="In" Type="Int32" />
+            <Parameter Name="Note" Mode="In" Type="String" />
+          </FunctionImport>
           <EntitySet Name="RequisitionChilds" EntityType="BusinessDataBaseModel.RequisitionChild" />
           <AssociationSet Name="FK_RequisitionMain_RequisitionChild" Association="BusinessDataBaseModel.FK_RequisitionMain_RequisitionChild">
             <End Role="RequisitionChild" EntitySet="RequisitionChilds" />
@@ -1606,33 +1595,10 @@
             <End Role="Office" EntitySet="Offices" />
             <End Role="CompanyVehicle" EntitySet="CompanyVehicles" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReportTimeSystem_Event" Association="BusinessDataBaseModel.FK_ReportTimeSystem_Event">
-            <End Role="Event" EntitySet="Events" />
-            <End Role="ReportTimeSystem" EntitySet="ReportTimeSystems" />
-          </AssociationSet>
-          <EntitySet Name="ApprovalStatus" EntityType="BusinessDataBaseModel.ApprovalStatu" />
-          <EntitySet Name="ApprovantStatus" EntityType="BusinessDataBaseModel.ApprovantStatu" />
-          <AssociationSet Name="FK_ApprovantStatus_ApprovalChild" Association="BusinessDataBaseModel.FK_ApprovantStatus_ApprovalChild">
-            <End Role="ApprovalChild" EntitySet="ApprovalChilds" />
-            <End Role="ApprovantStatu" EntitySet="ApprovantStatus" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ApprovalStatus_ReportMain" Association="BusinessDataBaseModel.FK_ApprovalStatus_ReportMain">
-            <End Role="ReportMain" EntitySet="ReportMains" />
-            <End Role="ApprovalStatu" EntitySet="ApprovalStatus" />
-          </AssociationSet>
           <EntitySet Name="Accounts" EntityType="BusinessDataBaseModel.Account" />
           <AssociationSet Name="FK_Employee_Account" Association="BusinessDataBaseModel.FK_Employee_Account">
             <End Role="Account" EntitySet="Accounts" />
             <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <EntitySet Name="CompanyVehicleHistories" EntityType="BusinessDataBaseModel.CompanyVehicleHistory" />
-          <AssociationSet Name="FK_Company_vehicle_history_Company_vehicle" Association="BusinessDataBaseModel.FK_Company_vehicle_history_Company_vehicle">
-            <End Role="CompanyVehicle" EntitySet="CompanyVehicles" />
-            <End Role="CompanyVehicleHistory" EntitySet="CompanyVehicleHistories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Company_vehicle_history_Employee" Association="BusinessDataBaseModel.FK_Company_vehicle_history_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="CompanyVehicleHistory" EntitySet="CompanyVehicleHistories" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="sysdiagram">
@@ -1651,13 +1617,23 @@
           </Key>
           <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EventName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ReportTimeSystems" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Event" FromRole="Event" ToRole="ReportTimeSystem" />
         </EntityType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
         <EntityType Name="RequisitionChild">
           <Key>
             <PropertyRef Name="RequisitionID" />
           </Key>
-          <Property Name="RequisitionID" Type="Int32" Nullable="false" />
+          <Property Name="RequisitionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" />
@@ -1690,7 +1666,6 @@
           <Property Name="officeID" Type="Int32" />
           <Property Name="VehiclePhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Office" Relationship="BusinessDataBaseModel.FK_Company_vehicle_Office" FromRole="CompanyVehicle" ToRole="Office" />
-          <NavigationProperty Name="CompanyVehicleHistory" Relationship="BusinessDataBaseModel.FK_Company_vehicle_history_Company_vehicle" FromRole="CompanyVehicle" ToRole="CompanyVehicleHistory" />
         </EntityType>
         <Association Name="FK_Company_vehicle_Office">
           <End Type="BusinessDataBaseModel.Office" Role="Office" Multiplicity="0..1" />
@@ -1704,63 +1679,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ReportTimeSystem_Event">
-          <End Type="BusinessDataBaseModel.Event" Role="Event" Multiplicity="1" />
-          <End Type="BusinessDataBaseModel.ReportTimeSystem" Role="ReportTimeSystem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Event">
-              <PropertyRef Name="EventID" />
-            </Principal>
-            <Dependent Role="ReportTimeSystem">
-              <PropertyRef Name="EventID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="ApprovalStatu">
-          <Key>
-            <PropertyRef Name="ReportID" />
-          </Key>
-          <Property Name="ReportID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ApprovalStatusID" Type="Int32" />
-          <Property Name="ApprovalStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ReportMain" Relationship="BusinessDataBaseModel.FK_ApprovalStatus_ReportMain" FromRole="ApprovalStatu" ToRole="ReportMain" />
-        </EntityType>
-        <EntityType Name="ApprovantStatu">
-          <Key>
-            <PropertyRef Name="ApprovantStatusID" />
-          </Key>
-          <Property Name="ApprovantStatusID" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ApprovalChild" Relationship="BusinessDataBaseModel.FK_ApprovantStatus_ApprovalChild" FromRole="ApprovantStatu" ToRole="ApprovalChild" />
-        </EntityType>
-        <Association Name="FK_ApprovantStatus_ApprovalChild">
-          <End Type="BusinessDataBaseModel.ApprovalChild" Role="ApprovalChild" Multiplicity="1" />
-          <End Type="BusinessDataBaseModel.ApprovantStatu" Role="ApprovantStatu" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="ApprovalChild">
-              <PropertyRef Name="ApprovalStatusID" />
-            </Principal>
-            <Dependent Role="ApprovantStatu">
-              <PropertyRef Name="ApprovantStatusID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ApprovalStatus_ReportMain">
-          <End Type="BusinessDataBaseModel.ReportMain" Role="ReportMain" Multiplicity="1" />
-          <End Type="BusinessDataBaseModel.ApprovalStatu" Role="ApprovalStatu" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="ReportMain">
-              <PropertyRef Name="ReportID" />
-            </Principal>
-            <Dependent Role="ApprovalStatu">
-              <PropertyRef Name="ReportID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="account1" />
           </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="account1" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="Binary" MaxLength="32" FixedLength="false" />
           <NavigationProperty Name="Employees" Relationship="BusinessDataBaseModel.FK_Employee_Account" FromRole="Account" ToRole="Employee" />
@@ -1774,42 +1697,6 @@
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="account" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="CompanyVehicleHistory">
-          <Key>
-            <PropertyRef Name="LicenseNumber" />
-          </Key>
-          <Property Name="LicenseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="StartDateTime" Type="DateTime" Precision="3" />
-          <Property Name="EndDateTime" Type="DateTime" Precision="3" />
-          <Property Name="employeeID" Type="Int32" />
-          <Property Name="purpose" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CompanyVehicle" Relationship="BusinessDataBaseModel.FK_Company_vehicle_history_Company_vehicle" FromRole="CompanyVehicleHistory" ToRole="CompanyVehicle" />
-          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_Company_vehicle_history_Employee" FromRole="CompanyVehicleHistory" ToRole="Employee" />
-        </EntityType>
-        <Association Name="FK_Company_vehicle_history_Company_vehicle">
-          <End Type="BusinessDataBaseModel.CompanyVehicle" Role="CompanyVehicle" Multiplicity="1" />
-          <End Type="BusinessDataBaseModel.CompanyVehicleHistory" Role="CompanyVehicleHistory" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="CompanyVehicle">
-              <PropertyRef Name="LicenseNumber" />
-            </Principal>
-            <Dependent Role="CompanyVehicleHistory">
-              <PropertyRef Name="LicenseNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Company_vehicle_history_Employee">
-          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
-          <End Type="BusinessDataBaseModel.CompanyVehicleHistory" Role="CompanyVehicleHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="CompanyVehicleHistory">
-              <PropertyRef Name="employeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2061,6 +1948,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddReport" FunctionName="BusinessDataBaseModel.Store.AddReport" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="BusinessDataBaseModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="BusinessDataBaseModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="BusinessDataBaseModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="BusinessDataBaseModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BusinessDataBaseModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="BusinessDataBaseModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BusinessDataBaseModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="BusinessDataBaseModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="BusinessDataBaseModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="UpdateReport" FunctionName="BusinessDataBaseModel.Store.UpdateReport" />
           <EntitySetMapping Name="RequisitionChilds">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.RequisitionChild">
               <MappingFragment StoreEntitySet="RequisitionChild">
@@ -2087,39 +2000,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ApprovalStatus">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.ApprovalStatu">
-              <MappingFragment StoreEntitySet="ApprovalStatus">
-                <ScalarProperty Name="ApprovalStatus" ColumnName="ApprovalStatus" />
-                <ScalarProperty Name="ApprovalStatusID" ColumnName="ApprovalStatusID" />
-                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ApprovantStatus">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.ApprovantStatu">
-              <MappingFragment StoreEntitySet="ApprovantStatus">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ApprovantStatusID" ColumnName="ApprovantStatusID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.Account">
               <MappingFragment StoreEntitySet="Account">
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="account1" ColumnName="account" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CompanyVehicleHistories">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.CompanyVehicleHistory">
-              <MappingFragment StoreEntitySet="CompanyVehicleHistory">
-                <ScalarProperty Name="purpose" ColumnName="purpose" />
-                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
-                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
-                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
-                <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

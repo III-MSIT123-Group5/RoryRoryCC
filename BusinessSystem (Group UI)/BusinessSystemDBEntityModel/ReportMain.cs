@@ -33,6 +33,5 @@ namespace BusinessSystemDBEntityModel
         public virtual ReportCategory ReportCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RequisitionMain> RequisitionMains { get; set; }
-        public virtual ApprovalStatu ApprovalStatu { get; set; }
     }
 }
