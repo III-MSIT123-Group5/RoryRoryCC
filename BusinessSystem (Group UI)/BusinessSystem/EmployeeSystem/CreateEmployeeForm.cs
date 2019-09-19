@@ -99,17 +99,17 @@ namespace BusinessSystem
             var addEmp = new BusinessSystemDBEntityModel.Employee
             {
                 //employeeID = EmID,   //將於"變更員工資料"中顯示
-                employee_name = this.txtEmployeeName.Text,
-                gender = this.cmbGender.Text,
-                birth = this.dTPicBirth.Value,
-                hire_date = this.dTPicHireDate.Value,
-                account = AccountName,
-                officeID = this.Insert_offID(this.cmbOfficeID.SelectedIndex),
-                departmentID = this.cmbDepartmentID.SelectedIndex,
-                positionID = this.cmbPositionID.SelectedIndex + 1,
-                managerID = magID,
-                employed = this.Insert_transEmployed(this.cmbEmployed.SelectedIndex),
-                groupID = this.Insert_grpID(this.cmbGroupID.Text)
+                EmployeeName = this.txtEmployeeName.Text,
+                Gender = this.cmbGender.Text,
+                Birth = this.dTPicBirth.Value,
+                HireDate = this.dTPicHireDate.Value,
+                Account = AccountName,
+                OfficeID = this.Insert_offID(this.cmbOfficeID.SelectedIndex),
+                DepartmentID = this.cmbDepartmentID.SelectedIndex,
+                PositionID = this.cmbPositionID.SelectedIndex + 1,
+                ManagerID = magID,
+                Employed = this.Insert_transEmployed(this.cmbEmployed.SelectedIndex),
+                GroupID = this.Insert_grpID(this.cmbGroupID.Text)
             };
 
             this.dbcontext.Employees.Add(addEmp);
@@ -160,7 +160,7 @@ namespace BusinessSystem
         bool checkAccount(string @account)    //方法：檢查帳號是否重覆
         {
             var q = from ac in dbcontext.Employees
-                    where ac.account == @account
+                    where ac.Account == @account
                     select ac;
             if (q.Any())
             {

@@ -42,7 +42,7 @@ namespace BusinessSystem.ReportTimeSystem
                     select new
                     {
                         報表編號 = RTS.ReportID,
-                        員工名稱 = emp.employee_name,
+                        員工名稱 = emp.EmployeeName,
                         申請時間 = RTS.ApplyDateTime,
                         申請事件 = eve.EventName,
                         備註 = RTS.Note
