@@ -208,6 +208,8 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSubmit);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "FrmRequisition";
             this.Text = "Requisition";
             this.Load += new System.EventHandler(this.FrmRequisition_Load);
