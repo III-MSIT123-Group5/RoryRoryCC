@@ -1,4 +1,5 @@
-﻿using BusinessSystemDBEntityModel;
+﻿using BusinessSystem.EmployeeSystem;
+using BusinessSystemDBEntityModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,12 +20,14 @@ namespace BusinessSystem
             InitializeComponent();
 
         }
-
+        MemberClass CheckTextboxClass = new MemberClass();
         BusinessDataBaseEntities dbcontext;
         //int EmID;  //將於"變更員工資料"中顯示
-        string AccountName;
+        string AccountName, EmployeeName;
         int magID;
+        bool AccEmpName, AccPW, AccAcount, AccManager;
         byte[] SHAPassword;
+
 
         private void CreateEmployeeForm_Load(object sender, EventArgs e)   //load事件
         {
@@ -44,6 +47,17 @@ namespace BusinessSystem
             //預設GroupID內容
             //this.cmbGroupID.DataSource =this.dbcontext.Groups.OrderBy (p=>p.GroupID ).
 
+            this.cmbGender.SelectedIndex = 0;
+
+            //todo建立Textbox驗證
+            foreach (Control x in this.Controls)
+            {
+                if (x is TextBox)
+                {
+                    x.Validated += X_Validated;
+                }
+            }
+
             //=====================================
             //EmID = q.Count()+1001;      //將於"變更員工資料"中顯示
             //this.txtEmployeeID.Text = $"{EmID }"; //ID自動產生，不允許變更
@@ -52,12 +66,22 @@ namespace BusinessSystem
 
         }
 
+        //Textbox驗證
+
+        private void X_Validated(object sender, EventArgs e)
+        {
+            
+        }
+
 
         //todo<<<<<<<<<<<<<<<<<<<<<<<<<控制項
 
         private void btnCreate_Click(object sender, EventArgs e)  //按鈕:新增
         {
-            if ((this.txtManagerID.Text is null) == false) //判斷ManagerID是否為空值
+
+
+            //判斷ManagerID是否為空值
+            if ((this.txtManagerID.Text is null) == false)  
             {
                 int m_magID = 0;
                 bool chkMagInput = int.TryParse(this.txtManagerID.Text, out m_magID); //確認輸入值ok
@@ -77,7 +101,16 @@ namespace BusinessSystem
                 }
             }
 
-            if (CheckPassword (this.txtPassword.Text  , this.txtConfirmPassword.Text))
+            if ( AccEmpName ==false || AccAcount == false /*|| AccPW == false || AccManager == false*/)
+            {
+                MessageBox.Show("資料未完整輸入");
+                return;
+            }
+
+
+
+
+            if (CheckPassword (this.txtPassword.Text  , this.txtConfirmPassword.Text) && String.IsNullOrEmpty (this.txtConfirmPassword.Text  )==false )
             {
                 //雜湊
                 byte[] bytesPassword = Encoding.Unicode.GetBytes(this.txtConfirmPassword.Text);
@@ -101,7 +134,7 @@ namespace BusinessSystem
                 var addEmp = new BusinessSystemDBEntityModel.Employee
                 {
                     //employeeID = EmID,   //將於"變更員工資料"中顯示
-                    EmployeeName = this.txtEmployeeName.Text,
+                    EmployeeName = this.EmployeeName,
                     Gender = this.cmbGender.Text,
                     Birth = this.dTPicBirth.Value,
                     HireDate = this.dTPicHireDate.Value,
@@ -123,6 +156,8 @@ namespace BusinessSystem
                 this.dbcontext.Employees.Add(addEmp);
                 this.dbcontext.Accounts.Add(addAccount);
                 this.dbcontext.SaveChanges();
+
+                MessageBox.Show("新增成功");
             }
             catch (Exception ex)
             {
@@ -132,25 +167,7 @@ namespace BusinessSystem
 
         }
 
-        private void btnCheckAccount_Click(object sender, EventArgs e)    //按鈕:檢查帳號
-        {
-            if (String.IsNullOrEmpty(this.txtAccount.Text))
-            {
-                MessageBox.Show("請輸入正確的資料。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.txtAccount.Focus();
-            }
-            else if (this.checkAccount(this.txtAccount.Text))
-            {
-                MessageBox.Show("此帳號可以使用！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                this.btnCreate.Enabled = true;
-                AccountName = this.txtAccount.Text.Replace(" ", "");   //清除字串中的空格
-            }
-            else
-            {
-                MessageBox.Show("此帳號已被使用！請嚐試別組帳號！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.txtAccount.Focus();
-            }
-        }
+       
 
         //控制項>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -241,9 +258,42 @@ namespace BusinessSystem
             }
         }
 
-        //事件>>>>>>>>>>>>>>>>>>>>>>>>>
+        private void txtEmployeeName_Validated(object sender, EventArgs e)   //事件：EmployeeName空值驗證
+        {
+            this.CheckTextboxClass.EmployeeName = this.txtEmployeeName.Text; 
+            errorProvider1.SetError((TextBox)sender, CheckTextboxClass.errorstring);
+            if (errorProvider1.GetError((TextBox)sender) == "")
+            {
+                this.EmployeeName = this.txtEmployeeName.Text;
+                this.AccEmpName = true;
+            }
+            else
+            {
+                this.AccEmpName = false ;
+            }
+        }
+
+        private void txtAccount_Validated(object sender, EventArgs e)  //事件：帳號驗證
+        {
+            AccountName = this.txtAccount.Text.Replace(" ", "");
+            this.CheckTextboxClass.Account = AccountName;
+
+            errorProvider1.SetError((TextBox)sender, CheckTextboxClass.errorstring);
+            if (errorProvider1.GetError((TextBox)sender )== "")
+            {
+                this.AccAcount = true;
+            }
+            else
+            {
+                this.AccAcount = false ;
+            }
+        }
 
        
+
+        //事件>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
 
 
 

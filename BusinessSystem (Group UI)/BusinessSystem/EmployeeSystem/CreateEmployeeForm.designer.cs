@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.txtEmployeeName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -54,12 +52,15 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.btnCheckAccount = new System.Windows.Forms.Button();
             this.cmbGender = new System.Windows.Forms.ComboBox();
             this.cmbGroupID = new System.Windows.Forms.ComboBox();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label9 = new System.Windows.Forms.Label();
             this.txtManagerID = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,30 +73,7 @@
             this.txtEmployeeName.Size = new System.Drawing.Size(206, 30);
             this.txtEmployeeName.TabIndex = 4;
             this.toolTip1.SetToolTip(this.txtEmployeeName, "employee_name");
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(27, 83);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 22);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "員工姓名：";
-            this.toolTip1.SetToolTip(this.label3, "employee_name");
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label4.Location = new System.Drawing.Point(27, 131);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 22);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "性別：";
-            this.toolTip1.SetToolTip(this.label4, "gender");
+            this.txtEmployeeName.Validated += new System.EventHandler(this.txtEmployeeName_Validated);
             // 
             // label5
             // 
@@ -167,6 +145,7 @@
             this.txtAccount.TabIndex = 20;
             this.txtAccount.Tag = "Account";
             this.toolTip1.SetToolTip(this.txtAccount, "account");
+            this.txtAccount.Validated += new System.EventHandler(this.txtAccount_Validated);
             // 
             // label11
             // 
@@ -267,7 +246,6 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Enabled = false;
             this.btnCreate.Location = new System.Drawing.Point(380, 365);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(137, 39);
@@ -331,18 +309,6 @@
             this.label15.Text = "確認密碼：";
             this.toolTip1.SetToolTip(this.label15, "confirm password");
             // 
-            // btnCheckAccount
-            // 
-            this.btnCheckAccount.Font = new System.Drawing.Font("微軟正黑體", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnCheckAccount.Location = new System.Drawing.Point(333, 272);
-            this.btnCheckAccount.Name = "btnCheckAccount";
-            this.btnCheckAccount.Size = new System.Drawing.Size(51, 30);
-            this.btnCheckAccount.TabIndex = 38;
-            this.btnCheckAccount.Text = "檢查";
-            this.toolTip1.SetToolTip(this.btnCheckAccount, "檢查帳號是否已使用");
-            this.btnCheckAccount.UseVisualStyleBackColor = true;
-            this.btnCheckAccount.Click += new System.EventHandler(this.btnCheckAccount_Click);
-            // 
             // cmbGender
             // 
             this.cmbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -369,10 +335,6 @@
             this.cmbGroupID.TabIndex = 40;
             this.toolTip1.SetToolTip(this.cmbGroupID, "GroupID");
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -395,14 +357,65 @@
             this.txtManagerID.TabIndex = 16;
             this.toolTip1.SetToolTip(this.txtManagerID, "managerID");
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label16.Location = new System.Drawing.Point(27, 88);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(61, 22);
+            this.label16.TabIndex = 41;
+            this.label16.Text = "姓名：";
+            this.toolTip1.SetToolTip(this.label16, "EmployeeName");
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label17.Location = new System.Drawing.Point(27, 133);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(61, 22);
+            this.label17.TabIndex = 42;
+            this.label17.Text = "性別：";
+            this.toolTip1.SetToolTip(this.label17, "Gender");
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label3.Location = new System.Drawing.Point(27, 83);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(95, 22);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "員工姓名：";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label4.Location = new System.Drawing.Point(27, 131);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 22);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "性別：";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // CreateEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1204, 449);
+            this.ClientSize = new System.Drawing.Size(723, 449);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.cmbGroupID);
             this.Controls.Add(this.cmbGender);
-            this.Controls.Add(this.btnCheckAccount);
             this.Controls.Add(this.txtConfirmPassword);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.txtPassword);
@@ -426,17 +439,13 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.txtEmployeeName);
-            this.Controls.Add(this.label3);
             this.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CreateEmployeeForm";
             this.Text = "新增員工資料";
             this.Load += new System.EventHandler(this.CreateEmployeeForm_Load);
-            this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.txtEmployeeName, 0);
-            this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.label5, 0);
             this.Controls.SetChildIndex(this.label6, 0);
             this.Controls.SetChildIndex(this.label7, 0);
@@ -460,9 +469,10 @@
             this.Controls.SetChildIndex(this.txtPassword, 0);
             this.Controls.SetChildIndex(this.label15, 0);
             this.Controls.SetChildIndex(this.txtConfirmPassword, 0);
-            this.Controls.SetChildIndex(this.btnCheckAccount, 0);
             this.Controls.SetChildIndex(this.cmbGender, 0);
             this.Controls.SetChildIndex(this.cmbGroupID, 0);
+            this.Controls.SetChildIndex(this.label16, 0);
+            this.Controls.SetChildIndex(this.label17, 0);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -495,11 +505,12 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtConfirmPassword;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button btnCheckAccount;
         private System.Windows.Forms.ComboBox cmbGender;
         private System.Windows.Forms.ComboBox cmbGroupID;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.TextBox txtManagerID;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
     }
 }
