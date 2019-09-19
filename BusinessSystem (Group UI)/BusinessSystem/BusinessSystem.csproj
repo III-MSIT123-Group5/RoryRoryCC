@@ -186,6 +186,9 @@
     <EmbeddedResource Include="BulletinBoard\BulletinBoard-02.resx">
       <DependentUpon>BulletinBoard-02.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CompanyCars\ChangeVehicleHistory.resx">
+      <DependentUpon>ChangeVehicleHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CompanyCars\CompanyCarForm.resx">
       <DependentUpon>CompanyCarForm.cs</DependentUpon>
     </EmbeddedResource>
