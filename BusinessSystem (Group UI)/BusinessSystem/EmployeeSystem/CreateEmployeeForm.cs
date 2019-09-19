@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,6 +24,8 @@ namespace BusinessSystem
         //int EmID;  //將於"變更員工資料"中顯示
         string AccountName;
         int magID;
+        byte[] SHAPassword;
+
         private void CreateEmployeeForm_Load(object sender, EventArgs e)   //load事件
         {
             dbcontext = new BusinessDataBaseEntities();
@@ -76,23 +79,20 @@ namespace BusinessSystem
 
             if (CheckPassword (this.txtPassword.Text  , this.txtConfirmPassword.Text))
             {
+                //雜湊
+                byte[] bytesPassword = Encoding.Unicode.GetBytes(this.txtConfirmPassword.Text);
+                SHA256Managed Algorithm = new SHA256Managed();
+                SHAPassword =Algorithm.ComputeHash(bytesPassword);             
 
             }
             else
             {
-                //MessageBox.Show("請確認[密碼]及[確認密碼]的。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //this.txtPassword.Text = "";
-                //this.txtConfirmPassword.Text = "";
-                //this.txtPassword.Focus();
-                //return;
-            }
-
-
-            var addAccount = new BusinessSystemDBEntityModel.Account
-            {
-                //account1=addEmp.account  ,
-                //password= ,
-            };
+                MessageBox.Show("請確認[密碼]及[確認密碼]的。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.txtPassword.Text = "";
+                this.txtConfirmPassword.Text = "";
+                this.txtPassword.Focus();
+                return;
+            }         
 
 
 
@@ -112,7 +112,14 @@ namespace BusinessSystem
                 GroupID = this.Insert_grpID(this.cmbGroupID.Text)
             };
 
+            var addAccount = new BusinessSystemDBEntityModel.Account
+            {
+                account1 = addEmp.Account,
+                password = SHAPassword ,
+            };
+
             this.dbcontext.Employees.Add(addEmp);
+            this.dbcontext.Accounts.Add(addAccount);
             this.dbcontext.SaveChanges();      
          
 

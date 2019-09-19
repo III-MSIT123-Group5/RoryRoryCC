@@ -19,7 +19,7 @@ namespace BusinessSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BulletinBoard ());            
+            Application.Run(new CreateEmployeeForm  ());            
         }
     }
 }
