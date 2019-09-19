@@ -115,9 +115,23 @@ namespace MainControls
 
             }
         }
+        private string m_imagelocation;
+        public string ImageLocation
+        {
+            get
+            {
+                return m_imagelocation;
+            }
+            set
+            {
+                this.pictureBox1.ImageLocation = value;
+                m_imagelocation = this.pictureBox1.ImageLocation;
+            }
+        }
 
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
+            
             this.OnClick(e);
         }
 

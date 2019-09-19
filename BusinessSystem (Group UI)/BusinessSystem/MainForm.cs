@@ -19,14 +19,14 @@ namespace BusinessSystem
             InitializeComponent();
 
             rectangleShape_date.Location = new Point(10, 10);           
-            rectangleShape_messange.Location = new Point(10, 220);
+            //rectangleShape_messange.Location = new Point(10, 220);
          
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Width = 870;
-            Height = 680;
+            
+           
         }
 
         private void mainControls4_Click(object sender, EventArgs e)
@@ -52,8 +52,6 @@ namespace BusinessSystem
             FrmRequisition formshow = new FrmRequisition();
             formshow.ShowDialog();
         }
-
-        
 
         private void mainControls9_MouseEnter(object sender, EventArgs e)
         {

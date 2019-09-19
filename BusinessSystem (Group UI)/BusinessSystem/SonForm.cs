@@ -26,7 +26,7 @@ namespace BusinessSystem
 
             //    var q = from em in dbContext.Employees
             //            where em.Account == "jocelyn"
-            //            select new { em.EmployeeName, em.Gender, em.Photo };
+            //            select new { em.EmployeeName,em.Gender,em.Photo };
 
             //    string name = null;
             //    string gender = null;
