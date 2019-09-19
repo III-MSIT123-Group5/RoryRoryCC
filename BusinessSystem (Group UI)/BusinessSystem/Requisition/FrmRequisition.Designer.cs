@@ -40,7 +40,7 @@
             this.lblNote = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.clsAltoButton1 = new BusinessSystem.ClsAltoButton();
+            this.btnChange = new BusinessSystem.ClsAltoButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,7 +84,7 @@
             this.btnSubmit.Stroke = false;
             this.btnSubmit.StrokeColor = System.Drawing.Color.Gray;
             this.btnSubmit.TabIndex = 7;
-            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.Text = "暫存";
             this.btnSubmit.Transparency = false;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
@@ -94,7 +94,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(254, 72);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(998, 354);
+            this.dataGridView1.Size = new System.Drawing.Size(638, 354);
             this.dataGridView1.TabIndex = 9;
             // 
             // txtProcductName
@@ -163,39 +163,39 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(143, 291);
+            this.textBox1.Location = new System.Drawing.Point(121, 365);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 22);
             this.textBox1.TabIndex = 22;
             // 
-            // clsAltoButton1
+            // btnChange
             // 
-            this.clsAltoButton1.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.clsAltoButton1.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
-            this.clsAltoButton1.BackColor = System.Drawing.Color.Transparent;
-            this.clsAltoButton1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.clsAltoButton1.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
-            this.clsAltoButton1.ForeColor = System.Drawing.Color.White;
-            this.clsAltoButton1.Inactive1 = System.Drawing.Color.DarkSlateBlue;
-            this.clsAltoButton1.Inactive2 = System.Drawing.Color.DarkSlateBlue;
-            this.clsAltoButton1.Location = new System.Drawing.Point(14, 365);
-            this.clsAltoButton1.Margin = new System.Windows.Forms.Padding(2);
-            this.clsAltoButton1.Name = "clsAltoButton1";
-            this.clsAltoButton1.Radius = 10;
-            this.clsAltoButton1.Size = new System.Drawing.Size(84, 24);
-            this.clsAltoButton1.Stroke = false;
-            this.clsAltoButton1.StrokeColor = System.Drawing.Color.Gray;
-            this.clsAltoButton1.TabIndex = 23;
-            this.clsAltoButton1.Text = "change";
-            this.clsAltoButton1.Transparency = false;
-            this.clsAltoButton1.Click += new System.EventHandler(this.clsAltoButton1_Click);
+            this.btnChange.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.btnChange.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnChange.BackColor = System.Drawing.Color.Transparent;
+            this.btnChange.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnChange.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
+            this.btnChange.ForeColor = System.Drawing.Color.White;
+            this.btnChange.Inactive1 = System.Drawing.Color.DarkSlateBlue;
+            this.btnChange.Inactive2 = System.Drawing.Color.DarkSlateBlue;
+            this.btnChange.Location = new System.Drawing.Point(14, 365);
+            this.btnChange.Margin = new System.Windows.Forms.Padding(2);
+            this.btnChange.Name = "btnChange";
+            this.btnChange.Radius = 10;
+            this.btnChange.Size = new System.Drawing.Size(84, 24);
+            this.btnChange.Stroke = false;
+            this.btnChange.StrokeColor = System.Drawing.Color.Gray;
+            this.btnChange.TabIndex = 23;
+            this.btnChange.Text = "change";
+            this.btnChange.Transparency = false;
+            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
             // 
             // FrmRequisition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 450);
-            this.Controls.Add(this.clsAltoButton1);
+            this.ClientSize = new System.Drawing.Size(901, 450);
+            this.Controls.Add(this.btnChange);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.txtNote);
             this.Controls.Add(this.lblNote);
@@ -225,7 +225,7 @@
             this.Controls.SetChildIndex(this.lblNote, 0);
             this.Controls.SetChildIndex(this.txtNote, 0);
             this.Controls.SetChildIndex(this.textBox1, 0);
-            this.Controls.SetChildIndex(this.clsAltoButton1, 0);
+            this.Controls.SetChildIndex(this.btnChange, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -246,6 +246,6 @@
         private System.Windows.Forms.Label lblNote;
         private System.Windows.Forms.TextBox txtNote;
         private System.Windows.Forms.TextBox textBox1;
-        private ClsAltoButton clsAltoButton1;
+        private ClsAltoButton btnChange;
     }
 }

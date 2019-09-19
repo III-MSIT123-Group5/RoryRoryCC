@@ -49,26 +49,30 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 85);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(776, 225);
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(776, 203);
             this.dataGridView1.TabIndex = 45;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // comboBox4
             // 
             this.comboBox4.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(399, 373);
+            this.comboBox4.Location = new System.Drawing.Point(399, 346);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(206, 30);
             this.comboBox4.TabIndex = 55;
+            this.comboBox4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox4_MouseClick);
             // 
             // comboBox3
             // 
             this.comboBox3.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(399, 331);
+            this.comboBox3.Location = new System.Drawing.Point(399, 304);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(206, 30);
             this.comboBox3.TabIndex = 54;
+            this.comboBox3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox3_MouseClick);
             // 
             // comboBox2
             // 
@@ -77,7 +81,7 @@
             this.comboBox2.Items.AddRange(new object[] {
             "上午",
             "下午"});
-            this.comboBox2.Location = new System.Drawing.Point(312, 373);
+            this.comboBox2.Location = new System.Drawing.Point(312, 346);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(69, 30);
             this.comboBox2.TabIndex = 53;
@@ -89,7 +93,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "上午",
             "下午"});
-            this.comboBox1.Location = new System.Drawing.Point(312, 331);
+            this.comboBox1.Location = new System.Drawing.Point(312, 304);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(69, 30);
             this.comboBox1.TabIndex = 52;
@@ -97,7 +101,7 @@
             // dateTimePicker2
             // 
             this.dateTimePicker2.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dateTimePicker2.Location = new System.Drawing.Point(104, 373);
+            this.dateTimePicker2.Location = new System.Drawing.Point(104, 346);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(187, 30);
             this.dateTimePicker2.TabIndex = 50;
@@ -112,20 +116,21 @@
             this.clsAltoButton1.ForeColor = System.Drawing.Color.Black;
             this.clsAltoButton1.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.clsAltoButton1.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.clsAltoButton1.Location = new System.Drawing.Point(626, 331);
+            this.clsAltoButton1.Location = new System.Drawing.Point(626, 304);
             this.clsAltoButton1.Name = "clsAltoButton1";
             this.clsAltoButton1.Radius = 10;
             this.clsAltoButton1.Size = new System.Drawing.Size(149, 71);
             this.clsAltoButton1.Stroke = false;
             this.clsAltoButton1.StrokeColor = System.Drawing.Color.Gray;
             this.clsAltoButton1.TabIndex = 48;
-            this.clsAltoButton1.Text = "儲存";
+            this.clsAltoButton1.Text = "儲存變更";
             this.clsAltoButton1.Transparency = false;
+            this.clsAltoButton1.Click += new System.EventHandler(this.clsAltoButton1_Click);
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(104, 331);
+            this.dateTimePicker1.Location = new System.Drawing.Point(104, 304);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(187, 30);
             this.dateTimePicker1.TabIndex = 47;
@@ -134,7 +139,7 @@
             // 
             this.richTextBox1.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.richTextBox1.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.richTextBox1.Location = new System.Drawing.Point(12, 410);
+            this.richTextBox1.Location = new System.Drawing.Point(12, 383);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(593, 33);
             this.richTextBox1.TabIndex = 46;
@@ -145,7 +150,7 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label5.Location = new System.Drawing.Point(8, 376);
+            this.label5.Location = new System.Drawing.Point(8, 349);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(90, 22);
             this.label5.TabIndex = 51;
@@ -156,7 +161,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(8, 334);
+            this.label3.Location = new System.Drawing.Point(8, 307);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 22);
             this.label3.TabIndex = 49;
@@ -172,7 +177,7 @@
             this.clsAltoButton2.ForeColor = System.Drawing.Color.Black;
             this.clsAltoButton2.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.clsAltoButton2.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.clsAltoButton2.Location = new System.Drawing.Point(626, 410);
+            this.clsAltoButton2.Location = new System.Drawing.Point(626, 383);
             this.clsAltoButton2.Name = "clsAltoButton2";
             this.clsAltoButton2.Radius = 10;
             this.clsAltoButton2.Size = new System.Drawing.Size(149, 34);

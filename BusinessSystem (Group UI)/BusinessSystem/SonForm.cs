@@ -53,4 +53,4 @@ namespace BusinessSystem
             //    pictureBox2.ImageLocation = photo;
         }
     }
-}
+    }

@@ -30,6 +30,28 @@ namespace BusinessSystem.ReportTimeSystem
 
         BusinessDataBaseEntities dbcontext = new BusinessDataBaseEntities();
 
+        public class data
+        {
+            public int 報表編號 { get; set; }
+            public string 員工名稱 { get; set; }
+            public DateTime 申請時間 { get; set; }
+            public string 申請事件 { get; set; }
+            public string 備註 { get; set; }
+
+        }
+
+
+        List<data> listcatalog = null;
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            //foreach (var q in listcatalog)
+            //{
+            //    var w = dbcontext.ReportTimeSystems( =>FormMainRTS.)
+            //}
+                    
+        }
+
+
         private void FormMainRTS_Load(object sender, EventArgs e)
         {
 
@@ -39,20 +61,20 @@ namespace BusinessSystem.ReportTimeSystem
                     join eve in dbcontext.Events
                     on RTS.EventID equals eve.EventID
                     where RTS.Discontinue == true
-                    select RTS;
-            //select new
-            //{
-            //    報表編號 = RTS.ReportID,
-            //    員工名稱 = emp.EmployeeName,
-            //    申請時間 = RTS.ApplyDateTime,
-            //    申請事件 = eve.EventName,
-            //    備註 = RTS.Note
-            //};
+                    select new data
+                    {
+                        報表編號 = RTS.ReportID,
+                        員工名稱 = emp.EmployeeName,
+                        申請時間 = RTS.ApplyDateTime,
+                        申請事件 = eve.EventName,
+                        備註 = RTS.Note
+                    };
 
-
-            this.dataGridView1.DataSource = q.ToList();
-            //dataGridView1.Columns[0].ReadOnly = true;
-            //dataGridView1
+            listcatalog = q.ToList();
+            
+            this.dataGridView1.DataSource = null;
+            this.dataGridView1.DataSource = listcatalog;
+            
 
 
         }
@@ -71,8 +93,6 @@ namespace BusinessSystem.ReportTimeSystem
             
         }
 
-
-       
         
     }
 }

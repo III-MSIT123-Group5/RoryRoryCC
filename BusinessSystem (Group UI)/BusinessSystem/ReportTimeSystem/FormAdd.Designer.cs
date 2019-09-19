@@ -82,7 +82,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(30, 162);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(347, 243);
+            this.richTextBox1.Size = new System.Drawing.Size(543, 174);
             this.richTextBox1.TabIndex = 36;
             this.richTextBox1.Text = "";
             // 
