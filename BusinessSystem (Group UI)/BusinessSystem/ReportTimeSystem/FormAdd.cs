@@ -57,10 +57,7 @@ namespace BusinessSystem.ReportTimeSystem
         }
 
 
-
-
-
-
+       
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
 
@@ -68,7 +65,7 @@ namespace BusinessSystem.ReportTimeSystem
                 new BusinessSystemDBEntityModel.ReportTimeSystem
                 {
 
-                    employeeID =1001 ,
+                    employeeID =FindID(label3.Text) ,
                     ApplyDateTime = DateTime.Now,
                     EventHours = double.Parse(comboBox2.Text),
                     EventID = FindID(comboBox1.Text),
