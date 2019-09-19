@@ -14,7 +14,7 @@ namespace BusinessSystemDBEntityModel
     
     public partial class CompanyVehicleHistory
     {
-        public long VehicleHistoryID { get; set; }
+        public int VehicleHistoryID { get; set; }
         public string LicenseNumber { get; set; }
         public Nullable<System.DateTime> StartDateTime { get; set; }
         public Nullable<System.DateTime> EndDateTime { get; set; }

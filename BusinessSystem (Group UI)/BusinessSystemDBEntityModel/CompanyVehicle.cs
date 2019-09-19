@@ -14,6 +14,12 @@ namespace BusinessSystemDBEntityModel
     
     public partial class CompanyVehicle
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CompanyVehicle()
+        {
+            this.CompanyVehicleHistories = new HashSet<CompanyVehicleHistory>();
+        }
+    
         public string LicenseNumber { get; set; }
         public int VehicleYear { get; set; }
         public System.DateTime PurchaseDate { get; set; }
@@ -23,7 +29,8 @@ namespace BusinessSystemDBEntityModel
         public int officeID { get; set; }
         public byte[] VehiclePhoto { get; set; }
     
-        public virtual CompanyVehicleHistory CompanyVehicleHistory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CompanyVehicleHistory> CompanyVehicleHistories { get; set; }
         public virtual Office Office { get; set; }
     }
 }

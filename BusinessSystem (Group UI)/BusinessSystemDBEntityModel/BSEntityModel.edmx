@@ -66,14 +66,14 @@
         </EntityType>
         <EntityType Name="CompanyVehicleHistory">
           <Key>
-            <PropertyRef Name="LicenseNumber" />
+            <PropertyRef Name="VehicleHistoryID" />
           </Key>
-          <Property Name="VehicleHistoryID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleHistoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LicenseNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="StartDateTime" Type="datetime" />
           <Property Name="EndDateTime" Type="datetime" />
           <Property Name="employeeID" Type="int" />
-          <Property Name="purpose" Type="nvarchar" MaxLength="50" />
+          <Property Name="purpose" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -87,18 +87,18 @@
             <PropertyRef Name="employeeID" />
           </Key>
           <Property Name="employeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="employee_name" Type="nvarchar" MaxLength="50" />
-          <Property Name="gender" Type="nvarchar" MaxLength="10" />
-          <Property Name="birth" Type="date" />
-          <Property Name="hire_date" Type="datetime" />
-          <Property Name="account" Type="nvarchar" MaxLength="12" />
-          <Property Name="officeID" Type="int" />
-          <Property Name="departmentID" Type="int" />
-          <Property Name="positionID" Type="int" />
-          <Property Name="managerID" Type="int" />
-          <Property Name="employed" Type="bit" />
-          <Property Name="groupID" Type="int" />
-          <Property Name="photo" Type="nvarchar(max)" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="Birth" Type="date" />
+          <Property Name="HireDate" Type="datetime" />
+          <Property Name="Account" Type="nvarchar" MaxLength="12" />
+          <Property Name="OfficeID" Type="int" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="PositionID" Type="int" />
+          <Property Name="ManagerID" Type="int" />
+          <Property Name="Employed" Type="bit" />
+          <Property Name="GroupID" Type="int" />
+          <Property Name="Photo" Type="nvarchar(max)" />
           <Property Name="LeaveLessThreeDaysID" Type="int" />
           <Property Name="LeaveOverThreeDaysID" Type="int" />
           <Property Name="ApprovalLessTenKID" Type="int" />
@@ -121,6 +121,7 @@
           <Property Name="EmployeeID" Type="int" Nullable="false" />
           <Property Name="UploadDate" Type="datetime" Nullable="false" />
           <Property Name="Data" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Extension" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Group">
           <Key>
@@ -368,7 +369,7 @@
         <Association Name="FK_Business Trip_Employee" />-->
         <Association Name="FK_Company vehicle history_Company vehicle">
           <End Role="CompanyVehicle" Type="Self.CompanyVehicle" Multiplicity="1" />
-          <End Role="CompanyVehicleHistory" Type="Self.CompanyVehicleHistory" Multiplicity="0..1" />
+          <End Role="CompanyVehicleHistory" Type="Self.CompanyVehicleHistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CompanyVehicle">
               <PropertyRef Name="LicenseNumber" />
@@ -410,7 +411,7 @@
               <PropertyRef Name="account" />
             </Principal>
             <Dependent Role="Employee">
-              <PropertyRef Name="account" />
+              <PropertyRef Name="Account" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -422,7 +423,7 @@
               <PropertyRef Name="departmentID" />
             </Principal>
             <Dependent Role="Employee">
-              <PropertyRef Name="departmentID" />
+              <PropertyRef Name="DepartmentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -434,7 +435,7 @@
               <PropertyRef Name="employeeID" />
             </Principal>
             <Dependent Role="Employee1">
-              <PropertyRef Name="managerID" />
+              <PropertyRef Name="ManagerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -446,7 +447,7 @@
               <PropertyRef Name="GroupID" />
             </Principal>
             <Dependent Role="Employee">
-              <PropertyRef Name="groupID" />
+              <PropertyRef Name="GroupID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -458,7 +459,7 @@
               <PropertyRef Name="officeID" />
             </Principal>
             <Dependent Role="Employee">
-              <PropertyRef Name="officeID" />
+              <PropertyRef Name="OfficeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -470,7 +471,7 @@
               <PropertyRef Name="positionID" />
             </Principal>
             <Dependent Role="Employee">
-              <PropertyRef Name="positionID" />
+              <PropertyRef Name="PositionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1181,19 +1182,19 @@
           <Property Name="MaxPassenger" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="officeID" Type="Int32" Nullable="false" />
           <Property Name="VehiclePhoto" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="CompanyVehicleHistory" Relationship="BusinessDataBaseModel.FK_Company_vehicle_history_Company_vehicle" FromRole="CompanyVehicle" ToRole="CompanyVehicleHistory" />
+          <NavigationProperty Name="CompanyVehicleHistories" Relationship="BusinessDataBaseModel.FK_Company_vehicle_history_Company_vehicle" FromRole="CompanyVehicle" ToRole="CompanyVehicleHistory" />
           <NavigationProperty Name="Office" Relationship="BusinessDataBaseModel.FK_Company_vehicle_Office" FromRole="CompanyVehicle" ToRole="Office" />
         </EntityType>
         <EntityType Name="CompanyVehicleHistory">
           <Key>
-            <PropertyRef Name="LicenseNumber" />
+            <PropertyRef Name="VehicleHistoryID" />
           </Key>
-          <Property Name="VehicleHistoryID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleHistoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LicenseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="StartDateTime" Type="DateTime" Precision="3" />
           <Property Name="EndDateTime" Type="DateTime" Precision="3" />
           <Property Name="employeeID" Type="Int32" />
-          <Property Name="purpose" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="purpose" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CompanyVehicle" Relationship="BusinessDataBaseModel.FK_Company_vehicle_history_Company_vehicle" FromRole="CompanyVehicleHistory" ToRole="CompanyVehicle" />
           <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_Company_vehicle_history_Employee" FromRole="CompanyVehicleHistory" ToRole="Employee" />
         </EntityType>
@@ -1213,18 +1214,18 @@
             <PropertyRef Name="employeeID" />
           </Key>
           <Property Name="employeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="employee_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="birth" Type="DateTime" Precision="0" />
-          <Property Name="hire_date" Type="DateTime" Precision="3" />
-          <Property Name="account" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
-          <Property Name="officeID" Type="Int32" />
-          <Property Name="departmentID" Type="Int32" />
-          <Property Name="positionID" Type="Int32" />
-          <Property Name="managerID" Type="Int32" />
-          <Property Name="employed" Type="Boolean" />
-          <Property Name="groupID" Type="Int32" />
-          <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Birth" Type="DateTime" Precision="0" />
+          <Property Name="HireDate" Type="DateTime" Precision="3" />
+          <Property Name="Account" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeID" Type="Int32" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="PositionID" Type="Int32" />
+          <Property Name="ManagerID" Type="Int32" />
+          <Property Name="Employed" Type="Boolean" />
+          <Property Name="GroupID" Type="Int32" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="LeaveLessThreeDaysID" Type="Int32" />
           <Property Name="LeaveOverThreeDaysID" Type="Int32" />
           <Property Name="ApprovalLessTenKID" Type="Int32" />
@@ -1265,6 +1266,7 @@
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
           <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Data" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Extension" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_File_Employee" FromRole="File" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Group">
@@ -1451,7 +1453,7 @@
               <PropertyRef Name="account1" />
             </Principal>
             <Dependent Role="Employee">
-              <PropertyRef Name="account" />
+              <PropertyRef Name="Account" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1517,7 +1519,7 @@
         </Association>
         <Association Name="FK_Company_vehicle_history_Company_vehicle">
           <End Type="BusinessDataBaseModel.CompanyVehicle" Role="CompanyVehicle" Multiplicity="1" />
-          <End Type="BusinessDataBaseModel.CompanyVehicleHistory" Role="CompanyVehicleHistory" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.CompanyVehicleHistory" Role="CompanyVehicleHistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CompanyVehicle">
               <PropertyRef Name="LicenseNumber" />
@@ -1559,7 +1561,7 @@
               <PropertyRef Name="departmentID" />
             </Principal>
             <Dependent Role="Employee">
-              <PropertyRef Name="departmentID" />
+              <PropertyRef Name="DepartmentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1595,7 +1597,7 @@
               <PropertyRef Name="employeeID" />
             </Principal>
             <Dependent Role="Employee1">
-              <PropertyRef Name="managerID" />
+              <PropertyRef Name="ManagerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1607,7 +1609,7 @@
               <PropertyRef Name="GroupID" />
             </Principal>
             <Dependent Role="Employee">
-              <PropertyRef Name="groupID" />
+              <PropertyRef Name="GroupID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1619,7 +1621,7 @@
               <PropertyRef Name="officeID" />
             </Principal>
             <Dependent Role="Employee">
-              <PropertyRef Name="officeID" />
+              <PropertyRef Name="OfficeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1631,7 +1633,7 @@
               <PropertyRef Name="positionID" />
             </Principal>
             <Dependent Role="Employee">
-              <PropertyRef Name="positionID" />
+              <PropertyRef Name="PositionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1917,18 +1919,18 @@
                 <ScalarProperty Name="ApprovalLessTenKID" ColumnName="ApprovalLessTenKID" />
                 <ScalarProperty Name="LeaveOverThreeDaysID" ColumnName="LeaveOverThreeDaysID" />
                 <ScalarProperty Name="LeaveLessThreeDaysID" ColumnName="LeaveLessThreeDaysID" />
-                <ScalarProperty Name="photo" ColumnName="photo" />
-                <ScalarProperty Name="groupID" ColumnName="groupID" />
-                <ScalarProperty Name="employed" ColumnName="employed" />
-                <ScalarProperty Name="managerID" ColumnName="managerID" />
-                <ScalarProperty Name="positionID" ColumnName="positionID" />
-                <ScalarProperty Name="departmentID" ColumnName="departmentID" />
-                <ScalarProperty Name="officeID" ColumnName="officeID" />
-                <ScalarProperty Name="account" ColumnName="account" />
-                <ScalarProperty Name="hire_date" ColumnName="hire_date" />
-                <ScalarProperty Name="birth" ColumnName="birth" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="employee_name" ColumnName="employee_name" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="Employed" ColumnName="Employed" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="Birth" ColumnName="Birth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
                 <ScalarProperty Name="employeeID" ColumnName="employeeID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1944,6 +1946,7 @@
           <EntitySetMapping Name="Files">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.File">
               <MappingFragment StoreEntitySet="File">
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
                 <ScalarProperty Name="Data" ColumnName="Data" />
                 <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />

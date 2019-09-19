@@ -20,6 +20,7 @@ namespace BusinessSystemDBEntityModel
         public int EmployeeID { get; set; }
         public System.DateTime UploadDate { get; set; }
         public byte[] Data { get; set; }
+        public string Extension { get; set; }
     
         public virtual Employee Employee { get; set; }
     }

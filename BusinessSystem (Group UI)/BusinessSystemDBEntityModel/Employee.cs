@@ -31,18 +31,18 @@ namespace BusinessSystemDBEntityModel
         }
     
         public int employeeID { get; set; }
-        public string employee_name { get; set; }
-        public string gender { get; set; }
-        public Nullable<System.DateTime> birth { get; set; }
-        public Nullable<System.DateTime> hire_date { get; set; }
-        public string account { get; set; }
-        public Nullable<int> officeID { get; set; }
-        public Nullable<int> departmentID { get; set; }
-        public Nullable<int> positionID { get; set; }
-        public Nullable<int> managerID { get; set; }
-        public Nullable<bool> employed { get; set; }
-        public Nullable<int> groupID { get; set; }
-        public string photo { get; set; }
+        public string EmployeeName { get; set; }
+        public string Gender { get; set; }
+        public Nullable<System.DateTime> Birth { get; set; }
+        public Nullable<System.DateTime> HireDate { get; set; }
+        public string Account { get; set; }
+        public Nullable<int> OfficeID { get; set; }
+        public Nullable<int> DepartmentID { get; set; }
+        public Nullable<int> PositionID { get; set; }
+        public Nullable<int> ManagerID { get; set; }
+        public Nullable<bool> Employed { get; set; }
+        public Nullable<int> GroupID { get; set; }
+        public string Photo { get; set; }
         public Nullable<int> LeaveLessThreeDaysID { get; set; }
         public Nullable<int> LeaveOverThreeDaysID { get; set; }
         public Nullable<int> ApprovalLessTenKID { get; set; }
