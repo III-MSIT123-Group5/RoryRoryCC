@@ -39,7 +39,6 @@
             this.mainControls7 = new MainControls.MainControls();
             this.rectangleShape_date = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.label4 = new System.Windows.Forms.Label();
-            this.mainControls6 = new MainControls.MainControls();
             this.panel1 = new System.Windows.Forms.Panel();
             this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.panel1.SuspendLayout();
@@ -182,19 +181,6 @@
             this.label4.TabIndex = 14;
             this.label4.Text = "日期";
             // 
-            // mainControls6
-            // 
-            this.mainControls6.BackgroundColor = System.Drawing.Color.Empty;
-            this.mainControls6.ButtonColor = System.Drawing.Color.SteelBlue;
-            this.mainControls6.image = global::BusinessSystem.Properties.Resources.neutral_dicision_128;
-            this.mainControls6.Location = new System.Drawing.Point(625, 4);
-            this.mainControls6.Margin = new System.Windows.Forms.Padding(2);
-            this.mainControls6.Name = "mainControls6";
-            this.mainControls6.Size = new System.Drawing.Size(200, 200);
-            this.mainControls6.TabIndex = 45;
-            this.mainControls6.Title = "行事曆";
-            this.mainControls6.TitleColor = System.Drawing.Color.White;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.mainControls4);
@@ -202,7 +188,6 @@
             this.panel1.Controls.Add(this.mainControls3);
             this.panel1.Controls.Add(this.mainControls2);
             this.panel1.Controls.Add(this.mainControls8);
-            this.panel1.Controls.Add(this.mainControls6);
             this.panel1.Controls.Add(this.mainControls5);
             this.panel1.Controls.Add(this.mainControls9);
             this.panel1.Controls.Add(this.mainControls7);
@@ -254,7 +239,6 @@
         private MainControls.MainControls mainControls4;
         private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape_date;
         private System.Windows.Forms.Label label4;
-        private MainControls.MainControls mainControls6;
         private System.Windows.Forms.Panel panel1;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
     }

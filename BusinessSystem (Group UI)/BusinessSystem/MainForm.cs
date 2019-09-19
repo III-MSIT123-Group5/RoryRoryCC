@@ -53,8 +53,6 @@ namespace BusinessSystem
             formshow.ShowDialog();
         }
 
-        
-
         private void mainControls9_MouseEnter(object sender, EventArgs e)
         {
             this.mainControls9.ButtonColor = Color.Green;
