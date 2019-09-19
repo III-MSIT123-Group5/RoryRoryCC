@@ -148,110 +148,110 @@ namespace BusinessSystem
             dt.Columns.Add(new DataColumn("張貼時間", typeof(DateTime)));
 
 
-            this.dataGridView1.DataSource = dt;
+
 
 
 
             dbContext = new BusinessDataBaseEntities();
 
-            var q = from b in dbContext.BulletinBoards.AsEnumerable()
-                    join d in dbContext.Departments.AsEnumerable()
-                    on b.DepartmentID equals d.departmentID
-                    join g in dbContext.Groups.AsEnumerable()
-                    on b.GroupID equals g.GroupID
-                    join em in dbContext.Employees.AsEnumerable()
-                    on b.EmployeeID equals em.employeeID
-                    where DepartmentArr.Contains(d.name)
-                    select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.employee_name, 留言內容 = b.Content, 張貼時間 = b.PostTime };
+            //var q = from b in dbContext.BulletinBoards.AsEnumerable()
+            //        join d in dbContext.Departments.AsEnumerable()
+            //        on b.DepartmentID equals d.departmentID
+            //        join g in dbContext.Groups.AsEnumerable()
+            //        on b.GroupID equals g.GroupID
+            //        join em in dbContext.Employees.AsEnumerable()
+            //        on b.EmployeeID equals em.employeeID
+            //        where DepartmentArr.Contains(d.name)
+            //        select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.employee_name, 留言內容 = b.Content, 張貼時間 = b.PostTime };
 
-            q.ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
+            //q.ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
 
-
-
+            this.dataGridView1.DataSource = null;
+            this.dataGridView1.DataSource = dt;
             dgvFormat(dataGridView1);
 
-            //if (CBDepartment.CheckedIndices.Contains(0))
-            //{
-            //    var q = from b in dbContext.BulletinBoards.AsEnumerable()
-            //            join d in dbContext.Departments.AsEnumerable()
-            //            on b.DepartmentID equals d.departmentID
-            //            join g in dbContext.Groups.AsEnumerable()
-            //            on b.GroupID equals g.GroupID
-            //            join em in dbContext.Employees.AsEnumerable()
-            //            on b.EmployeeID equals em.employeeID
-            //            where b.DepartmentID == 2
-            //            select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.employee_name, 留言內容 = b.Content, 張貼時間 = b.PostTime };
+            if (CBDepartment.CheckedIndices.Contains(0))
+            {
+                var q = from b in dbContext.BulletinBoards.AsEnumerable()
+                        join d in dbContext.Departments.AsEnumerable()
+                        on b.DepartmentID equals d.departmentID
+                        join g in dbContext.Groups.AsEnumerable()
+                        on b.GroupID equals g.GroupID
+                        join em in dbContext.Employees.AsEnumerable()
+                        on b.EmployeeID equals em.employeeID
+                        where b.DepartmentID == 2
+                        select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.employee_name, 留言內容 = b.Content, 張貼時間 = b.PostTime };
 
-            //   q.ToList().ForEach(q1=>dt.Rows.Add(q1.部門,q1.組別,q1.姓名,q1.留言內容,q1.張貼時間));
+                q.ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
 
-            //}
-
-
-            //if (CBDepartment.CheckedIndices.Contains(1))
-            //{
-            //    var q = from b in dbContext.BulletinBoards.AsEnumerable()
-            //            join d in dbContext.Departments.AsEnumerable()
-            //            on b.DepartmentID equals d.departmentID
-            //            join g in dbContext.Groups.AsEnumerable()
-            //            on b.GroupID equals g.GroupID
-            //            join em in dbContext.Employees.AsEnumerable()
-            //            on b.EmployeeID equals em.employeeID
-            //            where b.DepartmentID == 3
-            //            select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.employee_name, 留言內容 = b.Content, 張貼時間 = b.PostTime };
-
-            //    q.ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
-
-            //}
-
-            //if (CBDepartment.CheckedIndices.Contains(2))
-            //{
-            //    var q = from b in dbContext.BulletinBoards.AsEnumerable()
-            //            join d in dbContext.Departments.AsEnumerable()
-            //            on b.DepartmentID equals d.departmentID
-            //            join g in dbContext.Groups.AsEnumerable()
-            //            on b.GroupID equals g.GroupID
-            //            join em in dbContext.Employees.AsEnumerable()
-            //            on b.EmployeeID equals em.employeeID
-            //            where b.DepartmentID == 4
-            //            select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.employee_name, 留言內容 = b.Content, 張貼時間 = b.PostTime };
-
-            //    q.ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
-
-            //}
+            }
 
 
-            //if (CBDepartment.CheckedIndices.Contains(3))
-            //{
-            //    var q = from b in dbContext.BulletinBoards.AsEnumerable()
-            //            join d in dbContext.Departments.AsEnumerable()
-            //            on b.DepartmentID equals d.departmentID
-            //            join g in dbContext.Groups.AsEnumerable()
-            //            on b.GroupID equals g.GroupID
-            //            join em in dbContext.Employees.AsEnumerable()
-            //            on b.EmployeeID equals em.employeeID
-            //            where b.DepartmentID == 5
-            //            select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.employee_name, 留言內容 = b.Content, 張貼時間 = b.PostTime };
+            if (CBDepartment.CheckedIndices.Contains(1))
+            {
+                var q = from b in dbContext.BulletinBoards.AsEnumerable()
+                        join d in dbContext.Departments.AsEnumerable()
+                        on b.DepartmentID equals d.departmentID
+                        join g in dbContext.Groups.AsEnumerable()
+                        on b.GroupID equals g.GroupID
+                        join em in dbContext.Employees.AsEnumerable()
+                        on b.EmployeeID equals em.employeeID
+                        where b.DepartmentID == 3
+                        select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.employee_name, 留言內容 = b.Content, 張貼時間 = b.PostTime };
 
-            //    q.ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
+                q.ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
 
-            //}
+            }
+
+            if (CBDepartment.CheckedIndices.Contains(2))
+            {
+                var q = from b in dbContext.BulletinBoards.AsEnumerable()
+                        join d in dbContext.Departments.AsEnumerable()
+                        on b.DepartmentID equals d.departmentID
+                        join g in dbContext.Groups.AsEnumerable()
+                        on b.GroupID equals g.GroupID
+                        join em in dbContext.Employees.AsEnumerable()
+                        on b.EmployeeID equals em.employeeID
+                        where b.DepartmentID == 4
+                        select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.employee_name, 留言內容 = b.Content, 張貼時間 = b.PostTime };
+
+                q.ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
+
+            }
 
 
-            //if (CBDepartment.CheckedIndices.Contains(4))
-            //{
-            //    var q = from b in dbContext.BulletinBoards.AsEnumerable()
-            //            join d in dbContext.Departments.AsEnumerable()
-            //            on b.DepartmentID equals d.departmentID
-            //            join g in dbContext.Groups.AsEnumerable()
-            //            on b.GroupID equals g.GroupID
-            //            join em in dbContext.Employees.AsEnumerable()
-            //            on b.EmployeeID equals em.employeeID
-            //            where b.DepartmentID == 6
-            //            select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.employee_name, 留言內容 = b.Content, 張貼時間 = b.PostTime };
+            if (CBDepartment.CheckedIndices.Contains(3))
+            {
+                var q = from b in dbContext.BulletinBoards.AsEnumerable()
+                        join d in dbContext.Departments.AsEnumerable()
+                        on b.DepartmentID equals d.departmentID
+                        join g in dbContext.Groups.AsEnumerable()
+                        on b.GroupID equals g.GroupID
+                        join em in dbContext.Employees.AsEnumerable()
+                        on b.EmployeeID equals em.employeeID
+                        where b.DepartmentID == 5
+                        select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.employee_name, 留言內容 = b.Content, 張貼時間 = b.PostTime };
 
-            //    q.ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
+                q.ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
 
-            //}
+            }
+
+
+            if (CBDepartment.CheckedIndices.Contains(4))
+            {
+                var q = from b in dbContext.BulletinBoards.AsEnumerable()
+                        join d in dbContext.Departments.AsEnumerable()
+                        on b.DepartmentID equals d.departmentID
+                        join g in dbContext.Groups.AsEnumerable()
+                        on b.GroupID equals g.GroupID
+                        join em in dbContext.Employees.AsEnumerable()
+                        on b.EmployeeID equals em.employeeID
+                        where b.DepartmentID == 6
+                        select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.employee_name, 留言內容 = b.Content, 張貼時間 = b.PostTime };
+
+                q.ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
+
+            }
 
 
 
