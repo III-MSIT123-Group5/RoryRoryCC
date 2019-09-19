@@ -31,7 +31,6 @@
             this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.rectangleShape_messange = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.rectangleShape_date = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.label4 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.mainControls4 = new MainControls.MainControls();
@@ -43,6 +42,7 @@
             this.mainControls5 = new MainControls.MainControls();
             this.mainControls9 = new MainControls.MainControls();
             this.mainControls7 = new MainControls.MainControls();
+            this.rectangleShape_date = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.SuspendLayout();
             // 
             // shapeContainer1
@@ -66,16 +66,6 @@
             this.rectangleShape_messange.Location = new System.Drawing.Point(19, 271);
             this.rectangleShape_messange.Name = "rectangleShape_messange";
             this.rectangleShape_messange.Size = new System.Drawing.Size(410, 200);
-            // 
-            // rectangleShape_date
-            // 
-            this.rectangleShape_date.BackColor = System.Drawing.Color.Gray;
-            this.rectangleShape_date.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
-            this.rectangleShape_date.BorderColor = System.Drawing.Color.Transparent;
-            this.rectangleShape_date.CornerRadius = 10;
-            this.rectangleShape_date.Location = new System.Drawing.Point(15, 62);
-            this.rectangleShape_date.Name = "rectangleShape_date";
-            this.rectangleShape_date.Size = new System.Drawing.Size(410, 200);
             // 
             // label4
             // 
@@ -207,7 +197,10 @@
             this.mainControls9.TabIndex = 43;
             this.mainControls9.Title = "請購系統";
             this.mainControls9.TitleColor = System.Drawing.Color.White;
+            this.mainControls9.Load += new System.EventHandler(this.mainControls9_Load);
             this.mainControls9.Click += new System.EventHandler(this.mainControls9_Click);
+            this.mainControls9.MouseEnter += new System.EventHandler(this.mainControls9_MouseEnter);
+            this.mainControls9.MouseLeave += new System.EventHandler(this.mainControls9_MouseLeave);
             // 
             // mainControls7
             // 
@@ -222,10 +215,21 @@
             this.mainControls7.Title = "文件上傳";
             this.mainControls7.TitleColor = System.Drawing.Color.Empty;
             // 
+            // rectangleShape_date
+            // 
+            this.rectangleShape_date.BackColor = System.Drawing.Color.Gray;
+            this.rectangleShape_date.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+            this.rectangleShape_date.BorderColor = System.Drawing.Color.Transparent;
+            this.rectangleShape_date.CornerRadius = 10;
+            this.rectangleShape_date.Location = new System.Drawing.Point(15, 62);
+            this.rectangleShape_date.Name = "rectangleShape_date";
+            this.rectangleShape_date.Size = new System.Drawing.Size(410, 200);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(892, 921);
             this.Controls.Add(this.mainControls4);
             this.Controls.Add(this.mainControls1);
@@ -252,7 +256,6 @@
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label10;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape_date;
         private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape_messange;
         private MainControls.MainControls mainControls7;
         private MainControls.MainControls mainControls9;
@@ -263,5 +266,6 @@
         private MainControls.MainControls mainControls3;
         private MainControls.MainControls mainControls1;
         private MainControls.MainControls mainControls4;
+        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape_date;
     }
 }

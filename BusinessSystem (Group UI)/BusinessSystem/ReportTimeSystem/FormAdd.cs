@@ -19,9 +19,7 @@ namespace BusinessSystem.ReportTimeSystem
     public partial class FormAdd : SonForm
     {
         BusinessDataBaseEntities dbcontext = new BusinessDataBaseEntities();
-        BusinessSystemDBEntityModel.ReportTimeSystem rts = new BusinessSystemDBEntityModel.ReportTimeSystem();
-        BusinessSystemDBEntityModel.Event Event = new Event();
-
+       
         public FormAdd()
         {
             InitializeComponent();
@@ -58,9 +56,9 @@ namespace BusinessSystem.ReportTimeSystem
             dbcontext.ReportTimeSystems.Add(
                 new BusinessSystemDBEntityModel.ReportTimeSystem
                 {
-                    employeeID = 0,
+                    employeeID = 1001,
                     ApplyDateTime = DateTime.Now,
-                    EventHours = int.Parse(comboBox2.Text),
+                    EventHours = double.Parse(comboBox2.Text),
                     EventID = FindID(comboBox1.Text),
                     Note = richTextBox1.Text,
                     Discontinue = true
