@@ -40,6 +40,7 @@
             this.rectangleShape_date = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.mainControls6 = new MainControls.MainControls();
             this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -191,6 +192,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.mainControls6);
             this.panel1.Controls.Add(this.mainControls4);
             this.panel1.Controls.Add(this.mainControls1);
             this.panel1.Controls.Add(this.mainControls3);
@@ -206,6 +208,21 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(842, 623);
             this.panel1.TabIndex = 51;
+            // 
+            // mainControls6
+            // 
+            this.mainControls6.BackgroundColor = System.Drawing.Color.Empty;
+            this.mainControls6.ButtonColor = System.Drawing.Color.SteelBlue;
+            this.mainControls6.image = null;
+            this.mainControls6.ImageLocation = null;
+            this.mainControls6.Location = new System.Drawing.Point(626, 3);
+            this.mainControls6.Name = "mainControls6";
+            this.mainControls6.Size = new System.Drawing.Size(200, 200);
+            this.mainControls6.TabIndex = 52;
+            this.mainControls6.Title = "label";
+            this.mainControls6.TitleColor = System.Drawing.Color.White;
+            this.mainControls6.Click += new System.EventHandler(this.mainControls6_Click);
+            this.mainControls6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mainControls6_MouseClick);
             // 
             // shapeContainer2
             // 
@@ -249,5 +266,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel1;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
+        private MainControls.MainControls mainControls6;
     }
 }
