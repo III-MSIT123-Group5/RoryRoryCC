@@ -23,7 +23,7 @@ namespace BusinessSystem.CompanyCars
         //
         BusinessDataBaseEntities dbcontext = new BusinessDataBaseEntities();
         int i;
-        
+        string licence;
         bool bbool = true; 
         //
         //
@@ -200,6 +200,13 @@ namespace BusinessSystem.CompanyCars
                         OfficeID = a.officeID
                     };
             this.dataGridView1.DataSource = q.ToList();
+            var q1 = from a in this.dbcontext.CompanyVehicles
+                    where a.LicenseNumber == tthis.licNu
+                    select new
+                    {
+                        車牌號碼 = a.LicenseNumber,
+                    };
+            licence = q1.ToString();
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -268,21 +275,49 @@ namespace BusinessSystem.CompanyCars
         {
             mytime1();
             mytime2();
-            mypic();
-            
-                        //if (this.dateTimePicker1.Value < this.dateTimePicker2.Value)
-                        //{
-                        //    MessageBox.Show(((this.dateTimePicker2.Value- this.dateTimePicker1.Value).Hours ).ToString());
-                        //    MessageBox.Show(this.dateTimePicker1.Value.ToString());
-                        //    MessageBox.Show(this.dateTimePicker2.Value.ToString());
-                        //}
-                        
-           
-            
-            
-            
-            
-            
+
+            if (this.richTextBox1.Text != "" && this.comboBox3.Text != "" && this.comboBox4.Text != "" && this.dataGridView1.DataSource != null)
+            {
+                try
+                {
+                    var q = new CompanyVehicleHistory
+                    {
+                        LicenseNumber = licence,
+                        StartDateTime = this.dateTimePicker1.Value,
+                        EndDateTime = this.dateTimePicker2.Value,
+                        employeeID = 1001,
+                        purpose = this.richTextBox1.Text
+                    };
+                    dbcontext.CompanyVehicleHistories.Add(q);
+                    dbcontext.SaveChanges();
+                    MessageBox.Show("Succeed" + "\n" + "借車時數共 " + ((this.dateTimePicker2.Value - this.dateTimePicker1.Value).Hours).ToString() + "小時，\n請準時歸還!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("請正確操作", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+
+
+            //if (this.dateTimePicker1.Value < this.dateTimePicker2.Value)
+            //{
+            //    MessageBox.Show(((this.dateTimePicker2.Value- this.dateTimePicker1.Value).Hours ).ToString());
+            //    MessageBox.Show(this.dateTimePicker1.Value.ToString());
+            //    MessageBox.Show(this.dateTimePicker2.Value.ToString());
+            //}
+
+
+
+
+
+
+
         }
     }
 }
