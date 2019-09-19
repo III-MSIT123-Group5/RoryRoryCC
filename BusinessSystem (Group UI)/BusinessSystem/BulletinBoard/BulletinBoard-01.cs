@@ -35,7 +35,7 @@ namespace BusinessSystem
                     on b.GroupID equals g.GroupID
                     join em in dbContext.Employees
                     on b.EmployeeID equals em.employeeID
-                    select new { 部門 = d.name, 組別 = g.GroupName,姓名 = em.employee_name,留言內容 = b.Content, 張貼時間 = b.PostTime };
+                    select new { 部門 = d.name, 組別 = g.GroupName,姓名 = em.EmployeeName,留言內容 = b.Content, 張貼時間 = b.PostTime };
 
 
             dataGridView1.DataSource = q.ToList();
@@ -180,7 +180,7 @@ namespace BusinessSystem
                         join em in dbContext.Employees.AsEnumerable()
                         on b.EmployeeID equals em.employeeID
                         where b.DepartmentID == 2
-                        select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.employee_name, 留言內容 = b.Content, 張貼時間 = b.PostTime };
+                        select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.EmployeeName, 留言內容 = b.Content, 張貼時間 = b.PostTime };
 
                 q.ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
 
@@ -197,7 +197,7 @@ namespace BusinessSystem
                         join em in dbContext.Employees.AsEnumerable()
                         on b.EmployeeID equals em.employeeID
                         where b.DepartmentID == 3
-                        select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.employee_name, 留言內容 = b.Content, 張貼時間 = b.PostTime };
+                        select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.EmployeeName, 留言內容 = b.Content, 張貼時間 = b.PostTime };
 
                 q.ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
 
@@ -213,7 +213,7 @@ namespace BusinessSystem
                         join em in dbContext.Employees.AsEnumerable()
                         on b.EmployeeID equals em.employeeID
                         where b.DepartmentID == 4
-                        select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.employee_name, 留言內容 = b.Content, 張貼時間 = b.PostTime };
+                        select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.EmployeeName, 留言內容 = b.Content, 張貼時間 = b.PostTime };
 
                 q.ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
 
@@ -230,7 +230,7 @@ namespace BusinessSystem
                         join em in dbContext.Employees.AsEnumerable()
                         on b.EmployeeID equals em.employeeID
                         where b.DepartmentID == 5
-                        select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.employee_name, 留言內容 = b.Content, 張貼時間 = b.PostTime };
+                        select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.EmployeeName, 留言內容 = b.Content, 張貼時間 = b.PostTime };
 
                 q.ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
 
@@ -247,7 +247,7 @@ namespace BusinessSystem
                         join em in dbContext.Employees.AsEnumerable()
                         on b.EmployeeID equals em.employeeID
                         where b.DepartmentID == 6
-                        select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.employee_name, 留言內容 = b.Content, 張貼時間 = b.PostTime };
+                        select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.EmployeeName, 留言內容 = b.Content, 張貼時間 = b.PostTime };
 
                 q.ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
 
