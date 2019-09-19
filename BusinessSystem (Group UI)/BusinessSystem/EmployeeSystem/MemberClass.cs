@@ -10,26 +10,55 @@ namespace BusinessSystem.EmployeeSystem
     class MemberClass
     {
         BusinessDataBaseEntities dbcontext = new BusinessDataBaseEntities () ;
-        private string m_Account;
+        private string m_Account, m_EmployeeName;
         public string errorstring { get; private set; }
 
-        //public string Account
-        //{
-        //    get
-        //    {
+        public string Account        //Account屬性
+        {
+            get
+            {
+                return m_Account;
+            }
+            set
+            {   
+                if (this.checkAccount(value )==false )
+                {
+                    errorstring = "帳號已有,請輸入其他帳號";
+                }
+                else if (string.IsNullOrEmpty(value ))
+                {
+                    errorstring = "請輸入帳號";
+                }
+                else
+                {
+                    errorstring = null;
+                    m_Account = value;
+                }
+            }
+        }
 
-        //    }
-        //    set
-        //    {
-        //        this.m_Account = value;
-        //        if (this.checkAccount(this.m_Account))
-        //        {
+        public string EmployeeName
+        {
+            get
+            {
+                return m_EmployeeName;
+            }
+            set
+            {                
+                if (string.IsNullOrEmpty(value))
+                {
+                    errorstring = "請輸入帳號"; 
+                }
+                else
+                {
+                    errorstring = null;
+                    m_EmployeeName = value;
+                }
 
-        //        }
-        //    }
-        //}
+            }
+        }
 
-        bool checkAccount(string @account)    //方法：檢查帳號是否重覆 true:允許使用 false:重覆
+        private  bool checkAccount(string @account)    //方法：檢查帳號是否重覆 true:允許使用 false:重覆
         {
             var q = from ac in dbcontext.Employees
                     where ac.Account == @account

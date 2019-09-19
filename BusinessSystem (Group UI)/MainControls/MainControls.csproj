@@ -42,6 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmployeeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EmployeeControl.Designer.cs">
+      <DependentUpon>EmployeeControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainControls.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -57,6 +63,9 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="EmployeeControl.resx">
+      <DependentUpon>EmployeeControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainControls.resx">
       <DependentUpon>MainControls.cs</DependentUpon>
     </EmbeddedResource>

@@ -47,11 +47,11 @@
             this.clsAltoButton1.ForeColor = System.Drawing.Color.White;
             this.clsAltoButton1.Inactive1 = System.Drawing.Color.DarkSlateBlue;
             this.clsAltoButton1.Inactive2 = System.Drawing.Color.DarkSlateBlue;
-            this.clsAltoButton1.Location = new System.Drawing.Point(464, 350);
-            this.clsAltoButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.clsAltoButton1.Location = new System.Drawing.Point(522, 366);
+            this.clsAltoButton1.Margin = new System.Windows.Forms.Padding(2);
             this.clsAltoButton1.Name = "clsAltoButton1";
             this.clsAltoButton1.Radius = 10;
-            this.clsAltoButton1.Size = new System.Drawing.Size(109, 53);
+            this.clsAltoButton1.Size = new System.Drawing.Size(95, 42);
             this.clsAltoButton1.Stroke = false;
             this.clsAltoButton1.StrokeColor = System.Drawing.Color.Gray;
             this.clsAltoButton1.TabIndex = 31;
@@ -72,17 +72,17 @@
             "7",
             "8"});
             this.comboBox2.Location = new System.Drawing.Point(142, 101);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(96, 20);
+            this.comboBox2.Size = new System.Drawing.Size(143, 20);
             this.comboBox2.TabIndex = 30;
             // 
             // richTextBox1
             // 
             this.richTextBox1.Location = new System.Drawing.Point(30, 160);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(347, 243);
+            this.richTextBox1.Size = new System.Drawing.Size(587, 186);
             this.richTextBox1.TabIndex = 29;
             this.richTextBox1.Text = "";
             // 
@@ -94,9 +94,9 @@
             "開會",
             "出差"});
             this.comboBox1.Location = new System.Drawing.Point(142, 73);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(96, 20);
+            this.comboBox1.Size = new System.Drawing.Size(143, 20);
             this.comboBox1.TabIndex = 28;
             // 
             // label4

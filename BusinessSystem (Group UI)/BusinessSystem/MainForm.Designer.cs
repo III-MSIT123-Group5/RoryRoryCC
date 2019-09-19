@@ -39,9 +39,10 @@
             this.mainControls7 = new MainControls.MainControls();
             this.rectangleShape_date = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.label4 = new System.Windows.Forms.Label();
-            this.mainControls6 = new MainControls.MainControls();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.mainControls6 = new MainControls.MainControls();
             this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.employeeControl1 = new MainControls.EmployeeControl();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +51,7 @@
             this.mainControls4.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls4.ButtonColor = System.Drawing.Color.SteelBlue;
             this.mainControls4.image = global::BusinessSystem.Properties.Resources.edit_property_128;
+            this.mainControls4.ImageLocation = null;
             this.mainControls4.Location = new System.Drawing.Point(8, 205);
             this.mainControls4.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls4.Name = "mainControls4";
@@ -64,6 +66,7 @@
             this.mainControls1.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls1.ButtonColor = System.Drawing.Color.SlateGray;
             this.mainControls1.image = global::BusinessSystem.Properties.Resources.chair_2_128;
+            this.mainControls1.ImageLocation = null;
             this.mainControls1.Location = new System.Drawing.Point(420, 409);
             this.mainControls1.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls1.Name = "mainControls1";
@@ -77,6 +80,7 @@
             this.mainControls3.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls3.ButtonColor = System.Drawing.Color.SlateGray;
             this.mainControls3.image = global::BusinessSystem.Properties.Resources.briefcase_128;
+            this.mainControls3.ImageLocation = null;
             this.mainControls3.Location = new System.Drawing.Point(623, 205);
             this.mainControls3.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls3.Name = "mainControls3";
@@ -91,6 +95,7 @@
             this.mainControls2.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls2.ButtonColor = System.Drawing.Color.DarkSlateBlue;
             this.mainControls2.image = global::BusinessSystem.Properties.Resources.car_128;
+            this.mainControls2.ImageLocation = null;
             this.mainControls2.Location = new System.Drawing.Point(214, 409);
             this.mainControls2.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls2.Name = "mainControls2";
@@ -105,6 +110,7 @@
             this.mainControls8.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls8.ButtonColor = System.Drawing.Color.DarkSlateBlue;
             this.mainControls8.image = global::BusinessSystem.Properties.Resources.time_8_128;
+            this.mainControls8.ImageLocation = null;
             this.mainControls8.Location = new System.Drawing.Point(421, 205);
             this.mainControls8.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls8.Name = "mainControls8";
@@ -118,6 +124,7 @@
             this.mainControls5.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls5.ButtonColor = System.Drawing.Color.SteelBlue;
             this.mainControls5.image = global::BusinessSystem.Properties.Resources.calendar_3_128;
+            this.mainControls5.ImageLocation = null;
             this.mainControls5.Location = new System.Drawing.Point(423, 4);
             this.mainControls5.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls5.Name = "mainControls5";
@@ -131,6 +138,7 @@
             this.mainControls9.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls9.ButtonColor = System.Drawing.Color.SteelBlue;
             this.mainControls9.image = global::BusinessSystem.Properties.Resources.cart_5_128;
+            this.mainControls9.ImageLocation = null;
             this.mainControls9.Location = new System.Drawing.Point(626, 409);
             this.mainControls9.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls9.Name = "mainControls9";
@@ -148,6 +156,7 @@
             this.mainControls7.ButtonColor = System.Drawing.Color.LightSkyBlue;
             this.mainControls7.ForeColor = System.Drawing.Color.White;
             this.mainControls7.image = global::BusinessSystem.Properties.Resources.report_3_128;
+            this.mainControls7.ImageLocation = null;
             this.mainControls7.Location = new System.Drawing.Point(8, 409);
             this.mainControls7.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls7.Name = "mainControls7";
@@ -182,27 +191,14 @@
             this.label4.TabIndex = 14;
             this.label4.Text = "日期";
             // 
-            // mainControls6
-            // 
-            this.mainControls6.BackgroundColor = System.Drawing.Color.Empty;
-            this.mainControls6.ButtonColor = System.Drawing.Color.SteelBlue;
-            this.mainControls6.image = global::BusinessSystem.Properties.Resources.neutral_dicision_128;
-            this.mainControls6.Location = new System.Drawing.Point(625, 4);
-            this.mainControls6.Margin = new System.Windows.Forms.Padding(2);
-            this.mainControls6.Name = "mainControls6";
-            this.mainControls6.Size = new System.Drawing.Size(200, 200);
-            this.mainControls6.TabIndex = 45;
-            this.mainControls6.Title = "行事曆";
-            this.mainControls6.TitleColor = System.Drawing.Color.White;
-            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.mainControls6);
             this.panel1.Controls.Add(this.mainControls4);
             this.panel1.Controls.Add(this.mainControls1);
             this.panel1.Controls.Add(this.mainControls3);
             this.panel1.Controls.Add(this.mainControls2);
             this.panel1.Controls.Add(this.mainControls8);
-            this.panel1.Controls.Add(this.mainControls6);
             this.panel1.Controls.Add(this.mainControls5);
             this.panel1.Controls.Add(this.mainControls9);
             this.panel1.Controls.Add(this.mainControls7);
@@ -214,6 +210,21 @@
             this.panel1.Size = new System.Drawing.Size(842, 623);
             this.panel1.TabIndex = 51;
             // 
+            // mainControls6
+            // 
+            this.mainControls6.BackgroundColor = System.Drawing.Color.Empty;
+            this.mainControls6.ButtonColor = System.Drawing.Color.SteelBlue;
+            this.mainControls6.image = null;
+            this.mainControls6.ImageLocation = null;
+            this.mainControls6.Location = new System.Drawing.Point(626, 3);
+            this.mainControls6.Name = "mainControls6";
+            this.mainControls6.Size = new System.Drawing.Size(200, 200);
+            this.mainControls6.TabIndex = 52;
+            this.mainControls6.Title = "label";
+            this.mainControls6.TitleColor = System.Drawing.Color.White;
+            this.mainControls6.Click += new System.EventHandler(this.mainControls6_Click);
+            this.mainControls6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mainControls6_MouseClick);
+            // 
             // shapeContainer2
             // 
             this.shapeContainer2.Location = new System.Drawing.Point(0, 0);
@@ -224,6 +235,20 @@
             this.shapeContainer2.Size = new System.Drawing.Size(842, 623);
             this.shapeContainer2.TabIndex = 51;
             this.shapeContainer2.TabStop = false;
+            // 
+            // employeeControl1
+            // 
+            this.employeeControl1.BackgroundColor = System.Drawing.Color.Empty;
+            this.employeeControl1.ButtonColor = System.Drawing.Color.SteelBlue;
+            this.employeeControl1.image = null;
+            this.employeeControl1.ImageLocation = null;
+            this.employeeControl1.Location = new System.Drawing.Point(628, 3);
+            this.employeeControl1.Name = "employeeControl1";
+            this.employeeControl1.Size = new System.Drawing.Size(200, 200);
+            this.employeeControl1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Normal;
+            this.employeeControl1.TabIndex = 52;
+            this.employeeControl1.Title = "label";
+            this.employeeControl1.TitleColor = System.Drawing.Color.White;
             // 
             // MainForm
             // 
@@ -254,8 +279,8 @@
         private MainControls.MainControls mainControls4;
         private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape_date;
         private System.Windows.Forms.Label label4;
-        private MainControls.MainControls mainControls6;
         private System.Windows.Forms.Panel panel1;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
+        private MainControls.MainControls mainControls6;
     }
 }

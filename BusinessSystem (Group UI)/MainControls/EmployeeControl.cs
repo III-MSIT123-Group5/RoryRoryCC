@@ -7,28 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.AxHost;
-using Controls;
 
 namespace MainControls
 {
-    public partial class MainControls : UserControl
+    public partial class EmployeeControl : UserControl
     {
-        MouseState state;
-
-
-        public MainControls()
+        public EmployeeControl()
         {
             InitializeComponent();
             m_TitleColor = Color.White;
-           
             m_buttoncolor1 = Color.SteelBlue;
-
-            
-
         }
-
-        
 
         public string Title
         {
@@ -56,7 +45,7 @@ namespace MainControls
 
                 m_backgroundcolor1 = value;
                 this.BackColor = m_backgroundcolor1;
-                
+
             }
         }
 
@@ -83,7 +72,7 @@ namespace MainControls
                 this.clsAltoButton1.Invalidate();
             }
         }
-        
+
         private Color m_TitleColor;
         public Color TitleColor
         {
@@ -96,7 +85,7 @@ namespace MainControls
 
                 m_TitleColor = value;
                 this.label1.ForeColor = m_TitleColor;
-                
+
             }
         }
 
@@ -126,12 +115,13 @@ namespace MainControls
             {
                 this.pictureBox1.ImageLocation = value;
                 m_imagelocation = this.pictureBox1.ImageLocation;
+                
             }
         }
 
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
-            
+
             this.OnClick(e);
         }
 
@@ -193,6 +183,23 @@ namespace MainControls
         private void label1_MouseLeave(object sender, EventArgs e)
         {
             this.OnMouseLeave(e);
+        }
+
+
+
+        private PictureBoxSizeMode m_SizeMode;
+        public PictureBoxSizeMode SizeMode
+        {
+            get
+            {
+                return m_SizeMode;
+            }
+            set
+            {
+                this.pictureBox1.SizeMode = value;
+                m_SizeMode = this.pictureBox1.SizeMode;
+
+            }
         }
     }
 }

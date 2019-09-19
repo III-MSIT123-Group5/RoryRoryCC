@@ -108,7 +108,7 @@
             this.label6.BackColor = System.Drawing.Color.White;
             this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label6.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(437, 342);
+            this.label6.Location = new System.Drawing.Point(437, 338);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(341, 28);
             this.label6.TabIndex = 25;
@@ -166,7 +166,7 @@
             this.clsAltoButton2.ForeColor = System.Drawing.Color.Black;
             this.clsAltoButton2.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.clsAltoButton2.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.clsAltoButton2.Location = new System.Drawing.Point(639, 392);
+            this.clsAltoButton2.Location = new System.Drawing.Point(639, 380);
             this.clsAltoButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.clsAltoButton2.Name = "clsAltoButton2";
             this.clsAltoButton2.Radius = 10;
@@ -188,7 +188,7 @@
             this.clsAltoButton1.ForeColor = System.Drawing.Color.Black;
             this.clsAltoButton1.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.clsAltoButton1.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.clsAltoButton1.Location = new System.Drawing.Point(483, 392);
+            this.clsAltoButton1.Location = new System.Drawing.Point(483, 380);
             this.clsAltoButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.clsAltoButton1.Name = "clsAltoButton1";
             this.clsAltoButton1.Radius = 10;
