@@ -44,7 +44,10 @@ namespace BusinessSystem.ReportTimeSystem
         List<data> listcatalog = null;
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            
+            //foreach (var q in listcatalog)
+            //{
+            //    var w = dbcontext.ReportTimeSystems( =>FormMainRTS.)
+            //}
                     
         }
 
@@ -68,6 +71,7 @@ namespace BusinessSystem.ReportTimeSystem
                     };
 
             listcatalog = q.ToList();
+            
             this.dataGridView1.DataSource = null;
             this.dataGridView1.DataSource = listcatalog;
             
