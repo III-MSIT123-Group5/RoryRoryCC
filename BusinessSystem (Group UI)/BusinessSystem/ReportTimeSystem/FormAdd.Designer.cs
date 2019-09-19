@@ -52,7 +52,7 @@
             this.clsAltoButton1.Name = "clsAltoButton1";
             this.clsAltoButton1.Radius = 10;
             this.clsAltoButton1.Size = new System.Drawing.Size(109, 53);
-            this.clsAltoButton1.Stroke = false;
+            this.clsAltoButton1.Stroke = true;
             this.clsAltoButton1.StrokeColor = System.Drawing.Color.Gray;
             this.clsAltoButton1.TabIndex = 38;
             this.clsAltoButton1.Text = "送出";
@@ -82,7 +82,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(30, 162);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(347, 243);
+            this.richTextBox1.Size = new System.Drawing.Size(543, 174);
             this.richTextBox1.TabIndex = 36;
             this.richTextBox1.Text = "";
             // 
@@ -157,13 +157,12 @@
         }
 
         #endregion
-
-        private ClsAltoButton clsAltoButton1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        public ClsAltoButton clsAltoButton1;
     }
 }

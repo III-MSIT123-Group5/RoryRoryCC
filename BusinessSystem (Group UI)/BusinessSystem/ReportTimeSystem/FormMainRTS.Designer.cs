@@ -47,9 +47,9 @@
             // 
             this.panel2.Controls.Add(this.splitContainer1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 54);
+            this.panel2.Location = new System.Drawing.Point(0, 68);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(869, 435);
+            this.panel2.Size = new System.Drawing.Size(869, 402);
             this.panel2.TabIndex = 3;
             // 
             // splitContainer1
@@ -69,7 +69,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Size = new System.Drawing.Size(869, 435);
+            this.splitContainer1.Size = new System.Drawing.Size(869, 402);
             this.splitContainer1.SplitterDistance = 248;
             this.splitContainer1.TabIndex = 3;
             // 
@@ -159,11 +159,13 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(617, 435);
+            this.dataGridView1.Size = new System.Drawing.Size(617, 402);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             // 
             // FormMainRTS
             // 
@@ -193,6 +195,6 @@
         private Controls.ClsAltoButton clsAltoButton3;
         private Controls.ClsAltoButton clsAltoButton2;
         private Controls.ClsAltoButton clsAltoButton1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.DataGridView dataGridView1;
     }
 }
