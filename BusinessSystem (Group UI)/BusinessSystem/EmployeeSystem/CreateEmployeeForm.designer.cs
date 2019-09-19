@@ -258,6 +258,7 @@
             this.cmbDepartmentID.Size = new System.Drawing.Size(206, 30);
             this.cmbDepartmentID.TabIndex = 29;
             this.toolTip1.SetToolTip(this.cmbDepartmentID, "departmentID");
+            this.cmbDepartmentID.TextChanged += new System.EventHandler(this.cmbDepartmentID_TextChanged);
             // 
             // cmbPositionID
             // 
@@ -377,7 +378,6 @@
             // cmbGroupID
             // 
             this.cmbGroupID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbGroupID.Enabled = false;
             this.cmbGroupID.FormattingEnabled = true;
             this.cmbGroupID.Items.AddRange(new object[] {
             "離職",
@@ -392,7 +392,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(721, 449);
+            this.ClientSize = new System.Drawing.Size(1204, 449);
             this.Controls.Add(this.cmbGroupID);
             this.Controls.Add(this.cmbGender);
             this.Controls.Add(this.btnCheckAccount);
