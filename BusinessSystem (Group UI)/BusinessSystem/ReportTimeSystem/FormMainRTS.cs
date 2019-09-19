@@ -69,5 +69,12 @@ namespace BusinessSystem.ReportTimeSystem
 
 
         }
+
+
+
+        public void RefreshGridView()
+        {
+            this.dataGridView1.Refresh();
+        }
     }
 }

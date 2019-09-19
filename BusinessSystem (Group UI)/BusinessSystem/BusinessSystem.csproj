@@ -53,6 +53,12 @@
       <DependentUpon>BulletinBoard-02.cs</DependentUpon>
     </Compile>
     <Compile Include="BulletinBoard\Bulletin_board.cs" />
+    <Compile Include="CompanyCars\ChangeVehicleHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompanyCars\ChangeVehicleHistory.Designer.cs">
+      <DependentUpon>ChangeVehicleHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="CompanyCars\CompanyCarForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -19,8 +19,8 @@ namespace BusinessSystem.ReportTimeSystem
     public partial class FormAdd : SonForm
     {
         BusinessDataBaseEntities dbcontext = new BusinessDataBaseEntities();
-        BusinessSystemDBEntityModel.ReportTimeSystem rts = new BusinessSystemDBEntityModel.ReportTimeSystem();
-        BusinessSystemDBEntityModel.Event Event = new Event();
+
+        
 
         public FormAdd()
         {
@@ -30,10 +30,10 @@ namespace BusinessSystem.ReportTimeSystem
         }
         
        
-
+        int result=0;
         private int FindID(string Text)
         {
-            int result=0;
+            
 
             if (dbcontext.Events.First().EventName == Text)
             {
@@ -42,15 +42,24 @@ namespace BusinessSystem.ReportTimeSystem
             return result;
            
         }
-
+      
        
 
         private void FormAdd_Load(object sender, EventArgs e)
         {
-            //var q = from eve in dbcontext.Events
-            //        select eve.EventName;
+            
             comboBox1.DataSource = dbcontext.Events.Select(p => p.EventName).ToList();
+
+            
+
+
+
         }
+
+
+
+
+
 
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
@@ -58,9 +67,10 @@ namespace BusinessSystem.ReportTimeSystem
             dbcontext.ReportTimeSystems.Add(
                 new BusinessSystemDBEntityModel.ReportTimeSystem
                 {
-                    employeeID = 0,
+
+                    employeeID =1001 ,
                     ApplyDateTime = DateTime.Now,
-                    EventHours = int.Parse(comboBox2.Text),
+                    EventHours = double.Parse(comboBox2.Text),
                     EventID = FindID(comboBox1.Text),
                     Note = richTextBox1.Text,
                     Discontinue = true
@@ -68,6 +78,8 @@ namespace BusinessSystem.ReportTimeSystem
 
 
             dbcontext.SaveChanges();
+            MessageBox.Show("新增成功");
+           
         }
     }
 }
