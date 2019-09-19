@@ -7,11 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.AxHost;
+using Controls;
 
 namespace MainControls
 {
     public partial class MainControls : UserControl
     {
+        MouseState state;
+
+
         public MainControls()
         {
             InitializeComponent();
@@ -23,16 +28,7 @@ namespace MainControls
 
         }
 
-        private void clsAltoButton1_Click(object sender, EventArgs e)
-        {
-            this.OnClick(e);
-        }
         
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            this.OnClick(e);
-        }
 
         public string Title
         {
@@ -78,6 +74,8 @@ namespace MainControls
             {
 
                 m_buttoncolor1 = value;
+                this.clsAltoButton1.Active1 = m_buttoncolor1;
+                this.clsAltoButton1.Active2 = m_buttoncolor1;
                 this.clsAltoButton1.Inactive1 = m_buttoncolor1;
                 this.clsAltoButton1.Inactive2 = m_buttoncolor1;
                 this.label1.BackColor = m_buttoncolor1;
@@ -116,6 +114,17 @@ namespace MainControls
                 m_image = this.pictureBox1.Image;
 
             }
+        }
+
+        private void clsAltoButton1_Click(object sender, EventArgs e)
+        {
+            this.OnClick(e);
+        }
+
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            this.OnClick(e);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -198,8 +207,5 @@ namespace MainControls
         {
             this.OnMouseUp(e);
         }
-        
-       
-
     }
 }
