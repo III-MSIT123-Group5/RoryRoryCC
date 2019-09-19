@@ -84,7 +84,6 @@
             this.clsAltoButton1.StrokeColor = System.Drawing.Color.Gray;
             this.clsAltoButton1.TabIndex = 9;
             this.clsAltoButton1.Transparency = false;
-            this.clsAltoButton1.Click += new System.EventHandler(this.clsAltoButton1_Click_1);
             // 
             // MainControls
             // 
