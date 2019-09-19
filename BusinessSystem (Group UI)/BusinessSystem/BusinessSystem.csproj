@@ -53,6 +53,12 @@
       <DependentUpon>BulletinBoard-02.cs</DependentUpon>
     </Compile>
     <Compile Include="BulletinBoard\Bulletin_board.cs" />
+    <Compile Include="CompanyCars\ChangeVehicleHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompanyCars\ChangeVehicleHistory.Designer.cs">
+      <DependentUpon>ChangeVehicleHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="CompanyCars\CompanyCarForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,18 @@
       <DependentUpon>text123.cs</DependentUpon>
     </Compile>
     <Compile Include="CompanyCars\VehicleClass.cs" />
+    <Compile Include="DocumentManagement\FileUpload.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocumentManagement\FileUpload.Designer.cs">
+      <DependentUpon>FileUpload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentManagement\FrmFileBrowsing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocumentManagement\FrmFileBrowsing.Designer.cs">
+      <DependentUpon>FrmFileBrowsing.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeSystem\CreateEmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +195,9 @@
     <EmbeddedResource Include="CompanyCars\text123.resx">
       <DependentUpon>text123.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DocumentManagement\FrmFileBrowsing.resx">
+      <DependentUpon>FrmFileBrowsing.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmployeeSystem\CreateEmployeeForm.resx">
       <DependentUpon>CreateEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -257,5 +278,6 @@
   <ItemGroup>
     <None Include="Resources\edit-property-128.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

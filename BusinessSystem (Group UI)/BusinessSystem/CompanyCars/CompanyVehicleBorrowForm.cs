@@ -23,7 +23,7 @@ namespace BusinessSystem.CompanyCars
         //
         BusinessDataBaseEntities dbcontext = new BusinessDataBaseEntities();
         int i;
-        
+        string licence;
         bool bbool = true; 
         //
         //
@@ -32,6 +32,142 @@ namespace BusinessSystem.CompanyCars
         {
             InitializeComponent();
             mypic(); 
+        }
+        private void mytime1()
+        {
+            int t1 = 0;
+            string Tmm = this.comboBox3.Text;
+            if (Tmm == "09:00")
+            {
+                t1 = 09;
+                DateTime dtstart = new DateTime(this.dateTimePicker1.Value.Year, this.dateTimePicker1.Value
+                .Month, this.dateTimePicker1.Value.Day, t1, 00, 00);
+                this.dateTimePicker1.Value = dtstart;
+            }
+            else if (Tmm == "10:00")
+            {
+                t1 = 10;
+                DateTime dtstart = new DateTime(this.dateTimePicker1.Value.Year, this.dateTimePicker1.Value
+                .Month, this.dateTimePicker1.Value.Day, t1, 00, 00);
+                this.dateTimePicker1.Value = dtstart;
+            }
+            else if (Tmm == "11:00")
+            {
+                t1 = 11;
+                DateTime dtstart = new DateTime(this.dateTimePicker1.Value.Year, this.dateTimePicker1.Value
+                .Month, this.dateTimePicker1.Value.Day, t1, 00, 00);
+                this.dateTimePicker1.Value = dtstart;
+            }
+            else if (Tmm == "12:00")
+            {
+                t1 = 12;
+                DateTime dtstart = new DateTime(this.dateTimePicker1.Value.Year, this.dateTimePicker1.Value
+                .Month, this.dateTimePicker1.Value.Day, t1, 00, 00);
+                this.dateTimePicker1.Value = dtstart;
+            }
+            else if (Tmm == "01:00")
+            {
+                t1 = 13;
+                DateTime dtstart = new DateTime(this.dateTimePicker1.Value.Year, this.dateTimePicker1.Value
+                .Month, this.dateTimePicker1.Value.Day, t1, 00, 00);
+                this.dateTimePicker1.Value = dtstart;
+            }
+            else if (Tmm == "02:00")
+            {
+                t1 = 14;
+                DateTime dtstart = new DateTime(this.dateTimePicker1.Value.Year, this.dateTimePicker1.Value
+                .Month, this.dateTimePicker1.Value.Day, t1, 00, 00);
+                this.dateTimePicker1.Value = dtstart;
+            }
+            else if (Tmm == "03:00")
+            {
+                t1 = 15;
+                DateTime dtstart = new DateTime(this.dateTimePicker1.Value.Year, this.dateTimePicker1.Value
+                .Month, this.dateTimePicker1.Value.Day, t1, 00, 00);
+                this.dateTimePicker1.Value = dtstart;
+            }
+            else if (Tmm == "04:00")
+            {
+                t1 = 16;
+                DateTime dtstart = new DateTime(this.dateTimePicker1.Value.Year, this.dateTimePicker1.Value
+                .Month, this.dateTimePicker1.Value.Day, t1, 00, 00);
+                this.dateTimePicker1.Value = dtstart;
+            }
+            else if (Tmm == "05:00")
+            {
+                t1 = 17;
+                DateTime dtstart = new DateTime(this.dateTimePicker1.Value.Year, this.dateTimePicker1.Value
+                .Month, this.dateTimePicker1.Value.Day, t1, 00, 00);
+                this.dateTimePicker1.Value = dtstart;
+            }
+        }
+        private void mytime2()
+        {
+            int t1 = 0;
+            string Tmm = this.comboBox4.Text;
+            if (Tmm == "09:00")
+            {
+                t1 = 09;
+                DateTime dtstart = new DateTime(this.dateTimePicker2.Value.Year, this.dateTimePicker2.Value
+                .Month, this.dateTimePicker2.Value.Day, t1, 00, 00);
+                this.dateTimePicker2.Value = dtstart;
+            }
+            else if (Tmm == "10:00")
+            {
+                t1 = 10;
+                DateTime dtstart = new DateTime(this.dateTimePicker2.Value.Year, this.dateTimePicker2.Value
+                .Month, this.dateTimePicker2.Value.Day, t1, 00, 00);
+                this.dateTimePicker2.Value = dtstart;
+            }
+            else if (Tmm == "11:00")
+            {
+                t1 = 11;
+                DateTime dtstart = new DateTime(this.dateTimePicker2.Value.Year, this.dateTimePicker2.Value
+                .Month, this.dateTimePicker2.Value.Day, t1, 00, 00);
+                this.dateTimePicker2.Value = dtstart;
+            }
+            else if (Tmm == "12:00")
+            {
+                t1 = 12;
+                DateTime dtstart = new DateTime(this.dateTimePicker2.Value.Year, this.dateTimePicker2.Value
+                .Month, this.dateTimePicker2.Value.Day, t1, 00, 00);
+                this.dateTimePicker2.Value = dtstart;
+            }
+            else if (Tmm == "01:00")
+            {
+                t1 = 13;
+                DateTime dtstart = new DateTime(this.dateTimePicker2.Value.Year, this.dateTimePicker2.Value
+                .Month, this.dateTimePicker2.Value.Day, t1, 00, 00);
+                this.dateTimePicker2.Value = dtstart;
+            }
+            else if (Tmm == "02:00")
+            {
+                t1 = 14;
+                DateTime dtstart = new DateTime(this.dateTimePicker2.Value.Year, this.dateTimePicker2.Value
+                .Month, this.dateTimePicker2.Value.Day, t1, 00, 00);
+                this.dateTimePicker2.Value = dtstart;
+            }
+            else if (Tmm == "03:00")
+            {
+                t1 = 15;
+                DateTime dtstart = new DateTime(this.dateTimePicker2.Value.Year, this.dateTimePicker2.Value
+                .Month, this.dateTimePicker2.Value.Day, t1, 00, 00);
+                this.dateTimePicker2.Value = dtstart;
+            }
+            else if (Tmm == "04:00")
+            {
+                t1 = 16;
+                DateTime dtstart = new DateTime(this.dateTimePicker2.Value.Year, this.dateTimePicker2.Value
+                .Month, this.dateTimePicker2.Value.Day, t1, 00, 00);
+                this.dateTimePicker2.Value = dtstart;
+            }
+            else if (Tmm == "05:00")
+            {
+                t1 = 17;
+                DateTime dtstart = new DateTime(this.dateTimePicker2.Value.Year, this.dateTimePicker2.Value
+                .Month, this.dateTimePicker2.Value.Day, t1, 00, 00);
+                this.dateTimePicker2.Value = dtstart;
+            }
         }
         public void mypic()
         {
@@ -46,7 +182,6 @@ namespace BusinessSystem.CompanyCars
                 x.licNu = pphoto[i].LicenseNumber;
                 this.flowLayoutPanel1.Controls.Add(x);
                 x.Scclick += new UserControl1.mmouse(x_Scclick);
-                
             }
             
         }
@@ -65,6 +200,13 @@ namespace BusinessSystem.CompanyCars
                         OfficeID = a.officeID
                     };
             this.dataGridView1.DataSource = q.ToList();
+            var q1 = from a in this.dbcontext.CompanyVehicles
+                    where a.LicenseNumber == tthis.licNu
+                    select new
+                    {
+                        車牌號碼 = a.LicenseNumber,
+                    };
+            licence = q1.ToString();
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -127,12 +269,55 @@ namespace BusinessSystem.CompanyCars
                 
             }
         }
-
+        
+        
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
-            KaiClass1 ddate = new KaiClass1();
-            string Tmm = this.comboBox3.Text;
-            
+            mytime1();
+            mytime2();
+
+            if (this.richTextBox1.Text != "" && this.comboBox3.Text != "" && this.comboBox4.Text != "" && this.dataGridView1.DataSource != null)
+            {
+                try
+                {
+                    var q = new CompanyVehicleHistory
+                    {
+                        LicenseNumber = licence,
+                        StartDateTime = this.dateTimePicker1.Value,
+                        EndDateTime = this.dateTimePicker2.Value,
+                        employeeID = 1001,
+                        purpose = this.richTextBox1.Text
+                    };
+                    dbcontext.CompanyVehicleHistories.Add(q);
+                    dbcontext.SaveChanges();
+                    MessageBox.Show("Succeed" + "\n" + "借車時數共 " + ((this.dateTimePicker2.Value - this.dateTimePicker1.Value).Hours).ToString() + "小時，\n請準時歸還!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("請正確操作", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+
+
+            //if (this.dateTimePicker1.Value < this.dateTimePicker2.Value)
+            //{
+            //    MessageBox.Show(((this.dateTimePicker2.Value- this.dateTimePicker1.Value).Hours ).ToString());
+            //    MessageBox.Show(this.dateTimePicker1.Value.ToString());
+            //    MessageBox.Show(this.dateTimePicker2.Value.ToString());
+            //}
+
+
+
+
+
+
+
         }
     }
 }

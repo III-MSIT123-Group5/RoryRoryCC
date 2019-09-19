@@ -53,10 +53,10 @@
     <Compile Include="Account.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ApprovalChild.cs">
+    <Compile Include="ApprovalProcedure.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ApprovalOrder.cs">
+    <Compile Include="ApprovalStatu.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BSEntityModel.Context.cs">
@@ -78,6 +78,9 @@
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CompanyVehicle.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyVehicleHistory.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Department.cs">
@@ -110,6 +113,9 @@
     <Compile Include="Office.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="OrderDetail.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Position.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
@@ -120,13 +126,7 @@
     <Compile Include="ReportCategory.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ReportMain.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="ReportTimeSystem.cs">
-      <DependentUpon>BSEntityModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RequisitionChild.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RequisitionMain.cs">

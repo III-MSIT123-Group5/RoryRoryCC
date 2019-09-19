@@ -9,28 +9,27 @@
           <Key>
             <PropertyRef Name="account" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="account" Type="nvarchar" MaxLength="12" Nullable="false" />
           <Property Name="password" Type="varbinary" MaxLength="32" />
         </EntityType>
-        <EntityType Name="ApprovalChild">
+        <EntityType Name="ApprovalProcedure">
+          <Key>
+            <PropertyRef Name="ApprovalID" />
+          </Key>
+          <Property Name="ApprovalID" Type="int" Nullable="false" />
+          <Property Name="PositionID" Type="int" />
+          <Property Name="ApprovalReportName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApprovalSupervisor" Type="bit" />
+          <Property Name="ApprovalDirector" Type="bit" />
+          <Property Name="ApprovalGenalManager" Type="bit" />
+          <Property Name="ApprovalFinancialDirector" Type="bit" />
+        </EntityType>
+        <EntityType Name="ApprovalStatus">
           <Key>
             <PropertyRef Name="ApprovalStatusID" />
           </Key>
-          <Property Name="ApprovalStageID" Type="int" />
-          <Property Name="ApprovalID" Type="int" />
           <Property Name="ApprovalStatusID" Type="int" Nullable="false" />
-          <Property Name="ApproveDate" Type="datetime" />
-          <Property Name="Note" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="ApprovalOrder">
-          <Key>
-            <PropertyRef Name="ApprovalStageID" />
-          </Key>
-          <Property Name="ReportID" Type="nvarchar" MaxLength="50" />
-          <Property Name="ApprovalCategoryID" Type="int" />
-          <Property Name="ApprovalStageID" Type="int" Nullable="false" />
-          <Property Name="ApprovalOrder" Type="nvarchar(max)" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="BulletinBoard">
           <Key>
@@ -43,18 +42,38 @@
           <Property Name="Content" Type="nvarchar" MaxLength="50" />
           <Property Name="PostTime" Type="datetime" />
         </EntityType>
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'BusinessDataBase.dbo.BusinessTrip' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="BusinessTrip">
+          <Property Name="employeeID" Type="int" />
+          <Property Name="start_date_time" Type="datetime" />
+          <Property Name="end_date_time" Type="datetime" />
+          <Property Name="adress" Type="nchar" MaxLength="10" />
+          <Property Name="description" Type="nvarchar(max)" />
+        </EntityType>-->
         <EntityType Name="CompanyVehicle">
           <Key>
             <PropertyRef Name="LicenseNumber" />
           </Key>
           <Property Name="LicenseNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="VehicleYear" Type="int" />
-          <Property Name="PurchaseDate" Type="date" />
-          <Property Name="brand" Type="nchar" MaxLength="10" />
-          <Property Name="serial" Type="nchar" MaxLength="10" />
-          <Property Name="MaxPassenger" Type="nchar" MaxLength="10" />
-          <Property Name="officeID" Type="int" />
-          <Property Name="VehiclePhoto" Type="varbinary(max)" />
+          <Property Name="VehicleYear" Type="int" Nullable="false" />
+          <Property Name="PurchaseDate" Type="date" Nullable="false" />
+          <Property Name="brand" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="serial" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaxPassenger" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="officeID" Type="int" Nullable="false" />
+          <Property Name="VehiclePhoto" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CompanyVehicleHistory">
+          <Key>
+            <PropertyRef Name="LicenseNumber" />
+          </Key>
+          <Property Name="VehicleHistoryID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LicenseNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartDateTime" Type="datetime" />
+          <Property Name="EndDateTime" Type="datetime" />
+          <Property Name="employeeID" Type="int" />
+          <Property Name="purpose" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -79,9 +98,12 @@
           <Property Name="managerID" Type="int" />
           <Property Name="employed" Type="bit" />
           <Property Name="groupID" Type="int" />
+          <Property Name="photo" Type="nvarchar(max)" />
+          <Property Name="LeaveLessThreeDaysID" Type="int" />
+          <Property Name="LeaveOverThreeDaysID" Type="int" />
+          <Property Name="ApprovalLessTenKID" Type="int" />
+          <Property Name="ApprovalOverTenKID" Type="int" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'BusinessDataBase.dbo.Event' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="EventID" />
@@ -89,16 +111,9 @@
           <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventName" Type="nvarchar" MaxLength="15" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'BusinessDataBase.dbo.File' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="File">
           <Key>
             <PropertyRef Name="FileID" />
-            <PropertyRef Name="FileName" />
-            <PropertyRef Name="FileSize" />
-            <PropertyRef Name="EmployeeID" />
-            <PropertyRef Name="UploadDate" />
-            <PropertyRef Name="Data" />
           </Key>
           <Property Name="FileID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FileName" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -122,6 +137,13 @@
           <Property Name="leaveID" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="leave_name" Type="nchar" MaxLength="20" />
         </EntityType>
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'BusinessDataBase.dbo.LeaveHistory' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="LeaveHistory">
+          <Property Name="employeeID" Type="int" />
+          <Property Name="leaveID" Type="nchar" MaxLength="10" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>-->
         <EntityType Name="MeetingRoom">
           <Key>
             <PropertyRef Name="meetingID" />
@@ -160,6 +182,18 @@
           <Property Name="office_name" Type="nvarchar" MaxLength="20" />
           <Property Name="office_address" Type="nvarchar" MaxLength="60" />
         </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UnitPrice" Type="money" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="TotalPrice" Type="money" StoreGeneratedPattern="Computed" />
+        </EntityType>
         <EntityType Name="Position">
           <Key>
             <PropertyRef Name="positionID" />
@@ -167,6 +201,14 @@
           <Property Name="positionID" Type="int" Nullable="false" />
           <Property Name="position" Type="nchar" MaxLength="30" />
         </EntityType>
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'BusinessDataBase.dbo.PurchasingOrder' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="PurchasingOrder">
+          <Property Name="employeeID" Type="int" />
+          <Property Name="items" Type="nchar" MaxLength="10" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="unit price" Type="money" />
+        </EntityType>-->
         <EntityType Name="Recipient">
           <Key>
             <PropertyRef Name="MessageID" />
@@ -178,30 +220,14 @@
         </EntityType>
         <EntityType Name="ReportCategory">
           <Key>
-            <PropertyRef Name="ReportCategoryID" />
-          </Key>
-          <Property Name="ReportCategoryID" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Category" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="ReportMain">
-          <Key>
             <PropertyRef Name="ReportID" />
           </Key>
-          <Property Name="ReportID" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ReportCategoryID" Type="nvarchar" MaxLength="50" />
-          <Property Name="ApplicantID" Type="int" />
-          <Property Name="ApplyDate" Type="datetime" />
-          <Property Name="FinishDate" Type="datetime" />
+          <Property Name="ReportID" Type="int" Nullable="false" />
+          <Property Name="ReportName" Type="nvarchar" MaxLength="10" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'BusinessDataBase.dbo.ReportTimeSystem' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="ReportTimeSystem">
           <Key>
             <PropertyRef Name="ReportID" />
-            <PropertyRef Name="employeeID" />
-            <PropertyRef Name="ApplyDateTime" />
-            <PropertyRef Name="EventHours" />
-            <PropertyRef Name="EventID" />
           </Key>
           <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="employeeID" Type="int" Nullable="false" />
@@ -211,25 +237,14 @@
           <Property Name="Note" Type="nvarchar" MaxLength="100" />
           <Property Name="Discontinue" Type="bit" />
         </EntityType>
-        <EntityType Name="RequisitionChild">
-          <Key>
-            <PropertyRef Name="RequisitionID" />
-          </Key>
-          <Property Name="RequisitionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
-          <Property Name="UnitPrice" Type="money" />
-          <Property Name="Quantity" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Discount" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Note" Type="nvarchar(max)" />
-        </EntityType>
         <EntityType Name="RequisitionMain">
           <Key>
-            <PropertyRef Name="RequisitionID" />
+            <PropertyRef Name="OrderID" />
           </Key>
-          <Property Name="ReportID" Type="nvarchar" MaxLength="50" />
-          <Property Name="RequisitionID" Type="int" Nullable="false" />
-          <Property Name="TotalPrice" Type="money" />
-          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportID" Type="int" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="ApprovalStatusID" Type="int" />
         </EntityType>
         <EntityType Name="RewardandPunishment">
           <Key>
@@ -238,6 +253,15 @@
           <Property Name="Reward/PunishmentID" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Reward/PunishmentName" Type="nchar" MaxLength="10" />
         </EntityType>
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'BusinessDataBase.dbo.RewardandPunishmentHistory' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="RewardandPunishmentHistory">
+          <Property Name="employeeID" Type="int" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Reward/Punishment" Type="nchar" MaxLength="10" />
+          <Property Name="managerID" Type="nchar" MaxLength="10" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>-->
         <EntityType Name="Suggestion">
           <Key>
             <PropertyRef Name="suggestionID" />
@@ -258,6 +282,12 @@
           <Property Name="content" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'BusinessDataBase.dbo.SurveyChild' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="SurveyChild">
+          <Property Name="SurveyID" Type="int" />
+          <Property Name="Survey" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
+        <!--產生期間發現錯誤:
 警告 6002: 資料表/檢視 'BusinessDataBase.dbo.SurveyMain' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="SurveyMain">
           <Key>
@@ -277,30 +307,14 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <Association Name="FK_ApprovalChild_ApprovalOrder">
-          <End Role="ApprovalOrder" Type="Self.ApprovalOrder" Multiplicity="0..1" />
-          <End Role="ApprovalChild" Type="Self.ApprovalChild" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ApprovalOrder">
-              <PropertyRef Name="ApprovalStageID" />
-            </Principal>
-            <Dependent Role="ApprovalChild">
-              <PropertyRef Name="ApprovalStageID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ApprovalOrder_ReportMain">
-          <End Role="ReportMain" Type="Self.ReportMain" Multiplicity="0..1" />
-          <End Role="ApprovalOrder" Type="Self.ApprovalOrder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ReportMain">
-              <PropertyRef Name="ReportID" />
-            </Principal>
-            <Dependent Role="ApprovalOrder">
-              <PropertyRef Name="ReportID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'BusinessDataBase.dbo.WorkingHours' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="WorkingHours">
+          <Property Name="employeeID" Type="int" />
+          <Property Name="clock_in_time" Type="datetime" />
+          <Property Name="clock_out_time" Type="datetime" />
+          <Property Name="leaveID" Type="nchar" MaxLength="10" />
+        </EntityType>-->
         <Association Name="FK_Bulletin board_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
           <End Role="BulletinBoard" Type="Self.BulletinBoard" Multiplicity="*" />
@@ -337,8 +351,47 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_BulletinBoard_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="BulletinBoard" Type="Self.BulletinBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="BulletinBoard">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.BusinessTrip' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_Business Trip_Employee" />-->
+        <Association Name="FK_Company vehicle history_Company vehicle">
+          <End Role="CompanyVehicle" Type="Self.CompanyVehicle" Multiplicity="1" />
+          <End Role="CompanyVehicleHistory" Type="Self.CompanyVehicleHistory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyVehicle">
+              <PropertyRef Name="LicenseNumber" />
+            </Principal>
+            <Dependent Role="CompanyVehicleHistory">
+              <PropertyRef Name="LicenseNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company vehicle history_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="CompanyVehicleHistory" Type="Self.CompanyVehicleHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="CompanyVehicleHistory">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Company vehicle_Office">
-          <End Role="Office" Type="Self.Office" Multiplicity="0..1" />
+          <End Role="Office" Type="Self.Office" Multiplicity="1" />
           <End Role="CompanyVehicle" Type="Self.CompanyVehicle" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Office">
@@ -445,6 +498,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.LeaveHistory' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_LeaveHistory_Employee" />-->
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.LeaveHistory' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_LeaveHistory_Leave" />-->
         <Association Name="FK_Meeting room history_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="MeetingRoomHistory" Type="Self.MeetingRoomHistory" Multiplicity="*" />
@@ -493,6 +552,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OrderDetail_RequisitionMain">
+          <End Role="RequisitionMain" Type="Self.RequisitionMain" Multiplicity="0..1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequisitionMain">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.PurchasingOrder' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_Purchasing Order_Employee" />-->
         <Association Name="FK_Recipient_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Recipient" Type="Self.Recipient" Multiplicity="*" />
@@ -517,30 +591,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ReportMain_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="ReportMain" Type="Self.ReportMain" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="ReportMain">
-              <PropertyRef Name="ApplicantID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReportMain_ReportCategory">
-          <End Role="ReportCategory" Type="Self.ReportCategory" Multiplicity="0..1" />
-          <End Role="ReportMain" Type="Self.ReportMain" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ReportCategory">
-              <PropertyRef Name="ReportCategoryID" />
-            </Principal>
-            <Dependent Role="ReportMain">
-              <PropertyRef Name="ReportCategoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ReportTimeSystem_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="ReportTimeSystem" Type="Self.ReportTimeSystem" Multiplicity="*" />
@@ -553,30 +603,60 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RequisitionMain_ReportMain">
-          <End Role="ReportMain" Type="Self.ReportMain" Multiplicity="0..1" />
+        <Association Name="FK_ReportTimeSystem_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="ReportTimeSystem" Type="Self.ReportTimeSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="ReportTimeSystem">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequisitionMain_ApprovalStatus">
+          <End Role="ApprovalStatus" Type="Self.ApprovalStatus" Multiplicity="0..1" />
           <End Role="RequisitionMain" Type="Self.RequisitionMain" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ReportMain">
-              <PropertyRef Name="ReportID" />
+            <Principal Role="ApprovalStatus">
+              <PropertyRef Name="ApprovalStatusID" />
             </Principal>
             <Dependent Role="RequisitionMain">
-              <PropertyRef Name="ReportID" />
+              <PropertyRef Name="ApprovalStatusID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RequisitionMain_RequisitionChild">
-          <End Role="RequisitionChild" Type="Self.RequisitionChild" Multiplicity="1" />
-          <End Role="RequisitionMain" Type="Self.RequisitionMain" Multiplicity="0..1" />
+        <Association Name="FK_RequisitionMain_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="RequisitionMain" Type="Self.RequisitionMain" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="RequisitionChild">
-              <PropertyRef Name="RequisitionID" />
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
             </Principal>
             <Dependent Role="RequisitionMain">
-              <PropertyRef Name="RequisitionID" />
+              <PropertyRef Name="EmployeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RequisitionMain_ReportCategory">
+          <End Role="ReportCategory" Type="Self.ReportCategory" Multiplicity="0..1" />
+          <End Role="RequisitionMain" Type="Self.RequisitionMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportCategory">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="RequisitionMain">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.RewardandPunishmentHistory' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_RewardandPunishmentHistory_Employee" />-->
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.RewardandPunishmentHistory' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_RewardandPunishmentHistory_RewardandPunishment" />-->
         <Association Name="FK_Suggestion history_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
           <End Role="SuggestionHistory" Type="Self.SuggestionHistory" Multiplicity="*" />
@@ -613,6 +693,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.WorkingHours' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_Working hours_Employee" />-->
+        <!--產生期間發現錯誤:
+錯誤 6004: 資料表 'BusinessDataBase.dbo.WorkingHours' 被某個關聯性參考，但是找不到。
+        <Association Name="FK_Working hours_Leave" />-->
         <Function Name="AddReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ReportID" Type="bigint" Mode="InOut" />
           <Parameter Name="employeeID" Type="int" Mode="In" />
@@ -662,42 +748,29 @@
         </Function>
         <EntityContainer Name="BusinessDataBaseModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ApprovalChild" EntityType="Self.ApprovalChild" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ApprovalOrder" EntityType="Self.ApprovalOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApprovalProcedure" EntityType="Self.ApprovalProcedure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApprovalStatus" EntityType="Self.ApprovalStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BulletinBoard" EntityType="Self.BulletinBoard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyVehicle" EntityType="Self.CompanyVehicle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyVehicleHistory" EntityType="Self.CompanyVehicleHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="File" EntityType="Self.File" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Leave" EntityType="Self.Leave" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MeetingRoom" EntityType="Self.MeetingRoom" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Office" EntityType="Self.Office" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Recipient" EntityType="Self.Recipient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReportCategory" EntityType="Self.ReportCategory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ReportMain" EntityType="Self.ReportMain" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RequisitionChild" EntityType="Self.RequisitionChild" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportTimeSystem" EntityType="Self.ReportTimeSystem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RequisitionMain" EntityType="Self.RequisitionMain" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RewardandPunishment" EntityType="Self.RewardandPunishment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suggestion" EntityType="Self.Suggestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Event" EntityType="Self.Event" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Event].[EventID] AS [EventID], 
-    [Event].[EventName] AS [EventName]
-    FROM [dbo].[Event] AS [Event]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="File" EntityType="Self.File" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [File].[FileID] AS [FileID], 
-    [File].[FileName] AS [FileName], 
-    [File].[FileSize] AS [FileSize], 
-    [File].[EmployeeID] AS [EmployeeID], 
-    [File].[UploadDate] AS [UploadDate], 
-    [File].[Data] AS [Data]
-    FROM [dbo].[File] AS [File]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="MeetingRoomHistory" EntityType="Self.MeetingRoomHistory" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [MeetingRoomHistory].[meetingID] AS [meetingID], 
@@ -705,17 +778,6 @@
     [MeetingRoomHistory].[end_date_time] AS [end_date_time], 
     [MeetingRoomHistory].[employeeID] AS [employeeID]
     FROM [dbo].[MeetingRoomHistory] AS [MeetingRoomHistory]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="ReportTimeSystem" EntityType="Self.ReportTimeSystem" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ReportTimeSystem].[ReportID] AS [ReportID], 
-    [ReportTimeSystem].[employeeID] AS [employeeID], 
-    [ReportTimeSystem].[ApplyDateTime] AS [ApplyDateTime], 
-    [ReportTimeSystem].[EventHours] AS [EventHours], 
-    [ReportTimeSystem].[EventID] AS [EventID], 
-    [ReportTimeSystem].[Note] AS [Note], 
-    [ReportTimeSystem].[Discontinue] AS [Discontinue]
-    FROM [dbo].[ReportTimeSystem] AS [ReportTimeSystem]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="SuggestionHistory" EntityType="Self.SuggestionHistory" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -733,14 +795,6 @@
     [SurveyMain].[Question] AS [Question]
     FROM [dbo].[SurveyMain] AS [SurveyMain]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_ApprovalChild_ApprovalOrder" Association="Self.FK_ApprovalChild_ApprovalOrder">
-            <End Role="ApprovalOrder" EntitySet="ApprovalOrder" />
-            <End Role="ApprovalChild" EntitySet="ApprovalChild" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ApprovalOrder_ReportMain" Association="Self.FK_ApprovalOrder_ReportMain">
-            <End Role="ReportMain" EntitySet="ReportMain" />
-            <End Role="ApprovalOrder" EntitySet="ApprovalOrder" />
-          </AssociationSet>
           <AssociationSet Name="FK_Bulletin board_Department" Association="Self.FK_Bulletin board_Department">
             <End Role="Department" EntitySet="Department" />
             <End Role="BulletinBoard" EntitySet="BulletinBoard" />
@@ -752,6 +806,18 @@
           <AssociationSet Name="FK_Bulletin board_Group" Association="Self.FK_Bulletin board_Group">
             <End Role="Group" EntitySet="Group" />
             <End Role="BulletinBoard" EntitySet="BulletinBoard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BulletinBoard_Employee" Association="Self.FK_BulletinBoard_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="BulletinBoard" EntitySet="BulletinBoard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company vehicle history_Company vehicle" Association="Self.FK_Company vehicle history_Company vehicle">
+            <End Role="CompanyVehicle" EntitySet="CompanyVehicle" />
+            <End Role="CompanyVehicleHistory" EntitySet="CompanyVehicleHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company vehicle history_Employee" Association="Self.FK_Company vehicle history_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="CompanyVehicleHistory" EntitySet="CompanyVehicleHistory" />
           </AssociationSet>
           <AssociationSet Name="FK_Company vehicle_Office" Association="Self.FK_Company vehicle_Office">
             <End Role="Office" EntitySet="Office" />
@@ -805,6 +871,10 @@
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Message" EntitySet="Message" />
           </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_RequisitionMain" Association="Self.FK_OrderDetail_RequisitionMain">
+            <End Role="RequisitionMain" EntitySet="RequisitionMain" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
           <AssociationSet Name="FK_Recipient_Employee" Association="Self.FK_Recipient_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Recipient" EntitySet="Recipient" />
@@ -813,24 +883,24 @@
             <End Role="Message" EntitySet="Message" />
             <End Role="Recipient" EntitySet="Recipient" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReportMain_Employee" Association="Self.FK_ReportMain_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="ReportMain" EntitySet="ReportMain" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReportMain_ReportCategory" Association="Self.FK_ReportMain_ReportCategory">
-            <End Role="ReportCategory" EntitySet="ReportCategory" />
-            <End Role="ReportMain" EntitySet="ReportMain" />
-          </AssociationSet>
           <AssociationSet Name="FK_ReportTimeSystem_Employee" Association="Self.FK_ReportTimeSystem_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="ReportTimeSystem" EntitySet="ReportTimeSystem" />
           </AssociationSet>
-          <AssociationSet Name="FK_RequisitionMain_ReportMain" Association="Self.FK_RequisitionMain_ReportMain">
-            <End Role="ReportMain" EntitySet="ReportMain" />
+          <AssociationSet Name="FK_ReportTimeSystem_Event" Association="Self.FK_ReportTimeSystem_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="ReportTimeSystem" EntitySet="ReportTimeSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequisitionMain_ApprovalStatus" Association="Self.FK_RequisitionMain_ApprovalStatus">
+            <End Role="ApprovalStatus" EntitySet="ApprovalStatus" />
             <End Role="RequisitionMain" EntitySet="RequisitionMain" />
           </AssociationSet>
-          <AssociationSet Name="FK_RequisitionMain_RequisitionChild" Association="Self.FK_RequisitionMain_RequisitionChild">
-            <End Role="RequisitionChild" EntitySet="RequisitionChild" />
+          <AssociationSet Name="FK_RequisitionMain_Employee" Association="Self.FK_RequisitionMain_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="RequisitionMain" EntitySet="RequisitionMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequisitionMain_ReportCategory" Association="Self.FK_RequisitionMain_ReportCategory">
+            <End Role="ReportCategory" EntitySet="ReportCategory" />
             <End Role="RequisitionMain" EntitySet="RequisitionMain" />
           </AssociationSet>
           <AssociationSet Name="FK_Suggestion history_Department" Association="Self.FK_Suggestion history_Department">
@@ -850,695 +920,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BusinessDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="ApprovalChild">
-          <Key>
-            <PropertyRef Name="ApprovalStatusID" />
-          </Key>
-          <Property Name="ApprovalStageID" Type="Int32" />
-          <Property Name="ApprovalID" Type="Int32" />
-          <Property Name="ApprovalStatusID" Type="Int32" Nullable="false" />
-          <Property Name="ApproveDate" Type="DateTime" Precision="3" />
-          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ApprovalOrder" Relationship="Self.FK_ApprovalChild_ApprovalOrder" FromRole="ApprovalChild" ToRole="ApprovalOrder" />
-        </EntityType>
-        <EntityType Name="ApprovalOrder">
-          <Key>
-            <PropertyRef Name="ApprovalStageID" />
-          </Key>
-          <Property Name="ReportID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ApprovalCategoryID" Type="Int32" />
-          <Property Name="ApprovalStageID" Type="Int32" Nullable="false" />
-          <Property Name="ApprovalOrder1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ApprovalChilds" Relationship="Self.FK_ApprovalChild_ApprovalOrder" FromRole="ApprovalOrder" ToRole="ApprovalChild" />
-          <NavigationProperty Name="ReportMain" Relationship="Self.FK_ApprovalOrder_ReportMain" FromRole="ApprovalOrder" ToRole="ReportMain" />
-        </EntityType>
-        <EntityType Name="BulletinBoard">
-          <Key>
-            <PropertyRef Name="Num" />
-          </Key>
-          <Property Name="Num" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeID" Type="Int32" />
-          <Property Name="DepartmentID" Type="Int32" />
-          <Property Name="GroupID" Type="Int32" />
-          <Property Name="Content" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PostTime" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Department" Relationship="Self.FK_Bulletin_board_Department" FromRole="BulletinBoard" ToRole="Department" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Bulletin_board_Employee" FromRole="BulletinBoard" ToRole="Employee" />
-          <NavigationProperty Name="Group" Relationship="Self.FK_Bulletin_board_Group" FromRole="BulletinBoard" ToRole="Group" />
-        </EntityType>
-        <EntityType Name="Department">
-          <Key>
-            <PropertyRef Name="departmentID" />
-          </Key>
-          <Property Name="departmentID" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="BulletinBoards" Relationship="Self.FK_Bulletin_board_Department" FromRole="Department" ToRole="BulletinBoard" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Department" FromRole="Department" ToRole="Employee" />
-          <NavigationProperty Name="Groups" Relationship="Self.FK_Group_Department" FromRole="Department" ToRole="Group" />
-          <NavigationProperty Name="SuggestionHistories" Relationship="Self.FK_Suggestion_history_Department" FromRole="Department" ToRole="SuggestionHistory" />
-        </EntityType>
-        <EntityType Name="Employee">
-          <Key>
-            <PropertyRef Name="employeeID" />
-          </Key>
-          <Property Name="employeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="employee_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="birth" Type="DateTime" Precision="0" />
-          <Property Name="hire_date" Type="DateTime" Precision="3" />
-          <Property Name="account" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
-          <Property Name="officeID" Type="Int32" />
-          <Property Name="departmentID" Type="Int32" />
-          <Property Name="positionID" Type="Int32" />
-          <Property Name="managerID" Type="Int32" />
-          <Property Name="employed" Type="Boolean" />
-          <Property Name="groupID" Type="Int32" />
-          <NavigationProperty Name="BulletinBoards" Relationship="Self.FK_Bulletin_board_Employee" FromRole="Employee" ToRole="BulletinBoard" />
-          <NavigationProperty Name="Department" Relationship="Self.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
-          <NavigationProperty Name="Employee1" Relationship="Self.FK_Employee_Employee" FromRole="Employee" ToRole="Employee1" />
-          <NavigationProperty Name="Employee2" Relationship="Self.FK_Employee_Employee" FromRole="Employee1" ToRole="Employee" />
-          <NavigationProperty Name="Group" Relationship="Self.FK_Employee_Group" FromRole="Employee" ToRole="Group" />
-          <NavigationProperty Name="Office" Relationship="Self.FK_Employee_Office" FromRole="Employee" ToRole="Office" />
-          <NavigationProperty Name="Position" Relationship="Self.FK_Employee_Position" FromRole="Employee" ToRole="Position" />
-          <NavigationProperty Name="Files" Relationship="Self.FK_File_Employee" FromRole="Employee" ToRole="File" />
-          <NavigationProperty Name="MeetingRoomHistories" Relationship="Self.FK_Meeting_room_history_Employee" FromRole="Employee" ToRole="MeetingRoomHistory" />
-          <NavigationProperty Name="Messages" Relationship="Self.FK_Message_Employee" FromRole="Employee" ToRole="Message" />
-          <NavigationProperty Name="Recipients" Relationship="Self.FK_Recipient_Employee" FromRole="Employee" ToRole="Recipient" />
-          <NavigationProperty Name="ReportMains" Relationship="Self.FK_ReportMain_Employee" FromRole="Employee" ToRole="ReportMain" />
-          <NavigationProperty Name="ReportTimeSystems" Relationship="Self.FK_ReportTimeSystem_Employee" FromRole="Employee" ToRole="ReportTimeSystem" />
-          <NavigationProperty Name="SuggestionHistories" Relationship="Self.FK_Suggestion_history_Employee" FromRole="Employee" ToRole="SuggestionHistory" />
-          <NavigationProperty Name="Account1" Relationship="BusinessDataBaseModel.FK_Employee_Account" FromRole="Employee" ToRole="Account" />
-        </EntityType>
-        <EntityType Name="Group">
-          <Key>
-            <PropertyRef Name="GroupID" />
-          </Key>
-          <Property Name="GroupID" Type="Int32" Nullable="false" />
-          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DepartmentID" Type="Int32" />
-          <NavigationProperty Name="BulletinBoards" Relationship="Self.FK_Bulletin_board_Group" FromRole="Group" ToRole="BulletinBoard" />
-          <NavigationProperty Name="Department" Relationship="Self.FK_Group_Department" FromRole="Group" ToRole="Department" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Group" FromRole="Group" ToRole="Employee" />
-        </EntityType>
-        <EntityType Name="Leave">
-          <Key>
-            <PropertyRef Name="leaveID" />
-          </Key>
-          <Property Name="leaveID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="leave_name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-        </EntityType>
-        <EntityType Name="MeetingRoom">
-          <Key>
-            <PropertyRef Name="meetingID" />
-          </Key>
-          <Property Name="meetingID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="officeID" Type="Int32" />
-          <Property Name="max_member" Type="Int32" />
-          <NavigationProperty Name="MeetingRoomHistories" Relationship="Self.FK_Meeting_room_history_Meeting_room" FromRole="MeetingRoom" ToRole="MeetingRoomHistory" />
-          <NavigationProperty Name="Office" Relationship="Self.FK_Meeting_room_Office" FromRole="MeetingRoom" ToRole="Office" />
-        </EntityType>
-        <EntityType Name="Message">
-          <Key>
-            <PropertyRef Name="MessageID" />
-          </Key>
-          <Property Name="MessageID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MailingDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Message_Employee" FromRole="Message" ToRole="Employee" />
-          <NavigationProperty Name="Recipients" Relationship="Self.FK_Recipient_Message" FromRole="Message" ToRole="Recipient" />
-        </EntityType>
-        <EntityType Name="Office">
-          <Key>
-            <PropertyRef Name="officeID" />
-          </Key>
-          <Property Name="officeID" Type="Int32" Nullable="false" />
-          <Property Name="office_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="office_address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Office" FromRole="Office" ToRole="Employee" />
-          <NavigationProperty Name="MeetingRooms" Relationship="Self.FK_Meeting_room_Office" FromRole="Office" ToRole="MeetingRoom" />
-          <NavigationProperty Name="CompanyVehicles" Relationship="BusinessDataBaseModel.FK_Company_vehicle_Office" FromRole="Office" ToRole="CompanyVehicle" />
-        </EntityType>
-        <EntityType Name="Position">
-          <Key>
-            <PropertyRef Name="positionID" />
-          </Key>
-          <Property Name="positionID" Type="Int32" Nullable="false" />
-          <Property Name="position1" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Position" FromRole="Position" ToRole="Employee" />
-        </EntityType>
-        <EntityType Name="Recipient">
-          <Key>
-            <PropertyRef Name="MessageID" />
-            <PropertyRef Name="EmployeeID" />
-          </Key>
-          <Property Name="MessageID" Type="Int64" Nullable="false" />
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Recipient_Employee" FromRole="Recipient" ToRole="Employee" />
-          <NavigationProperty Name="Message" Relationship="Self.FK_Recipient_Message" FromRole="Recipient" ToRole="Message" />
-        </EntityType>
-        <EntityType Name="ReportCategory">
-          <Key>
-            <PropertyRef Name="ReportCategoryID" />
-          </Key>
-          <Property Name="ReportCategoryID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ReportMains" Relationship="Self.FK_ReportMain_ReportCategory" FromRole="ReportCategory" ToRole="ReportMain" />
-        </EntityType>
-        <EntityType Name="ReportMain">
-          <Key>
-            <PropertyRef Name="ReportID" />
-          </Key>
-          <Property Name="ReportID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ReportCategoryID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ApplicantID" Type="Int32" />
-          <Property Name="ApplyDate" Type="DateTime" Precision="3" />
-          <Property Name="FinishDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="ApprovalOrders" Relationship="Self.FK_ApprovalOrder_ReportMain" FromRole="ReportMain" ToRole="ApprovalOrder" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_ReportMain_Employee" FromRole="ReportMain" ToRole="Employee" />
-          <NavigationProperty Name="ReportCategory" Relationship="Self.FK_ReportMain_ReportCategory" FromRole="ReportMain" ToRole="ReportCategory" />
-          <NavigationProperty Name="RequisitionMains" Relationship="Self.FK_RequisitionMain_ReportMain" FromRole="ReportMain" ToRole="RequisitionMain" />
-        </EntityType>
-        <EntityType Name="RequisitionMain">
-          <Key>
-            <PropertyRef Name="RequisitionID" />
-          </Key>
-          <Property Name="ReportID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RequisitionID" Type="Int32" Nullable="false" />
-          <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ReportMain" Relationship="Self.FK_RequisitionMain_ReportMain" FromRole="RequisitionMain" ToRole="ReportMain" />
-          <NavigationProperty Name="RequisitionChild" Relationship="BusinessDataBaseModel.FK_RequisitionMain_RequisitionChild" FromRole="RequisitionMain" ToRole="RequisitionChild" />
-        </EntityType>
-        <EntityType Name="RewardandPunishment">
-          <Key>
-            <PropertyRef Name="Reward_PunishmentID" />
-          </Key>
-          <Property Name="Reward_PunishmentID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Reward_PunishmentName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Suggestion">
-          <Key>
-            <PropertyRef Name="suggestionID" />
-          </Key>
-          <Property Name="suggestionID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="suggestion1" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="SuggestionHistories" Relationship="Self.FK_Suggestion_history_Suggestion" FromRole="Suggestion" ToRole="SuggestionHistory" />
-        </EntityType>
-        <EntityType Name="File">
-          <Key>
-            <PropertyRef Name="FileID" />
-            <PropertyRef Name="FileName" />
-            <PropertyRef Name="FileSize" />
-            <PropertyRef Name="EmployeeID" />
-            <PropertyRef Name="UploadDate" />
-            <PropertyRef Name="Data" />
-          </Key>
-          <Property Name="FileID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FileSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_File_Employee" FromRole="File" ToRole="Employee" />
-        </EntityType>
-        <EntityType Name="MeetingRoomHistory">
-          <Key>
-            <PropertyRef Name="end_date_time" />
-          </Key>
-          <Property Name="meetingID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="start_date_time" Type="DateTime" Precision="3" />
-          <Property Name="end_date_time" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="employeeID" Type="Int32" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Meeting_room_history_Employee" FromRole="MeetingRoomHistory" ToRole="Employee" />
-          <NavigationProperty Name="MeetingRoom" Relationship="Self.FK_Meeting_room_history_Meeting_room" FromRole="MeetingRoomHistory" ToRole="MeetingRoom" />
-        </EntityType>
-        <EntityType Name="ReportTimeSystem">
-          <Key>
-            <PropertyRef Name="ReportID" />
-            <PropertyRef Name="employeeID" />
-            <PropertyRef Name="ApplyDateTime" />
-            <PropertyRef Name="EventHours" />
-            <PropertyRef Name="EventID" />
-          </Key>
-          <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="employeeID" Type="Int32" Nullable="false" />
-          <Property Name="ApplyDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EventHours" Type="Double" Nullable="false" />
-          <Property Name="EventID" Type="Int32" Nullable="false" />
-          <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_ReportTimeSystem_Employee" FromRole="ReportTimeSystem" ToRole="Employee" />
-          <Property Name="Discontinue" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="SuggestionHistory">
-          <Key>
-            <PropertyRef Name="num" />
-          </Key>
-          <Property Name="num" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="employeeID" Type="Int32" />
-          <Property Name="departmentID" Type="Int32" />
-          <Property Name="suggestionID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="content" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Department" Relationship="Self.FK_Suggestion_history_Department" FromRole="SuggestionHistory" ToRole="Department" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Suggestion_history_Employee" FromRole="SuggestionHistory" ToRole="Employee" />
-          <NavigationProperty Name="Suggestion" Relationship="Self.FK_Suggestion_history_Suggestion" FromRole="SuggestionHistory" ToRole="Suggestion" />
-        </EntityType>
-        <EntityType Name="SurveyMain">
-          <Key>
-            <PropertyRef Name="QuestionID" />
-          </Key>
-          <Property Name="SurveyID" Type="Int32" />
-          <Property Name="QuestionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Question" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <Association Name="FK_ApprovalChild_ApprovalOrder">
-          <End Role="ApprovalOrder" Type="Self.ApprovalOrder" Multiplicity="0..1" />
-          <End Role="ApprovalChild" Type="Self.ApprovalChild" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ApprovalOrder">
-              <PropertyRef Name="ApprovalStageID" />
-            </Principal>
-            <Dependent Role="ApprovalChild">
-              <PropertyRef Name="ApprovalStageID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ApprovalOrder_ReportMain">
-          <End Role="ReportMain" Type="Self.ReportMain" Multiplicity="0..1" />
-          <End Role="ApprovalOrder" Type="Self.ApprovalOrder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ReportMain">
-              <PropertyRef Name="ReportID" />
-            </Principal>
-            <Dependent Role="ApprovalOrder">
-              <PropertyRef Name="ReportID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Bulletin_board_Department">
-          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
-          <End Role="BulletinBoard" Type="Self.BulletinBoard" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Department">
-              <PropertyRef Name="departmentID" />
-            </Principal>
-            <Dependent Role="BulletinBoard">
-              <PropertyRef Name="DepartmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Bulletin_board_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="BulletinBoard" Type="Self.BulletinBoard" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="BulletinBoard">
-              <PropertyRef Name="EmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Bulletin_board_Group">
-          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
-          <End Role="BulletinBoard" Type="Self.BulletinBoard" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Group">
-              <PropertyRef Name="GroupID" />
-            </Principal>
-            <Dependent Role="BulletinBoard">
-              <PropertyRef Name="GroupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employee_Department">
-          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
-          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Department">
-              <PropertyRef Name="departmentID" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="departmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Group_Department">
-          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
-          <End Role="Group" Type="Self.Group" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Department">
-              <PropertyRef Name="departmentID" />
-            </Principal>
-            <Dependent Role="Group">
-              <PropertyRef Name="DepartmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Suggestion_history_Department">
-          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
-          <End Role="SuggestionHistory" Type="Self.SuggestionHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Department">
-              <PropertyRef Name="departmentID" />
-            </Principal>
-            <Dependent Role="SuggestionHistory">
-              <PropertyRef Name="departmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employee_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="Employee1" Type="Self.Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="Employee1">
-              <PropertyRef Name="managerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employee_Group">
-          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
-          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Group">
-              <PropertyRef Name="GroupID" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="groupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employee_Office">
-          <End Role="Office" Type="Self.Office" Multiplicity="0..1" />
-          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Office">
-              <PropertyRef Name="officeID" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="officeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employee_Position">
-          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
-          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Position">
-              <PropertyRef Name="positionID" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="positionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_File_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
-          <End Role="File" Type="Self.File" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="File">
-              <PropertyRef Name="EmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Meeting_room_history_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="MeetingRoomHistory" Type="Self.MeetingRoomHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="MeetingRoomHistory">
-              <PropertyRef Name="employeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Message_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
-          <End Role="Message" Type="Self.Message" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="Message">
-              <PropertyRef Name="EmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Recipient_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
-          <End Role="Recipient" Type="Self.Recipient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="Recipient">
-              <PropertyRef Name="EmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReportMain_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="ReportMain" Type="Self.ReportMain" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="ReportMain">
-              <PropertyRef Name="ApplicantID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReportTimeSystem_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
-          <End Role="ReportTimeSystem" Type="Self.ReportTimeSystem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="ReportTimeSystem">
-              <PropertyRef Name="employeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Suggestion_history_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="SuggestionHistory" Type="Self.SuggestionHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="SuggestionHistory">
-              <PropertyRef Name="employeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Meeting_room_history_Meeting_room">
-          <End Role="MeetingRoom" Type="Self.MeetingRoom" Multiplicity="0..1" />
-          <End Role="MeetingRoomHistory" Type="Self.MeetingRoomHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MeetingRoom">
-              <PropertyRef Name="meetingID" />
-            </Principal>
-            <Dependent Role="MeetingRoomHistory">
-              <PropertyRef Name="meetingID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Meeting_room_Office">
-          <End Role="Office" Type="Self.Office" Multiplicity="0..1" />
-          <End Role="MeetingRoom" Type="Self.MeetingRoom" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Office">
-              <PropertyRef Name="officeID" />
-            </Principal>
-            <Dependent Role="MeetingRoom">
-              <PropertyRef Name="officeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Recipient_Message">
-          <End Role="Message" Type="Self.Message" Multiplicity="1" />
-          <End Role="Recipient" Type="Self.Recipient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Message">
-              <PropertyRef Name="MessageID" />
-            </Principal>
-            <Dependent Role="Recipient">
-              <PropertyRef Name="MessageID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReportMain_ReportCategory">
-          <End Role="ReportCategory" Type="Self.ReportCategory" Multiplicity="0..1" />
-          <End Role="ReportMain" Type="Self.ReportMain" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ReportCategory">
-              <PropertyRef Name="ReportCategoryID" />
-            </Principal>
-            <Dependent Role="ReportMain">
-              <PropertyRef Name="ReportCategoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RequisitionMain_ReportMain">
-          <End Role="ReportMain" Type="Self.ReportMain" Multiplicity="0..1" />
-          <End Role="RequisitionMain" Type="Self.RequisitionMain" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ReportMain">
-              <PropertyRef Name="ReportID" />
-            </Principal>
-            <Dependent Role="RequisitionMain">
-              <PropertyRef Name="ReportID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Suggestion_history_Suggestion">
-          <End Role="Suggestion" Type="Self.Suggestion" Multiplicity="0..1" />
-          <End Role="SuggestionHistory" Type="Self.SuggestionHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Suggestion">
-              <PropertyRef Name="suggestionID" />
-            </Principal>
-            <Dependent Role="SuggestionHistory">
-              <PropertyRef Name="suggestionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="BusinessDataBaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ApprovalChilds" EntityType="Self.ApprovalChild" />
-          <EntitySet Name="ApprovalOrders" EntityType="Self.ApprovalOrder" />
-          <EntitySet Name="BulletinBoards" EntityType="Self.BulletinBoard" />
-          <EntitySet Name="Departments" EntityType="Self.Department" />
-          <EntitySet Name="Employees" EntityType="Self.Employee" />
-          <EntitySet Name="Groups" EntityType="Self.Group" />
-          <EntitySet Name="Leaves" EntityType="Self.Leave" />
-          <EntitySet Name="MeetingRooms" EntityType="Self.MeetingRoom" />
-          <EntitySet Name="Messages" EntityType="Self.Message" />
-          <EntitySet Name="Offices" EntityType="Self.Office" />
-          <EntitySet Name="Positions" EntityType="Self.Position" />
-          <EntitySet Name="Recipients" EntityType="Self.Recipient" />
-          <EntitySet Name="ReportCategories" EntityType="Self.ReportCategory" />
-          <EntitySet Name="ReportMains" EntityType="Self.ReportMain" />
-          <EntitySet Name="RequisitionMains" EntityType="Self.RequisitionMain" />
-          <EntitySet Name="RewardandPunishments" EntityType="Self.RewardandPunishment" />
-          <EntitySet Name="Suggestions" EntityType="Self.Suggestion" />
-          <EntitySet Name="Files" EntityType="Self.File" />
-          <EntitySet Name="MeetingRoomHistories" EntityType="Self.MeetingRoomHistory" />
-          <EntitySet Name="ReportTimeSystems" EntityType="Self.ReportTimeSystem" />
-          <EntitySet Name="SuggestionHistories" EntityType="Self.SuggestionHistory" />
-          <EntitySet Name="SurveyMains" EntityType="Self.SurveyMain" />
-          <AssociationSet Name="FK_ApprovalChild_ApprovalOrder" Association="Self.FK_ApprovalChild_ApprovalOrder">
-            <End Role="ApprovalOrder" EntitySet="ApprovalOrders" />
-            <End Role="ApprovalChild" EntitySet="ApprovalChilds" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ApprovalOrder_ReportMain" Association="Self.FK_ApprovalOrder_ReportMain">
-            <End Role="ReportMain" EntitySet="ReportMains" />
-            <End Role="ApprovalOrder" EntitySet="ApprovalOrders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Bulletin_board_Department" Association="Self.FK_Bulletin_board_Department">
-            <End Role="Department" EntitySet="Departments" />
-            <End Role="BulletinBoard" EntitySet="BulletinBoards" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Bulletin_board_Employee" Association="Self.FK_Bulletin_board_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="BulletinBoard" EntitySet="BulletinBoards" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Bulletin_board_Group" Association="Self.FK_Bulletin_board_Group">
-            <End Role="Group" EntitySet="Groups" />
-            <End Role="BulletinBoard" EntitySet="BulletinBoards" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_Department" Association="Self.FK_Employee_Department">
-            <End Role="Department" EntitySet="Departments" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Group_Department" Association="Self.FK_Group_Department">
-            <End Role="Department" EntitySet="Departments" />
-            <End Role="Group" EntitySet="Groups" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Suggestion_history_Department" Association="Self.FK_Suggestion_history_Department">
-            <End Role="Department" EntitySet="Departments" />
-            <End Role="SuggestionHistory" EntitySet="SuggestionHistories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_Employee" Association="Self.FK_Employee_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="Employee1" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_Group" Association="Self.FK_Employee_Group">
-            <End Role="Group" EntitySet="Groups" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_Office" Association="Self.FK_Employee_Office">
-            <End Role="Office" EntitySet="Offices" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_Position" Association="Self.FK_Employee_Position">
-            <End Role="Position" EntitySet="Positions" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_File_Employee" Association="Self.FK_File_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="File" EntitySet="Files" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Meeting_room_history_Employee" Association="Self.FK_Meeting_room_history_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="MeetingRoomHistory" EntitySet="MeetingRoomHistories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Message_Employee" Association="Self.FK_Message_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="Message" EntitySet="Messages" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Recipient_Employee" Association="Self.FK_Recipient_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="Recipient" EntitySet="Recipients" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReportMain_Employee" Association="Self.FK_ReportMain_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="ReportMain" EntitySet="ReportMains" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReportTimeSystem_Employee" Association="Self.FK_ReportTimeSystem_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="ReportTimeSystem" EntitySet="ReportTimeSystems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Suggestion_history_Employee" Association="Self.FK_Suggestion_history_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="SuggestionHistory" EntitySet="SuggestionHistories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Meeting_room_history_Meeting_room" Association="Self.FK_Meeting_room_history_Meeting_room">
-            <End Role="MeetingRoom" EntitySet="MeetingRooms" />
-            <End Role="MeetingRoomHistory" EntitySet="MeetingRoomHistories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Meeting_room_Office" Association="Self.FK_Meeting_room_Office">
-            <End Role="Office" EntitySet="Offices" />
-            <End Role="MeetingRoom" EntitySet="MeetingRooms" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Recipient_Message" Association="Self.FK_Recipient_Message">
-            <End Role="Message" EntitySet="Messages" />
-            <End Role="Recipient" EntitySet="Recipients" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReportMain_ReportCategory" Association="Self.FK_ReportMain_ReportCategory">
-            <End Role="ReportCategory" EntitySet="ReportCategories" />
-            <End Role="ReportMain" EntitySet="ReportMains" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RequisitionMain_ReportMain" Association="Self.FK_RequisitionMain_ReportMain">
-            <End Role="ReportMain" EntitySet="ReportMains" />
-            <End Role="RequisitionMain" EntitySet="RequisitionMains" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Suggestion_history_Suggestion" Association="Self.FK_Suggestion_history_Suggestion">
-            <End Role="Suggestion" EntitySet="Suggestions" />
-            <End Role="SuggestionHistory" EntitySet="SuggestionHistories" />
-          </AssociationSet>
-          <EntitySet Name="sysdiagrams" EntityType="BusinessDataBaseModel.sysdiagram" />
-          <EntitySet Name="Events" EntityType="BusinessDataBaseModel.Event" />
           <FunctionImport Name="AddReport">
             <Parameter Name="ReportID" Mode="InOut" Type="Int64" />
             <Parameter Name="employeeID" Mode="In" Type="Int32" />
@@ -1585,39 +967,154 @@
             <Parameter Name="EventID" Mode="In" Type="Int32" />
             <Parameter Name="Note" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="RequisitionChilds" EntityType="BusinessDataBaseModel.RequisitionChild" />
-          <AssociationSet Name="FK_RequisitionMain_RequisitionChild" Association="BusinessDataBaseModel.FK_RequisitionMain_RequisitionChild">
-            <End Role="RequisitionChild" EntitySet="RequisitionChilds" />
-            <End Role="RequisitionMain" EntitySet="RequisitionMains" />
-          </AssociationSet>
-          <EntitySet Name="CompanyVehicles" EntityType="BusinessDataBaseModel.CompanyVehicle" />
-          <AssociationSet Name="FK_Company_vehicle_Office" Association="BusinessDataBaseModel.FK_Company_vehicle_Office">
-            <End Role="Office" EntitySet="Offices" />
-            <End Role="CompanyVehicle" EntitySet="CompanyVehicles" />
-          </AssociationSet>
           <EntitySet Name="Accounts" EntityType="BusinessDataBaseModel.Account" />
+          <EntitySet Name="ApprovalProcedures" EntityType="BusinessDataBaseModel.ApprovalProcedure" />
+          <EntitySet Name="ApprovalStatus" EntityType="BusinessDataBaseModel.ApprovalStatu" />
+          <EntitySet Name="BulletinBoards" EntityType="BusinessDataBaseModel.BulletinBoard" />
+          <EntitySet Name="CompanyVehicles" EntityType="BusinessDataBaseModel.CompanyVehicle" />
+          <EntitySet Name="CompanyVehicleHistories" EntityType="BusinessDataBaseModel.CompanyVehicleHistory" />
+          <EntitySet Name="Departments" EntityType="BusinessDataBaseModel.Department" />
+          <EntitySet Name="Employees" EntityType="BusinessDataBaseModel.Employee" />
+          <EntitySet Name="Events" EntityType="BusinessDataBaseModel.Event" />
+          <EntitySet Name="Files" EntityType="BusinessDataBaseModel.File" />
+          <EntitySet Name="Groups" EntityType="BusinessDataBaseModel.Group" />
+          <EntitySet Name="Leaves" EntityType="BusinessDataBaseModel.Leave" />
+          <EntitySet Name="MeetingRooms" EntityType="BusinessDataBaseModel.MeetingRoom" />
+          <EntitySet Name="Messages" EntityType="BusinessDataBaseModel.Message" />
+          <EntitySet Name="Offices" EntityType="BusinessDataBaseModel.Office" />
+          <EntitySet Name="OrderDetails" EntityType="BusinessDataBaseModel.OrderDetail" />
+          <EntitySet Name="Positions" EntityType="BusinessDataBaseModel.Position" />
+          <EntitySet Name="Recipients" EntityType="BusinessDataBaseModel.Recipient" />
+          <EntitySet Name="ReportCategories" EntityType="BusinessDataBaseModel.ReportCategory" />
+          <EntitySet Name="ReportTimeSystems" EntityType="BusinessDataBaseModel.ReportTimeSystem" />
+          <EntitySet Name="RequisitionMains" EntityType="BusinessDataBaseModel.RequisitionMain" />
+          <EntitySet Name="RewardandPunishments" EntityType="BusinessDataBaseModel.RewardandPunishment" />
+          <EntitySet Name="Suggestions" EntityType="BusinessDataBaseModel.Suggestion" />
+          <EntitySet Name="sysdiagrams" EntityType="BusinessDataBaseModel.sysdiagram" />
+          <EntitySet Name="MeetingRoomHistories" EntityType="BusinessDataBaseModel.MeetingRoomHistory" />
+          <EntitySet Name="SuggestionHistories" EntityType="BusinessDataBaseModel.SuggestionHistory" />
+          <EntitySet Name="SurveyMains" EntityType="BusinessDataBaseModel.SurveyMain" />
           <AssociationSet Name="FK_Employee_Account" Association="BusinessDataBaseModel.FK_Employee_Account">
             <End Role="Account" EntitySet="Accounts" />
             <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="Event">
-          <Key>
-            <PropertyRef Name="EventID" />
-          </Key>
-          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EventName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-        </EntityType>
+          <AssociationSet Name="FK_RequisitionMain_ApprovalStatus" Association="BusinessDataBaseModel.FK_RequisitionMain_ApprovalStatus">
+            <End Role="ApprovalStatu" EntitySet="ApprovalStatus" />
+            <End Role="RequisitionMain" EntitySet="RequisitionMains" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bulletin_board_Department" Association="BusinessDataBaseModel.FK_Bulletin_board_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="BulletinBoard" EntitySet="BulletinBoards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bulletin_board_Employee" Association="BusinessDataBaseModel.FK_Bulletin_board_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="BulletinBoard" EntitySet="BulletinBoards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bulletin_board_Group" Association="BusinessDataBaseModel.FK_Bulletin_board_Group">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="BulletinBoard" EntitySet="BulletinBoards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BulletinBoard_Employee" Association="BusinessDataBaseModel.FK_BulletinBoard_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="BulletinBoard" EntitySet="BulletinBoards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_vehicle_history_Company_vehicle" Association="BusinessDataBaseModel.FK_Company_vehicle_history_Company_vehicle">
+            <End Role="CompanyVehicle" EntitySet="CompanyVehicles" />
+            <End Role="CompanyVehicleHistory" EntitySet="CompanyVehicleHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_vehicle_Office" Association="BusinessDataBaseModel.FK_Company_vehicle_Office">
+            <End Role="Office" EntitySet="Offices" />
+            <End Role="CompanyVehicle" EntitySet="CompanyVehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_vehicle_history_Employee" Association="BusinessDataBaseModel.FK_Company_vehicle_history_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="CompanyVehicleHistory" EntitySet="CompanyVehicleHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Department" Association="BusinessDataBaseModel.FK_Employee_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_Department" Association="BusinessDataBaseModel.FK_Group_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Group" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Suggestion_history_Department" Association="BusinessDataBaseModel.FK_Suggestion_history_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="SuggestionHistory" EntitySet="SuggestionHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Employee" Association="BusinessDataBaseModel.FK_Employee_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Employee1" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Group" Association="BusinessDataBaseModel.FK_Employee_Group">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Office" Association="BusinessDataBaseModel.FK_Employee_Office">
+            <End Role="Office" EntitySet="Offices" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Position" Association="BusinessDataBaseModel.FK_Employee_Position">
+            <End Role="Position" EntitySet="Positions" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_File_Employee" Association="BusinessDataBaseModel.FK_File_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="File" EntitySet="Files" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Meeting_room_history_Employee" Association="BusinessDataBaseModel.FK_Meeting_room_history_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="MeetingRoomHistory" EntitySet="MeetingRoomHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_Employee" Association="BusinessDataBaseModel.FK_Message_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recipient_Employee" Association="BusinessDataBaseModel.FK_Recipient_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Recipient" EntitySet="Recipients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportTimeSystem_Employee" Association="BusinessDataBaseModel.FK_ReportTimeSystem_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="ReportTimeSystem" EntitySet="ReportTimeSystems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequisitionMain_Employee" Association="BusinessDataBaseModel.FK_RequisitionMain_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="RequisitionMain" EntitySet="RequisitionMains" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Suggestion_history_Employee" Association="BusinessDataBaseModel.FK_Suggestion_history_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="SuggestionHistory" EntitySet="SuggestionHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportTimeSystem_Event" Association="BusinessDataBaseModel.FK_ReportTimeSystem_Event">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="ReportTimeSystem" EntitySet="ReportTimeSystems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Meeting_room_history_Meeting_room" Association="BusinessDataBaseModel.FK_Meeting_room_history_Meeting_room">
+            <End Role="MeetingRoom" EntitySet="MeetingRooms" />
+            <End Role="MeetingRoomHistory" EntitySet="MeetingRoomHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Meeting_room_Office" Association="BusinessDataBaseModel.FK_Meeting_room_Office">
+            <End Role="Office" EntitySet="Offices" />
+            <End Role="MeetingRoom" EntitySet="MeetingRooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recipient_Message" Association="BusinessDataBaseModel.FK_Recipient_Message">
+            <End Role="Message" EntitySet="Messages" />
+            <End Role="Recipient" EntitySet="Recipients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_RequisitionMain" Association="BusinessDataBaseModel.FK_OrderDetail_RequisitionMain">
+            <End Role="RequisitionMain" EntitySet="RequisitionMains" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequisitionMain_ReportCategory" Association="BusinessDataBaseModel.FK_RequisitionMain_ReportCategory">
+            <End Role="ReportCategory" EntitySet="ReportCategories" />
+            <End Role="RequisitionMain" EntitySet="RequisitionMains" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Suggestion_history_Suggestion" Association="BusinessDataBaseModel.FK_Suggestion_history_Suggestion">
+            <End Role="Suggestion" EntitySet="Suggestions" />
+            <End Role="SuggestionHistory" EntitySet="SuggestionHistories" />
+          </AssociationSet>
+          </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -1629,64 +1126,322 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <EntityType Name="RequisitionChild">
+        <EntityType Name="Account">
           <Key>
-            <PropertyRef Name="RequisitionID" />
+            <PropertyRef Name="account1" />
           </Key>
-          <Property Name="RequisitionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Discount" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="RequisitionMain" Relationship="BusinessDataBaseModel.FK_RequisitionMain_RequisitionChild" FromRole="RequisitionChild" ToRole="RequisitionMain" />
+          <Property Name="account1" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="Binary" MaxLength="32" FixedLength="false" />
+          <NavigationProperty Name="Employees" Relationship="BusinessDataBaseModel.FK_Employee_Account" FromRole="Account" ToRole="Employee" />
         </EntityType>
-        <Association Name="FK_RequisitionMain_RequisitionChild">
-          <End Type="BusinessDataBaseModel.RequisitionChild" Role="RequisitionChild" Multiplicity="1" />
-          <End Type="BusinessDataBaseModel.RequisitionMain" Role="RequisitionMain" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="RequisitionChild">
-              <PropertyRef Name="RequisitionID" />
-            </Principal>
-            <Dependent Role="RequisitionMain">
-              <PropertyRef Name="RequisitionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="ApprovalProcedure">
+          <Key>
+            <PropertyRef Name="ApprovalID" />
+          </Key>
+          <Property Name="ApprovalID" Type="Int32" Nullable="false" />
+          <Property Name="PositionID" Type="Int32" />
+          <Property Name="ApprovalReportName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovalSupervisor" Type="Boolean" />
+          <Property Name="ApprovalDirector" Type="Boolean" />
+          <Property Name="ApprovalGenalManager" Type="Boolean" />
+          <Property Name="ApprovalFinancialDirector" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ApprovalStatu">
+          <Key>
+            <PropertyRef Name="ApprovalStatusID" />
+          </Key>
+          <Property Name="ApprovalStatusID" Type="Int32" Nullable="false" />
+          <Property Name="StatusName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RequisitionMains" Relationship="BusinessDataBaseModel.FK_RequisitionMain_ApprovalStatus" FromRole="ApprovalStatu" ToRole="RequisitionMain" />
+        </EntityType>
+        <EntityType Name="BulletinBoard">
+          <Key>
+            <PropertyRef Name="Num" />
+          </Key>
+          <Property Name="Num" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="GroupID" Type="Int32" />
+          <Property Name="Content" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Department" Relationship="BusinessDataBaseModel.FK_Bulletin_board_Department" FromRole="BulletinBoard" ToRole="Department" />
+          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_Bulletin_board_Employee" FromRole="BulletinBoard" ToRole="Employee" />
+          <NavigationProperty Name="Group" Relationship="BusinessDataBaseModel.FK_Bulletin_board_Group" FromRole="BulletinBoard" ToRole="Group" />
+          <NavigationProperty Name="Employee1" Relationship="BusinessDataBaseModel.FK_BulletinBoard_Employee" FromRole="BulletinBoard" ToRole="Employee" />
+        </EntityType>
         <EntityType Name="CompanyVehicle">
           <Key>
             <PropertyRef Name="LicenseNumber" />
           </Key>
           <Property Name="LicenseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="VehicleYear" Type="Int32" />
-          <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
-          <Property Name="brand" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="serial" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="MaxPassenger" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="officeID" Type="Int32" />
-          <Property Name="VehiclePhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="VehicleYear" Type="Int32" Nullable="false" />
+          <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="brand" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="serial" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MaxPassenger" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="officeID" Type="Int32" Nullable="false" />
+          <Property Name="VehiclePhoto" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="CompanyVehicleHistory" Relationship="BusinessDataBaseModel.FK_Company_vehicle_history_Company_vehicle" FromRole="CompanyVehicle" ToRole="CompanyVehicleHistory" />
           <NavigationProperty Name="Office" Relationship="BusinessDataBaseModel.FK_Company_vehicle_Office" FromRole="CompanyVehicle" ToRole="Office" />
         </EntityType>
-        <Association Name="FK_Company_vehicle_Office">
-          <End Type="BusinessDataBaseModel.Office" Role="Office" Multiplicity="0..1" />
-          <End Type="BusinessDataBaseModel.CompanyVehicle" Role="CompanyVehicle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Office">
-              <PropertyRef Name="officeID" />
-            </Principal>
-            <Dependent Role="CompanyVehicle">
-              <PropertyRef Name="officeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Account">
+        <EntityType Name="CompanyVehicleHistory">
           <Key>
-            <PropertyRef Name="account1" />
+            <PropertyRef Name="LicenseNumber" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="account1" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="Binary" MaxLength="32" FixedLength="false" />
-          <NavigationProperty Name="Employees" Relationship="BusinessDataBaseModel.FK_Employee_Account" FromRole="Account" ToRole="Employee" />
+          <Property Name="VehicleHistoryID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LicenseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartDateTime" Type="DateTime" Precision="3" />
+          <Property Name="EndDateTime" Type="DateTime" Precision="3" />
+          <Property Name="employeeID" Type="Int32" />
+          <Property Name="purpose" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CompanyVehicle" Relationship="BusinessDataBaseModel.FK_Company_vehicle_history_Company_vehicle" FromRole="CompanyVehicleHistory" ToRole="CompanyVehicle" />
+          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_Company_vehicle_history_Employee" FromRole="CompanyVehicleHistory" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="departmentID" />
+          </Key>
+          <Property Name="departmentID" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BulletinBoards" Relationship="BusinessDataBaseModel.FK_Bulletin_board_Department" FromRole="Department" ToRole="BulletinBoard" />
+          <NavigationProperty Name="Employees" Relationship="BusinessDataBaseModel.FK_Employee_Department" FromRole="Department" ToRole="Employee" />
+          <NavigationProperty Name="Groups" Relationship="BusinessDataBaseModel.FK_Group_Department" FromRole="Department" ToRole="Group" />
+          <NavigationProperty Name="SuggestionHistories" Relationship="BusinessDataBaseModel.FK_Suggestion_history_Department" FromRole="Department" ToRole="SuggestionHistory" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="employeeID" />
+          </Key>
+          <Property Name="employeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employee_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="birth" Type="DateTime" Precision="0" />
+          <Property Name="hire_date" Type="DateTime" Precision="3" />
+          <Property Name="account" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="officeID" Type="Int32" />
+          <Property Name="departmentID" Type="Int32" />
+          <Property Name="positionID" Type="Int32" />
+          <Property Name="managerID" Type="Int32" />
+          <Property Name="employed" Type="Boolean" />
+          <Property Name="groupID" Type="Int32" />
+          <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LeaveLessThreeDaysID" Type="Int32" />
+          <Property Name="LeaveOverThreeDaysID" Type="Int32" />
+          <Property Name="ApprovalLessTenKID" Type="Int32" />
+          <Property Name="ApprovalOverTenKID" Type="Int32" />
+          <NavigationProperty Name="Account1" Relationship="BusinessDataBaseModel.FK_Employee_Account" FromRole="Employee" ToRole="Account" />
+          <NavigationProperty Name="BulletinBoards" Relationship="BusinessDataBaseModel.FK_Bulletin_board_Employee" FromRole="Employee" ToRole="BulletinBoard" />
+          <NavigationProperty Name="BulletinBoards1" Relationship="BusinessDataBaseModel.FK_BulletinBoard_Employee" FromRole="Employee" ToRole="BulletinBoard" />
+          <NavigationProperty Name="CompanyVehicleHistories" Relationship="BusinessDataBaseModel.FK_Company_vehicle_history_Employee" FromRole="Employee" ToRole="CompanyVehicleHistory" />
+          <NavigationProperty Name="Department" Relationship="BusinessDataBaseModel.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
+          <NavigationProperty Name="Employee1" Relationship="BusinessDataBaseModel.FK_Employee_Employee" FromRole="Employee" ToRole="Employee1" />
+          <NavigationProperty Name="Employee2" Relationship="BusinessDataBaseModel.FK_Employee_Employee" FromRole="Employee1" ToRole="Employee" />
+          <NavigationProperty Name="Group" Relationship="BusinessDataBaseModel.FK_Employee_Group" FromRole="Employee" ToRole="Group" />
+          <NavigationProperty Name="Office" Relationship="BusinessDataBaseModel.FK_Employee_Office" FromRole="Employee" ToRole="Office" />
+          <NavigationProperty Name="Position" Relationship="BusinessDataBaseModel.FK_Employee_Position" FromRole="Employee" ToRole="Position" />
+          <NavigationProperty Name="Files" Relationship="BusinessDataBaseModel.FK_File_Employee" FromRole="Employee" ToRole="File" />
+          <NavigationProperty Name="MeetingRoomHistories" Relationship="BusinessDataBaseModel.FK_Meeting_room_history_Employee" FromRole="Employee" ToRole="MeetingRoomHistory" />
+          <NavigationProperty Name="Messages" Relationship="BusinessDataBaseModel.FK_Message_Employee" FromRole="Employee" ToRole="Message" />
+          <NavigationProperty Name="Recipients" Relationship="BusinessDataBaseModel.FK_Recipient_Employee" FromRole="Employee" ToRole="Recipient" />
+          <NavigationProperty Name="ReportTimeSystems" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Employee" FromRole="Employee" ToRole="ReportTimeSystem" />
+          <NavigationProperty Name="RequisitionMains" Relationship="BusinessDataBaseModel.FK_RequisitionMain_Employee" FromRole="Employee" ToRole="RequisitionMain" />
+          <NavigationProperty Name="SuggestionHistories" Relationship="BusinessDataBaseModel.FK_Suggestion_history_Employee" FromRole="Employee" ToRole="SuggestionHistory" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ReportTimeSystems" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Event" FromRole="Event" ToRole="ReportTimeSystem" />
+        </EntityType>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="FileID" />
+          </Key>
+          <Property Name="FileID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FileSize" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Data" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_File_Employee" FromRole="File" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <NavigationProperty Name="BulletinBoards" Relationship="BusinessDataBaseModel.FK_Bulletin_board_Group" FromRole="Group" ToRole="BulletinBoard" />
+          <NavigationProperty Name="Department" Relationship="BusinessDataBaseModel.FK_Group_Department" FromRole="Group" ToRole="Department" />
+          <NavigationProperty Name="Employees" Relationship="BusinessDataBaseModel.FK_Employee_Group" FromRole="Group" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Leave">
+          <Key>
+            <PropertyRef Name="leaveID" />
+          </Key>
+          <Property Name="leaveID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="leave_name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MeetingRoom">
+          <Key>
+            <PropertyRef Name="meetingID" />
+          </Key>
+          <Property Name="meetingID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="officeID" Type="Int32" />
+          <Property Name="max_member" Type="Int32" />
+          <NavigationProperty Name="MeetingRoomHistories" Relationship="BusinessDataBaseModel.FK_Meeting_room_history_Meeting_room" FromRole="MeetingRoom" ToRole="MeetingRoomHistory" />
+          <NavigationProperty Name="Office" Relationship="BusinessDataBaseModel.FK_Meeting_room_Office" FromRole="MeetingRoom" ToRole="Office" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Data" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MailingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_Message_Employee" FromRole="Message" ToRole="Employee" />
+          <NavigationProperty Name="Recipients" Relationship="BusinessDataBaseModel.FK_Recipient_Message" FromRole="Message" ToRole="Recipient" />
+        </EntityType>
+        <EntityType Name="Office">
+          <Key>
+            <PropertyRef Name="officeID" />
+          </Key>
+          <Property Name="officeID" Type="Int32" Nullable="false" />
+          <Property Name="office_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="office_address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CompanyVehicles" Relationship="BusinessDataBaseModel.FK_Company_vehicle_Office" FromRole="Office" ToRole="CompanyVehicle" />
+          <NavigationProperty Name="Employees" Relationship="BusinessDataBaseModel.FK_Employee_Office" FromRole="Office" ToRole="Employee" />
+          <NavigationProperty Name="MeetingRooms" Relationship="BusinessDataBaseModel.FK_Meeting_room_Office" FromRole="Office" ToRole="MeetingRoom" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="Note" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="RequisitionMain" Relationship="BusinessDataBaseModel.FK_OrderDetail_RequisitionMain" FromRole="OrderDetail" ToRole="RequisitionMain" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="positionID" />
+          </Key>
+          <Property Name="positionID" Type="Int32" Nullable="false" />
+          <Property Name="position1" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Employees" Relationship="BusinessDataBaseModel.FK_Employee_Position" FromRole="Position" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Recipient">
+          <Key>
+            <PropertyRef Name="MessageID" />
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="MessageID" Type="Int64" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_Recipient_Employee" FromRole="Recipient" ToRole="Employee" />
+          <NavigationProperty Name="Message" Relationship="BusinessDataBaseModel.FK_Recipient_Message" FromRole="Recipient" ToRole="Message" />
+        </EntityType>
+        <EntityType Name="ReportCategory">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="Int32" Nullable="false" />
+          <Property Name="ReportName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RequisitionMains" Relationship="BusinessDataBaseModel.FK_RequisitionMain_ReportCategory" FromRole="ReportCategory" ToRole="RequisitionMain" />
+        </EntityType>
+        <EntityType Name="ReportTimeSystem">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeID" Type="Int32" Nullable="false" />
+          <Property Name="ApplyDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EventHours" Type="Double" Nullable="false" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Discontinue" Type="Boolean" />
+          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Employee" FromRole="ReportTimeSystem" ToRole="Employee" />
+          <NavigationProperty Name="Event" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Event" FromRole="ReportTimeSystem" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="RequisitionMain">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="ApprovalStatusID" Type="Int32" />
+          <NavigationProperty Name="ApprovalStatu" Relationship="BusinessDataBaseModel.FK_RequisitionMain_ApprovalStatus" FromRole="RequisitionMain" ToRole="ApprovalStatu" />
+          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_RequisitionMain_Employee" FromRole="RequisitionMain" ToRole="Employee" />
+          <NavigationProperty Name="OrderDetails" Relationship="BusinessDataBaseModel.FK_OrderDetail_RequisitionMain" FromRole="RequisitionMain" ToRole="OrderDetail" />
+          <NavigationProperty Name="ReportCategory" Relationship="BusinessDataBaseModel.FK_RequisitionMain_ReportCategory" FromRole="RequisitionMain" ToRole="ReportCategory" />
+        </EntityType>
+        <EntityType Name="RewardandPunishment">
+          <Key>
+            <PropertyRef Name="Reward_PunishmentID" />
+          </Key>
+          <Property Name="Reward_PunishmentID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Reward_PunishmentName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Suggestion">
+          <Key>
+            <PropertyRef Name="suggestionID" />
+          </Key>
+          <Property Name="suggestionID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="suggestion1" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="SuggestionHistories" Relationship="BusinessDataBaseModel.FK_Suggestion_history_Suggestion" FromRole="Suggestion" ToRole="SuggestionHistory" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="MeetingRoomHistory">
+          <Key>
+            <PropertyRef Name="end_date_time" />
+          </Key>
+          <Property Name="meetingID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="start_date_time" Type="DateTime" Precision="3" />
+          <Property Name="end_date_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="employeeID" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_Meeting_room_history_Employee" FromRole="MeetingRoomHistory" ToRole="Employee" />
+          <NavigationProperty Name="MeetingRoom" Relationship="BusinessDataBaseModel.FK_Meeting_room_history_Meeting_room" FromRole="MeetingRoomHistory" ToRole="MeetingRoom" />
+        </EntityType>
+        <EntityType Name="SuggestionHistory">
+          <Key>
+            <PropertyRef Name="num" />
+          </Key>
+          <Property Name="num" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeID" Type="Int32" />
+          <Property Name="departmentID" Type="Int32" />
+          <Property Name="suggestionID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="content" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Department" Relationship="BusinessDataBaseModel.FK_Suggestion_history_Department" FromRole="SuggestionHistory" ToRole="Department" />
+          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_Suggestion_history_Employee" FromRole="SuggestionHistory" ToRole="Employee" />
+          <NavigationProperty Name="Suggestion" Relationship="BusinessDataBaseModel.FK_Suggestion_history_Suggestion" FromRole="SuggestionHistory" ToRole="Suggestion" />
+        </EntityType>
+        <EntityType Name="SurveyMain">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="SurveyID" Type="Int32" />
+          <Property Name="QuestionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Employee_Account">
           <End Type="BusinessDataBaseModel.Account" Role="Account" Multiplicity="0..1" />
@@ -1700,254 +1455,360 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_RequisitionMain_ApprovalStatus">
+          <End Type="BusinessDataBaseModel.ApprovalStatu" Role="ApprovalStatu" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.RequisitionMain" Role="RequisitionMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApprovalStatu">
+              <PropertyRef Name="ApprovalStatusID" />
+            </Principal>
+            <Dependent Role="RequisitionMain">
+              <PropertyRef Name="ApprovalStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bulletin_board_Department">
+          <End Type="BusinessDataBaseModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.BulletinBoard" Role="BulletinBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="departmentID" />
+            </Principal>
+            <Dependent Role="BulletinBoard">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bulletin_board_Employee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.BulletinBoard" Role="BulletinBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="BulletinBoard">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bulletin_board_Group">
+          <End Type="BusinessDataBaseModel.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.BulletinBoard" Role="BulletinBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="BulletinBoard">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BulletinBoard_Employee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.BulletinBoard" Role="BulletinBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="BulletinBoard">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_vehicle_history_Company_vehicle">
+          <End Type="BusinessDataBaseModel.CompanyVehicle" Role="CompanyVehicle" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.CompanyVehicleHistory" Role="CompanyVehicleHistory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyVehicle">
+              <PropertyRef Name="LicenseNumber" />
+            </Principal>
+            <Dependent Role="CompanyVehicleHistory">
+              <PropertyRef Name="LicenseNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_vehicle_Office">
+          <End Type="BusinessDataBaseModel.Office" Role="Office" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.CompanyVehicle" Role="CompanyVehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="officeID" />
+            </Principal>
+            <Dependent Role="CompanyVehicle">
+              <PropertyRef Name="officeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_vehicle_history_Employee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.CompanyVehicleHistory" Role="CompanyVehicleHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="CompanyVehicleHistory">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Department">
+          <End Type="BusinessDataBaseModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="departmentID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="departmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_Department">
+          <End Type="BusinessDataBaseModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.Group" Role="Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="departmentID" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Suggestion_history_Department">
+          <End Type="BusinessDataBaseModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.SuggestionHistory" Role="SuggestionHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="departmentID" />
+            </Principal>
+            <Dependent Role="SuggestionHistory">
+              <PropertyRef Name="departmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Employee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="Employee1">
+              <PropertyRef Name="managerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Group">
+          <End Type="BusinessDataBaseModel.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="groupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Office">
+          <End Type="BusinessDataBaseModel.Office" Role="Office" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="officeID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="officeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Position">
+          <End Type="BusinessDataBaseModel.Position" Role="Position" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="positionID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="positionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_File_Employee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.File" Role="File" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="File">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Meeting_room_history_Employee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.MeetingRoomHistory" Role="MeetingRoomHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="MeetingRoomHistory">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_Employee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recipient_Employee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.Recipient" Role="Recipient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="Recipient">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportTimeSystem_Employee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.ReportTimeSystem" Role="ReportTimeSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="ReportTimeSystem">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequisitionMain_Employee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.RequisitionMain" Role="RequisitionMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="RequisitionMain">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Suggestion_history_Employee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.SuggestionHistory" Role="SuggestionHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="SuggestionHistory">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportTimeSystem_Event">
+          <End Type="BusinessDataBaseModel.Event" Role="Event" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.ReportTimeSystem" Role="ReportTimeSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="ReportTimeSystem">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Meeting_room_history_Meeting_room">
+          <End Type="BusinessDataBaseModel.MeetingRoom" Role="MeetingRoom" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.MeetingRoomHistory" Role="MeetingRoomHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeetingRoom">
+              <PropertyRef Name="meetingID" />
+            </Principal>
+            <Dependent Role="MeetingRoomHistory">
+              <PropertyRef Name="meetingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Meeting_room_Office">
+          <End Type="BusinessDataBaseModel.Office" Role="Office" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.MeetingRoom" Role="MeetingRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="officeID" />
+            </Principal>
+            <Dependent Role="MeetingRoom">
+              <PropertyRef Name="officeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recipient_Message">
+          <End Type="BusinessDataBaseModel.Message" Role="Message" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.Recipient" Role="Recipient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Message">
+              <PropertyRef Name="MessageID" />
+            </Principal>
+            <Dependent Role="Recipient">
+              <PropertyRef Name="MessageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_RequisitionMain">
+          <End Type="BusinessDataBaseModel.RequisitionMain" Role="RequisitionMain" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequisitionMain">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequisitionMain_ReportCategory">
+          <End Type="BusinessDataBaseModel.ReportCategory" Role="ReportCategory" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.RequisitionMain" Role="RequisitionMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportCategory">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="RequisitionMain">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Suggestion_history_Suggestion">
+          <End Type="BusinessDataBaseModel.Suggestion" Role="Suggestion" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.SuggestionHistory" Role="SuggestionHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suggestion">
+              <PropertyRef Name="suggestionID" />
+            </Principal>
+            <Dependent Role="SuggestionHistory">
+              <PropertyRef Name="suggestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BusinessDataBaseModelStoreContainer" CdmEntityContainer="BusinessDataBaseEntities">
-          <EntitySetMapping Name="ApprovalChilds">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.ApprovalChild">
-              <MappingFragment StoreEntitySet="ApprovalChild">
-                <ScalarProperty Name="ApprovalStageID" ColumnName="ApprovalStageID" />
-                <ScalarProperty Name="ApprovalID" ColumnName="ApprovalID" />
-                <ScalarProperty Name="ApprovalStatusID" ColumnName="ApprovalStatusID" />
-                <ScalarProperty Name="ApproveDate" ColumnName="ApproveDate" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ApprovalOrders">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.ApprovalOrder">
-              <MappingFragment StoreEntitySet="ApprovalOrder">
-                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
-                <ScalarProperty Name="ApprovalCategoryID" ColumnName="ApprovalCategoryID" />
-                <ScalarProperty Name="ApprovalStageID" ColumnName="ApprovalStageID" />
-                <ScalarProperty Name="ApprovalOrder1" ColumnName="ApprovalOrder" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BulletinBoards">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.BulletinBoard">
-              <MappingFragment StoreEntitySet="BulletinBoard">
-                <ScalarProperty Name="Num" ColumnName="Num" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
-                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="PostTime" ColumnName="PostTime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.Department">
-              <MappingFragment StoreEntitySet="Department">
-                <ScalarProperty Name="departmentID" ColumnName="departmentID" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.Employee">
-              <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
-                <ScalarProperty Name="employee_name" ColumnName="employee_name" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="birth" ColumnName="birth" />
-                <ScalarProperty Name="hire_date" ColumnName="hire_date" />
-                <ScalarProperty Name="account" ColumnName="account" />
-                <ScalarProperty Name="officeID" ColumnName="officeID" />
-                <ScalarProperty Name="departmentID" ColumnName="departmentID" />
-                <ScalarProperty Name="positionID" ColumnName="positionID" />
-                <ScalarProperty Name="managerID" ColumnName="managerID" />
-                <ScalarProperty Name="employed" ColumnName="employed" />
-                <ScalarProperty Name="groupID" ColumnName="groupID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Groups">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.Group">
-              <MappingFragment StoreEntitySet="Group">
-                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
-                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Leaves">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.Leave">
-              <MappingFragment StoreEntitySet="Leave">
-                <ScalarProperty Name="leaveID" ColumnName="leaveID" />
-                <ScalarProperty Name="leave_name" ColumnName="leave_name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MeetingRooms">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.MeetingRoom">
-              <MappingFragment StoreEntitySet="MeetingRoom">
-                <ScalarProperty Name="meetingID" ColumnName="meetingID" />
-                <ScalarProperty Name="officeID" ColumnName="officeID" />
-                <ScalarProperty Name="max_member" ColumnName="max member" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Messages">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.Message">
-              <MappingFragment StoreEntitySet="Message">
-                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
-                <ScalarProperty Name="Data" ColumnName="Data" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="MailingDate" ColumnName="MailingDate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Offices">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.Office">
-              <MappingFragment StoreEntitySet="Office">
-                <ScalarProperty Name="officeID" ColumnName="officeID" />
-                <ScalarProperty Name="office_name" ColumnName="office_name" />
-                <ScalarProperty Name="office_address" ColumnName="office_address" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Positions">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.Position">
-              <MappingFragment StoreEntitySet="Position">
-                <ScalarProperty Name="positionID" ColumnName="positionID" />
-                <ScalarProperty Name="position1" ColumnName="position" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Recipients">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.Recipient">
-              <MappingFragment StoreEntitySet="Recipient">
-                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ReportCategories">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.ReportCategory">
-              <MappingFragment StoreEntitySet="ReportCategory">
-                <ScalarProperty Name="ReportCategoryID" ColumnName="ReportCategoryID" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ReportMains">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.ReportMain">
-              <MappingFragment StoreEntitySet="ReportMain">
-                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
-                <ScalarProperty Name="ReportCategoryID" ColumnName="ReportCategoryID" />
-                <ScalarProperty Name="ApplicantID" ColumnName="ApplicantID" />
-                <ScalarProperty Name="ApplyDate" ColumnName="ApplyDate" />
-                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RequisitionMains">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.RequisitionMain">
-              <MappingFragment StoreEntitySet="RequisitionMain">
-                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
-                <ScalarProperty Name="RequisitionID" ColumnName="RequisitionID" />
-                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RewardandPunishments">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.RewardandPunishment">
-              <MappingFragment StoreEntitySet="RewardandPunishment">
-                <ScalarProperty Name="Reward_PunishmentID" ColumnName="Reward/PunishmentID" />
-                <ScalarProperty Name="Reward_PunishmentName" ColumnName="Reward/PunishmentName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Suggestions">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.Suggestion">
-              <MappingFragment StoreEntitySet="Suggestion">
-                <ScalarProperty Name="suggestionID" ColumnName="suggestionID" />
-                <ScalarProperty Name="suggestion1" ColumnName="suggestion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Files">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.File">
-              <MappingFragment StoreEntitySet="File">
-                <ScalarProperty Name="FileID" ColumnName="FileID" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="FileSize" ColumnName="FileSize" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
-                <ScalarProperty Name="Data" ColumnName="Data" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MeetingRoomHistories">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.MeetingRoomHistory">
-              <MappingFragment StoreEntitySet="MeetingRoomHistory">
-                <ScalarProperty Name="meetingID" ColumnName="meetingID" />
-                <ScalarProperty Name="start_date_time" ColumnName="start_date_time" />
-                <ScalarProperty Name="end_date_time" ColumnName="end_date_time" />
-                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ReportTimeSystems">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.ReportTimeSystem">
-              <MappingFragment StoreEntitySet="ReportTimeSystem">
-                <ScalarProperty Name="Discontinue" ColumnName="Discontinue" />
-                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
-                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
-                <ScalarProperty Name="ApplyDateTime" ColumnName="ApplyDateTime" />
-                <ScalarProperty Name="EventHours" ColumnName="EventHours" />
-                <ScalarProperty Name="EventID" ColumnName="EventID" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SuggestionHistories">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.SuggestionHistory">
-              <MappingFragment StoreEntitySet="SuggestionHistory">
-                <ScalarProperty Name="num" ColumnName="num" />
-                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
-                <ScalarProperty Name="departmentID" ColumnName="departmentID" />
-                <ScalarProperty Name="suggestionID" ColumnName="suggestionID" />
-                <ScalarProperty Name="content" ColumnName="content" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SurveyMains">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.SurveyMain">
-              <MappingFragment StoreEntitySet="SurveyMain">
-                <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
-                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
-                <ScalarProperty Name="Question" ColumnName="Question" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Events">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.Event">
-              <MappingFragment StoreEntitySet="Event">
-                <ScalarProperty Name="EventName" ColumnName="EventName" />
-                <ScalarProperty Name="EventID" ColumnName="EventID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="AddReport" FunctionName="BusinessDataBaseModel.Store.AddReport" />
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="BusinessDataBaseModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="BusinessDataBaseModel.Store.sp_creatediagram" />
@@ -1974,15 +1835,44 @@
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="BusinessDataBaseModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="BusinessDataBaseModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="UpdateReport" FunctionName="BusinessDataBaseModel.Store.UpdateReport" />
-          <EntitySetMapping Name="RequisitionChilds">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.RequisitionChild">
-              <MappingFragment StoreEntitySet="RequisitionChild">
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="RequisitionID" ColumnName="RequisitionID" />
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="account1" ColumnName="account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApprovalProcedures">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.ApprovalProcedure">
+              <MappingFragment StoreEntitySet="ApprovalProcedure">
+                <ScalarProperty Name="ApprovalFinancialDirector" ColumnName="ApprovalFinancialDirector" />
+                <ScalarProperty Name="ApprovalGenalManager" ColumnName="ApprovalGenalManager" />
+                <ScalarProperty Name="ApprovalDirector" ColumnName="ApprovalDirector" />
+                <ScalarProperty Name="ApprovalSupervisor" ColumnName="ApprovalSupervisor" />
+                <ScalarProperty Name="ApprovalReportName" ColumnName="ApprovalReportName" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="ApprovalID" ColumnName="ApprovalID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApprovalStatus">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.ApprovalStatu">
+              <MappingFragment StoreEntitySet="ApprovalStatus">
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="ApprovalStatusID" ColumnName="ApprovalStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BulletinBoards">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.BulletinBoard">
+              <MappingFragment StoreEntitySet="BulletinBoard">
+                <ScalarProperty Name="PostTime" ColumnName="PostTime" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2000,16 +1890,235 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="account1" ColumnName="account" />
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="CompanyVehicleHistories">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.CompanyVehicleHistory">
+              <MappingFragment StoreEntitySet="CompanyVehicleHistory">
+                <ScalarProperty Name="purpose" ColumnName="purpose" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
+                <ScalarProperty Name="VehicleHistoryID" ColumnName="VehicleHistoryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="departmentID" ColumnName="departmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="ApprovalOverTenKID" ColumnName="ApprovalOverTenKID" />
+                <ScalarProperty Name="ApprovalLessTenKID" ColumnName="ApprovalLessTenKID" />
+                <ScalarProperty Name="LeaveOverThreeDaysID" ColumnName="LeaveOverThreeDaysID" />
+                <ScalarProperty Name="LeaveLessThreeDaysID" ColumnName="LeaveLessThreeDaysID" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="groupID" ColumnName="groupID" />
+                <ScalarProperty Name="employed" ColumnName="employed" />
+                <ScalarProperty Name="managerID" ColumnName="managerID" />
+                <ScalarProperty Name="positionID" ColumnName="positionID" />
+                <ScalarProperty Name="departmentID" ColumnName="departmentID" />
+                <ScalarProperty Name="officeID" ColumnName="officeID" />
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="hire_date" ColumnName="hire_date" />
+                <ScalarProperty Name="birth" ColumnName="birth" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="employee_name" ColumnName="employee_name" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Files">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.File">
+              <MappingFragment StoreEntitySet="File">
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leaves">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.Leave">
+              <MappingFragment StoreEntitySet="Leave">
+                <ScalarProperty Name="leave_name" ColumnName="leave_name" />
+                <ScalarProperty Name="leaveID" ColumnName="leaveID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MeetingRooms">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.MeetingRoom">
+              <MappingFragment StoreEntitySet="MeetingRoom">
+                <ScalarProperty Name="max_member" ColumnName="max member" />
+                <ScalarProperty Name="officeID" ColumnName="officeID" />
+                <ScalarProperty Name="meetingID" ColumnName="meetingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MailingDate" ColumnName="MailingDate" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offices">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.Office">
+              <MappingFragment StoreEntitySet="Office">
+                <ScalarProperty Name="office_address" ColumnName="office_address" />
+                <ScalarProperty Name="office_name" ColumnName="office_name" />
+                <ScalarProperty Name="officeID" ColumnName="officeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="position1" ColumnName="position" />
+                <ScalarProperty Name="positionID" ColumnName="positionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recipients">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.Recipient">
+              <MappingFragment StoreEntitySet="Recipient">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportCategories">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.ReportCategory">
+              <MappingFragment StoreEntitySet="ReportCategory">
+                <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportTimeSystems">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.ReportTimeSystem">
+              <MappingFragment StoreEntitySet="ReportTimeSystem">
+                <ScalarProperty Name="Discontinue" ColumnName="Discontinue" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="EventHours" ColumnName="EventHours" />
+                <ScalarProperty Name="ApplyDateTime" ColumnName="ApplyDateTime" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequisitionMains">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.RequisitionMain">
+              <MappingFragment StoreEntitySet="RequisitionMain">
+                <ScalarProperty Name="ApprovalStatusID" ColumnName="ApprovalStatusID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RewardandPunishments">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.RewardandPunishment">
+              <MappingFragment StoreEntitySet="RewardandPunishment">
+                <ScalarProperty Name="Reward_PunishmentName" ColumnName="Reward/PunishmentName" />
+                <ScalarProperty Name="Reward_PunishmentID" ColumnName="Reward/PunishmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suggestions">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.Suggestion">
+              <MappingFragment StoreEntitySet="Suggestion">
+                <ScalarProperty Name="suggestion1" ColumnName="suggestion" />
+                <ScalarProperty Name="suggestionID" ColumnName="suggestionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MeetingRoomHistories">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.MeetingRoomHistory">
+              <MappingFragment StoreEntitySet="MeetingRoomHistory">
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="end_date_time" ColumnName="end_date_time" />
+                <ScalarProperty Name="start_date_time" ColumnName="start_date_time" />
+                <ScalarProperty Name="meetingID" ColumnName="meetingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SuggestionHistories">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.SuggestionHistory">
+              <MappingFragment StoreEntitySet="SuggestionHistory">
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="suggestionID" ColumnName="suggestionID" />
+                <ScalarProperty Name="departmentID" ColumnName="departmentID" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="num" ColumnName="num" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SurveyMains">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.SurveyMain">
+              <MappingFragment StoreEntitySet="SurveyMain">
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

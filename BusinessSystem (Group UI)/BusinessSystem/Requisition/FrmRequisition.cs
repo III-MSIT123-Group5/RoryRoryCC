@@ -20,40 +20,65 @@ namespace BusinessSystem
 
         BusinessDataBaseEntities dbContext;
 
-        private void altoButton1_Click(object sender, EventArgs e)
+        private void FrmRequisition_Load(object sender, EventArgs e)
         {
+            dbContext = new BusinessDataBaseEntities();
 
+            var report = from RC in this.dbContext.ReportCategories
+                         join RM in this.dbContext.RequisitionMains on RC.ReportID equals RM.ReportID
+                         join OD in this.dbContext.OrderDetails on RM.OrderID equals OD.OrderID
+                         select new
+                         {
+                             ReportName = RC.ReportName,
+                             ReportID = RM.ReportID,
+                             OrderID = OD.OrderID,
+                             OrderDetailID = OD.OrderDetailID,
+                             EmployeeID=RM.EmployeeID,                             
+                             ProductName = OD.ProductName,
+                             UnitPrice = OD.UnitPrice,
+                             Quantity = OD.Quantity,
+                             TotalPrice = OD.TotalPrice,
+                             Note = OD.Note
+                         };
+
+            dataGridView1.DataSource = report.ToList();
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {   
             dbContext = new BusinessDataBaseEntities();
 
             try
             {
-                var newReportMain = new ReportMain
+                var newReportCategory = new ReportCategory
                 {
-                    ApplicantID = 1008,                    
-                    ApplyDate=DateTime.Now     
+                    ReportID = 1,
+
                 };
 
                 var newRequisitionMain = new RequisitionMain
-                {                       
-                    ReportMain=newReportMain
+                {
+                    EmployeeID = 1008,
+                    ReportCategory = newReportCategory
                 };
 
-                var newRequisitionChild = new RequisitionChild
-                {          
-                    ProductName = textBox1.Text,
-                    UnitPrice = decimal.Parse(textBox2.Text),
-                    Quantity = decimal.Parse(textBox3.Text),
-                    Discount = decimal.Parse(textBox4.Text),                   
-                    Note = textBox5.Text,                    
-                    RequisitionMain=newRequisitionMain                    
+                var newOrderDetail = new OrderDetail
+                {
+                    Note = txtNote.Text,
+                    ProductName = txtProcductName.Text,
+                    UnitPrice = decimal.Parse(txtUnitPrice.Text),
+                    Quantity = int.Parse(txtQuantity.Text),
+                    RequisitionMain = newRequisitionMain
                 };
 
-                dbContext.RequisitionChilds.Add(newRequisitionChild);
-                dbContext.SaveChanges();
+                this.dbContext.ReportCategories.Add(newReportCategory);
+                this.dbContext.RequisitionMains.Add(newRequisitionMain);
+                this.dbContext.OrderDetails.Add(newOrderDetail);
+                this.dbContext.SaveChanges();
+
+                FrmRequisition_Load(sender, e);
 
                 MessageBox.Show("購案新增成功");
-
-                
             }
             catch (Exception ex)
             {
@@ -63,25 +88,33 @@ namespace BusinessSystem
 
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
-            var q = from RM in this.dbContext.ReportMains
-                    join RQM in this.dbContext.RequisitionMains on RM.ReportID equals RQM.ReportID
-                    join RC in this.dbContext.RequisitionChilds on RQM.RequisitionID equals RC.RequisitionID
-                    select new
-                    {
-                        EmployeeID=RM.ApplicantID,
-                        ReportID = RQM.ReportID,
-                        RequisitionID = RC.RequisitionID,
-                        ProductName = RC.ProductName,
-                        UnitPrice = RC.UnitPrice,
-                        Quantity = RC.Quantity,
-                        Dincount = RC.Discount,
-                        Note = RC.Note
-                    };
+            dbContext = new BusinessDataBaseEntities();
 
-            dataGridView1.DataSource = q.ToList();
+            try
+            {
+                var report = (from RC in this.dbContext.ReportCategories
+                              join RM in this.dbContext.RequisitionMains on RC.ReportID equals RM.ReportID
+                              join OD in this.dbContext.OrderDetails on RM.OrderID equals OD.OrderID
+                              where OD.ProductName == textBox1.Text                             
+                              select OD).FirstOrDefault();
+
+                report.ProductName = txtProcductName.Text;
+                report.UnitPrice = decimal.Parse(txtUnitPrice.Text);
+                report.Quantity = int.Parse(txtQuantity.Text);
+                report.Note = txtNote.Text;
+
+                this.dbContext.SaveChanges();
+                FrmRequisition_Load(sender, e);
+
+                MessageBox.Show("購案更新成功");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        private void altoButton2_Click(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = "";
         }
