@@ -49,6 +49,7 @@
             this.mainControls4.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls4.ButtonColor = System.Drawing.Color.SteelBlue;
             this.mainControls4.image = global::BusinessSystem.Properties.Resources.edit_property_128;
+            this.mainControls4.ImageLocation = null;
             this.mainControls4.Location = new System.Drawing.Point(8, 205);
             this.mainControls4.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls4.Name = "mainControls4";
@@ -63,6 +64,7 @@
             this.mainControls1.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls1.ButtonColor = System.Drawing.Color.SlateGray;
             this.mainControls1.image = global::BusinessSystem.Properties.Resources.chair_2_128;
+            this.mainControls1.ImageLocation = null;
             this.mainControls1.Location = new System.Drawing.Point(420, 409);
             this.mainControls1.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls1.Name = "mainControls1";
@@ -76,6 +78,7 @@
             this.mainControls3.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls3.ButtonColor = System.Drawing.Color.SlateGray;
             this.mainControls3.image = global::BusinessSystem.Properties.Resources.briefcase_128;
+            this.mainControls3.ImageLocation = null;
             this.mainControls3.Location = new System.Drawing.Point(623, 205);
             this.mainControls3.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls3.Name = "mainControls3";
@@ -90,6 +93,7 @@
             this.mainControls2.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls2.ButtonColor = System.Drawing.Color.DarkSlateBlue;
             this.mainControls2.image = global::BusinessSystem.Properties.Resources.car_128;
+            this.mainControls2.ImageLocation = null;
             this.mainControls2.Location = new System.Drawing.Point(214, 409);
             this.mainControls2.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls2.Name = "mainControls2";
@@ -104,6 +108,7 @@
             this.mainControls8.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls8.ButtonColor = System.Drawing.Color.DarkSlateBlue;
             this.mainControls8.image = global::BusinessSystem.Properties.Resources.time_8_128;
+            this.mainControls8.ImageLocation = null;
             this.mainControls8.Location = new System.Drawing.Point(421, 205);
             this.mainControls8.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls8.Name = "mainControls8";
@@ -117,6 +122,7 @@
             this.mainControls5.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls5.ButtonColor = System.Drawing.Color.SteelBlue;
             this.mainControls5.image = global::BusinessSystem.Properties.Resources.calendar_3_128;
+            this.mainControls5.ImageLocation = null;
             this.mainControls5.Location = new System.Drawing.Point(423, 4);
             this.mainControls5.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls5.Name = "mainControls5";
@@ -130,6 +136,7 @@
             this.mainControls9.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls9.ButtonColor = System.Drawing.Color.SteelBlue;
             this.mainControls9.image = global::BusinessSystem.Properties.Resources.cart_5_128;
+            this.mainControls9.ImageLocation = null;
             this.mainControls9.Location = new System.Drawing.Point(626, 409);
             this.mainControls9.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls9.Name = "mainControls9";
@@ -147,6 +154,7 @@
             this.mainControls7.ButtonColor = System.Drawing.Color.LightSkyBlue;
             this.mainControls7.ForeColor = System.Drawing.Color.White;
             this.mainControls7.image = global::BusinessSystem.Properties.Resources.report_3_128;
+            this.mainControls7.ImageLocation = null;
             this.mainControls7.Location = new System.Drawing.Point(8, 409);
             this.mainControls7.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls7.Name = "mainControls7";
