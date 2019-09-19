@@ -24,16 +24,24 @@ namespace BusinessSystem.CompanyCars
         BusinessDataBaseEntities dbcontext = new BusinessDataBaseEntities();
         int i;
         string licence;
-        bool bbool = true; 
+        bool bbool = true;
+        //int empID;
         //
         //
         //
         public CompanyVehicleBorrowForm()
         {
             InitializeComponent();
-            mypic(); 
+            mypic();
+            //    var q = from e in this.dbcontext.Employees
+            //            where e.EmployeeName == label3.Text
+            //            select new { e.employeeID };
+            //    foreach (var ID in q)
+            //    {
+            //        empID = ID.employeeID;
+            //    }
         }
-        private void mytime1()
+        public void mytime1()
         {
             int t1 = 0;
             string Tmm = this.comboBox3.Text;
@@ -275,16 +283,17 @@ namespace BusinessSystem.CompanyCars
         {
             mytime1();
             mytime2();
-            MessageBox.Show(licence);
+            //MessageBox.Show(empID.ToString());
             
             if (this.richTextBox1.Text != "" && this.comboBox3.Text != "" && this.comboBox4.Text != "" && this.dataGridView1.DataSource != null)
             {
-
+                
                 var q = new CompanyVehicleHistory
                 {
                     LicenseNumber = this.dataGridView1.Rows[0].Cells["車牌號碼"].Value.ToString(),
                     StartDateTime = this.dateTimePicker1.Value,
                     EndDateTime = this.dateTimePicker2.Value,
+                    employeeID =1001,
                     purpose = this.richTextBox1.Text
                 };
                 dbcontext.CompanyVehicleHistories.Add(q);

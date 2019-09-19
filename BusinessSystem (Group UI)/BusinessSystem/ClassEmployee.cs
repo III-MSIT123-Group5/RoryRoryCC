@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace BusinessSystem
 {
-   public class BBDataGridViewFormat
+    class ClassEmployee
     {
-        
+        //public string EmpName { get; set; } // C# 6 or higher
     }
-
-
 }
