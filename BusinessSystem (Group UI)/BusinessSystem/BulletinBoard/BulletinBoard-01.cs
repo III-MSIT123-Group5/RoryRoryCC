@@ -38,7 +38,7 @@ namespace BusinessSystem
                     select new { 部門 = d.name, 組別 = g.GroupName,姓名 = em.EmployeeName,留言內容 = b.Content, 張貼時間 = b.PostTime };
 
 
-            dataGridView1.DataSource = q.ToList();
+            dataGridView1.DataSource = q.OrderByDescending(o=>o.張貼時間).ToList();
 
             dgvFormat(dataGridView1);
 
@@ -67,6 +67,9 @@ namespace BusinessSystem
             // Check the first 2 items.
             CBDepartment.SetItemChecked(0, true);
             CBDepartment.SetItemChecked(1, true);
+            CBDepartment.SetItemChecked(2, true);
+            CBDepartment.SetItemChecked(3, true);
+            CBDepartment.SetItemChecked(4, true);
             //ccb.SetItemCheckState(1, CheckState.Indeterminate);
 
 
@@ -288,6 +291,18 @@ namespace BusinessSystem
         {
 
 
+        }
+
+        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (this.dataGridView1.Rows.Count != 0)
+            {
+                for (int i = 0; i < this.dataGridView1.Rows.Count;)
+                {
+                    this.dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.LightBlue;
+                    i += 2;
+                }
+            }
         }
     }
 

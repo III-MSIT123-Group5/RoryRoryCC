@@ -79,7 +79,7 @@ namespace BusinessSystem.ReportTimeSystem
 
             dbcontext.SaveChanges();
             MessageBox.Show("新增成功");
-           
+            
         }
     }
 }
