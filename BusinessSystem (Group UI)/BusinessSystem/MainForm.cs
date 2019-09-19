@@ -52,5 +52,20 @@ namespace BusinessSystem
             FrmRequisition formshow = new FrmRequisition();
             formshow.ShowDialog();
         }
+
+        private void mainControls9_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mainControls9_MouseEnter(object sender, EventArgs e)
+        {
+            this.mainControls9.ButtonColor = Color.Green;
+        }
+
+        private void mainControls9_MouseLeave(object sender, EventArgs e)
+        {
+            this.mainControls9.ButtonColor = Color.DarkBlue;
+        }
     }
 }
