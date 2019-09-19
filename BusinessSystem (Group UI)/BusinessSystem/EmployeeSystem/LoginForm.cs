@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,17 +27,45 @@ namespace BusinessSystem.EmployeeSystem
 
         }
 
+        int EmpID;
+
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
             BusinessDataBaseEntities dbContext;
 
             dbContext = new BusinessDataBaseEntities();
 
+            byte[] bytesPassword = Encoding.Unicode.GetBytes(this.txtLoginPassword.Text );
+            SHA256Managed Algorithm = new SHA256Managed();
+            byte[] validPassword =  Algorithm.ComputeHash(bytesPassword);
+
+
+
             var q = from em in dbContext.Employees
                     join a in dbContext.Accounts
                     on em.Account equals a.account1
-                    //where a.account1 == textBox1.Text && a.password == textBox2.Text
-                    select new { a.account1,a.password};
+                    where em.Account == this.txtLoginAccount.Text && a.password == validPassword  
+                    select new { a.account1,a.password , em.employeeID };
+
+            foreach (var v in q)
+            {
+                EmpID = v.employeeID; 
+            }
+
+
+            if (q.Any())
+            {
+                MessageBox.Show($"歡迎回來， {EmpID}!" , "登入成功" ,MessageBoxButtons.OK );
+            }
+            else
+            {
+                MessageBox.Show($"請重新嚐試登入", "登入成敗", MessageBoxButtons.OK);
+                this.txtLoginPassword.Text  = "";
+                this.txtLoginPassword.Focus();
+            }
+
+            
+
 
 
         }

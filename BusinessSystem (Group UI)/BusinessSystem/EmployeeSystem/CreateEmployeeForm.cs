@@ -92,35 +92,42 @@ namespace BusinessSystem
                 this.txtConfirmPassword.Text = "";
                 this.txtPassword.Focus();
                 return;
-            }         
+            }
 
 
 
-            var addEmp = new BusinessSystemDBEntityModel.Employee
+            try
             {
-                //employeeID = EmID,   //將於"變更員工資料"中顯示
-                EmployeeName = this.txtEmployeeName.Text,
-                Gender = this.cmbGender.Text,
-                Birth = this.dTPicBirth.Value,
-                HireDate = this.dTPicHireDate.Value,
-                Account = AccountName,
-                OfficeID = this.Insert_offID(this.cmbOfficeID.SelectedIndex),
-                DepartmentID = this.cmbDepartmentID.SelectedIndex,
-                PositionID = this.cmbPositionID.SelectedIndex + 1,
-                ManagerID = magID,
-                Employed = this.Insert_transEmployed(this.cmbEmployed.SelectedIndex),
-                GroupID = this.Insert_grpID(this.cmbGroupID.Text)
-            };
+                var addEmp = new BusinessSystemDBEntityModel.Employee
+                {
+                    //employeeID = EmID,   //將於"變更員工資料"中顯示
+                    EmployeeName = this.txtEmployeeName.Text,
+                    Gender = this.cmbGender.Text,
+                    Birth = this.dTPicBirth.Value,
+                    HireDate = this.dTPicHireDate.Value,
+                    Account = AccountName,
+                    OfficeID = this.Insert_offID(this.cmbOfficeID.SelectedIndex),
+                    DepartmentID = this.cmbDepartmentID.SelectedIndex,
+                    PositionID = this.cmbPositionID.SelectedIndex + 1,
+                    ManagerID = magID,
+                    Employed = this.Insert_transEmployed(this.cmbEmployed.SelectedIndex),
+                    GroupID = this.Insert_grpID(this.cmbGroupID.Text)
+                };
 
-            var addAccount = new BusinessSystemDBEntityModel.Account
+                var addAccount = new BusinessSystemDBEntityModel.Account
+                {
+                    account1 = addEmp.Account,
+                    password = SHAPassword,
+                };
+
+                this.dbcontext.Employees.Add(addEmp);
+                this.dbcontext.Accounts.Add(addAccount);
+                this.dbcontext.SaveChanges();
+            }
+            catch (Exception ex)
             {
-                account1 = addEmp.Account,
-                password = SHAPassword ,
-            };
-
-            this.dbcontext.Employees.Add(addEmp);
-            this.dbcontext.Accounts.Add(addAccount);
-            this.dbcontext.SaveChanges();      
+                MessageBox.Show(ex.Message);
+            }            
          
 
         }

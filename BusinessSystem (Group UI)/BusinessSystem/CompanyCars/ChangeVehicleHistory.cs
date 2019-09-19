@@ -26,8 +26,8 @@ namespace BusinessSystem.CompanyCars
         {
             InitializeComponent();
 
-            var q = from p in this.dbContext.CompanyVehicleHistories
-                    where p.employeeID == 
+            //var q = from p in this.dbContext.CompanyVehicleHistories
+            //        where p.employeeID == 
             
         }
     }
