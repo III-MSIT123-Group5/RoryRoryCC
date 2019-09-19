@@ -19,13 +19,13 @@ namespace BusinessSystem.ReportTimeSystem
     public partial class FormAdd : SonForm
     {
         BusinessDataBaseEntities dbcontext = new BusinessDataBaseEntities();
-
+        FormMainRTS rts ;
         
 
-        public FormAdd()
+        public FormAdd(FormMainRTS ff)
         {
             InitializeComponent();
-            
+            rts = ff;
 
         }
         
@@ -79,7 +79,22 @@ namespace BusinessSystem.ReportTimeSystem
 
             dbcontext.SaveChanges();
             MessageBox.Show("新增成功");
-           
+            var q = from RTS in dbcontext.ReportTimeSystems
+                    join emp in dbcontext.Employees
+                    on RTS.employeeID equals emp.employeeID
+                    join eve in dbcontext.Events
+                    on RTS.EventID equals eve.EventID
+                    where RTS.Discontinue == true
+                    select new
+                    {
+                        報表編號 = RTS.ReportID,
+                        員工名稱 = emp.EmployeeName,
+                        申請時間 = RTS.ApplyDateTime,
+                        申請事件 = eve.EventName,
+                        備註 = RTS.Note
+                    };
+            rts.dataGridView1.DataSource = q.ToList();
+        
         }
     }
 }

@@ -7,11 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.AxHost;
+using Controls;
 
 namespace MainControls
 {
     public partial class MainControls : UserControl
     {
+        MouseState state;
+
+
         public MainControls()
         {
             InitializeComponent();
@@ -23,16 +28,7 @@ namespace MainControls
 
         }
 
-        private void clsAltoButton1_Click(object sender, EventArgs e)
-        {
-            this.OnClick(e);
-        }
         
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            this.OnClick(e);
-        }
 
         public string Title
         {
@@ -78,6 +74,8 @@ namespace MainControls
             {
 
                 m_buttoncolor1 = value;
+                this.clsAltoButton1.Active1 = m_buttoncolor1;
+                this.clsAltoButton1.Active2 = m_buttoncolor1;
                 this.clsAltoButton1.Inactive1 = m_buttoncolor1;
                 this.clsAltoButton1.Inactive2 = m_buttoncolor1;
                 this.label1.BackColor = m_buttoncolor1;
@@ -118,12 +116,22 @@ namespace MainControls
             }
         }
 
+        private void clsAltoButton1_Click(object sender, EventArgs e)
+        {
+            this.OnClick(e);
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             this.OnClick(e);
         }
 
-        private void label1_MouseEnter(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
+        {
+            this.OnClick(e);
+        }
+
+        private void clsAltoButton1_MouseEnter(object sender, EventArgs e)
         {
             this.OnMouseEnter(e);
         }
@@ -133,9 +141,29 @@ namespace MainControls
             this.OnMouseEnter(e);
         }
 
-        private void clsAltoButton1_MouseEnter(object sender, EventArgs e)
+        private void label1_MouseEnter(object sender, EventArgs e)
         {
             this.OnMouseEnter(e);
+        }
+
+        private void clsAltoButton1_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void clsAltoButton1_MouseHover(object sender, EventArgs e)
+        {
+            this.OnMouseHover(e);
+        }
+
+        private void pictureBox1_MouseHover(object sender, EventArgs e)
+        {
+            this.OnMouseHover(e);
+        }
+
+        private void label1_MouseHover(object sender, EventArgs e)
+        {
+            this.OnMouseHover(e);
         }
 
         private void clsAltoButton1_MouseLeave(object sender, EventArgs e)
@@ -152,54 +180,5 @@ namespace MainControls
         {
             this.OnMouseLeave(e);
         }
-
-        private void clsAltoButton1_MouseHover(object sender, EventArgs e)
-        {
-            this.OnMouseHover(e);
-
-        }
-
-        private void pictureBox1_MouseHover(object sender, EventArgs e)
-        {
-            this.OnMouseHover(e);
-        }
-
-        private void label1_MouseHover(object sender, EventArgs e)
-        {
-            this.OnMouseHover(e);
-        }
-
-        private void label1_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.OnMouseDown(e);
-        }
-
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.OnMouseDown(e);
-        }
-
-        private void clsAltoButton1_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.OnMouseDown(e);
-        }
-
-        private void clsAltoButton1_MouseUp(object sender, MouseEventArgs e)
-        {
-            this.OnMouseUp(e);
-        }
-
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
-        {
-            this.OnMouseUp(e);
-        }
-
-        private void label1_MouseUp(object sender, MouseEventArgs e)
-        {
-            this.OnMouseUp(e);
-        }
-        
-       
-
     }
 }
