@@ -50,9 +50,10 @@
             this.mainControls4.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls4.ButtonColor = System.Drawing.Color.SteelBlue;
             this.mainControls4.image = global::BusinessSystem.Properties.Resources.edit_property_128;
-            this.mainControls4.Location = new System.Drawing.Point(10, 218);
+            this.mainControls4.Location = new System.Drawing.Point(8, 205);
+            this.mainControls4.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls4.Name = "mainControls4";
-            this.mainControls4.Size = new System.Drawing.Size(548, 250);
+            this.mainControls4.Size = new System.Drawing.Size(411, 200);
             this.mainControls4.TabIndex = 50;
             this.mainControls4.Title = "佈告欄";
             this.mainControls4.TitleColor = System.Drawing.Color.White;
@@ -63,9 +64,10 @@
             this.mainControls1.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls1.ButtonColor = System.Drawing.Color.SlateGray;
             this.mainControls1.image = global::BusinessSystem.Properties.Resources.chair_2_128;
-            this.mainControls1.Location = new System.Drawing.Point(428, 424);
+            this.mainControls1.Location = new System.Drawing.Point(420, 409);
+            this.mainControls1.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls1.Name = "mainControls1";
-            this.mainControls1.Size = new System.Drawing.Size(267, 250);
+            this.mainControls1.Size = new System.Drawing.Size(200, 200);
             this.mainControls1.TabIndex = 49;
             this.mainControls1.Title = "會議室租借";
             this.mainControls1.TitleColor = System.Drawing.Color.White;
@@ -75,9 +77,10 @@
             this.mainControls3.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls3.ButtonColor = System.Drawing.Color.SlateGray;
             this.mainControls3.image = global::BusinessSystem.Properties.Resources.briefcase_128;
-            this.mainControls3.Location = new System.Drawing.Point(634, 215);
+            this.mainControls3.Location = new System.Drawing.Point(623, 205);
+            this.mainControls3.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls3.Name = "mainControls3";
-            this.mainControls3.Size = new System.Drawing.Size(267, 250);
+            this.mainControls3.Size = new System.Drawing.Size(200, 200);
             this.mainControls3.TabIndex = 48;
             this.mainControls3.Title = "工時回報";
             this.mainControls3.TitleColor = System.Drawing.Color.White;
@@ -88,9 +91,10 @@
             this.mainControls2.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls2.ButtonColor = System.Drawing.Color.DarkSlateBlue;
             this.mainControls2.image = global::BusinessSystem.Properties.Resources.car_128;
-            this.mainControls2.Location = new System.Drawing.Point(221, 427);
+            this.mainControls2.Location = new System.Drawing.Point(214, 409);
+            this.mainControls2.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls2.Name = "mainControls2";
-            this.mainControls2.Size = new System.Drawing.Size(267, 250);
+            this.mainControls2.Size = new System.Drawing.Size(200, 200);
             this.mainControls2.TabIndex = 47;
             this.mainControls2.Title = "公務車租借";
             this.mainControls2.TitleColor = System.Drawing.Color.White;
@@ -101,9 +105,10 @@
             this.mainControls8.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls8.ButtonColor = System.Drawing.Color.DarkSlateBlue;
             this.mainControls8.image = global::BusinessSystem.Properties.Resources.time_8_128;
-            this.mainControls8.Location = new System.Drawing.Point(428, 218);
+            this.mainControls8.Location = new System.Drawing.Point(421, 205);
+            this.mainControls8.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls8.Name = "mainControls8";
-            this.mainControls8.Size = new System.Drawing.Size(267, 250);
+            this.mainControls8.Size = new System.Drawing.Size(200, 200);
             this.mainControls8.TabIndex = 46;
             this.mainControls8.Title = "請假";
             this.mainControls8.TitleColor = System.Drawing.Color.White;
@@ -113,9 +118,10 @@
             this.mainControls5.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls5.ButtonColor = System.Drawing.Color.SteelBlue;
             this.mainControls5.image = global::BusinessSystem.Properties.Resources.calendar_3_128;
-            this.mainControls5.Location = new System.Drawing.Point(428, 9);
+            this.mainControls5.Location = new System.Drawing.Point(423, 4);
+            this.mainControls5.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls5.Name = "mainControls5";
-            this.mainControls5.Size = new System.Drawing.Size(267, 250);
+            this.mainControls5.Size = new System.Drawing.Size(200, 200);
             this.mainControls5.TabIndex = 44;
             this.mainControls5.Title = "行事曆";
             this.mainControls5.TitleColor = System.Drawing.Color.White;
@@ -125,9 +131,10 @@
             this.mainControls9.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls9.ButtonColor = System.Drawing.Color.SteelBlue;
             this.mainControls9.image = global::BusinessSystem.Properties.Resources.cart_5_128;
-            this.mainControls9.Location = new System.Drawing.Point(634, 421);
+            this.mainControls9.Location = new System.Drawing.Point(626, 409);
+            this.mainControls9.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls9.Name = "mainControls9";
-            this.mainControls9.Size = new System.Drawing.Size(267, 250);
+            this.mainControls9.Size = new System.Drawing.Size(200, 200);
             this.mainControls9.TabIndex = 43;
             this.mainControls9.Title = "請購系統";
             this.mainControls9.TitleColor = System.Drawing.Color.White;
@@ -141,9 +148,10 @@
             this.mainControls7.ButtonColor = System.Drawing.Color.LightSkyBlue;
             this.mainControls7.ForeColor = System.Drawing.Color.White;
             this.mainControls7.image = global::BusinessSystem.Properties.Resources.report_3_128;
-            this.mainControls7.Location = new System.Drawing.Point(10, 427);
+            this.mainControls7.Location = new System.Drawing.Point(8, 409);
+            this.mainControls7.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls7.Name = "mainControls7";
-            this.mainControls7.Size = new System.Drawing.Size(267, 250);
+            this.mainControls7.Size = new System.Drawing.Size(200, 200);
             this.mainControls7.TabIndex = 41;
             this.mainControls7.Title = "文件上傳";
             this.mainControls7.TitleColor = System.Drawing.Color.Empty;
@@ -154,7 +162,7 @@
             this.rectangleShape_date.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
             this.rectangleShape_date.BorderColor = System.Drawing.Color.Transparent;
             this.rectangleShape_date.CornerRadius = 10;
-            this.rectangleShape_date.Location = new System.Drawing.Point(12, 8);
+            this.rectangleShape_date.Location = new System.Drawing.Point(9, 3);
             this.rectangleShape_date.Name = "rectangleShape_date";
             this.rectangleShape_date.Size = new System.Drawing.Size(410, 200);
             // 
@@ -167,7 +175,7 @@
             this.label4.BackColor = System.Drawing.Color.Gray;
             this.label4.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label4.ForeColor = System.Drawing.SystemColors.Control;
-            this.label4.Location = new System.Drawing.Point(179, 44);
+            this.label4.Location = new System.Drawing.Point(175, 76);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(69, 35);
@@ -179,7 +187,8 @@
             this.mainControls6.BackgroundColor = System.Drawing.Color.Empty;
             this.mainControls6.ButtonColor = System.Drawing.Color.SteelBlue;
             this.mainControls6.image = global::BusinessSystem.Properties.Resources.neutral_dicision_128;
-            this.mainControls6.Location = new System.Drawing.Point(634, 9);
+            this.mainControls6.Location = new System.Drawing.Point(625, 4);
+            this.mainControls6.Margin = new System.Windows.Forms.Padding(2);
             this.mainControls6.Name = "mainControls6";
             this.mainControls6.Size = new System.Drawing.Size(200, 200);
             this.mainControls6.TabIndex = 45;
@@ -199,9 +208,10 @@
             this.panel1.Controls.Add(this.mainControls7);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.shapeContainer2);
-            this.panel1.Location = new System.Drawing.Point(22, 62);
+            this.panel1.Location = new System.Drawing.Point(16, 50);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(850, 641);
+            this.panel1.Size = new System.Drawing.Size(842, 623);
             this.panel1.TabIndex = 51;
             // 
             // shapeContainer2
@@ -211,17 +221,18 @@
             this.shapeContainer2.Name = "shapeContainer2";
             this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
             this.rectangleShape_date});
-            this.shapeContainer2.Size = new System.Drawing.Size(850, 641);
+            this.shapeContainer2.Size = new System.Drawing.Size(842, 623);
             this.shapeContainer2.TabIndex = 51;
             this.shapeContainer2.TabStop = false;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 709);
+            this.ClientSize = new System.Drawing.Size(883, 684);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
