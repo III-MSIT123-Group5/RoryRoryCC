@@ -27,8 +27,8 @@ namespace BusinessSystem.EmployeeSystem
 
         }
 
-        int EmpID;
-        string EmpName; 
+        public static int EmpID;
+       public static string EmpName; 
 
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {

@@ -39,7 +39,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BBDataGridViewFormat.cs" />
     <Compile Include="BulletinBoard\BulletinBoard-01.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -53,6 +52,7 @@
       <DependentUpon>BulletinBoard-02.cs</DependentUpon>
     </Compile>
     <Compile Include="BulletinBoard\Bulletin_board.cs" />
+    <Compile Include="ClassEmployee.cs" />
     <Compile Include="CompanyCars\ChangeVehicleHistory.cs">
       <SubType>Form</SubType>
     </Compile>
