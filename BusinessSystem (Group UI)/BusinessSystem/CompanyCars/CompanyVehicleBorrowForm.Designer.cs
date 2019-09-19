@@ -215,6 +215,8 @@
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "CompanyVehicleBorrowForm";
             this.Text = "CompanyVehicleBorrowForm";
             this.Controls.SetChildIndex(this.label3, 0);

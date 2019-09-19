@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessSystemDBEntityModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,22 @@ namespace BusinessSystem.CompanyCars
 {
     public partial class ChangeVehicleHistory : SonForm
     {
+
+
+        //
+        //全域變數
+        //
+        BusinessDataBaseEntities dbContext = new BusinessDataBaseEntities();
+        //
+        //
+        //
         public ChangeVehicleHistory()
         {
             InitializeComponent();
+
+            //var q = from p in this.dbContext.CompanyVehicleHistories
+            //        where p.employeeID == 
+            
         }
     }
 }

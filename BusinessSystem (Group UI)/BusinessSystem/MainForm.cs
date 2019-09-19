@@ -19,14 +19,13 @@ namespace BusinessSystem
             InitializeComponent();
 
             rectangleShape_date.Location = new Point(10, 10);           
-            rectangleShape_messange.Location = new Point(10, 220);
+            //rectangleShape_messange.Location = new Point(10, 220);
          
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Width = 870;
-            Height = 680;
+           
         }
 
         private void mainControls4_Click(object sender, EventArgs e)
@@ -63,6 +62,13 @@ namespace BusinessSystem
             this.mainControls9.ButtonColor = Color.DarkBlue;
         }
 
+     
 
+        private void mainControls10_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+      
     }
 }

@@ -315,7 +315,8 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.clsAltoButton2);
             this.Controls.Add(this.clsAltoButton1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CompanyCarForm";
             this.Text = "CompanyCarForm";
             this.Controls.SetChildIndex(this.clsAltoButton1, 0);
