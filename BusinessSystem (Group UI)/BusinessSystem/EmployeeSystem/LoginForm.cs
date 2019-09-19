@@ -27,8 +27,8 @@ namespace BusinessSystem.EmployeeSystem
 
         }
 
-        public static int EmpID;
-       public static string EmpName; 
+        public int EmpID;
+        public string EmpName;
 
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
@@ -37,9 +37,9 @@ namespace BusinessSystem.EmployeeSystem
 
             dbContext = new BusinessDataBaseEntities();
 
-            byte[] bytesPassword = Encoding.Unicode.GetBytes(this.txtLoginPassword.Text );
+            byte[] bytesPassword = Encoding.Unicode.GetBytes(this.txtLoginPassword.Text);
             SHA256Managed Algorithm = new SHA256Managed();
-            byte[] validPassword =  Algorithm.ComputeHash(bytesPassword);
+            byte[] validPassword = Algorithm.ComputeHash(bytesPassword);
 
 
 
@@ -48,8 +48,8 @@ namespace BusinessSystem.EmployeeSystem
             var q = from em in dbContext.Employees
                     join a in dbContext.Accounts
                     on em.Account equals a.account1
-                    where em.Account == this.txtLoginAccount.Text && a.password == validPassword  
-                    select new { a.account1,a.password , em.employeeID,em.EmployeeName };
+                    where em.Account == this.txtLoginAccount.Text && a.password == validPassword
+                    select new { a.account1, a.password, em.employeeID, em.EmployeeName };
 
             foreach (var v in q)
             {
@@ -65,23 +65,24 @@ namespace BusinessSystem.EmployeeSystem
 
             if (q.Any())
             {
-                MessageBox.Show($"歡迎回來， {EmpName}!" , "登入成功" ,MessageBoxButtons.OK );
-                MainForm main = new MainForm();
+                MessageBox.Show($"歡迎回來， {EmpName}!", "登入成功", MessageBoxButtons.OK);
+                MainForm main = new MainForm(EmpID);
                 main.Show();
             }
             else
             {
 
                 MessageBox.Show($"請重新登入", "登入失敗", MessageBoxButtons.OK);
-                this.txtLoginPassword.Text  = "";
+                this.txtLoginPassword.Text = "";
                 this.txtLoginPassword.Focus();
             }
 
-            
+
 
 
 
         }
+
 
         private void label5_Click(object sender, EventArgs e)
         {

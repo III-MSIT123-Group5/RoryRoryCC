@@ -67,6 +67,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(637, 396);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // clsAltoButton2
             // 
@@ -87,6 +88,7 @@
             this.clsAltoButton2.TabIndex = 3;
             this.clsAltoButton2.Text = "文件下載";
             this.clsAltoButton2.Transparency = false;
+            this.clsAltoButton2.Click += new System.EventHandler(this.clsAltoButton2_Click);
             // 
             // clsAltoButton3
             // 
@@ -107,6 +109,7 @@
             this.clsAltoButton3.TabIndex = 4;
             this.clsAltoButton3.Text = "文件刪除";
             this.clsAltoButton3.Transparency = false;
+            this.clsAltoButton3.Click += new System.EventHandler(this.clsAltoButton3_Click);
             // 
             // openFileDialog1
             // 
