@@ -28,31 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.CBGroup = new BusinessSystem.CheckedComboBox();
             this.CBDepartment = new BusinessSystem.CheckedComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // listView1
-            // 
-            this.listView1.Location = new System.Drawing.Point(0, 140);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(800, 360);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.CBGroup);
             this.panel2.Controls.Add(this.CBDepartment);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.label4);
             this.panel2.Location = new System.Drawing.Point(0, 64);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(800, 70);
@@ -65,7 +59,7 @@
             this.CBGroup.DropDownHeight = 1;
             this.CBGroup.FormattingEnabled = true;
             this.CBGroup.IntegralHeight = false;
-            this.CBGroup.Location = new System.Drawing.Point(450, 27);
+            this.CBGroup.Location = new System.Drawing.Point(532, 26);
             this.CBGroup.Name = "CBGroup";
             this.CBGroup.Size = new System.Drawing.Size(208, 26);
             this.CBGroup.TabIndex = 9;
@@ -78,9 +72,9 @@
             this.CBDepartment.DropDownHeight = 1;
             this.CBDepartment.FormattingEnabled = true;
             this.CBDepartment.IntegralHeight = false;
-            this.CBDepartment.Location = new System.Drawing.Point(93, 27);
+            this.CBDepartment.Location = new System.Drawing.Point(118, 26);
             this.CBDepartment.Name = "CBDepartment";
-            this.CBDepartment.Size = new System.Drawing.Size(278, 26);
+            this.CBDepartment.Size = new System.Drawing.Size(312, 26);
             this.CBDepartment.TabIndex = 8;
             this.CBDepartment.ValueSeparator = ", ";
             this.CBDepartment.DropDown += new System.EventHandler(this.CBDepartment_DropDown);
@@ -89,18 +83,30 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(403, 30);
+            this.label3.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label3.Location = new System.Drawing.Point(465, 26);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 15);
+            this.label3.Size = new System.Drawing.Size(61, 22);
             this.label3.TabIndex = 7;
-            this.label3.Text = "組別:";
+            this.label3.Text = "組別：";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label4.Location = new System.Drawing.Point(51, 26);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 22);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "部門：";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 30);
+            this.label2.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label2.Location = new System.Drawing.Point(39, 27);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 15);
+            this.label2.Size = new System.Drawing.Size(48, 22);
             this.label2.TabIndex = 6;
             this.label2.Text = "部門:";
             // 
@@ -109,12 +115,16 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.GridColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.Location = new System.Drawing.Point(0, 140);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(800, 360);
+            this.dataGridView1.Size = new System.Drawing.Size(800, 334);
             this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             // 
             // BulletinBoard
             // 
@@ -123,11 +133,9 @@
             this.ClientSize = new System.Drawing.Size(800, 499);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.listView1);
             this.Name = "BulletinBoard";
             this.Text = "BulletinBoard";
             this.Load += new System.EventHandler(this.BulletinBoard_Load);
-            this.Controls.SetChildIndex(this.listView1, 0);
             this.Controls.SetChildIndex(this.panel2, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);
             this.panel2.ResumeLayout(false);
@@ -138,13 +146,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private CheckedComboBox CBGroup;
         private CheckedComboBox CBDepartment;
+        private System.Windows.Forms.Label label4;
     }
 }

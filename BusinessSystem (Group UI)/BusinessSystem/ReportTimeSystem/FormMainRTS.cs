@@ -58,7 +58,7 @@ namespace BusinessSystem.ReportTimeSystem
 
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
-            FormAdd formshow = new FormAdd();
+            FormAdd formshow = new FormAdd(this);
             formshow.ShowDialog();
         }
 
@@ -67,14 +67,11 @@ namespace BusinessSystem.ReportTimeSystem
             FormUpdate formshow = new FormUpdate();
             formshow.ShowDialog();
 
-
+            
         }
 
 
-
-        public void RefreshGridView()
-        {
-            this.dataGridView1.Refresh();
-        }
+       
+        
     }
 }

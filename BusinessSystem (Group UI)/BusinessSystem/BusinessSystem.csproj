@@ -96,11 +96,11 @@
     <Compile Include="EmployeeSystem\CreateEmployeeForm.designer.cs">
       <DependentUpon>CreateEmployeeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeSystem\Login.cs">
+    <Compile Include="EmployeeSystem\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EmployeeSystem\Login.designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
+    <Compile Include="EmployeeSystem\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EmployeeSystem\MemberClass.cs" />
     <Compile Include="MainForm.cs">
@@ -187,6 +187,9 @@
     <EmbeddedResource Include="BulletinBoard\BulletinBoard-02.resx">
       <DependentUpon>BulletinBoard-02.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CompanyCars\ChangeVehicleHistory.resx">
+      <DependentUpon>ChangeVehicleHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CompanyCars\CompanyCarForm.resx">
       <DependentUpon>CompanyCarForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -202,8 +205,8 @@
     <EmbeddedResource Include="EmployeeSystem\CreateEmployeeForm.resx">
       <DependentUpon>CreateEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmployeeSystem\Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
+    <EmbeddedResource Include="EmployeeSystem\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
