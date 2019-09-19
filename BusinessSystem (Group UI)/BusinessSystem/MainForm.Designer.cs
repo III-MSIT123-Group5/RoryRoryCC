@@ -213,7 +213,6 @@
             this.mainControls9.TabIndex = 43;
             this.mainControls9.Title = "請購系統";
             this.mainControls9.TitleColor = System.Drawing.Color.White;
-            this.mainControls9.Load += new System.EventHandler(this.mainControls9_Load);
             this.mainControls9.Click += new System.EventHandler(this.mainControls9_Click);
             this.mainControls9.MouseEnter += new System.EventHandler(this.mainControls9_MouseEnter);
             this.mainControls9.MouseLeave += new System.EventHandler(this.mainControls9_MouseLeave);

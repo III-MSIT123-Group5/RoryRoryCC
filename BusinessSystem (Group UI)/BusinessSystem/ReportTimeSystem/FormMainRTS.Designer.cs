@@ -193,6 +193,6 @@
         private Controls.ClsAltoButton clsAltoButton3;
         private Controls.ClsAltoButton clsAltoButton2;
         private Controls.ClsAltoButton clsAltoButton1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.DataGridView dataGridView1;
     }
 }

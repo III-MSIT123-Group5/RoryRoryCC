@@ -121,18 +121,17 @@ namespace MainControls
             this.OnClick(e);
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.OnClick(e);
+        }
 
         private void label1_Click(object sender, EventArgs e)
         {
             this.OnClick(e);
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            this.OnClick(e);
-        }
-
-        private void label1_MouseEnter(object sender, EventArgs e)
+        private void clsAltoButton1_MouseEnter(object sender, EventArgs e)
         {
             this.OnMouseEnter(e);
         }
@@ -142,9 +141,29 @@ namespace MainControls
             this.OnMouseEnter(e);
         }
 
-        private void clsAltoButton1_MouseEnter(object sender, EventArgs e)
+        private void label1_MouseEnter(object sender, EventArgs e)
         {
             this.OnMouseEnter(e);
+        }
+
+        private void clsAltoButton1_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void clsAltoButton1_MouseHover(object sender, EventArgs e)
+        {
+            this.OnMouseHover(e);
+        }
+
+        private void pictureBox1_MouseHover(object sender, EventArgs e)
+        {
+            this.OnMouseHover(e);
+        }
+
+        private void label1_MouseHover(object sender, EventArgs e)
+        {
+            this.OnMouseHover(e);
         }
 
         private void clsAltoButton1_MouseLeave(object sender, EventArgs e)
@@ -160,52 +179,6 @@ namespace MainControls
         private void label1_MouseLeave(object sender, EventArgs e)
         {
             this.OnMouseLeave(e);
-        }
-
-        private void clsAltoButton1_MouseHover(object sender, EventArgs e)
-        {
-            this.OnMouseHover(e);
-
-        }
-
-        private void pictureBox1_MouseHover(object sender, EventArgs e)
-        {
-            this.OnMouseHover(e);
-        }
-
-        private void label1_MouseHover(object sender, EventArgs e)
-        {
-            this.OnMouseHover(e);
-        }
-
-        private void label1_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.OnMouseDown(e);
-        }
-
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.OnMouseDown(e);
-        }
-
-        private void clsAltoButton1_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.OnMouseDown(e);
-        }
-
-        private void clsAltoButton1_MouseUp(object sender, MouseEventArgs e)
-        {
-            this.OnMouseUp(e);
-        }
-
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
-        {
-            this.OnMouseUp(e);
-        }
-
-        private void label1_MouseUp(object sender, MouseEventArgs e)
-        {
-            this.OnMouseUp(e);
         }
     }
 }

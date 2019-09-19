@@ -53,10 +53,7 @@ namespace BusinessSystem
             formshow.ShowDialog();
         }
 
-        private void mainControls9_Load(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void mainControls9_MouseEnter(object sender, EventArgs e)
         {
@@ -67,5 +64,14 @@ namespace BusinessSystem
         {
             this.mainControls9.ButtonColor = Color.DarkBlue;
         }
+
+     
+
+        private void mainControls10_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+      
     }
 }

@@ -50,16 +50,10 @@ namespace BusinessSystem
 
             try
             {
-                var newReportCategory = new ReportCategory
-                {
-                    ReportID = 1,
-
-                };
-
                 var newRequisitionMain = new RequisitionMain
                 {
+                    ReportID=2,
                     EmployeeID = 1008,
-                    ReportCategory = newReportCategory
                 };
 
                 var newOrderDetail = new OrderDetail
@@ -71,7 +65,6 @@ namespace BusinessSystem
                     RequisitionMain = newRequisitionMain
                 };
 
-                this.dbContext.ReportCategories.Add(newReportCategory);
                 this.dbContext.RequisitionMains.Add(newRequisitionMain);
                 this.dbContext.OrderDetails.Add(newOrderDetail);
                 this.dbContext.SaveChanges();
