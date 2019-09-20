@@ -73,7 +73,7 @@ namespace BusinessSystem
 
         private void mainControls9_Click(object sender, EventArgs e)
         {
-            FrmRequisition1 formshow = new FrmRequisition1();
+            FrmRequisition1 formshow = new FrmRequisition1(EmpNum);
             formshow.ShowDialog();
         }
 
@@ -202,6 +202,11 @@ namespace BusinessSystem
         {
             FrmFileBrowsing file = new FrmFileBrowsing(EmpNum);
             file.Show();
+        }
+
+        private void mainControls9_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
