@@ -309,7 +309,7 @@ namespace BusinessSystem
                         var QposiEmpNonCap = from f in this.dbcontext.Employees.AsEnumerable()
                                        where f.GroupID == this.Insert_grpID(this.cmbGroupID.Text)
                                        && f.DepartmentID == this.cmbDepartmentID.SelectedIndex
-                                       && f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                       && f.PositionID == this.cmbPositionID.SelectedIndex-1    //cmbPositionID.SelectedIndex+1才是該員的職稱
                                        select f.employeeID;
                         this.cmbManagerID.DataSource = QposiEmpNonCap.ToList ();
                     }

@@ -63,12 +63,15 @@ namespace BusinessSystem.EmployeeSystem
             
             if (q.Any())
             {
-               
+
                 //readname.EmpAcount = this.txtLoginAccount.Text;//擷取登入者姓名 (Kai)
+                
                 MessageBox.Show($"歡迎回來， {EmpName}!", "登入成功", MessageBoxButtons.OK);
+               
                 //MessageBox.Show(readname.EmpAcount);//測試
                 MainForm main = new MainForm(EmpID);
                 main.Show();
+                this.Dispose();
             }
             else
             {
