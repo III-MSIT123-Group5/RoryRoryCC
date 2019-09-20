@@ -29,10 +29,11 @@ namespace BusinessSystem.CompanyCars
         //
         //
         //
-        public CompanyVehicleBorrowForm()
+        public CompanyVehicleBorrowForm(int empid):base(empid)
         {
             InitializeComponent();
             mypic();
+            MessageBox.Show( LoginID.ToString()) ;
             //    var q = from e in this.dbcontext.Employees
             //            where e.EmployeeName == label3.Text
             //            select new { e.employeeID };

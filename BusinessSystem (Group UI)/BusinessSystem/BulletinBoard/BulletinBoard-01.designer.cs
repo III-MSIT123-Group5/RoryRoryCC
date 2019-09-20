@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BulletinBoard));
             this.panel2 = new System.Windows.Forms.Panel();
             this.CBGroup = new BusinessSystem.CheckedComboBox();
             this.CBDepartment = new BusinessSystem.CheckedComboBox();
@@ -35,6 +36,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.clsAltoButton1 = new BusinessSystem.ClsAltoButton();
+            this.clsAltoButton2 = new BusinessSystem.ClsAltoButton();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -43,6 +47,7 @@
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.CBGroup);
             this.panel2.Controls.Add(this.CBDepartment);
             this.panel2.Controls.Add(this.label3);
@@ -59,7 +64,7 @@
             this.CBGroup.DropDownHeight = 1;
             this.CBGroup.FormattingEnabled = true;
             this.CBGroup.IntegralHeight = false;
-            this.CBGroup.Location = new System.Drawing.Point(532, 26);
+            this.CBGroup.Location = new System.Drawing.Point(500, 26);
             this.CBGroup.Name = "CBGroup";
             this.CBGroup.Size = new System.Drawing.Size(208, 26);
             this.CBGroup.TabIndex = 9;
@@ -72,9 +77,9 @@
             this.CBDepartment.DropDownHeight = 1;
             this.CBDepartment.FormattingEnabled = true;
             this.CBDepartment.IntegralHeight = false;
-            this.CBDepartment.Location = new System.Drawing.Point(118, 26);
+            this.CBDepartment.Location = new System.Drawing.Point(114, 26);
             this.CBDepartment.Name = "CBDepartment";
-            this.CBDepartment.Size = new System.Drawing.Size(312, 26);
+            this.CBDepartment.Size = new System.Drawing.Size(290, 26);
             this.CBDepartment.TabIndex = 8;
             this.CBDepartment.ValueSeparator = ", ";
             this.CBDepartment.DropDown += new System.EventHandler(this.CBDepartment_DropDown);
@@ -84,7 +89,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(465, 26);
+            this.label3.Location = new System.Drawing.Point(433, 26);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 22);
             this.label3.TabIndex = 7;
@@ -94,7 +99,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label4.Location = new System.Drawing.Point(51, 26);
+            this.label4.Location = new System.Drawing.Point(47, 26);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 22);
             this.label4.TabIndex = 10;
@@ -122,22 +127,77 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(800, 334);
+            this.dataGridView1.Size = new System.Drawing.Size(800, 259);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
+            // 
+            // clsAltoButton1
+            // 
+            this.clsAltoButton1.Active1 = System.Drawing.Color.CornflowerBlue;
+            this.clsAltoButton1.Active2 = System.Drawing.Color.CornflowerBlue;
+            this.clsAltoButton1.BackColor = System.Drawing.Color.Transparent;
+            this.clsAltoButton1.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.clsAltoButton1.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clsAltoButton1.ForeColor = System.Drawing.Color.White;
+            this.clsAltoButton1.Inactive1 = System.Drawing.Color.DarkSlateBlue;
+            this.clsAltoButton1.Inactive2 = System.Drawing.Color.DarkSlateBlue;
+            this.clsAltoButton1.Location = new System.Drawing.Point(607, 420);
+            this.clsAltoButton1.Name = "clsAltoButton1";
+            this.clsAltoButton1.Radius = 10;
+            this.clsAltoButton1.Size = new System.Drawing.Size(143, 30);
+            this.clsAltoButton1.Stroke = false;
+            this.clsAltoButton1.StrokeColor = System.Drawing.Color.Gray;
+            this.clsAltoButton1.TabIndex = 5;
+            this.clsAltoButton1.Text = "撰寫公告";
+            this.clsAltoButton1.Transparency = false;
+            this.clsAltoButton1.Click += new System.EventHandler(this.clsAltoButton1_Click);
+            // 
+            // clsAltoButton2
+            // 
+            this.clsAltoButton2.Active1 = System.Drawing.Color.LightSlateGray;
+            this.clsAltoButton2.Active2 = System.Drawing.Color.LightSlateGray;
+            this.clsAltoButton2.BackColor = System.Drawing.Color.Transparent;
+            this.clsAltoButton2.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.clsAltoButton2.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clsAltoButton2.ForeColor = System.Drawing.Color.White;
+            this.clsAltoButton2.Inactive1 = System.Drawing.Color.Gray;
+            this.clsAltoButton2.Inactive2 = System.Drawing.Color.Gray;
+            this.clsAltoButton2.Location = new System.Drawing.Point(419, 420);
+            this.clsAltoButton2.Name = "clsAltoButton2";
+            this.clsAltoButton2.Radius = 10;
+            this.clsAltoButton2.Size = new System.Drawing.Size(143, 30);
+            this.clsAltoButton2.Stroke = false;
+            this.clsAltoButton2.StrokeColor = System.Drawing.Color.Gray;
+            this.clsAltoButton2.TabIndex = 6;
+            this.clsAltoButton2.Text = "關閉";
+            this.clsAltoButton2.Transparency = false;
+            this.clsAltoButton2.Click += new System.EventHandler(this.clsAltoButton2_Click);
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(734, 21);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(34, 31);
+            this.button1.TabIndex = 11;
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // BulletinBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 499);
+            this.Controls.Add(this.clsAltoButton2);
+            this.Controls.Add(this.clsAltoButton1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel2);
             this.Name = "BulletinBoard";
             this.Text = "BulletinBoard";
             this.Load += new System.EventHandler(this.BulletinBoard_Load);
-            this.Controls.SetChildIndex(this.panel2, 0);
-            this.Controls.SetChildIndex(this.dataGridView1, 0);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -153,5 +213,8 @@
         private CheckedComboBox CBGroup;
         private CheckedComboBox CBDepartment;
         private System.Windows.Forms.Label label4;
+        private ClsAltoButton clsAltoButton1;
+        private ClsAltoButton clsAltoButton2;
+        private System.Windows.Forms.Button button1;
     }
 }
