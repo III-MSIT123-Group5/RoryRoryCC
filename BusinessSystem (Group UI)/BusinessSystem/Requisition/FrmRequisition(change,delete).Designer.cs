@@ -39,9 +39,10 @@
             this.txtProcductName = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnShow = new BusinessSystem.ClsAltoButton();
+            this.btnOnlyShow = new BusinessSystem.ClsAltoButton();
             this.btnChange = new BusinessSystem.ClsAltoButton();
             this.btnClear = new BusinessSystem.ClsAltoButton();
+            this.btnAllShow = new BusinessSystem.ClsAltoButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,27 +140,27 @@
             this.label1.TabIndex = 41;
             this.label1.Text = "訂單編號：";
             // 
-            // btnShow
+            // btnOnlyShow
             // 
-            this.btnShow.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.btnShow.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
-            this.btnShow.BackColor = System.Drawing.Color.Transparent;
-            this.btnShow.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnShow.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
-            this.btnShow.ForeColor = System.Drawing.Color.White;
-            this.btnShow.Inactive1 = System.Drawing.Color.DarkSlateBlue;
-            this.btnShow.Inactive2 = System.Drawing.Color.DarkSlateBlue;
-            this.btnShow.Location = new System.Drawing.Point(243, 67);
-            this.btnShow.Margin = new System.Windows.Forms.Padding(2);
-            this.btnShow.Name = "btnShow";
-            this.btnShow.Radius = 10;
-            this.btnShow.Size = new System.Drawing.Size(145, 24);
-            this.btnShow.Stroke = false;
-            this.btnShow.StrokeColor = System.Drawing.Color.Gray;
-            this.btnShow.TabIndex = 39;
-            this.btnShow.Text = "顯示請購單";
-            this.btnShow.Transparency = false;
-            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
+            this.btnOnlyShow.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.btnOnlyShow.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnOnlyShow.BackColor = System.Drawing.Color.Transparent;
+            this.btnOnlyShow.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOnlyShow.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOnlyShow.ForeColor = System.Drawing.Color.White;
+            this.btnOnlyShow.Inactive1 = System.Drawing.Color.DarkSlateBlue;
+            this.btnOnlyShow.Inactive2 = System.Drawing.Color.DarkSlateBlue;
+            this.btnOnlyShow.Location = new System.Drawing.Point(243, 67);
+            this.btnOnlyShow.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOnlyShow.Name = "btnOnlyShow";
+            this.btnOnlyShow.Radius = 10;
+            this.btnOnlyShow.Size = new System.Drawing.Size(145, 24);
+            this.btnOnlyShow.Stroke = false;
+            this.btnOnlyShow.StrokeColor = System.Drawing.Color.Gray;
+            this.btnOnlyShow.TabIndex = 39;
+            this.btnOnlyShow.Text = "展示單筆請購單";
+            this.btnOnlyShow.Transparency = false;
+            this.btnOnlyShow.Click += new System.EventHandler(this.btnOnlyShow_Click);
             // 
             // btnChange
             // 
@@ -167,7 +168,7 @@
             this.btnChange.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
             this.btnChange.BackColor = System.Drawing.Color.Transparent;
             this.btnChange.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnChange.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
+            this.btnChange.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChange.ForeColor = System.Drawing.Color.White;
             this.btnChange.Inactive1 = System.Drawing.Color.DarkSlateBlue;
             this.btnChange.Inactive2 = System.Drawing.Color.DarkSlateBlue;
@@ -189,7 +190,7 @@
             this.btnClear.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
             this.btnClear.BackColor = System.Drawing.Color.Transparent;
             this.btnClear.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnClear.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
+            this.btnClear.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.ForeColor = System.Drawing.Color.White;
             this.btnClear.Inactive1 = System.Drawing.Color.DarkSlateBlue;
             this.btnClear.Inactive2 = System.Drawing.Color.DarkSlateBlue;
@@ -205,14 +206,37 @@
             this.btnClear.Transparency = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // btnAllShow
+            // 
+            this.btnAllShow.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.btnAllShow.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnAllShow.BackColor = System.Drawing.Color.Transparent;
+            this.btnAllShow.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnAllShow.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAllShow.ForeColor = System.Drawing.Color.White;
+            this.btnAllShow.Inactive1 = System.Drawing.Color.DarkSlateBlue;
+            this.btnAllShow.Inactive2 = System.Drawing.Color.DarkSlateBlue;
+            this.btnAllShow.Location = new System.Drawing.Point(26, 298);
+            this.btnAllShow.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAllShow.Name = "btnAllShow";
+            this.btnAllShow.Radius = 10;
+            this.btnAllShow.Size = new System.Drawing.Size(145, 24);
+            this.btnAllShow.Stroke = false;
+            this.btnAllShow.StrokeColor = System.Drawing.Color.Gray;
+            this.btnAllShow.TabIndex = 42;
+            this.btnAllShow.Text = "顯示所有請購單";
+            this.btnAllShow.Transparency = false;
+            this.btnAllShow.Click += new System.EventHandler(this.btnAllShow_Click);
+            // 
             // FrmRequisition2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 358);
+            this.ClientSize = new System.Drawing.Size(800, 365);
+            this.Controls.Add(this.btnAllShow);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.btnShow);
+            this.Controls.Add(this.btnOnlyShow);
             this.Controls.Add(this.btnChange);
             this.Controls.Add(this.txtReportID);
             this.Controls.Add(this.txtNote);
@@ -226,20 +250,6 @@
             this.Controls.Add(this.btnClear);
             this.Name = "FrmRequisition2";
             this.Text = "FrmRequisition";
-            this.Controls.SetChildIndex(this.btnClear, 0);
-            this.Controls.SetChildIndex(this.txtProcductName, 0);
-            this.Controls.SetChildIndex(this.lblProductName, 0);
-            this.Controls.SetChildIndex(this.txtUnitPrice, 0);
-            this.Controls.SetChildIndex(this.lblUnitPrice, 0);
-            this.Controls.SetChildIndex(this.txtQuantity, 0);
-            this.Controls.SetChildIndex(this.lblQuantity, 0);
-            this.Controls.SetChildIndex(this.lblNote, 0);
-            this.Controls.SetChildIndex(this.txtNote, 0);
-            this.Controls.SetChildIndex(this.txtReportID, 0);
-            this.Controls.SetChildIndex(this.btnChange, 0);
-            this.Controls.SetChildIndex(this.btnShow, 0);
-            this.Controls.SetChildIndex(this.dataGridView1, 0);
-            this.Controls.SetChildIndex(this.label1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -248,7 +258,7 @@
 
         #endregion
 
-        private ClsAltoButton btnShow;
+        private ClsAltoButton btnOnlyShow;
         private ClsAltoButton btnChange;
         private System.Windows.Forms.TextBox txtReportID;
         private System.Windows.Forms.TextBox txtNote;
@@ -262,5 +272,6 @@
         private ClsAltoButton btnClear;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
+        private ClsAltoButton btnAllShow;
     }
 }
