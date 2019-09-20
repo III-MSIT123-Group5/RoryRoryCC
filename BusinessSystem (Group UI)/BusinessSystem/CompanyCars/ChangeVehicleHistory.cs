@@ -25,7 +25,7 @@ namespace BusinessSystem.CompanyCars
         //
         //
         //
-        public ChangeVehicleHistory()
+        public ChangeVehicleHistory():base()
         {
             InitializeComponent();
             var q = from e in this.dbContext.Employees

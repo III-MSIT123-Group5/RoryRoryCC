@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace BusinessSystem
 {
-    public partial class CompanyCarForm : SonForm
+    public partial class CompanyCarForm : Form
     {
         public CompanyCarForm()
         {

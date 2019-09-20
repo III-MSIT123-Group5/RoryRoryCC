@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace BusinessSystem
 {
-    public partial class CreateEmployeeForm : SonForm
+    public partial class CreateEmployeeForm : Form
     {
         public CreateEmployeeForm()
         {

@@ -1,4 +1,5 @@
-﻿using BusinessSystemDBEntityModel;
+﻿using BusinessSystem.EmployeeSystem;
+using BusinessSystemDBEntityModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,44 +14,61 @@ namespace BusinessSystem
 {
     public partial class SonForm : Form
     {
+        int EmpID;
+        private int M_LoginID;
+        public int LoginID
+        {
+            get
+            {
+                return M_LoginID;
+            }
+            set
+            {
+                M_LoginID = value;
+            }
+        }
         public SonForm()
         {
             InitializeComponent();
         }
-
+        public SonForm(int empID)
+        {
+            InitializeComponent();
+            LoginID = empID;
+        }
+        string name = null;
+        string gender = null;
+        string photo = null;
+        
+       
         private void SonForm_Load(object sender, EventArgs e)
         {
-            //    BusinessDataBaseEntities dbContext;
+            BusinessDataBaseEntities dbContext;           
+            dbContext = new BusinessDataBaseEntities();
+            var q = from em in dbContext.Employees
+                    where  em.employeeID  == LoginID  
+                    select new { em.EmployeeName, em.Gender, em.Photo };
 
-            //    dbContext = new BusinessDataBaseEntities();
+            foreach (var n in q)
+            {
+                name = n.EmployeeName;
+                gender = n.Gender;
+                photo = n.Photo;
+            }
 
-            //    var q = from em in dbContext.Employees
-            //            where em.Account == "jocelyn"
-            //            select new { em.EmployeeName,em.Gender,em.Photo };
+            label3.Text = name;
 
-            //    string name = null;
-            //    string gender = null;
-            //    string photo = null;
+            if (gender == "M")
+            {
+                label4.Text = "先 生";
+            }
+            else
+            {
+                label4.Text = "小 姐";
+            }
 
-            //    foreach (var n in q)
-            //    {
-            //        name = n.EmployeeName;
-            //        gender = n.Gender;
-            //        photo = n.Photo;
-            //    }
-
-            //    label3.Text = name;
-
-            //    if (gender == "M")
-            //    {
-            //        label4.Text = "先 生";
-            //    }
-            //    else
-            //    {
-            //        label4.Text = "小 姐";
-            //    }
-
-            //    pictureBox2.ImageLocation = photo;
+            pictureBox2.ImageLocation = photo;
         }
+
     }
     }
