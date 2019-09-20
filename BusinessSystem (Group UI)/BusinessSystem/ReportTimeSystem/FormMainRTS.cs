@@ -39,16 +39,20 @@ namespace BusinessSystem.ReportTimeSystem
             public string 備註 { get; set; }
 
         }
-
+        //將資料先存於data內,使datagridview 的cell 可以做更改
 
         List<data> listcatalog = null;
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            //foreach (var q in listcatalog)
-            //{
-            //    var w = dbcontext.ReportTimeSystems( =>FormMainRTS.)
-            //}
-                    
+            foreach (var q in listcatalog)
+            {
+                var w = dbcontext.ReportTimeSystems.Where(K => K.ReportID == q.報表編號).FirstOrDefault();
+            
+                if (w != null)
+                {
+                    w.ReportID = q.報表編號;
+                }
+            }
         }
 
 
@@ -74,7 +78,7 @@ namespace BusinessSystem.ReportTimeSystem
             
             this.dataGridView1.DataSource = null;
             this.dataGridView1.DataSource = listcatalog;
-            
+            dataGridView1.Columns[0].ReadOnly = true;
 
 
         }
