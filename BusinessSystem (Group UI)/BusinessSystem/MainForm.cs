@@ -1,4 +1,5 @@
 ﻿using BusinessSystem.CompanyCars;
+using BusinessSystem.DocumentManagement;
 using BusinessSystem.EmployeeSystem;
 using BusinessSystem.ReportTimeSystem;
 using BusinessSystemDBEntityModel;
@@ -103,6 +104,12 @@ namespace BusinessSystem
         private void mainControls6_Click(object sender, EventArgs e)
         {
             MessageBox.Show(EmpNum.ToString());
+        }
+
+        private void mainControls7_Click(object sender, EventArgs e)
+        {
+            FrmFileBrowsing frmFileBrowsing = new FrmFileBrowsing();
+            frmFileBrowsing.ShowDialog();
         }
     }
 }

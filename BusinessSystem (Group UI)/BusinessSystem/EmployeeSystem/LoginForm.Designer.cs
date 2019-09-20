@@ -54,7 +54,7 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 266);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(472, 19);
             this.panel2.TabIndex = 2;
@@ -79,7 +79,7 @@
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(472, 54);
             this.panel1.TabIndex = 3;
@@ -100,7 +100,7 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(9, 7);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(29, 39);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -111,7 +111,7 @@
             // 
             this.txtLoginAccount.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLoginAccount.Location = new System.Drawing.Point(250, 105);
-            this.txtLoginAccount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtLoginAccount.Margin = new System.Windows.Forms.Padding(2);
             this.txtLoginAccount.Name = "txtLoginAccount";
             this.txtLoginAccount.Size = new System.Drawing.Size(175, 23);
             this.txtLoginAccount.TabIndex = 4;
@@ -120,7 +120,7 @@
             // 
             this.txtLoginPassword.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLoginPassword.Location = new System.Drawing.Point(250, 147);
-            this.txtLoginPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtLoginPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtLoginPassword.Name = "txtLoginPassword";
             this.txtLoginPassword.PasswordChar = '*';
             this.txtLoginPassword.Size = new System.Drawing.Size(175, 23);
@@ -154,7 +154,7 @@
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(33, 96);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(121, 125);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -187,7 +187,7 @@
             this.clsAltoButton1.Inactive1 = System.Drawing.Color.DarkSlateBlue;
             this.clsAltoButton1.Inactive2 = System.Drawing.Color.DarkSlateBlue;
             this.clsAltoButton1.Location = new System.Drawing.Point(178, 195);
-            this.clsAltoButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.clsAltoButton1.Margin = new System.Windows.Forms.Padding(2);
             this.clsAltoButton1.Name = "clsAltoButton1";
             this.clsAltoButton1.Radius = 10;
             this.clsAltoButton1.Size = new System.Drawing.Size(246, 33);
@@ -209,7 +209,7 @@
             this.clsAltoButton2.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.clsAltoButton2.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.clsAltoButton2.Location = new System.Drawing.Point(178, 231);
-            this.clsAltoButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.clsAltoButton2.Margin = new System.Windows.Forms.Padding(2);
             this.clsAltoButton2.Name = "clsAltoButton2";
             this.clsAltoButton2.Radius = 10;
             this.clsAltoButton2.Size = new System.Drawing.Size(80, 33);
@@ -239,7 +239,7 @@
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.Text = "LoginForm";

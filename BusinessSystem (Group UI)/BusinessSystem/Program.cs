@@ -1,5 +1,6 @@
 ﻿using BusinessSystem.companycars;
 using BusinessSystem.CompanyCars;
+using BusinessSystem.DocumentManagement;
 using BusinessSystem.EmployeeSystem;
 using BusinessSystem.Requisition;
 using System;
@@ -21,8 +22,7 @@ namespace BusinessSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new LoginForm());
-            Application.Run(new CreateEmployeeForm());
+            Application.Run(new LoginForm());
         }
     }
 }

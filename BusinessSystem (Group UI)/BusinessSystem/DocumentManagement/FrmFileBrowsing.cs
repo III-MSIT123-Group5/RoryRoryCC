@@ -13,7 +13,7 @@ using File = System.IO.File;
 
 namespace BusinessSystem.DocumentManagement
 {
-    public partial class FrmFileBrowsing : Form
+    public partial class FrmFileBrowsing : SonForm
     {
         BusinessDataBaseEntities dbContext = new BusinessDataBaseEntities();
         public FrmFileBrowsing()
