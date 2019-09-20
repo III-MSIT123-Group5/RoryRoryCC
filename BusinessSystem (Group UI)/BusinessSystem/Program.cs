@@ -1,6 +1,7 @@
 ﻿using BusinessSystem.companycars;
 using BusinessSystem.CompanyCars;
 using BusinessSystem.EmployeeSystem;
+using BusinessSystem.ReportTimeSystem;
 using BusinessSystem.Requisition;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace BusinessSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new LoginForm());
-            Application.Run(new CreateEmployeeForm());
+            Application.Run(new FormMainRTS());
         }
     }
 }
