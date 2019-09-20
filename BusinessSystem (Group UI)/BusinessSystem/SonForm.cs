@@ -14,7 +14,7 @@ namespace BusinessSystem
 {
     public partial class SonForm : Form
     {
-        int EmpID;
+        
         private int M_LoginID;
         public int LoginID
         {

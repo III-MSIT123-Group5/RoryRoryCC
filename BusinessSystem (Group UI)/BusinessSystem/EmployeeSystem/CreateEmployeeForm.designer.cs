@@ -55,7 +55,6 @@
             this.cmbGender = new System.Windows.Forms.ComboBox();
             this.cmbGroupID = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtManagerID = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.cmbManagerID = new System.Windows.Forms.ComboBox();
@@ -230,7 +229,9 @@
             this.cmbPositionID.Size = new System.Drawing.Size(206, 30);
             this.cmbPositionID.TabIndex = 30;
             this.toolTip1.SetToolTip(this.cmbPositionID, "positionID");
-            this.cmbPositionID.TextChanged += new System.EventHandler(this.cmbPositionID_TextChanged);
+            this.cmbPositionID.TextUpdate += new System.EventHandler(this.cmbPositionID_TextUpdate);
+            this.cmbPositionID.DataSourceChanged += new System.EventHandler(this.cmbPositionID_DataSourceChanged);
+            this.cmbPositionID.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cmbPositionID_MouseClick);
             // 
             // cmbEmployed
             // 
@@ -266,6 +267,7 @@
             this.btnClear.Text = "重新輸入";
             this.toolTip1.SetToolTip(this.btnClear, "重新輸入表格");
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // txtPassword
             // 
@@ -338,6 +340,7 @@
             this.cmbGroupID.Size = new System.Drawing.Size(206, 30);
             this.cmbGroupID.TabIndex = 40;
             this.toolTip1.SetToolTip(this.cmbGroupID, "GroupID");
+            this.cmbGroupID.DataSourceChanged += new System.EventHandler(this.cmbGroupID_DataSourceChanged);
             // 
             // label9
             // 
@@ -350,16 +353,6 @@
             this.label9.TabIndex = 15;
             this.label9.Text = "直屬主管ID：";
             this.toolTip1.SetToolTip(this.label9, "managerID");
-            // 
-            // txtManagerID
-            // 
-            this.txtManagerID.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtManagerID.Location = new System.Drawing.Point(241, 241);
-            this.txtManagerID.Margin = new System.Windows.Forms.Padding(4);
-            this.txtManagerID.Name = "txtManagerID";
-            this.txtManagerID.Size = new System.Drawing.Size(206, 30);
-            this.txtManagerID.TabIndex = 16;
-            this.toolTip1.SetToolTip(this.txtManagerID, "managerID");
             // 
             // label16
             // 
@@ -448,7 +441,6 @@
             this.Controls.Add(this.txtAccount);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.txtManagerID);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -460,35 +452,6 @@
             this.Name = "CreateEmployeeForm";
             this.Text = "新增員工資料";
             this.Load += new System.EventHandler(this.CreateEmployeeForm_Load);
-            this.Controls.SetChildIndex(this.txtEmployeeName, 0);
-            this.Controls.SetChildIndex(this.label5, 0);
-            this.Controls.SetChildIndex(this.label6, 0);
-            this.Controls.SetChildIndex(this.label7, 0);
-            this.Controls.SetChildIndex(this.label8, 0);
-            this.Controls.SetChildIndex(this.label9, 0);
-            this.Controls.SetChildIndex(this.txtManagerID, 0);
-            this.Controls.SetChildIndex(this.label10, 0);
-            this.Controls.SetChildIndex(this.label11, 0);
-            this.Controls.SetChildIndex(this.txtAccount, 0);
-            this.Controls.SetChildIndex(this.label12, 0);
-            this.Controls.SetChildIndex(this.label13, 0);
-            this.Controls.SetChildIndex(this.dTPicBirth, 0);
-            this.Controls.SetChildIndex(this.dTPicHireDate, 0);
-            this.Controls.SetChildIndex(this.cmbOfficeID, 0);
-            this.Controls.SetChildIndex(this.cmbDepartmentID, 0);
-            this.Controls.SetChildIndex(this.cmbPositionID, 0);
-            this.Controls.SetChildIndex(this.cmbEmployed, 0);
-            this.Controls.SetChildIndex(this.btnCreate, 0);
-            this.Controls.SetChildIndex(this.btnClear, 0);
-            this.Controls.SetChildIndex(this.label14, 0);
-            this.Controls.SetChildIndex(this.txtPassword, 0);
-            this.Controls.SetChildIndex(this.label15, 0);
-            this.Controls.SetChildIndex(this.txtConfirmPassword, 0);
-            this.Controls.SetChildIndex(this.cmbGender, 0);
-            this.Controls.SetChildIndex(this.cmbGroupID, 0);
-            this.Controls.SetChildIndex(this.label16, 0);
-            this.Controls.SetChildIndex(this.label17, 0);
-            this.Controls.SetChildIndex(this.cmbManagerID, 0);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -524,7 +487,6 @@
         private System.Windows.Forms.ComboBox cmbGender;
         private System.Windows.Forms.ComboBox cmbGroupID;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.TextBox txtManagerID;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
