@@ -39,14 +39,14 @@ namespace BusinessSystem
         string name = null;
         string gender = null;
         string photo = null;
-        
-       
+
+
         private void SonForm_Load(object sender, EventArgs e)
         {
-            BusinessDataBaseEntities dbContext;           
+            BusinessDataBaseEntities dbContext;
             dbContext = new BusinessDataBaseEntities();
             var q = from em in dbContext.Employees
-                    where  em.employeeID  == LoginID  
+                    where em.employeeID == LoginID
                     select new { em.EmployeeName, em.Gender, em.Photo };
 
             foreach (var n in q)
@@ -71,4 +71,4 @@ namespace BusinessSystem
         }
 
     }
-    }
+}

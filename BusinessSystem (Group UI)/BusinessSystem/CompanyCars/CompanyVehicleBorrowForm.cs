@@ -29,11 +29,11 @@ namespace BusinessSystem.CompanyCars
         //
         //
         //
-        public CompanyVehicleBorrowForm(int empid):base(empid)
+        public CompanyVehicleBorrowForm(int empid) : base(empid)
         {
             InitializeComponent();
-            mypic();
-            MessageBox.Show( LoginID.ToString()) ;
+            
+            //MessageBox.Show( LoginID.ToString()) ;
             //    var q = from e in this.dbcontext.Employees
             //            where e.EmployeeName == label3.Text
             //            select new { e.employeeID };
@@ -180,18 +180,29 @@ namespace BusinessSystem.CompanyCars
         }
         public void mypic()
         {
-            var q = from p in dbcontext.CompanyVehicles
+            var q =from p in dbcontext.CompanyVehicles
+                    join bt in this.dbcontext.CompanyVehicleHistories on p.LicenseNumber equals bt.LicenseNumber
+                    where this.dateTimePicker2.Value < bt.StartDateTime || this.dateTimePicker1.Value>bt.EndDateTime
                     select p;
-            List < CompanyVehicle > pphoto = q.ToList();
             
-            for (i = 0; i < dbcontext.CompanyVehicles.Count(); i++)
+            List < CompanyVehicle > pphoto = q.ToList();
+
+            try
             {
-                UserControl1 x = new UserControl1();
-                x.pic = pphoto[i].VehiclePhoto;
-                x.licNu = pphoto[i].LicenseNumber;
-                this.flowLayoutPanel1.Controls.Add(x);
-                x.Scclick += new UserControl1.mmouse(x_Scclick);
+                for (i = 0; i < pphoto.Count(); i++)
+                {
+                    UserControl1 x = new UserControl1();
+                    x.pic = pphoto[i].VehiclePhoto;
+                    x.licNu = pphoto[i].LicenseNumber;
+                    this.flowLayoutPanel1.Controls.Add(x);
+                    x.Scclick += new UserControl1.mmouse(x_Scclick);
+                }
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+                
             
         }
 
@@ -284,7 +295,6 @@ namespace BusinessSystem.CompanyCars
         {
             mytime1();
             mytime2();
-            //MessageBox.Show(empID.ToString());
             
             if (this.richTextBox1.Text != "" && this.comboBox3.Text != "" && this.comboBox4.Text != "" && this.dataGridView1.DataSource != null)
             {
@@ -294,35 +304,32 @@ namespace BusinessSystem.CompanyCars
                     LicenseNumber = this.dataGridView1.Rows[0].Cells["車牌號碼"].Value.ToString(),
                     StartDateTime = this.dateTimePicker1.Value,
                     EndDateTime = this.dateTimePicker2.Value,
-                    employeeID =1001,
+                    employeeID = LoginID,
                     purpose = this.richTextBox1.Text
                 };
                 dbcontext.CompanyVehicleHistories.Add(q);
                 dbcontext.SaveChanges();
-                MessageBox.Show("Succeed" + "\n" + "借車時數共 " + ((this.dateTimePicker2.Value - this.dateTimePicker1.Value).Hours).ToString() + "小時，\n請準時歸還!");
-
-
+                MessageBox.Show("借車成功！" + "\n" + "借車時數共 " + ((this.dateTimePicker2.Value - this.dateTimePicker1.Value).Hours).ToString() + "小時，\n請準時歸還!");
+                
             }
             else
             {
                 MessageBox.Show("請正確操作", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+            
+        }
 
+        private void clsAltoButton2_Click(object sender, EventArgs e)
+        {
+            ChangeVehicleHistory x = new ChangeVehicleHistory(LoginID);
+            x.Show();
+        }
 
-
-            //if (this.dateTimePicker1.Value < this.dateTimePicker2.Value)
-            //{
-            //    MessageBox.Show(((this.dateTimePicker2.Value- this.dateTimePicker1.Value).Hours ).ToString());
-            //    MessageBox.Show(this.dateTimePicker1.Value.ToString());
-            //    MessageBox.Show(this.dateTimePicker2.Value.ToString());
-            //}
-
-
-
-
-
-
-
+        private void clsAltoButton3_Click(object sender, EventArgs e)
+        {
+            mytime1();
+            mytime2();
+            mypic();
         }
     }
 }

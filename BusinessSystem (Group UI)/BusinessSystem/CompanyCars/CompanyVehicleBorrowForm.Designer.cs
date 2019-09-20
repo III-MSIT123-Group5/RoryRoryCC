@@ -41,6 +41,7 @@
             this.clsAltoButton2 = new BusinessSystem.ClsAltoButton();
             this.clsAltoButton1 = new BusinessSystem.ClsAltoButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.clsAltoButton3 = new BusinessSystem.ClsAltoButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +51,7 @@
             this.richTextBox1.ForeColor = System.Drawing.SystemColors.MenuText;
             this.richTextBox1.Location = new System.Drawing.Point(12, 399);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(593, 33);
+            this.richTextBox1.Size = new System.Drawing.Size(604, 33);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = "";
             // 
@@ -122,7 +123,7 @@
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(399, 320);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(206, 30);
+            this.comboBox3.Size = new System.Drawing.Size(145, 30);
             this.comboBox3.TabIndex = 35;
             this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             this.comboBox3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox3_MouseClick);
@@ -133,7 +134,7 @@
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Location = new System.Drawing.Point(399, 362);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(206, 30);
+            this.comboBox4.Size = new System.Drawing.Size(145, 30);
             this.comboBox4.TabIndex = 36;
             this.comboBox4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox4_MouseClick);
             // 
@@ -166,6 +167,7 @@
             this.clsAltoButton2.TabIndex = 37;
             this.clsAltoButton2.Text = "修改租借時間";
             this.clsAltoButton2.Transparency = false;
+            this.clsAltoButton2.Click += new System.EventHandler(this.clsAltoButton2_Click);
             // 
             // clsAltoButton1
             // 
@@ -197,11 +199,33 @@
             this.dataGridView1.Size = new System.Drawing.Size(763, 88);
             this.dataGridView1.TabIndex = 0;
             // 
+            // clsAltoButton3
+            // 
+            this.clsAltoButton3.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.clsAltoButton3.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.clsAltoButton3.BackColor = System.Drawing.Color.Transparent;
+            this.clsAltoButton3.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.clsAltoButton3.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
+            this.clsAltoButton3.ForeColor = System.Drawing.Color.Black;
+            this.clsAltoButton3.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
+            this.clsAltoButton3.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
+            this.clsAltoButton3.Location = new System.Drawing.Point(556, 320);
+            this.clsAltoButton3.Name = "clsAltoButton3";
+            this.clsAltoButton3.Radius = 10;
+            this.clsAltoButton3.Size = new System.Drawing.Size(60, 71);
+            this.clsAltoButton3.Stroke = false;
+            this.clsAltoButton3.StrokeColor = System.Drawing.Color.Gray;
+            this.clsAltoButton3.TabIndex = 39;
+            this.clsAltoButton3.Text = "查找";
+            this.clsAltoButton3.Transparency = false;
+            this.clsAltoButton3.Click += new System.EventHandler(this.clsAltoButton3_Click);
+            // 
             // CompanyVehicleBorrowForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 466);
+            this.ClientSize = new System.Drawing.Size(800, 448);
+            this.Controls.Add(this.clsAltoButton3);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.clsAltoButton2);
@@ -219,19 +243,6 @@
             this.MaximizeBox = false;
             this.Name = "CompanyVehicleBorrowForm";
             this.Text = "CompanyVehicleBorrowForm";
-            this.Controls.SetChildIndex(this.label3, 0);
-            this.Controls.SetChildIndex(this.label5, 0);
-            this.Controls.SetChildIndex(this.richTextBox1, 0);
-            this.Controls.SetChildIndex(this.dateTimePicker1, 0);
-            this.Controls.SetChildIndex(this.clsAltoButton1, 0);
-            this.Controls.SetChildIndex(this.dateTimePicker2, 0);
-            this.Controls.SetChildIndex(this.comboBox1, 0);
-            this.Controls.SetChildIndex(this.comboBox2, 0);
-            this.Controls.SetChildIndex(this.comboBox3, 0);
-            this.Controls.SetChildIndex(this.comboBox4, 0);
-            this.Controls.SetChildIndex(this.clsAltoButton2, 0);
-            this.Controls.SetChildIndex(this.flowLayoutPanel1, 0);
-            this.Controls.SetChildIndex(this.dataGridView1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -252,5 +263,6 @@
         private ClsAltoButton clsAltoButton2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private ClsAltoButton clsAltoButton3;
     }
 }

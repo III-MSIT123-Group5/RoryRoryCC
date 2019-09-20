@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace BusinessSystem.CompanyCars
 {
-    public partial class ChangeVehicleHistory : Form
+    public partial class ChangeVehicleHistory : SonForm
     {
 
 
@@ -25,18 +25,12 @@ namespace BusinessSystem.CompanyCars
         //
         //
         //
-        public ChangeVehicleHistory():base()
+        public ChangeVehicleHistory(int empid) : base(empid)
         {
             InitializeComponent();
-            var q = from e in this.dbContext.Employees
-                    where e.EmployeeName == label3.Text
-                    select new { e.employeeID };
-            foreach (var ID in q)
-            {
-                empID = ID.employeeID;
-            }
+            
             var q1 = from p in this.dbContext.CompanyVehicleHistories
-                     where p.employeeID == empID
+                     where p.employeeID == LoginID
                      select new
                      {
                          租借編號 = p.VehicleHistoryID,
@@ -198,12 +192,12 @@ namespace BusinessSystem.CompanyCars
                     Change.StartDateTime = this.dateTimePicker1.Value;
                     Change.EndDateTime = this.dateTimePicker2.Value;
                 }
-                
             }
             try
             {
                 dbContext.SaveChanges();
                 MessageBox.Show("修改成功！");
+                this.dataGridView1.Update();
                 this.dataGridView1.Refresh();
             }
             catch(Exception ex)
@@ -281,8 +275,8 @@ namespace BusinessSystem.CompanyCars
                          select p).First();
                 this.dbContext.CompanyVehicleHistories.Remove(q);
                 this.dbContext.SaveChanges();
-                this.dataGridView1.Refresh();
-                
+                MessageBox.Show("刪除成功");
+                this.Close();
             }
         }
     }
