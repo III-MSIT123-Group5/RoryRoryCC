@@ -67,7 +67,7 @@ namespace BusinessSystem
 
         private void mainControls2_Click(object sender, EventArgs e)
         {
-            CompanyVehicleBorrowForm formshow = new CompanyVehicleBorrowForm(EmpNum );
+            CompanyVehicleBorrowForm formshow = new CompanyVehicleBorrowForm(EmpNum);
             formshow.ShowDialog();
         }
 
