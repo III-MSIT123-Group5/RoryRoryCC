@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace BusinessSystem.CompanyCars
 {
-    public partial class ChangeVehicleHistory : SonForm
+    public partial class ChangeVehicleHistory : Form
     {
 
 
@@ -36,7 +36,7 @@ namespace BusinessSystem.CompanyCars
                 empID = ID.employeeID;
             }
             var q1 = from p in this.dbContext.CompanyVehicleHistories
-                     where p.employeeID == 1001
+                     where p.employeeID == empID
                      select new
                      {
                          租借編號 = p.VehicleHistoryID,
@@ -187,18 +187,24 @@ namespace BusinessSystem.CompanyCars
         {
             mytime1();
             mytime2();
-            var q = from p in this.dbContext.CompanyVehicleHistories
-                    where p.VehicleHistoryID == waterID
-                    select p; 
-            foreach (var Change in q)
+            DialogResult x = MessageBox.Show("確定要修改嗎", "確認修改", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (x == DialogResult.Yes)
             {
-                Change.StartDateTime = this.dateTimePicker1.Value;
-                Change.EndDateTime = this.dateTimePicker2.Value;
+                var q = from p in this.dbContext.CompanyVehicleHistories
+                        where p.VehicleHistoryID == waterID
+                        select p;
+                foreach (var Change in q)
+                {
+                    Change.StartDateTime = this.dateTimePicker1.Value;
+                    Change.EndDateTime = this.dateTimePicker2.Value;
+                }
+                
             }
             try
             {
                 dbContext.SaveChanges();
-                MessageBox.Show("successed");
+                MessageBox.Show("修改成功！");
+                this.dataGridView1.Refresh();
             }
             catch(Exception ex)
             {
@@ -261,6 +267,22 @@ namespace BusinessSystem.CompanyCars
                     bbool = false;
                 }
 
+            }
+        }
+
+        private void clsAltoButton2_Click(object sender, EventArgs e)
+        {
+            
+            DialogResult x =  MessageBox.Show("確定要刪除嗎", "確認刪除", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (x == DialogResult.Yes)
+            {
+                var q = (from p in this.dbContext.CompanyVehicleHistories
+                         where p.VehicleHistoryID == waterID
+                         select p).First();
+                this.dbContext.CompanyVehicleHistories.Remove(q);
+                this.dbContext.SaveChanges();
+                this.dataGridView1.Refresh();
+                
             }
         }
     }
