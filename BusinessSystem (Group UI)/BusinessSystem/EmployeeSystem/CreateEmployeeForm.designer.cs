@@ -58,10 +58,10 @@
             this.txtManagerID = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.cmbManagerID = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -273,6 +273,7 @@
             this.txtPassword.Location = new System.Drawing.Point(123, 310);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(206, 30);
             this.txtPassword.TabIndex = 35;
             this.toolTip1.SetToolTip(this.txtPassword, "password");
@@ -295,6 +296,7 @@
             this.txtConfirmPassword.Location = new System.Drawing.Point(123, 348);
             this.txtConfirmPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
+            this.txtConfirmPassword.PasswordChar = '*';
             this.txtConfirmPassword.Size = new System.Drawing.Size(206, 30);
             this.txtConfirmPassword.TabIndex = 37;
             this.toolTip1.SetToolTip(this.txtConfirmPassword, "請再輸入一次password");
@@ -383,6 +385,16 @@
             this.label17.Text = "性別：";
             this.toolTip1.SetToolTip(this.label17, "Gender");
             // 
+            // cmbManagerID
+            // 
+            this.cmbManagerID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbManagerID.FormattingEnabled = true;
+            this.cmbManagerID.Location = new System.Drawing.Point(503, 272);
+            this.cmbManagerID.Name = "cmbManagerID";
+            this.cmbManagerID.Size = new System.Drawing.Size(206, 30);
+            this.cmbManagerID.TabIndex = 43;
+            this.toolTip1.SetToolTip(this.cmbManagerID, "managerID");
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -409,22 +421,12 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(503, 272);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(206, 30);
-            this.comboBox1.TabIndex = 43;
-            this.toolTip1.SetToolTip(this.comboBox1, "positionID");
-            // 
             // CreateEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(723, 449);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbManagerID);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.cmbGroupID);
@@ -486,7 +488,7 @@
             this.Controls.SetChildIndex(this.cmbGroupID, 0);
             this.Controls.SetChildIndex(this.label16, 0);
             this.Controls.SetChildIndex(this.label17, 0);
-            this.Controls.SetChildIndex(this.comboBox1, 0);
+            this.Controls.SetChildIndex(this.cmbManagerID, 0);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -526,6 +528,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbManagerID;
     }
 }

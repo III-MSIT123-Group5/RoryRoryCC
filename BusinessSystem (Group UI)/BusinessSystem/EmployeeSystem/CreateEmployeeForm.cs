@@ -292,14 +292,44 @@ namespace BusinessSystem
 
         private void cmbPositionID_TextChanged(object sender, EventArgs e)   //事件：自動帶入直屬主管
         {
-            //var posiEmp= from f in  this.dbcontext .Employees
-            //             where f. GroupID == this.Insert_grpID(this.cmbGroupID.Text) 
-            //             && f.DepartmentID == this.cmbDepartmentID.SelectedIndex 
-            //             && f. PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+            switch (this.cmbPositionID.Text)
+            {
+                case "員工":
+                    var QposiEmp = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where f.GroupID == this.Insert_grpID(this.cmbGroupID.Text)
+                                   && f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                   && f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;
+                    if (QposiEmp.Any())
+                    {
+                        this.cmbManagerID.DataSource = QposiEmp.ToList();
+                    }
+                    else
+                    {
+                        var QposiEmpNonCap = from f in this.dbcontext.Employees.AsEnumerable()
+                                       where f.GroupID == this.Insert_grpID(this.cmbGroupID.Text)
+                                       && f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                       && f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                       select f.employeeID;
+                        this.cmbManagerID.DataSource = QposiEmpNonCap.ToList ();
+                    }
+                    break;
+                case "組長":
+                    break;
+                case "部長":
+                    break;
+                case "總經理":
+                    break;
+            }
+
+            
+
+           
+               
+           
 
 
-
-
+            
 
         }
 
