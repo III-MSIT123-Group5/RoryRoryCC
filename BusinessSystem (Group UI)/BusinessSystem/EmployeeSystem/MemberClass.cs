@@ -9,7 +9,7 @@ namespace BusinessSystem.EmployeeSystem
 {
     class MemberClass
     {
-        BusinessDataBaseEntities dbcontext = new BusinessDataBaseEntities () ;
+        BusinessDataBaseEntities dbcontext = new BusinessDataBaseEntities();
         private string m_Account, m_EmployeeName;
         public string errorstring { get; private set; }
 
@@ -20,12 +20,12 @@ namespace BusinessSystem.EmployeeSystem
                 return m_Account;
             }
             set
-            {   
-                if (this.checkAccount(value )==false )
+            {
+                if (this.checkAccount(value) == false)
                 {
                     errorstring = "帳號已有,請輸入其他帳號";
                 }
-                else if (string.IsNullOrEmpty(value ))
+                else if (string.IsNullOrEmpty(value))
                 {
                     errorstring = "請輸入帳號";
                 }
@@ -44,10 +44,10 @@ namespace BusinessSystem.EmployeeSystem
                 return m_EmployeeName;
             }
             set
-            {                
+            {
                 if (string.IsNullOrEmpty(value))
                 {
-                    errorstring = "請輸入帳號"; 
+                    errorstring = "請輸入帳號";
                 }
                 else
                 {
@@ -58,7 +58,7 @@ namespace BusinessSystem.EmployeeSystem
             }
         }
 
-        private  bool checkAccount(string @account)    //方法：檢查帳號是否重覆 true:允許使用 false:重覆
+        private bool checkAccount(string @account)    //方法：檢查帳號是否重覆 true:允許使用 false:重覆
         {
             var q = from ac in dbcontext.Employees
                     where ac.Account == @account
@@ -72,7 +72,12 @@ namespace BusinessSystem.EmployeeSystem
                 return true;
             }
         }
+        //
+        //存取登入者姓名 (Kai)
 
+        public string EmpAcount { get; set; }
 
-        }
+        public bool namebool { get; set; }
+        
+    }
 }

@@ -39,16 +39,20 @@ namespace BusinessSystem.ReportTimeSystem
             public string 備註 { get; set; }
 
         }
+        //將資料先存於data內,使datagridview 的cell 可以做更改
 
-
-        List<data> listcatalog = null;
+        List<data> listcatalog = null;//建立一個list<data>把資料存到list
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            //foreach (var q in listcatalog)
-            //{
-            //    var w = dbcontext.ReportTimeSystems( =>FormMainRTS.)
-            //}
-                    
+            foreach (var q in listcatalog)
+            {
+                var w = dbcontext.ReportTimeSystems.Where(K => K.ReportID == q.報表編號).FirstOrDefault();
+            
+                if (w != null)
+                {
+                    w.ReportID = q.報表編號;
+                }
+            }
         }
 
 
@@ -66,6 +70,7 @@ namespace BusinessSystem.ReportTimeSystem
                         報表編號 = RTS.ReportID,
                         員工名稱 = emp.EmployeeName,
                         申請時間 = RTS.ApplyDateTime,
+                        //事件所需時間 =
                         申請事件 = eve.EventName,
                         備註 = RTS.Note
                     };
@@ -74,16 +79,21 @@ namespace BusinessSystem.ReportTimeSystem
             
             this.dataGridView1.DataSource = null;
             this.dataGridView1.DataSource = listcatalog;
-            
+            dataGridView1.Columns[0].ReadOnly = true;
 
 
         }
 
+
+        //呼叫新增資料的表單
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
             FormAdd formshow = new FormAdd(this);
-            formshow.ShowDialog();
+            formshow.Show();
         }
+
+
+
 
         private void clsAltoButton2_Click(object sender, EventArgs e)
         {

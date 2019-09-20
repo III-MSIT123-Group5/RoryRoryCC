@@ -22,8 +22,7 @@ namespace BusinessSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new LoginForm());
-            Application.Run(new FrmRequisition1());
-            Application.Run(new FrmRequisition2());
+            Application.Run(new CreateEmployeeForm());
         }
     }
 }

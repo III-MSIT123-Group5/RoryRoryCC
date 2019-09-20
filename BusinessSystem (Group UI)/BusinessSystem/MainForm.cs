@@ -16,14 +16,14 @@ namespace BusinessSystem
 {
     public partial class MainForm : Form
     {
-        public MainForm(int i)
+        public MainForm(int EmployeeID)
         {
             InitializeComponent();
 
             rectangleShape_date.Location = new Point(10, 10);
             //rectangleShape_messange.Location = new Point(10, 220);
 
-            EmpNum = i;
+            EmpNum = EmployeeID;
 
             BusinessDataBaseEntities dbContext;
             dbContext = new BusinessDataBaseEntities();
@@ -42,7 +42,7 @@ namespace BusinessSystem
             mainControls6.ImageLocation = photo;
             mainControls6.Title = name;
         }
-
+        
         int EmpNum;
         string photo;
         string name;
@@ -55,7 +55,7 @@ namespace BusinessSystem
 
         private void mainControls4_Click(object sender, EventArgs e)
         {
-            BulletinBoard_2 formshow = new BulletinBoard_2();
+            BulletinBoard formshow = new BulletinBoard(EmpNum );
             formshow.ShowDialog();
         }
 
@@ -67,7 +67,7 @@ namespace BusinessSystem
 
         private void mainControls2_Click(object sender, EventArgs e)
         {
-            CompanyVehicleBorrowForm formshow = new CompanyVehicleBorrowForm();
+            CompanyVehicleBorrowForm formshow = new CompanyVehicleBorrowForm(EmpNum );
             formshow.ShowDialog();
         }
 
