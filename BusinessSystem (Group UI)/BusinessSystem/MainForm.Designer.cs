@@ -42,7 +42,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.mainControls6 = new MainControls.MainControls();
             this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.employeeControl1 = new MainControls.EmployeeControl();
+            //this.employeeControl1 = new MainControls.EmployeeControl();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -238,17 +238,17 @@
             // 
             // employeeControl1
             // 
-            this.employeeControl1.BackgroundColor = System.Drawing.Color.Empty;
-            this.employeeControl1.ButtonColor = System.Drawing.Color.SteelBlue;
-            this.employeeControl1.image = null;
-            this.employeeControl1.ImageLocation = null;
-            this.employeeControl1.Location = new System.Drawing.Point(628, 3);
-            this.employeeControl1.Name = "employeeControl1";
-            this.employeeControl1.Size = new System.Drawing.Size(200, 200);
-            this.employeeControl1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Normal;
-            this.employeeControl1.TabIndex = 52;
-            this.employeeControl1.Title = "label";
-            this.employeeControl1.TitleColor = System.Drawing.Color.White;
+            //this.employeeControl1.BackgroundColor = System.Drawing.Color.Empty;
+            //this.employeeControl1.ButtonColor = System.Drawing.Color.SteelBlue;
+            //this.employeeControl1.image = null;
+            //this.employeeControl1.ImageLocation = null;
+            //this.employeeControl1.Location = new System.Drawing.Point(628, 3);
+            //this.employeeControl1.Name = "employeeControl1";
+            //this.employeeControl1.Size = new System.Drawing.Size(200, 200);
+            //this.employeeControl1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Normal;
+            //this.employeeControl1.TabIndex = 52;
+            //this.employeeControl1.Title = "label";
+            //this.employeeControl1.TitleColor = System.Drawing.Color.White;
             // 
             // MainForm
             // 
