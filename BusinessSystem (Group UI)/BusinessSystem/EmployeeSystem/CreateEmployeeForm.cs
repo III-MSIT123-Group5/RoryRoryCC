@@ -41,6 +41,7 @@ namespace BusinessSystem
             this.cmbEmployed.SelectedIndex = 1; // index 1 為"在職" 應輸入 1，index 0 為"離職" 應輸入 0
             //預設Position ID內容 // if index==0 , 值為General manager，positionID應輸入 index+1 累推
             this.cmbPositionID.DataSource = dbcontext.Positions.OrderBy(p => p.positionID).Select(p => p.position1).ToList();
+            this.cmbPositionID.SelectedIndex = 3;
             //顯示EmployeeID
             var q = from em in dbcontext.Employees
                     select em;
@@ -217,11 +218,11 @@ namespace BusinessSystem
             return result;
         }
 
-        int Insert_grpID(string cmbGroupIDText)
+        int Insert_grpID(string cmbGroupIDText)    //方法：將輸入值轉為可存入SQL的資料
         {
             var q = this.dbcontext.Groups.Where(p => p.GroupName == cmbGroupIDText).Select(p => p.GroupID);
             return q.FirstOrDefault();
-        }
+        }        
 
         bool CheckPassword (string password,string ConfirmPassword)    //方法：檢查Password
         {
@@ -289,7 +290,18 @@ namespace BusinessSystem
             }
         }
 
-       
+        private void cmbPositionID_TextChanged(object sender, EventArgs e)   //事件：自動帶入直屬主管
+        {
+            //var posiEmp= from f in  this.dbcontext .Employees
+            //             where f. GroupID == this.Insert_grpID(this.cmbGroupID.Text) 
+            //             && f.DepartmentID == this.cmbDepartmentID.SelectedIndex 
+            //             && f. PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+
+
+
+
+
+        }
 
         //事件>>>>>>>>>>>>>>>>>>>>>>>>>
 

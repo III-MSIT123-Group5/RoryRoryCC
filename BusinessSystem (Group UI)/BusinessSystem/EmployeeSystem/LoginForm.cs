@@ -93,5 +93,11 @@ namespace BusinessSystem.EmployeeSystem
         {
 
         }
+
+        private void clsAltoButton2_Click(object sender, EventArgs e)
+        {
+            this.txtLoginAccount.Text = "testA";
+            this.txtLoginPassword.Text = "123456";
+        }
     }
 }
