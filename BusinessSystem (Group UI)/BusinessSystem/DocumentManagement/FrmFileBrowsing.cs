@@ -13,15 +13,16 @@ using File = System.IO.File;
 
 namespace BusinessSystem.DocumentManagement
 {
-    public partial class FrmFileBrowsing : Form
+    public partial class FrmFileBrowsing : SonForm
     {
         BusinessDataBaseEntities dbContext = new BusinessDataBaseEntities();
-        public FrmFileBrowsing()
+        public FrmFileBrowsing(int empid) : base(empid)
         {
             InitializeComponent();
             //顯示檔案
             MyUpdate();
-            
+
+            this.dataGridView1.Anchor = AnchorStyles.Top;
         }
 
 
