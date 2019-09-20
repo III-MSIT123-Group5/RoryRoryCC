@@ -47,9 +47,9 @@
             // 
             this.panel2.Controls.Add(this.splitContainer1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 68);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(869, 402);
+            this.panel2.Size = new System.Drawing.Size(869, 489);
             this.panel2.TabIndex = 3;
             // 
             // splitContainer1
@@ -69,7 +69,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Size = new System.Drawing.Size(869, 402);
+            this.splitContainer1.Size = new System.Drawing.Size(869, 489);
             this.splitContainer1.SplitterDistance = 248;
             this.splitContainer1.TabIndex = 3;
             // 
@@ -112,6 +112,7 @@
             this.clsAltoButton3.TabIndex = 5;
             this.clsAltoButton3.Text = "刪除報表";
             this.clsAltoButton3.Transparency = false;
+            this.clsAltoButton3.Click += new System.EventHandler(this.clsAltoButton3_Click);
             // 
             // clsAltoButton2
             // 
@@ -163,9 +164,10 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(617, 402);
+            this.dataGridView1.Size = new System.Drawing.Size(617, 489);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
+            this.dataGridView1.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridView1_RowsRemoved);
             // 
             // FormMainRTS
             // 
@@ -176,7 +178,6 @@
             this.Name = "FormMainRTS";
             this.Text = "FormMainRTS";
             this.Load += new System.EventHandler(this.FormMainRTS_Load);
-            this.Controls.SetChildIndex(this.panel2, 0);
             this.panel2.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
