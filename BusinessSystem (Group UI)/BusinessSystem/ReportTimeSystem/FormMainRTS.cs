@@ -33,10 +33,13 @@ namespace BusinessSystem.ReportTimeSystem
         public class data
         {
             public int 報表編號 { get; set; }
-            public string 員工名稱 { get; set; }
-            public DateTime 申請時間 { get; set; }
-            public string 申請事件 { get; set; }
+            public string 活動名稱 { get; set; }
+            public DateTime 開始時間 { get; set; }
+            public DateTime 結束時間 { get; set; }
+            public string 活動類型 { get; set; }
             public string 備註 { get; set; }
+            public DateTime 申請時間 { get; set; }
+
 
         }
         //將資料先存於data內,使datagridview 的cell 可以做更改
@@ -68,11 +71,13 @@ namespace BusinessSystem.ReportTimeSystem
                     select new data
                     {
                         報表編號 = RTS.ReportID,
-                        員工名稱 = emp.EmployeeName,
-                        申請時間 = RTS.ApplyDateTime,
-                        //事件所需時間 =
-                        申請事件 = eve.EventName,
-                        備註 = RTS.Note
+                        //員工名稱 = emp.EmployeeName,
+                        活動名稱 = RTS.ReportName,
+                        開始時間 = RTS.StartTime,
+                        結束時間 = RTS.EndTime,
+                        活動類型 = eve.EventName,
+                        備註 = RTS.Note,
+                        申請時間 = RTS.ApplyDateTime
                     };
 
             listcatalog = q.ToList();

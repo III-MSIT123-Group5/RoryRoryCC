@@ -67,12 +67,14 @@ namespace BusinessSystem.ReportTimeSystem
                 dbcontext.ReportTimeSystems.Add(
                 new BusinessSystemDBEntityModel.ReportTimeSystem
                 {
-
+                    ReportName = textBox1.Text,
                     employeeID = 1001, //FindID(label3.Text),
-                    ApplyDateTime = DateTime.Now,
+                    StartTime = dateTimePicker1.Value,
+                    EndTime = dateTimePicker2.Value,
                     EventHours = dateTimePicker2.Value.Subtract(dateTimePicker1.Value).TotalHours,
                     EventID = FindID(comboBox1.Text),
                     Note = richTextBox1.Text,
+                    ApplyDateTime = DateTime.Now,
                     Discontinue = true
                 });
 
@@ -88,10 +90,13 @@ namespace BusinessSystem.ReportTimeSystem
                         select new
                         {
                             報表編號 = RTS.ReportID,
-                            員工名稱 = emp.EmployeeName,
-                            申請時間 = RTS.ApplyDateTime,
-                            申請事件 = eve.EventName,
-                            備註 = RTS.Note
+                            //員工名稱 = emp.EmployeeName,
+                            活動名稱 = RTS.ReportName,
+                            開始時間 = RTS.StartTime,
+                            結束時間 = RTS.EndTime,
+                            活動類型 = eve.EventName,
+                            備註 = RTS.Note,
+                            申請時間 = RTS.ApplyDateTime
                         };
                 rts.dataGridView1.DataSource = q.ToList();
 
