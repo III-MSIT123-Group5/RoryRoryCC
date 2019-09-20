@@ -345,7 +345,7 @@ namespace BusinessSystem
             this.dataGridView1.DataSource = dt;
             dgvFormat(dataGridView1);
 
-            if (CBDepartment.CheckedIndices.Contains(1)&&CBGroup.CheckedIndices.Contains(0))
+            if (CBGroup.CheckedIndices.Contains(0) == false && CBGroup.CheckedIndices.Contains(1) == false)
             {
                 var q = from b in dbContext.BulletinBoards.AsEnumerable()
                         join d in dbContext.Departments.AsEnumerable()
@@ -354,14 +354,13 @@ namespace BusinessSystem
                         on b.GroupID equals g.GroupID
                         join em in dbContext.Employees.AsEnumerable()
                         on b.EmployeeID equals em.employeeID
-                        where b.DepartmentID == 3 && b.GroupID == 1
+                        where b.GroupID != 1 && b.GroupID != 2
                         select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.EmployeeName, 留言內容 = b.Content, 張貼時間 = b.PostTime };
 
              q.OrderByDescending(o => o.張貼時間).ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
                 //this.dataGridView1.DataSource = q.ToList();
             }
-
-            if (CBDepartment.CheckedIndices.Contains(1) && CBGroup.CheckedIndices.Contains(1))
+            else if (CBGroup.CheckedIndices.Contains(1) == false)
             {
                 var q = from b in dbContext.BulletinBoards.AsEnumerable()
                         join d in dbContext.Departments.AsEnumerable()
@@ -370,7 +369,22 @@ namespace BusinessSystem
                         on b.GroupID equals g.GroupID
                         join em in dbContext.Employees.AsEnumerable()
                         on b.EmployeeID equals em.employeeID
-                        where b.DepartmentID == 3 && b.GroupID == 2
+                        where b.GroupID != 2
+                        select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.EmployeeName, 留言內容 = b.Content, 張貼時間 = b.PostTime };
+
+                q.OrderByDescending(o => o.張貼時間).ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
+                //this.dataGridView1.DataSource = q.ToList();
+            }
+            else if (CBGroup.CheckedIndices.Contains(0) == false)
+            {
+                var q = from b in dbContext.BulletinBoards.AsEnumerable()
+                        join d in dbContext.Departments.AsEnumerable()
+                        on b.DepartmentID equals d.departmentID
+                        join g in dbContext.Groups.AsEnumerable()
+                        on b.GroupID equals g.GroupID
+                        join em in dbContext.Employees.AsEnumerable()
+                        on b.EmployeeID equals em.employeeID
+                        where b.GroupID != 1
                         select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.EmployeeName, 留言內容 = b.Content, 張貼時間 = b.PostTime };
 
                 q.OrderByDescending(o => o.張貼時間).ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));
