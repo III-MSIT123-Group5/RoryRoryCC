@@ -14,7 +14,7 @@ namespace BusinessSystem
 {
     public partial class BulletinBoard_2 : SonForm
     {
-        public BulletinBoard_2()
+        public BulletinBoard_2(int empid) : base(empid)
         {
             InitializeComponent();
         }
@@ -34,15 +34,26 @@ namespace BusinessSystem
         private void altoButton1_Click(object sender, EventArgs e)
         {
             dbContext = new BusinessDataBaseEntities();
-
+            int departmentID=0;
+            int groupID=0;
 
             try
             {
-                var q = new BusinessSystemDBEntityModel.BulletinBoard
+                var q2 = from em in dbContext.Employees
+                         where em.employeeID == LoginID
+                         select new { em.GroupID,em.DepartmentID};
+
+                foreach (var n in q2)
                 {
-                    EmployeeID = 1002,
-                    GroupID = 2,
-                    DepartmentID = 2,
+                    departmentID = Convert.ToInt32(n.DepartmentID);
+                    groupID = Convert.ToInt32(n.GroupID);
+                }
+
+     var q = new BusinessSystemDBEntityModel.BulletinBoard
+                {
+                    EmployeeID = LoginID,
+                    GroupID = groupID,
+                    DepartmentID = departmentID,
                     PostTime = DateTime.Now,
                     Content = this.richTextBox1.Text
                 };
@@ -50,7 +61,8 @@ namespace BusinessSystem
                 dbContext.BulletinBoards.Add(q);
                 dbContext.SaveChanges();
 
-                MessageBox.Show("Succeed");
+                MessageBox.Show("張貼成功！");
+                this.Close();
         }
             catch(Exception ex)
             {

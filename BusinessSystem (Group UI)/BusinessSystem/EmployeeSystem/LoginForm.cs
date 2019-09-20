@@ -17,10 +17,8 @@ namespace BusinessSystem.EmployeeSystem
         public LoginForm()
         {
             InitializeComponent();
-
-
         }
-
+        
         private void LoginForm_Load(object sender, EventArgs e)
         {
 
@@ -61,11 +59,14 @@ namespace BusinessSystem.EmployeeSystem
             //{
             //    MessageBox.Show("請先輸入帳號及密碼！", "帳號及密碼不可為空", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             //}
-
-
+            
+            
             if (q.Any())
             {
+               
+                //readname.EmpAcount = this.txtLoginAccount.Text;//擷取登入者姓名 (Kai)
                 MessageBox.Show($"歡迎回來， {EmpName}!", "登入成功", MessageBoxButtons.OK);
+                //MessageBox.Show(readname.EmpAcount);//測試
                 MainForm main = new MainForm(EmpID);
                 main.Show();
             }
@@ -92,6 +93,12 @@ namespace BusinessSystem.EmployeeSystem
         private void label5_MouseMove(object sender, MouseEventArgs e)
         {
 
+        }
+
+        private void clsAltoButton2_Click(object sender, EventArgs e)
+        {
+            this.txtLoginAccount.Text = "testA";
+            this.txtLoginPassword.Text = "123456";
         }
     }
 }

@@ -18,10 +18,10 @@ namespace BusinessSystem
 
         BusinessDataBaseEntities dbContext;
 
-        public BulletinBoard()
+
+        public BulletinBoard(int empid):base(empid)
         {
             InitializeComponent();
-
 
             dbContext = new BusinessDataBaseEntities();
 
@@ -303,6 +303,40 @@ namespace BusinessSystem
                     i += 2;
                 }
             }
+        }
+
+        private void clsAltoButton1_Click(object sender, EventArgs e)
+        {
+            BulletinBoard_2 form = new BulletinBoard_2(LoginID);
+            form.Show();
+        }
+
+        private void clsAltoButton2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            dbContext = new BusinessDataBaseEntities();
+
+            CBDepartment.ItemCheck += CBDepartment_ItemCheck;
+
+
+            var q = from b in dbContext.BulletinBoards
+                    join d in dbContext.Departments
+                    on b.DepartmentID equals d.departmentID
+                    join g in dbContext.Groups
+                    on b.GroupID equals g.GroupID
+                    join em in dbContext.Employees
+                    on b.EmployeeID equals em.employeeID
+                    select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.EmployeeName, 留言內容 = b.Content, 張貼時間 = b.PostTime };
+
+
+            dataGridView1.DataSource = q.OrderByDescending(o => o.張貼時間).ToList();
+
+            dgvFormat(dataGridView1);
         }
     }
 
