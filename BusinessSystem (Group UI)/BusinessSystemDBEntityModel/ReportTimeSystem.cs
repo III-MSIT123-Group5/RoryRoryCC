@@ -15,11 +15,14 @@ namespace BusinessSystemDBEntityModel
     public partial class ReportTimeSystem
     {
         public int ReportID { get; set; }
+        public string ReportName { get; set; }
         public int employeeID { get; set; }
-        public System.DateTime ApplyDateTime { get; set; }
+        public System.DateTime StartTime { get; set; }
+        public System.DateTime EndTime { get; set; }
         public double EventHours { get; set; }
         public int EventID { get; set; }
         public string Note { get; set; }
+        public System.DateTime ApplyDateTime { get; set; }
         public Nullable<bool> Discontinue { get; set; }
     
         public virtual Employee Employee { get; set; }

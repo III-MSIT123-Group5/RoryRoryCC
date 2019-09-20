@@ -231,11 +231,14 @@
             <PropertyRef Name="ReportID" />
           </Key>
           <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportName" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="employeeID" Type="int" Nullable="false" />
-          <Property Name="ApplyDateTime" Type="datetime" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="EndTime" Type="datetime" Nullable="false" />
           <Property Name="EventHours" Type="float" Nullable="false" />
           <Property Name="EventID" Type="int" Nullable="false" />
           <Property Name="Note" Type="nvarchar" MaxLength="100" />
+          <Property Name="ApplyDateTime" Type="datetime" Nullable="false" />
           <Property Name="Discontinue" Type="bit" />
         </EntityType>
         <EntityType Name="RequisitionMain">
@@ -1366,11 +1369,14 @@
             <PropertyRef Name="ReportID" />
           </Key>
           <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="employeeID" Type="Int32" Nullable="false" />
-          <Property Name="ApplyDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EventHours" Type="Double" Nullable="false" />
           <Property Name="EventID" Type="Int32" Nullable="false" />
           <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ApplyDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Discontinue" Type="Boolean" />
           <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Employee" FromRole="ReportTimeSystem" ToRole="Employee" />
           <NavigationProperty Name="Event" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Event" FromRole="ReportTimeSystem" ToRole="Event" />
@@ -2045,11 +2051,14 @@
             <EntityTypeMapping TypeName="BusinessDataBaseModel.ReportTimeSystem">
               <MappingFragment StoreEntitySet="ReportTimeSystem">
                 <ScalarProperty Name="Discontinue" ColumnName="Discontinue" />
+                <ScalarProperty Name="ApplyDateTime" ColumnName="ApplyDateTime" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="EventID" ColumnName="EventID" />
                 <ScalarProperty Name="EventHours" ColumnName="EventHours" />
-                <ScalarProperty Name="ApplyDateTime" ColumnName="ApplyDateTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="ReportName" ColumnName="ReportName" />
                 <ScalarProperty Name="ReportID" ColumnName="ReportID" />
               </MappingFragment>
             </EntityTypeMapping>

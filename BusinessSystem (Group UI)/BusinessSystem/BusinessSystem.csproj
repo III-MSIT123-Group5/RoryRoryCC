@@ -133,11 +133,17 @@
     <Compile Include="ReportTimeSystem\FormUpdate.designer.cs">
       <DependentUpon>FormUpdate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Requisition\FrmRequisition.cs">
+    <Compile Include="Requisition\FrmRequisition%28add,show%29.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Requisition\FrmRequisition.designer.cs">
-      <DependentUpon>FrmRequisition.cs</DependentUpon>
+    <Compile Include="Requisition\FrmRequisition%28add,show%29.designer.cs">
+      <DependentUpon>FrmRequisition%28add,show%29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Requisition\FrmRequisition%28change,delete%29.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Requisition\FrmRequisition%28change,delete%29.Designer.cs">
+      <DependentUpon>FrmRequisition%28change,delete%29.cs</DependentUpon>
     </Compile>
     <Compile Include="SonForm.cs">
       <SubType>Form</SubType>
@@ -221,8 +227,11 @@
     <EmbeddedResource Include="ReportTimeSystem\FormUpdate.resx">
       <DependentUpon>FormUpdate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Requisition\FrmRequisition.resx">
-      <DependentUpon>FrmRequisition.cs</DependentUpon>
+    <EmbeddedResource Include="Requisition\FrmRequisition%28add,show%29.resx">
+      <DependentUpon>FrmRequisition%28add,show%29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Requisition\FrmRequisition%28change,delete%29.resx">
+      <DependentUpon>FrmRequisition%28change,delete%29.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SonForm.resx">
       <DependentUpon>SonForm.cs</DependentUpon>
