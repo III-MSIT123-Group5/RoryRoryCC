@@ -11,7 +11,7 @@ using BusinessSystemDBEntityModel;
 
 namespace BusinessSystem.ReportTimeSystem
 {
-    public partial class FormMainRTS : SonForm
+    public partial class FormMainRTS : Form
     {
         public FormMainRTS()
         {
