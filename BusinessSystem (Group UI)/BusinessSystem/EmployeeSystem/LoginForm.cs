@@ -71,7 +71,7 @@ namespace BusinessSystem.EmployeeSystem
                 //MessageBox.Show(readname.EmpAcount);//測試
                 MainForm main = new MainForm(EmpID);
                 main.Show();
-                this.Dispose();
+
             }
             else
             {
