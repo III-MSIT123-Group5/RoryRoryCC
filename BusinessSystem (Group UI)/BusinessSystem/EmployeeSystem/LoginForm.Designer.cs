@@ -41,6 +41,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.clsAltoButton1 = new BusinessSystem.ClsAltoButton();
+            this.clsAltoButton2 = new BusinessSystem.ClsAltoButton();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -119,6 +120,7 @@
             this.txtLoginPassword.Location = new System.Drawing.Point(333, 184);
             this.txtLoginPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtLoginPassword.Name = "txtLoginPassword";
+            this.txtLoginPassword.PasswordChar = '*';
             this.txtLoginPassword.Size = new System.Drawing.Size(232, 27);
             this.txtLoginPassword.TabIndex = 5;
             // 
@@ -191,12 +193,36 @@
             this.clsAltoButton1.Transparency = false;
             this.clsAltoButton1.Click += new System.EventHandler(this.clsAltoButton1_Click);
             // 
+            // clsAltoButton2
+            // 
+            this.clsAltoButton2.Active1 = System.Drawing.Color.Transparent;
+            this.clsAltoButton2.Active2 = System.Drawing.Color.Transparent;
+            this.clsAltoButton2.BackColor = System.Drawing.Color.Transparent;
+            this.clsAltoButton2.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.clsAltoButton2.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clsAltoButton2.ForeColor = System.Drawing.Color.DarkSlateBlue;
+            this.clsAltoButton2.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.clsAltoButton2.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.clsAltoButton2.Location = new System.Drawing.Point(237, 289);
+            this.clsAltoButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.clsAltoButton2.Name = "clsAltoButton2";
+            this.clsAltoButton2.Radius = 10;
+            this.clsAltoButton2.Size = new System.Drawing.Size(106, 41);
+            this.clsAltoButton2.Stroke = false;
+            this.clsAltoButton2.StrokeColor = System.Drawing.Color.Gray;
+            this.clsAltoButton2.TabIndex = 11;
+            this.clsAltoButton2.Text = "Demo";
+            this.clsAltoButton2.Transparency = false;
+            this.clsAltoButton2.Click += new System.EventHandler(this.clsAltoButton2_Click);
+            // 
             // LoginForm
             // 
+            this.AcceptButton = this.clsAltoButton1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
             this.ClientSize = new System.Drawing.Size(629, 356);
+            this.Controls.Add(this.clsAltoButton2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.clsAltoButton1);
             this.Controls.Add(this.pictureBox2);
@@ -207,6 +233,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "LoginForm";
@@ -237,5 +264,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private ClsAltoButton clsAltoButton1;
         private System.Windows.Forms.Label label5;
+        private ClsAltoButton clsAltoButton2;
     }
 }
