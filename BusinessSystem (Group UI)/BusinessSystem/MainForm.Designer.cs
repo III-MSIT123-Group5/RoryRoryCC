@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timeControl1 = new MainControls.TimeControl();
             this.employeeControl1 = new MainControls.EmployeeControl();
             this.mainControls4 = new MainControls.MainControls();
@@ -42,6 +41,7 @@
             this.mainControls5 = new MainControls.MainControls();
             this.mainControls9 = new MainControls.MainControls();
             this.mainControls7 = new MainControls.MainControls();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,11 +62,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(842, 640);
             this.panel1.TabIndex = 51;
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // timeControl1
             // 
@@ -213,6 +208,7 @@
             this.mainControls9.TabIndex = 43;
             this.mainControls9.Title = "請購系統";
             this.mainControls9.TitleColor = System.Drawing.Color.White;
+            this.mainControls9.Load += new System.EventHandler(this.mainControls9_Load);
             this.mainControls9.Click += new System.EventHandler(this.mainControls9_Click);
             this.mainControls9.MouseEnter += new System.EventHandler(this.mainControls9_MouseEnter);
             this.mainControls9.MouseLeave += new System.EventHandler(this.mainControls9_MouseLeave);
@@ -234,6 +230,11 @@
             this.mainControls7.Click += new System.EventHandler(this.mainControls7_Click);
             this.mainControls7.MouseEnter += new System.EventHandler(this.mainControls7_MouseEnter);
             this.mainControls7.MouseLeave += new System.EventHandler(this.mainControls7_MouseLeave);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // MainForm
             // 

@@ -14,7 +14,7 @@ namespace BusinessSystem
 {
     public partial class FrmRequisition1 : SonForm
     {
-        public FrmRequisition1()
+        public FrmRequisition1(int empid) : base(empid)
         {
             InitializeComponent();
            
@@ -68,7 +68,7 @@ namespace BusinessSystem
 
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
-            FrmRequisition2 frmRequisition2 = new FrmRequisition2();
+            FrmRequisition2 frmRequisition2 = new FrmRequisition2(LoginID);
             frmRequisition2.ShowDialog();
         }
 

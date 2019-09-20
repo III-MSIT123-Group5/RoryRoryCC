@@ -13,7 +13,7 @@ namespace BusinessSystem.Requisition
 {
     public partial class FrmRequisition2 : SonForm
     {
-        public FrmRequisition2()
+        public FrmRequisition2(int empid) : base(empid)
         {
             InitializeComponent();
         }  
