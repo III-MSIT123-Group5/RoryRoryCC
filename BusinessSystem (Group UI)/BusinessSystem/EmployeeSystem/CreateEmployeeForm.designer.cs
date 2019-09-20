@@ -58,6 +58,7 @@
             this.txtManagerID = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.cmbManagerID = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
@@ -166,9 +167,9 @@
             this.label12.Location = new System.Drawing.Point(390, 83);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(93, 22);
+            this.label12.Size = new System.Drawing.Size(96, 22);
             this.label12.TabIndex = 21;
-            this.label12.Text = "OfficeID：";
+            this.label12.Text = "辦公室ID：";
             this.toolTip1.SetToolTip(this.label12, "officeID");
             // 
             // label13
@@ -229,6 +230,7 @@
             this.cmbPositionID.Size = new System.Drawing.Size(206, 30);
             this.cmbPositionID.TabIndex = 30;
             this.toolTip1.SetToolTip(this.cmbPositionID, "positionID");
+            this.cmbPositionID.TextChanged += new System.EventHandler(this.cmbPositionID_TextChanged);
             // 
             // cmbEmployed
             // 
@@ -271,6 +273,7 @@
             this.txtPassword.Location = new System.Drawing.Point(123, 310);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(206, 30);
             this.txtPassword.TabIndex = 35;
             this.toolTip1.SetToolTip(this.txtPassword, "password");
@@ -293,6 +296,7 @@
             this.txtConfirmPassword.Location = new System.Drawing.Point(123, 348);
             this.txtConfirmPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
+            this.txtConfirmPassword.PasswordChar = '*';
             this.txtConfirmPassword.Size = new System.Drawing.Size(206, 30);
             this.txtConfirmPassword.TabIndex = 37;
             this.toolTip1.SetToolTip(this.txtConfirmPassword, "請再輸入一次password");
@@ -344,13 +348,13 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(113, 22);
             this.label9.TabIndex = 15;
-            this.label9.Text = "直屬經理ID：";
+            this.label9.Text = "直屬主管ID：";
             this.toolTip1.SetToolTip(this.label9, "managerID");
             // 
             // txtManagerID
             // 
             this.txtManagerID.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtManagerID.Location = new System.Drawing.Point(503, 272);
+            this.txtManagerID.Location = new System.Drawing.Point(241, 241);
             this.txtManagerID.Margin = new System.Windows.Forms.Padding(4);
             this.txtManagerID.Name = "txtManagerID";
             this.txtManagerID.Size = new System.Drawing.Size(206, 30);
@@ -380,6 +384,16 @@
             this.label17.TabIndex = 42;
             this.label17.Text = "性別：";
             this.toolTip1.SetToolTip(this.label17, "Gender");
+            // 
+            // cmbManagerID
+            // 
+            this.cmbManagerID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbManagerID.FormattingEnabled = true;
+            this.cmbManagerID.Location = new System.Drawing.Point(503, 272);
+            this.cmbManagerID.Name = "cmbManagerID";
+            this.cmbManagerID.Size = new System.Drawing.Size(206, 30);
+            this.cmbManagerID.TabIndex = 43;
+            this.toolTip1.SetToolTip(this.cmbManagerID, "managerID");
             // 
             // label3
             // 
@@ -412,6 +426,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(723, 449);
+            this.Controls.Add(this.cmbManagerID);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.cmbGroupID);
@@ -473,6 +488,7 @@
             this.Controls.SetChildIndex(this.cmbGroupID, 0);
             this.Controls.SetChildIndex(this.label16, 0);
             this.Controls.SetChildIndex(this.label17, 0);
+            this.Controls.SetChildIndex(this.cmbManagerID, 0);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -512,5 +528,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox cmbManagerID;
     }
 }
