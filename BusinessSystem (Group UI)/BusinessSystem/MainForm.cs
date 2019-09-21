@@ -58,8 +58,8 @@ namespace BusinessSystem
         //主控面>>員工連結
         private void mcEmployee_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(EmpNum.ToString());
-            MessageBox.Show("靜態logID測試" + ClassEmployee.LoginEmployeeID);
+            ProfileForm p = new ProfileForm();
+            p.Show();
         }
 
         //主控面>>佈告欄連結
@@ -83,11 +83,7 @@ namespace BusinessSystem
             file.Show();
         }
 
-        private void employeeControl1_Click(object sender, EventArgs e)
-        {
-            ProfileForm p = new ProfileForm();
-            p.Show();
-        }
+       
             //主控面>>公務車租借連結
             private void mcCompanyCars_Click(object sender, EventArgs e)
             {
