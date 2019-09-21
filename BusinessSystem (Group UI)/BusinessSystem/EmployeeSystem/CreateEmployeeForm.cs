@@ -76,8 +76,6 @@ namespace BusinessSystem
 
         private void btnCreate_Click(object sender, EventArgs e)  //按鈕:新增
         {
-
-
             //判斷ManagerID是否為空值
             //if ((this.txtManagerID.Text is null) == false)  
             //{
@@ -99,14 +97,13 @@ namespace BusinessSystem
             //    }
             //}
 
+            
+
             if ( AccEmpName ==false || AccAcount == false || string .IsNullOrEmpty ( this.txtConfirmPassword .Text)|| string.IsNullOrEmpty(this.cmbManagerID.Text  ) )
             {
                 MessageBox.Show("資料未完整輸入");
                 return;
             }
-
-
-
 
             if (CheckPassword (this.txtPassword.Text  , this.txtConfirmPassword.Text) && String.IsNullOrEmpty (this.txtConfirmPassword.Text  )==false )
             {
@@ -125,8 +122,6 @@ namespace BusinessSystem
                 return;
             }
 
-
-
             try
             {
                 var addEmp = new BusinessSystemDBEntityModel.Employee
@@ -140,32 +135,27 @@ namespace BusinessSystem
                     OfficeID = this.Insert_offID(this.cmbOfficeID.SelectedIndex),
                     DepartmentID = this.cmbDepartmentID.SelectedIndex,
                     PositionID = this.cmbPositionID.SelectedIndex + 1,
-                    ManagerID = magID,
+                    ManagerID =int.Parse (this.cmbManagerID.Text)   ,
                     Employed = this.Insert_transEmployed(this.cmbEmployed.SelectedIndex),
                     GroupID = this.Insert_grpID(this.cmbGroupID.Text)
                 };
-
                 var addAccount = new BusinessSystemDBEntityModel.Account
                 {
                     account1 = addEmp.Account,
                     password = SHAPassword,
                 };
+            this.dbcontext.Accounts.Add(addAccount);
+            this.dbcontext.Employees.Add(addEmp);
 
-                this.dbcontext.Employees.Add(addEmp);
-                this.dbcontext.Accounts.Add(addAccount);
-                this.dbcontext.SaveChanges();
-
-                MessageBox.Show("新增成功");
+            this.dbcontext.SaveChanges();
+        
+            MessageBox.Show("新增成功");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }            
-         
-
-        }
-
-       
+            }
+        }       
 
         //控制項>>>>>>>>>>>>>>>>>>>>>>>>>
 
