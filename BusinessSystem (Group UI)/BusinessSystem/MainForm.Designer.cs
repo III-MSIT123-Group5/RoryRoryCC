@@ -92,7 +92,6 @@
             this.employeeControl1.TabIndex = 53;
             this.employeeControl1.Title = "label";
             this.employeeControl1.TitleColor = System.Drawing.Color.White;
-            this.employeeControl1.Load += new System.EventHandler(this.employeeControl1_Load);
             this.employeeControl1.Click += new System.EventHandler(this.employeeControl1_Click);
             this.employeeControl1.MouseEnter += new System.EventHandler(this.employeeControl1_MouseEnter);
             this.employeeControl1.MouseLeave += new System.EventHandler(this.employeeControl1_MouseLeave);
