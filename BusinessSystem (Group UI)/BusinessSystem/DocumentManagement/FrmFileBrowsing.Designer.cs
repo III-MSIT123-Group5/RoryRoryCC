@@ -124,7 +124,9 @@
             this.Controls.Add(this.clsAltoButton2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.clsAltoButton1);
+            this.MaximizeBox = false;
             this.Name = "FrmFileBrowsing";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "文件管理";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

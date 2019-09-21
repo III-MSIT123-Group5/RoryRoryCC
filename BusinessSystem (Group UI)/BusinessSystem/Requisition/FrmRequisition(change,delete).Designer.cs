@@ -124,10 +124,10 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(26, 158);
+            this.dataGridView1.Location = new System.Drawing.Point(26, 153);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(741, 110);
+            this.dataGridView1.Size = new System.Drawing.Size(741, 129);
             this.dataGridView1.TabIndex = 40;
             // 
             // label1
@@ -248,7 +248,10 @@
             this.Controls.Add(this.lblProductName);
             this.Controls.Add(this.txtProcductName);
             this.Controls.Add(this.btnClear);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "FrmRequisition2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmRequisition";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

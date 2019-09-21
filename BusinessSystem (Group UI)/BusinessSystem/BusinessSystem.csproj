@@ -52,7 +52,7 @@
       <DependentUpon>BulletinBoard-02.cs</DependentUpon>
     </Compile>
     <Compile Include="BulletinBoard\Bulletin_board.cs" />
-    <Compile Include="ClassEmployee.cs" />
+    <Compile Include="EmployeeSystem\ClassEmployee.cs" />
     <Compile Include="CompanyCars\ChangeVehicleHistory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeSystem\CreateEmployeeForm.resx">
       <DependentUpon>CreateEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeSystem\HRUpdateProfileForm.resx">
+      <DependentUpon>HRUpdateProfileForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeSystem\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

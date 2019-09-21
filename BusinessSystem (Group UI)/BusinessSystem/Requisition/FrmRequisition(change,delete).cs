@@ -62,8 +62,7 @@ namespace BusinessSystem.Requisition
         {
             try
             {
-                var report = (from RC in this.dbContext.ReportCategories.AsEnumerable()
-                              join RM in this.dbContext.RequisitionMains.AsEnumerable() on RC.ReportID equals RM.ReportID
+                var report = (from RM in this.dbContext.RequisitionMains.AsEnumerable()
                               join OD in this.dbContext.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
                               where OD.OrderID == Convert.ToInt32(txtReportID.Text)
                               select OD).FirstOrDefault();
@@ -77,6 +76,8 @@ namespace BusinessSystem.Requisition
                 DataGridViewFormat2();
 
                 MessageBox.Show("購案更新成功");
+
+                this.dbContext.Dispose();
             }
             catch (Exception ex)
             {
@@ -87,7 +88,6 @@ namespace BusinessSystem.Requisition
         //刪除
         private void btnClear_Click(object sender, EventArgs e)
         {
-            //TODO>>>>RequisitionMains資料未刪
             try
             {
                 var report1 = (from OD in this.dbContext.OrderDetails.AsEnumerable()
@@ -104,17 +104,24 @@ namespace BusinessSystem.Requisition
                 DataGridViewFormat2();
 
                 MessageBox.Show("購案刪除成功");
+
+                this.dbContext.Dispose();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+        //DataGridView顯示各人資料
+        //DataGridView格式
         private void DataGridViewFormat1()
         {
             dataGridView1.Columns.Clear();
 
-            var report = from OD in this.dbContext.OrderDetails.AsEnumerable()
+            var report = from RM in this.dbContext.RequisitionMains.AsEnumerable()
+                         join OD in this.dbContext.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
+                         where RM.EmployeeID == LoginID
                          select new
                          {
                              請購單號 = OD.OrderID,
@@ -149,7 +156,9 @@ namespace BusinessSystem.Requisition
             dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
         }
 
-            private void DataGridViewFormat2()
+        //DataGridView顯示單筆資料
+        //DataGridView格式
+        private void DataGridViewFormat2()
         {
             dataGridView1.Columns.Clear();
 
@@ -188,7 +197,5 @@ namespace BusinessSystem.Requisition
             dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
         }
-
-        
     }
 }

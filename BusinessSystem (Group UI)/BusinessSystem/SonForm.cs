@@ -46,7 +46,7 @@ namespace BusinessSystem
             BusinessDataBaseEntities dbContext;
             dbContext = new BusinessDataBaseEntities();
             var q = from em in dbContext.Employees
-                    where em.employeeID == LoginID
+                    where em.employeeID == ClassEmployee.LoginEmployeeID  
                     select new { em.EmployeeName, em.Gender, em.Photo };
 
             foreach (var n in q)

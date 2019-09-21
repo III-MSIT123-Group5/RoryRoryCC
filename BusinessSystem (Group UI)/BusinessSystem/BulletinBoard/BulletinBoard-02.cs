@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace BusinessSystem
 {
-    public partial class BulletinBoard_2 : SonForm
+    public partial class BulletinBoard_2 : Form
     {
-        public BulletinBoard_2(int empid) : base(empid)
+        public BulletinBoard_2()
         {
             InitializeComponent();
         }
@@ -40,7 +40,7 @@ namespace BusinessSystem
             try
             {
                 var q2 = from em in dbContext.Employees
-                         where em.employeeID == LoginID
+                         where em.employeeID == ClassEmployee.LoginEmployeeID 
                          select new { em.GroupID,em.DepartmentID};
 
                 foreach (var n in q2)
@@ -51,7 +51,7 @@ namespace BusinessSystem
 
      var q = new BusinessSystemDBEntityModel.BulletinBoard
                 {
-                    EmployeeID = LoginID,
+                    EmployeeID = ClassEmployee.LoginEmployeeID,
                     GroupID = groupID,
                     DepartmentID = departmentID,
                     PostTime = DateTime.Now,
