@@ -48,24 +48,64 @@ namespace BusinessSystem.ReportTimeSystem
         List<data> listcatalog = null;//建立一個list<data>把資料存到list
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            foreach (var q in listcatalog)
+            DialogResult result= MessageBox.Show( /*Environment.NewLine +*/ "資料是否更改",
+                                                 "警告",
+                                                 MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+            if (result == DialogResult.OK)
             {
-                var w = dbcontext.ReportTimeSystems.Where(K => K.ReportID == q.報表編號).FirstOrDefault();
-            
-                if (w != null)
+                foreach (var q in listcatalog)
                 {
-                   
-                    w.ReportName = q.活動名稱;
-                    w.StartTime = q.開始時間;
-                    w.EndTime = q.結束時間;
+                    var w = dbcontext.ReportTimeSystems.Where(K => K.ReportID == q.報表編號).FirstOrDefault();
 
-                    w.Note = q.備註;
-                    w.ApplyDateTime = q.申請時間;
+                    if (w != null)
+                    {
 
+                        w.ReportName = q.活動名稱;
+                        w.StartTime = q.開始時間;
+                        w.EndTime = q.結束時間;
+                        w.Note = q.備註;
+                        w.ApplyDateTime = q.申請時間;
+                    }
 
                 }
+                dbcontext.SaveChanges();
+                MessageBox.Show("資料已更新");
             }
-            dbcontext.SaveChanges();
+            else
+            {
+                var q = from RTS in dbcontext.ReportTimeSystems
+                        join emp in dbcontext.Employees
+                        on RTS.employeeID equals emp.employeeID
+                        join eve in dbcontext.Events
+                        on RTS.EventID equals eve.EventID
+                        where RTS.Discontinue == true
+                        select new data
+                        {
+                            報表編號 = RTS.ReportID,
+                            //員工名稱 = emp.EmployeeName,
+                            活動名稱 = RTS.ReportName,
+                            開始時間 = RTS.StartTime,
+                            結束時間 = RTS.EndTime,
+                            所需總時數 = RTS.EventHours,
+                            活動類型 = eve.EventName,
+                            備註 = RTS.Note,
+                            申請時間 = RTS.ApplyDateTime
+                        };
+
+                listcatalog = q.ToList();
+                this.dataGridView1.DataSource = null;
+                this.dataGridView1.DataSource = listcatalog;
+                dataGridView1.Columns[0].ReadOnly = true;
+                dataGridView1.Columns[4].ReadOnly = true;
+                
+
+
+
+                MessageBox.Show("請重新輸入");
+            }
+
+
+
         }
 
 
@@ -98,7 +138,7 @@ namespace BusinessSystem.ReportTimeSystem
             dataGridView1.Columns[0].ReadOnly = true;
             dataGridView1.Columns[4].ReadOnly = true;
             
-            //dataGridView1.Columns[5] = dgvcc;
+           
             
                 
 
@@ -106,43 +146,72 @@ namespace BusinessSystem.ReportTimeSystem
 
 
         //呼叫新增資料的表單
-        private void clsAltoButton1_Click(object sender, EventArgs e)
+        private void AddRTSButton_Click(object sender, EventArgs e)
         {
             FormAdd formshow = new FormAdd(this);
             formshow.Show();
         }
 
-
-
-
-        private void clsAltoButton2_Click(object sender, EventArgs e)
+        private void ChartRTSButton_Click(object sender, EventArgs e)
         {
-            FormUpdate formshow = new FormUpdate();
-            formshow.ShowDialog();
 
-            
         }
 
-        private void clsAltoButton3_Click(object sender, EventArgs e)
+        private void DeleteRTSButton_Click(object sender, EventArgs e)
         {
-            
-        }
-
-        private void dataGridView1_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
-        {
-            foreach (var q in listcatalog)
+            DialogResult result = MessageBox.Show( /*Environment.NewLine +*/ "資料是否刪除",
+                                                  "警告",
+                                                  MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+            if (result == DialogResult.Yes)
             {
-                var w = dbcontext.ReportTimeSystems.Where(K => K.ReportID == q.報表編號).FirstOrDefault();
-
-                if (w != null)
+                foreach (var abc in listcatalog)
                 {
+                    var w = dbcontext.ReportTimeSystems.Where(K => K.ReportID == abc.報表編號).FirstOrDefault();
 
-                    w.Discontinue = false;
+                    if (w != null)
+                    {
 
+                        w.Discontinue =false;
+                        
+                    }
 
                 }
+                dbcontext.SaveChanges();
+                MessageBox.Show("資料已刪除");
+                
             }
-            dbcontext.SaveChanges();
+            var q = from RTS in dbcontext.ReportTimeSystems
+                    join emp in dbcontext.Employees
+                    on RTS.employeeID equals emp.employeeID
+                    join eve in dbcontext.Events
+                    on RTS.EventID equals eve.EventID
+                    where RTS.Discontinue == true
+                    select new data
+                    {
+                        報表編號 = RTS.ReportID,
+                        //員工名稱 = emp.EmployeeName,
+                        活動名稱 = RTS.ReportName,
+                        開始時間 = RTS.StartTime,
+                        結束時間 = RTS.EndTime,
+                        所需總時數 = RTS.EventHours,
+                        活動類型 = eve.EventName,
+                        備註 = RTS.Note,
+                        申請時間 = RTS.ApplyDateTime
+                    };
+
+            listcatalog = q.ToList();
+
+            this.dataGridView1.DataSource = null;
+            this.dataGridView1.DataSource = listcatalog;
+            dataGridView1.Columns[0].ReadOnly = true;
+            dataGridView1.Columns[4].ReadOnly = true;
+
+
+
+
+
+
+
         }
     }
 }

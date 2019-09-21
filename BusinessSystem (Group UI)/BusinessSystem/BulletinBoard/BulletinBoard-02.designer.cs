@@ -38,9 +38,10 @@
             // 
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.richTextBox1.Font = new System.Drawing.Font("微軟正黑體", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.richTextBox1.Location = new System.Drawing.Point(45, 121);
+            this.richTextBox1.Location = new System.Drawing.Point(34, 97);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(709, 247);
+            this.richTextBox1.Size = new System.Drawing.Size(533, 198);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             // 
@@ -54,10 +55,11 @@
             this.altoButton1.ForeColor = System.Drawing.Color.White;
             this.altoButton1.Inactive1 = System.Drawing.Color.DarkSlateBlue;
             this.altoButton1.Inactive2 = System.Drawing.Color.DarkSlateBlue;
-            this.altoButton1.Location = new System.Drawing.Point(642, 386);
+            this.altoButton1.Location = new System.Drawing.Point(482, 309);
+            this.altoButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.altoButton1.Name = "altoButton1";
             this.altoButton1.Radius = 10;
-            this.altoButton1.Size = new System.Drawing.Size(112, 30);
+            this.altoButton1.Size = new System.Drawing.Size(84, 24);
             this.altoButton1.Stroke = false;
             this.altoButton1.StrokeColor = System.Drawing.Color.Gray;
             this.altoButton1.TabIndex = 5;
@@ -75,10 +77,11 @@
             this.altoButton2.ForeColor = System.Drawing.Color.White;
             this.altoButton2.Inactive1 = System.Drawing.Color.DarkGray;
             this.altoButton2.Inactive2 = System.Drawing.Color.DarkGray;
-            this.altoButton2.Location = new System.Drawing.Point(474, 386);
+            this.altoButton2.Location = new System.Drawing.Point(356, 309);
+            this.altoButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.altoButton2.Name = "altoButton2";
             this.altoButton2.Radius = 10;
-            this.altoButton2.Size = new System.Drawing.Size(117, 30);
+            this.altoButton2.Size = new System.Drawing.Size(88, 24);
             this.altoButton2.Stroke = false;
             this.altoButton2.StrokeColor = System.Drawing.Color.Gray;
             this.altoButton2.TabIndex = 6;
@@ -90,30 +93,29 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(46, 88);
+            this.label2.Location = new System.Drawing.Point(34, 70);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(163, 22);
+            this.label2.Size = new System.Drawing.Size(134, 18);
             this.label2.TabIndex = 7;
             this.label2.Text = "請輸入留言於下方：";
             // 
             // BulletinBoard_2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 360);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.altoButton2);
             this.Controls.Add(this.altoButton1);
             this.Controls.Add(this.richTextBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "BulletinBoard_2";
-            this.Text = "BullitinBoard_2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "新增公佈欄";
             this.Load += new System.EventHandler(this.BullitinBoard_2_Load);
-            this.Controls.SetChildIndex(this.richTextBox1, 0);
-            this.Controls.SetChildIndex(this.altoButton1, 0);
-            this.Controls.SetChildIndex(this.altoButton2, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -18,14 +18,16 @@ namespace BusinessSystem
 {
     public partial class MainForm : Form
     {
+        int EmpNum;
+        string photo;
+        string name;
+
         public MainForm(int EmployeeID)
         {
             InitializeComponent();
             //測試靜態屬性LoginID ok
-            
-                ClassEmployee.LoginEmployeeID = EmployeeID;
-            
-            
+
+            ClassEmployee.LoginEmployeeID = EmployeeID;
 
             EmpNum = EmployeeID;
 
@@ -34,145 +36,15 @@ namespace BusinessSystem
 
             var q = from em in dbContext.Employees
                     where em.employeeID == EmpNum
-                    select new { em.EmployeeName,em.Photo};
-
+                    select new { em.EmployeeName, em.Photo };
 
             foreach (var p in q)
             {
                 photo = p.Photo;
                 name = p.EmployeeName;
             }
-
-            employeeControl1.ImageLocation = photo;
-            employeeControl1.Title = name;
-        }
-        
-        int EmpNum;
-        string photo;
-        string name;
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void mainControls4_Click(object sender, EventArgs e)
-        {
-            BulletinBoard formshow = new BulletinBoard(EmpNum );
-            formshow.ShowDialog();
-        }
-
-        private void mainControls3_Click(object sender, EventArgs e)
-        {
-            FormMainRTS formshow = new FormMainRTS();
-            formshow.ShowDialog();
-        }
-
-        private void mainControls2_Click(object sender, EventArgs e)
-        {
-            CompanyVehicleBorrowForm formshow = new CompanyVehicleBorrowForm(EmpNum);
-            formshow.ShowDialog();
-        }
-
-        private void mainControls9_Click(object sender, EventArgs e)
-        {
-            FrmRequisition1 formshow = new FrmRequisition1(EmpNum);
-            formshow.ShowDialog();
-        }
-
-        private void mainControls9_MouseEnter(object sender, EventArgs e)
-        {
-            this.mainControls9.ButtonColor = Color.LightSkyBlue;
-        }
-
-        private void mainControls9_MouseLeave(object sender, EventArgs e)
-        {
-            this.mainControls9.ButtonColor = Color.DarkBlue;
-        }
-
-     
-
-        private void mainControls10_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-
-        private void mainControls6_MouseClick(object sender, MouseEventArgs e)
-        {
-            
-        }
-
-        private void mainControls6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void employeeControl1_Click(object sender, EventArgs e)
-        {            
-            ProfileForm p = new ProfileForm();
-            p.Show();
-        }
-
-        private void mainControls3_MouseEnter(object sender, EventArgs e)
-        {
-            this.mainControls3.ButtonColor = Color.LightSkyBlue;
-        }
-
-        private void mainControls3_MouseLeave(object sender, EventArgs e)
-        {
-            this.mainControls3.ButtonColor = Color.SlateGray;
-        }
-
-        private void mainControls8_MouseEnter(object sender, EventArgs e)
-        {
-            this.mainControls8.ButtonColor = Color.LightSkyBlue;
-        }
-
-        private void mainControls8_MouseLeave(object sender, EventArgs e)
-        {
-            this.mainControls8.ButtonColor = Color.DarkSlateBlue;
-        }
-
-        private void mainControls1_MouseEnter(object sender, EventArgs e)
-        {
-            this.mainControls1.ButtonColor = Color.LightSkyBlue;
-        }
-
-        private void mainControls1_MouseLeave(object sender, EventArgs e)
-        {
-            this.mainControls1.ButtonColor = Color.SlateGray;
-        }
-
-        private void mainControls2_MouseEnter(object sender, EventArgs e)
-        {
-            this.mainControls2.ButtonColor = Color.LightSkyBlue;
-        }
-
-        private void mainControls2_MouseLeave(object sender, EventArgs e)
-        {
-            this.mainControls2.ButtonColor = Color.DarkSlateBlue;
-        }
-
-        private void mainControls7_MouseEnter(object sender, EventArgs e)
-        {
-            this.mainControls7.ButtonColor = Color.LightSkyBlue;
-        }
-
-        private void mainControls7_MouseLeave(object sender, EventArgs e)
-        {
-            this.mainControls7.ButtonColor = Color.FromArgb(153,180,209);
-        }
-
-        private void mainControls4_MouseEnter(object sender, EventArgs e)
-        {
-            this.mainControls4.ButtonColor = Color.LightSkyBlue;
-        }
-
-        private void mainControls4_MouseLeave(object sender, EventArgs e)
-        {
-            this.mainControls4.ButtonColor = Color.SteelBlue;
+            mcEmployee.ImageLocation = photo;
+            mcEmployee.Title = name;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -183,40 +55,161 @@ namespace BusinessSystem
             this.timeControl1.DateText = DateTime.Now.ToString("yyyy-MM-dd", CultureInfo.InstalledUICulture);
         }
 
-        private void employeeControl1_MouseEnter(object sender, EventArgs e)
+        //主控面>>員工連結
+        private void mcEmployee_Click(object sender, EventArgs e)
         {
-            employeeControl1.ButtonColor = Color.LightSkyBlue;
+            MessageBox.Show(EmpNum.ToString());
+            MessageBox.Show("靜態logID測試" + ClassEmployee.LoginEmployeeID);
         }
 
-        private void employeeControl1_MouseLeave(object sender, EventArgs e)
+        //主控面>>佈告欄連結
+        private void mcBulletinBoard_Click(object sender, EventArgs e)
         {
-            employeeControl1.ButtonColor = Color.FromArgb(153, 180, 209);
+            BulletinBoard formshow = new BulletinBoard(EmpNum);
+            formshow.ShowDialog();
         }
 
-        private void mainControls5_MouseEnter(object sender, EventArgs e)
+        //主控面>>工時回報連結
+        private void mcReportTime_Click(object sender, EventArgs e)
         {
-            mainControls5.ButtonColor = Color.LightSkyBlue;
+            FormMainRTS formshow = new FormMainRTS();
+            formshow.ShowDialog();
         }
 
-        private void mainControls5_MouseLeave(object sender, EventArgs e)
-        {
-            mainControls5.ButtonColor = Color.SteelBlue;
-        }
-
-        private void mainControls7_Click(object sender, EventArgs e)
+        //主控面>>文件上傳連結
+        private void mcDocument_Click(object sender, EventArgs e)
         {
             FrmFileBrowsing file = new FrmFileBrowsing(EmpNum);
             file.Show();
         }
 
-        private void mainControls9_Load(object sender, EventArgs e)
+        private void employeeControl1_Click(object sender, EventArgs e)
+        {            
+            ProfileForm p = new ProfileForm();
+            p.Show();
+        //主控面>>公務車租借連結
+        private void mcCompanyCars_Click(object sender, EventArgs e)
         {
-
+            CompanyVehicleBorrowForm formshow = new CompanyVehicleBorrowForm(EmpNum);
+            formshow.ShowDialog();
         }
 
-        private void employeeControl1_MouseClick(object sender, MouseEventArgs e)
+        //主控面>>請購系統連結
+        private void mcRequisition_Click(object sender, EventArgs e)
         {
-            
+            FrmRequisition1 formshow = new FrmRequisition1(EmpNum);
+            formshow.ShowDialog();
         }
+
+        //---------------------------------------------------------------------------------------------------
+        
+        //主控面>>滑鼠進入行事曆上
+        private void mcCalendar_MouseEnter(object sender, EventArgs e)
+        {
+            mcCalendar.ButtonColor = Color.LightSkyBlue;
+        }
+
+        //主控面>>滑鼠離開行事曆上
+        private void mcCalendar_MouseLeave(object sender, EventArgs e)
+        {
+            mcCalendar.ButtonColor = Color.SteelBlue;
+        }
+               
+        //主控面>>滑鼠進入員工上
+        private void mcEmployee_MouseEnter(object sender, EventArgs e)
+        {
+            mcEmployee.ButtonColor = Color.LightSkyBlue;
+        }
+
+        //主控面>>滑鼠離開員工上
+        private void mcEmployee_MouseLeave(object sender, EventArgs e)
+        {
+            mcEmployee.ButtonColor = Color.FromArgb(153, 180, 209);
+        }
+       
+        //主控面>>滑鼠進入佈告欄上
+        private void mcBulletinBoard_MouseEnter(object sender, EventArgs e)
+        {
+            this.mcBulletinBoard.ButtonColor = Color.LightSkyBlue;
+        }
+
+        //主控面>>滑鼠離開佈告欄上
+        private void mcBulletinBoard_MouseLeave(object sender, EventArgs e)
+        {
+            this.mcBulletinBoard.ButtonColor = Color.SteelBlue;
+        }
+
+        //主控面>>滑鼠進入請假上
+        private void mcLeave_MouseEnter(object sender, EventArgs e)
+        {
+            this.mcLeave.ButtonColor = Color.LightSkyBlue;
+        }
+
+        //主控面>>滑鼠離開請假上
+        private void mcLeave_MouseLeave(object sender, EventArgs e)
+        {
+            this.mcLeave.ButtonColor = Color.DarkSlateBlue;
+        }
+
+        //主控面>>滑鼠進入工時回報上
+        private void mcReportTime_MouseEnter(object sender, EventArgs e)
+        {
+            this.mcReportTime.ButtonColor = Color.LightSkyBlue;
+        }
+
+        //主控面>>滑鼠離開工時回報上
+        private void mcReportTime_MouseLeave(object sender, EventArgs e)
+        {
+            this.mcReportTime.ButtonColor = Color.SlateGray;
+        }        
+
+        //主控面>>滑鼠進入文件上傳上
+        private void mcDocument_MouseEnter(object sender, EventArgs e)
+        {
+            this.mcDocument.ButtonColor = Color.LightSkyBlue;
+        }
+
+        //主控面>>滑鼠離開文件上傳上
+        private void mcDocument_MouseLeave(object sender, EventArgs e)
+        {
+            this.mcDocument.ButtonColor = Color.FromArgb(153, 180, 209);
+        }
+
+        //主控面>>滑鼠進入公務車租借上
+        private void mcCompanyCars_MouseEnter(object sender, EventArgs e)
+        {
+            this.mcCompanyCars.ButtonColor = Color.LightSkyBlue;
+        }
+
+        //主控面>>滑鼠離開公務車租借上
+        private void mcCompanyCars_MouseLeave(object sender, EventArgs e)
+        {
+            this.mcCompanyCars.ButtonColor = Color.DarkSlateBlue;
+        }
+
+        //主控面>>滑鼠進入會議室租借上
+        private void mcMeetingRoom_MouseEnter(object sender, EventArgs e)
+        {
+            this.mcMeetingRoom.ButtonColor = Color.LightSkyBlue;
+        }
+
+        //主控面>>滑鼠離開會議室租借上
+        private void mcMeetingRoom_MouseLeave(object sender, EventArgs e)
+        {
+            this.mcMeetingRoom.ButtonColor = Color.SlateGray;
+        }
+
+        //主控面>>滑鼠進入請購系統上
+        private void mcRequisition_MouseEnter(object sender, EventArgs e)
+        {
+            this.mcRequisition.ButtonColor = Color.LightSkyBlue;
+        }
+
+        //主控面>>滑鼠離開請購系統上
+        private void mcRequisition_MouseLeave(object sender, EventArgs e)
+        {
+            this.mcRequisition.ButtonColor = Color.SteelBlue;
+        }
+
     }
 }

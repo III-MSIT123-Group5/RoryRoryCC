@@ -53,7 +53,7 @@
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Location = new System.Drawing.Point(0, 51);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(600, 56);
             this.panel2.TabIndex = 3;
@@ -64,7 +64,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.Location = new System.Drawing.Point(550, 17);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(26, 25);
             this.button1.TabIndex = 11;
@@ -80,7 +80,7 @@
             this.CBGroup.FormattingEnabled = true;
             this.CBGroup.IntegralHeight = false;
             this.CBGroup.Location = new System.Drawing.Point(375, 21);
-            this.CBGroup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CBGroup.Margin = new System.Windows.Forms.Padding(2);
             this.CBGroup.Name = "CBGroup";
             this.CBGroup.Size = new System.Drawing.Size(157, 23);
             this.CBGroup.TabIndex = 9;
@@ -95,7 +95,7 @@
             this.CBDepartment.FormattingEnabled = true;
             this.CBDepartment.IntegralHeight = false;
             this.CBDepartment.Location = new System.Drawing.Point(86, 21);
-            this.CBDepartment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CBDepartment.Margin = new System.Windows.Forms.Padding(2);
             this.CBDepartment.Name = "CBDepartment";
             this.CBDepartment.Size = new System.Drawing.Size(218, 23);
             this.CBDepartment.TabIndex = 8;
@@ -144,7 +144,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.Location = new System.Drawing.Point(0, 112);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 27;
@@ -163,7 +163,7 @@
             this.clsAltoButton1.Inactive1 = System.Drawing.Color.DarkSlateBlue;
             this.clsAltoButton1.Inactive2 = System.Drawing.Color.DarkSlateBlue;
             this.clsAltoButton1.Location = new System.Drawing.Point(455, 336);
-            this.clsAltoButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.clsAltoButton1.Margin = new System.Windows.Forms.Padding(2);
             this.clsAltoButton1.Name = "clsAltoButton1";
             this.clsAltoButton1.Radius = 10;
             this.clsAltoButton1.Size = new System.Drawing.Size(107, 24);
@@ -185,7 +185,7 @@
             this.clsAltoButton2.Inactive1 = System.Drawing.Color.Gray;
             this.clsAltoButton2.Inactive2 = System.Drawing.Color.Gray;
             this.clsAltoButton2.Location = new System.Drawing.Point(314, 336);
-            this.clsAltoButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.clsAltoButton2.Margin = new System.Windows.Forms.Padding(2);
             this.clsAltoButton2.Name = "clsAltoButton2";
             this.clsAltoButton2.Radius = 10;
             this.clsAltoButton2.Size = new System.Drawing.Size(107, 24);
@@ -205,9 +205,11 @@
             this.Controls.Add(this.clsAltoButton1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
             this.Name = "BulletinBoard";
-            this.Text = "BulletinBoard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "公佈欄";
             this.Load += new System.EventHandler(this.BulletinBoard_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
