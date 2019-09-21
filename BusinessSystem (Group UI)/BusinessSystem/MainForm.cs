@@ -37,9 +37,8 @@ namespace BusinessSystem
             {
                 photo = p.Photo;
                 name = p.EmployeeName;
-            }
-
-            employeeControl1.ImageLocation = photo;
+            }            
+            employeeControl1.ImageLocation = photo;            
             employeeControl1.Title = name;
         }
         
@@ -205,6 +204,11 @@ namespace BusinessSystem
         }
 
         private void mainControls9_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void employeeControl1_Load(object sender, EventArgs e)
         {
 
         }
