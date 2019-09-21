@@ -93,6 +93,7 @@
             this.employeeControl1.Title = "label";
             this.employeeControl1.TitleColor = System.Drawing.Color.White;
             this.employeeControl1.Click += new System.EventHandler(this.employeeControl1_Click);
+            this.employeeControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.employeeControl1_MouseClick);
             this.employeeControl1.MouseEnter += new System.EventHandler(this.employeeControl1_MouseEnter);
             this.employeeControl1.MouseLeave += new System.EventHandler(this.employeeControl1_MouseLeave);
             // 

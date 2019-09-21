@@ -110,9 +110,9 @@ namespace BusinessSystem
         }
 
         private void employeeControl1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(EmpNum.ToString());
-            MessageBox.Show("靜態logID測試"+ClassEmployee.LoginEmployeeID );
+        {            
+            ProfileForm p = new ProfileForm();
+            p.Show();
         }
 
         private void mainControls3_MouseEnter(object sender, EventArgs e)
@@ -214,6 +214,9 @@ namespace BusinessSystem
 
         }
 
-       
+        private void employeeControl1_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+        }
     }
 }

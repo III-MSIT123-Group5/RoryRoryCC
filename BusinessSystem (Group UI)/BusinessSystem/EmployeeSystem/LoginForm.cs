@@ -66,7 +66,7 @@ namespace BusinessSystem.EmployeeSystem
 
                 //readname.EmpAcount = this.txtLoginAccount.Text;//擷取登入者姓名 (Kai)
                 
-                MessageBox.Show($"歡迎回來， {EmpName}!", "登入成功", MessageBoxButtons.OK);
+                MessageBox.Show($"歡迎回來， {EmpName.Substring (EmpName.Length -2,EmpName.Length-1 )}!", "登入成功", MessageBoxButtons.OK);
                
                 //MessageBox.Show(readname.EmpAcount);//測試
                 MainForm main = new MainForm(EmpID);
@@ -99,7 +99,7 @@ namespace BusinessSystem.EmployeeSystem
 
         private void clsAltoButton2_Click(object sender, EventArgs e)
         {
-            this.txtLoginAccount.Text = "testA";
+            this.txtLoginAccount.Text = "reshin";
             this.txtLoginPassword.Text = "123456";
         }
     }

@@ -70,5 +70,10 @@ namespace BusinessSystem
             pictureBox2.ImageLocation = photo;
         }
 
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            ProfileForm pf = new ProfileForm();
+            pf.Show();
+        }
     }
 }

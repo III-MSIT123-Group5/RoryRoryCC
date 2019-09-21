@@ -52,6 +52,12 @@
       <DependentUpon>BulletinBoard-02.cs</DependentUpon>
     </Compile>
     <Compile Include="BulletinBoard\Bulletin_board.cs" />
+    <Compile Include="EmployeeSystem\ChangePasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeSystem\ChangePasswordForm.Designer.cs">
+      <DependentUpon>ChangePasswordForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeSystem\ClassEmployee.cs" />
     <Compile Include="CompanyCars\ChangeVehicleHistory.cs">
       <SubType>Form</SubType>
@@ -213,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DocumentManagement\FrmFileBrowsing.resx">
       <DependentUpon>FrmFileBrowsing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeSystem\ChangePasswordForm.resx">
+      <DependentUpon>ChangePasswordForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeSystem\CreateEmployeeForm.resx">
       <DependentUpon>CreateEmployeeForm.cs</DependentUpon>
