@@ -24,8 +24,8 @@ namespace BusinessSystem
         BusinessDataBaseEntities dbcontext;
         //int EmID;  //將於"變更員工資料"中顯示
         string AccountName, EmployeeName;
-        int magID;
-        bool AccEmpName, AccPW, AccAcount, AccManager;
+        int magID ;
+        bool AccEmpName, AccAcount;
         byte[] SHAPassword;
 
 
@@ -39,78 +39,30 @@ namespace BusinessSystem
             this.cmbDepartmentID.DataSource = dbcontext.Departments.OrderBy(p => p.departmentID).Select(p => p.name).ToList();
             //預設Employed combobox內容
             this.cmbEmployed.SelectedIndex = 1; // index 1 為"在職" 應輸入 1，index 0 為"離職" 應輸入 0
-            //預設Position ID內容 // if index==0 , 值為General manager，positionID應輸入 index+1 累推
-            this.cmbPositionID.DataSource = dbcontext.Positions.OrderBy(p => p.positionID).Select(p => p.position1).ToList();
-            this.cmbPositionID.SelectedIndex = 3;
-            //顯示EmployeeID
+             //顯示EmployeeID
             var q = from em in dbcontext.Employees
-                    select em;
-            //預設GroupID內容
-            //this.cmbGroupID.DataSource =this.dbcontext.Groups.OrderBy (p=>p.GroupID ).
+                    select em;            
 
-            this.cmbGender.SelectedIndex = 0;
-
-            //todo建立Textbox驗證
-            foreach (Control x in this.Controls)
-            {
-                if (x is TextBox)
-                {
-                    x.Validated += X_Validated;
-                }
-            }
+            this.cmbGender.SelectedIndex = 0;          
 
             //=====================================
             //EmID = q.Count()+1001;      //將於"變更員工資料"中顯示
             //this.txtEmployeeID.Text = $"{EmID }"; //ID自動產生，不允許變更
             //=====================================
             this.txtAccount.MaxLength = 12; //txtAccount最大值
-
         }
-
-        //Textbox驗證
-
-        private void X_Validated(object sender, EventArgs e)
-        {
-            
-        }
-
 
         //todo<<<<<<<<<<<<<<<<<<<<<<<<<控制項
 
         private void btnCreate_Click(object sender, EventArgs e)  //按鈕:新增
         {
-
-
-            //判斷ManagerID是否為空值
-            if ((this.txtManagerID.Text is null) == false)  
-            {
-                int m_magID = 0;
-                bool chkMagInput = int.TryParse(this.txtManagerID.Text, out m_magID); //確認輸入值ok
-                                                                                      //確認managerID輸入的ID在employee內有資料
-                var q = this.dbcontext.Employees.Where(p => p.employeeID == m_magID).Select(p => new { p.employeeID }).Any();
-
-                if (chkMagInput && q)
-                {
-                    magID = m_magID;
-                }
-                else
-                {
-                    MessageBox.Show("請輸入正確的主管EmployeeID。", "請輸入正確的ManagerID", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.txtManagerID.Focus();
-                    this.txtManagerID.SelectAll();
-                    return;
-                }
-            }
-
-            if ( AccEmpName ==false || AccAcount == false /*|| AccPW == false || AccManager == false*/)
+            //確認各欄位是否為空值
+            if (AccEmpName == false || AccAcount == false || string.IsNullOrEmpty(this.cmbManagerID.Text))
             {
                 MessageBox.Show("資料未完整輸入");
                 return;
             }
-
-
-
-
+            //確認密碼正確性 & 空值
             if (CheckPassword (this.txtPassword.Text  , this.txtConfirmPassword.Text) && String.IsNullOrEmpty (this.txtConfirmPassword.Text  )==false )
             {
                 //雜湊
@@ -128,47 +80,43 @@ namespace BusinessSystem
                 return;
             }
 
-
-
             try
             {
                 var addEmp = new BusinessSystemDBEntityModel.Employee
                 {
                     //employeeID = EmID,   //將於"變更員工資料"中顯示
                     EmployeeName = this.EmployeeName,
-                    Gender = this.cmbGender.Text,
-                    Birth = this.dTPicBirth.Value,
-                    HireDate = this.dTPicHireDate.Value,
+                    Gender =  this.cmbGender.Text,
+                    Birth =  this.dTPicBirth.Value,
+                    HireDate =  this.dTPicHireDate.Value,
                     Account = AccountName,
                     OfficeID = this.Insert_offID(this.cmbOfficeID.SelectedIndex),
                     DepartmentID = this.cmbDepartmentID.SelectedIndex,
                     PositionID = this.cmbPositionID.SelectedIndex + 1,
-                    ManagerID = magID,
+                    ManagerID = int.Parse(this.cmbManagerID.Text),
                     Employed = this.Insert_transEmployed(this.cmbEmployed.SelectedIndex),
                     GroupID = this.Insert_grpID(this.cmbGroupID.Text)
                 };
-
                 var addAccount = new BusinessSystemDBEntityModel.Account
                 {
                     account1 = addEmp.Account,
                     password = SHAPassword,
                 };
+            this.dbcontext.Accounts.Add(addAccount);
+            this.dbcontext.Employees.Add(addEmp);
 
-                this.dbcontext.Employees.Add(addEmp);
-                this.dbcontext.Accounts.Add(addAccount);
-                this.dbcontext.SaveChanges();
-
-                MessageBox.Show("新增成功");
+            this.dbcontext.SaveChanges();
+        
+            MessageBox.Show("新增成功");                
+                this.Close();
+                this.Dispose();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }            
-         
-
-        }
-
-       
+                return;
+            }
+        }       
 
         //控制項>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -220,8 +168,40 @@ namespace BusinessSystem
 
         int Insert_grpID(string cmbGroupIDText)    //方法：將輸入值轉為可存入SQL的資料
         {
-            var q = this.dbcontext.Groups.Where(p => p.GroupName == cmbGroupIDText).Select(p => p.GroupID);
-            return q.FirstOrDefault();
+            int m_groupid = 0;
+            switch (cmbGroupIDText)
+            {
+                case "無組別":
+                    m_groupid = 0;
+                        break;
+                case "總務組":
+                    m_groupid =1 ;
+                    break;
+                case "人資組":
+                    m_groupid =2 ;
+                    break;
+                case "行政部室":
+                    m_groupid =3 ;
+                    break;
+                case "業務部室":
+                    m_groupid =4 ;
+                    break;
+                case "產品部室":
+                    m_groupid =5 ;
+                    break;
+                case "財務部室":
+                    m_groupid =6 ;
+                    break;
+                case "資訊部室":
+                    m_groupid = 7;
+                    break;
+                case "總經理室":
+                    m_groupid = 8 ;
+                    break;
+            }
+            return m_groupid;
+            //var q = this.dbcontext.Groups.Where(p => p.GroupName == cmbGroupIDText).Select(p => p.GroupID);
+            //return q.FirstOrDefault();
         }        
 
         bool CheckPassword (string password,string ConfirmPassword)    //方法：檢查Password
@@ -236,17 +216,14 @@ namespace BusinessSystem
                 result = false;
             }
             return result;
-        }
-
-
-
+        }    
+                
         //方法>>>>>>>>>>>>>>>>>>>>>>>>>
 
         //todo<<<<<<<<<<<<<<<<<<<<<<<<<事件
 
         private void cmbDepartmentID_TextChanged(object sender, EventArgs e)   //事件：產生cmbGroupID
         {
-
             var q = this.dbcontext.Groups.Where(p => p.DepartmentID == this.cmbDepartmentID.SelectedIndex).Select(p => p.GroupName);
             if (q.Any())
             {
@@ -257,7 +234,7 @@ namespace BusinessSystem
                 var q1 = this.dbcontext.Groups.Where(p => p.DepartmentID == 0).Select(p => p.GroupName);
                 this.cmbGroupID.DataSource = q1.ToList();
             }
-        }
+        }       
 
         private void txtEmployeeName_Validated(object sender, EventArgs e)   //事件：EmployeeName空值驗證
         {
@@ -272,7 +249,7 @@ namespace BusinessSystem
             {
                 this.AccEmpName = false ;
             }
-        }
+        }       
 
         private void txtAccount_Validated(object sender, EventArgs e)  //事件：帳號驗證
         {
@@ -290,11 +267,12 @@ namespace BusinessSystem
             }
         }
 
-        private void cmbPositionID_TextChanged(object sender, EventArgs e)   //事件：自動帶入直屬主管
+        //todo事件：自動帶入直屬主管ManagerID
+        private void cmbPositionID_MouseClick(object sender, MouseEventArgs e) //事件：自動帶入直屬主管ManagerID
         {
-            switch (this.cmbPositionID.Text)
+            switch (this.cmbPositionID.SelectedIndex)
             {
-                case "員工":
+                case 3:     //員工
                     var QposiEmp = from f in this.dbcontext.Employees.AsEnumerable()
                                    where f.GroupID == this.Insert_grpID(this.cmbGroupID.Text)
                                    && f.DepartmentID == this.cmbDepartmentID.SelectedIndex
@@ -307,30 +285,284 @@ namespace BusinessSystem
                     else
                     {
                         var QposiEmpNonCap = from f in this.dbcontext.Employees.AsEnumerable()
-                                       where f.GroupID == this.Insert_grpID(this.cmbGroupID.Text)
-                                       && f.DepartmentID == this.cmbDepartmentID.SelectedIndex
-                                       && f.PositionID == this.cmbPositionID.SelectedIndex-1    //cmbPositionID.SelectedIndex+1才是該員的職稱
-                                       select f.employeeID;
-                        this.cmbManagerID.DataSource = QposiEmpNonCap.ToList ();
-                    }
+                                             where f.GroupID == this.Insert_grpID(this.cmbGroupID.Text)
+                                             && f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                             && f.PositionID == this.cmbPositionID.SelectedIndex - 1    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                             select f.employeeID;
+                        this.cmbManagerID.DataSource = QposiEmpNonCap.ToList();
+                    }                   
                     break;
-                case "組長":
+                case 2:    //組長
+                    var QposiSup = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                   && f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;
+                    this.cmbManagerID.DataSource = QposiSup.ToList();
                     break;
-                case "部長":
+                case 1:  //部長
+                    var QposiDir = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where  f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;
+                    this.cmbManagerID.DataSource = QposiDir.ToList();               
                     break;
-                case "總經理":
+                case 0://總經理
+                    var QposiGM = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where f.PositionID ==0    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;                   
+                    this.cmbManagerID.DataSource = QposiGM.ToList();                    
                     break;
             }
+        }
+        private void cmbPositionID_DataSourceChanged(object sender, EventArgs e)
+        {
+            switch (this.cmbPositionID.SelectedIndex)
+            {
+                case 3:     //員工
+                    var QposiEmp = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where f.GroupID == this.Insert_grpID(this.cmbGroupID.Text)
+                                   && f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                   && f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;
+                    if (QposiEmp.Any())
+                    {
+                        this.cmbManagerID.DataSource = QposiEmp.ToList();
+                    }
+                    else
+                    {
+                        var QposiEmpNonCap = from f in this.dbcontext.Employees.AsEnumerable()
+                                             where f.GroupID == this.Insert_grpID(this.cmbGroupID.Text)
+                                             && f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                             && f.PositionID == this.cmbPositionID.SelectedIndex - 1    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                             select f.employeeID;
+                        this.cmbManagerID.DataSource = QposiEmpNonCap.ToList();
+                    }
+                    break;
+                case 2:    //組長
+                    var QposiSup = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                   && f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;
+                    this.cmbManagerID.DataSource = QposiSup.ToList();
+                    break;
+                case 1:  //部長
+                    var QposiDir = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;
+                    this.cmbManagerID.DataSource = QposiDir.ToList();
 
+                    break;
+                case 0://總經理
+                    var QposiGM = from f in this.dbcontext.Employees.AsEnumerable()
+                                  where f.PositionID == 0    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                  select f.employeeID;
+                    this.cmbManagerID.DataSource = QposiGM.ToList();
+                    break;
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)    //ClearAll
+        {
+            this.txtEmployeeName.Text = null;
+            this.txtPassword.Text = null;
+            this.txtConfirmPassword.Text  = null;
+            this.txtAccount.Text = null;
             
+        }
 
-           
-               
-           
+        private void cmbDepartmentID_MouseClick(object sender, MouseEventArgs e)
+        {
+            switch (this.cmbPositionID.SelectedIndex)
+            {
+                case 3:     //員工
+                    var QposiEmp = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where f.GroupID == this.Insert_grpID(this.cmbGroupID.Text)
+                                   && f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                   && f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;
+                    if (QposiEmp.Any())
+                    {
+                        this.cmbManagerID.DataSource = QposiEmp.ToList();
+                    }
+                    else
+                    {
+                        var QposiEmpNonCap = from f in this.dbcontext.Employees.AsEnumerable()
+                                             where f.GroupID == this.Insert_grpID(this.cmbGroupID.Text)
+                                             && f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                             && f.PositionID == this.cmbPositionID.SelectedIndex - 1    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                             select f.employeeID;
+                        this.cmbManagerID.DataSource = QposiEmpNonCap.ToList();
+                    }
+                    break;
+                case 2:    //組長
+                    var QposiSup = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                   && f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;
+                    this.cmbManagerID.DataSource = QposiSup.ToList();
+                    break;
+                case 1:  //部長
+                    var QposiDir = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;
+                    this.cmbManagerID.DataSource = QposiDir.ToList();
 
+                    break;
+                case 0://總經理
+                    var QposiGM = from f in this.dbcontext.Employees.AsEnumerable()
+                                  where f.PositionID == 0    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                  select f.employeeID;
+                    this.cmbManagerID.DataSource = QposiGM.ToList();
+                    break;
+            }
+        }
 
-            
+        private void cmbGroupID_MouseClick(object sender, MouseEventArgs e)
+        {
+            switch (this.cmbPositionID.SelectedIndex)
+            {
+                case 3:     //員工
+                    var QposiEmp = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where f.GroupID == this.Insert_grpID(this.cmbGroupID.Text)
+                                   && f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                   && f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;
+                    if (QposiEmp.Any())
+                    {
+                        this.cmbManagerID.DataSource = QposiEmp.ToList();
+                    }
+                    else
+                    {
+                        var QposiEmpNonCap = from f in this.dbcontext.Employees.AsEnumerable()
+                                             where f.GroupID == this.Insert_grpID(this.cmbGroupID.Text)
+                                             && f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                             && f.PositionID == this.cmbPositionID.SelectedIndex - 1    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                             select f.employeeID;
+                        this.cmbManagerID.DataSource = QposiEmpNonCap.ToList();
+                    }
+                    break;
+                case 2:    //組長
+                    var QposiSup = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                   && f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;
+                    this.cmbManagerID.DataSource = QposiSup.ToList();
+                    break;
+                case 1:  //部長
+                    var QposiDir = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;
+                    this.cmbManagerID.DataSource = QposiDir.ToList();
 
+                    break;
+                case 0://總經理
+                    var QposiGM = from f in this.dbcontext.Employees.AsEnumerable()
+                                  where f.PositionID == 0    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                  select f.employeeID;
+                    this.cmbManagerID.DataSource = QposiGM.ToList();
+                    break;
+            }
+        }
+
+        private void cmbGroupID_TextChanged(object sender, EventArgs e)
+        {
+            switch (this.cmbPositionID.SelectedIndex)
+            {
+                case 3:     //員工
+                    var QposiEmp = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where f.GroupID == this.Insert_grpID(this.cmbGroupID.Text)
+                                   && f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                   && f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;
+                    if (QposiEmp.Any())
+                    {
+                        this.cmbManagerID.DataSource = QposiEmp.ToList();
+                    }
+                    else
+                    {
+                        var QposiEmpNonCap = from f in this.dbcontext.Employees.AsEnumerable()
+                                             where f.GroupID == this.Insert_grpID(this.cmbGroupID.Text)
+                                             && f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                             && f.PositionID == this.cmbPositionID.SelectedIndex - 1    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                             select f.employeeID;
+                        this.cmbManagerID.DataSource = QposiEmpNonCap.ToList();
+                    }
+                    break;
+                case 2:    //組長
+                    var QposiSup = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                   && f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;
+                    this.cmbManagerID.DataSource = QposiSup.ToList();
+                    break;
+                case 1:  //部長
+                    var QposiDir = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;
+                    this.cmbManagerID.DataSource = QposiDir.ToList();
+
+                    break;
+                case 0://總經理
+                    var QposiGM = from f in this.dbcontext.Employees.AsEnumerable()
+                                  where f.PositionID == 0    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                  select f.employeeID;
+                    this.cmbManagerID.DataSource = QposiGM.ToList();
+                    break;
+            }
+        }
+
+        private void cmbPositionID_TextChanged(object sender, EventArgs e)
+        {
+            switch (this.cmbPositionID.SelectedIndex)
+            {
+                case 3:     //員工
+                    var QposiEmp = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where f.GroupID == this.Insert_grpID(this.cmbGroupID.Text)
+                                   && f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                   && f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;
+                    if (QposiEmp.Any())
+                    {
+                        this.cmbManagerID.DataSource = QposiEmp.ToList();
+                    }
+                    else
+                    {
+                        var QposiEmpNonCap = from f in this.dbcontext.Employees.AsEnumerable()
+                                             where f.GroupID == this.Insert_grpID(this.cmbGroupID.Text)
+                                             && f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                             && f.PositionID == this.cmbPositionID.SelectedIndex - 1    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                             select f.employeeID;
+                        this.cmbManagerID.DataSource = QposiEmpNonCap.ToList();
+                    }
+                    break;
+                case 2:    //組長
+                    var QposiSup = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where f.DepartmentID == this.cmbDepartmentID.SelectedIndex
+                                   && f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;
+                    this.cmbManagerID.DataSource = QposiSup.ToList();
+                    break;
+                case 1:  //部長
+                    var QposiDir = from f in this.dbcontext.Employees.AsEnumerable()
+                                   where f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                   select f.employeeID;
+                    this.cmbManagerID.DataSource = QposiDir.ToList();
+
+                    break;
+                case 0://總經理
+                    var QposiGM = from f in this.dbcontext.Employees.AsEnumerable()
+                                  where f.PositionID == 0    //cmbPositionID.SelectedIndex+1才是該員的職稱
+                                  select f.employeeID;
+                    this.cmbManagerID.DataSource = QposiGM.ToList();
+                    break;
+            }
+        }     
+        //ManagerID=========================
+        
+        //事件：預設Position ID內容 // if index==0 , 值為General manager，positionID應輸入 index+1 累推
+        private void cmbGroupID_DataSourceChanged(object sender, EventArgs e)
+        {
+            this.cmbPositionID.DataSource = dbcontext.Positions.OrderBy(p => p.positionID).Select(p => p.position1).ToList();
+            this.cmbPositionID.SelectedIndex = 3;
         }
 
         //事件>>>>>>>>>>>>>>>>>>>>>>>>>

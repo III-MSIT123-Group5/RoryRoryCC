@@ -60,8 +60,8 @@ namespace BusinessSystem.EmployeeSystem
 
         private bool checkAccount(string @account)    //方法：檢查帳號是否重覆 true:允許使用 false:重覆
         {
-            var q = from ac in dbcontext.Employees
-                    where ac.Account == @account
+            var q = from ac in dbcontext.Accounts 
+                    where ac.account1  == @account
                     select ac;
             if (q.Any())
             {

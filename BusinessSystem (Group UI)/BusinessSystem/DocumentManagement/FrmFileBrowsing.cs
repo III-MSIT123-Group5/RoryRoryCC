@@ -131,6 +131,7 @@ namespace BusinessSystem.DocumentManagement
                 clsAltoButton1.Visible = true;
                 clsAltoButton2.Visible = true;
                 Judgment = "";
+                MyUpdate();
             }
         }
         string Judgment;
@@ -154,6 +155,7 @@ namespace BusinessSystem.DocumentManagement
                 clsAltoButton1.Visible = true;
                 clsAltoButton3.Visible = true;
                 Judgment = "";
+                MyUpdate();
             }
 
         }

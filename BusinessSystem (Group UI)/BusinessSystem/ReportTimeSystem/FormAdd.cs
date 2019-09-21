@@ -94,6 +94,7 @@ namespace BusinessSystem.ReportTimeSystem
                             活動名稱 = RTS.ReportName,
                             開始時間 = RTS.StartTime,
                             結束時間 = RTS.EndTime,
+                            所需總時數 = RTS.EventHours,
                             活動類型 = eve.EventName,
                             備註 = RTS.Note,
                             申請時間 = RTS.ApplyDateTime

@@ -21,7 +21,11 @@ namespace BusinessSystem
         public MainForm(int EmployeeID)
         {
             InitializeComponent();
-
+            //測試靜態屬性LoginID ok
+            
+                ClassEmployee.LoginEmployeeID = EmployeeID;
+            
+            
 
             EmpNum = EmployeeID;
 
@@ -107,6 +111,7 @@ namespace BusinessSystem
         private void employeeControl1_Click(object sender, EventArgs e)
         {
             MessageBox.Show(EmpNum.ToString());
+            MessageBox.Show("靜態logID測試"+ClassEmployee.LoginEmployeeID );
         }
 
         private void mainControls3_MouseEnter(object sender, EventArgs e)
@@ -206,11 +211,6 @@ namespace BusinessSystem
         private void mainControls9_Load(object sender, EventArgs e)
         {
 
-        }
-
-        private void employeeControl1_Load(object sender, EventArgs e)
-        {
-
-        }
+        }       
     }
 }

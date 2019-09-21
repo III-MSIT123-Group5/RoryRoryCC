@@ -290,7 +290,7 @@ namespace BusinessSystem
 
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
-            BulletinBoard_2 form = new BulletinBoard_2(LoginID);
+            BulletinBoard_2 form = new BulletinBoard_2( );
             form.Show();
         }
 
