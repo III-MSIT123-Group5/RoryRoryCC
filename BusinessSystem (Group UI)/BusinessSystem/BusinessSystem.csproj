@@ -52,7 +52,7 @@
       <DependentUpon>BulletinBoard-02.cs</DependentUpon>
     </Compile>
     <Compile Include="BulletinBoard\Bulletin_board.cs" />
-    <Compile Include="ClassEmployee.cs" />
+    <Compile Include="EmployeeSystem\ClassEmployee.cs" />
     <Compile Include="CompanyCars\ChangeVehicleHistory.cs">
       <SubType>Form</SubType>
     </Compile>
