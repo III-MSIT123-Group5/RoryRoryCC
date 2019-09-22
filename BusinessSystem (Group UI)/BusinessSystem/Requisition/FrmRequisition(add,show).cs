@@ -67,16 +67,17 @@ namespace BusinessSystem
                 this.dbContext.OrderDetails.Add(newOrderDetail);
                 this.dbContext.SaveChanges();
                 DataGridViewFormat();
+                txtProcductName.Text = txtProcductNameExpand;
+                txtUnitPrice.Text = txtUnitPriceExpand;
+                txtQuantity.Text = txtQuantityExpand;
+                txtNote.Text = txtNoteExpand;
 
                 MessageBox.Show("購案新增成功");
-
-                this.dbContext.Dispose();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }    
         }
         
         //展示
@@ -94,8 +95,16 @@ namespace BusinessSystem
         //進入修改、刪除頁面
         private void btnEnterToChangeDelete_Click(object sender, EventArgs e)
         {
-            FrmRequisition2 frmRequisition2 = new FrmRequisition2(LoginID);
-            frmRequisition2.ShowDialog();
+            this.Cursor = Cursors.WaitCursor;
+            try
+            {
+                FrmRequisition2 frmRequisition2 = new FrmRequisition2(LoginID);
+                frmRequisition2.ShowDialog();
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
         }
 
         //DataGridView顯示所有資料
