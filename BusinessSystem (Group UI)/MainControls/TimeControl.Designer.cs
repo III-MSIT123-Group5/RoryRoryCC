@@ -48,7 +48,7 @@
             this.clsAltoButton1.Location = new System.Drawing.Point(0, 0);
             this.clsAltoButton1.Name = "clsAltoButton1";
             this.clsAltoButton1.Radius = 10;
-            this.clsAltoButton1.Size = new System.Drawing.Size(411, 200);
+            this.clsAltoButton1.Size = new System.Drawing.Size(403, 200);
             this.clsAltoButton1.Stroke = false;
             this.clsAltoButton1.StrokeColor = System.Drawing.Color.Gray;
             this.clsAltoButton1.TabIndex = 0;
@@ -60,7 +60,7 @@
             this.label1.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.label1.Font = new System.Drawing.Font("Comic Sans MS", 66F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(5, 71);
+            this.label1.Location = new System.Drawing.Point(4, 71);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(306, 123);
             this.label1.TabIndex = 1;
@@ -96,7 +96,7 @@
             this.label4.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.label4.Font = new System.Drawing.Font("Comic Sans MS", 44.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(6, 5);
+            this.label4.Location = new System.Drawing.Point(5, 3);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(395, 82);
             this.label4.TabIndex = 4;
@@ -112,7 +112,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.clsAltoButton1);
             this.Name = "TimeControl";
-            this.Size = new System.Drawing.Size(411, 200);
+            this.Size = new System.Drawing.Size(403, 200);
             this.ResumeLayout(false);
             this.PerformLayout();
 
