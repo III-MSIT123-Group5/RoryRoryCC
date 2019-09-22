@@ -265,7 +265,7 @@
             this.MaximizeBox = false;
             this.Name = "FrmRequisition1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Requisition";
+            this.Text = "新增請購單";
             this.Load += new System.EventHandler(this.FrmRequisition_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

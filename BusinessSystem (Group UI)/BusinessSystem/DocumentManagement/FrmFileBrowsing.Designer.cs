@@ -318,6 +318,7 @@
             this.Controls.Add(this.clsAltoButton2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.clsAltoButton1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FrmFileBrowsing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

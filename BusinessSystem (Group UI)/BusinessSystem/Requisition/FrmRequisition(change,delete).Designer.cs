@@ -252,7 +252,7 @@
             this.MaximizeBox = false;
             this.Name = "FrmRequisition2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmRequisition";
+            this.Text = "修改、刪除請購單";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

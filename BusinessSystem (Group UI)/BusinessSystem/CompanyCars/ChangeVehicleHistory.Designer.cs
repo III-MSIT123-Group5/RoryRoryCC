@@ -47,7 +47,7 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(9, 68);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 27;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -60,7 +60,7 @@
             this.comboBox4.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Location = new System.Drawing.Point(299, 277);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox4.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(156, 26);
             this.comboBox4.TabIndex = 55;
@@ -71,7 +71,7 @@
             this.comboBox3.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(299, 243);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox3.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(156, 26);
             this.comboBox3.TabIndex = 54;
@@ -85,7 +85,7 @@
             "上午",
             "下午"});
             this.comboBox2.Location = new System.Drawing.Point(234, 277);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(53, 26);
             this.comboBox2.TabIndex = 53;
@@ -98,7 +98,7 @@
             "上午",
             "下午"});
             this.comboBox1.Location = new System.Drawing.Point(234, 243);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(53, 26);
             this.comboBox1.TabIndex = 52;
@@ -107,7 +107,7 @@
             // 
             this.dateTimePicker2.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.dateTimePicker2.Location = new System.Drawing.Point(78, 277);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(141, 26);
             this.dateTimePicker2.TabIndex = 50;
@@ -123,7 +123,7 @@
             this.clsAltoButton1.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.clsAltoButton1.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
             this.clsAltoButton1.Location = new System.Drawing.Point(470, 243);
-            this.clsAltoButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.clsAltoButton1.Margin = new System.Windows.Forms.Padding(2);
             this.clsAltoButton1.Name = "clsAltoButton1";
             this.clsAltoButton1.Radius = 10;
             this.clsAltoButton1.Size = new System.Drawing.Size(112, 57);
@@ -138,7 +138,7 @@
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.dateTimePicker1.Location = new System.Drawing.Point(78, 243);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(141, 26);
             this.dateTimePicker1.TabIndex = 47;
@@ -148,7 +148,7 @@
             this.richTextBox1.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.richTextBox1.ForeColor = System.Drawing.SystemColors.MenuText;
             this.richTextBox1.Location = new System.Drawing.Point(9, 306);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(446, 27);
             this.richTextBox1.TabIndex = 46;
@@ -189,7 +189,7 @@
             this.clsAltoButton2.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
             this.clsAltoButton2.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
             this.clsAltoButton2.Location = new System.Drawing.Point(470, 306);
-            this.clsAltoButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.clsAltoButton2.Margin = new System.Windows.Forms.Padding(2);
             this.clsAltoButton2.Name = "clsAltoButton2";
             this.clsAltoButton2.Radius = 10;
             this.clsAltoButton2.Size = new System.Drawing.Size(112, 27);
@@ -218,12 +218,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "ChangeVehicleHistory";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ChangeVehicleHistory";
+            this.Text = "修改公務車租借";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
