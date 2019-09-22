@@ -135,9 +135,9 @@
             this.label3.Location = new System.Drawing.Point(174, 104);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 19);
+            this.label3.Size = new System.Drawing.Size(65, 19);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Account:";
+            this.label3.Text = "Account :";
             // 
             // label4
             // 
@@ -147,9 +147,9 @@
             this.label4.Location = new System.Drawing.Point(174, 146);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 19);
+            this.label4.Size = new System.Drawing.Size(77, 19);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Password:";
+            this.label4.Text = "Password :";
             // 
             // pictureBox2
             // 
