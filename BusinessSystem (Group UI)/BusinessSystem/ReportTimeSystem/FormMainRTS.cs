@@ -14,15 +14,19 @@ namespace BusinessSystem.ReportTimeSystem
     
     public partial class FormMainRTS : Form
     {
-        int EmpID;
+        
         public FormMainRTS()
         {
             InitializeComponent();
-            EmpID = ClassEmployee.LoginEmployeeID;
+            
         }
+        //public FormMainRTS(int empid) : base(empid)
+        //{
+        //    InitializeComponent();
 
-        
-        
+        //}
+
+
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -81,7 +85,7 @@ namespace BusinessSystem.ReportTimeSystem
                         on RTS.employeeID equals emp.employeeID
                         join eve in dbcontext.Events
                         on RTS.EventID equals eve.EventID
-                        where RTS.Discontinue == true
+                        where RTS.Discontinue == true && RTS.employeeID == ClassEmployee.LoginEmployeeID
                         select new data
                         {
                             報表編號 = RTS.ReportID,
@@ -114,13 +118,14 @@ namespace BusinessSystem.ReportTimeSystem
 
         private void FormMainRTS_Load(object sender, EventArgs e)
         {
-
+            
+            
             var q = from RTS in dbcontext.ReportTimeSystems
                     join emp in dbcontext.Employees
                     on RTS.employeeID equals emp.employeeID
                     join eve in dbcontext.Events
                     on RTS.EventID equals eve.EventID
-                    where RTS.Discontinue == true
+                    where RTS.Discontinue == true && RTS.employeeID ==ClassEmployee.LoginEmployeeID
                     select new data
                     {
                         報表編號 = RTS.ReportID,
@@ -170,13 +175,18 @@ namespace BusinessSystem.ReportTimeSystem
         private void DeleteRTSButton_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show( /*Environment.NewLine +*/ "資料是否刪除",
-                                                  "警告",
+                                                 "警告",
                                                   MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+
+            int rowint = dataGridView1.CurrentRow.Index;
+                      
+            
+
             if (result == DialogResult.Yes)
             {
                 foreach (var abc in listcatalog)
                 {
-                    var w = dbcontext.ReportTimeSystems.Where(K => K.ReportID == abc.報表編號).FirstOrDefault();
+                    var w = dbcontext.ReportTimeSystems.Where(K => K.ReportID==rowint).FirstOrDefault();
 
                     if (w != null)
                     {
@@ -190,12 +200,14 @@ namespace BusinessSystem.ReportTimeSystem
                 MessageBox.Show("資料已刪除");
                 
             }
+
+
             var q = from RTS in dbcontext.ReportTimeSystems
                     join emp in dbcontext.Employees
                     on RTS.employeeID equals emp.employeeID
                     join eve in dbcontext.Events
                     on RTS.EventID equals eve.EventID
-                    where RTS.Discontinue == true && EmpID == RTS.employeeID
+                    where RTS.Discontinue == true && RTS.employeeID==ClassEmployee.LoginEmployeeID
                     select new data
                     {
                         報表編號 = RTS.ReportID,

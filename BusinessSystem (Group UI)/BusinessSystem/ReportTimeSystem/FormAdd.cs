@@ -20,11 +20,11 @@ namespace BusinessSystem.ReportTimeSystem
     {
         BusinessDataBaseEntities dbcontext = new BusinessDataBaseEntities();
         FormMainRTS rts;
-        int EmpID;
-        public FormAdd()//(int empid) : base(empid)
+        
+        public FormAdd(/*int empid) : base(empid*/)
         {
             InitializeComponent();
-            EmpID = ClassEmployee.LoginEmployeeID;
+             
 
         }
 
@@ -68,14 +68,17 @@ namespace BusinessSystem.ReportTimeSystem
 
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
-            if (dateTimePicker2.Value > dateTimePicker1.Value)
+            
+            if (dateTimePicker2.Value > dateTimePicker1.Value &&
+                this.textBox1.Text.Length>0&&
+                this.textBox1.Text.Length<=10)
             {
 
                 dbcontext.ReportTimeSystems.Add(
                 new BusinessSystemDBEntityModel.ReportTimeSystem
                 {
                     ReportName = textBox1.Text,
-                    employeeID = EmpID,
+                    employeeID = ClassEmployee.LoginEmployeeID ,
                     StartTime = dateTimePicker1.Value,
                     EndTime = dateTimePicker2.Value,
                     EventHours = dateTimePicker2.Value.Subtract(dateTimePicker1.Value).TotalHours,
@@ -93,7 +96,7 @@ namespace BusinessSystem.ReportTimeSystem
                         on RTS.employeeID equals emp.employeeID
                         join eve in dbcontext.Events
                         on RTS.EventID equals eve.EventID
-                        where RTS.Discontinue == true &&RTS.employeeID == EmpID
+                        where RTS.Discontinue == true  &&RTS.employeeID == ClassEmployee.LoginEmployeeID
                         select new
                         {
                             報表編號 = RTS.ReportID,
@@ -124,6 +127,7 @@ namespace BusinessSystem.ReportTimeSystem
                     i += 2;
                 }
             }
+            this.Close();
         }
 
         
@@ -135,12 +139,12 @@ namespace BusinessSystem.ReportTimeSystem
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            if (dateTimePicker2.Value <= dateTimePicker1.Value)
+            if (dateTimePicker2.Value <= dateTimePicker1.Value )
             {
                 errorProvider1.SetError(dateTimePicker2, "結束時間需大於開始時間");
                 
             }
-            if (textBox1.Text == "")
+            if (0<this.textBox1.Text.Length &&this.textBox1.Text.Length<11)
             {
                 errorProvider1.SetError(textBox1, "請輸入活動名稱");
             }
@@ -148,6 +152,12 @@ namespace BusinessSystem.ReportTimeSystem
 
 
 
+        }
+
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+           
         }
     }
     
