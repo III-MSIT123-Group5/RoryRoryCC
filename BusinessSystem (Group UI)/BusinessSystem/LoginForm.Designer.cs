@@ -267,7 +267,7 @@
             this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LoginForm";
+            this.Text = "登入";
             this.Load += new System.EventHandler(this.LoginForm_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

@@ -124,10 +124,10 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(26, 153);
+            this.dataGridView1.Location = new System.Drawing.Point(26, 148);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(741, 129);
+            this.dataGridView1.Size = new System.Drawing.Size(744, 143);
             this.dataGridView1.TabIndex = 40;
             // 
             // label1
@@ -172,7 +172,7 @@
             this.btnChange.ForeColor = System.Drawing.Color.White;
             this.btnChange.Inactive1 = System.Drawing.Color.DarkSlateBlue;
             this.btnChange.Inactive2 = System.Drawing.Color.DarkSlateBlue;
-            this.btnChange.Location = new System.Drawing.Point(532, 298);
+            this.btnChange.Location = new System.Drawing.Point(532, 301);
             this.btnChange.Margin = new System.Windows.Forms.Padding(2);
             this.btnChange.Name = "btnChange";
             this.btnChange.Radius = 10;
@@ -194,7 +194,7 @@
             this.btnClear.ForeColor = System.Drawing.Color.White;
             this.btnClear.Inactive1 = System.Drawing.Color.DarkSlateBlue;
             this.btnClear.Inactive2 = System.Drawing.Color.DarkSlateBlue;
-            this.btnClear.Location = new System.Drawing.Point(677, 298);
+            this.btnClear.Location = new System.Drawing.Point(677, 301);
             this.btnClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnClear.Name = "btnClear";
             this.btnClear.Radius = 10;
@@ -216,7 +216,7 @@
             this.btnAllShow.ForeColor = System.Drawing.Color.White;
             this.btnAllShow.Inactive1 = System.Drawing.Color.DarkSlateBlue;
             this.btnAllShow.Inactive2 = System.Drawing.Color.DarkSlateBlue;
-            this.btnAllShow.Location = new System.Drawing.Point(26, 298);
+            this.btnAllShow.Location = new System.Drawing.Point(26, 301);
             this.btnAllShow.Margin = new System.Windows.Forms.Padding(2);
             this.btnAllShow.Name = "btnAllShow";
             this.btnAllShow.Radius = 10;
@@ -252,7 +252,7 @@
             this.MaximizeBox = false;
             this.Name = "FrmRequisition2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmRequisition";
+            this.Text = "修改、刪除請購單";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

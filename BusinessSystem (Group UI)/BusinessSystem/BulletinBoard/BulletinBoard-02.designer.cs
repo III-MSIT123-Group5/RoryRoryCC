@@ -39,7 +39,7 @@
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.richTextBox1.Font = new System.Drawing.Font("微軟正黑體", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.richTextBox1.Location = new System.Drawing.Point(34, 97);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(533, 198);
             this.richTextBox1.TabIndex = 1;
@@ -56,7 +56,7 @@
             this.altoButton1.Inactive1 = System.Drawing.Color.DarkSlateBlue;
             this.altoButton1.Inactive2 = System.Drawing.Color.DarkSlateBlue;
             this.altoButton1.Location = new System.Drawing.Point(482, 309);
-            this.altoButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.altoButton1.Margin = new System.Windows.Forms.Padding(2);
             this.altoButton1.Name = "altoButton1";
             this.altoButton1.Radius = 10;
             this.altoButton1.Size = new System.Drawing.Size(84, 24);
@@ -78,7 +78,7 @@
             this.altoButton2.Inactive1 = System.Drawing.Color.DarkGray;
             this.altoButton2.Inactive2 = System.Drawing.Color.DarkGray;
             this.altoButton2.Location = new System.Drawing.Point(356, 309);
-            this.altoButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.altoButton2.Margin = new System.Windows.Forms.Padding(2);
             this.altoButton2.Name = "altoButton2";
             this.altoButton2.Radius = 10;
             this.altoButton2.Size = new System.Drawing.Size(88, 24);
@@ -110,7 +110,7 @@
             this.Controls.Add(this.altoButton1);
             this.Controls.Add(this.richTextBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "BulletinBoard_2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

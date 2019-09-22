@@ -13,12 +13,13 @@ using System.Windows.Forms;
 
 namespace BusinessSystem
 {
-    public partial class CreateEmployeeForm : Form
+    public partial class CreateEmployeeForm : SonForm
     {
         public CreateEmployeeForm()
         {
             InitializeComponent();
-
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
         MemberClass CheckTextboxClass = new MemberClass();
         BusinessDataBaseEntities dbcontext;

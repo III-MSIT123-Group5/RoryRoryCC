@@ -118,7 +118,7 @@
             this.btnEmployee.Location = new System.Drawing.Point(615, 3);
             this.btnEmployee.Name = "btnEmployee";
             this.btnEmployee.Size = new System.Drawing.Size(199, 200);
-            this.btnEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnEmployee.TabIndex = 53;
             this.btnEmployee.Title = "label";
             this.btnEmployee.TitleColor = System.Drawing.Color.White;
@@ -324,8 +324,9 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "MainForm";
+            this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MainForm";
+            this.Text = "主頁面";
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

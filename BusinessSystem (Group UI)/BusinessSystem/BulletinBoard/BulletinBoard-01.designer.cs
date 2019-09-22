@@ -205,6 +205,7 @@
             this.Controls.Add(this.clsAltoButton1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "BulletinBoard";

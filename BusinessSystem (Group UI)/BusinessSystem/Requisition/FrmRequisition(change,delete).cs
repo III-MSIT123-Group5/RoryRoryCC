@@ -17,6 +17,7 @@ namespace BusinessSystem.Requisition
         {
             InitializeComponent();
         }  
+
         BusinessDataBaseEntities dbContext = new BusinessDataBaseEntities();
 
         //展示單筆
@@ -30,7 +31,6 @@ namespace BusinessSystem.Requisition
                 }
                 else
                 {
-
                     var report = (from RC in this.dbContext.ReportCategories.AsEnumerable()
                                   join RM in this.dbContext.RequisitionMains.AsEnumerable() on RC.ReportID equals RM.ReportID
                                   join OD in this.dbContext.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
@@ -60,28 +60,41 @@ namespace BusinessSystem.Requisition
         //修改
         private void btnChange_Click(object sender, EventArgs e)
         {
+            if (txtProcductName.Text == "" || txtUnitPrice.Text == "" || txtQuantity.Text == "" || txtNote.Text == "")
+            {
+                MessageBox.Show("請輸入修改資料!!!");                
+            }
+            else
+            { 
             try
             {
-                var report = (from RM in this.dbContext.RequisitionMains.AsEnumerable()
-                              join OD in this.dbContext.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
-                              where OD.OrderID == Convert.ToInt32(txtReportID.Text)
-                              select OD).FirstOrDefault();
+                    this.Cursor = Cursors.WaitCursor;
+                    try
+                    {
+                        var report = (from RM in this.dbContext.RequisitionMains.AsEnumerable()
+                                      join OD in this.dbContext.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
+                                      where OD.OrderID == Convert.ToInt32(txtReportID.Text)
+                                      select OD).FirstOrDefault();
 
-                report.ProductName = txtProcductName.Text;
-                report.UnitPrice = decimal.Parse(txtUnitPrice.Text);
-                report.Quantity = Convert.ToInt32(txtQuantity.Text);
-                report.Note = txtNote.Text;
+                        report.ProductName = txtProcductName.Text;
+                        report.UnitPrice = decimal.Parse(txtUnitPrice.Text);
+                        report.Quantity = Convert.ToInt32(txtQuantity.Text);
+                        report.Note = txtNote.Text;
 
-                this.dbContext.SaveChanges();
-                DataGridViewFormat2();
+                        this.dbContext.SaveChanges();
+                        DataGridViewFormat2();
+                    }
+                    finally
+                    {
+                        this.Cursor = Cursors.Default;
+                    }
 
                 MessageBox.Show("購案更新成功");
-
-                this.dbContext.Dispose();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
             }
         }
 
@@ -90,22 +103,28 @@ namespace BusinessSystem.Requisition
         {
             try
             {
-                var report1 = (from OD in this.dbContext.OrderDetails.AsEnumerable()
-                              where OD.OrderID == int.Parse(txtReportID.Text)
-                              select OD ).FirstOrDefault();
+                this.Cursor = Cursors.WaitCursor;
+                try
+                {
+                    var report1 = (from OD in this.dbContext.OrderDetails.AsEnumerable()
+                                   where OD.OrderID == int.Parse(txtReportID.Text)
+                                   select OD).FirstOrDefault();
 
-                var report2 = (from RM in this.dbContext.RequisitionMains.AsEnumerable()
-                              where RM.OrderID == int.Parse(txtReportID.Text)
-                              select RM).FirstOrDefault();
+                    var report2 = (from RM in this.dbContext.RequisitionMains.AsEnumerable()
+                                   where RM.OrderID == int.Parse(txtReportID.Text)
+                                   select RM).FirstOrDefault();
 
-                this.dbContext.OrderDetails.Remove(report1);
-                this.dbContext.RequisitionMains.Remove(report2);
-                this.dbContext.SaveChanges();
-                DataGridViewFormat2();
+                    this.dbContext.OrderDetails.Remove(report1);
+                    this.dbContext.RequisitionMains.Remove(report2);
+                    this.dbContext.SaveChanges();
+                    DataGridViewFormat2();
+                }
+                finally
+                {
+                    this.Cursor = Cursors.Default;
+                }
 
                 MessageBox.Show("購案刪除成功");
-
-                this.dbContext.Dispose();
             }
             catch (Exception ex)
             {
@@ -113,26 +132,34 @@ namespace BusinessSystem.Requisition
             }
         }
 
-        //DataGridView顯示各人資料
+        //DataGridView顯示個人所有資料
         //DataGridView格式
         private void DataGridViewFormat1()
         {
             dataGridView1.Columns.Clear();
 
-            var report = from RM in this.dbContext.RequisitionMains.AsEnumerable()
-                         join OD in this.dbContext.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
-                         where RM.EmployeeID == LoginID
-                         select new
-                         {
-                             請購單號 = OD.OrderID,
-                             產品名稱 = OD.ProductName,
-                             單價 = $"{OD.UnitPrice:c0}".ToString(),
-                             數量 = OD.Quantity,
-                             總價 = $"{OD.TotalPrice:c0}".ToString(),
-                             請購原因 = OD.Note
-                         };
+            this.Cursor = Cursors.WaitCursor;
+            try
+            {
+                var report = from RM in this.dbContext.RequisitionMains.AsEnumerable()
+                             join OD in this.dbContext.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
+                             where RM.EmployeeID == LoginID
+                             select new
+                             {
+                                 請購單號 = OD.OrderID,
+                                 產品名稱 = OD.ProductName,
+                                 單價 = $"{OD.UnitPrice:c0}".ToString(),
+                                 數量 = OD.Quantity,
+                                 總價 = $"{OD.TotalPrice:c0}".ToString(),
+                                 請購原因 = OD.Note
+                             };
 
-            dataGridView1.DataSource = report.ToList();
+                dataGridView1.DataSource = report.ToList();
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
 
             dataGridView1.Columns[0].Width = 80;
             dataGridView1.Columns[1].Width = 80;
@@ -162,19 +189,27 @@ namespace BusinessSystem.Requisition
         {
             dataGridView1.Columns.Clear();
 
-            var report = from OD in this.dbContext.OrderDetails.AsEnumerable()
-                         where OD.OrderID == Convert.ToInt32(txtReportID.Text)
-                         select new
-                         {
-                             請購單號 = OD.OrderID,
-                             產品名稱 = OD.ProductName,
-                             單價 = OD.UnitPrice,
-                             數量 = OD.Quantity,
-                             總價 = OD.TotalPrice,
-                             請購原因 = OD.Note
-                         };
+            this.Cursor = Cursors.WaitCursor;
+            try
+            {
+                var report = from OD in this.dbContext.OrderDetails.AsEnumerable()
+                             where OD.OrderID == Convert.ToInt32(txtReportID.Text)
+                             select new
+                             {
+                                 請購單號 = OD.OrderID,
+                                 產品名稱 = OD.ProductName,
+                                 單價 = $"{OD.UnitPrice:c0}".ToString(),
+                                 數量 = OD.Quantity,
+                                 總價 = $"{OD.TotalPrice:c0}".ToString(),
+                                 請購原因 = OD.Note
+                             };
 
-            dataGridView1.DataSource = report.ToList();
+                dataGridView1.DataSource = report.ToList();
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
 
             dataGridView1.Columns[0].Width = 80;
             dataGridView1.Columns[1].Width = 80;
