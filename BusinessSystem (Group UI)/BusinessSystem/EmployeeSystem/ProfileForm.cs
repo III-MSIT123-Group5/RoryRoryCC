@@ -16,7 +16,8 @@ namespace BusinessSystem.EmployeeSystem
         BusinessDataBaseEntities dbcontext = new BusinessDataBaseEntities();
 
         public ProfileForm()
-        {            
+        {
+            this.StartPosition = FormStartPosition.CenterScreen ;
             var q = this.dbcontext.Employees.Where(p => p.employeeID == ClassEmployee.LoginEmployeeID).Select(p => p);
             InitializeComponent();
             foreach (var s in q)
