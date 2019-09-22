@@ -526,7 +526,6 @@ namespace BusinessSystem
                     break;
             }
         }
-
         
 
         private void cmbPositionID_TextChanged(object sender, EventArgs e)
