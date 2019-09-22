@@ -17,6 +17,8 @@ namespace BusinessSystem.EmployeeSystem
 
         public ProfileForm()
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.StartPosition = FormStartPosition.CenterScreen ;
             var q = this.dbcontext.Employees.Where(p => p.employeeID == ClassEmployee.LoginEmployeeID).Select(p => p);
             InitializeComponent();
