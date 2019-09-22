@@ -42,12 +42,16 @@
             this.label1.BackColor = System.Drawing.Color.SteelBlue;
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 152);
+            this.label1.Location = new System.Drawing.Point(3, 157);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(195, 37);
             this.label1.TabIndex = 14;
             this.label1.Text = "label";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Click += new System.EventHandler(this.label1_Click_1);
+            this.label1.MouseEnter += new System.EventHandler(this.label1_MouseEnter_1);
+            this.label1.MouseLeave += new System.EventHandler(this.label1_MouseLeave_1);
+            this.label1.MouseHover += new System.EventHandler(this.label1_MouseHover_1);
             // 
             // pictureBox1
             // 
@@ -56,12 +60,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.SteelBlue;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.Location = new System.Drawing.Point(27, 24);
+            this.pictureBox1.Location = new System.Drawing.Point(29, 25);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(143, 125);
+            this.pictureBox1.Size = new System.Drawing.Size(144, 125);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
+            this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter_1);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave_1);
+            this.pictureBox1.MouseHover += new System.EventHandler(this.pictureBox1_MouseHover_1);
             // 
             // clsAltoButton1
             // 
@@ -85,6 +93,10 @@
             this.clsAltoButton1.TabIndex = 12;
             this.clsAltoButton1.Transparency = false;
             this.clsAltoButton1.Click += new System.EventHandler(this.clsAltoButton1_Click);
+            this.clsAltoButton1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.clsAltoButton1_MouseDown_1);
+            this.clsAltoButton1.MouseEnter += new System.EventHandler(this.clsAltoButton1_MouseEnter_1);
+            this.clsAltoButton1.MouseLeave += new System.EventHandler(this.clsAltoButton1_MouseLeave_1);
+            this.clsAltoButton1.MouseHover += new System.EventHandler(this.clsAltoButton1_MouseHover_1);
             // 
             // EmployeeControl
             // 

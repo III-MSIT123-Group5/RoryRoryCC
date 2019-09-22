@@ -46,7 +46,6 @@
             this.cmbDepartmentID = new System.Windows.Forms.ComboBox();
             this.cmbPositionID = new System.Windows.Forms.ComboBox();
             this.cmbEmployed = new System.Windows.Forms.ComboBox();
-            this.btnClear = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
@@ -57,11 +56,11 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.cmbManagerID = new System.Windows.Forms.ComboBox();
+            this.btnClearAll = new BusinessSystem.ClsAltoButton();
+            this.btnCreatAccount = new BusinessSystem.ClsAltoButton();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnCreatAccount = new BusinessSystem.ClsAltoButton();
-            this.btnClearAll = new BusinessSystem.ClsAltoButton();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,7 +79,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label5.Location = new System.Drawing.Point(27, 179);
+            this.label5.Location = new System.Drawing.Point(27, 173);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 18);
@@ -92,7 +91,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label6.Location = new System.Drawing.Point(27, 227);
+            this.label6.Location = new System.Drawing.Point(27, 216);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(78, 18);
@@ -116,7 +115,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label8.Location = new System.Drawing.Point(391, 136);
+            this.label8.Location = new System.Drawing.Point(391, 132);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(65, 18);
@@ -128,7 +127,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label10.Location = new System.Drawing.Point(390, 318);
+            this.label10.Location = new System.Drawing.Point(390, 321);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(64, 18);
@@ -139,7 +138,7 @@
             // txtAccount
             // 
             this.txtAccount.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtAccount.Location = new System.Drawing.Point(123, 272);
+            this.txtAccount.Location = new System.Drawing.Point(123, 256);
             this.txtAccount.Margin = new System.Windows.Forms.Padding(4);
             this.txtAccount.Name = "txtAccount";
             this.txtAccount.Size = new System.Drawing.Size(206, 26);
@@ -152,7 +151,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label11.Location = new System.Drawing.Point(27, 275);
+            this.label11.Location = new System.Drawing.Point(27, 260);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(78, 18);
@@ -164,7 +163,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label12.Location = new System.Drawing.Point(390, 83);
+            this.label12.Location = new System.Drawing.Point(390, 84);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(79, 18);
@@ -176,7 +175,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label13.Location = new System.Drawing.Point(391, 185);
+            this.label13.Location = new System.Drawing.Point(391, 180);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(65, 18);
@@ -186,7 +185,7 @@
             // 
             // dTPicBirth
             // 
-            this.dTPicBirth.Location = new System.Drawing.Point(123, 179);
+            this.dTPicBirth.Location = new System.Drawing.Point(123, 168);
             this.dTPicBirth.Name = "dTPicBirth";
             this.dTPicBirth.Size = new System.Drawing.Size(206, 26);
             this.dTPicBirth.TabIndex = 3;
@@ -194,7 +193,7 @@
             // 
             // dTPicHireDate
             // 
-            this.dTPicHireDate.Location = new System.Drawing.Point(123, 227);
+            this.dTPicHireDate.Location = new System.Drawing.Point(123, 212);
             this.dTPicHireDate.Name = "dTPicHireDate";
             this.dTPicHireDate.Size = new System.Drawing.Size(206, 26);
             this.dTPicHireDate.TabIndex = 4;
@@ -214,7 +213,7 @@
             // 
             this.cmbDepartmentID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDepartmentID.FormattingEnabled = true;
-            this.cmbDepartmentID.Location = new System.Drawing.Point(503, 133);
+            this.cmbDepartmentID.Location = new System.Drawing.Point(503, 127);
             this.cmbDepartmentID.Name = "cmbDepartmentID";
             this.cmbDepartmentID.Size = new System.Drawing.Size(206, 26);
             this.cmbDepartmentID.TabIndex = 9;
@@ -226,7 +225,7 @@
             // 
             this.cmbPositionID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPositionID.FormattingEnabled = true;
-            this.cmbPositionID.Location = new System.Drawing.Point(503, 224);
+            this.cmbPositionID.Location = new System.Drawing.Point(503, 221);
             this.cmbPositionID.Name = "cmbPositionID";
             this.cmbPositionID.Size = new System.Drawing.Size(206, 26);
             this.cmbPositionID.TabIndex = 11;
@@ -243,26 +242,16 @@
             this.cmbEmployed.Items.AddRange(new object[] {
             "離職",
             "在職"});
-            this.cmbEmployed.Location = new System.Drawing.Point(503, 318);
+            this.cmbEmployed.Location = new System.Drawing.Point(503, 315);
             this.cmbEmployed.Name = "cmbEmployed";
             this.cmbEmployed.Size = new System.Drawing.Size(206, 26);
             this.cmbEmployed.TabIndex = 13;
             this.toolTip1.SetToolTip(this.cmbEmployed, "employed");
             // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(547, 407);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(137, 39);
-            this.btnClear.TabIndex = 15;
-            this.btnClear.Text = "重新輸入";
-            this.toolTip1.SetToolTip(this.btnClear, "重新輸入表格");
-            this.btnClear.UseVisualStyleBackColor = true;
-            // 
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtPassword.Location = new System.Drawing.Point(123, 310);
+            this.txtPassword.Location = new System.Drawing.Point(123, 300);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
@@ -274,7 +263,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label14.Location = new System.Drawing.Point(27, 313);
+            this.label14.Location = new System.Drawing.Point(27, 304);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(78, 18);
@@ -285,7 +274,7 @@
             // txtConfirmPassword
             // 
             this.txtConfirmPassword.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtConfirmPassword.Location = new System.Drawing.Point(123, 348);
+            this.txtConfirmPassword.Location = new System.Drawing.Point(123, 344);
             this.txtConfirmPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.PasswordChar = '*';
@@ -297,7 +286,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label15.Location = new System.Drawing.Point(27, 351);
+            this.label15.Location = new System.Drawing.Point(27, 347);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(78, 18);
@@ -312,7 +301,7 @@
             this.cmbGender.Items.AddRange(new object[] {
             "F",
             "M"});
-            this.cmbGender.Location = new System.Drawing.Point(123, 128);
+            this.cmbGender.Location = new System.Drawing.Point(123, 124);
             this.cmbGender.Name = "cmbGender";
             this.cmbGender.Size = new System.Drawing.Size(206, 26);
             this.cmbGender.TabIndex = 2;
@@ -325,7 +314,7 @@
             this.cmbGroupID.Items.AddRange(new object[] {
             "離職",
             "在職"});
-            this.cmbGroupID.Location = new System.Drawing.Point(503, 179);
+            this.cmbGroupID.Location = new System.Drawing.Point(503, 174);
             this.cmbGroupID.Name = "cmbGroupID";
             this.cmbGroupID.Size = new System.Drawing.Size(206, 26);
             this.cmbGroupID.TabIndex = 10;
@@ -338,7 +327,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label9.Location = new System.Drawing.Point(391, 275);
+            this.label9.Location = new System.Drawing.Point(391, 273);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(93, 18);
@@ -350,7 +339,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label16.Location = new System.Drawing.Point(27, 88);
+            this.label16.Location = new System.Drawing.Point(27, 84);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(50, 18);
@@ -362,7 +351,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label17.Location = new System.Drawing.Point(27, 133);
+            this.label17.Location = new System.Drawing.Point(27, 129);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(50, 18);
@@ -374,11 +363,55 @@
             // 
             this.cmbManagerID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbManagerID.FormattingEnabled = true;
-            this.cmbManagerID.Location = new System.Drawing.Point(503, 272);
+            this.cmbManagerID.Location = new System.Drawing.Point(503, 268);
             this.cmbManagerID.Name = "cmbManagerID";
             this.cmbManagerID.Size = new System.Drawing.Size(206, 26);
             this.cmbManagerID.TabIndex = 12;
             this.toolTip1.SetToolTip(this.cmbManagerID, "managerID");
+            // 
+            // btnClearAll
+            // 
+            this.btnClearAll.Active1 = System.Drawing.Color.CornflowerBlue;
+            this.btnClearAll.Active2 = System.Drawing.Color.CornflowerBlue;
+            this.btnClearAll.BackColor = System.Drawing.Color.Transparent;
+            this.btnClearAll.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnClearAll.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnClearAll.ForeColor = System.Drawing.Color.White;
+            this.btnClearAll.Inactive1 = System.Drawing.Color.Firebrick;
+            this.btnClearAll.Inactive2 = System.Drawing.Color.Firebrick;
+            this.btnClearAll.Location = new System.Drawing.Point(547, 365);
+            this.btnClearAll.Name = "btnClearAll";
+            this.btnClearAll.Radius = 10;
+            this.btnClearAll.Size = new System.Drawing.Size(137, 39);
+            this.btnClearAll.Stroke = false;
+            this.btnClearAll.StrokeColor = System.Drawing.Color.Gray;
+            this.btnClearAll.TabIndex = 44;
+            this.btnClearAll.Text = "重新輸入";
+            this.toolTip1.SetToolTip(this.btnClearAll, "重新輸入表格");
+            this.btnClearAll.Transparency = false;
+            this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
+            // 
+            // btnCreatAccount
+            // 
+            this.btnCreatAccount.Active1 = System.Drawing.Color.CornflowerBlue;
+            this.btnCreatAccount.Active2 = System.Drawing.Color.CornflowerBlue;
+            this.btnCreatAccount.BackColor = System.Drawing.Color.Transparent;
+            this.btnCreatAccount.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnCreatAccount.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnCreatAccount.ForeColor = System.Drawing.Color.White;
+            this.btnCreatAccount.Inactive1 = System.Drawing.Color.DarkSlateBlue;
+            this.btnCreatAccount.Inactive2 = System.Drawing.Color.DarkSlateBlue;
+            this.btnCreatAccount.Location = new System.Drawing.Point(393, 365);
+            this.btnCreatAccount.Name = "btnCreatAccount";
+            this.btnCreatAccount.Radius = 10;
+            this.btnCreatAccount.Size = new System.Drawing.Size(137, 39);
+            this.btnCreatAccount.Stroke = false;
+            this.btnCreatAccount.StrokeColor = System.Drawing.Color.Gray;
+            this.btnCreatAccount.TabIndex = 43;
+            this.btnCreatAccount.Text = "新增";
+            this.toolTip1.SetToolTip(this.btnCreatAccount, "新增員工資料");
+            this.btnCreatAccount.Transparency = false;
+            this.btnCreatAccount.Click += new System.EventHandler(this.btnCreatAccount_Click);
             // 
             // label3
             // 
@@ -406,50 +439,6 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // btnCreatAccount
-            // 
-            this.btnCreatAccount.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.btnCreatAccount.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
-            this.btnCreatAccount.BackColor = System.Drawing.Color.Transparent;
-            this.btnCreatAccount.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnCreatAccount.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnCreatAccount.ForeColor = System.Drawing.Color.Black;
-            this.btnCreatAccount.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
-            this.btnCreatAccount.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnCreatAccount.Location = new System.Drawing.Point(393, 365);
-            this.btnCreatAccount.Name = "btnCreatAccount";
-            this.btnCreatAccount.Radius = 10;
-            this.btnCreatAccount.Size = new System.Drawing.Size(137, 39);
-            this.btnCreatAccount.Stroke = false;
-            this.btnCreatAccount.StrokeColor = System.Drawing.Color.Gray;
-            this.btnCreatAccount.TabIndex = 43;
-            this.btnCreatAccount.Text = "新增";
-            this.toolTip1.SetToolTip(this.btnCreatAccount, "新增員工資料");
-            this.btnCreatAccount.Transparency = false;
-            this.btnCreatAccount.Click += new System.EventHandler(this.btnCreatAccount_Click);
-            // 
-            // btnClearAll
-            // 
-            this.btnClearAll.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.btnClearAll.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
-            this.btnClearAll.BackColor = System.Drawing.Color.Transparent;
-            this.btnClearAll.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnClearAll.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnClearAll.ForeColor = System.Drawing.Color.Black;
-            this.btnClearAll.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
-            this.btnClearAll.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnClearAll.Location = new System.Drawing.Point(547, 365);
-            this.btnClearAll.Name = "btnClearAll";
-            this.btnClearAll.Radius = 10;
-            this.btnClearAll.Size = new System.Drawing.Size(137, 39);
-            this.btnClearAll.Stroke = false;
-            this.btnClearAll.StrokeColor = System.Drawing.Color.Gray;
-            this.btnClearAll.TabIndex = 44;
-            this.btnClearAll.Text = "重新輸入";
-            this.toolTip1.SetToolTip(this.btnClearAll, "重新輸入表格");
-            this.btnClearAll.Transparency = false;
-            this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
-            // 
             // CreateEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -466,7 +455,6 @@
             this.Controls.Add(this.label15);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.cmbEmployed);
             this.Controls.Add(this.cmbPositionID);
             this.Controls.Add(this.cmbDepartmentID);
@@ -517,7 +505,6 @@
         private System.Windows.Forms.ComboBox cmbDepartmentID;
         private System.Windows.Forms.ComboBox cmbPositionID;
         private System.Windows.Forms.ComboBox cmbEmployed;
-        private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtConfirmPassword;

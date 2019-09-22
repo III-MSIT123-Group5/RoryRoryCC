@@ -123,6 +123,46 @@ namespace BusinessSystem.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap edit_user_128 {
+            get {
+                object obj = ResourceManager.GetObject("edit-user-128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap human_resources_png_4315475 {
+            get {
+                object obj = ResourceManager.GetObject("human_resources-png-4315475", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap human_resources_png_4315475__1_ {
+            get {
+                object obj = ResourceManager.GetObject("human_resources-png-4315475 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap logout_128 {
+            get {
+                object obj = ResourceManager.GetObject("logout-128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap neutral_dicision_128 {
             get {
                 object obj = ResourceManager.GetObject("neutral-dicision-128", resourceCulture);

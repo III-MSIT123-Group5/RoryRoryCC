@@ -52,11 +52,6 @@ namespace BusinessSystem.EmployeeSystem
                     EmpName = v.EmployeeName;
                 }
 
-                //if (txtLoginAccount.Text == null && txtLoginPassword.Text == null)
-                //{
-                //    MessageBox.Show("請先輸入帳號及密碼！", "帳號及密碼不可為空", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //}
-
                 if (q.Any())
                 {
                     //readname.EmpAcount = this.txtLoginAccount.Text;//擷取登入者姓名 (Kai)
@@ -75,7 +70,7 @@ namespace BusinessSystem.EmployeeSystem
                 }
             }
             finally
-            {
+            {                
                 this.Cursor = Cursors.Default;
             }
         }

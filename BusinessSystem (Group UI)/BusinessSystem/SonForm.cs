@@ -76,9 +76,10 @@ namespace BusinessSystem
             pf.Show();
         }
 
-        private void clsAltoButton1_Click(object sender, EventArgs e)
+
+        private void pictureBox3_Click(object sender, EventArgs e)
         {
-           if (MessageBox.Show ($"確定登出 {name} 的帳號？","登出", MessageBoxButtons.YesNo ,MessageBoxIcon.Question )==DialogResult.Yes)
+            if (MessageBox.Show($"確定登出 {name} 的帳號？", "登出", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Application.Restart();
                 this.Close();

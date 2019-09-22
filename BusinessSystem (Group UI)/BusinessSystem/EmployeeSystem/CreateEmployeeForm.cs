@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace BusinessSystem
 {
-    public partial class CreateEmployeeForm : Form
+    public partial class CreateEmployeeForm : SonForm
     {
         public CreateEmployeeForm()
         {
@@ -526,7 +526,6 @@ namespace BusinessSystem
                     break;
             }
         }
-
         
 
         private void cmbPositionID_TextChanged(object sender, EventArgs e)

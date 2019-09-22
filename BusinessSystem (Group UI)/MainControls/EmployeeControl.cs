@@ -201,5 +201,66 @@ namespace MainControls
 
             }
         }
+
+        private void clsAltoButton1_MouseEnter_1(object sender, EventArgs e)
+        {
+            this.OnMouseEnter(e);
+        }
+
+        private void clsAltoButton1_MouseHover_1(object sender, EventArgs e)
+        {
+            this.OnMouseHover(e);
+        }
+
+
+        private void clsAltoButton1_MouseLeave_1(object sender, EventArgs e)
+        {
+            this.OnMouseLeave(e);
+        }
+
+        private void clsAltoButton1_MouseDown_1(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+            this.OnClick(e);
+        }
+
+        private void pictureBox1_MouseEnter_1(object sender, EventArgs e)
+        {
+            this.OnMouseEnter(e);
+        }
+
+        private void pictureBox1_MouseHover_1(object sender, EventArgs e)
+        {
+            this.OnMouseHover(e);
+        }
+
+        private void pictureBox1_MouseLeave_1(object sender, EventArgs e)
+        {
+            this.OnMouseLeave(e);
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+            this.OnClick(e);
+        }
+
+        private void label1_MouseEnter_1(object sender, EventArgs e)
+        {
+            this.OnMouseEnter(e);
+        }
+
+        private void label1_MouseHover_1(object sender, EventArgs e)
+        {
+            this.OnMouseHover(e);
+        }
+
+        private void label1_MouseLeave_1(object sender, EventArgs e)
+        {
+            this.OnMouseLeave(e);
+        }
     }
 }

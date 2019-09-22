@@ -30,240 +30,326 @@
         {
             this.components = new System.ComponentModel.Container();
             this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
-            this.timeControl1 = new MainControls.TimeControl();
-            this.mcEmployee = new MainControls.EmployeeControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.mcCalendar = new MainControls.MainControls();
-            this.mcBulletinBoard = new MainControls.MainControls();
-            this.mcLeave = new MainControls.MainControls();
-            this.mcReportTime = new MainControls.MainControls();
-            this.mcDocument = new MainControls.MainControls();
-            this.mcCompanyCars = new MainControls.MainControls();
-            this.mcMeetingRoom = new MainControls.MainControls();
-            this.mcRequisition = new MainControls.MainControls();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.timeControl1 = new MainControls.TimeControl();
+            this.btnCalendar = new MainControls.MainControls();
+            this.btnEmployee = new MainControls.EmployeeControl();
+            this.btnBulletinBoard = new MainControls.MainControls();
+            this.btnLeave = new MainControls.MainControls();
+            this.btnReportTime = new MainControls.MainControls();
+            this.btnDocument = new MainControls.MainControls();
+            this.btnCompanyCars = new MainControls.MainControls();
+            this.btnMeetingRoom = new MainControls.MainControls();
+            this.btnRequisition = new MainControls.MainControls();
+            this.btnHRSystem = new MainControls.MainControls();
+            this.btnLogOut = new MainControls.MainControls();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // timeControl1
-            // 
-            this.timeControl1.AMText = "AM";
-            this.timeControl1.BackgroundColor = System.Drawing.Color.Empty;
-            this.timeControl1.ButtonColor = System.Drawing.Color.DarkSlateBlue;
-            this.timeControl1.DateText = "2019/9/20";
-            this.timeControl1.Location = new System.Drawing.Point(16, 17);
-            this.timeControl1.Name = "timeControl1";
-            this.timeControl1.SecondText = "59";
-            this.timeControl1.Size = new System.Drawing.Size(411, 200);
-            this.timeControl1.TabIndex = 55;
-            this.timeControl1.TimeText = "10:00";
-            this.timeControl1.TitleColor = System.Drawing.Color.White;
-            // 
-            // mcEmployee
-            // 
-            this.mcEmployee.BackgroundColor = System.Drawing.Color.Empty;
-            this.mcEmployee.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.mcEmployee.ButtonColor = System.Drawing.SystemColors.ActiveCaption;
-            this.mcEmployee.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.mcEmployee.image = null;
-            this.mcEmployee.ImageLocation = null;
-            this.mcEmployee.Location = new System.Drawing.Point(645, 17);
-            this.mcEmployee.Name = "mcEmployee";
-            this.mcEmployee.Size = new System.Drawing.Size(200, 200);
-            this.mcEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.mcEmployee.TabIndex = 53;
-            this.mcEmployee.Title = "label";
-            this.mcEmployee.TitleColor = System.Drawing.Color.White;
-            this.mcEmployee.Click += new System.EventHandler(this.mcEmployee_Click);
-            this.mcEmployee.MouseEnter += new System.EventHandler(this.mcEmployee_MouseEnter);
-            this.mcEmployee.MouseLeave += new System.EventHandler(this.mcEmployee_MouseLeave);
             // 
             // timer1
             // 
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // mcCalendar
+            // flowLayoutPanel1
             // 
-            this.mcCalendar.BackgroundColor = System.Drawing.Color.Empty;
-            this.mcCalendar.ButtonColor = System.Drawing.Color.SteelBlue;
-            this.mcCalendar.image = global::BusinessSystem.Properties.Resources.calendar_3_128;
-            this.mcCalendar.ImageLocation = null;
-            this.mcCalendar.Location = new System.Drawing.Point(436, 17);
-            this.mcCalendar.Margin = new System.Windows.Forms.Padding(2);
-            this.mcCalendar.Name = "mcCalendar";
-            this.mcCalendar.Size = new System.Drawing.Size(200, 200);
-            this.mcCalendar.TabIndex = 44;
-            this.mcCalendar.Title = "行事曆";
-            this.mcCalendar.TitleColor = System.Drawing.Color.White;
-            this.mcCalendar.MouseEnter += new System.EventHandler(this.mcCalendar_MouseEnter);
-            this.mcCalendar.MouseLeave += new System.EventHandler(this.mcCalendar_MouseLeave);
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.timeControl1);
+            this.flowLayoutPanel1.Controls.Add(this.btnCalendar);
+            this.flowLayoutPanel1.Controls.Add(this.btnEmployee);
+            this.flowLayoutPanel1.Controls.Add(this.btnBulletinBoard);
+            this.flowLayoutPanel1.Controls.Add(this.btnLeave);
+            this.flowLayoutPanel1.Controls.Add(this.btnReportTime);
+            this.flowLayoutPanel1.Controls.Add(this.btnDocument);
+            this.flowLayoutPanel1.Controls.Add(this.btnCompanyCars);
+            this.flowLayoutPanel1.Controls.Add(this.btnMeetingRoom);
+            this.flowLayoutPanel1.Controls.Add(this.btnRequisition);
+            this.flowLayoutPanel1.Controls.Add(this.btnHRSystem);
+            this.flowLayoutPanel1.Controls.Add(this.btnLogOut);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 13);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(10);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(835, 615);
+            this.flowLayoutPanel1.TabIndex = 52;
             // 
-            // mcBulletinBoard
+            // timeControl1
             // 
-            this.mcBulletinBoard.BackgroundColor = System.Drawing.Color.Empty;
-            this.mcBulletinBoard.ButtonColor = System.Drawing.Color.SteelBlue;
-            this.mcBulletinBoard.image = global::BusinessSystem.Properties.Resources.edit_property_128;
-            this.mcBulletinBoard.ImageLocation = null;
-            this.mcBulletinBoard.Location = new System.Drawing.Point(16, 225);
-            this.mcBulletinBoard.Margin = new System.Windows.Forms.Padding(2);
-            this.mcBulletinBoard.Name = "mcBulletinBoard";
-            this.mcBulletinBoard.Size = new System.Drawing.Size(411, 200);
-            this.mcBulletinBoard.TabIndex = 50;
-            this.mcBulletinBoard.Title = "佈告欄";
-            this.mcBulletinBoard.TitleColor = System.Drawing.Color.White;
-            this.mcBulletinBoard.Click += new System.EventHandler(this.mcBulletinBoard_Click);
-            this.mcBulletinBoard.MouseEnter += new System.EventHandler(this.mcBulletinBoard_MouseEnter);
-            this.mcBulletinBoard.MouseLeave += new System.EventHandler(this.mcBulletinBoard_MouseLeave);
+            this.timeControl1.AMText = "PM";
+            this.timeControl1.BackgroundColor = System.Drawing.Color.Empty;
+            this.timeControl1.ButtonColor = System.Drawing.Color.DarkSlateBlue;
+            this.timeControl1.DateText = "2019-09-20";
+            this.timeControl1.Location = new System.Drawing.Point(3, 3);
+            this.timeControl1.Name = "timeControl1";
+            this.timeControl1.SecondText = "59";
+            this.timeControl1.Size = new System.Drawing.Size(403, 200);
+            this.timeControl1.TabIndex = 54;
+            this.timeControl1.TimeText = "10:00";
+            this.timeControl1.TitleColor = System.Drawing.Color.White;
             // 
-            // mcLeave
+            // btnCalendar
             // 
-            this.mcLeave.BackgroundColor = System.Drawing.Color.Empty;
-            this.mcLeave.ButtonColor = System.Drawing.Color.DarkSlateBlue;
-            this.mcLeave.image = global::BusinessSystem.Properties.Resources.time_8_128;
-            this.mcLeave.ImageLocation = null;
-            this.mcLeave.Location = new System.Drawing.Point(436, 225);
-            this.mcLeave.Margin = new System.Windows.Forms.Padding(2);
-            this.mcLeave.Name = "mcLeave";
-            this.mcLeave.Size = new System.Drawing.Size(200, 200);
-            this.mcLeave.TabIndex = 46;
-            this.mcLeave.Title = "請假";
-            this.mcLeave.TitleColor = System.Drawing.Color.White;
-            this.mcLeave.MouseEnter += new System.EventHandler(this.mcLeave_MouseEnter);
-            this.mcLeave.MouseLeave += new System.EventHandler(this.mcLeave_MouseLeave);
+            this.btnCalendar.BackgroundColor = System.Drawing.Color.Empty;
+            this.btnCalendar.ButtonColor = System.Drawing.Color.SteelBlue;
+            this.btnCalendar.image = global::BusinessSystem.Properties.Resources.calendar_3_128;
+            this.btnCalendar.ImageLocation = null;
+            this.btnCalendar.Location = new System.Drawing.Point(411, 2);
+            this.btnCalendar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCalendar.Name = "btnCalendar";
+            this.btnCalendar.Size = new System.Drawing.Size(199, 200);
+            this.btnCalendar.TabIndex = 44;
+            this.btnCalendar.Title = "行事曆";
+            this.btnCalendar.TitleColor = System.Drawing.Color.White;
+            this.btnCalendar.MouseEnter += new System.EventHandler(this.btnCalendar_MouseEnter);
+            this.btnCalendar.MouseLeave += new System.EventHandler(this.btnCalendar_MouseLeave);
             // 
-            // mcReportTime
+            // btnEmployee
             // 
-            this.mcReportTime.BackgroundColor = System.Drawing.Color.Empty;
-            this.mcReportTime.ButtonColor = System.Drawing.Color.SlateGray;
-            this.mcReportTime.image = global::BusinessSystem.Properties.Resources.briefcase_128;
-            this.mcReportTime.ImageLocation = null;
-            this.mcReportTime.Location = new System.Drawing.Point(645, 225);
-            this.mcReportTime.Margin = new System.Windows.Forms.Padding(2);
-            this.mcReportTime.Name = "mcReportTime";
-            this.mcReportTime.Size = new System.Drawing.Size(200, 200);
-            this.mcReportTime.TabIndex = 48;
-            this.mcReportTime.Title = "工時回報";
-            this.mcReportTime.TitleColor = System.Drawing.Color.White;
-            this.mcReportTime.Click += new System.EventHandler(this.mcReportTime_Click);
-            this.mcReportTime.MouseEnter += new System.EventHandler(this.mcReportTime_MouseEnter);
-            this.mcReportTime.MouseLeave += new System.EventHandler(this.mcReportTime_MouseLeave);
+            this.btnEmployee.BackgroundColor = System.Drawing.Color.Empty;
+            this.btnEmployee.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEmployee.ButtonColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnEmployee.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEmployee.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.btnEmployee.image = null;
+            this.btnEmployee.ImageLocation = null;
+            this.btnEmployee.Location = new System.Drawing.Point(615, 3);
+            this.btnEmployee.Name = "btnEmployee";
+            this.btnEmployee.Size = new System.Drawing.Size(199, 200);
+            this.btnEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnEmployee.TabIndex = 53;
+            this.btnEmployee.Title = "label";
+            this.btnEmployee.TitleColor = System.Drawing.Color.White;
+            this.btnEmployee.Click += new System.EventHandler(this.btnEmployee_Click);
+            this.btnEmployee.MouseEnter += new System.EventHandler(this.btnEmployee_MouseEnter);
+            this.btnEmployee.MouseLeave += new System.EventHandler(this.btnEmployee_MouseLeave);
             // 
-            // mcDocument
+            // btnBulletinBoard
             // 
-            this.mcDocument.BackgroundColor = System.Drawing.Color.Empty;
-            this.mcDocument.ButtonColor = System.Drawing.SystemColors.ActiveCaption;
-            this.mcDocument.ForeColor = System.Drawing.Color.White;
-            this.mcDocument.image = global::BusinessSystem.Properties.Resources.report_3_128;
-            this.mcDocument.ImageLocation = null;
-            this.mcDocument.Location = new System.Drawing.Point(16, 433);
-            this.mcDocument.Margin = new System.Windows.Forms.Padding(2);
-            this.mcDocument.Name = "mcDocument";
-            this.mcDocument.Size = new System.Drawing.Size(200, 200);
-            this.mcDocument.TabIndex = 41;
-            this.mcDocument.Title = "文件上傳";
-            this.mcDocument.TitleColor = System.Drawing.Color.Empty;
-            this.mcDocument.Click += new System.EventHandler(this.mcDocument_Click);
-            this.mcDocument.MouseEnter += new System.EventHandler(this.mcDocument_MouseEnter);
-            this.mcDocument.MouseLeave += new System.EventHandler(this.mcDocument_MouseLeave);
+            this.btnBulletinBoard.BackgroundColor = System.Drawing.Color.Empty;
+            this.btnBulletinBoard.ButtonColor = System.Drawing.Color.SteelBlue;
+            this.btnBulletinBoard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBulletinBoard.image = global::BusinessSystem.Properties.Resources.edit_property_128;
+            this.btnBulletinBoard.ImageLocation = null;
+            this.btnBulletinBoard.Location = new System.Drawing.Point(2, 208);
+            this.btnBulletinBoard.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBulletinBoard.Name = "btnBulletinBoard";
+            this.btnBulletinBoard.Size = new System.Drawing.Size(404, 200);
+            this.btnBulletinBoard.TabIndex = 50;
+            this.btnBulletinBoard.Title = "佈告欄";
+            this.btnBulletinBoard.TitleColor = System.Drawing.Color.White;
+            this.btnBulletinBoard.Click += new System.EventHandler(this.btnBulletinBoard_Click);
+            this.btnBulletinBoard.MouseEnter += new System.EventHandler(this.btnBulletinBoard_MouseEnter);
+            this.btnBulletinBoard.MouseLeave += new System.EventHandler(this.btnBulletinBoard_MouseLeave);
             // 
-            // mcCompanyCars
+            // btnLeave
             // 
-            this.mcCompanyCars.BackgroundColor = System.Drawing.Color.Empty;
-            this.mcCompanyCars.ButtonColor = System.Drawing.Color.DarkSlateBlue;
-            this.mcCompanyCars.image = global::BusinessSystem.Properties.Resources.car_128;
-            this.mcCompanyCars.ImageLocation = null;
-            this.mcCompanyCars.Location = new System.Drawing.Point(227, 433);
-            this.mcCompanyCars.Margin = new System.Windows.Forms.Padding(2);
-            this.mcCompanyCars.Name = "mcCompanyCars";
-            this.mcCompanyCars.Size = new System.Drawing.Size(200, 200);
-            this.mcCompanyCars.TabIndex = 47;
-            this.mcCompanyCars.Title = "公務車租借";
-            this.mcCompanyCars.TitleColor = System.Drawing.Color.White;
-            this.mcCompanyCars.Click += new System.EventHandler(this.mcCompanyCars_Click);
-            this.mcCompanyCars.MouseEnter += new System.EventHandler(this.mcCompanyCars_MouseEnter);
-            this.mcCompanyCars.MouseLeave += new System.EventHandler(this.mcCompanyCars_MouseLeave);
+            this.btnLeave.BackgroundColor = System.Drawing.Color.Empty;
+            this.btnLeave.ButtonColor = System.Drawing.Color.DarkSlateBlue;
+            this.btnLeave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLeave.image = global::BusinessSystem.Properties.Resources.time_8_128;
+            this.btnLeave.ImageLocation = null;
+            this.btnLeave.Location = new System.Drawing.Point(410, 208);
+            this.btnLeave.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLeave.Name = "btnLeave";
+            this.btnLeave.Size = new System.Drawing.Size(200, 200);
+            this.btnLeave.TabIndex = 46;
+            this.btnLeave.Title = "請假";
+            this.btnLeave.TitleColor = System.Drawing.Color.White;
+            this.btnLeave.MouseEnter += new System.EventHandler(this.btnLeave_MouseEnter);
+            this.btnLeave.MouseLeave += new System.EventHandler(this.btnLeave_MouseLeave);
             // 
-            // mcMeetingRoom
+            // btnReportTime
             // 
-            this.mcMeetingRoom.BackgroundColor = System.Drawing.Color.Empty;
-            this.mcMeetingRoom.ButtonColor = System.Drawing.Color.SlateGray;
-            this.mcMeetingRoom.image = global::BusinessSystem.Properties.Resources.chair_2_128;
-            this.mcMeetingRoom.ImageLocation = null;
-            this.mcMeetingRoom.Location = new System.Drawing.Point(436, 433);
-            this.mcMeetingRoom.Margin = new System.Windows.Forms.Padding(2);
-            this.mcMeetingRoom.Name = "mcMeetingRoom";
-            this.mcMeetingRoom.Size = new System.Drawing.Size(200, 200);
-            this.mcMeetingRoom.TabIndex = 49;
-            this.mcMeetingRoom.Title = "會議室租借";
-            this.mcMeetingRoom.TitleColor = System.Drawing.Color.White;
-            this.mcMeetingRoom.MouseEnter += new System.EventHandler(this.mcMeetingRoom_MouseEnter);
-            this.mcMeetingRoom.MouseLeave += new System.EventHandler(this.mcMeetingRoom_MouseLeave);
+            this.btnReportTime.BackgroundColor = System.Drawing.Color.Empty;
+            this.btnReportTime.ButtonColor = System.Drawing.Color.SlateGray;
+            this.btnReportTime.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReportTime.image = global::BusinessSystem.Properties.Resources.briefcase_128;
+            this.btnReportTime.ImageLocation = null;
+            this.btnReportTime.Location = new System.Drawing.Point(614, 208);
+            this.btnReportTime.Margin = new System.Windows.Forms.Padding(2);
+            this.btnReportTime.Name = "btnReportTime";
+            this.btnReportTime.Size = new System.Drawing.Size(200, 200);
+            this.btnReportTime.TabIndex = 48;
+            this.btnReportTime.Title = "工時回報";
+            this.btnReportTime.TitleColor = System.Drawing.Color.White;
+            this.btnReportTime.Click += new System.EventHandler(this.btnReportTime_Click);
+            this.btnReportTime.MouseEnter += new System.EventHandler(this.btnReportTime_MouseEnter);
+            this.btnReportTime.MouseLeave += new System.EventHandler(this.btnReportTime_MouseLeave);
             // 
-            // mcRequisition
+            // btnDocument
             // 
-            this.mcRequisition.BackgroundColor = System.Drawing.Color.Empty;
-            this.mcRequisition.ButtonColor = System.Drawing.Color.SteelBlue;
-            this.mcRequisition.image = global::BusinessSystem.Properties.Resources.cart_5_128;
-            this.mcRequisition.ImageLocation = null;
-            this.mcRequisition.Location = new System.Drawing.Point(645, 433);
-            this.mcRequisition.Margin = new System.Windows.Forms.Padding(2);
-            this.mcRequisition.Name = "mcRequisition";
-            this.mcRequisition.Size = new System.Drawing.Size(200, 200);
-            this.mcRequisition.TabIndex = 43;
-            this.mcRequisition.Title = "請購系統";
-            this.mcRequisition.TitleColor = System.Drawing.Color.White;
-            this.mcRequisition.Click += new System.EventHandler(this.mcRequisition_Click);
-            this.mcRequisition.MouseEnter += new System.EventHandler(this.mcRequisition_MouseEnter);
-            this.mcRequisition.MouseLeave += new System.EventHandler(this.mcRequisition_MouseLeave);
+            this.btnDocument.BackgroundColor = System.Drawing.Color.Empty;
+            this.btnDocument.ButtonColor = System.Drawing.Color.SlateGray;
+            this.btnDocument.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDocument.ForeColor = System.Drawing.Color.White;
+            this.btnDocument.image = global::BusinessSystem.Properties.Resources.report_3_128;
+            this.btnDocument.ImageLocation = null;
+            this.btnDocument.Location = new System.Drawing.Point(2, 412);
+            this.btnDocument.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDocument.Name = "btnDocument";
+            this.btnDocument.Size = new System.Drawing.Size(200, 200);
+            this.btnDocument.TabIndex = 41;
+            this.btnDocument.Title = "文件上傳";
+            this.btnDocument.TitleColor = System.Drawing.Color.Empty;
+            this.btnDocument.Click += new System.EventHandler(this.btnDocument_Click);
+            this.btnDocument.MouseEnter += new System.EventHandler(this.btnDocument_MouseEnter);
+            this.btnDocument.MouseLeave += new System.EventHandler(this.btnDocument_MouseLeave);
+            // 
+            // btnCompanyCars
+            // 
+            this.btnCompanyCars.BackgroundColor = System.Drawing.Color.Empty;
+            this.btnCompanyCars.ButtonColor = System.Drawing.Color.DarkSlateBlue;
+            this.btnCompanyCars.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCompanyCars.image = global::BusinessSystem.Properties.Resources.car_128;
+            this.btnCompanyCars.ImageLocation = null;
+            this.btnCompanyCars.Location = new System.Drawing.Point(206, 412);
+            this.btnCompanyCars.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCompanyCars.Name = "btnCompanyCars";
+            this.btnCompanyCars.Size = new System.Drawing.Size(200, 200);
+            this.btnCompanyCars.TabIndex = 47;
+            this.btnCompanyCars.Title = "公務車租借";
+            this.btnCompanyCars.TitleColor = System.Drawing.Color.White;
+            this.btnCompanyCars.Click += new System.EventHandler(this.btnCompanyCars_Click);
+            this.btnCompanyCars.MouseEnter += new System.EventHandler(this.btnCompanyCars_MouseEnter);
+            this.btnCompanyCars.MouseLeave += new System.EventHandler(this.btnCompanyCars_MouseLeave);
+            // 
+            // btnMeetingRoom
+            // 
+            this.btnMeetingRoom.BackgroundColor = System.Drawing.Color.Empty;
+            this.btnMeetingRoom.ButtonColor = System.Drawing.Color.SlateGray;
+            this.btnMeetingRoom.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMeetingRoom.image = global::BusinessSystem.Properties.Resources.chair_2_128;
+            this.btnMeetingRoom.ImageLocation = null;
+            this.btnMeetingRoom.Location = new System.Drawing.Point(410, 412);
+            this.btnMeetingRoom.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMeetingRoom.Name = "btnMeetingRoom";
+            this.btnMeetingRoom.Size = new System.Drawing.Size(200, 200);
+            this.btnMeetingRoom.TabIndex = 49;
+            this.btnMeetingRoom.Title = "會議室租借";
+            this.btnMeetingRoom.TitleColor = System.Drawing.Color.White;
+            this.btnMeetingRoom.MouseEnter += new System.EventHandler(this.btnMeetingRoom_MouseEnter);
+            this.btnMeetingRoom.MouseLeave += new System.EventHandler(this.btnMeetingRoom_MouseLeave);
+            // 
+            // btnRequisition
+            // 
+            this.btnRequisition.BackgroundColor = System.Drawing.Color.Empty;
+            this.btnRequisition.ButtonColor = System.Drawing.Color.SteelBlue;
+            this.btnRequisition.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRequisition.image = global::BusinessSystem.Properties.Resources.cart_5_128;
+            this.btnRequisition.ImageLocation = null;
+            this.btnRequisition.Location = new System.Drawing.Point(614, 412);
+            this.btnRequisition.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRequisition.Name = "btnRequisition";
+            this.btnRequisition.Size = new System.Drawing.Size(200, 200);
+            this.btnRequisition.TabIndex = 43;
+            this.btnRequisition.Title = "請購系統";
+            this.btnRequisition.TitleColor = System.Drawing.Color.White;
+            this.btnRequisition.Click += new System.EventHandler(this.btnRequisition_Click);
+            this.btnRequisition.MouseEnter += new System.EventHandler(this.btnRequisition_MouseEnter);
+            this.btnRequisition.MouseLeave += new System.EventHandler(this.btnRequisition_MouseLeave);
+            // 
+            // btnHRSystem
+            // 
+            this.btnHRSystem.BackgroundColor = System.Drawing.Color.Empty;
+            this.btnHRSystem.ButtonColor = System.Drawing.Color.DarkSlateBlue;
+            this.btnHRSystem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHRSystem.image = global::BusinessSystem.Properties.Resources.edit_user_128;
+            this.btnHRSystem.ImageLocation = null;
+            this.btnHRSystem.Location = new System.Drawing.Point(2, 616);
+            this.btnHRSystem.Margin = new System.Windows.Forms.Padding(2);
+            this.btnHRSystem.Name = "btnHRSystem";
+            this.btnHRSystem.Size = new System.Drawing.Size(200, 200);
+            this.btnHRSystem.TabIndex = 55;
+            this.btnHRSystem.Title = "人資管理";
+            this.btnHRSystem.TitleColor = System.Drawing.Color.White;
+            this.btnHRSystem.Visible = false;
+            this.btnHRSystem.Click += new System.EventHandler(this.btnHRSystem_Click);
+            this.btnHRSystem.MouseEnter += new System.EventHandler(this.btnHRSystem_MouseEnter);
+            this.btnHRSystem.MouseLeave += new System.EventHandler(this.btnHRSystem_MouseLeave);
+            // 
+            // btnLogOut
+            // 
+            this.btnLogOut.BackgroundColor = System.Drawing.Color.Empty;
+            this.btnLogOut.ButtonColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnLogOut.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogOut.image = global::BusinessSystem.Properties.Resources.logout_128;
+            this.btnLogOut.ImageLocation = null;
+            this.btnLogOut.Location = new System.Drawing.Point(206, 616);
+            this.btnLogOut.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(200, 200);
+            this.btnLogOut.TabIndex = 56;
+            this.btnLogOut.Title = "登出";
+            this.btnLogOut.TitleColor = System.Drawing.Color.White;
+            this.btnLogOut.Click += new System.EventHandler(this.mainControls2_Click);
+            this.btnLogOut.MouseEnter += new System.EventHandler(this.btnLogOut_MouseEnter);
+            this.btnLogOut.MouseLeave += new System.EventHandler(this.btnLogOut_MouseLeave);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.mcRequisition);
-            this.panel1.Controls.Add(this.mcMeetingRoom);
-            this.panel1.Controls.Add(this.mcCompanyCars);
-            this.panel1.Controls.Add(this.mcDocument);
-            this.panel1.Controls.Add(this.mcReportTime);
-            this.panel1.Controls.Add(this.mcLeave);
-            this.panel1.Controls.Add(this.mcBulletinBoard);
-            this.panel1.Controls.Add(this.mcEmployee);
-            this.panel1.Controls.Add(this.mcCalendar);
-            this.panel1.Controls.Add(this.timeControl1);
-            this.panel1.Location = new System.Drawing.Point(12, 10);
+            this.panel1.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 637);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(855, 642);
+            this.panel1.Size = new System.Drawing.Size(860, 31);
             this.panel1.TabIndex = 53;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Impact", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(675, 6);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(185, 16);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "© Business System Corp. Since 2019";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(881, 666);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(860, 668);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.DirectoryServices.DirectoryEntry directoryEntry1;
-        private MainControls.MainControls mcDocument;
-        private MainControls.MainControls mcRequisition;
-        private MainControls.MainControls mcCalendar;
-        private MainControls.MainControls mcLeave;
-        private MainControls.MainControls mcCompanyCars;
-        private MainControls.MainControls mcReportTime;
-        private MainControls.MainControls mcMeetingRoom;
-        private MainControls.MainControls mcBulletinBoard;
-        private MainControls.EmployeeControl mcEmployee;
-        private MainControls.TimeControl timeControl1;
+        private MainControls.MainControls btnDocument;
+        private MainControls.MainControls btnRequisition;
+        private MainControls.MainControls btnCalendar;
+        private MainControls.MainControls btnLeave;
+        private MainControls.MainControls btnCompanyCars;
+        private MainControls.MainControls btnReportTime;
+        private MainControls.MainControls btnMeetingRoom;
+        private MainControls.MainControls btnBulletinBoard;
+        private MainControls.EmployeeControl btnEmployee;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private MainControls.TimeControl timeControl1;
+        private MainControls.MainControls btnHRSystem;
+        private MainControls.MainControls btnLogOut;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label2;
     }
 }
