@@ -18,7 +18,7 @@ namespace BusinessSystem
 {
     public partial class MainForm : Form
     {
-        int EmpNum;
+        int EmpNum , groupID , posiID;
         string photo;
         string name;
 
@@ -36,15 +36,30 @@ namespace BusinessSystem
 
             var q = from em in dbContext.Employees
                     where em.employeeID == EmpNum
-                    select new { em.EmployeeName, em.Photo };
+                    select new { em.EmployeeName, em.Photo , em.GroupID, em.PositionID   };
 
             foreach (var p in q)
             {
                 photo = p.Photo;
                 name = p.EmployeeName;
+                groupID = (int )p.GroupID;
+                posiID =(int ) p.PositionID;
             }
             mcEmployee.ImageLocation = photo;
             mcEmployee.Title = name;
+
+            if (groupID == 2  && posiID ==3 )     //人資組長才有人資管理鈕
+            {
+                this.btnHRSystem.Visible = true;
+            }
+            else 
+            {
+                this.btnHRSystem.Visible = false;
+            }
+
+
+
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -250,12 +265,27 @@ namespace BusinessSystem
             this.mcRequisition.ButtonColor = Color.LightSkyBlue;
         }
 
+        private void btnHRSystem_Click(object sender, EventArgs e)
+        {
+            CreateEmployeeForm ce = new CreateEmployeeForm();
+            ce.Show();
+        }
+
+
+
         //主控面>>滑鼠離開請購系統上
         private void mcRequisition_MouseLeave(object sender, EventArgs e)
         {
             this.mcRequisition.ButtonColor = Color.SteelBlue;
         }
 
+        private void mainControls2_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+            this.Close();
+        }
+
+        
     }
 }
 

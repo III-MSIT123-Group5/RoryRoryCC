@@ -33,8 +33,8 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.timeControl1 = new MainControls.TimeControl();
-            this.mcEmployee = new MainControls.EmployeeControl();
             this.mcCalendar = new MainControls.MainControls();
+            this.mcEmployee = new MainControls.EmployeeControl();
             this.mcBulletinBoard = new MainControls.MainControls();
             this.mcLeave = new MainControls.MainControls();
             this.mcReportTime = new MainControls.MainControls();
@@ -42,8 +42,8 @@
             this.mcCompanyCars = new MainControls.MainControls();
             this.mcMeetingRoom = new MainControls.MainControls();
             this.mcRequisition = new MainControls.MainControls();
-            this.mainControls1 = new MainControls.MainControls();
-            this.mainControls2 = new MainControls.MainControls();
+            this.btnHRSystem = new MainControls.MainControls();
+            this.btnLogOut = new MainControls.MainControls();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,8 +65,8 @@
             this.flowLayoutPanel1.Controls.Add(this.mcCompanyCars);
             this.flowLayoutPanel1.Controls.Add(this.mcMeetingRoom);
             this.flowLayoutPanel1.Controls.Add(this.mcRequisition);
-            this.flowLayoutPanel1.Controls.Add(this.mainControls1);
-            this.flowLayoutPanel1.Controls.Add(this.mainControls2);
+            this.flowLayoutPanel1.Controls.Add(this.btnHRSystem);
+            this.flowLayoutPanel1.Controls.Add(this.btnLogOut);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 13);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(10);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -87,6 +87,22 @@
             this.timeControl1.TimeText = "10:00";
             this.timeControl1.TitleColor = System.Drawing.Color.White;
             // 
+            // mcCalendar
+            // 
+            this.mcCalendar.BackgroundColor = System.Drawing.Color.Empty;
+            this.mcCalendar.ButtonColor = System.Drawing.Color.SteelBlue;
+            this.mcCalendar.image = global::BusinessSystem.Properties.Resources.calendar_3_128;
+            this.mcCalendar.ImageLocation = null;
+            this.mcCalendar.Location = new System.Drawing.Point(411, 2);
+            this.mcCalendar.Margin = new System.Windows.Forms.Padding(2);
+            this.mcCalendar.Name = "mcCalendar";
+            this.mcCalendar.Size = new System.Drawing.Size(199, 200);
+            this.mcCalendar.TabIndex = 44;
+            this.mcCalendar.Title = "行事曆";
+            this.mcCalendar.TitleColor = System.Drawing.Color.White;
+            this.mcCalendar.MouseEnter += new System.EventHandler(this.mcCalendar_MouseEnter);
+            this.mcCalendar.MouseLeave += new System.EventHandler(this.mcCalendar_MouseLeave);
+            // 
             // mcEmployee
             // 
             this.mcEmployee.BackgroundColor = System.Drawing.Color.Empty;
@@ -105,22 +121,6 @@
             this.mcEmployee.Click += new System.EventHandler(this.mcEmployee_Click);
             this.mcEmployee.MouseEnter += new System.EventHandler(this.mcEmployee_MouseEnter);
             this.mcEmployee.MouseLeave += new System.EventHandler(this.mcEmployee_MouseLeave);
-            // 
-            // mcCalendar
-            // 
-            this.mcCalendar.BackgroundColor = System.Drawing.Color.Empty;
-            this.mcCalendar.ButtonColor = System.Drawing.Color.SteelBlue;
-            this.mcCalendar.image = global::BusinessSystem.Properties.Resources.calendar_3_128;
-            this.mcCalendar.ImageLocation = null;
-            this.mcCalendar.Location = new System.Drawing.Point(411, 2);
-            this.mcCalendar.Margin = new System.Windows.Forms.Padding(2);
-            this.mcCalendar.Name = "mcCalendar";
-            this.mcCalendar.Size = new System.Drawing.Size(199, 200);
-            this.mcCalendar.TabIndex = 44;
-            this.mcCalendar.Title = "行事曆";
-            this.mcCalendar.TitleColor = System.Drawing.Color.White;
-            this.mcCalendar.MouseEnter += new System.EventHandler(this.mcCalendar_MouseEnter);
-            this.mcCalendar.MouseLeave += new System.EventHandler(this.mcCalendar_MouseLeave);
             // 
             // mcBulletinBoard
             // 
@@ -240,33 +240,36 @@
             this.mcRequisition.MouseEnter += new System.EventHandler(this.mcRequisition_MouseEnter);
             this.mcRequisition.MouseLeave += new System.EventHandler(this.mcRequisition_MouseLeave);
             // 
-            // mainControls1
+            // btnHRSystem
             // 
-            this.mainControls1.BackgroundColor = System.Drawing.Color.Empty;
-            this.mainControls1.ButtonColor = System.Drawing.Color.DarkSlateBlue;
-            this.mainControls1.image = global::BusinessSystem.Properties.Resources.edit_user_128;
-            this.mainControls1.ImageLocation = null;
-            this.mainControls1.Location = new System.Drawing.Point(2, 616);
-            this.mainControls1.Margin = new System.Windows.Forms.Padding(2);
-            this.mainControls1.Name = "mainControls1";
-            this.mainControls1.Size = new System.Drawing.Size(200, 200);
-            this.mainControls1.TabIndex = 55;
-            this.mainControls1.Title = "人資管理";
-            this.mainControls1.TitleColor = System.Drawing.Color.White;
+            this.btnHRSystem.BackgroundColor = System.Drawing.Color.Empty;
+            this.btnHRSystem.ButtonColor = System.Drawing.Color.DarkSlateBlue;
+            this.btnHRSystem.image = global::BusinessSystem.Properties.Resources.edit_user_128;
+            this.btnHRSystem.ImageLocation = null;
+            this.btnHRSystem.Location = new System.Drawing.Point(2, 616);
+            this.btnHRSystem.Margin = new System.Windows.Forms.Padding(2);
+            this.btnHRSystem.Name = "btnHRSystem";
+            this.btnHRSystem.Size = new System.Drawing.Size(200, 200);
+            this.btnHRSystem.TabIndex = 55;
+            this.btnHRSystem.Title = "人資管理";
+            this.btnHRSystem.TitleColor = System.Drawing.Color.White;
+            this.btnHRSystem.Visible = false;
+            this.btnHRSystem.Click += new System.EventHandler(this.btnHRSystem_Click);
             // 
-            // mainControls2
+            // btnLogOut
             // 
-            this.mainControls2.BackgroundColor = System.Drawing.Color.Empty;
-            this.mainControls2.ButtonColor = System.Drawing.Color.SlateGray;
-            this.mainControls2.image = global::BusinessSystem.Properties.Resources.logout_128;
-            this.mainControls2.ImageLocation = null;
-            this.mainControls2.Location = new System.Drawing.Point(206, 616);
-            this.mainControls2.Margin = new System.Windows.Forms.Padding(2);
-            this.mainControls2.Name = "mainControls2";
-            this.mainControls2.Size = new System.Drawing.Size(200, 200);
-            this.mainControls2.TabIndex = 56;
-            this.mainControls2.Title = "登出";
-            this.mainControls2.TitleColor = System.Drawing.Color.White;
+            this.btnLogOut.BackgroundColor = System.Drawing.Color.Empty;
+            this.btnLogOut.ButtonColor = System.Drawing.Color.SlateGray;
+            this.btnLogOut.image = global::BusinessSystem.Properties.Resources.logout_128;
+            this.btnLogOut.ImageLocation = null;
+            this.btnLogOut.Location = new System.Drawing.Point(206, 616);
+            this.btnLogOut.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(200, 200);
+            this.btnLogOut.TabIndex = 56;
+            this.btnLogOut.Title = "登出";
+            this.btnLogOut.TitleColor = System.Drawing.Color.White;
+            this.btnLogOut.Click += new System.EventHandler(this.mainControls2_Click);
             // 
             // MainForm
             // 
@@ -299,7 +302,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private MainControls.TimeControl timeControl1;
-        private MainControls.MainControls mainControls1;
-        private MainControls.MainControls mainControls2;
+        private MainControls.MainControls btnHRSystem;
+        private MainControls.MainControls btnLogOut;
     }
 }
