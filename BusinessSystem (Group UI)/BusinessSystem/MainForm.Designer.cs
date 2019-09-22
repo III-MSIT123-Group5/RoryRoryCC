@@ -118,7 +118,7 @@
             this.btnEmployee.Location = new System.Drawing.Point(615, 3);
             this.btnEmployee.Name = "btnEmployee";
             this.btnEmployee.Size = new System.Drawing.Size(199, 200);
-            this.btnEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnEmployee.TabIndex = 53;
             this.btnEmployee.Title = "label";
             this.btnEmployee.TitleColor = System.Drawing.Color.White;
