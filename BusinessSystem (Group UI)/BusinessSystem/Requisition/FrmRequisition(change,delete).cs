@@ -13,17 +13,14 @@ namespace BusinessSystem.Requisition
 {
     public partial class FrmRequisition2 : SonForm
     {
-        public FrmRequisition2()
+        public FrmRequisition2(int empid) : base(empid)
         {
             InitializeComponent();
-        }
-        /// <summary>
-        /// /
-        /// </summary>
+        }  
         BusinessDataBaseEntities dbContext = new BusinessDataBaseEntities();
 
-        //展示
-        private void btnShow_Click(object sender, EventArgs e)
+        //展示單筆
+        private void btnOnlyShow_Click(object sender, EventArgs e)
         {
             try
             {
@@ -45,7 +42,7 @@ namespace BusinessSystem.Requisition
                     txtQuantity.Text = report.Quantity.ToString();
                     txtNote.Text = report.Note.ToString();
 
-                    DataGridViewFormat();
+                    DataGridViewFormat2();
                 }
             }
             catch
@@ -54,13 +51,18 @@ namespace BusinessSystem.Requisition
             }
         }
 
+        //展示所有
+        private void btnAllShow_Click(object sender, EventArgs e)
+        {
+            DataGridViewFormat1();
+        }
+
         //修改
         private void btnChange_Click(object sender, EventArgs e)
         {
             try
             {
-                var report = (from RC in this.dbContext.ReportCategories.AsEnumerable()
-                              join RM in this.dbContext.RequisitionMains.AsEnumerable() on RC.ReportID equals RM.ReportID
+                var report = (from RM in this.dbContext.RequisitionMains.AsEnumerable()
                               join OD in this.dbContext.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
                               where OD.OrderID == Convert.ToInt32(txtReportID.Text)
                               select OD).FirstOrDefault();
@@ -71,9 +73,11 @@ namespace BusinessSystem.Requisition
                 report.Note = txtNote.Text;
 
                 this.dbContext.SaveChanges();
-                DataGridViewFormat();
+                DataGridViewFormat2();
 
                 MessageBox.Show("購案更新成功");
+
+                this.dbContext.Dispose();
             }
             catch (Exception ex)
             {
@@ -84,20 +88,24 @@ namespace BusinessSystem.Requisition
         //刪除
         private void btnClear_Click(object sender, EventArgs e)
         {
-            //TODO>>>>RequisitionMains資料未刪
             try
             {
-                var report = (from RC in this.dbContext.ReportCategories.AsEnumerable()
-                              join RM in this.dbContext.RequisitionMains.AsEnumerable() on RC.ReportID equals RM.ReportID
-                              join OD in this.dbContext.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
+                var report1 = (from OD in this.dbContext.OrderDetails.AsEnumerable()
                               where OD.OrderID == int.Parse(txtReportID.Text)
-                              select OD).FirstOrDefault();
+                              select OD ).FirstOrDefault();
 
-                this.dbContext.OrderDetails.Remove(report);
+                var report2 = (from RM in this.dbContext.RequisitionMains.AsEnumerable()
+                              where RM.OrderID == int.Parse(txtReportID.Text)
+                              select RM).FirstOrDefault();
+
+                this.dbContext.OrderDetails.Remove(report1);
+                this.dbContext.RequisitionMains.Remove(report2);
                 this.dbContext.SaveChanges();
-                DataGridViewFormat();
+                DataGridViewFormat2();
 
                 MessageBox.Show("購案刪除成功");
+
+                this.dbContext.Dispose();
             }
             catch (Exception ex)
             {
@@ -105,7 +113,52 @@ namespace BusinessSystem.Requisition
             }
         }
 
-        private void DataGridViewFormat()
+        //DataGridView顯示各人資料
+        //DataGridView格式
+        private void DataGridViewFormat1()
+        {
+            dataGridView1.Columns.Clear();
+
+            var report = from RM in this.dbContext.RequisitionMains.AsEnumerable()
+                         join OD in this.dbContext.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
+                         where RM.EmployeeID == LoginID
+                         select new
+                         {
+                             請購單號 = OD.OrderID,
+                             產品名稱 = OD.ProductName,
+                             單價 = $"{OD.UnitPrice:c0}".ToString(),
+                             數量 = OD.Quantity,
+                             總價 = $"{OD.TotalPrice:c0}".ToString(),
+                             請購原因 = OD.Note
+                         };
+
+            dataGridView1.DataSource = report.ToList();
+
+            dataGridView1.Columns[0].Width = 80;
+            dataGridView1.Columns[1].Width = 80;
+            dataGridView1.Columns[2].Width = 90;
+            dataGridView1.Columns[3].Width = 60;
+            dataGridView1.Columns[4].Width = 90;
+            dataGridView1.Columns[5].Width = 297;
+
+            dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+        }
+
+        //DataGridView顯示單筆資料
+        //DataGridView格式
+        private void DataGridViewFormat2()
         {
             dataGridView1.Columns.Clear();
 
@@ -122,6 +175,27 @@ namespace BusinessSystem.Requisition
                          };
 
             dataGridView1.DataSource = report.ToList();
+
+            dataGridView1.Columns[0].Width = 80;
+            dataGridView1.Columns[1].Width = 80;
+            dataGridView1.Columns[2].Width = 90;
+            dataGridView1.Columns[3].Width = 60;
+            dataGridView1.Columns[4].Width = 90;
+            dataGridView1.Columns[5].Width = 297;
+
+            dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
         }
     }
 }

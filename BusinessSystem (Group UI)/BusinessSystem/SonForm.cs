@@ -14,7 +14,7 @@ namespace BusinessSystem
 {
     public partial class SonForm : Form
     {
-        int EmpID;
+        
         private int M_LoginID;
         public int LoginID
         {
@@ -46,7 +46,7 @@ namespace BusinessSystem
             BusinessDataBaseEntities dbContext;
             dbContext = new BusinessDataBaseEntities();
             var q = from em in dbContext.Employees
-                    where em.employeeID == LoginID
+                    where em.employeeID == ClassEmployee.LoginEmployeeID  
                     select new { em.EmployeeName, em.Gender, em.Photo };
 
             foreach (var n in q)
@@ -70,5 +70,19 @@ namespace BusinessSystem
             pictureBox2.ImageLocation = photo;
         }
 
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            ProfileForm pf = new ProfileForm();
+            pf.Show();
+        }
+
+        private void clsAltoButton1_Click(object sender, EventArgs e)
+        {
+           if (MessageBox.Show ($"確定登出 {name} 的帳號？","登出", MessageBoxButtons.YesNo ,MessageBoxIcon.Question )==DialogResult.Yes)
+            {
+                Application.Restart();
+                this.Close();
+            }
+        }
     }
-    }
+}

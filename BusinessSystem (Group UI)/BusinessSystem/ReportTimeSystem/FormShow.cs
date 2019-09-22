@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace BusinessSystem.ReportTimeSystem
 {
-    public partial class FormShow : SonForm
+    public partial class FormShow : Form
     {
         public FormShow()
         {
@@ -18,6 +18,11 @@ namespace BusinessSystem.ReportTimeSystem
         }
 
         private void FormShow_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
