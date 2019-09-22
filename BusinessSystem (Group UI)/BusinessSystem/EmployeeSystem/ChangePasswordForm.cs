@@ -17,7 +17,8 @@ namespace BusinessSystem.EmployeeSystem
         public ChangePasswordForm()
         {
             InitializeComponent();
-           
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
         BusinessDataBaseEntities dbContext =  new BusinessDataBaseEntities();
 

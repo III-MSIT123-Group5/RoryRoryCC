@@ -18,7 +18,8 @@ namespace BusinessSystem
         public CreateEmployeeForm()
         {
             InitializeComponent();
-
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
         MemberClass CheckTextboxClass = new MemberClass();
         BusinessDataBaseEntities dbcontext;
