@@ -102,10 +102,10 @@
     <Compile Include="EmployeeSystem\HRUpdateProfileForm.Designer.cs">
       <DependentUpon>HRUpdateProfileForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeSystem\LoginForm.cs">
+    <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EmployeeSystem\LoginForm.Designer.cs">
+    <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EmployeeSystem\MemberClass.cs" />
@@ -230,7 +230,7 @@
     <EmbeddedResource Include="EmployeeSystem\HRUpdateProfileForm.resx">
       <DependentUpon>HRUpdateProfileForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmployeeSystem\LoginForm.resx">
+    <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeSystem\ProfileForm.resx">

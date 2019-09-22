@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace BusinessSystem
 {
-    public partial class BulletinBoard_2 : Form
+    public partial class BulletinBoard_2 : SonForm
     {
         public BulletinBoard_2()
         {

@@ -48,6 +48,10 @@
             this.label1.TabIndex = 14;
             this.label1.Text = "label";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Click += new System.EventHandler(this.label1_Click_1);
+            this.label1.MouseEnter += new System.EventHandler(this.label1_MouseEnter_1);
+            this.label1.MouseLeave += new System.EventHandler(this.label1_MouseLeave_1);
+            this.label1.MouseHover += new System.EventHandler(this.label1_MouseHover_1);
             // 
             // pictureBox1
             // 
@@ -62,6 +66,10 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
+            this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter_1);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave_1);
+            this.pictureBox1.MouseHover += new System.EventHandler(this.pictureBox1_MouseHover_1);
             // 
             // clsAltoButton1
             // 
@@ -85,6 +93,10 @@
             this.clsAltoButton1.TabIndex = 12;
             this.clsAltoButton1.Transparency = false;
             this.clsAltoButton1.Click += new System.EventHandler(this.clsAltoButton1_Click);
+            this.clsAltoButton1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.clsAltoButton1_MouseDown_1);
+            this.clsAltoButton1.MouseEnter += new System.EventHandler(this.clsAltoButton1_MouseEnter_1);
+            this.clsAltoButton1.MouseLeave += new System.EventHandler(this.clsAltoButton1_MouseLeave_1);
+            this.clsAltoButton1.MouseHover += new System.EventHandler(this.clsAltoButton1_MouseHover_1);
             // 
             // EmployeeControl
             // 

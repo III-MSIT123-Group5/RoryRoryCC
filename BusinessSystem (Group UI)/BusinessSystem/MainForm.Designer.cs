@@ -111,6 +111,7 @@
             this.btnEmployee.BackgroundColor = System.Drawing.Color.Empty;
             this.btnEmployee.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnEmployee.ButtonColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnEmployee.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEmployee.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.btnEmployee.image = null;
             this.btnEmployee.ImageLocation = null;
@@ -129,6 +130,7 @@
             // 
             this.btnBulletinBoard.BackgroundColor = System.Drawing.Color.Empty;
             this.btnBulletinBoard.ButtonColor = System.Drawing.Color.SteelBlue;
+            this.btnBulletinBoard.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBulletinBoard.image = global::BusinessSystem.Properties.Resources.edit_property_128;
             this.btnBulletinBoard.ImageLocation = null;
             this.btnBulletinBoard.Location = new System.Drawing.Point(2, 208);
@@ -146,6 +148,7 @@
             // 
             this.btnLeave.BackgroundColor = System.Drawing.Color.Empty;
             this.btnLeave.ButtonColor = System.Drawing.Color.DarkSlateBlue;
+            this.btnLeave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLeave.image = global::BusinessSystem.Properties.Resources.time_8_128;
             this.btnLeave.ImageLocation = null;
             this.btnLeave.Location = new System.Drawing.Point(410, 208);
@@ -162,6 +165,7 @@
             // 
             this.btnReportTime.BackgroundColor = System.Drawing.Color.Empty;
             this.btnReportTime.ButtonColor = System.Drawing.Color.SlateGray;
+            this.btnReportTime.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReportTime.image = global::BusinessSystem.Properties.Resources.briefcase_128;
             this.btnReportTime.ImageLocation = null;
             this.btnReportTime.Location = new System.Drawing.Point(614, 208);
@@ -179,6 +183,7 @@
             // 
             this.btnDocument.BackgroundColor = System.Drawing.Color.Empty;
             this.btnDocument.ButtonColor = System.Drawing.Color.SlateGray;
+            this.btnDocument.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDocument.ForeColor = System.Drawing.Color.White;
             this.btnDocument.image = global::BusinessSystem.Properties.Resources.report_3_128;
             this.btnDocument.ImageLocation = null;
@@ -197,6 +202,7 @@
             // 
             this.btnCompanyCars.BackgroundColor = System.Drawing.Color.Empty;
             this.btnCompanyCars.ButtonColor = System.Drawing.Color.DarkSlateBlue;
+            this.btnCompanyCars.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCompanyCars.image = global::BusinessSystem.Properties.Resources.car_128;
             this.btnCompanyCars.ImageLocation = null;
             this.btnCompanyCars.Location = new System.Drawing.Point(206, 412);
@@ -214,6 +220,7 @@
             // 
             this.btnMeetingRoom.BackgroundColor = System.Drawing.Color.Empty;
             this.btnMeetingRoom.ButtonColor = System.Drawing.Color.SlateGray;
+            this.btnMeetingRoom.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMeetingRoom.image = global::BusinessSystem.Properties.Resources.chair_2_128;
             this.btnMeetingRoom.ImageLocation = null;
             this.btnMeetingRoom.Location = new System.Drawing.Point(410, 412);
@@ -230,6 +237,7 @@
             // 
             this.btnRequisition.BackgroundColor = System.Drawing.Color.Empty;
             this.btnRequisition.ButtonColor = System.Drawing.Color.SteelBlue;
+            this.btnRequisition.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRequisition.image = global::BusinessSystem.Properties.Resources.cart_5_128;
             this.btnRequisition.ImageLocation = null;
             this.btnRequisition.Location = new System.Drawing.Point(614, 412);
@@ -247,6 +255,7 @@
             // 
             this.btnHRSystem.BackgroundColor = System.Drawing.Color.Empty;
             this.btnHRSystem.ButtonColor = System.Drawing.Color.DarkSlateBlue;
+            this.btnHRSystem.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnHRSystem.image = global::BusinessSystem.Properties.Resources.edit_user_128;
             this.btnHRSystem.ImageLocation = null;
             this.btnHRSystem.Location = new System.Drawing.Point(2, 616);
@@ -265,6 +274,7 @@
             // 
             this.btnLogOut.BackgroundColor = System.Drawing.Color.Empty;
             this.btnLogOut.ButtonColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnLogOut.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogOut.image = global::BusinessSystem.Properties.Resources.logout_128;
             this.btnLogOut.ImageLocation = null;
             this.btnLogOut.Location = new System.Drawing.Point(206, 616);
