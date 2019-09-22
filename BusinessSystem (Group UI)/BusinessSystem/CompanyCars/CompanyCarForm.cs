@@ -14,9 +14,9 @@ using System.Windows.Forms;
 
 namespace BusinessSystem
 {
-    public partial class CompanyCarForm : Form
+    public partial class CompanyCarForm : SonForm
     {
-        public CompanyCarForm()
+        public CompanyCarForm(int empid) : base(empid)
         {
             InitializeComponent();
             
@@ -39,15 +39,6 @@ namespace BusinessSystem
         //顏色控制
         //
         
-        private void label8_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.label8.ForeColor = Color.LightSkyBlue;
-        }
-
-        private void label8_MouseUp(object sender, MouseEventArgs e)
-        {
-            this.label8.ForeColor = Color.Blue;
-        }
 
         
 
@@ -387,10 +378,27 @@ namespace BusinessSystem
             
 
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var filename = openFileDialog1.FileName;
+                pictureBox2.Image = Image.FromFile(filename);
+                this.label6.Text = "";
+                this.label6.Text = filename;
+                this.pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+        }
+
+        private void CompanyCarForm_Load(object sender, EventArgs e)
+        {
+
+        }
         //public void imgToDB(string sql)
         //{   //引數sql中要求儲存的imge變數名稱為@images
         //    //呼叫方法如:imgToDB("update UserPhoto set Photo=@images where UserNo='" + temp + "'");
-            
+
         //    SqlCommand com3 = new SqlCommand(sql, con);
         //    com3.Parameters.Add("@images", SqlDbType.Image).Value = imageb;
         //    if (com3.Connection.State == ConnectionState.Closed)

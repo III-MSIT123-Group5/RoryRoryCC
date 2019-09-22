@@ -28,7 +28,10 @@ namespace BusinessSystem.CompanyCars
         public ChangeVehicleHistory(int empid) : base(empid)
         {
             InitializeComponent();
-            
+            myP();
+        }
+        public void myP()
+        {
             var q1 = from p in this.dbContext.CompanyVehicleHistories
                      where p.employeeID == LoginID
                      select new
@@ -270,13 +273,22 @@ namespace BusinessSystem.CompanyCars
             DialogResult x =  MessageBox.Show("確定要刪除嗎", "確認刪除", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (x == DialogResult.Yes)
             {
-                var q = (from p in this.dbContext.CompanyVehicleHistories
-                         where p.VehicleHistoryID == waterID
-                         select p).First();
-                this.dbContext.CompanyVehicleHistories.Remove(q);
-                this.dbContext.SaveChanges();
-                MessageBox.Show("刪除成功");
-                this.Close();
+                if(waterID != 0)
+                {
+                    var q = (from p in this.dbContext.CompanyVehicleHistories
+                             where p.VehicleHistoryID == waterID
+                             select p).First();
+                    this.dbContext.CompanyVehicleHistories.Remove(q);
+                    this.dbContext.SaveChanges();
+                    MessageBox.Show("刪除成功");
+                    this.dataGridView1.DataSource = null;
+                    myP();
+                }
+                else
+                {
+                    MessageBox.Show("請點選欲刪除資料");
+                }
+                
             }
         }
     }

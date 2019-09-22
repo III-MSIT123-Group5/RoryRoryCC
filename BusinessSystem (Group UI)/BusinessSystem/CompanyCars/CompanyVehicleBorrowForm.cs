@@ -343,7 +343,8 @@ namespace BusinessSystem.CompanyCars
 
         private void clsAltoButton4_Click(object sender, EventArgs e)
         {
-
+            CompanyCarForm x = new CompanyCarForm(LoginID);
+            x.Show();
         }
     }
 }
