@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CompanyVehicleBorrowForm));
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dTPStartTime = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dTPEndTime = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -41,57 +42,60 @@
             this.clsAltoButton2 = new BusinessSystem.ClsAltoButton();
             this.clsAltoButton1 = new BusinessSystem.ClsAltoButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.clsAltoButton3 = new BusinessSystem.ClsAltoButton();
+            this.clsAltoButton4 = new BusinessSystem.ClsAltoButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // richTextBox1
             // 
-            this.richTextBox1.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.richTextBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.richTextBox1.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.richTextBox1.Location = new System.Drawing.Point(9, 319);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox1.Location = new System.Drawing.Point(102, 350);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(454, 27);
+            this.richTextBox1.Size = new System.Drawing.Size(352, 60);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = "";
             // 
-            // dateTimePicker1
+            // dTPStartTime
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(78, 256);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(141, 26);
-            this.dateTimePicker1.TabIndex = 20;
+            this.dTPStartTime.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dTPStartTime.Location = new System.Drawing.Point(102, 277);
+            this.dTPStartTime.Margin = new System.Windows.Forms.Padding(2);
+            this.dTPStartTime.Name = "dTPStartTime";
+            this.dTPStartTime.Size = new System.Drawing.Size(141, 26);
+            this.dTPStartTime.TabIndex = 20;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(6, 258);
+            this.label3.Location = new System.Drawing.Point(25, 279);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(76, 18);
             this.label3.TabIndex = 29;
             this.label3.Text = "借出時間 : ";
             // 
-            // dateTimePicker2
+            // dTPEndTime
             // 
-            this.dateTimePicker2.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dateTimePicker2.Location = new System.Drawing.Point(78, 290);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(141, 26);
-            this.dateTimePicker2.TabIndex = 30;
+            this.dTPEndTime.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dTPEndTime.Location = new System.Drawing.Point(102, 311);
+            this.dTPEndTime.Margin = new System.Windows.Forms.Padding(2);
+            this.dTPEndTime.Name = "dTPEndTime";
+            this.dTPEndTime.Size = new System.Drawing.Size(141, 26);
+            this.dTPEndTime.TabIndex = 30;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label5.Location = new System.Drawing.Point(6, 292);
+            this.label5.Location = new System.Drawing.Point(25, 313);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(76, 18);
@@ -105,8 +109,8 @@
             this.comboBox1.Items.AddRange(new object[] {
             "上午",
             "下午"});
-            this.comboBox1.Location = new System.Drawing.Point(234, 256);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Location = new System.Drawing.Point(258, 277);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(53, 26);
             this.comboBox1.TabIndex = 33;
@@ -118,8 +122,8 @@
             this.comboBox2.Items.AddRange(new object[] {
             "上午",
             "下午"});
-            this.comboBox2.Location = new System.Drawing.Point(234, 290);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox2.Location = new System.Drawing.Point(258, 311);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(53, 26);
             this.comboBox2.TabIndex = 34;
@@ -128,8 +132,8 @@
             // 
             this.comboBox3.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(299, 256);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox3.Location = new System.Drawing.Point(323, 277);
+            this.comboBox3.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(110, 26);
             this.comboBox3.TabIndex = 35;
@@ -140,8 +144,8 @@
             // 
             this.comboBox4.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(299, 290);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox4.Location = new System.Drawing.Point(323, 311);
+            this.comboBox4.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(110, 26);
             this.comboBox4.TabIndex = 36;
@@ -151,28 +155,28 @@
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(28, 58);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(28, 63);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(22, 0, 15, 0);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(540, 114);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(598, 107);
             this.flowLayoutPanel1.TabIndex = 38;
             // 
             // clsAltoButton2
             // 
-            this.clsAltoButton2.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.clsAltoButton2.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.clsAltoButton2.Active1 = System.Drawing.Color.CornflowerBlue;
+            this.clsAltoButton2.Active2 = System.Drawing.Color.CornflowerBlue;
             this.clsAltoButton2.BackColor = System.Drawing.Color.Transparent;
             this.clsAltoButton2.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.clsAltoButton2.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
-            this.clsAltoButton2.ForeColor = System.Drawing.Color.Black;
-            this.clsAltoButton2.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
-            this.clsAltoButton2.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.clsAltoButton2.Location = new System.Drawing.Point(470, 319);
-            this.clsAltoButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.clsAltoButton2.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.clsAltoButton2.ForeColor = System.Drawing.Color.White;
+            this.clsAltoButton2.Inactive1 = System.Drawing.Color.MediumPurple;
+            this.clsAltoButton2.Inactive2 = System.Drawing.Color.MediumSlateBlue;
+            this.clsAltoButton2.Location = new System.Drawing.Point(472, 385);
+            this.clsAltoButton2.Margin = new System.Windows.Forms.Padding(2);
             this.clsAltoButton2.Name = "clsAltoButton2";
             this.clsAltoButton2.Radius = 10;
-            this.clsAltoButton2.Size = new System.Drawing.Size(112, 27);
+            this.clsAltoButton2.Size = new System.Drawing.Size(155, 27);
             this.clsAltoButton2.Stroke = false;
             this.clsAltoButton2.StrokeColor = System.Drawing.Color.Gray;
             this.clsAltoButton2.TabIndex = 37;
@@ -182,19 +186,19 @@
             // 
             // clsAltoButton1
             // 
-            this.clsAltoButton1.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.clsAltoButton1.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.clsAltoButton1.Active1 = System.Drawing.Color.CornflowerBlue;
+            this.clsAltoButton1.Active2 = System.Drawing.Color.CornflowerBlue;
             this.clsAltoButton1.BackColor = System.Drawing.Color.Transparent;
             this.clsAltoButton1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.clsAltoButton1.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
-            this.clsAltoButton1.ForeColor = System.Drawing.Color.Black;
-            this.clsAltoButton1.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
-            this.clsAltoButton1.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.clsAltoButton1.Location = new System.Drawing.Point(470, 256);
-            this.clsAltoButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.clsAltoButton1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.clsAltoButton1.ForeColor = System.Drawing.Color.White;
+            this.clsAltoButton1.Inactive1 = System.Drawing.Color.DarkSlateBlue;
+            this.clsAltoButton1.Inactive2 = System.Drawing.Color.DarkSlateBlue;
+            this.clsAltoButton1.Location = new System.Drawing.Point(514, 281);
+            this.clsAltoButton1.Margin = new System.Windows.Forms.Padding(2);
             this.clsAltoButton1.Name = "clsAltoButton1";
             this.clsAltoButton1.Radius = 10;
-            this.clsAltoButton1.Size = new System.Drawing.Size(112, 57);
+            this.clsAltoButton1.Size = new System.Drawing.Size(112, 52);
             this.clsAltoButton1.Stroke = false;
             this.clsAltoButton1.StrokeColor = System.Drawing.Color.Gray;
             this.clsAltoButton1.TabIndex = 27;
@@ -205,41 +209,68 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 179);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(28, 188);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(572, 70);
+            this.dataGridView1.Size = new System.Drawing.Size(598, 80);
             this.dataGridView1.TabIndex = 0;
             // 
-            // clsAltoButton3
+            // clsAltoButton4
             // 
-            this.clsAltoButton3.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.clsAltoButton3.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
-            this.clsAltoButton3.BackColor = System.Drawing.Color.Transparent;
-            this.clsAltoButton3.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.clsAltoButton3.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold);
-            this.clsAltoButton3.ForeColor = System.Drawing.Color.Black;
-            this.clsAltoButton3.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
-            this.clsAltoButton3.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.clsAltoButton3.Location = new System.Drawing.Point(417, 256);
-            this.clsAltoButton3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.clsAltoButton3.Name = "clsAltoButton3";
-            this.clsAltoButton3.Radius = 10;
-            this.clsAltoButton3.Size = new System.Drawing.Size(45, 57);
-            this.clsAltoButton3.Stroke = false;
-            this.clsAltoButton3.StrokeColor = System.Drawing.Color.Gray;
-            this.clsAltoButton3.TabIndex = 39;
-            this.clsAltoButton3.Text = "查找";
-            this.clsAltoButton3.Transparency = false;
-            this.clsAltoButton3.Click += new System.EventHandler(this.clsAltoButton3_Click);
+            this.clsAltoButton4.Active1 = System.Drawing.Color.CornflowerBlue;
+            this.clsAltoButton4.Active2 = System.Drawing.Color.CornflowerBlue;
+            this.clsAltoButton4.BackColor = System.Drawing.Color.Transparent;
+            this.clsAltoButton4.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.clsAltoButton4.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.clsAltoButton4.ForeColor = System.Drawing.Color.White;
+            this.clsAltoButton4.Inactive1 = System.Drawing.Color.DarkSlateBlue;
+            this.clsAltoButton4.Inactive2 = System.Drawing.Color.DarkSlateBlue;
+            this.clsAltoButton4.Location = new System.Drawing.Point(472, 348);
+            this.clsAltoButton4.Margin = new System.Windows.Forms.Padding(2);
+            this.clsAltoButton4.Name = "clsAltoButton4";
+            this.clsAltoButton4.Radius = 10;
+            this.clsAltoButton4.Size = new System.Drawing.Size(155, 27);
+            this.clsAltoButton4.Stroke = false;
+            this.clsAltoButton4.StrokeColor = System.Drawing.Color.Gray;
+            this.clsAltoButton4.TabIndex = 40;
+            this.clsAltoButton4.Text = "新增公務車";
+            this.clsAltoButton4.Transparency = false;
+            this.clsAltoButton4.Click += new System.EventHandler(this.clsAltoButton4_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label1.Location = new System.Drawing.Point(25, 350);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 18);
+            this.label1.TabIndex = 41;
+            this.label1.Text = "借用事由 : ";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(448, 282);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(49, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 42;
+            this.pictureBox1.TabStop = false;
             // 
             // CompanyVehicleBorrowForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 358);
-            this.Controls.Add(this.clsAltoButton3);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(656, 463);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.clsAltoButton4);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.clsAltoButton2);
@@ -247,19 +278,20 @@
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.dTPEndTime);
             this.Controls.Add(this.clsAltoButton1);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dTPStartTime);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "CompanyVehicleBorrowForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CompanyVehicleBorrowForm";
+            this.Text = "公務車租借申請";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -267,10 +299,10 @@
 
         #endregion
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dTPStartTime;
         private ClsAltoButton clsAltoButton1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dTPEndTime;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
@@ -279,6 +311,8 @@
         private ClsAltoButton clsAltoButton2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private ClsAltoButton clsAltoButton3;
+        private ClsAltoButton clsAltoButton4;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
