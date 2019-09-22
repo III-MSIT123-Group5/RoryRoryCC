@@ -11,11 +11,14 @@ using BusinessSystemDBEntityModel;
 
 namespace BusinessSystem.ReportTimeSystem
 {
+    
     public partial class FormMainRTS : Form
     {
+        int EmpID;
         public FormMainRTS()
         {
             InitializeComponent();
+            EmpID = ClassEmployee.LoginEmployeeID;
         }
 
         
@@ -137,10 +140,17 @@ namespace BusinessSystem.ReportTimeSystem
             this.dataGridView1.DataSource = listcatalog;
             dataGridView1.Columns[0].ReadOnly = true;
             dataGridView1.Columns[4].ReadOnly = true;
-            
-           
-            
-                
+            if (this.dataGridView1.Rows.Count != 0)
+            {
+                for (int i = 0; i < this.dataGridView1.Rows.Count;)
+                {
+                    this.dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.LightBlue;
+                    i += 2;
+                }
+            }
+
+
+
 
         }
 
@@ -185,7 +195,7 @@ namespace BusinessSystem.ReportTimeSystem
                     on RTS.employeeID equals emp.employeeID
                     join eve in dbcontext.Events
                     on RTS.EventID equals eve.EventID
-                    where RTS.Discontinue == true
+                    where RTS.Discontinue == true && EmpID == RTS.employeeID
                     select new data
                     {
                         報表編號 = RTS.ReportID,

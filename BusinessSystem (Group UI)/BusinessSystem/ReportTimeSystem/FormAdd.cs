@@ -16,10 +16,17 @@ using BusinessSystemDBEntityModel;
 
 namespace BusinessSystem.ReportTimeSystem
 {
-    public partial class FormAdd : Form
+    public partial class FormAdd : Form 
     {
         BusinessDataBaseEntities dbcontext = new BusinessDataBaseEntities();
         FormMainRTS rts;
+        int EmpID;
+        public FormAdd()//(int empid) : base(empid)
+        {
+            InitializeComponent();
+            EmpID = ClassEmployee.LoginEmployeeID;
+
+        }
 
 
         public FormAdd(FormMainRTS ff)
@@ -68,7 +75,7 @@ namespace BusinessSystem.ReportTimeSystem
                 new BusinessSystemDBEntityModel.ReportTimeSystem
                 {
                     ReportName = textBox1.Text,
-                    employeeID = 1001, //FindID(label3.Text),
+                    employeeID = EmpID,
                     StartTime = dateTimePicker1.Value,
                     EndTime = dateTimePicker2.Value,
                     EventHours = dateTimePicker2.Value.Subtract(dateTimePicker1.Value).TotalHours,
@@ -86,7 +93,7 @@ namespace BusinessSystem.ReportTimeSystem
                         on RTS.employeeID equals emp.employeeID
                         join eve in dbcontext.Events
                         on RTS.EventID equals eve.EventID
-                        where RTS.Discontinue == true
+                        where RTS.Discontinue == true &&RTS.employeeID == EmpID
                         select new
                         {
                             報表編號 = RTS.ReportID,
@@ -100,6 +107,7 @@ namespace BusinessSystem.ReportTimeSystem
                             申請時間 = RTS.ApplyDateTime
                         };
                 rts.dataGridView1.DataSource = q.ToList();
+                
 
 
             }
@@ -108,6 +116,14 @@ namespace BusinessSystem.ReportTimeSystem
                 MessageBox.Show("請更正警示欄位");
             }
 
+            if (rts.dataGridView1.Rows.Count != 0)
+            {
+                for (int i = 0; i < rts.dataGridView1.Rows.Count;)
+                {
+                    rts.dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.LightBlue;
+                    i += 2;
+                }
+            }
         }
 
         
@@ -122,6 +138,11 @@ namespace BusinessSystem.ReportTimeSystem
             if (dateTimePicker2.Value <= dateTimePicker1.Value)
             {
                 errorProvider1.SetError(dateTimePicker2, "結束時間需大於開始時間");
+                
+            }
+            if (textBox1.Text == "")
+            {
+                errorProvider1.SetError(textBox1, "請輸入活動名稱");
             }
 
 
