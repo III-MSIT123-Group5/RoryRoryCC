@@ -16,19 +16,19 @@ namespace BusinessSystem
     {
         public FrmRequisition1(int empid) : base(empid)
         {
-            InitializeComponent();           
+            InitializeComponent();
         }
 
-        BusinessDataBaseEntities dbContext=new BusinessDataBaseEntities();
+        BusinessDataBaseEntities dbContext = new BusinessDataBaseEntities();
 
         private void FrmRequisition_Load(object sender, EventArgs e)
-        {           
+        {
             txtProcductName.Text = "請輸入產品名稱";
             txtUnitPrice.Text = "請輸入產品單價";
             txtQuantity.Text = "請輸入產品數量";
             txtNote.Text = "請輸入購買原因";
         }
-        
+
         //DEMO
         private void btnDEMO_Click(object sender, EventArgs e)
         {
@@ -45,41 +45,65 @@ namespace BusinessSystem
 
         //新增
         private void btnSubmit_Click(object sender, EventArgs e)
-        {           
-            try
-            {                
-                var newRequisitionMain = new RequisitionMain
-                {
-                    ReportID = 2,
-                    EmployeeID = LoginID
-                };
-
-                var newOrderDetail = new OrderDetail
-                {
-                    Note = txtNote.Text,
-                    ProductName = txtProcductName.Text,
-                    UnitPrice = decimal.Parse(txtUnitPrice.Text),
-                    Quantity = Convert.ToInt32(txtQuantity.Text),
-                    RequisitionMain = newRequisitionMain
-                };
-
-                this.dbContext.RequisitionMains.Add(newRequisitionMain);
-                this.dbContext.OrderDetails.Add(newOrderDetail);
-                this.dbContext.SaveChanges();
-                DataGridViewFormat();
-                txtProcductName.Text = txtProcductNameExpand;
-                txtUnitPrice.Text = txtUnitPriceExpand;
-                txtQuantity.Text = txtQuantityExpand;
-                txtNote.Text = txtNoteExpand;
-
-                MessageBox.Show("購案新增成功");
-            }
-            catch (Exception ex)
+        {
+            if (txtProcductName.Text == "" || txtProcductName.Text == "請輸入產品名稱" || txtUnitPrice.Text == "" || txtUnitPrice.Text == "請輸入產品單價" || txtQuantity.Text == "" || txtQuantity.Text == "請輸入產品數量" || txtNote.Text == "" || txtNote.Text == "請輸入購買原因")
             {
-                MessageBox.Show(ex.Message);
-            }    
+                MessageBox.Show("請輸入完整資料!!!");
+            }
+            else
+            {
+                try
+                {
+                    this.Cursor = Cursors.WaitCursor;
+                    try
+                    {
+                        var newRequisitionMain = new RequisitionMain
+                    {
+                        ReportID = 2,
+                        EmployeeID = LoginID
+                    };
+
+                    var newOrderDetail = new OrderDetail
+                    {
+                        Note = txtNote.Text,
+                        ProductName = txtProcductName.Text,
+                        UnitPrice = decimal.Parse(txtUnitPrice.Text),
+                        Quantity = Convert.ToInt32(txtQuantity.Text),
+                        RequisitionMain = newRequisitionMain
+                    };
+
+                        if (MessageBox.Show("確定新增購案?", "新增購案", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            this.dbContext.RequisitionMains.Add(newRequisitionMain);
+                            this.dbContext.OrderDetails.Add(newOrderDetail);
+                            this.dbContext.SaveChanges();
+                            DataGridViewFormat();
+                            txtProcductName.Text = txtProcductNameExpand;
+                            txtUnitPrice.Text = txtUnitPriceExpand;
+                            txtQuantity.Text = txtQuantityExpand;
+                            txtNote.Text = txtNoteExpand;
+                        }
+                        else
+                        {
+                            txtProcductName.Text = txtProcductNameExpand;
+                            txtUnitPrice.Text = txtUnitPriceExpand;
+                            txtQuantity.Text = txtQuantityExpand;
+                            txtNote.Text = txtNoteExpand;
+                        }                        
+                    }
+                    finally
+                    {
+                        this.Cursor = Cursors.Default;
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
-        
+
         //展示
         private void btnShow_Click(object sender, EventArgs e)
         {
@@ -112,22 +136,29 @@ namespace BusinessSystem
         private void DataGridViewFormat()
         {
             dataGridView1.Columns.Clear();
+            this.Cursor = Cursors.WaitCursor;
+            try
+            {
+                var report = from RM in this.dbContext.RequisitionMains.AsEnumerable()
+                             join OD in this.dbContext.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
+                             where RM.EmployeeID == LoginID
+                             select new
+                             {
+                                 請購單號 = OD.OrderID,
+                                 產品名稱 = OD.ProductName,
+                                 單價 = $"{OD.UnitPrice:c0}".ToString(),
+                                 數量 = OD.Quantity,
+                                 總價 = $"{OD.TotalPrice:c0}".ToString(),
+                                 請購原因 = OD.Note
+                             };
 
-            var report = from RM in this.dbContext.RequisitionMains.AsEnumerable()
-                         join OD in this.dbContext.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
-                         where RM.EmployeeID == LoginID 
-                         select new
-                         {
-                             請購單號 = OD.OrderID,
-                             產品名稱 = OD.ProductName,
-                             單價 = $"{OD.UnitPrice:c0}".ToString(),
-                             數量 = OD.Quantity,
-                             總價 = $"{OD.TotalPrice:c0}".ToString(),
-                             請購原因 = OD.Note
-                         };
+                dataGridView1.DataSource = report.ToList();
 
-            dataGridView1.DataSource = report.ToList();
-
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
             dataGridView1.Columns[0].Width = 80;
             dataGridView1.Columns[1].Width = 80;
             dataGridView1.Columns[2].Width = 90;
@@ -188,7 +219,7 @@ namespace BusinessSystem
             }
             else
             {
-                txtProcductName.Text = "";                    
+                txtProcductName.Text = "";
             }
         }
         private void txtUnitPrice_MouseClick(object sender, MouseEventArgs e)
@@ -198,7 +229,7 @@ namespace BusinessSystem
                 txtUnitPrice.Clear();
                 if (txtQuantity.Text == "")
                 {
-                   txtQuantity.Text = txtQuantityExpand;
+                    txtQuantity.Text = txtQuantityExpand;
                 }
                 else if (txtProcductName.Text == "")
                 {
@@ -250,7 +281,7 @@ namespace BusinessSystem
             }
             else if (txtProcductName.Text == "")
             {
-               txtProcductName.Text = txtProcductNameExpand;
+                txtProcductName.Text = txtProcductNameExpand;
             }
             else if (txtNote.Text == "")
             {
@@ -268,7 +299,7 @@ namespace BusinessSystem
                 txtNote.Clear();
                 if (txtUnitPrice.Text == "")
                 {
-                   txtUnitPrice.Text = txtUnitPriceExpand;
+                    txtUnitPrice.Text = txtUnitPriceExpand;
                 }
                 else if (txtProcductName.Text == "")
                 {
@@ -327,6 +358,6 @@ namespace BusinessSystem
         private void txtNote_TextChanged(object sender, EventArgs e)
         {
             textboxStyle(txtNote, txtNoteExpand);
-        }        
+        }
     }
 }

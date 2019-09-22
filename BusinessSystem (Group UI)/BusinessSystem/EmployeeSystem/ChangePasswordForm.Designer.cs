@@ -96,15 +96,15 @@
             // 
             // btnSumitNewPW
             // 
-            this.btnSumitNewPW.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.btnSumitNewPW.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnSumitNewPW.Active1 = System.Drawing.Color.CornflowerBlue;
+            this.btnSumitNewPW.Active2 = System.Drawing.Color.CornflowerBlue;
             this.btnSumitNewPW.BackColor = System.Drawing.Color.Transparent;
             this.btnSumitNewPW.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSumitNewPW.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSumitNewPW.ForeColor = System.Drawing.Color.Black;
-            this.btnSumitNewPW.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
-            this.btnSumitNewPW.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
-            this.btnSumitNewPW.Location = new System.Drawing.Point(141, 245);
+            this.btnSumitNewPW.ForeColor = System.Drawing.Color.White;
+            this.btnSumitNewPW.Inactive1 = System.Drawing.Color.DarkSlateBlue;
+            this.btnSumitNewPW.Inactive2 = System.Drawing.Color.DarkSlateBlue;
+            this.btnSumitNewPW.Location = new System.Drawing.Point(141, 251);
             this.btnSumitNewPW.Name = "btnSumitNewPW";
             this.btnSumitNewPW.Radius = 10;
             this.btnSumitNewPW.Size = new System.Drawing.Size(129, 32);

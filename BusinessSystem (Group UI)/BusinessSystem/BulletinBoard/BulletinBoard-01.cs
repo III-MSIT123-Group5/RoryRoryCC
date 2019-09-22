@@ -302,27 +302,36 @@ namespace BusinessSystem
         private void button1_Click(object sender, EventArgs e)
         {
 
-            //dbContext = new BusinessDataBaseEntities();
+            dbContext = new BusinessDataBaseEntities();
 
-            //CBDepartment.ItemCheck += CBDepartment_ItemCheck;
-
-
-            //var q = from b in dbContext.BulletinBoards
-            //        join d in dbContext.Departments
-            //        on b.DepartmentID equals d.departmentID
-            //        join g in dbContext.Groups
-            //        on b.GroupID equals g.GroupID
-            //        join em in dbContext.Employees
-            //        on b.EmployeeID equals em.employeeID
-            //        select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.EmployeeName, 留言內容 = b.Content, 張貼時間 = b.PostTime };
+            CBDepartment.ItemCheck += CBDepartment_ItemCheck;
 
 
-            //dataGridView1.DataSource = q.OrderByDescending(o => o.張貼時間).ToList();
+            var q = from b in dbContext.BulletinBoards
+                    join d in dbContext.Departments
+                    on b.DepartmentID equals d.departmentID
+                    join g in dbContext.Groups
+                    on b.GroupID equals g.GroupID
+                    join em in dbContext.Employees
+                    on b.EmployeeID equals em.employeeID
+                    select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.EmployeeName, 留言內容 = b.Content, 張貼時間 = b.PostTime };
 
-            //dgvFormat(dataGridView1);
 
-            this.dataGridView1.Update();
-            this.dataGridView1.Refresh();
+            dataGridView1.DataSource = q.OrderByDescending(o => o.張貼時間).ToList();
+
+            dgvFormat(dataGridView1);
+
+            CBDepartment.SetItemChecked(0, true);
+            CBDepartment.SetItemChecked(1, true);
+            CBDepartment.SetItemChecked(2, true);
+            CBDepartment.SetItemChecked(3, true);
+            CBDepartment.SetItemChecked(4, true);
+
+            CBGroup.SetItemChecked(0,true);
+            CBGroup.SetItemChecked(1, true);
+
+            //this.dataGridView1.Update();
+            //this.dataGridView1.Refresh();
         }
 
         private void CBGroup_DropDownClosed(object sender, EventArgs e)
@@ -354,7 +363,7 @@ namespace BusinessSystem
                         on b.GroupID equals g.GroupID
                         join em in dbContext.Employees.AsEnumerable()
                         on b.EmployeeID equals em.employeeID
-                        where b.GroupID != 1 && b.GroupID != 2
+                        where b.GroupID != 1 && b.GroupID != 2 && b.DepartmentID != 3
                         select new { 部門 = d.name, 組別 = g.GroupName, 姓名 = em.EmployeeName, 留言內容 = b.Content, 張貼時間 = b.PostTime };
 
              q.OrderByDescending(o => o.張貼時間).ToList().ForEach(q1 => dt.Rows.Add(q1.部門, q1.組別, q1.姓名, q1.留言內容, q1.張貼時間));

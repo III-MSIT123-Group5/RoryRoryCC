@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SonForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -38,9 +39,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.clsAltoButton1 = new BusinessSystem.ClsAltoButton();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -61,22 +62,34 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.clsAltoButton1);
+            this.panel3.Controls.Add(this.pictureBox3);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.pictureBox2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(446, 0);
+            this.panel3.Location = new System.Drawing.Point(438, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(152, 54);
+            this.panel3.Size = new System.Drawing.Size(160, 54);
             this.panel3.TabIndex = 2;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(120, 15);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 2;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(114, 9);
+            this.label4.Location = new System.Drawing.Point(69, 29);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 16);
             this.label4.TabIndex = 3;
@@ -151,27 +164,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "© Business System Corp. Since 2019";
             // 
-            // clsAltoButton1
-            // 
-            this.clsAltoButton1.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.clsAltoButton1.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
-            this.clsAltoButton1.BackColor = System.Drawing.Color.Transparent;
-            this.clsAltoButton1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.clsAltoButton1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clsAltoButton1.ForeColor = System.Drawing.Color.Black;
-            this.clsAltoButton1.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.clsAltoButton1.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.clsAltoButton1.Location = new System.Drawing.Point(101, 29);
-            this.clsAltoButton1.Name = "clsAltoButton1";
-            this.clsAltoButton1.Radius = 10;
-            this.clsAltoButton1.Size = new System.Drawing.Size(45, 17);
-            this.clsAltoButton1.Stroke = false;
-            this.clsAltoButton1.StrokeColor = System.Drawing.Color.Gray;
-            this.clsAltoButton1.TabIndex = 4;
-            this.clsAltoButton1.Text = "登出";
-            this.clsAltoButton1.Transparency = false;
-            this.clsAltoButton1.Click += new System.EventHandler(this.clsAltoButton1_Click);
-            // 
             // SonForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -190,6 +182,7 @@
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -209,6 +202,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panel3;
-        private ClsAltoButton clsAltoButton1;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

@@ -49,7 +49,7 @@ namespace BusinessSystem.EmployeeSystem
                             EmpName = na.EmployeeName;
                         }                        
 
-                        MessageBox.Show($"{EmpName.Substring (EmpName.Length-2, EmpName .Length-1)} 的密碼更新成功，請重新登入！");
+                        MessageBox.Show($"{EmpName} 的密碼更新成功，請重新登入！");
                         Application.Restart();
                         this.Close();
                                                                    

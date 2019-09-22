@@ -42,6 +42,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.clsAltoButton1 = new BusinessSystem.ClsAltoButton();
             this.clsAltoButton2 = new BusinessSystem.ClsAltoButton();
+            this.clsAltoButton3 = new BusinessSystem.ClsAltoButton();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -53,7 +54,7 @@
             this.panel2.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 261);
+            this.panel2.Location = new System.Drawing.Point(0, 276);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(472, 24);
@@ -110,7 +111,7 @@
             // txtLoginAccount
             // 
             this.txtLoginAccount.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLoginAccount.Location = new System.Drawing.Point(257, 105);
+            this.txtLoginAccount.Location = new System.Drawing.Point(257, 103);
             this.txtLoginAccount.Margin = new System.Windows.Forms.Padding(2);
             this.txtLoginAccount.Name = "txtLoginAccount";
             this.txtLoginAccount.Size = new System.Drawing.Size(175, 23);
@@ -119,7 +120,7 @@
             // txtLoginPassword
             // 
             this.txtLoginPassword.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLoginPassword.Location = new System.Drawing.Point(257, 146);
+            this.txtLoginPassword.Location = new System.Drawing.Point(257, 144);
             this.txtLoginPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtLoginPassword.Name = "txtLoginPassword";
             this.txtLoginPassword.PasswordChar = '*';
@@ -129,26 +130,26 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.label3.Location = new System.Drawing.Point(170, 107);
+            this.label3.Location = new System.Drawing.Point(174, 104);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 16);
+            this.label3.Size = new System.Drawing.Size(65, 19);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Account:";
+            this.label3.Text = "Account :";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.label4.Location = new System.Drawing.Point(170, 149);
+            this.label4.Location = new System.Drawing.Point(174, 146);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 16);
+            this.label4.Size = new System.Drawing.Size(77, 19);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Password:";
+            this.label4.Text = "Password :";
             // 
             // pictureBox2
             // 
@@ -167,7 +168,7 @@
             this.label5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label5.Location = new System.Drawing.Point(299, 241);
+            this.label5.Location = new System.Drawing.Point(298, 249);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(133, 15);
@@ -186,7 +187,7 @@
             this.clsAltoButton1.ForeColor = System.Drawing.Color.Lavender;
             this.clsAltoButton1.Inactive1 = System.Drawing.Color.DarkSlateBlue;
             this.clsAltoButton1.Inactive2 = System.Drawing.Color.DarkSlateBlue;
-            this.clsAltoButton1.Location = new System.Drawing.Point(173, 185);
+            this.clsAltoButton1.Location = new System.Drawing.Point(173, 188);
             this.clsAltoButton1.Margin = new System.Windows.Forms.Padding(2);
             this.clsAltoButton1.Name = "clsAltoButton1";
             this.clsAltoButton1.Radius = 10;
@@ -208,7 +209,7 @@
             this.clsAltoButton2.ForeColor = System.Drawing.Color.DarkSlateBlue;
             this.clsAltoButton2.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.clsAltoButton2.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.clsAltoButton2.Location = new System.Drawing.Point(173, 223);
+            this.clsAltoButton2.Location = new System.Drawing.Point(173, 233);
             this.clsAltoButton2.Margin = new System.Windows.Forms.Padding(2);
             this.clsAltoButton2.Name = "clsAltoButton2";
             this.clsAltoButton2.Radius = 10;
@@ -220,13 +221,36 @@
             this.clsAltoButton2.Transparency = false;
             this.clsAltoButton2.Click += new System.EventHandler(this.clsAltoButton2_Click);
             // 
+            // clsAltoButton3
+            // 
+            this.clsAltoButton3.Active1 = System.Drawing.Color.LightSteelBlue;
+            this.clsAltoButton3.Active2 = System.Drawing.Color.LightSteelBlue;
+            this.clsAltoButton3.BackColor = System.Drawing.Color.Transparent;
+            this.clsAltoButton3.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.clsAltoButton3.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clsAltoButton3.ForeColor = System.Drawing.Color.Crimson;
+            this.clsAltoButton3.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.clsAltoButton3.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.clsAltoButton3.Location = new System.Drawing.Point(89, 233);
+            this.clsAltoButton3.Margin = new System.Windows.Forms.Padding(2);
+            this.clsAltoButton3.Name = "clsAltoButton3";
+            this.clsAltoButton3.Radius = 10;
+            this.clsAltoButton3.Size = new System.Drawing.Size(80, 33);
+            this.clsAltoButton3.Stroke = false;
+            this.clsAltoButton3.StrokeColor = System.Drawing.Color.Gray;
+            this.clsAltoButton3.TabIndex = 12;
+            this.clsAltoButton3.Text = "HR Demo";
+            this.clsAltoButton3.Transparency = false;
+            this.clsAltoButton3.Click += new System.EventHandler(this.clsAltoButton3_Click);
+            // 
             // LoginForm
             // 
             this.AcceptButton = this.clsAltoButton1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
-            this.ClientSize = new System.Drawing.Size(472, 285);
+            this.ClientSize = new System.Drawing.Size(472, 300);
+            this.Controls.Add(this.clsAltoButton3);
             this.Controls.Add(this.clsAltoButton2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.clsAltoButton1);
@@ -271,5 +295,6 @@
         private ClsAltoButton clsAltoButton1;
         private System.Windows.Forms.Label label5;
         private ClsAltoButton clsAltoButton2;
+        private ClsAltoButton clsAltoButton3;
     }
 }

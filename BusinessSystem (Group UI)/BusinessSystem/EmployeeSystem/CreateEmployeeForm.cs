@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace BusinessSystem
 {
-    public partial class CreateEmployeeForm : Form
+    public partial class CreateEmployeeForm : SonForm
     {
         public CreateEmployeeForm()
         {
@@ -54,7 +54,15 @@ namespace BusinessSystem
 
         //todo<<<<<<<<<<<<<<<<<<<<<<<<<控制項
 
-        private void btnCreate_Click(object sender, EventArgs e)  //按鈕:新增
+        private void btnClearAll_Click(object sender, EventArgs e)      //事件：ClearAll
+        {
+            this.txtEmployeeName.Text = null;
+            this.txtPassword.Text = null;
+            this.txtConfirmPassword.Text = null;
+            this.txtAccount.Text = null;
+        }
+
+        private void btnCreatAccount_Click(object sender, EventArgs e)    //按鈕:新增
         {
             //確認各欄位是否為空值
             if (AccEmpName == false || AccAcount == false || string.IsNullOrEmpty(this.cmbManagerID.Text))
@@ -63,13 +71,12 @@ namespace BusinessSystem
                 return;
             }
             //確認密碼正確性 & 空值
-            if (CheckPassword (this.txtPassword.Text  , this.txtConfirmPassword.Text) && String.IsNullOrEmpty (this.txtConfirmPassword.Text  )==false )
+            if (CheckPassword(this.txtPassword.Text, this.txtConfirmPassword.Text) && String.IsNullOrEmpty(this.txtConfirmPassword.Text) == false)
             {
                 //雜湊
                 byte[] bytesPassword = Encoding.Unicode.GetBytes(this.txtConfirmPassword.Text);
                 SHA256Managed Algorithm = new SHA256Managed();
-                SHAPassword =Algorithm.ComputeHash(bytesPassword);             
-
+                SHAPassword = Algorithm.ComputeHash(bytesPassword);
             }
             else
             {
@@ -86,9 +93,9 @@ namespace BusinessSystem
                 {
                     //employeeID = EmID,   //將於"變更員工資料"中顯示
                     EmployeeName = this.EmployeeName,
-                    Gender =  this.cmbGender.Text,
-                    Birth =  this.dTPicBirth.Value,
-                    HireDate =  this.dTPicHireDate.Value,
+                    Gender = this.cmbGender.Text,
+                    Birth = this.dTPicBirth.Value,
+                    HireDate = this.dTPicHireDate.Value,
                     Account = AccountName,
                     OfficeID = this.Insert_offID(this.cmbOfficeID.SelectedIndex),
                     DepartmentID = this.cmbDepartmentID.SelectedIndex,
@@ -96,19 +103,19 @@ namespace BusinessSystem
                     ManagerID = int.Parse(this.cmbManagerID.Text),
                     Employed = this.Insert_transEmployed(this.cmbEmployed.SelectedIndex),
                     GroupID = this.Insert_grpID(this.cmbGroupID.Text),
-                    Photo =PhotoAddress (this.cmbGender.Text )
+                    Photo = PhotoAddress(this.cmbGender.Text)
                 };
                 var addAccount = new BusinessSystemDBEntityModel.Account
                 {
                     account1 = addEmp.Account,
                     password = SHAPassword,
                 };
-            this.dbcontext.Accounts.Add(addAccount);
-            this.dbcontext.Employees.Add(addEmp);
+                this.dbcontext.Accounts.Add(addAccount);
+                this.dbcontext.Employees.Add(addEmp);
 
-            this.dbcontext.SaveChanges();
-        
-            MessageBox.Show("新增成功");                
+                this.dbcontext.SaveChanges();
+
+                MessageBox.Show("新增成功");
                 this.Close();
                 this.Dispose();
             }
@@ -117,7 +124,9 @@ namespace BusinessSystem
                 MessageBox.Show(ex.Message);
                 return;
             }
-        }       
+        }
+
+       
 
         //控制項>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -281,15 +290,6 @@ namespace BusinessSystem
             {
                 this.AccAcount = false ;
             }
-        }
-
-        private void btnClear_Click(object sender, EventArgs e)    //事件：ClearAll
-        {
-            this.txtEmployeeName.Text = null;
-            this.txtPassword.Text = null;
-            this.txtConfirmPassword.Text = null;
-            this.txtAccount.Text = null;
-
         }
 
         //todo事件：自動帶入直屬主管ManagerID
@@ -526,6 +526,7 @@ namespace BusinessSystem
                     break;
             }
         }
+        
 
         private void cmbPositionID_TextChanged(object sender, EventArgs e)
         {
