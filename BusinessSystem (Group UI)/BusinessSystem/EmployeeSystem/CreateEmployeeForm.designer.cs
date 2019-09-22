@@ -46,7 +46,6 @@
             this.cmbDepartmentID = new System.Windows.Forms.ComboBox();
             this.cmbPositionID = new System.Windows.Forms.ComboBox();
             this.cmbEmployed = new System.Windows.Forms.ComboBox();
-            this.btnCreate = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -61,6 +60,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnCreatAccount = new BusinessSystem.ClsAltoButton();
+            this.btnClearAll = new BusinessSystem.ClsAltoButton();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -248,27 +249,15 @@
             this.cmbEmployed.TabIndex = 13;
             this.toolTip1.SetToolTip(this.cmbEmployed, "employed");
             // 
-            // btnCreate
-            // 
-            this.btnCreate.Location = new System.Drawing.Point(380, 365);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(137, 39);
-            this.btnCreate.TabIndex = 14;
-            this.btnCreate.Text = "新增";
-            this.toolTip1.SetToolTip(this.btnCreate, "新增員工資料至資料庫");
-            this.btnCreate.UseVisualStyleBackColor = true;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
-            // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(547, 365);
+            this.btnClear.Location = new System.Drawing.Point(547, 407);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(137, 39);
             this.btnClear.TabIndex = 15;
             this.btnClear.Text = "重新輸入";
             this.toolTip1.SetToolTip(this.btnClear, "重新輸入表格");
             this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // txtPassword
             // 
@@ -417,11 +406,57 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // btnCreatAccount
+            // 
+            this.btnCreatAccount.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.btnCreatAccount.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnCreatAccount.BackColor = System.Drawing.Color.Transparent;
+            this.btnCreatAccount.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnCreatAccount.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnCreatAccount.ForeColor = System.Drawing.Color.Black;
+            this.btnCreatAccount.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
+            this.btnCreatAccount.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
+            this.btnCreatAccount.Location = new System.Drawing.Point(393, 365);
+            this.btnCreatAccount.Name = "btnCreatAccount";
+            this.btnCreatAccount.Radius = 10;
+            this.btnCreatAccount.Size = new System.Drawing.Size(137, 39);
+            this.btnCreatAccount.Stroke = false;
+            this.btnCreatAccount.StrokeColor = System.Drawing.Color.Gray;
+            this.btnCreatAccount.TabIndex = 43;
+            this.btnCreatAccount.Text = "新增";
+            this.toolTip1.SetToolTip(this.btnCreatAccount, "新增員工資料");
+            this.btnCreatAccount.Transparency = false;
+            this.btnCreatAccount.Click += new System.EventHandler(this.btnCreatAccount_Click);
+            // 
+            // btnClearAll
+            // 
+            this.btnClearAll.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.btnClearAll.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.btnClearAll.BackColor = System.Drawing.Color.Transparent;
+            this.btnClearAll.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnClearAll.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnClearAll.ForeColor = System.Drawing.Color.Black;
+            this.btnClearAll.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(188)))), ((int)(((byte)(210)))));
+            this.btnClearAll.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(167)))), ((int)(((byte)(188)))));
+            this.btnClearAll.Location = new System.Drawing.Point(547, 365);
+            this.btnClearAll.Name = "btnClearAll";
+            this.btnClearAll.Radius = 10;
+            this.btnClearAll.Size = new System.Drawing.Size(137, 39);
+            this.btnClearAll.Stroke = false;
+            this.btnClearAll.StrokeColor = System.Drawing.Color.Gray;
+            this.btnClearAll.TabIndex = 44;
+            this.btnClearAll.Text = "重新輸入";
+            this.toolTip1.SetToolTip(this.btnClearAll, "重新輸入表格");
+            this.btnClearAll.Transparency = false;
+            this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
+            // 
             // CreateEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(723, 449);
+            this.Controls.Add(this.btnClearAll);
+            this.Controls.Add(this.btnCreatAccount);
             this.Controls.Add(this.cmbManagerID);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
@@ -432,7 +467,6 @@
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.cmbEmployed);
             this.Controls.Add(this.cmbPositionID);
             this.Controls.Add(this.cmbDepartmentID);
@@ -483,7 +517,6 @@
         private System.Windows.Forms.ComboBox cmbDepartmentID;
         private System.Windows.Forms.ComboBox cmbPositionID;
         private System.Windows.Forms.ComboBox cmbEmployed;
-        private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label14;
@@ -496,5 +529,7 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox cmbManagerID;
+        private ClsAltoButton btnCreatAccount;
+        private ClsAltoButton btnClearAll;
     }
 }

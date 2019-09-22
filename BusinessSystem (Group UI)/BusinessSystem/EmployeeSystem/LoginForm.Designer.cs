@@ -42,6 +42,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.clsAltoButton1 = new BusinessSystem.ClsAltoButton();
             this.clsAltoButton2 = new BusinessSystem.ClsAltoButton();
+            this.clsAltoButton3 = new BusinessSystem.ClsAltoButton();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -220,6 +221,28 @@
             this.clsAltoButton2.Transparency = false;
             this.clsAltoButton2.Click += new System.EventHandler(this.clsAltoButton2_Click);
             // 
+            // clsAltoButton3
+            // 
+            this.clsAltoButton3.Active1 = System.Drawing.Color.LightSteelBlue;
+            this.clsAltoButton3.Active2 = System.Drawing.Color.LightSteelBlue;
+            this.clsAltoButton3.BackColor = System.Drawing.Color.Transparent;
+            this.clsAltoButton3.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.clsAltoButton3.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.clsAltoButton3.ForeColor = System.Drawing.Color.DarkSlateBlue;
+            this.clsAltoButton3.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.clsAltoButton3.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.clsAltoButton3.Location = new System.Drawing.Point(89, 222);
+            this.clsAltoButton3.Margin = new System.Windows.Forms.Padding(2);
+            this.clsAltoButton3.Name = "clsAltoButton3";
+            this.clsAltoButton3.Radius = 10;
+            this.clsAltoButton3.Size = new System.Drawing.Size(80, 33);
+            this.clsAltoButton3.Stroke = false;
+            this.clsAltoButton3.StrokeColor = System.Drawing.Color.Gray;
+            this.clsAltoButton3.TabIndex = 12;
+            this.clsAltoButton3.Text = "人資Demo";
+            this.clsAltoButton3.Transparency = false;
+            this.clsAltoButton3.Click += new System.EventHandler(this.clsAltoButton3_Click);
+            // 
             // LoginForm
             // 
             this.AcceptButton = this.clsAltoButton1;
@@ -227,6 +250,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
             this.ClientSize = new System.Drawing.Size(472, 285);
+            this.Controls.Add(this.clsAltoButton3);
             this.Controls.Add(this.clsAltoButton2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.clsAltoButton1);
@@ -271,5 +295,6 @@
         private ClsAltoButton clsAltoButton1;
         private System.Windows.Forms.Label label5;
         private ClsAltoButton clsAltoButton2;
+        private ClsAltoButton clsAltoButton3;
     }
 }

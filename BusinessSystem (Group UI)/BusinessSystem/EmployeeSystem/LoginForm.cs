@@ -52,16 +52,11 @@ namespace BusinessSystem.EmployeeSystem
                     EmpName = v.EmployeeName;
                 }
 
-                //if (txtLoginAccount.Text == null && txtLoginPassword.Text == null)
-                //{
-                //    MessageBox.Show("請先輸入帳號及密碼！", "帳號及密碼不可為空", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //}
-
                 if (q.Any())
                 {
                     //readname.EmpAcount = this.txtLoginAccount.Text;//擷取登入者姓名 (Kai)
 
-                    MessageBox.Show($"歡迎回來， {EmpName.Substring(EmpName.Length - 2, EmpName.Length - 1)}!", "登入成功", MessageBoxButtons.OK);
+                    MessageBox.Show($"歡迎回來， {EmpName}!", "登入成功", MessageBoxButtons.OK);
 
                     //MessageBox.Show(readname.EmpAcount);//測試
                     MainForm main = new MainForm(EmpID);
@@ -75,7 +70,7 @@ namespace BusinessSystem.EmployeeSystem
                 }
             }
             finally
-            {
+            {                
                 this.Cursor = Cursors.Default;
             }
         }
@@ -93,6 +88,12 @@ namespace BusinessSystem.EmployeeSystem
         private void clsAltoButton2_Click(object sender, EventArgs e)
         {
             this.txtLoginAccount.Text = "reshin";
+            this.txtLoginPassword.Text = "123456";
+        }
+
+        private void clsAltoButton3_Click(object sender, EventArgs e)
+        {
+            this.txtLoginAccount.Text = "mary";
             this.txtLoginPassword.Text = "123456";
         }
     }
