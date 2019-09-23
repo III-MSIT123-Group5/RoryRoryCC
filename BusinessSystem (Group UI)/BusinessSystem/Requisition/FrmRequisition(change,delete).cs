@@ -81,15 +81,22 @@ namespace BusinessSystem.Requisition
                         report.Quantity = Convert.ToInt32(txtQuantity.Text);
                         report.Note = txtNote.Text;
 
-                        this.dbContext.SaveChanges();
-                        DataGridViewFormat2();
+                        if (MessageBox.Show("確定修改請購單?", "修改請購單", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            this.dbContext.SaveChanges();
+                            DataGridViewFormat2();
+
+                            txtReportID.Text = "";
+                            txtProcductName.Text = "";
+                            txtUnitPrice.Text = "";
+                            txtQuantity.Text = "";
+                            txtNote.Text = "";
+                        }
                     }
                     finally
                     {
                         this.Cursor = Cursors.Default;
                     }
-
-                MessageBox.Show("購案更新成功");
             }
             catch (Exception ex)
             {
@@ -101,34 +108,48 @@ namespace BusinessSystem.Requisition
         //刪除
         private void btnClear_Click(object sender, EventArgs e)
         {
-            try
+            if (txtReportID.Text == "")
             {
-                this.Cursor = Cursors.WaitCursor;
+                MessageBox.Show("請輸入請購單編號!!!");
+            }
+            else
+            {
                 try
                 {
-                    var report1 = (from OD in this.dbContext.OrderDetails.AsEnumerable()
-                                   where OD.OrderID == int.Parse(txtReportID.Text)
-                                   select OD).FirstOrDefault();
+                    this.Cursor = Cursors.WaitCursor;
+                    try
+                    {
+                        var report1 = (from OD in this.dbContext.OrderDetails.AsEnumerable()
+                                       where OD.OrderID == int.Parse(txtReportID.Text)
+                                       select OD).FirstOrDefault();
 
-                    var report2 = (from RM in this.dbContext.RequisitionMains.AsEnumerable()
-                                   where RM.OrderID == int.Parse(txtReportID.Text)
-                                   select RM).FirstOrDefault();
+                        var report2 = (from RM in this.dbContext.RequisitionMains.AsEnumerable()
+                                       where RM.OrderID == int.Parse(txtReportID.Text)
+                                       select RM).FirstOrDefault();
 
-                    this.dbContext.OrderDetails.Remove(report1);
-                    this.dbContext.RequisitionMains.Remove(report2);
-                    this.dbContext.SaveChanges();
-                    DataGridViewFormat2();
+                        if (MessageBox.Show("確定刪除請購單?", "刪除請購單", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            this.dbContext.OrderDetails.Remove(report1);
+                            this.dbContext.RequisitionMains.Remove(report2);
+                            this.dbContext.SaveChanges();
+                            DataGridViewFormat2();
+
+                            txtReportID.Text = "";
+                            txtProcductName.Text = "";
+                            txtUnitPrice.Text = "";
+                            txtQuantity.Text = "";
+                            txtNote.Text = "";
+                        }
+                    }
+                    finally
+                    {
+                        this.Cursor = Cursors.Default;
+                    }
                 }
-                finally
+                catch (Exception ex)
                 {
-                    this.Cursor = Cursors.Default;
+                    MessageBox.Show(ex.Message);
                 }
-
-                MessageBox.Show("購案刪除成功");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
 
