@@ -16,7 +16,7 @@ using BusinessSystemDBEntityModel;
 
 namespace BusinessSystem.ReportTimeSystem
 {
-    public partial class FormAdd : SonForm 
+    public partial class FormAdd : Form 
     {
         BusinessDataBaseEntities dbcontext = new BusinessDataBaseEntities();
         FormMainRTS rts;
@@ -106,7 +106,8 @@ namespace BusinessSystem.ReportTimeSystem
                         };
                 rts.dataGridView1.DataSource = q.ToList();
                 this.Close();
-
+                FormMainRTS form = new FormMainRTS();
+                form.Refresh();
 
             }
             else

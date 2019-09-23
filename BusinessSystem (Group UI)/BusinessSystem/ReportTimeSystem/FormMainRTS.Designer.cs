@@ -133,7 +133,7 @@
             this.MaximizeBox = false;
             this.Name = "FormMainRTS";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormMainRTS";
+            this.Text = "工時報表系統";
             this.Load += new System.EventHandler(this.FormMainRTS_Load);
             this.panel2.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
