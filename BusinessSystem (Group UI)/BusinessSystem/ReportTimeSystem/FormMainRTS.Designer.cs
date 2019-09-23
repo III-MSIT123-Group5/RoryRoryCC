@@ -31,9 +31,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DeleteRTSButton = new Controls.ClsAltoButton();
             this.AddRTSButton = new Controls.ClsAltoButton();
             this.ChartRTSButton = new Controls.ClsAltoButton();
-            this.DeleteRTSButton = new Controls.ClsAltoButton();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -48,13 +48,12 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(869, 489);
+            this.panel2.Size = new System.Drawing.Size(869, 576);
             this.panel2.TabIndex = 3;
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 54);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -68,8 +67,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.DeleteRTSButton);
             this.splitContainer1.Panel2.Controls.Add(this.AddRTSButton);
             this.splitContainer1.Panel2.Controls.Add(this.ChartRTSButton);
-            this.splitContainer1.Size = new System.Drawing.Size(869, 489);
-            this.splitContainer1.SplitterDistance = 396;
+            this.splitContainer1.Size = new System.Drawing.Size(869, 517);
+            this.splitContainer1.SplitterDistance = 392;
             this.splitContainer1.TabIndex = 3;
             // 
             // dataGridView1
@@ -80,9 +79,30 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(869, 396);
+            this.dataGridView1.Size = new System.Drawing.Size(869, 392);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
+            // 
+            // DeleteRTSButton
+            // 
+            this.DeleteRTSButton.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
+            this.DeleteRTSButton.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
+            this.DeleteRTSButton.BackColor = System.Drawing.Color.Transparent;
+            this.DeleteRTSButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.DeleteRTSButton.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteRTSButton.ForeColor = System.Drawing.Color.White;
+            this.DeleteRTSButton.Inactive1 = System.Drawing.Color.DarkSlateBlue;
+            this.DeleteRTSButton.Inactive2 = System.Drawing.Color.DarkSlateBlue;
+            this.DeleteRTSButton.Location = new System.Drawing.Point(234, 13);
+            this.DeleteRTSButton.Name = "DeleteRTSButton";
+            this.DeleteRTSButton.Radius = 10;
+            this.DeleteRTSButton.Size = new System.Drawing.Size(184, 61);
+            this.DeleteRTSButton.Stroke = false;
+            this.DeleteRTSButton.StrokeColor = System.Drawing.Color.Gray;
+            this.DeleteRTSButton.TabIndex = 7;
+            this.DeleteRTSButton.Text = "刪除選取資料";
+            this.DeleteRTSButton.Transparency = false;
+            this.DeleteRTSButton.Click += new System.EventHandler(this.DeleteRTSButton_Click);
             // 
             // AddRTSButton
             // 
@@ -126,32 +146,11 @@
             this.ChartRTSButton.Transparency = false;
             this.ChartRTSButton.Click += new System.EventHandler(this.ChartRTSButton_Click);
             // 
-            // DeleteRTSButton
-            // 
-            this.DeleteRTSButton.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.DeleteRTSButton.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
-            this.DeleteRTSButton.BackColor = System.Drawing.Color.Transparent;
-            this.DeleteRTSButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.DeleteRTSButton.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteRTSButton.ForeColor = System.Drawing.Color.White;
-            this.DeleteRTSButton.Inactive1 = System.Drawing.Color.DarkSlateBlue;
-            this.DeleteRTSButton.Inactive2 = System.Drawing.Color.DarkSlateBlue;
-            this.DeleteRTSButton.Location = new System.Drawing.Point(234, 13);
-            this.DeleteRTSButton.Name = "DeleteRTSButton";
-            this.DeleteRTSButton.Radius = 10;
-            this.DeleteRTSButton.Size = new System.Drawing.Size(184, 61);
-            this.DeleteRTSButton.Stroke = false;
-            this.DeleteRTSButton.StrokeColor = System.Drawing.Color.Gray;
-            this.DeleteRTSButton.TabIndex = 7;
-            this.DeleteRTSButton.Text = "刪除選取資料";
-            this.DeleteRTSButton.Transparency = false;
-            this.DeleteRTSButton.Click += new System.EventHandler(this.DeleteRTSButton_Click);
-            // 
             // FormMainRTS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(869, 489);
+            this.ClientSize = new System.Drawing.Size(869, 576);
             this.Controls.Add(this.panel2);
             this.Name = "FormMainRTS";
             this.Text = "FormMainRTS";

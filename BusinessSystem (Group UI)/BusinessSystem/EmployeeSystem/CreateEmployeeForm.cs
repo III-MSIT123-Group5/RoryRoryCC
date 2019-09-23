@@ -81,7 +81,7 @@ namespace BusinessSystem
             }
             else
             {
-                MessageBox.Show("請確認[密碼]及[確認密碼]的。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("請確認[密碼]及[確認密碼]的正確性。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.txtPassword.Text = "";
                 this.txtConfirmPassword.Text = "";
                 this.txtPassword.Focus();
@@ -139,7 +139,7 @@ namespace BusinessSystem
             switch (GenderText)
             {
                 case "F":
-                    m_address = "https://icon-icons.com/icons2/2061/PNG/512/happy_consumer_people_man_icon_124583.png";
+                    m_address = "https://cdn.icon-icons.com/icons2/2061/PNG/512/girl_people_face_consumer_icon_124586.png";
                         break;
                 case "M":
                     m_address = "https://icon-icons.com/icons2/2061/PNG/512/happy_consumer_people_man_icon_124583.png";
