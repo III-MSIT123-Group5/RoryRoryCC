@@ -172,7 +172,6 @@ namespace BusinessSystem.DocumentManagement
 
         private void AddButton(string v)
         {
-            MyUpdate();
             DataGridViewButtonColumn MyButton = new DataGridViewButtonColumn();
             MyButton.Text = v;
             MyButton.HeaderText = v;
@@ -276,7 +275,6 @@ namespace BusinessSystem.DocumentManagement
                 panel2.Visible = false;
                 clsAltoButton7.Location = new Point(23, 41);
                 clsAltoButton9.Location = new Point(25, 269);
-                MyUpdate();
             }
         }
 
@@ -307,7 +305,6 @@ namespace BusinessSystem.DocumentManagement
                 clsAltoButton6.Location = new Point(23, 100);
                 panel2.Visible = false;
                 clsAltoButton9.Location = new Point(25, 269);
-                MyUpdate();
             }
         }
 
@@ -341,7 +338,6 @@ namespace BusinessSystem.DocumentManagement
                 panel2.Visible = false;
                 dateTimePicker1.Visible = false;
                 clsAltoButton9.Location = new Point(25, 269);
-                MyUpdate();
             }
         }
 
