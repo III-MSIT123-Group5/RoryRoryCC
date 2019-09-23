@@ -125,10 +125,6 @@
             this.clsAltoButton3.Transparency = false;
             this.clsAltoButton3.Click += new System.EventHandler(this.clsAltoButton3_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
             // clsAltoButton4
             // 
             this.clsAltoButton4.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
