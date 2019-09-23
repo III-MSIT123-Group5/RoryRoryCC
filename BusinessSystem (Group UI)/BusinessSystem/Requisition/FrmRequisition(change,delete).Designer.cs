@@ -192,8 +192,8 @@
             this.btnClear.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnClear.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.ForeColor = System.Drawing.Color.White;
-            this.btnClear.Inactive1 = System.Drawing.Color.DarkSlateBlue;
-            this.btnClear.Inactive2 = System.Drawing.Color.DarkSlateBlue;
+            this.btnClear.Inactive1 = System.Drawing.Color.Firebrick;
+            this.btnClear.Inactive2 = System.Drawing.Color.Firebrick;
             this.btnClear.Location = new System.Drawing.Point(677, 301);
             this.btnClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnClear.Name = "btnClear";
