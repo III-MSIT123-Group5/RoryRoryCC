@@ -60,18 +60,13 @@ namespace BusinessSystem.ReportTimeSystem
             this.dateTimePicker2.Format = DateTimePickerFormat.Custom;
             this.dateTimePicker2.CustomFormat = "yyyy/MM/dd tt hh:mm";
             
-            if (dateTimePicker2.Value.TimeOfDay > dateTimePicker1.Value.TimeOfDay)
-            {
-
-            }
+            
         }
 
         private void clsAltoButton1_Click(object sender, EventArgs e)
         {
             
-            if (dateTimePicker2.Value > dateTimePicker1.Value &&
-                this.textBox1.Text.Length>0&&
-                this.textBox1.Text.Length<=10)
+            if (dateTimePicker2.Value > dateTimePicker1.Value &&this.textBox1.Text.Trim()!="")
             {
 
                 dbcontext.ReportTimeSystems.Add(
@@ -116,7 +111,29 @@ namespace BusinessSystem.ReportTimeSystem
             }
             else
             {
+                if (dateTimePicker2.Value <= dateTimePicker1.Value)
+                {
+                    errorProvider1.SetError(dateTimePicker2, "結束時間需大於開始時間");
+
+                }
+                else
+                {
+                    errorProvider1.SetError(this.dateTimePicker2, String.Empty);
+                }
+
+
+
+                if (this.textBox1.Text.Trim()=="")
+                {
+                    errorProvider1.SetError(textBox1, "請輸入活動名稱,名稱介於10個字內");
+                }
+                else
+                {
+                    errorProvider1.SetError(this.textBox1, String.Empty);
+                }
+
                 MessageBox.Show("請更正警示欄位");
+
             }
 
             if (rts.dataGridView1.Rows.Count != 0)
@@ -139,16 +156,19 @@ namespace BusinessSystem.ReportTimeSystem
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            if (dateTimePicker2.Value <= dateTimePicker1.Value )
+            if (dateTimePicker2.Value <= dateTimePicker1.Value)
             {
                 errorProvider1.SetError(dateTimePicker2, "結束時間需大於開始時間");
-                
+
             }
-            if (0<this.textBox1.Text.Length &&this.textBox1.Text.Length<11)
+            else
             {
-                errorProvider1.SetError(textBox1, "請輸入活動名稱");
+                errorProvider1.SetError(this.dateTimePicker2, String.Empty);
             }
 
+
+
+            
 
 
 
@@ -158,6 +178,19 @@ namespace BusinessSystem.ReportTimeSystem
         {
             
            
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (this.textBox1.Text.Trim() == "")
+            {
+                errorProvider1.SetError(textBox1, "請輸入活動名稱");
+            }
+            else
+            {
+                errorProvider1.SetError(this.textBox1, String.Empty);
+            }
+
         }
     }
     

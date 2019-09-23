@@ -177,65 +177,66 @@ namespace BusinessSystem.ReportTimeSystem
             DialogResult result = MessageBox.Show( /*Environment.NewLine +*/ "資料是否刪除",
                                                  "警告",
                                                   MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
-            
-            foreach (var y in listcatalog)
+            if (result == DialogResult.Yes)
             {
-                if (y.報表編號.ToString() == dataGridView1.CurrentRow.Cells[0].Value.ToString())
+                foreach (var y in listcatalog)
                 {
-                    var w = dbcontext.ReportTimeSystems.Where(K => K.ReportID ==y.報表編號).FirstOrDefault();
-
-                    if (w != null)
+                    if (y.報表編號.ToString() == dataGridView1.CurrentRow.Cells[0].Value.ToString())
                     {
+                        var w = dbcontext.ReportTimeSystems.Where(K => K.ReportID == y.報表編號).FirstOrDefault();
 
-                        w.Discontinue = false;
+                        if (w != null)
+                        {
+
+                            w.Discontinue = false;
+
+                        }
 
                     }
 
                 }
-                
-            }
-            
+
                 dbcontext.SaveChanges();
                 MessageBox.Show("資料已刪除");
-                
-            
 
 
-            var q = from RTS in dbcontext.ReportTimeSystems
-                    join emp in dbcontext.Employees
-                    on RTS.employeeID equals emp.employeeID
-                    join eve in dbcontext.Events
-                    on RTS.EventID equals eve.EventID
-                    where RTS.Discontinue == true && RTS.employeeID==ClassEmployee.LoginEmployeeID
-                    select new data
-                    {
-                        報表編號 = RTS.ReportID,
-                        //員工名稱 = emp.EmployeeName,
-                        活動名稱 = RTS.ReportName,
-                        開始時間 = RTS.StartTime,
-                        結束時間 = RTS.EndTime,
-                        所需總時數 = RTS.EventHours,
-                        活動類型 = eve.EventName,
-                        備註 = RTS.Note,
-                        申請時間 = RTS.ApplyDateTime
-                    };
 
-            listcatalog = q.ToList();
 
-            this.dataGridView1.DataSource = null;
-            this.dataGridView1.DataSource = listcatalog;
-            dataGridView1.Columns[0].ReadOnly = true;
-            dataGridView1.Columns[4].ReadOnly = true;
-            if (this.dataGridView1.Rows.Count != 0)
-            {
-                for (int i = 0; i < this.dataGridView1.Rows.Count;)
+                var q = from RTS in dbcontext.ReportTimeSystems
+                        join emp in dbcontext.Employees
+                        on RTS.employeeID equals emp.employeeID
+                        join eve in dbcontext.Events
+                        on RTS.EventID equals eve.EventID
+                        where RTS.Discontinue == true && RTS.employeeID == ClassEmployee.LoginEmployeeID
+                        select new data
+                        {
+                            報表編號 = RTS.ReportID,
+                            //員工名稱 = emp.EmployeeName,
+                            活動名稱 = RTS.ReportName,
+                            開始時間 = RTS.StartTime,
+                            結束時間 = RTS.EndTime,
+                            所需總時數 = RTS.EventHours,
+                            活動類型 = eve.EventName,
+                            備註 = RTS.Note,
+                            申請時間 = RTS.ApplyDateTime
+                        };
+
+                listcatalog = q.ToList();
+
+                this.dataGridView1.DataSource = null;
+                this.dataGridView1.DataSource = listcatalog;
+                dataGridView1.Columns[0].ReadOnly = true;
+                dataGridView1.Columns[4].ReadOnly = true;
+                if (this.dataGridView1.Rows.Count != 0)
                 {
-                    this.dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.LightBlue;
-                    i += 2;
+                    for (int i = 0; i < this.dataGridView1.Rows.Count;)
+                    {
+                        this.dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.LightBlue;
+                        i += 2;
+                    }
                 }
+
             }
-
-
 
 
 
