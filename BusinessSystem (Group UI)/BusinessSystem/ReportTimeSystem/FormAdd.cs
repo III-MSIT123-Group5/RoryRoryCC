@@ -110,7 +110,7 @@ namespace BusinessSystem.ReportTimeSystem
                             申請時間 = RTS.ApplyDateTime
                         };
                 rts.dataGridView1.DataSource = q.ToList();
-                
+                this.Close();
 
 
             }
@@ -127,7 +127,7 @@ namespace BusinessSystem.ReportTimeSystem
                     i += 2;
                 }
             }
-            this.Close();
+            
         }
 
         

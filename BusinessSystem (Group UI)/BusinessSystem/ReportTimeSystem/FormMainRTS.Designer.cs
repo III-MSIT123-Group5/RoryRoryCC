@@ -33,7 +33,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.DeleteRTSButton = new Controls.ClsAltoButton();
             this.AddRTSButton = new Controls.ClsAltoButton();
-            this.ChartRTSButton = new Controls.ClsAltoButton();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -66,9 +65,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.DeleteRTSButton);
             this.splitContainer1.Panel2.Controls.Add(this.AddRTSButton);
-            this.splitContainer1.Panel2.Controls.Add(this.ChartRTSButton);
             this.splitContainer1.Size = new System.Drawing.Size(869, 517);
-            this.splitContainer1.SplitterDistance = 392;
+            this.splitContainer1.SplitterDistance = 391;
             this.splitContainer1.TabIndex = 3;
             // 
             // dataGridView1
@@ -79,7 +77,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(869, 392);
+            this.dataGridView1.Size = new System.Drawing.Size(869, 391);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             // 
@@ -91,12 +89,12 @@
             this.DeleteRTSButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.DeleteRTSButton.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DeleteRTSButton.ForeColor = System.Drawing.Color.White;
-            this.DeleteRTSButton.Inactive1 = System.Drawing.Color.DarkSlateBlue;
-            this.DeleteRTSButton.Inactive2 = System.Drawing.Color.DarkSlateBlue;
-            this.DeleteRTSButton.Location = new System.Drawing.Point(234, 13);
+            this.DeleteRTSButton.Inactive1 = System.Drawing.Color.Orange;
+            this.DeleteRTSButton.Inactive2 = System.Drawing.Color.Red;
+            this.DeleteRTSButton.Location = new System.Drawing.Point(662, 33);
             this.DeleteRTSButton.Name = "DeleteRTSButton";
             this.DeleteRTSButton.Radius = 10;
-            this.DeleteRTSButton.Size = new System.Drawing.Size(184, 61);
+            this.DeleteRTSButton.Size = new System.Drawing.Size(182, 41);
             this.DeleteRTSButton.Stroke = false;
             this.DeleteRTSButton.StrokeColor = System.Drawing.Color.Gray;
             this.DeleteRTSButton.TabIndex = 7;
@@ -125,27 +123,6 @@
             this.AddRTSButton.Transparency = false;
             this.AddRTSButton.Click += new System.EventHandler(this.AddRTSButton_Click);
             // 
-            // ChartRTSButton
-            // 
-            this.ChartRTSButton.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(168)))), ((int)(((byte)(183)))));
-            this.ChartRTSButton.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(164)))), ((int)(((byte)(183)))));
-            this.ChartRTSButton.BackColor = System.Drawing.Color.Transparent;
-            this.ChartRTSButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.ChartRTSButton.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChartRTSButton.ForeColor = System.Drawing.Color.White;
-            this.ChartRTSButton.Inactive1 = System.Drawing.Color.DarkSlateBlue;
-            this.ChartRTSButton.Inactive2 = System.Drawing.Color.DarkSlateBlue;
-            this.ChartRTSButton.Location = new System.Drawing.Point(615, 13);
-            this.ChartRTSButton.Name = "ChartRTSButton";
-            this.ChartRTSButton.Radius = 10;
-            this.ChartRTSButton.Size = new System.Drawing.Size(155, 61);
-            this.ChartRTSButton.Stroke = false;
-            this.ChartRTSButton.StrokeColor = System.Drawing.Color.Gray;
-            this.ChartRTSButton.TabIndex = 6;
-            this.ChartRTSButton.Text = "分析";
-            this.ChartRTSButton.Transparency = false;
-            this.ChartRTSButton.Click += new System.EventHandler(this.ChartRTSButton_Click);
-            // 
             // FormMainRTS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -171,7 +148,6 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private Controls.ClsAltoButton AddRTSButton;
         public System.Windows.Forms.DataGridView dataGridView1;
-        private Controls.ClsAltoButton ChartRTSButton;
         private Controls.ClsAltoButton DeleteRTSButton;
     }
 }

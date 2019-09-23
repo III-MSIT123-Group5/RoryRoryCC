@@ -177,29 +177,28 @@ namespace BusinessSystem.ReportTimeSystem
             DialogResult result = MessageBox.Show( /*Environment.NewLine +*/ "資料是否刪除",
                                                  "警告",
                                                   MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
-
-            int rowint = dataGridView1.CurrentRow.Index;
-                      
             
-
-            if (result == DialogResult.Yes)
+            foreach (var y in listcatalog)
             {
-                foreach (var abc in listcatalog)
+                if (y.報表編號.ToString() == dataGridView1.CurrentRow.Cells[0].Value.ToString())
                 {
-                    var w = dbcontext.ReportTimeSystems.Where(K => K.ReportID==rowint).FirstOrDefault();
+                    var w = dbcontext.ReportTimeSystems.Where(K => K.ReportID ==y.報表編號).FirstOrDefault();
 
                     if (w != null)
                     {
 
-                        w.Discontinue =false;
-                        
+                        w.Discontinue = false;
+
                     }
 
                 }
+                
+            }
+            
                 dbcontext.SaveChanges();
                 MessageBox.Show("資料已刪除");
                 
-            }
+            
 
 
             var q = from RTS in dbcontext.ReportTimeSystems
@@ -227,7 +226,14 @@ namespace BusinessSystem.ReportTimeSystem
             this.dataGridView1.DataSource = listcatalog;
             dataGridView1.Columns[0].ReadOnly = true;
             dataGridView1.Columns[4].ReadOnly = true;
-
+            if (this.dataGridView1.Rows.Count != 0)
+            {
+                for (int i = 0; i < this.dataGridView1.Rows.Count;)
+                {
+                    this.dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.LightBlue;
+                    i += 2;
+                }
+            }
 
 
 
