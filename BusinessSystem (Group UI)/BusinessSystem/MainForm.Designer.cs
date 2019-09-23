@@ -108,6 +108,7 @@
             // 
             // btnEmployee
             // 
+            this.btnEmployee.BackColor = System.Drawing.Color.Transparent;
             this.btnEmployee.BackgroundColor = System.Drawing.Color.Empty;
             this.btnEmployee.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnEmployee.ButtonColor = System.Drawing.SystemColors.ActiveCaption;
