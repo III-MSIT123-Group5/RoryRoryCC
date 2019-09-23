@@ -43,9 +43,9 @@ namespace BusinessSystem.CompanyCars
         {
             int t1 = 0;
             string Tmm = this.comboBox3.Text;
-            if (Tmm == "09:00")
+            if (Tmm == "9:00")
             {
-                t1 = 09;
+                t1 = 9;
                 DateTime dtstart = new DateTime(this.dTPStartTime.Value.Year, this.dTPStartTime.Value
                 .Month, this.dTPStartTime.Value.Day, t1, 00, 00);
                 this.dTPStartTime.Value = dtstart;
@@ -111,9 +111,9 @@ namespace BusinessSystem.CompanyCars
         {
             int t1 = 0;
             string Tmm = this.comboBox4.Text;
-            if (Tmm == "09:00")
+            if (Tmm == "9:00")
             {
-                t1 = 09;
+                t1 = 9;
                 DateTime dtstart = new DateTime(this.dTPEndTime.Value.Year, this.dTPEndTime.Value
                 .Month, this.dTPEndTime.Value.Day, t1, 00, 00);
                 this.dTPEndTime.Value = dtstart;
@@ -179,7 +179,6 @@ namespace BusinessSystem.CompanyCars
         {
             string licenceNum = null;
             var Nlicence = from p in dbcontext.CompanyVehicleHistories
-                    //join bt in this.dbcontext.CompanyVehicles on p.LicenseNumber equals bt.LicenseNumber
                     where (this.dTPStartTime.Value >= p.StartDateTime && this.dTPEndTime.Value <= p.EndDateTime) ||( ( this.dTPStartTime.Value >= p.StartDateTime && this.dTPStartTime.Value<p.EndDateTime) && this.dTPEndTime.Value > p.EndDateTime) ||( this.dTPStartTime.Value < p.StartDateTime &&( this.dTPEndTime.Value>p.StartDateTime && this.dTPEndTime.Value <= p.EndDateTime)) || (this.dTPStartTime.Value < p.StartDateTime && this.dTPEndTime.Value > p.EndDateTime)
                            select new {  p.LicenseNumber };
             var q2 = Nlicence.ToList();
@@ -317,7 +316,7 @@ namespace BusinessSystem.CompanyCars
                 };
                 dbcontext.CompanyVehicleHistories.Add(q);
                 dbcontext.SaveChanges();
-                MessageBox.Show("借車成功！" + "\n" + "借車時數共 " + ((this.dTPEndTime.Value - this.dTPStartTime.Value).Hours).ToString() + "小時，\n請準時歸還!");
+                MessageBox.Show("借車成功！" + "\n" + "借車時數共 " + ((this.dTPEndTime.Value - this.dTPStartTime.Value).Days).ToString() + "日" + ((this.dTPEndTime.Value - this.dTPStartTime.Value).Hours).ToString() +"小時"+ "\n請準時歸還!");
                 
             }
             else
@@ -333,18 +332,20 @@ namespace BusinessSystem.CompanyCars
             x.Show();
         }
 
-        private void clsAltoButton3_Click(object sender, EventArgs e)
-        {
-            this.flowLayoutPanel1.Controls.Clear();
-            mytime1();
-            mytime2();
-            mypic();
-        }
+        
 
         private void clsAltoButton4_Click(object sender, EventArgs e)
         {
             CompanyCarForm x = new CompanyCarForm(LoginID);
             x.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.flowLayoutPanel1.Controls.Clear();
+            mytime1();
+            mytime2();
+            mypic();
         }
     }
 }
