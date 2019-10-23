@@ -47,7 +47,8 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar">                                      @*側邊功能列表*@
+            <div class="col-sm-3 col-md-2 sidebar">
+                @*側邊功能列表*@
                 <ul class="nav nav-sidebar">
                     <li class="active"><a href="#">Overview</a></li>
                     <li><a href="#">Reports</a></li>
@@ -57,11 +58,14 @@
                         @Html.ActionLink("請購系統", "Index", "OrderDetails")                           
                     </li>
                 </ul>
-                
             </div>
             @RenderBody()
         </div>
     </div>
+    <hr />
+    <footer>
+        <p style="color:black">&copy; @DateTime.Now.Year - BussinessSystem</p>
+    </footer>
 
     @Scripts.Render("~/Scripts/jquery")
     @Scripts.Render("~/js/bootstrap.js")
