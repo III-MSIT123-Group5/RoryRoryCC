@@ -143,9 +143,9 @@ namespace BussinessSystem_MVC.Controllers
             }
             base.Dispose(disposing);
         }
-        public FileResult ShowPhoto(int id)
+        public FileResult ShowPhoto(string LicenceNumber)
         {
-            byte[] content = db.CompanyVehicles.Find(id).VehiclePhoto;
+            byte[] content = db.CompanyVehicles.Find(LicenceNumber).VehiclePhoto;
             return File(content, "image/jpeg");
         }
     }

@@ -1,9 +1,9 @@
 ﻿@model BussinessSystem_MVC.Models.CompanyVehicle
 @if (Model.VehiclePhoto != null)
 {
-    <img src="@Url.Action("ShowPhoto", "CompanyVehicle", new {id=Model.LicenseNumber})" style="width:320px;height:240px" />
+    <img src="@Url.Action("ShowPhoto", "CompanyVehicles", new {LicenceNumber=Model.LicenseNumber})" style="width:320px;height:200px" />
 }
 else
 {
-    <img src="@Url.Content("~/images/Noimage.png")" style="width:320px;height:240px" />
+    <img src="@Url.Content("~/Images/noimage.jpg")" style="width:320px;height:200px" />
 }
