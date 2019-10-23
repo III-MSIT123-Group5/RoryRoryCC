@@ -13,15 +13,19 @@ namespace BussinessSystem_MVC.App_Start
             bundles.Add(new ScriptBundle("~/Scripts/jquery").Include(
                 "~/Scripts/jquery-{version}.js",
                 "~/Scripts/jquery.*",
-                "~/Scripts/jquery-ui-{version}.js"));          
+                "~/Scripts/jquery-ui-{version}.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/bootstrapBundleEX/css").Include(
                       "~/css/bootstrap.css",
                       "~/css/dashboard.css"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/bootstrap").Include(
+                      "~/js/bootstrap.js"));
+
 
         }
     }
