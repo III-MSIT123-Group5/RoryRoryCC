@@ -30,13 +30,12 @@
                 </button>
                 <a class="navbar-brand" href="#">@ViewBag.Title</a>
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse">             @*上方工能列*@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Dashboard</a></li>
                     <li><a href="#">Settings</a></li>
                     <li><a href="#">Profile</a></li>
-                    <li><a href="#">Help</a></li>
-                    
+                    <li><a href="#">Help</a></li>                    
                 </ul>
                 <form class="navbar-form navbar-right">
                     <input type="text" class="form-control" placeholder="Search...">
@@ -54,8 +53,7 @@
                     <li><a href="#">Reports</a></li>
                     <li><a href="#">Analytics</a></li>
                     <li><a href="#">Export</a></li>
-                    <li class="nav-item dropdown">
-                        <a></a>
+                    <li class="nav-item dropdown">                        
                         @Html.ActionLink("請購系統", "Index", "OrderDetails")                           
                     </li>
                 </ul>
