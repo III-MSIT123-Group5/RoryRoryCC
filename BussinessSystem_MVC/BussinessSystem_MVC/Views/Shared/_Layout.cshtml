@@ -15,6 +15,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    @RenderSection("styles", required:false)
 </head>
 
 <body>
@@ -35,6 +36,7 @@
                     <li><a href="#">Settings</a></li>
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Help</a></li>
+                    
                 </ul>
                 <form class="navbar-form navbar-right">
                     <input type="text" class="form-control" placeholder="Search...">
@@ -52,6 +54,10 @@
                     <li><a href="#">Reports</a></li>
                     <li><a href="#">Analytics</a></li>
                     <li><a href="#">Export</a></li>
+                    <li class="nav-item dropdown">
+                        <a></a>
+                        @Html.ActionLink("請購系統", "Index", "OrderDetails")                           
+                    </li>
                 </ul>
             </div>
             @RenderBody()
