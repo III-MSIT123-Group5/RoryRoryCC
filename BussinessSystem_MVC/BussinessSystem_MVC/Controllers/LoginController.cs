@@ -16,10 +16,10 @@ namespace BussinessSystem_MVC.Controllers
         }
 
         //登入驗證
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public 
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public 
 
 
     }
