@@ -15,5 +15,14 @@ namespace EIPBussinessSystem_MVC.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
+
+        //Login Post 登入驗證
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public
+
+
+
     }
 }
