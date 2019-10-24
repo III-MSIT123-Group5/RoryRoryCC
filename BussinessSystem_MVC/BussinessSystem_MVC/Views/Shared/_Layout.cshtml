@@ -15,6 +15,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    @RenderSection("styles", required:false)
 </head>
 
 <body>
@@ -29,12 +30,12 @@
                 </button>
                 <a class="navbar-brand" href="#">@ViewBag.Title</a>
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse">             @*上方工能列*@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Dashboard</a></li>
                     <li><a href="#">Settings</a></li>
                     <li><a href="#">Profile</a></li>
-                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Help</a></li>                    
                 </ul>
                 <form class="navbar-form navbar-right">
                     <input type="text" class="form-control" placeholder="Search...">
@@ -45,19 +46,45 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar">                                      @*側邊功能列表*@
+            <div class="col-sm-3 col-md-2 sidebar">
+                @*側邊功能列表*@
                 <ul class="nav nav-sidebar">
                     <li class="active"><a href="#">Overview</a></li>
                     <li><a href="#">Reports</a></li>
                     <li><a href="#">Analytics</a></li>
-                    <li><a href="#">Export</a></li>
+                    <li><a href="#">Export</a></li>                    
+                    <li class="nav-item">                        
+                        <a class="nav collapsed" href="#" data-toggle="collapse" data-target="#collapseRequisition" aria-expanded="true" aria-controls="collapseRequisition">
+                            <i class="glyphicon glyphicon-th-list">   請購系統</i>                            
+                            <span style="text-align: start "></span>
+                            <i class="glyphicon glyphicon-chevron-down" style="float:right"></i>
+                        </a>
+                        <div id="collapseRequisition" class="collapse" aria-labelledby="headingRequisition" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">請購功能:</h6>
+                                @Html.ActionLink("查詢請購", "Index", "OrderDetails")
+                                <br />
+                                @Html.ActionLink("新增請購", "Index", "OrderDetails")
+                                <br />
 
+                                <a class="collapse-item" href="utilities-border.html">Borders</a>
+                                <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                                <a class="collapse-item" href="utilities-other.html">Other</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        
+                    </li>
                 </ul>
-                
             </div>
             @RenderBody()
         </div>
     </div>
+    <hr />
+    <footer>
+        <p style="color:black">&copy; @DateTime.Now.Year - BussinessSystem</p>
+    </footer>
 
     @Scripts.Render("~/Scripts/jquery")
     @Scripts.Render("~/js/bootstrap.js")
