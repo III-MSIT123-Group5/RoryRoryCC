@@ -8,12 +8,12 @@ namespace BussinessSystem_MVC.ViewModels
 {
     public class LoginViewModels
     {
-        [Required]
+        [Required(ErrorMessage ="{0}不可為空白。")]
         [Display(Name = "帳號")]
         [EmailAddress]
         public string Account { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "{0}不可為空白。")]
         [DataType(DataType.Password)]
         [Display(Name = "密碼")]
         public string Password { get; set; }
