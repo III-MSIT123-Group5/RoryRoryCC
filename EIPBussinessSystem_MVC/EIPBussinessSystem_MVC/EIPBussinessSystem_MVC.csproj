@@ -170,6 +170,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BulletinBoardsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginAccountController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -377,6 +378,11 @@
     <Content Include="Views\OrderDetails\Edit.cshtml" />
     <Content Include="Views\OrderDetails\Index.cshtml" />
     <Content Include="Views\LoginAccount\Login.cshtml" />
+    <Content Include="Views\BulletinBoards\Create.cshtml" />
+    <Content Include="Views\BulletinBoards\Delete.cshtml" />
+    <Content Include="Views\BulletinBoards\Details.cshtml" />
+    <Content Include="Views\BulletinBoards\Edit.cshtml" />
+    <Content Include="Views\BulletinBoards\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
