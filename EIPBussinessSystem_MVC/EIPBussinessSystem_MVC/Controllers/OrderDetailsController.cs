@@ -17,8 +17,12 @@ namespace EIPBussinessSystem_MVC.Controllers
         // GET: OrderDetails
         public ActionResult Index()
         {
-            var orderDetails = db.OrderDetails.Include(o => o.RequisitionMain);
-            return View(orderDetails.ToList());
+            var report = from RM in this.db.RequisitionMains
+                         join OD in this.db.OrderDetails on RM.OrderID equals OD.OrderID
+                         where RM.EmployeeID == 1032
+                         select OD;
+                         
+            return View(report.ToList());
         }
 
         // GET: OrderDetails/Details/5
