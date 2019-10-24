@@ -176,6 +176,7 @@
     <Compile Include="Controllers\LoginAccountController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderDetailsController.cs" />
+    <Compile Include="Controllers\ReportTimeSystemsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -390,6 +391,11 @@
     <Content Include="Views\BulletinBoards\Details.cshtml" />
     <Content Include="Views\BulletinBoards\Edit.cshtml" />
     <Content Include="Views\BulletinBoards\Index.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Create.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Delete.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Details.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Edit.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
