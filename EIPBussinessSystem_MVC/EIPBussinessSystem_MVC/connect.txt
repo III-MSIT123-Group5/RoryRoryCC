@@ -1,0 +1,1 @@
+    <add name="DefaultConnection" connectionString="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-EIPBussinessSystem_MVC-20191024111740.mdf;Initial Catalog=aspnet-EIPBussinessSystem_MVC-20191024111740;Integrated Security=True" providerName="System.Data.SqlClient" />

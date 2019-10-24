@@ -15,11 +15,11 @@ namespace BussinessSystem_MVC.Controllers
             return View();
         }
 
-        ////登入驗證
+        //登入驗證
         //[HttpPost]
         //[AllowAnonymous]
         //[ValidateAntiForgeryToken]
-        
+        //public 
 
 
     }

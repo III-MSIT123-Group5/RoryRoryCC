@@ -173,10 +173,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CompanyVehiclesController.cs" />
+    <Compile Include="Controllers\BulletinBoardsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginAccountController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderDetailsController.cs" />
+    <Compile Include="Controllers\ReportTimeSystemsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -502,6 +505,7 @@
     <Content Include="Theme\redmond\images\ui-icons_f9bd01_256x240.png" />
     <Content Include="Theme\redmond\jquery-ui-1.10.3.custom.css" />
     <Content Include="Theme\redmond\jquery-ui-1.10.3.custom.min.css" />
+    <Content Include="Scripts\VehicleJS.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -562,6 +566,21 @@
     <Content Include="Scripts\jtable\themes\jtable_theme_base.less" />
     <Content Include="Scripts\jtable\themes\jqueryui\jtable_jqueryui.less" />
     <Content Include="Scripts\jtable\themes\basic\jtable_basic.less" />
+    <Content Include="Views\CompanyVehicles\Create.cshtml" />
+    <Content Include="Views\CompanyVehicles\Delete.cshtml" />
+    <Content Include="Views\CompanyVehicles\Edit.cshtml" />
+    <Content Include="Views\CompanyVehicles\Index.cshtml" />
+    <Content Include="Views\CompanyVehicles\_ShowPhotoPartial.cshtml" />
+    <Content Include="Views\BulletinBoards\Create.cshtml" />
+    <Content Include="Views\BulletinBoards\Delete.cshtml" />
+    <Content Include="Views\BulletinBoards\Details.cshtml" />
+    <Content Include="Views\BulletinBoards\Edit.cshtml" />
+    <Content Include="Views\BulletinBoards\Index.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Create.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Delete.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Details.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Edit.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

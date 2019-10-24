@@ -169,10 +169,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Context\ApplicationDataContext.cs" />
+    <Compile Include="Controllers\BulletinBoardsController.cs" />
     <Compile Include="Controllers\CompanyVehiclesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OrderDetailsController.cs" />
+    <Compile Include="Controllers\ReportTimeSystemsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -398,6 +400,16 @@
     <Content Include="Views\OrderDetails\Index.cshtml" />
     <Content Include="Views\CompanyVehicles\_ShowPhotoPartial.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\BulletinBoards\Create.cshtml" />
+    <Content Include="Views\BulletinBoards\Delete.cshtml" />
+    <Content Include="Views\BulletinBoards\Details.cshtml" />
+    <Content Include="Views\BulletinBoards\Edit.cshtml" />
+    <Content Include="Views\BulletinBoards\Index.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Create.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Delete.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Details.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Edit.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
