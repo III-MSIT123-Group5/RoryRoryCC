@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using EIPBussinessSystem_MVC.Models;
+using System.Collections.Generic;
 
 namespace EIPBussinessSystem_MVC.Controllers
 {
@@ -139,6 +140,32 @@ namespace EIPBussinessSystem_MVC.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            var GenderSelector = new List<SelectListItem>()
+            {
+                new SelectListItem {Text="男",Value="M" },
+                new SelectListItem {Text="女",Value="F" },
+            };
+            var OfficeSelector = new List<SelectListItem>()
+            {
+                new SelectListItem{Text="Head Office", Value="1"},
+                new SelectListItem{Text="Branch Office", Value="2"},
+            };
+            var DepartmentSelector = new List<SelectListItem>()
+            {
+                new SelectListItem{Text="無組別", Value="0"},
+                new SelectListItem{Text="總經理", Value="1"},
+                new SelectListItem{Text="業務部", Value="2"},
+                new SelectListItem{Text="行政部", Value="3"},
+                new SelectListItem{Text="產品部", Value="4"},
+                new SelectListItem{Text="財務部", Value="5"},
+                new SelectListItem{Text="資訊部", Value="6"},
+            };            
+
+
+            ViewBag.GenderSt = GenderSelector;
+            ViewBag.OfficeSt = OfficeSelector;
+            ViewBag.DepartSt = DepartmentSelector;
+
             return View();
         }
 
@@ -151,7 +178,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Account };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

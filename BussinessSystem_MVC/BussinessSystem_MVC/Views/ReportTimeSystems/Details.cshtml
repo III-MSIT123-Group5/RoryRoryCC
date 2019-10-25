@@ -1,0 +1,90 @@
+﻿@model BussinessSystem_MVC.Models.ReportTimeSystem
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ReportTimeSystem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReportName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReportName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventHours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventHours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplyDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplyDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discontinue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discontinue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Event.EventName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event.EventName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ReportID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

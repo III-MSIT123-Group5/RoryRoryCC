@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace EIPBussinessSystem_MVC.Models
@@ -64,12 +65,15 @@ namespace EIPBussinessSystem_MVC.Models
 
     public class RegisterViewModel
     {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "電子郵件")]
-        public string Email { get; set; }
+        [Required(ErrorMessage = "請輸入{0}！")]
+        [Display(Name = "姓名")]
+        public string EmpoyeeName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "請輸入{0}！")]
+        [Display(Name = "帳號")]
+        public string Account { get; set; }
+
+        [Required(ErrorMessage = "請輸入{0}！")]
         [StringLength(100, ErrorMessage = "{0} 的長度至少必須為 {2} 個字元。", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "密碼")]
@@ -79,6 +83,49 @@ namespace EIPBussinessSystem_MVC.Models
         [Display(Name = "確認密碼")]
         [Compare("Password", ErrorMessage = "密碼和確認密碼不相符。")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "請選擇{0}！")]
+        [StringLength(10)]
+        [Display(Name ="性別")]
+        public string Gender { get; set; }
+        
+        [Required(ErrorMessage = "請選擇{0}！")]
+        [DataType(DataType.Date)]
+        [Display(Name ="生日")]
+        public DateTime BirthDay { get; set; }
+
+        [Required(ErrorMessage = "請選擇{0}！")]
+        [DataType(DataType.Date)]
+        [Display(Name = "雇用日期")]
+        public DateTime HireDay { get; set; }
+
+        [Required(ErrorMessage = "請選擇{0}！")]
+        [Display(Name ="辦公室")]
+        public int OfficeID { get; set; }
+
+        [Required(ErrorMessage = "請選擇{0}！")]
+        [Display(Name = "部門")]
+        public int DepartmentID { get; set; }
+
+        [Required(ErrorMessage = "請選擇{0}！")]
+        [Display(Name = "職位名稱")]
+        public int PositionID { get; set; }
+
+        [Required(ErrorMessage = "請選擇{0}！")]
+        [Display(Name = "直系主管")]
+        public int ManagerID { get; set; }
+            
+        [Required(ErrorMessage = "請選擇{0}！")]
+        [Display(Name = "組別")]
+        public int GroupID { get; set; }
+
+        [Required(ErrorMessage = "請選擇{0}！")]
+        [Display(Name = "在職狀態")]
+        public bool Employed { get; set; }
+
+        [Display(Name ="個人照片")]
+        public string Photo { get; set; }
+     
     }
 
     public class ResetPasswordViewModel
