@@ -33,7 +33,7 @@
     </div>
     <br />
     @*側邊功能列表*@
-        <div class="col-sm-3 col-md-2 sidebar">
+        <div class="col-sm-3 col-md-2 sidebar" style="float:left;width:310px">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="#">Overview</a></li>
                 <li><a href="#">Reports</a></li>
@@ -41,23 +41,27 @@
                 <li><a href="#">Export</a></li>
                 <li>@Html.ActionLink("BulletinBoard", "Index", "BulletinBoards")</li>
                 @*下拉式功能*@
-                <li class="nav-item">
-                    <a class="nav collapsed" href="#" data-toggle="collapse" data-target="#collapseRequisition" aria-expanded="true" aria-controls="collapseRequisition">
-                        <i class="glyphicon glyphicon-th-list">   請購系統</i>
-                        <span style="text-align: start "></span>
-                        <i class="glyphicon glyphicon-chevron-down" style="float:right"></i>
-                    </a>
-                    <div id="collapseRequisition" class="collapse" aria-labelledby="headingRequisition" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded" style="margin:5px 0px 0px 45px">
-                            @Html.ActionLink("查詢請購", "Index", "OrderDetails")
-                            <br />
-                            @Html.ActionLink("新增請購", "Index", "OrderDetails")
-                        </div>
-                    </div>
-                </li>
+                
+                    <li class="nav-item">
+                        <a class="nav collapsed" href="#" data-toggle="collapse" data-target="#collapseRequisition" aria-expanded="true" aria-controls="collapseRequisition">
+                            <i class="glyphicon glyphicon-th-list">   請購系統</i>
+                            <span style="text-align: start "></span>
+                            <i class="glyphicon glyphicon-chevron-down" style="float:right"></i>
+                        </a>
+                        <div id="collapseRequisition" class="collapse" aria-labelledby="headingRequisition" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded" style="margin:5px 0px 0px 46px">
+                                <div style="margin:11px 0px 11px 0px">
+                                    @Html.ActionLink("查詢請購", "Index", "OrderDetails")
+                                </div>                      
+                                <div style="margin:11px 0px 11px 0px">
+                                    @Html.ActionLink("新增請購", "Index", "OrderDetails")
+                                </div>
+                            </div>
+                    </li>
+                
             </ul>
         </div>
-        <div class="container body-content">
+        <div class="container body-content" style="width:1500px">
             @RenderBody()
             <hr />
             <footer>
