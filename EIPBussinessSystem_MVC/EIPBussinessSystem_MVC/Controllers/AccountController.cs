@@ -140,7 +140,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            var GenderSelector = new List<SelectListItem>()
+            ViewBag.Gender =new List<SelectListItem>()
             {
                 new SelectListItem {Text="男",Value="M" },
                 new SelectListItem {Text="女",Value="F" },
@@ -185,7 +185,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                 new SelectListItem{Text="已離職", Value="false" },               
             };                       
 
-            ViewBag.GenderSt = GenderSelector;
+            
             ViewBag.OfficeSt = OfficeSelector;
             ViewBag.DepartSt = DepartmentSelector;
             ViewBag.GroupIDSt = GroupIDSelector;
@@ -204,7 +204,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Account };
+                var user = new ApplicationUser { UserName = model.Account, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -229,6 +229,7 @@ namespace EIPBussinessSystem_MVC.Controllers
 
             // 如果執行到這裡，發生某項失敗，則重新顯示表單
             return View(model);
+            //return RedirectToAction("Register", "Account");
         }
 
         //
