@@ -54,7 +54,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         }
 
         //
-        // GET: /Account/Login
+        // GET: /Account/Login    登入
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -136,7 +136,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         }
 
         //
-        // GET: /Account/Register
+        // GET: /Account/Register  註冊
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -159,12 +159,38 @@ namespace EIPBussinessSystem_MVC.Controllers
                 new SelectListItem{Text="產品部", Value="4"},
                 new SelectListItem{Text="財務部", Value="5"},
                 new SelectListItem{Text="資訊部", Value="6"},
-            };            
-
+            };
+            var GroupIDSelector = new List<SelectListItem>()
+            {
+                new SelectListItem{Text="無組別", Value="0"},
+                new SelectListItem{Text="總務組", Value="1"},
+                new SelectListItem{Text="人資組", Value="2"},
+                new SelectListItem{Text="行政部室", Value="3"},
+                new SelectListItem{Text="業務部室", Value="4"},
+                new SelectListItem{Text="產品部室", Value="5"},
+                new SelectListItem{Text="財務部室", Value="6"},
+                new SelectListItem{Text="資訊部室", Value="7"},
+                new SelectListItem{Text="總經理室", Value="8"},
+            };
+            var PositionIDSelector = new List<SelectListItem>()
+            {
+                new SelectListItem{Text="總經理", Value="1"},
+                new SelectListItem{Text="部長", Value="2"},
+                new SelectListItem{Text="組長", Value="3"},
+                new SelectListItem{Text="員工", Value="4"},                
+            };
+            var EmployedSelector = new List<SelectListItem>()
+            {
+                new SelectListItem{Text="在職中", Value="true"},
+                new SelectListItem{Text="已離職", Value="false" },               
+            };                       
 
             ViewBag.GenderSt = GenderSelector;
             ViewBag.OfficeSt = OfficeSelector;
             ViewBag.DepartSt = DepartmentSelector;
+            ViewBag.GroupIDSt = GroupIDSelector;
+            ViewBag.PositionIDSt = PositionIDSelector;
+            ViewBag.EmployedSt = EmployedSelector;
 
             return View();
         }
@@ -189,6 +215,12 @@ namespace EIPBussinessSystem_MVC.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "確認您的帳戶", "請按一下此連結確認您的帳戶 <a href=\"" + callbackUrl + "\">這裏</a>");
+
+
+
+
+
+
 
                     return RedirectToAction("Index", "Home");
                 }

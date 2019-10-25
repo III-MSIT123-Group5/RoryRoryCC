@@ -1,21 +1,37 @@
 ﻿@model EIPBussinessSystem_MVC.Models.OrderDetail
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "請購單內容";
 }
 
-<h2>Details</h2>
+<h2>內容</h2>
 
 <div>
     <h4>OrderDetail</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Note)
+            @Html.DisplayNameFor(model => model.RequisitionMain.EmployeeID)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Note)
+            @Html.DisplayFor(model => model.RequisitionMain.EmployeeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequisitionMain.OrderID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequisitionMain.OrderID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequisitionMain.RequisitionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequisitionMain.RequisitionDate)
         </dd>
 
         <dt>
@@ -50,14 +66,14 @@
             @Html.DisplayFor(model => model.TotalPrice)
         </dd>
 
+
         <dt>
-            @Html.DisplayNameFor(model => model.RequisitionMain.OrderID)
+            @Html.DisplayNameFor(model => model.Note)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RequisitionMain.OrderID)
+            @Html.DisplayFor(model => model.Note)
         </dd>
-
     </dl>
 </div>
 <p>
