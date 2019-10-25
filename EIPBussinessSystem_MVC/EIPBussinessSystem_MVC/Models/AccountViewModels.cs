@@ -63,7 +63,7 @@ namespace EIPBussinessSystem_MVC.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterViewModel
+    public class RegisterViewModel     //註冊model    
     {
         [Required(ErrorMessage = "請輸入{0}！")]
         [Display(Name = "姓名")]
