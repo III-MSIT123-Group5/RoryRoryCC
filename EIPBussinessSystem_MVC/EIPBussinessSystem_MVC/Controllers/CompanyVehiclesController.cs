@@ -113,11 +113,13 @@ namespace EIPBussinessSystem_MVC.Controllers
                 else
                 {
                     CompanyVehicle c = db.CompanyVehicles.Find(companyVehicle.LicenseNumber);
+                    c.LicenseNumber = companyVehicle.LicenseNumber;
                     c.VehicleYear = companyVehicle.VehicleYear;
                     c.PurchaseDate = companyVehicle.PurchaseDate;
                     c.brand = companyVehicle.brand;
                     c.MaxPassenger = companyVehicle.MaxPassenger;
                     c.officeID = companyVehicle.officeID;
+                    companyVehicle = c;
                 }
                 
                 db.Entry(companyVehicle).State = EntityState.Modified;
