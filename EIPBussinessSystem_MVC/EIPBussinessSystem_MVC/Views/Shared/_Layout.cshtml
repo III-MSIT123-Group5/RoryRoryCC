@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+        <div style="padding-right: 15px;padding-left: 15px;  margin-right:  100px;  margin-left: 310px;">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -26,8 +26,8 @@
                     <li>@Html.ActionLink("關於", "About", "Home")</li>
                     <li>@Html.ActionLink("連絡人", "Contact", "Home")</li>
                     <li>@Html.ActionLink("借車紀錄", "Index", "CompanyVehicles")</li>
-                </ul>
-                    @Html.Partial("_LoginPartial")
+                </ul>                
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
@@ -40,8 +40,7 @@
                 <li><a href="#">Analytics</a></li>
                 <li><a href="#">Export</a></li>
                 <li>@Html.ActionLink("BulletinBoard", "Index", "BulletinBoards")</li>
-                @*下拉式功能*@
-                
+                @*下拉式功能*@                
                     <li class="nav-item">
                         <a class="nav collapsed" href="#" data-toggle="collapse" data-target="#collapseRequisition" aria-expanded="true" aria-controls="collapseRequisition">
                             <i class="glyphicon glyphicon-th-list">   請購系統</i>
@@ -54,7 +53,7 @@
                                     @Html.ActionLink("查詢請購", "Index", "OrderDetails")
                                 </div>                      
                                 <div style="margin:11px 0px 11px 0px">
-                                    @Html.ActionLink("新增請購", "Index", "OrderDetails")
+                                    @Html.ActionLink("新增請購", "Index", "RequisitionMains")
                                 </div>
                             </div>
                     </li>
