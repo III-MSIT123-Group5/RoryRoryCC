@@ -27,7 +27,7 @@
                     <li>@Html.ActionLink("連絡人", "Contact", "Home")</li>
                     <li>@Html.ActionLink("借車紀錄", "Index", "CompanyVehicles")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                    @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
@@ -48,7 +48,7 @@
                         <i class="glyphicon glyphicon-chevron-down" style="float:right"></i>
                     </a>
                     <div id="collapseRequisition" class="collapse" aria-labelledby="headingRequisition" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded" style="margin:5px 0px 0px 45px">
+                        <div class="bg-white py-2 collapse-inner rounded" style="margin:5px 0px 0px 0px">
                             @Html.ActionLink("查詢請購", "Index", "OrderDetails")
                             <br />
                             @Html.ActionLink("新增請購", "Index", "OrderDetails")
@@ -57,7 +57,7 @@
                 </li>
             </ul>
         </div>
-        <div class="container body-content">
+        <div class="container body-content" style="width:1500px">
             @RenderBody()
             <hr />
             <footer>
