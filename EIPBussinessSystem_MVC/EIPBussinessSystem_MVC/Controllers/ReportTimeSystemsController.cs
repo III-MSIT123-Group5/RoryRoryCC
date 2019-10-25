@@ -99,6 +99,8 @@ namespace EIPBussinessSystem_MVC.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(reportTimeSystem).State = EntityState.Modified;
+
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
