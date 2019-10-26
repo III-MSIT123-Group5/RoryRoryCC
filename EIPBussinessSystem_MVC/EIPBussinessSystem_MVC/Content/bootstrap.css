@@ -2330,7 +2330,7 @@ th {
   background-color: #f9f9f9;
 }
 .table-hover > tbody > tr:hover {
-  background-color: #f5f5f5;
+    background-color: #DDDDDD;
 }
 .table > thead > tr > td.active,
 .table > tbody > tr > td.active,

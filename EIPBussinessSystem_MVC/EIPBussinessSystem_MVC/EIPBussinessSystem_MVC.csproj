@@ -200,6 +200,18 @@
     <Compile Include="Models\ApprovalStatu.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserRole.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BulletinBoard.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
@@ -231,6 +243,9 @@
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CompanyVehicleHistory.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Department.cs">
