@@ -77,7 +77,7 @@ namespace EIPBussinessSystem_MVC.Controllers
 
             // 這不會計算為帳戶鎖定的登入失敗
             // 若要啟用密碼失敗來觸發帳戶鎖定，請變更為 shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -209,7 +209,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false); //註冊後自重登入
 
                     // 如需如何進行帳戶確認及密碼重設的詳細資訊，請前往 https://go.microsoft.com/fwlink/?LinkID=320771
                     // 傳送包含此連結的電子郵件
@@ -233,9 +233,10 @@ namespace EIPBussinessSystem_MVC.Controllers
                         };
                         db.Employees.Add(addEmployee);
                         db.SaveChanges();
-                        return RedirectToAction("Index", "Home"); 
 
-
+                    TempData["message"] = $"已成功新增 {model.EmpoyeeName} 的帳號。";
+                    return RedirectToAction("Register", "Account");
+                    //return RedirectToAction("Index", "Home"); 
                 }
                 AddErrors(result);
                 
@@ -244,6 +245,7 @@ namespace EIPBussinessSystem_MVC.Controllers
 
             // 如果執行到這裡，發生某項失敗，則重新顯示表單
             //return View(model);
+            TempData["message"] = $"帳號新增失敗，請再次確認帳號是否重覆。";
             return RedirectToAction("Register", "Account");
         }
 
