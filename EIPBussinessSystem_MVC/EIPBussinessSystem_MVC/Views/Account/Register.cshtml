@@ -13,13 +13,13 @@
     <h4>建立新的帳戶</h4>
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <hr />
-    @*<div class="form-group">
+    <div class="form-group">
             @Html.LabelFor(m => m.EmpoyeeName, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
                 @Html.TextBoxFor(m => m.EmpoyeeName, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.EmpoyeeName, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Account, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -45,9 +45,10 @@
         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         </div>
     </div>
-    @*<div class="form-group">
+    <div class="form-group">
             @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
                 @Html.DropDownList("Gender", null, new { @class = "form-control" })
@@ -109,7 +110,7 @@
                 @Html.DropDownList("Employed", (IEnumerable<SelectListItem>)ViewBag.EmployedSt, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Employed, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="註冊" />
