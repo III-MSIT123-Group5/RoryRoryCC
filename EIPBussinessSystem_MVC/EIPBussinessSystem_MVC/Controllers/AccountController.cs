@@ -22,6 +22,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         public AccountController()
         {
         }
+        BusinessDataBaseEntities db = new BusinessDataBaseEntities();
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
@@ -209,27 +210,41 @@ namespace EIPBussinessSystem_MVC.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // 如需如何進行帳戶確認及密碼重設的詳細資訊，請前往 https://go.microsoft.com/fwlink/?LinkID=320771
                     // 傳送包含此連結的電子郵件
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "確認您的帳戶", "請按一下此連結確認您的帳戶 <a href=\"" + callbackUrl + "\">這裏</a>");
+                 
+                        var addEmployee = new EIPBussinessSystem_MVC.Models.Employee
+                        {
+                            EmployeeName = model.EmpoyeeName,
+                            Gender = model.Gender,
+                            Birth = model.BirthDay,
+                            HireDate = model.HireDay,
+                            Account = model.Account,
+                            OfficeID = Convert.ToInt32(model.OfficeID),
+                            DepartmentID = Convert.ToInt32(model.DepartmentID),
+                            PositionID = Convert.ToInt32(model.PositionID),
+                            ManagerID = Convert.ToInt32(model.ManagerID),
+                            Employed = Convert.ToBoolean(model.Employed),
+                            GroupID = Convert.ToInt32(model.GroupID)
+                        };
+                        db.Employees.Add(addEmployee);
+                        db.SaveChanges();
+                        return RedirectToAction("Index", "Home"); 
 
 
-
-
-
-
-
-                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
+                
+
             }
 
             // 如果執行到這裡，發生某項失敗，則重新顯示表單
-            return View(model);
-            //return RedirectToAction("Register", "Account");
+            //return View(model);
+            return RedirectToAction("Register", "Account");
         }
 
         //
