@@ -227,15 +227,17 @@
     <Compile Include="Models\BulletinBoard.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BussinessSystemModel.Context.cs" />
-    <Compile Include="Models\BussinessSystemModel.cs" />
-    <Compile Include="Models\BussinessSystemModel.Designer.cs" />
-    <Compile Include="Models\BussinessSystemModel1.cs">
+    <Compile Include="Models\BussinessSystemModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BussinessSystemModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BussinessSystemModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BussinessSystemModel1.Designer.cs">
+    <Compile Include="Models\BussinessSystemModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BussinessSystemModel.edmx</DependentUpon>
@@ -377,11 +379,13 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\BussinessSystemModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BussinessSystemModel.Context1.cs</LastGenOutput>
+      <DependentUpon>BussinessSystemModel.edmx</DependentUpon>
+      <LastGenOutput>BussinessSystemModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\BussinessSystemModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BussinessSystemModel1.cs</LastGenOutput>
+      <DependentUpon>BussinessSystemModel.edmx</DependentUpon>
+      <LastGenOutput>BussinessSystemModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
@@ -389,9 +393,11 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\BussinessSystemModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BussinessSystemModel1.Designer.cs</LastGenOutput>
+      <LastGenOutput>BussinessSystemModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\BussinessSystemModel.edmx.diagram" />
+    <Content Include="Models\BussinessSystemModel.edmx.diagram">
+      <DependentUpon>BussinessSystemModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
@@ -614,16 +620,13 @@
     <Content Include="Views\ReportTimeSystems\Details.cshtml" />
     <Content Include="Views\ReportTimeSystems\Edit.cshtml" />
     <Content Include="Views\ReportTimeSystems\Index.cshtml" />
+    <Content Include="Views\Files\Index.cshtml" />
+    <Content Include="Views\Files\Upload.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Create.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Delete.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Details.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Edit.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Index.cshtml" />
-    <Content Include="Views\Files\Delete.cshtml" />
-    <Content Include="Views\Files\Details.cshtml" />
-    <Content Include="Views\Files\Edit.cshtml" />
-    <Content Include="Views\Files\Index.cshtml" />
-    <Content Include="Views\Files\Upload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

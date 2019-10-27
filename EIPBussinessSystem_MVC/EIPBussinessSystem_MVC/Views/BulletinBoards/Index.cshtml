@@ -55,16 +55,9 @@
             @Html.DisplayFor(modelItem => item.Employee1.EmployeeName)
         </td>
         <td>
-            <div style="margin:5px">
-                @Html.ActionLink("編輯", "Edit", new { id = item.Num }, new { @class = "btn btn-primary" })
-            </div>
-            <div style="margin:5px">
-                @Html.ActionLink("內容", "Details", new { id = item.Num }, new { @class = "btn btn-warning" })
-            </div>
-            <div style="margin:5px">
-                @Html.ActionLink("刪除", "Delete", new { id = item.Num }, new { @class = "btn btn-danger" })
-            </div>
-
+            @Html.ActionLink("Edit", "Edit", new { id=item.Num }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Num }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Num })
         </td>
     </tr>
 }

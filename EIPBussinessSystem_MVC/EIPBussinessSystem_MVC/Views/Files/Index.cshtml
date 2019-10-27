@@ -4,18 +4,17 @@
     ViewBag.Title = "檔案管理";
 }
 
-<h2>檔案管理</h2>
-@using (Html.BeginForm("DownloadChoose", "Files", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
+<h2>Index</h2>
 <p>
     @Html.ActionLink("檔案上傳", "Upload", "Files", null, new { @class = "btn btn-primary" })
-    @Html.ActionLink("全部下載", "DownloadAll", "Files", null, new { @class = "btn btn-primary" })
-    <button type="submit" title="下載" class="btn btn-primary">下載 </button>
 </p>
 <table class="table">
     <tr>
         <th>
             <input type="checkbox" name="Cheak" />
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FileName)
@@ -24,16 +23,13 @@
             @Html.DisplayNameFor(model => model.FileSize)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.UploadDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Data)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Extension)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
         </th>
         <th></th>
     </tr>
@@ -45,34 +41,33 @@
             <input type="checkbox" name="Cheak" value="@item.FileID" />
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FileName)
+            @Html.DisplayFor(modelItem => item.FileID)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.FileName)@*@
+            @Html.ActionLink(item.FileName, "Download", "Files", new { FileName = item.FileName }, null)
+            @*@Html.DisplayFor(modelItem=>item.FileName)*@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FileSize)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UploadDate)
+            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Data)
+            @Html.DisplayFor(modelItem => item.UploadDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Extension)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
-        </td>
-        <td>
-
-            <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit", new { id=item.FileID})'" type="button"><i class="glyphicon glyphicon-pencil"> 編輯</i></button>
-            |
-            <button class="btn btn-warning" onclick="location.href='@Url.Action("Details", new { id=item.FileID})'" type="button"><i class="glyphicon glyphicon-list"> 內容</i></button>
-            |
-            <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new { id=item.FileID})'" type="button"><i class="glyphicon glyphicon-trash"> 刪除</i></button>
-
-        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
     </tr>
     }
-
 </table>
-}
+<p>
+    @Html.ActionLink("全部下載", "DownloadAll", "Files", null, new { @class = "btn btn-primary" })
+</p>
