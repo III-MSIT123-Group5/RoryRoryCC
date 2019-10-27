@@ -18,6 +18,9 @@
                 <input type="checkbox" name="Cheak" />
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.FileID)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.FileName)
             </th>
             <th>
@@ -40,38 +43,41 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    <input type="checkbox" name="Cheak" value="@item.FileID" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FileName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FileSize)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UploadDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Data)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Extension)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
-                </td>
-                <td>
+        <tr>
+            <td>
+                <input type="checkbox" name="Cheak" value="@item.FileID" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UploadDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Extension)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+            </td>
+            <td>
 
-                    <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit", new { id=item.FileID})'" type="button"><i class="glyphicon glyphicon-pencil"> 編輯</i></button>
-                    |
-                    <button class="btn btn-warning" onclick="location.href='@Url.Action("Details", new { id=item.FileID})'" type="button"><i class="glyphicon glyphicon-list"> 內容</i></button>
-                    |
-                    <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new { id=item.FileID})'" type="button"><i class="glyphicon glyphicon-trash"> 刪除</i></button>
+                <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit", new { id=item.FileID})'" type="button"><i class="glyphicon glyphicon-pencil"> 編輯</i></button>
+                |
+                <button class="btn btn-warning" onclick="location.href='@Url.Action("Details", new { id=item.FileID})'" type="button"><i class="glyphicon glyphicon-list"> 內容</i></button>
+                |
+                <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new { id=item.FileID})'" type="button"><i class="glyphicon glyphicon-trash"> 刪除</i></button>
 
-                </td>
-            </tr>
+            </td>
+        </tr>
         }
 
     </table>

@@ -10,6 +10,7 @@ using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
 using EIPBussinessSystem_MVC.Models;
+using Ionic.Zip;
 
 namespace EIPBussinessSystem_MVC.Controllers
 {
@@ -80,7 +81,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                 System.IO.File.Delete(DownloadFileName);
             }
 
-            ZipFile.CreateFromDirectory(UploadsFolder, DownloadFileName);
+            System.IO.Compression.ZipFile.CreateFromDirectory(UploadsFolder, DownloadFileName);
             ContentDisposition cd = new ContentDisposition
             {
                 FileName = ZipFileName,
@@ -92,20 +93,26 @@ namespace EIPBussinessSystem_MVC.Controllers
         public ActionResult DownloadChoose(string[] Cheak)
         {
             string DownloadFileName = null;
-
-
-            //string DownloadFileName = null;
-            for (int i = 0; i < Cheak.Length + 1; i++)
+            string ZipFileName = "All.zip";
+            string FileName = null;
+            using (Ionic.Zip.ZipFile zip = new Ionic.Zip.ZipFile())
             {
-                DownloadFileName = Path.Combine(Server.MapPath("~/Uploads"), Cheak.ElementAt(i));
-                ContentDisposition cd = new ContentDisposition
+                for (int i = 0; i < Cheak.Length; i++)
                 {
-                    FileName = Cheak.ElementAt(i),
-                    Inline = false,
-                };
-                Response.AppendHeader("Content-Disposition", cd.ToString());
-                ;
+                    var q = db.Files.AsEnumerable().Where(f => f.FileID.ToString() == Cheak.ElementAt(i));
+                    FileName = q.Select(f => f.FileName).FirstOrDefault() + q.Select(f => f.Extension).FirstOrDefault();
+                    DownloadFileName = Path.Combine(Server.MapPath("~/Uploads"), FileName);
+                    //壓縮檔案
+                    zip.AddFile(FileName,"");
+                    zip.Save(FileName);
+                }
             }
+            ContentDisposition cd = new ContentDisposition
+            {
+                FileName = ZipFileName,
+                Inline = false,
+            };
+            Response.AppendHeader("Content-Disposition", cd.ToString());
             return File(DownloadFileName, MediaTypeNames.Application.Octet);
         }
         /// ///////////////////////////////////////////////////
