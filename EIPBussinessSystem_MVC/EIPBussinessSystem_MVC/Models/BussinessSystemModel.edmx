@@ -864,7 +864,10 @@
           <EntitySet Name="Reply" EntityType="Self.Reply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReportCategory" EntityType="Self.ReportCategory" Schema="dbo" store:Type="Tables" />
 <<<<<<< HEAD
+<<<<<<< HEAD
           <EntitySet Name="ReportTimeSystem" EntityType="Self.ReportTimeSystem" Schema="dbo" store:Type="Tables" />
+=======
+>>>>>>> parent of b218e11... Merge branch 'master' of https://github.com/III-MSIT123-Group5/RoryRoryCC
 =======
 >>>>>>> parent of b218e11... Merge branch 'master' of https://github.com/III-MSIT123-Group5/RoryRoryCC
           <EntitySet Name="RequisitionMain" EntityType="Self.RequisitionMain" Schema="dbo" store:Type="Tables" />
@@ -880,7 +883,10 @@
     FROM [dbo].[MeetingRoomHistory] AS [MeetingRoomHistory]</DefiningQuery>
           </EntitySet>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of b218e11... Merge branch 'master' of https://github.com/III-MSIT123-Group5/RoryRoryCC
           <EntitySet Name="ReportTimeSystem" EntityType="Self.ReportTimeSystem" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [ReportTimeSystem].[ReportID] AS [ReportID], 
@@ -895,6 +901,9 @@
     [ReportTimeSystem].[Discontinue] AS [Discontinue]
     FROM [dbo].[ReportTimeSystem] AS [ReportTimeSystem]</DefiningQuery>
           </EntitySet>
+<<<<<<< HEAD
+>>>>>>> parent of b218e11... Merge branch 'master' of https://github.com/III-MSIT123-Group5/RoryRoryCC
+=======
 >>>>>>> parent of b218e11... Merge branch 'master' of https://github.com/III-MSIT123-Group5/RoryRoryCC
           <EntitySet Name="SuggestionHistory" EntityType="Self.SuggestionHistory" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
