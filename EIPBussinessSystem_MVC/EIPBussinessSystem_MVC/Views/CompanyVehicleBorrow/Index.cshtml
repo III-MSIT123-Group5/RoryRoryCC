@@ -1,17 +1,42 @@
 ﻿@model IEnumerable<EIPBussinessSystem_MVC.Models.CompanyVehicleHistory>
+
+
+
+
+
+<meta name="viewport" content="width=device-width" />
 @section styles
-    {
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#時段').change(function () {
-                alert($('#時段').val());
+{
+
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(init);
+        function init()
+        {
+            var FirstLevel = $("select[name='firstdropdown']").val();//第一層選擇的值
+            ShowSecondDropDownList(FirstLevel);
+
+            $("select[name='firstdropdown']").change(function () {
+                var FirstLevel = $(this).val();
+                ShowSecondDropDownList(FirstLevel);
             });
-        })
+        }
+        function ShowSecondDropDownList(FirstLevel)
+        {
+            $.ajax({
+                url: "@Url.Action("ShowSecondDropDownList", "CompanyVehicleBorrow")",
+                 type: "GET",
+                 data: { FirstLevel: FirstLevel },
+                 async: false,
+                 success: function (data) {
+                     $("span").empty().html(data);
+                 }
+             });
+        }
     </script>
 
-
 }
+
 
 
 @{
@@ -20,11 +45,13 @@
 <p>
     @Html.ActionLink("搜尋", "Search")
 </p>
-<div class="form-group row">
-    <label class="col-sm-1 control-label ">時段 : </label>
-    @Html.DropDownList("TimeSlotlist",(IEnumerable<SelectListItem>)ViewBag.SelectList , new { @class = "col-sm-11 form-control" })
-</div>
-<div id="TimeSlot"></div>
+
+@Html.DropDownList("firstdropdown", (IEnumerable<SelectListItem>)ViewData["FirstLevelItems"])
+<br />
+<span></span>
+
+
+
 <table class="table"></table>
 <br />
 <br />
@@ -84,20 +111,5 @@
 </table>
 @section scripts
 {
-    <script>
-        $("#TimeSlotlist").bind("change", function () {
-            TimeSlotFunction();
-        })
-    function TimeSlotFunction() {
-            $.ajax({
-                type: "GET",
-                url: "@Url.Action("TimeSlot", "CompanyVehicleBorrow")/" + TimeSlotlist.value,
-            }).done(function (result) {
-                $("#Orders").html(result);
-            }).fail(function (e) {
-                alert(e.responseText);
-            });
-        }
-    </script>
 
 }
