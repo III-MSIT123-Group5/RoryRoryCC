@@ -64,9 +64,9 @@ namespace EIPBussinessSystem_MVC.Controllers
                     dbContext.Files.Add(new Models.File
                     {
                         FileName = Path.GetFileNameWithoutExtension(file.FileName),
-                        Data = TargetFilename,
+                        //Data = TargetFilename,
                         FileSize = file.ContentLength.ToString(),
-                        EmployeeID = LoginID,
+                        //EmployeeID = LoginID,
                         UploadDate = DateTime.Now,
                         Extension = Path.GetExtension(file.FileName)
                     });
