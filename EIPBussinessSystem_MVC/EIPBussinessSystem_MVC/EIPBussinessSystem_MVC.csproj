@@ -196,138 +196,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Account.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ActivitiesChild.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ActivitiesMain.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ApprovalProcedure.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ApprovalStatu.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUser.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserClaim.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserLogin.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserRole.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BulletinBoard.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BussinessSystemModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BussinessSystemModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BussinessSystemModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BussinessSystemModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BussinessSystemModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CommentChild.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CommentGrandchild.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CommentMain.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CompanyVehicle.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CompanyVehicleHistory.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Department.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Employee.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Event.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\File.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Group.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Leave.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MeetingRoom.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MeetingRoomHistory.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Message.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Office.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OrderDetail.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Position.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Recipient.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Reply.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ReportCategory.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ReportTimeSystem.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RequisitionMain.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RewardandPunishment.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Suggestion.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SuggestionHistory.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SurveyMain.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -377,27 +248,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\BussinessSystemModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BussinessSystemModel.edmx</DependentUpon>
-      <LastGenOutput>BussinessSystemModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\BussinessSystemModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BussinessSystemModel.edmx</DependentUpon>
-      <LastGenOutput>BussinessSystemModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\BussinessSystemModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BussinessSystemModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\BussinessSystemModel.edmx.diagram">
-      <DependentUpon>BussinessSystemModel.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
@@ -620,13 +474,16 @@
     <Content Include="Views\ReportTimeSystems\Details.cshtml" />
     <Content Include="Views\ReportTimeSystems\Edit.cshtml" />
     <Content Include="Views\ReportTimeSystems\Index.cshtml" />
-    <Content Include="Views\Files\Index.cshtml" />
-    <Content Include="Views\Files\Upload.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Create.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Delete.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Details.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Edit.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Index.cshtml" />
+    <Content Include="Views\Files\Delete.cshtml" />
+    <Content Include="Views\Files\Details.cshtml" />
+    <Content Include="Views\Files\Edit.cshtml" />
+    <Content Include="Views\Files\Index.cshtml" />
+    <Content Include="Views\Files\Upload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
