@@ -1,11 +1,17 @@
 ﻿@model IEnumerable<EIPBussinessSystem_MVC.Models.OrderDetail>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "請購系統";
 }
 
-<h2>Index</h2>
+<h2>請購系統</h2>
 
+@using (Html.BeginForm("Index", "OrderDetails", FormMethod.Get))
+{
+    @Html.TextBox("searching")  
+    <input type="submit" value="Filter" />
+}
+<br />
 <p>
     <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "OrderDetails")'" type="button"><i class="glyphicon glyphicon-plus">   新增</i></button>
 </p>
