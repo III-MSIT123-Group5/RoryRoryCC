@@ -14,7 +14,7 @@ namespace EIPBussinessSystem_MVC.Controllers
     public class OrderDetailsController : Controller
     {
         private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
-        //
+        
         // GET: OrderDetails
         public ActionResult Index()
         {           
