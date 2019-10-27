@@ -7,23 +7,28 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EIPBussinessSystem_MVC.Models;
+using PagedList;
 
 namespace EIPBussinessSystem_MVC.Controllers
 {
     public class OrderDetailsController : Controller
     {
         private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
-
+        //
         // GET: OrderDetails
         public ActionResult Index()
-        {
+        {           
             var report = from RM in this.db.RequisitionMains
                          join OD in this.db.OrderDetails on RM.OrderID equals OD.OrderID
                          where RM.EmployeeID == 1032
                          select OD;
-                         
             return View(report.ToList());
         }
+
+        //public ActionResult SearchByProductID(int ProductID)
+        //{
+
+        //}
 
         // GET: OrderDetails/Details/5
         public ActionResult Details(int? id)
@@ -56,6 +61,10 @@ namespace EIPBussinessSystem_MVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var report = from RM in this.db.RequisitionMains
+                             join OD in this.db.OrderDetails on RM.OrderID equals OD.OrderID
+                             where RM.EmployeeID == 1032
+                             select OD;
                 db.OrderDetails.Add(orderDetail);
                 db.SaveChanges();
                 return RedirectToAction("Index");

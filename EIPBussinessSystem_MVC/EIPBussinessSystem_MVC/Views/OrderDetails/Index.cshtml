@@ -9,6 +9,7 @@
 <p>
     <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "OrderDetails")'" type="button"><i class="glyphicon glyphicon-plus">   新增</i></button>
 </p>
+
 <table class="table table-striped table-hover" style="margin:auto">
     <tr>
         <th>
@@ -38,41 +39,42 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequisitionMain.EmployeeID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequisitionMain.OrderID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequisitionMain.RequisitionDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UnitPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Note)
-        </td>
-        <td>
-            <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit", new { id=item.OrderDetailID})'" type="button"><i class="glyphicon glyphicon-pencil"> 編輯</i></button>
-            |
-            <button class="btn btn-warning" onclick="location.href='@Url.Action("Details", new { id=item.OrderDetailID})'" type="button"><i class="glyphicon glyphicon-list"> 內容</i></button>
-            |
-            <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new { id=item.OrderDetailID})'" type="button"><i class="glyphicon glyphicon-trash"> 刪除</i></button>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequisitionMain.EmployeeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequisitionMain.OrderID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequisitionMain.RequisitionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+            <td>
+                <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit", new { id=item.OrderDetailID})'" type="button"><i class="glyphicon glyphicon-pencil"> 編輯</i></button>
+                |
+                <button class="btn btn-warning" onclick="location.href='@Url.Action("Details", new { id=item.OrderDetailID})'" type="button"><i class="glyphicon glyphicon-list"> 內容</i></button>
+                |
+                <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new { id=item.OrderDetailID})'" type="button"><i class="glyphicon glyphicon-trash"> 刪除</i></button>
 
-        </td>
-    </tr>
-}
+            </td>
+        </tr>
+    }
 
 </table>
