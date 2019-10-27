@@ -14,16 +14,7 @@ namespace EIPBussinessSystem_MVC.Models
     
     public partial class Account
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Account()
-        {
-            this.Employees = new HashSet<Employee>();
-        }
-    
         public string account1 { get; set; }
         public byte[] password { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

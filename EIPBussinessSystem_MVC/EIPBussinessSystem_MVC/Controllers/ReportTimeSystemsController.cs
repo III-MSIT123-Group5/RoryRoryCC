@@ -17,8 +17,17 @@ namespace EIPBussinessSystem_MVC.Controllers
         // GET: ReportTimeSystems
         public ActionResult Index()
         {
-            var reportTimeSystems = db.ReportTimeSystems.Include(r => r.Employee).Include(r => r.Event);
-            return View(reportTimeSystems.ToList());
+            //var reportTimeSystems = db.ReportTimeSystems.Include(r => r.Employee).Include(r => r.Event);
+            var reportTimeSystems = from RTS in db.ReportTimeSystems
+                                    join emp in db.Employees
+                                    on RTS.employeeID equals emp.employeeID
+                                    join eve in db.Events
+                                    on RTS.EventID equals eve.EventID
+                                    where RTS.Discontinue == true //&& RTS.employeeID == ClassEmployee.LoginEmployeeID
+                                    select RTS;
+
+
+            return View(reportTimeSystems);
         }
 
         // GET: ReportTimeSystems/Details/5
@@ -90,6 +99,8 @@ namespace EIPBussinessSystem_MVC.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(reportTimeSystem).State = EntityState.Modified;
+
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

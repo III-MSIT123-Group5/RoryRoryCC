@@ -46,9 +46,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
     </Reference>
@@ -168,13 +176,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\FilterConfig2.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\RouteConfig2.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CompanyVehicleBorrowController.cs" />
     <Compile Include="Controllers\CompanyVehiclesController.cs" />
     <Compile Include="Controllers\BulletinBoardsController.cs" />
+    <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginAccountController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -197,6 +210,18 @@
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ApprovalStatu.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserRole.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BulletinBoard.cs">
@@ -230,6 +255,9 @@
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CompanyVehicleHistory.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Department.cs">
@@ -305,10 +333,13 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -356,6 +387,8 @@
       <DependentUpon>BussinessSystemModel.edmx</DependentUpon>
       <LastGenOutput>BussinessSystemModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\BussinessSystemModel.edmx">
@@ -487,6 +520,10 @@
     <Content Include="Scripts\jtable\themes\metro\red\jtable.min.css" />
     <Content Include="Scripts\jtable\themes\metro\red\loading.gif" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Theme\redmond\images\animated-overlay.gif" />
     <Content Include="Theme\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Theme\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
@@ -506,7 +543,9 @@
     <Content Include="Theme\redmond\jquery-ui-1.10.3.custom.css" />
     <Content Include="Theme\redmond\jquery-ui-1.10.3.custom.min.css" />
     <Content Include="Scripts\VehicleJS.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -581,9 +620,17 @@
     <Content Include="Views\ReportTimeSystems\Details.cshtml" />
     <Content Include="Views\ReportTimeSystems\Edit.cshtml" />
     <Content Include="Views\ReportTimeSystems\Index.cshtml" />
+    <Content Include="Views\Files\Index.cshtml" />
+    <Content Include="Views\Files\Upload.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Create.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Delete.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Details.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Edit.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

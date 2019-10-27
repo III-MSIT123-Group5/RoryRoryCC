@@ -18,7 +18,6 @@ namespace EIPBussinessSystem_MVC.Models
         public Department()
         {
             this.BulletinBoards = new HashSet<BulletinBoard>();
-            this.Employees = new HashSet<Employee>();
             this.Groups = new HashSet<Group>();
             this.SuggestionHistories = new HashSet<SuggestionHistory>();
         }
@@ -28,8 +27,6 @@ namespace EIPBussinessSystem_MVC.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BulletinBoard> BulletinBoards { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Group> Groups { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

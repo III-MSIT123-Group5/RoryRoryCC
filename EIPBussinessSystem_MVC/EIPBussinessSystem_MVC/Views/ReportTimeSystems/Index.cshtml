@@ -9,7 +9,8 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table"> 
+    
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ReportName)
@@ -29,9 +30,7 @@
         <th>
             @Html.DisplayNameFor(model => model.ApplyDateTime)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Discontinue)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.Employee.EmployeeName)
         </th>
@@ -41,7 +40,10 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+
+
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.ReportName)
@@ -62,14 +64,12 @@
             @Html.DisplayFor(modelItem => item.ApplyDateTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Discontinue)
+            @Html.DisplayFor(modelItem => item.Event.EventName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Event.EventName)
-        </td>
+        
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ReportID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ReportID }) |

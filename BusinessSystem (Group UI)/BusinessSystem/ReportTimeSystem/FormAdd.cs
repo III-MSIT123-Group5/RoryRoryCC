@@ -76,7 +76,7 @@ namespace BusinessSystem.ReportTimeSystem
                     employeeID = ClassEmployee.LoginEmployeeID ,
                     StartTime = dateTimePicker1.Value,
                     EndTime = dateTimePicker2.Value,
-                    EventHours = dateTimePicker2.Value.Subtract(dateTimePicker1.Value).TotalHours,
+                    EventHours =dateTimePicker2.Value.Subtract(dateTimePicker1.Value).TotalHours,
                     EventID = FindID(comboBox1.Text),
                     Note = richTextBox1.Text,
                     ApplyDateTime = DateTime.Now,

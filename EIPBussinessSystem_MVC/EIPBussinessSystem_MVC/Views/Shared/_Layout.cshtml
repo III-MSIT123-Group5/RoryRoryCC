@@ -26,11 +26,12 @@
                 @Html.ActionLink("應用程式名稱", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" ,Style = "color:White" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("首頁", "Index", "Home", null,new { Style = "color:White" })</li>
-                    <li>@Html.ActionLink("關於", "About", "Home", null, new { Style = "color:White" })</li>
-                    <li>@Html.ActionLink("連絡人", "Contact", "Home", null, new { Style = "color:White" })</li>
-                    <li>@Html.ActionLink("借車紀錄", "Index", "CompanyVehicles", null, new { Style = "color:White" })</li>
+                <ul class="nav navbar-nav">          
+                    
+                    <li>@Html.ActionLink("首頁", "Index", "Home", new { Style = "color:White" })</li>
+                    <li>@Html.ActionLink("關於", "About", "Home", new { Style = "color:White" })</li>
+                    <li>@Html.ActionLink("連絡人", "Contact", "Home", new { Style = "color:White" })</li>
+                   
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -44,10 +45,10 @@
             @*<li><a href="#">Reports</a></li>
         <li><a href="#">Analytics</a></li>
         <li><a href="#">Export</a></li>*@
-            <li>@Html.ActionLink("佈告欄", "Index", "BulletinBoards", null, new { Style = "color:#483d8b" })</li>
-            <li>@Html.ActionLink("公務車租借", "Index", "CompanyVehicles", null, new { Style = "color:#483d8b" })</li>
+            <li>@Html.ActionLink("BulletinBoard", "Index", "BulletinBoards", null, new { Style = "color:#483d8b" })</li>
+            <li>@Html.ActionLink("借車紀錄", "Index", "CompanyVehicles", null, new { Style = "color:#483d8b" })</li>
+            <li>@Html.ActionLink("檔案管理", "Index", "Files", null, new { Style = "color:#483d8b" })</li>
             @*下拉式功能*@
-
             <li class="nav-item">
                 <a class="nav collapsed" href="#" data-toggle="collapse" data-target="#collapseRequisition" aria-expanded="true" aria-controls="collapseRequisition">
                     <i class="glyphicon glyphicon-th-list" style="color:#483d8b">   請購系統</i>
@@ -65,8 +66,7 @@
                     </div>
                 </div>
             </li>
-
-        </ul>
+        </ul>        
     </div>
     <div class="container body-content" style="width:1500px">
         @RenderBody()
