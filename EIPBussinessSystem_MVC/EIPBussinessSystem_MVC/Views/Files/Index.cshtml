@@ -1,0 +1,73 @@
+﻿@model IEnumerable<EIPBussinessSystem_MVC.Models.File>
+
+@{
+    ViewBag.Title = "檔案管理";
+}
+
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("檔案上傳", "Upload", "Files", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <input type="checkbox" name="Cheak" />
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UploadDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Extension)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            <input type="checkbox" name="Cheak" value="@item.FileID" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FileID)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.FileName)@*@
+            @Html.ActionLink(item.FileName, "Download", "Files", new { FileName = item.FileName }, null)
+            @*@Html.DisplayFor(modelItem=>item.FileName)*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FileSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UploadDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Extension)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+    </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink("全部下載", "DownloadAll", "Files", null, new { @class = "btn btn-primary" })
+</p>
