@@ -27,10 +27,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("首頁", "Index", "Home", new { Style = "color:White" })</li>
-                    <li>@Html.ActionLink("關於", "About", "Home", new { Style = "color:White" })</li>
-                    <li>@Html.ActionLink("連絡人", "Contact", "Home", new { Style = "color:White" })</li>
-                    <li>@Html.ActionLink("借車紀錄", "Index", "CompanyVehicles", new { Style = "color:White" })</li>
+                    <li>@Html.ActionLink("首頁", "Index", "Home", null,new { Style = "color:White" })</li>
+                    <li>@Html.ActionLink("關於", "About", "Home", null, new { Style = "color:White" })</li>
+                    <li>@Html.ActionLink("連絡人", "Contact", "Home", null, new { Style = "color:White" })</li>
+                    <li>@Html.ActionLink("借車紀錄", "Index", "CompanyVehicles", null, new { Style = "color:White" })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -42,9 +42,10 @@
         <ul class="nav nav-sidebar">
             <li class="active"><a href="#" style="color:#483d8b">Overview</a></li>
             @*<li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>*@
-            <li>@Html.ActionLink("BulletinBoard", "Index", "BulletinBoards", new { Style = "color:#483d8b" })</li>
+        <li><a href="#">Analytics</a></li>
+        <li><a href="#">Export</a></li>*@
+            <li>@Html.ActionLink("佈告欄", "Index", "BulletinBoards", null, new { Style = "color:#483d8b" })</li>
+            <li>@Html.ActionLink("公務車租借", "Index", "CompanyVehicles", null, new { Style = "color:#483d8b" })</li>
             @*下拉式功能*@
 
             <li class="nav-item">
@@ -56,10 +57,10 @@
                 <div id="collapseRequisition" class="collapse" aria-labelledby="headingRequisition" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded" style="margin:5px 0px 0px 46px">
                         <div style="margin:11px 0px 11px 0px">
-                            @Html.ActionLink("查詢請購", "Index", "OrderDetails", new { Style = "color:#483d8b" })
+                            @Html.ActionLink("查詢請購", "Index", "OrderDetails", null, new { Style = "color:#483d8b" })
                         </div>
                         <div style="margin:11px 0px 11px 0px">
-                            @Html.ActionLink("新增請購", "Index", "OrderDetails", new { Style = "color:#483d8b" })
+                            @Html.ActionLink("新增請購", "Index", "OrderDetails", null, new { Style = "color:#483d8b" })
                         </div>
                     </div>
                 </div>
