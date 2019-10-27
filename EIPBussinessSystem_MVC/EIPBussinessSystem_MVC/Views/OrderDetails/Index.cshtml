@@ -4,17 +4,27 @@
     ViewBag.Title = "請購系統";
 }
 
-<h2>請購系統</h2>
+<h2>
+    請購系統    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "OrderDetails")'" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+</h2>
+
+@*<p>
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "OrderDetails")'" type="button"><i class="glyphicon glyphicon-plus">   新增</i></button>
+</p>*@
 
 @using (Html.BeginForm("Index", "OrderDetails", FormMethod.Get))
 {
-    @Html.TextBox("searching")  
-    <input type="submit" value="Filter" />
+
+    <div style="background-color:#dddddd; margin:10px 0px 10px 0px; padding:5px; border-radius:5px; width:500px; text-align:center">
+        <h3>關鍵字搜尋</h3>
+        <p>
+            產品名稱：
+            @Html.TextBox("searchProductName")
+            <input type="submit" value="搜尋" />
+        </p>
+    </div>
+
 }
-<br />
-<p>
-    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "OrderDetails")'" type="button"><i class="glyphicon glyphicon-plus">   新增</i></button>
-</p>
 
 <table class="table table-striped table-hover" style="margin:auto">
     <tr>
