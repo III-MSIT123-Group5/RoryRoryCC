@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BusinessDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BusinessDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -115,15 +115,6 @@
           <Property Name="Content" Type="nvarchar" MaxLength="50" />
           <Property Name="PostTime" Type="datetime" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.BusinessTrip' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="BusinessTrip">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="start_date_time" Type="datetime" />
-          <Property Name="end_date_time" Type="datetime" />
-          <Property Name="adress" Type="nchar" MaxLength="10" />
-          <Property Name="description" Type="nvarchar(max)" />
-        </EntityType>-->
         <EntityType Name="CommentChild">
           <Key>
             <PropertyRef Name="CommentTypeID" />
@@ -237,13 +228,6 @@
           <Property Name="leaveID" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="leave_name" Type="nchar" MaxLength="20" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.LeaveHistory' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="LeaveHistory">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="leaveID" Type="nchar" MaxLength="10" />
-          <Property Name="Description" Type="nvarchar(max)" />
-        </EntityType>-->
         <EntityType Name="MeetingRoom">
           <Key>
             <PropertyRef Name="meetingID" />
@@ -301,14 +285,6 @@
           <Property Name="positionID" Type="int" Nullable="false" />
           <Property Name="position" Type="nchar" MaxLength="30" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.PurchasingOrder' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="PurchasingOrder">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="items" Type="nchar" MaxLength="10" />
-          <Property Name="quantity" Type="int" />
-          <Property Name="unit price" Type="money" />
-        </EntityType>-->
         <EntityType Name="Recipient">
           <Key>
             <PropertyRef Name="MessageID" />
@@ -335,18 +311,9 @@
           <Property Name="ReportID" Type="int" Nullable="false" />
           <Property Name="ReportName" Type="nvarchar" MaxLength="10" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'BusinessDataBase.dbo.ReportTimeSystem' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="ReportTimeSystem">
           <Key>
             <PropertyRef Name="ReportID" />
-            <PropertyRef Name="ReportName" />
-            <PropertyRef Name="employeeID" />
-            <PropertyRef Name="StartTime" />
-            <PropertyRef Name="EndTime" />
-            <PropertyRef Name="EventHours" />
-            <PropertyRef Name="EventID" />
-            <PropertyRef Name="ApplyDateTime" />
           </Key>
           <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ReportName" Type="nvarchar" MaxLength="10" Nullable="false" />
@@ -376,15 +343,6 @@
           <Property Name="Reward/PunishmentID" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Reward/PunishmentName" Type="nchar" MaxLength="10" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.RewardandPunishmentHistory' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="RewardandPunishmentHistory">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="Date" Type="datetime" />
-          <Property Name="Reward/Punishment" Type="nchar" MaxLength="10" />
-          <Property Name="managerID" Type="nchar" MaxLength="10" />
-          <Property Name="Description" Type="nvarchar(max)" />
-        </EntityType>-->
         <EntityType Name="Suggestion">
           <Key>
             <PropertyRef Name="suggestionID" />
@@ -405,12 +363,6 @@
           <Property Name="content" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.SurveyChild' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="SurveyChild">
-          <Property Name="SurveyID" Type="int" />
-          <Property Name="Survey" Type="nvarchar" MaxLength="50" />
-        </EntityType>-->
-        <!--產生期間發現錯誤:
 警告 6002: 資料表/檢視 'BusinessDataBase.dbo.SurveyMain' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="SurveyMain">
           <Key>
@@ -430,14 +382,6 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.WorkingHours' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="WorkingHours">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="clock_in_time" Type="datetime" />
-          <Property Name="clock_out_time" Type="datetime" />
-          <Property Name="leaveID" Type="nchar" MaxLength="10" />
-        </EntityType>-->
         <Association Name="FK_ActivitiesChild_ActivitiesMain">
           <End Role="ActivitiesMain" Type="Self.ActivitiesMain" Multiplicity="0..1" />
           <End Role="ActivitiesChild" Type="Self.ActivitiesChild" Multiplicity="*" />
@@ -522,9 +466,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.BusinessTrip' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_Business Trip_Employee" />-->
         <Association Name="FK_CommentChild_ActivitiesMain">
           <End Role="ActivitiesMain" Type="Self.ActivitiesMain" Multiplicity="0..1" />
           <End Role="CommentChild" Type="Self.CommentChild" Multiplicity="*" />
@@ -687,12 +628,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.LeaveHistory' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_LeaveHistory_Employee" />-->
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.LeaveHistory' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_LeaveHistory_Leave" />-->
         <Association Name="FK_Meeting room history_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="MeetingRoomHistory" Type="Self.MeetingRoomHistory" Multiplicity="*" />
@@ -753,9 +688,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.PurchasingOrder' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_Purchasing Order_Employee" />-->
         <Association Name="FK_Recipient_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Recipient" Type="Self.Recipient" Multiplicity="*" />
@@ -804,6 +736,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ReportTimeSystem_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="ReportTimeSystem" Type="Self.ReportTimeSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="ReportTimeSystem">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportTimeSystem_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="ReportTimeSystem" Type="Self.ReportTimeSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="ReportTimeSystem">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_RequisitionMain_ApprovalStatus">
           <End Role="ApprovalStatus" Type="Self.ApprovalStatus" Multiplicity="0..1" />
           <End Role="RequisitionMain" Type="Self.RequisitionMain" Multiplicity="*" />
@@ -840,12 +796,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.RewardandPunishmentHistory' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_RewardandPunishmentHistory_Employee" />-->
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.RewardandPunishmentHistory' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_RewardandPunishmentHistory_RewardandPunishment" />-->
         <Association Name="FK_Suggestion history_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
           <End Role="SuggestionHistory" Type="Self.SuggestionHistory" Multiplicity="*" />
@@ -882,48 +832,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.WorkingHours' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_Working hours_Employee" />-->
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.WorkingHours' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_Working hours_Leave" />-->
         <EntityContainer Name="BusinessDataBaseModelStoreContainer">
-          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="ActivitiesChild" EntityType="Self.ActivitiesChild" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="ActivitiesMain" EntityType="Self.ActivitiesMain" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="ApprovalProcedure" EntityType="Self.ApprovalProcedure" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="ApprovalStatus" EntityType="Self.ApprovalStatus" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="BulletinBoard" EntityType="Self.BulletinBoard" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="CommentChild" EntityType="Self.CommentChild" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="CommentGrandchild" EntityType="Self.CommentGrandchild" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="CommentMain" EntityType="Self.CommentMain" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="CompanyVehicle" EntityType="Self.CompanyVehicle" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="CompanyVehicleHistory" EntityType="Self.CompanyVehicleHistory" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="File" EntityType="Self.File" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Leave" EntityType="Self.Leave" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="MeetingRoom" EntityType="Self.MeetingRoom" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Office" EntityType="Self.Office" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Recipient" EntityType="Self.Recipient" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Reply" EntityType="Self.Reply" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="ReportCategory" EntityType="Self.ReportCategory" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="RequisitionMain" EntityType="Self.RequisitionMain" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="RewardandPunishment" EntityType="Self.RewardandPunishment" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Suggestion" EntityType="Self.Suggestion" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="MeetingRoomHistory" EntityType="Self.MeetingRoomHistory" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivitiesChild" EntityType="Self.ActivitiesChild" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivitiesMain" EntityType="Self.ActivitiesMain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApprovalProcedure" EntityType="Self.ApprovalProcedure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApprovalStatus" EntityType="Self.ApprovalStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BulletinBoard" EntityType="Self.BulletinBoard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentChild" EntityType="Self.CommentChild" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentGrandchild" EntityType="Self.CommentGrandchild" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentMain" EntityType="Self.CommentMain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyVehicle" EntityType="Self.CompanyVehicle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyVehicleHistory" EntityType="Self.CompanyVehicleHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="File" EntityType="Self.File" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Leave" EntityType="Self.Leave" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeetingRoom" EntityType="Self.MeetingRoom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Office" EntityType="Self.Office" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recipient" EntityType="Self.Recipient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reply" EntityType="Self.Reply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportCategory" EntityType="Self.ReportCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportTimeSystem" EntityType="Self.ReportTimeSystem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequisitionMain" EntityType="Self.RequisitionMain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RewardandPunishment" EntityType="Self.RewardandPunishment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suggestion" EntityType="Self.Suggestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeetingRoomHistory" EntityType="Self.MeetingRoomHistory" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [MeetingRoomHistory].[meetingID] AS [meetingID], 
     [MeetingRoomHistory].[start_date_time] AS [start_date_time], 
@@ -931,21 +876,7 @@
     [MeetingRoomHistory].[employeeID] AS [employeeID]
     FROM [dbo].[MeetingRoomHistory] AS [MeetingRoomHistory]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="ReportTimeSystem" EntityType="Self.ReportTimeSystem" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
-            <DefiningQuery>SELECT 
-    [ReportTimeSystem].[ReportID] AS [ReportID], 
-    [ReportTimeSystem].[ReportName] AS [ReportName], 
-    [ReportTimeSystem].[employeeID] AS [employeeID], 
-    [ReportTimeSystem].[StartTime] AS [StartTime], 
-    [ReportTimeSystem].[EndTime] AS [EndTime], 
-    [ReportTimeSystem].[EventHours] AS [EventHours], 
-    [ReportTimeSystem].[EventID] AS [EventID], 
-    [ReportTimeSystem].[Note] AS [Note], 
-    [ReportTimeSystem].[ApplyDateTime] AS [ApplyDateTime], 
-    [ReportTimeSystem].[Discontinue] AS [Discontinue]
-    FROM [dbo].[ReportTimeSystem] AS [ReportTimeSystem]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="SuggestionHistory" EntityType="Self.SuggestionHistory" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="SuggestionHistory" EntityType="Self.SuggestionHistory" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [SuggestionHistory].[num] AS [num], 
     [SuggestionHistory].[employeeID] AS [employeeID], 
@@ -954,7 +885,7 @@
     [SuggestionHistory].[content] AS [content]
     FROM [dbo].[SuggestionHistory] AS [SuggestionHistory]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="SurveyMain" EntityType="Self.SurveyMain" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="SurveyMain" EntityType="Self.SurveyMain" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [SurveyMain].[SurveyID] AS [SurveyID], 
     [SurveyMain].[QuestionID] AS [QuestionID], 
@@ -1077,6 +1008,14 @@
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Reply" EntitySet="Reply" />
           </AssociationSet>
+          <AssociationSet Name="FK_ReportTimeSystem_Employee" Association="Self.FK_ReportTimeSystem_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ReportTimeSystem" EntitySet="ReportTimeSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportTimeSystem_Event" Association="Self.FK_ReportTimeSystem_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="ReportTimeSystem" EntitySet="ReportTimeSystem" />
+          </AssociationSet>
           <AssociationSet Name="FK_RequisitionMain_ApprovalStatus" Association="Self.FK_RequisitionMain_ApprovalStatus">
             <End Role="ApprovalStatus" EntitySet="ApprovalStatus" />
             <End Role="RequisitionMain" EntitySet="RequisitionMain" />
@@ -1142,7 +1081,6 @@
           <EntitySet Name="Suggestions" EntityType="BusinessDataBaseModel.Suggestion" />
           <EntitySet Name="sysdiagrams" EntityType="BusinessDataBaseModel.sysdiagram" />
           <EntitySet Name="MeetingRoomHistories" EntityType="BusinessDataBaseModel.MeetingRoomHistory" />
-          <EntitySet Name="ReportTimeSystems" EntityType="BusinessDataBaseModel.ReportTimeSystem" />
           <EntitySet Name="SuggestionHistories" EntityType="BusinessDataBaseModel.SuggestionHistory" />
           <EntitySet Name="SurveyMains" EntityType="BusinessDataBaseModel.SurveyMain" />
           <AssociationSet Name="FK_ActivitiesChild_ActivitiesMain" Association="BusinessDataBaseModel.FK_ActivitiesChild_ActivitiesMain">
@@ -1284,6 +1222,15 @@
           <AssociationSet Name="FK_Suggestion_history_Suggestion" Association="BusinessDataBaseModel.FK_Suggestion_history_Suggestion">
             <End Role="Suggestion" EntitySet="Suggestions" />
             <End Role="SuggestionHistory" EntitySet="SuggestionHistories" />
+          </AssociationSet>
+          <EntitySet Name="ReportTimeSystems" EntityType="BusinessDataBaseModel.ReportTimeSystem" />
+          <AssociationSet Name="FK_ReportTimeSystem_Employee" Association="BusinessDataBaseModel.FK_ReportTimeSystem_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="ReportTimeSystem" EntitySet="ReportTimeSystems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportTimeSystem_Event" Association="BusinessDataBaseModel.FK_ReportTimeSystem_Event">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="ReportTimeSystem" EntitySet="ReportTimeSystems" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -1519,6 +1466,7 @@
           <NavigationProperty Name="Replies" Relationship="BusinessDataBaseModel.FK_Reply_Employee" FromRole="Employee" ToRole="Reply" />
           <NavigationProperty Name="RequisitionMains" Relationship="BusinessDataBaseModel.FK_RequisitionMain_Employee" FromRole="Employee" ToRole="RequisitionMain" />
           <NavigationProperty Name="SuggestionHistories" Relationship="BusinessDataBaseModel.FK_Suggestion_history_Employee" FromRole="Employee" ToRole="SuggestionHistory" />
+          <NavigationProperty Name="ReportTimeSystems" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Employee" FromRole="Employee" ToRole="ReportTimeSystem" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -1526,6 +1474,7 @@
           </Key>
           <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="EventName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ReportTimeSystems" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Event" FromRole="Event" ToRole="ReportTimeSystem" />
         </EntityType>
         <EntityType Name="File">
           <Key>
@@ -1690,28 +1639,6 @@
           <Property Name="employeeID" Type="Int32" />
           <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_Meeting_room_history_Employee" FromRole="MeetingRoomHistory" ToRole="Employee" />
           <NavigationProperty Name="MeetingRoom" Relationship="BusinessDataBaseModel.FK_Meeting_room_history_Meeting_room" FromRole="MeetingRoomHistory" ToRole="MeetingRoom" />
-        </EntityType>
-        <EntityType Name="ReportTimeSystem">
-          <Key>
-            <PropertyRef Name="ReportID" />
-            <PropertyRef Name="ReportName" />
-            <PropertyRef Name="employeeID" />
-            <PropertyRef Name="StartTime" />
-            <PropertyRef Name="EndTime" />
-            <PropertyRef Name="EventHours" />
-            <PropertyRef Name="EventID" />
-            <PropertyRef Name="ApplyDateTime" />
-          </Key>
-          <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Name="ReportName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="employeeID" Type="Int32" Nullable="false" />
-          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EventHours" Type="Double" Nullable="false" />
-          <Property Name="EventID" Type="Int32" Nullable="false" />
-          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ApplyDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Discontinue" Type="Boolean" />
         </EntityType>
         <EntityType Name="SuggestionHistory">
           <Key>
@@ -2160,6 +2087,47 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ReportTimeSystem">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="employeeID" Type="Int32" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EventHours" Type="Double" Nullable="false" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApplyDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Discontinue" Type="Boolean" />
+          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Employee" FromRole="ReportTimeSystem" ToRole="Employee" />
+          <NavigationProperty Name="Event" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Event" FromRole="ReportTimeSystem" ToRole="Event" />
+        </EntityType>
+        <Association Name="FK_ReportTimeSystem_Employee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.ReportTimeSystem" Role="ReportTimeSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="ReportTimeSystem">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportTimeSystem_Event">
+          <End Type="BusinessDataBaseModel.Event" Role="Event" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.ReportTimeSystem" Role="ReportTimeSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="ReportTimeSystem">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2534,22 +2502,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ReportTimeSystems">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.ReportTimeSystem">
-              <MappingFragment StoreEntitySet="ReportTimeSystem">
-                <ScalarProperty Name="Discontinue" ColumnName="Discontinue" />
-                <ScalarProperty Name="ApplyDateTime" ColumnName="ApplyDateTime" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="EventID" ColumnName="EventID" />
-                <ScalarProperty Name="EventHours" ColumnName="EventHours" />
-                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
-                <ScalarProperty Name="ReportName" ColumnName="ReportName" />
-                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SuggestionHistories">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.SuggestionHistory">
               <MappingFragment StoreEntitySet="SuggestionHistory">
@@ -2567,6 +2519,22 @@
                 <ScalarProperty Name="Question" ColumnName="Question" />
                 <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
                 <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportTimeSystems">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.ReportTimeSystem">
+              <MappingFragment StoreEntitySet="ReportTimeSystem">
+                <ScalarProperty Name="Discontinue" ColumnName="Discontinue" />
+                <ScalarProperty Name="ApplyDateTime" ColumnName="ApplyDateTime" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="EventHours" ColumnName="EventHours" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -24,5 +24,8 @@ namespace EIPBussinessSystem_MVC.Models
         public string Note { get; set; }
         public System.DateTime ApplyDateTime { get; set; }
         public Nullable<bool> Discontinue { get; set; }
+    
+        public virtual Employee Employee { get; set; }
+        public virtual Event Event { get; set; }
     }
 }

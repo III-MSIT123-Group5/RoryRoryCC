@@ -60,8 +60,8 @@ namespace EIPBussinessSystem_MVC.Models
         public virtual DbSet<Suggestion> Suggestions { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<MeetingRoomHistory> MeetingRoomHistories { get; set; }
-        public virtual DbSet<ReportTimeSystem> ReportTimeSystems { get; set; }
         public virtual DbSet<SuggestionHistory> SuggestionHistories { get; set; }
         public virtual DbSet<SurveyMain> SurveyMains { get; set; }
+        public virtual DbSet<ReportTimeSystem> ReportTimeSystems { get; set; }
     }
 }
