@@ -12,17 +12,12 @@ namespace EIPBussinessSystem_MVC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ReportTimeSystem
+    public partial class AspNetUserLogin
     {
-        public int ReportID { get; set; }
-        public string ReportName { get; set; }
-        public int employeeID { get; set; }
-        public System.DateTime StartTime { get; set; }
-        public System.DateTime EndTime { get; set; }
-        public double EventHours { get; set; }
-        public int EventID { get; set; }
-        public string Note { get; set; }
-        public System.DateTime ApplyDateTime { get; set; }
-        public Nullable<bool> Discontinue { get; set; }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
+        public string UserId { get; set; }
+    
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

@@ -8,9 +8,14 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", required: false)
+
+
+    <style>
+
+    </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#483d8b;color:#ffffff">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -18,7 +23,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("應用程式名稱", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("應用程式名稱", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" ,Style = "color:White" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -27,6 +32,10 @@
                     <li>@Html.ActionLink("連絡人", "Contact", "Home")</li>
                     <li>@Html.ActionLink("借車紀錄", "Index", "CompanyVehicles")</li>
                     <li>@Html.ActionLink("檔案管理", "Index", "Files")</li>
+                    <li>@Html.ActionLink("首頁", "Index", "Home", new { Style = "color:White" })</li>
+                    <li>@Html.ActionLink("關於", "About", "Home", new { Style = "color:White" })</li>
+                    <li>@Html.ActionLink("連絡人", "Contact", "Home", new { Style = "color:White" })</li>
+                    <li>@Html.ActionLink("借車紀錄", "Index", "CompanyVehicles", new { Style = "color:White" })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -34,40 +43,44 @@
     </div>
     <br />
     @*側邊功能列表*@
-        <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">Overview</a></li>
-                <li><a href="#">Reports</a></li>
-                <li><a href="#">Analytics</a></li>
-                <li><a href="#">Export</a></li>
-                <li>@Html.ActionLink("BulletinBoard", "Index", "BulletinBoards")</li>
-                @*下拉式功能*@
-                <li class="nav-item">
-                    <a class="nav collapsed" href="#" data-toggle="collapse" data-target="#collapseRequisition" aria-expanded="true" aria-controls="collapseRequisition">
-                        <i class="glyphicon glyphicon-th-list">   請購系統</i>
-                        <span style="text-align: start "></span>
-                        <i class="glyphicon glyphicon-chevron-down" style="float:right"></i>
-                    </a>
-                    <div id="collapseRequisition" class="collapse" aria-labelledby="headingRequisition" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded" style="margin:5px 0px 0px 45px">
-                            @Html.ActionLink("查詢請購", "Index", "OrderDetails")
-                            <br />
-                            @Html.ActionLink("新增請購", "Index", "OrderDetails")
+    <div class="col-sm-3 col-md-2 sidebar" style="float:left;width:310px;font-family:Raleway;">
+        <ul class="nav nav-sidebar">
+            <li class="active"><a href="#" style="color:#483d8b">Overview</a></li>
+            @*<li><a href="#">Reports</a></li>
+        <li><a href="#">Analytics</a></li>
+        <li><a href="#">Export</a></li>*@
+            <li>@Html.ActionLink("BulletinBoard", "Index", "BulletinBoards", null, new { Style = "color:#483d8b" })</li>
+            @*下拉式功能*@
+            <li class="nav-item">
+                <a class="nav collapsed" href="#" data-toggle="collapse" data-target="#collapseRequisition" aria-expanded="true" aria-controls="collapseRequisition">
+                    <i class="glyphicon glyphicon-th-list" style="color:#483d8b">   請購系統</i>
+                    <span style="text-align: start "></span>
+                    <i class="glyphicon glyphicon-chevron-down" style="float:right;color:#483d8b"></i>
+                </a>
+                <div id="collapseRequisition" class="collapse" aria-labelledby="headingRequisition" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded" style="margin:5px 0px 0px 46px">
+                        <div style="margin:11px 0px 11px 0px">
+                            @Html.ActionLink("查詢請購", "Index", "OrderDetails", null, new { Style = "color:#483d8b" })
+                        </div>
+                        <div style="margin:11px 0px 11px 0px">
+                            @Html.ActionLink("編輯請購", "Index", "OrderDetails", null, new { Style = "color:#483d8b" })
                         </div>
                     </div>
-                </li>
-            </ul>
-        </div>
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - MSIT123第5組專題</p>
-            </footer>
-        </div>
-        
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
+                </div>
+            </li>
+        </ul>        
+    </div>
+    <div class="container body-content" style="width:1500px">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - MSIT123第5組專題</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @RenderSection("scripts", required: false)
 </body>
 </html>

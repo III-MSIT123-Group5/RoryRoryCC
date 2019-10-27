@@ -14,16 +14,7 @@ namespace EIPBussinessSystem_MVC.Models
     
     public partial class Event
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Event()
-        {
-            this.ReportTimeSystems = new HashSet<ReportTimeSystem>();
-        }
-    
         public int EventID { get; set; }
         public string EventName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ReportTimeSystem> ReportTimeSystems { get; set; }
     }
 }

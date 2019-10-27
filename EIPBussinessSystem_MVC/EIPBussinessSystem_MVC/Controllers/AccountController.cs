@@ -22,6 +22,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         public AccountController()
         {
         }
+        BusinessDataBaseEntities db = new BusinessDataBaseEntities();
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
@@ -54,7 +55,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         }
 
         //
-        // GET: /Account/Login
+        // GET: /Account/Login    登入
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -76,7 +77,7 @@ namespace EIPBussinessSystem_MVC.Controllers
 
             // 這不會計算為帳戶鎖定的登入失敗
             // 若要啟用密碼失敗來觸發帳戶鎖定，請變更為 shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -136,11 +137,11 @@ namespace EIPBussinessSystem_MVC.Controllers
         }
 
         //
-        // GET: /Account/Register
+        // GET: /Account/Register  註冊
         [AllowAnonymous]
         public ActionResult Register()
         {
-            var GenderSelector = new List<SelectListItem>()
+            ViewBag.Gender =new List<SelectListItem>()
             {
                 new SelectListItem {Text="男",Value="M" },
                 new SelectListItem {Text="女",Value="F" },
@@ -159,12 +160,38 @@ namespace EIPBussinessSystem_MVC.Controllers
                 new SelectListItem{Text="產品部", Value="4"},
                 new SelectListItem{Text="財務部", Value="5"},
                 new SelectListItem{Text="資訊部", Value="6"},
-            };            
+            };
+            var GroupIDSelector = new List<SelectListItem>()
+            {
+                new SelectListItem{Text="無組別", Value="0"},
+                new SelectListItem{Text="總務組", Value="1"},
+                new SelectListItem{Text="人資組", Value="2"},
+                new SelectListItem{Text="行政部室", Value="3"},
+                new SelectListItem{Text="業務部室", Value="4"},
+                new SelectListItem{Text="產品部室", Value="5"},
+                new SelectListItem{Text="財務部室", Value="6"},
+                new SelectListItem{Text="資訊部室", Value="7"},
+                new SelectListItem{Text="總經理室", Value="8"},
+            };
+            var PositionIDSelector = new List<SelectListItem>()
+            {
+                new SelectListItem{Text="總經理", Value="1"},
+                new SelectListItem{Text="部長", Value="2"},
+                new SelectListItem{Text="組長", Value="3"},
+                new SelectListItem{Text="員工", Value="4"},                
+            };
+            var EmployedSelector = new List<SelectListItem>()
+            {
+                new SelectListItem{Text="在職中", Value="true"},
+                new SelectListItem{Text="已離職", Value="false" },               
+            };                       
 
-
-            ViewBag.GenderSt = GenderSelector;
+            
             ViewBag.OfficeSt = OfficeSelector;
             ViewBag.DepartSt = DepartmentSelector;
+            ViewBag.GroupIDSt = GroupIDSelector;
+            ViewBag.PositionIDSt = PositionIDSelector;
+            ViewBag.EmployedSt = EmployedSelector;
 
             return View();
         }
@@ -178,25 +205,48 @@ namespace EIPBussinessSystem_MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Account };
+                var user = new ApplicationUser { UserName = model.Account, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false); //註冊後自重登入
+
                     // 如需如何進行帳戶確認及密碼重設的詳細資訊，請前往 https://go.microsoft.com/fwlink/?LinkID=320771
                     // 傳送包含此連結的電子郵件
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "確認您的帳戶", "請按一下此連結確認您的帳戶 <a href=\"" + callbackUrl + "\">這裏</a>");
+                 
+                        var addEmployee = new EIPBussinessSystem_MVC.Models.Employee
+                        {
+                            EmployeeName = model.EmpoyeeName,
+                            Gender = model.Gender,
+                            Birth = model.BirthDay,
+                            HireDate = model.HireDay,
+                            Account = model.Account,
+                            OfficeID = Convert.ToInt32(model.OfficeID),
+                            DepartmentID = Convert.ToInt32(model.DepartmentID),
+                            PositionID = Convert.ToInt32(model.PositionID),
+                            ManagerID = Convert.ToInt32(model.ManagerID),
+                            Employed = Convert.ToBoolean(model.Employed),
+                            GroupID = Convert.ToInt32(model.GroupID)
+                        };
+                        db.Employees.Add(addEmployee);
+                        db.SaveChanges();
 
-                    return RedirectToAction("Index", "Home");
+                    TempData["message"] = $"已成功新增 {model.EmpoyeeName} 的帳號。";
+                    return RedirectToAction("Register", "Account");
+                    //return RedirectToAction("Index", "Home"); 
                 }
                 AddErrors(result);
+                
+
             }
 
             // 如果執行到這裡，發生某項失敗，則重新顯示表單
-            return View(model);
+            //return View(model);
+            TempData["message"] = $"帳號新增失敗，請再次確認帳號是否重覆。";
+            return RedirectToAction("Register", "Account");
         }
 
         //
@@ -419,7 +469,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         //

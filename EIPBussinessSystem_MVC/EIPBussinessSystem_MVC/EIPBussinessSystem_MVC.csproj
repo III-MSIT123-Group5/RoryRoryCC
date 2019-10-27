@@ -178,6 +178,7 @@
     <Compile Include="App_Start\RouteConfig2.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CompanyVehicleBorrowController.cs" />
     <Compile Include="Controllers\CompanyVehiclesController.cs" />
     <Compile Include="Controllers\BulletinBoardsController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
@@ -203,6 +204,18 @@
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ApprovalStatu.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserRole.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BulletinBoard.cs">
@@ -236,6 +249,9 @@
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CompanyVehicleHistory.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Department.cs">
@@ -311,6 +327,8 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -362,6 +380,8 @@
       <DependentUpon>BussinessSystemModel.edmx</DependentUpon>
       <LastGenOutput>BussinessSystemModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\BussinessSystemModel.edmx">
@@ -493,6 +513,10 @@
     <Content Include="Scripts\jtable\themes\metro\red\jtable.min.css" />
     <Content Include="Scripts\jtable\themes\metro\red\loading.gif" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Theme\redmond\images\animated-overlay.gif" />
     <Content Include="Theme\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Theme\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
@@ -591,6 +615,11 @@
     <Content Include="Views\ReportTimeSystems\Index.cshtml" />
     <Content Include="Views\Files\Index.cshtml" />
     <Content Include="Views\Files\Upload.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Create.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Delete.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Details.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Edit.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

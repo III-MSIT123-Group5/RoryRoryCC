@@ -50,9 +50,8 @@ namespace EIPBussinessSystem_MVC.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "電子郵件")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "帳號")]        
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -63,7 +62,7 @@ namespace EIPBussinessSystem_MVC.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterViewModel
+    public class RegisterViewModel     //註冊model    
     {
         [Required(ErrorMessage = "請輸入{0}！")]
         [Display(Name = "姓名")]
@@ -84,14 +83,19 @@ namespace EIPBussinessSystem_MVC.Models
         [Compare("Password", ErrorMessage = "密碼和確認密碼不相符。")]
         public string ConfirmPassword { get; set; }
 
+        [Required]
+        [EmailAddress]
+        [Display(Name = "電子郵件")]
+        public string Email { get; set; }
+
         [Required(ErrorMessage = "請選擇{0}！")]
         [StringLength(10)]
-        [Display(Name ="性別")]
+        [Display(Name = "性別")]
         public string Gender { get; set; }
-        
+
         [Required(ErrorMessage = "請選擇{0}！")]
         [DataType(DataType.Date)]
-        [Display(Name ="生日")]
+        [Display(Name = "生日")]
         public DateTime BirthDay { get; set; }
 
         [Required(ErrorMessage = "請選擇{0}！")]
@@ -100,7 +104,7 @@ namespace EIPBussinessSystem_MVC.Models
         public DateTime HireDay { get; set; }
 
         [Required(ErrorMessage = "請選擇{0}！")]
-        [Display(Name ="辦公室")]
+        [Display(Name = "辦公室")]
         public int OfficeID { get; set; }
 
         [Required(ErrorMessage = "請選擇{0}！")]
@@ -114,7 +118,7 @@ namespace EIPBussinessSystem_MVC.Models
         [Required(ErrorMessage = "請選擇{0}！")]
         [Display(Name = "直系主管")]
         public int ManagerID { get; set; }
-            
+
         [Required(ErrorMessage = "請選擇{0}！")]
         [Display(Name = "組別")]
         public int GroupID { get; set; }
@@ -123,9 +127,9 @@ namespace EIPBussinessSystem_MVC.Models
         [Display(Name = "在職狀態")]
         public bool Employed { get; set; }
 
-        [Display(Name ="個人照片")]
+        [Display(Name = "個人照片")]
         public string Photo { get; set; }
-     
+
     }
 
     public class ResetPasswordViewModel

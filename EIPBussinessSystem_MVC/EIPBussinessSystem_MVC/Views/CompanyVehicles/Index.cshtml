@@ -43,8 +43,12 @@
     {
     <tr>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.LicenseNumber }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.LicenseNumber })
+            <div style="margin:5px">
+                @Html.ActionLink("編輯", "Edit", new { id = item.LicenseNumber }, new { @class = "btn btn-primary" })
+            </div>
+            <div style="margin:5px">
+                @Html.ActionLink("刪除", "Delete", new { id = item.LicenseNumber }, new { @class = "btn btn-danger" })
+            </div>
         </td>
         <td>
             @Html.Partial("_ShowPhotoPartial", item)
