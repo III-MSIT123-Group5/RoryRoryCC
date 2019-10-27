@@ -12,9 +12,11 @@ namespace EIPBussinessSystem_MVC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Account
+    public partial class AspNetUserRole
     {
-        public string account1 { get; set; }
-        public byte[] password { get; set; }
+        public string UserId { get; set; }
+        public string RoleId { get; set; }
+    
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

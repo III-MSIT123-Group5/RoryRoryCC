@@ -7,23 +7,34 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EIPBussinessSystem_MVC.Models;
+using PagedList;
 
 namespace EIPBussinessSystem_MVC.Controllers
 {
     public class OrderDetailsController : Controller
     {
         private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
-
-        // GET: OrderDetails
-        public ActionResult Index()
+        
+        public ActionResult Index(string searchProductName, string searchOrderID)
         {
-            var report = from RM in this.db.RequisitionMains
-                         join OD in this.db.OrderDetails on RM.OrderID equals OD.OrderID
-                         where RM.EmployeeID == 1032
-                         select OD;
-                         
-            return View(report.ToList());
+            var report = from OD in db.OrderDetails
+                              select OD;
+            if (!String.IsNullOrEmpty(searchProductName))
+            {
+                report = report.Where(s => s.ProductName.Contains(searchProductName));
+            }
+            return View(report.ToList());         
         }
+
+        //// GET: OrderDetails
+        //public ActionResult Index()
+        //{           
+        //    var report = from RM in this.db.RequisitionMains
+        //                 join OD in this.db.OrderDetails on RM.OrderID equals OD.OrderID
+        //                 where RM.EmployeeID == 1032
+        //                 select OD;
+        //    return View(report.ToList());
+        //}
 
         // GET: OrderDetails/Details/5
         public ActionResult Details(int? id)
@@ -56,6 +67,10 @@ namespace EIPBussinessSystem_MVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var report = from RM in this.db.RequisitionMains
+                             join OD in this.db.OrderDetails on RM.OrderID equals OD.OrderID
+                             where RM.EmployeeID == 1032
+                             select OD;
                 db.OrderDetails.Add(orderDetail);
                 db.SaveChanges();
                 return RedirectToAction("Index");

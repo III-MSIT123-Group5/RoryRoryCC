@@ -12,9 +12,13 @@ namespace EIPBussinessSystem_MVC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Account
+    public partial class AspNetUserClaim
     {
-        public string account1 { get; set; }
-        public byte[] password { get; set; }
+        public int Id { get; set; }
+        public string UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
+    
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

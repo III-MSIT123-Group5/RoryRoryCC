@@ -22,6 +22,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         public AccountController()
         {
         }
+        BusinessDataBaseEntities db = new BusinessDataBaseEntities();
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
@@ -76,7 +77,7 @@ namespace EIPBussinessSystem_MVC.Controllers
 
             // 這不會計算為帳戶鎖定的登入失敗
             // 若要啟用密碼失敗來觸發帳戶鎖定，請變更為 shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -208,28 +209,44 @@ namespace EIPBussinessSystem_MVC.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false); //註冊後自重登入
+
                     // 如需如何進行帳戶確認及密碼重設的詳細資訊，請前往 https://go.microsoft.com/fwlink/?LinkID=320771
                     // 傳送包含此連結的電子郵件
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "確認您的帳戶", "請按一下此連結確認您的帳戶 <a href=\"" + callbackUrl + "\">這裏</a>");
+                 
+                        var addEmployee = new EIPBussinessSystem_MVC.Models.Employee
+                        {
+                            EmployeeName = model.EmpoyeeName,
+                            Gender = model.Gender,
+                            Birth = model.BirthDay,
+                            HireDate = model.HireDay,
+                            Account = model.Account,
+                            OfficeID = Convert.ToInt32(model.OfficeID),
+                            DepartmentID = Convert.ToInt32(model.DepartmentID),
+                            PositionID = Convert.ToInt32(model.PositionID),
+                            ManagerID = Convert.ToInt32(model.ManagerID),
+                            Employed = Convert.ToBoolean(model.Employed),
+                            GroupID = Convert.ToInt32(model.GroupID)
+                        };
+                        db.Employees.Add(addEmployee);
+                        db.SaveChanges();
 
-
-
-
-
-
-
-                    return RedirectToAction("Index", "Home");
+                    TempData["message"] = $"已成功新增 {model.EmpoyeeName} 的帳號。";
+                    return RedirectToAction("Register", "Account");
+                    //return RedirectToAction("Index", "Home"); 
                 }
                 AddErrors(result);
+                
+
             }
 
             // 如果執行到這裡，發生某項失敗，則重新顯示表單
-            return View(model);
-            //return RedirectToAction("Register", "Account");
+            //return View(model);
+            TempData["message"] = $"帳號新增失敗，請再次確認帳號是否重覆。";
+            return RedirectToAction("Register", "Account");
         }
 
         //
@@ -452,7 +469,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         //

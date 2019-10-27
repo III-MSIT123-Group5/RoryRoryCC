@@ -12,9 +12,11 @@ namespace EIPBussinessSystem_MVC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Account
+    public partial class C__MigrationHistory
     {
-        public string account1 { get; set; }
-        public byte[] password { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

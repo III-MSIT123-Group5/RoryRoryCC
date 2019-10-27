@@ -25,11 +25,16 @@ namespace EIPBussinessSystem_MVC.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<ActivitiesChild> ActivitiesChilds { get; set; }
         public virtual DbSet<ActivitiesMain> ActivitiesMains { get; set; }
         public virtual DbSet<ApprovalProcedure> ApprovalProcedures { get; set; }
         public virtual DbSet<ApprovalStatu> ApprovalStatus { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<BulletinBoard> BulletinBoards { get; set; }
         public virtual DbSet<CommentChild> CommentChilds { get; set; }
         public virtual DbSet<CommentGrandchild> CommentGrandchilds { get; set; }
@@ -50,7 +55,6 @@ namespace EIPBussinessSystem_MVC.Models
         public virtual DbSet<Recipient> Recipients { get; set; }
         public virtual DbSet<Reply> Replies { get; set; }
         public virtual DbSet<ReportCategory> ReportCategories { get; set; }
-        public virtual DbSet<ReportTimeSystem> ReportTimeSystems { get; set; }
         public virtual DbSet<RequisitionMain> RequisitionMains { get; set; }
         public virtual DbSet<RewardandPunishment> RewardandPunishments { get; set; }
         public virtual DbSet<Suggestion> Suggestions { get; set; }
@@ -58,5 +62,6 @@ namespace EIPBussinessSystem_MVC.Models
         public virtual DbSet<MeetingRoomHistory> MeetingRoomHistories { get; set; }
         public virtual DbSet<SuggestionHistory> SuggestionHistories { get; set; }
         public virtual DbSet<SurveyMain> SurveyMains { get; set; }
+        public virtual DbSet<ReportTimeSystem> ReportTimeSystems { get; set; }
     }
 }
