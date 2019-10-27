@@ -1077,19 +1077,19 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 16px;
-  line-height: 1.42857143;
-  color: #333333;
-  background-color: #ffffff;
+    font-family: Georgia, "Times New Roman", Times, serif,'Microsoft JhengHei';
+    font-size: 16px;
+    line-height: 1.42857143;
+    color: #333333;
+    background-color: #ffffff;
 }
 input,
 button,
 select,
 textarea {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
+    font-family: inherit,'Microsoft JhengHei';
+    font-size: inherit;
+    line-height: inherit;
 }
 a {
   color: #4582ec;
@@ -1176,7 +1176,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif,'Microsoft JhengHei';
   font-weight: bold;
   line-height: 1.1;
   color: inherit;
@@ -6647,7 +6647,7 @@ button.close {
   }
 }
 .navbar {
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif,'Microsoft JhengHei';
 }
 .navbar-nav,
 .navbar-form {
@@ -6689,13 +6689,13 @@ button.close {
   }
 }
 .btn {
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif,'Microsoft JhengHei';
 }
 legend {
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif,'Microsoft JhengHei';
 }
 .input-group-addon {
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif,'Microsoft JhengHei';
 }
 .nav .open > a,
 .nav .open > a:hover,
@@ -6703,14 +6703,14 @@ legend {
   border: 1px solid #ddd;
 }
 .pagination {
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif,'Microsoft JhengHei';
 }
 .pagination-lg > li > a,
 .pagination-lg > li > span {
   padding: 14px 24px;
 }
 .pager {
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif,'Microsoft JhengHei';
 }
 .pager a {
   color: #333333;
@@ -6738,18 +6738,18 @@ legend {
   text-decoration: underline;
 }
 .label {
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: normal;
+    font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif,'Microsoft JhengHei';
+    font-weight: normal;
 }
 .label-default {
   border: 1px solid #ddd;
   color: #333333;
 }
 .badge {
-  padding: 1px 7px 5px;
-  vertical-align: 2px;
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: normal;
+    padding: 1px 7px 5px;
+    vertical-align: 2px;
+    font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif,'Microsoft JhengHei';
+    font-weight: normal;
 }
 .panel {
   box-shadow: none;
