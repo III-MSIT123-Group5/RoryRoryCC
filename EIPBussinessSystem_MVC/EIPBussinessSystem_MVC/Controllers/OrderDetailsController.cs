@@ -8,55 +8,26 @@ using System.Web;
 using System.Web.Mvc;
 using EIPBussinessSystem_MVC.Models;
 using PagedList;
-//
+
 namespace EIPBussinessSystem_MVC.Controllers
 {
     public class OrderDetailsController : Controller
     {
         private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
-        
-        public ActionResult Index(string searching)
+
+        // GET: OrderDetails
+        public ActionResult Index(string searchProductName, string searchOrderID)
         {
-            var ProductName = from OD in db.OrderDetails
-                              select OD;
-            if (!String.IsNullOrEmpty(searching))
+            var report = from RM in this.db.RequisitionMains
+                         join OD in this.db.OrderDetails on RM.OrderID equals OD.OrderID
+                         where RM.EmployeeID == 1032
+                         select OD;
+            if (!String.IsNullOrEmpty(searchProductName))
             {
-                ProductName = ProductName.Where(s => s.ProductName.Contains(searching));
+                report = report.Where(s => s.ProductName.Contains(searchProductName));
             }
-            return View(ProductName.ToList());
+            return View(report.ToList());         
         }
-
-        //public ActionResult Index(String orderdetailGenre, String SearchString)
-        //{
-        //    var genreList = new List<String>();
-        //    var genreQry = from o in db.OrderDetails
-        //                   orderby o.ProductName
-        //                   select o.ProductName;
-        //    genreList.AddRange(genreQry.Distinct());
-        //    ViewBag.orderdetailGenre = new SelectList(genreList);
-
-        //    var orderdetail = from OD in db.OrderDetails
-        //                      select OD;
-        //    if (!String.IsNullOrEmpty(SearchString))
-        //    {
-        //        orderdetail = orderdetail.Where(s => s.ProductName.Contains(SearchString));
-        //    }
-        //    if (!String.IsNullOrEmpty(orderdetailGenre))
-        //    {
-        //        orderdetail = orderdetail.Where(x => x.ProductName == orderdetailGenre);
-        //    }
-        //    return View(orderdetail);
-        //}
-
-        //// GET: OrderDetails
-        //public ActionResult Index()
-        //{           
-        //    var report = from RM in this.db.RequisitionMains
-        //                 join OD in this.db.OrderDetails on RM.OrderID equals OD.OrderID
-        //                 where RM.EmployeeID == 1032
-        //                 select OD;
-        //    return View(report.ToList());
-        //}
 
         // GET: OrderDetails/Details/5
         public ActionResult Details(int? id)

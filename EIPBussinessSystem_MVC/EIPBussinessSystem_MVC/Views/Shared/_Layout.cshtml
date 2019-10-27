@@ -8,30 +8,26 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", required: false)
-
-
-    <style>
-
-    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#483d8b;color:#ffffff">
         <div class="container">
             <div class="navbar-header">
+
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("應用程式名稱", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" ,Style = "color:White" })
+                <a href="@Url.Action("Index","Home")" class="navbar-brand"><img src="@Url.Content("~/Images/B_icon_32.png")" alt="Home" /></a>
+                @Html.ActionLink("Business System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", Style = "color:White" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">          
-                    
+                <ul class="nav navbar-nav">
+
                     <li>@Html.ActionLink("首頁", "Index", "Home", new { Style = "color:White" })</li>
                     <li>@Html.ActionLink("關於", "About", "Home", new { Style = "color:White" })</li>
                     <li>@Html.ActionLink("連絡人", "Contact", "Home", new { Style = "color:White" })</li>
-                   
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -40,11 +36,8 @@
     <br />
     @*側邊功能列表*@
     <div class="col-sm-3 col-md-2 sidebar" style="float:left;width:310px;font-family:Raleway;">
-        <ul class="nav nav-sidebar">
-            <li class="active"><a href="#" style="color:#483d8b">Overview</a></li>
-            @*<li><a href="#">Reports</a></li>
-        <li><a href="#">Analytics</a></li>
-        <li><a href="#">Export</a></li>*@
+        <ul class="nav nav-sidebar">                  
+
             <li>@Html.ActionLink("BulletinBoard", "Index", "BulletinBoards", null, new { Style = "color:#483d8b" })</li>
             <li>@Html.ActionLink("借車紀錄", "Index", "CompanyVehicles", null, new { Style = "color:#483d8b" })</li>
             <li>@Html.ActionLink("工時回報", "Index", "ReportTimeSystems", null, new { Style = "color:#483d8b" })</li>
