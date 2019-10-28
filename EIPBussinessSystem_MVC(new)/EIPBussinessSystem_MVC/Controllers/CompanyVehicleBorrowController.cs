@@ -13,48 +13,16 @@ namespace EIPBussinessSystem_MVC.Controllers
     public class CompanyVehicleBorrowController : Controller
     {
         private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
-        List<string> firstLevelItems = new List<string>()
-        {
-            "上午","下午"
-        };
-        List<SecondLevelViewModel> secondLevelItems = new List<SecondLevelViewModel>();
-
-        public CompanyVehicleBorrowController()
-        {
-            secondLevelItems.Add(new SecondLevelViewModel() { FirstLevel = "上午", SecondLevel = "08:00" });
-            secondLevelItems.Add(new SecondLevelViewModel() { FirstLevel = "上午", SecondLevel = "09:00" });
-            secondLevelItems.Add(new SecondLevelViewModel() { FirstLevel = "上午", SecondLevel = "10:00" });
-            secondLevelItems.Add(new SecondLevelViewModel() { FirstLevel = "上午", SecondLevel = "11:00" });
-            secondLevelItems.Add(new SecondLevelViewModel() { FirstLevel = "上午", SecondLevel = "12:00" });
-            secondLevelItems.Add(new SecondLevelViewModel() { FirstLevel = "下午", SecondLevel = "01:00" });
-            secondLevelItems.Add(new SecondLevelViewModel() { FirstLevel = "下午", SecondLevel = "02:00" });
-            secondLevelItems.Add(new SecondLevelViewModel() { FirstLevel = "下午", SecondLevel = "03:00" });
-            secondLevelItems.Add(new SecondLevelViewModel() { FirstLevel = "下午", SecondLevel = "04:00" });
-            secondLevelItems.Add(new SecondLevelViewModel() { FirstLevel = "下午", SecondLevel = "05:00" });
-        }
         // GET: CompanyVehicleBorrow
         public ActionResult Index()
         {
-            var items = (from c in firstLevelItems
-                         select new SelectListItem { Text = c, Value = c }).ToList();
-            items.Insert(0, new SelectListItem() { Text = "請選擇", Value = "-1" });
-            ViewData["FirstLevelItems"] = items;
+           
             var companyVehicleHistories = db.CompanyVehicleHistories.Include(c => c.CompanyVehicle).Include(c => c.Employee);
             return View(companyVehicleHistories);
         }
 
         [HttpGet]
-        public ActionResult ShowSecondDropDownList(string FirstLevel)
-        {
-            //使用Linq撈出第二層的資料
-            var items = (from s in secondLevelItems
-                         where s.FirstLevel == FirstLevel
-                         select new SelectListItem { Text = s.SecondLevel, Value = s.SecondLevel }).ToList();
-            //加入「請選擇」
-            items.Insert(0, new SelectListItem() { Text = "請選擇", Value = "-1" });
-            ViewData["SecondLevelItems"] = items;
-            return View();
-        }
+        
 
         
         public ActionResult Details(int? id)
