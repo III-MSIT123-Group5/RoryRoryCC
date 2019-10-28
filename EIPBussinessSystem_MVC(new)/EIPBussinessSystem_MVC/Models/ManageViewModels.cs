@@ -55,19 +55,19 @@ namespace EIPBussinessSystem_MVC.Models
         [Display(Name = "辦公室")]
         public string OfficeName { get; set; }
 
-        [Display(Name = "部門")] //須改為名(注意型態)
-        public int DepartmentName { get; set; }
+        [Display(Name = "部門")]
+        public string DepartmentName { get; set; }
 
-        [Display(Name = "組別")]//須改為名(注意型態)
-        public int GroupID { get; set; }
+        [Display(Name = "組別")]
+        public string GroupID { get; set; }
 
-        [Display(Name = "職位名稱")]//須改為名(注意型態)
-        public int PositionID { get; set; }
+        [Display(Name = "職位名稱")]
+        public string PositionID { get; set; }
 
-        [Display(Name = "直系主管")]//須改為名(注意型態)
+        [Display(Name = "直系主管")]
         public string ManagerID { get; set; }
 
-        [Display(Name = "在職狀態")]//須改為名(注意型態)
+        [Display(Name = "在職狀態")]
         public bool Employed { get; set; }
 
         [Display(Name = "個人照片")]

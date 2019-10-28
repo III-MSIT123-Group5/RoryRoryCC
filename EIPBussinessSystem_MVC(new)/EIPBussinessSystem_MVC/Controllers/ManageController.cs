@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using EIPBussinessSystem_MVC.Models;
+using System.Data.Entity;
 
 namespace EIPBussinessSystem_MVC.Controllers
 {
@@ -76,7 +77,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                 EmpID = e.employeeID;
             }
             
-            var Emp = db.Employees.Find(EmpID);                 
+            var Emp = db.Employees.Find(EmpID);              
 
             var model = new IndexViewModel
             {
@@ -93,32 +94,33 @@ namespace EIPBussinessSystem_MVC.Controllers
                 BirthDay = (DateTime)Emp.Birth,
                 HireDay = (DateTime)Emp.HireDate,
                 OfficeName = Emp.Office.office_name,
-                DepartmentName= (int)Emp.DepartmentID,
-                GroupID = (int)Emp.GroupID,
-                PositionID =(int)Emp.PositionID,
+                DepartmentName= Emp.Department.name ,
+                GroupID =Emp.Group.GroupName,
+                PositionID =Emp.Position.position1,
                 ManagerID =Emp.Employee2.EmployeeName,
                 Employed = (bool)Emp.Employed,
                 Photo = Emp.Photo,
             };
-
-
-
             return View(model);
         }
 
         //
-        //POST: /Manage/Index
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Index([Bind(Include="Photo")] Employee Emp)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
+       //POST: /Manage/Index
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index([Bind(Include = "Photo")] Employee Emp)
+        {
+            if (ModelState.IsValid)
+            {
+                Employee e = db.Employees.Find(Emp.employeeID);
+                e.Photo = Emp.Photo;
+                db.Entry(e).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
-
-        //        return RedirectToAction("Index");
-        //    }
-        //}
+            return RedirectToAction("Index", "Home");
+        }
 
 
         //
