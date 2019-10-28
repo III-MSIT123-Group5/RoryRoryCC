@@ -16,6 +16,8 @@ namespace EIPBussinessSystem_MVC.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        BusinessDataBaseEntities db = new BusinessDataBaseEntities();
+
         public ManageController()
         {
         }
@@ -62,18 +64,49 @@ namespace EIPBussinessSystem_MVC.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "已新增您的電話號碼。"
                 : message == ManageMessageId.RemovePhoneSuccess ? "已移除您的電話號碼。"
                 : "";
-
+            
             var userId = User.Identity.GetUserId();
+            var acc = User.Identity.GetUserName();
+            var Emp = db.Employees.Find(acc);
+            var aspUs = db.AspNetUsers.Find(acc);
+            
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                
+                EmpoyeeName = Emp.EmployeeName,
+                Account = Emp.Account,
+                Email = aspUs.Email,
+                Gender = Emp.Gender,
+                BirthDay = (DateTime)Emp.Birth,
+                HireDay = (DateTime)Emp.HireDate,
+            
+
             };
+
+
+
             return View(model);
         }
+
+        //
+        //POST: /Manage/Index
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Index([Bind(Include="Photo")] Employee Emp)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+
+
+        //        return RedirectToAction("Index");
+        //    }
+        //}
+
 
         //
         // POST: /Manage/RemoveLogin
