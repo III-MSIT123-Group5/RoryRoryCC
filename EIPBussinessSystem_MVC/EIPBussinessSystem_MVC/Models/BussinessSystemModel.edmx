@@ -1165,9 +1165,9 @@
           <EntitySet Name="ActivitiesMains" EntityType="BusinessDataBaseModel.ActivitiesMain" />
           <EntitySet Name="ApprovalProcedures" EntityType="BusinessDataBaseModel.ApprovalProcedure" />
           <EntitySet Name="ApprovalStatus" EntityType="BusinessDataBaseModel.ApprovalStatu" />
+          <EntitySet Name="AspNetRoles" EntityType="BusinessDataBaseModel.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="BusinessDataBaseModel.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="BusinessDataBaseModel.AspNetUserLogin" />
-          <EntitySet Name="AspNetUserRoles" EntityType="BusinessDataBaseModel.AspNetUserRole" />
           <EntitySet Name="AspNetUsers" EntityType="BusinessDataBaseModel.AspNetUser" />
           <EntitySet Name="BulletinBoards" EntityType="BusinessDataBaseModel.BulletinBoard" />
           <EntitySet Name="CommentChilds" EntityType="BusinessDataBaseModel.CommentChild" />
@@ -1189,6 +1189,7 @@
           <EntitySet Name="Recipients" EntityType="BusinessDataBaseModel.Recipient" />
           <EntitySet Name="Replies" EntityType="BusinessDataBaseModel.Reply" />
           <EntitySet Name="ReportCategories" EntityType="BusinessDataBaseModel.ReportCategory" />
+          <EntitySet Name="ReportTimeSystems" EntityType="BusinessDataBaseModel.ReportTimeSystem" />
           <EntitySet Name="RequisitionMains" EntityType="BusinessDataBaseModel.RequisitionMain" />
           <EntitySet Name="RewardandPunishments" EntityType="BusinessDataBaseModel.RewardandPunishment" />
           <EntitySet Name="Suggestions" EntityType="BusinessDataBaseModel.Suggestion" />
@@ -1223,10 +1224,6 @@
           <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="BusinessDataBaseModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="BusinessDataBaseModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserRole" EntitySet="AspNetUserRoles" />
           </AssociationSet>
           <AssociationSet Name="FK_Bulletin_board_Department" Association="BusinessDataBaseModel.FK_Bulletin_board_Department">
             <End Role="Department" EntitySet="Departments" />
@@ -1284,6 +1281,10 @@
             <End Role="Employee" EntitySet="Employees" />
             <End Role="Employee1" EntitySet="Employees" />
           </AssociationSet>
+          <AssociationSet Name="FK_Employee_Office" Association="BusinessDataBaseModel.FK_Employee_Office">
+            <End Role="Office" EntitySet="Offices" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
           <AssociationSet Name="FK_File_Employee" Association="BusinessDataBaseModel.FK_File_Employee">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="File" EntitySet="Files" />
@@ -1304,6 +1305,10 @@
             <End Role="Employee" EntitySet="Employees" />
             <End Role="Reply" EntitySet="Replies" />
           </AssociationSet>
+          <AssociationSet Name="FK_ReportTimeSystem_Employee" Association="BusinessDataBaseModel.FK_ReportTimeSystem_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="ReportTimeSystem" EntitySet="ReportTimeSystems" />
+          </AssociationSet>
           <AssociationSet Name="FK_RequisitionMain_Employee" Association="BusinessDataBaseModel.FK_RequisitionMain_Employee">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="RequisitionMain" EntitySet="RequisitionMains" />
@@ -1311,6 +1316,10 @@
           <AssociationSet Name="FK_Suggestion_history_Employee" Association="BusinessDataBaseModel.FK_Suggestion_history_Employee">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="SuggestionHistory" EntitySet="SuggestionHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportTimeSystem_Event" Association="BusinessDataBaseModel.FK_ReportTimeSystem_Event">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="ReportTimeSystem" EntitySet="ReportTimeSystems" />
           </AssociationSet>
           <AssociationSet Name="FK_Meeting_room_history_Meeting_room" Association="BusinessDataBaseModel.FK_Meeting_room_history_Meeting_room">
             <End Role="MeetingRoom" EntitySet="MeetingRooms" />
@@ -1336,14 +1345,9 @@
             <End Role="Suggestion" EntitySet="Suggestions" />
             <End Role="SuggestionHistory" EntitySet="SuggestionHistories" />
           </AssociationSet>
-          <EntitySet Name="ReportTimeSystems" EntityType="BusinessDataBaseModel.ReportTimeSystem" />
-          <AssociationSet Name="FK_ReportTimeSystem_Employee" Association="BusinessDataBaseModel.FK_ReportTimeSystem_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="ReportTimeSystem" EntitySet="ReportTimeSystems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReportTimeSystem_Event" Association="BusinessDataBaseModel.FK_ReportTimeSystem_Event">
-            <End Role="Event" EntitySet="Events" />
-            <End Role="ReportTimeSystem" EntitySet="ReportTimeSystems" />
+          <AssociationSet Name="AspNetUserRoles" Association="BusinessDataBaseModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="AspNetRoles" EntityType="BusinessDataBaseModel.AspNetRole" />
           <AssociationSet Name="FK_Employee_Office" Association="BusinessDataBaseModel.FK_Employee_Office">
@@ -1416,11 +1420,19 @@
           <Property Name="StatusName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="RequisitionMains" Relationship="BusinessDataBaseModel.FK_RequisitionMain_ApprovalStatus" FromRole="ApprovalStatu" ToRole="RequisitionMain" />
         </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="BusinessDataBaseModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
         <EntityType Name="AspNetUserClaim">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -1436,15 +1448,6 @@
           <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="BusinessDataBaseModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
-        </EntityType>
-        <EntityType Name="AspNetUserRole">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="BusinessDataBaseModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUserRole" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="AspNetUser">
           <Key>
@@ -1464,14 +1467,13 @@
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="BusinessDataBaseModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="BusinessDataBaseModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
-          <NavigationProperty Name="AspNetUserRoles" Relationship="BusinessDataBaseModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserRole" />
           <NavigationProperty Name="AspNetRoles" Relationship="BusinessDataBaseModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
         </EntityType>
         <EntityType Name="BulletinBoard">
           <Key>
             <PropertyRef Name="Num" />
           </Key>
-          <Property Name="Num" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="Num" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmployeeID" Type="Int32" />
           <Property Name="DepartmentID" Type="Int32" />
           <Property Name="GroupID" Type="Int32" />
@@ -1534,7 +1536,7 @@
           <Key>
             <PropertyRef Name="VehicleHistoryID" />
           </Key>
-          <Property Name="VehicleHistoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="VehicleHistoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LicenseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="StartDateTime" Type="DateTime" Precision="3" />
           <Property Name="EndDateTime" Type="DateTime" Precision="3" />
@@ -1557,7 +1559,7 @@
           <Key>
             <PropertyRef Name="employeeID" />
           </Key>
-          <Property Name="employeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="employeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Birth" Type="DateTime" Precision="0" />
@@ -1582,21 +1584,21 @@
           <NavigationProperty Name="CompanyVehicleHistories" Relationship="BusinessDataBaseModel.FK_Company_vehicle_history_Employee" FromRole="Employee" ToRole="CompanyVehicleHistory" />
           <NavigationProperty Name="Employee1" Relationship="BusinessDataBaseModel.FK_Employee_Employee" FromRole="Employee" ToRole="Employee1" />
           <NavigationProperty Name="Employee2" Relationship="BusinessDataBaseModel.FK_Employee_Employee" FromRole="Employee1" ToRole="Employee" />
+          <NavigationProperty Name="Office" Relationship="BusinessDataBaseModel.FK_Employee_Office" FromRole="Employee" ToRole="Office" />
           <NavigationProperty Name="Files" Relationship="BusinessDataBaseModel.FK_File_Employee" FromRole="Employee" ToRole="File" />
           <NavigationProperty Name="MeetingRoomHistories" Relationship="BusinessDataBaseModel.FK_Meeting_room_history_Employee" FromRole="Employee" ToRole="MeetingRoomHistory" />
           <NavigationProperty Name="Messages" Relationship="BusinessDataBaseModel.FK_Message_Employee" FromRole="Employee" ToRole="Message" />
           <NavigationProperty Name="Recipients" Relationship="BusinessDataBaseModel.FK_Recipient_Employee" FromRole="Employee" ToRole="Recipient" />
           <NavigationProperty Name="Replies" Relationship="BusinessDataBaseModel.FK_Reply_Employee" FromRole="Employee" ToRole="Reply" />
+          <NavigationProperty Name="ReportTimeSystems" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Employee" FromRole="Employee" ToRole="ReportTimeSystem" />
           <NavigationProperty Name="RequisitionMains" Relationship="BusinessDataBaseModel.FK_RequisitionMain_Employee" FromRole="Employee" ToRole="RequisitionMain" />
           <NavigationProperty Name="SuggestionHistories" Relationship="BusinessDataBaseModel.FK_Suggestion_history_Employee" FromRole="Employee" ToRole="SuggestionHistory" />
-          <NavigationProperty Name="ReportTimeSystems" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Employee" FromRole="Employee" ToRole="ReportTimeSystem" />
-          <NavigationProperty Name="Office" Relationship="BusinessDataBaseModel.FK_Employee_Office" FromRole="Employee" ToRole="Office" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="EventID" />
           </Key>
-          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EventName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ReportTimeSystems" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Event" FromRole="Event" ToRole="ReportTimeSystem" />
         </EntityType>
@@ -1604,12 +1606,12 @@
           <Key>
             <PropertyRef Name="FileID" />
           </Key>
-          <Property Name="FileID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="FileID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FileName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FileSize" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
           <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Data" Type="String" Nullable="false" />
+          <Property Name="Data" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Extension" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_File_Employee" FromRole="File" ToRole="Employee" />
         </EntityType>
@@ -1644,7 +1646,7 @@
           <Key>
             <PropertyRef Name="MessageID" />
           </Key>
-          <Property Name="MessageID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="MessageID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Data" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1661,6 +1663,7 @@
           <Property Name="office_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="office_address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CompanyVehicles" Relationship="BusinessDataBaseModel.FK_Company_vehicle_Office" FromRole="Office" ToRole="CompanyVehicle" />
+          <NavigationProperty Name="Employees" Relationship="BusinessDataBaseModel.FK_Employee_Office" FromRole="Office" ToRole="Employee" />
           <NavigationProperty Name="MeetingRooms" Relationship="BusinessDataBaseModel.FK_Meeting_room_Office" FromRole="Office" ToRole="MeetingRoom" />
           <NavigationProperty Name="Employees" Relationship="BusinessDataBaseModel.FK_Employee_Office" FromRole="Office" ToRole="Employee" />
         </EntityType>
@@ -1668,13 +1671,13 @@
           <Key>
             <PropertyRef Name="OrderDetailID" />
           </Key>
-          <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderID" Type="Int32" />
           <Property Name="Note" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="RequisitionMain" Relationship="BusinessDataBaseModel.FK_OrderDetail_RequisitionMain1" FromRole="OrderDetail" ToRole="RequisitionMain" />
         </EntityType>
         <EntityType Name="Position">
@@ -1715,11 +1718,28 @@
           <Property Name="ReportName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="RequisitionMains" Relationship="BusinessDataBaseModel.FK_RequisitionMain_ReportCategory" FromRole="ReportCategory" ToRole="RequisitionMain" />
         </EntityType>
+        <EntityType Name="ReportTimeSystem">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="employeeID" Type="Int32" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EventHours" Type="Double" Nullable="false" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApplyDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Discontinue" Type="Boolean" />
+          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Employee" FromRole="ReportTimeSystem" ToRole="Employee" />
+          <NavigationProperty Name="Event" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Event" FromRole="ReportTimeSystem" ToRole="Event" />
+        </EntityType>
         <EntityType Name="RequisitionMain">
           <Key>
             <PropertyRef Name="OrderID" />
           </Key>
-          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ReportID" Type="Int32" />
           <Property Name="EmployeeID" Type="Int32" />
           <Property Name="RequisitionDate" Type="DateTime" Precision="3" />
@@ -1750,7 +1770,7 @@
           </Key>
           <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
@@ -1769,7 +1789,7 @@
           <Key>
             <PropertyRef Name="num" />
           </Key>
-          <Property Name="num" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="num" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="employeeID" Type="Int32" />
           <Property Name="departmentID" Type="Int32" />
           <Property Name="suggestionID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
@@ -1783,7 +1803,7 @@
             <PropertyRef Name="QuestionID" />
           </Key>
           <Property Name="SurveyID" Type="Int32" />
-          <Property Name="QuestionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="QuestionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Question" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_ActivitiesChild_ActivitiesMain">
@@ -1870,20 +1890,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="AspNetUserLogin">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-          <End Type="BusinessDataBaseModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="BusinessDataBaseModel.AspNetUserRole" Role="AspNetUserRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserRole">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -2056,6 +2062,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Employee_Office">
+          <End Type="BusinessDataBaseModel.Office" Role="Office" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="officeID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_File_Employee">
           <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="1" />
           <End Type="BusinessDataBaseModel.File" Role="File" Multiplicity="*" />
@@ -2116,6 +2134,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ReportTimeSystem_Employee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.ReportTimeSystem" Role="ReportTimeSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="ReportTimeSystem">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_RequisitionMain_Employee">
           <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
           <End Type="BusinessDataBaseModel.RequisitionMain" Role="RequisitionMain" Multiplicity="*" />
@@ -2137,6 +2167,18 @@
             </Principal>
             <Dependent Role="SuggestionHistory">
               <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportTimeSystem_Event">
+          <End Type="BusinessDataBaseModel.Event" Role="Event" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.ReportTimeSystem" Role="ReportTimeSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="ReportTimeSystem">
+              <PropertyRef Name="EventID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2212,72 +2254,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="ReportTimeSystem">
-          <Key>
-            <PropertyRef Name="ReportID" />
-          </Key>
-          <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ReportName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="employeeID" Type="Int32" Nullable="false" />
-          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EventHours" Type="Double" Nullable="false" />
-          <Property Name="EventID" Type="Int32" Nullable="false" />
-          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ApplyDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Discontinue" Type="Boolean" />
-          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Employee" FromRole="ReportTimeSystem" ToRole="Employee" />
-          <NavigationProperty Name="Event" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Event" FromRole="ReportTimeSystem" ToRole="Event" />
-        </EntityType>
-        <Association Name="FK_ReportTimeSystem_Employee">
-          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="1" />
-          <End Type="BusinessDataBaseModel.ReportTimeSystem" Role="ReportTimeSystem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="ReportTimeSystem">
-              <PropertyRef Name="employeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReportTimeSystem_Event">
-          <End Type="BusinessDataBaseModel.Event" Role="Event" Multiplicity="1" />
-          <End Type="BusinessDataBaseModel.ReportTimeSystem" Role="ReportTimeSystem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Event">
-              <PropertyRef Name="EventID" />
-            </Principal>
-            <Dependent Role="ReportTimeSystem">
-              <PropertyRef Name="EventID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="AspNetRole">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="BusinessDataBaseModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
-        </EntityType>
-        <Association Name="FK_Employee_Office">
-          <End Type="BusinessDataBaseModel.Office" Role="Office" Multiplicity="0..1" />
-          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Office">
-              <PropertyRef Name="officeID" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="OfficeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="AspNetUserRoles">
           <End Type="BusinessDataBaseModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="BusinessDataBaseModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -2343,6 +2324,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.AspNetUserClaim">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
@@ -2359,14 +2348,6 @@
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUserRoles">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.AspNetUserRole">
-              <MappingFragment StoreEntitySet="AspNetUserRoles">
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2603,6 +2584,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ReportTimeSystems">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.ReportTimeSystem">
+              <MappingFragment StoreEntitySet="ReportTimeSystem">
+                <ScalarProperty Name="Discontinue" ColumnName="Discontinue" />
+                <ScalarProperty Name="ApplyDateTime" ColumnName="ApplyDateTime" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="EventHours" ColumnName="EventHours" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="RequisitionMains">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.RequisitionMain">
               <MappingFragment StoreEntitySet="RequisitionMain">
@@ -2671,31 +2668,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ReportTimeSystems">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.ReportTimeSystem">
-              <MappingFragment StoreEntitySet="ReportTimeSystem">
-                <ScalarProperty Name="Discontinue" ColumnName="Discontinue" />
-                <ScalarProperty Name="ApplyDateTime" ColumnName="ApplyDateTime" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="EventID" ColumnName="EventID" />
-                <ScalarProperty Name="EventHours" ColumnName="EventHours" />
-                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
-                <ScalarProperty Name="ReportName" ColumnName="ReportName" />
-                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.AspNetRole">
-              <MappingFragment StoreEntitySet="AspNetRoles">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles1" TypeName="BusinessDataBaseModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="BusinessDataBaseModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetUser">
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
