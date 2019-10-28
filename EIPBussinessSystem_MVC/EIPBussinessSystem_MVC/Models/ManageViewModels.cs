@@ -54,8 +54,7 @@ namespace EIPBussinessSystem_MVC.Models
 
         //private int _officeID;
         //[Display(Name = "辦公室")]
-        //public int OfficeID
-        //{
+        //public int OfficeID {
         //    get
         //    {
         //        string OffName = "Head Office";
