@@ -1,4 +1,4 @@
-﻿@model EIPBussinessSystem_MVC.Models.BulletinBoard
+﻿@model EIPBussinessSystem_MVC.Models.BulletinBoardsViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -6,10 +6,10 @@
 
 <h2>撰寫</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>公佈欄貼文</h4>
         <hr />
