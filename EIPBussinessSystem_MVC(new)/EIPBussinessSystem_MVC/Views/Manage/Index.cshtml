@@ -10,16 +10,23 @@
     <h4>變更帳戶設定</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>@Html.DisplayNameFor(m => m.EmpoyeeName)</dt>
+        <dt></dt>
+        <dd></dd>
+        <dt>@Html.DisplayNameFor(m => m.Photo)</dt>
         <dd>
-            @Html.DisplayFor(m => m.EmpoyeeName)
+            <div>
+                <img src="@Html.DisplayFor(m => m.Photo)" style="height: 250px ; width:auto" />
+            </div>            
         </dd>
         <dt>@Html.DisplayNameFor(m => m.EmpoyeeName)</dt>
         <dd>
             @Html.DisplayFor(m => m.EmpoyeeName)
         </dd>
-
-        <dt>密碼:</dt>
+        <dt>@Html.DisplayNameFor(m => m.Account)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.Account)
+        </dd>
+        <dt>密碼</dt>
         <dd>
             [
             @if (Model.HasPassword)
@@ -31,6 +38,38 @@
                 @Html.ActionLink("建立", "SetPassword")
             }
             ]
+        </dd>
+        <dt>@Html.DisplayNameFor(m => m.Email)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.Email)
+        </dd>
+        <dt>@Html.DisplayNameFor(m => m.Gender)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.Gender)
+        </dd>
+        <dt>@Html.DisplayNameFor(m => m.OfficeName)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.OfficeName)
+        </dd>
+        <dt>@Html.DisplayNameFor(m => m.DepartmentName)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.DepartmentName)
+        </dd>
+        <dt>@Html.DisplayNameFor(m => m.GroupID)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.GroupID)
+        </dd>
+        <dt>@Html.DisplayNameFor(m => m.PositionID)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.PositionID)
+        </dd>
+        <dt>@Html.DisplayNameFor(m => m.ManagerID)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.ManagerID)
+        </dd>
+        <dt>@Html.DisplayNameFor(m => m.Employed)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.Employed)
         </dd>
 
         @*
@@ -61,12 +100,12 @@
             }
         </dd>
         *@
-        <dt>雙因素驗證:</dt>
+        @*<dt>雙因素驗證:</dt>
         <dd>
             <p>
                 未設定任何雙重要素驗證提供者。請參閱<a href="https://go.microsoft.com/fwlink/?LinkId=403804">此文章</a>
                 以取得設定此 ASP.NET 應用程式以支援雙重要素驗證的詳細資料。
-            </p>
+            </p>*@
             @*@if (Model.TwoFactor)
             {
                 using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))

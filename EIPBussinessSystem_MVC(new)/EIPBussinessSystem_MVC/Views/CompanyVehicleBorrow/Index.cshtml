@@ -10,18 +10,12 @@
 @{
     ViewBag.Title = "公務車租借";
 }
-<p>
-    @Html.ActionLink("搜尋", "Search")
-</p>
-
-
 <div>
+    <input type="date" id="date1" style="width:180px" class="input-group-addon" />
     <select id="firstLevel" style="width:100px" class="form-control">
         <option>上午</option>
         <option>下午</option>
     </select>
-    <br />
-    <br />
     <select id="secondLevel" style="width:100px" class="form-control">
         <option>08:00</option>
         <option>09:00</option>
@@ -30,8 +24,22 @@
         <option>12:00</option>
     </select>
     <br />
+</div>
+<div>
+    <input type="date" id="date2" style="width:180px" class="input-group-addon" />
+    <select id="firstLevel1" style="width:100px" class="form-control">
+        <option>上午</option>
+        <option>下午</option>
+    </select>
+    <select id="secondLevel1" style="width:100px" class="form-control">
+        <option>08:00</option>
+        <option>09:00</option>
+        <option>10:00</option>
+        <option>11:00</option>
+        <option>12:00</option>
+    </select>
     <br />
-    <input type="button" id ="btn1" class="btn-success" value="查詢" />
+    <input type="button" id="btn1" class="btn-success" value="查詢" />
 </div>
 
 
@@ -96,7 +104,8 @@
 </table>
 @section scripts
 {
-    @*時間combobox*@
+
+    @*開始時間*@
     <script>
         var data1 = ["08:00", "09:00", "10:00", "11:00", "12:00"];
         var data2 = ["01:00", "02:00", "03:00", "04:00", "05:00"];
@@ -105,12 +114,93 @@
             if ($("#firstLevel option:selected").text() == "上午") {
                 $("#secondLevel").empty();
                 for (var i = 0; i < data1.length; i++)
-                    $("#secondLevel").append('<option>' + data1[i] + '</option>');
+                    $("#secondLevel").append(`<option>${data1[i]} </option>`);
             }
             else if ($("#firstLevel option:selected").text() == "下午") {
                 $("#secondLevel").empty();
                 for (var i = 0; i < data2.length; i++)
-                    $("#secondLevel").append('<option>' + data2[i] + '</option>');
+                    $("#secondLevel").append(`<option> ${data2[i]}</option>`);
+            }
+        });
+        @*結束時間*@
+        $("#firstLevel1").bind("change", function () {
+            if ($("#firstLevel1 option:selected").text() == "上午") {
+                $("#secondLevel1").empty();
+                for (var i = 0; i < data1.length; i++)
+                    $("#secondLevel1").append(`<option>${data1[i]} </option>`);
+            }
+            else if ($("#firstLevel1 option:selected").text() == "下午") {
+                $("#secondLevel1").empty();
+                for (var i = 0; i < data2.length; i++)
+                    $("#secondLevel1").append(`<option> ${data2[i]}</option>`);
+            }
+        })
+    </script>
+    <script>
+        @* 開始時間 *@
+        $("#btn1").bind("change", function () {
+            if ($("#secondLevel option:selected").text() == "08:00") {
+                $("#date1").setHours(8);
+            }
+            else if ($("#secondLevel option:selected").text() == "09:00") {
+                $("#date1").setHours(9);
+            }
+            else if ($("#secondLevel option:selected").text() == "10:00") {
+                $("#date1").setHours(10);
+            }
+            else if ($("#secondLevel option:selected").text() == "11:00") {
+                $("#date1").setHours(11);
+            }
+            else if ($("#secondLevel option:selected").text() == "12:00") {
+                $("#date1").setHours(12);
+            }
+            else if ($("#secondLevel option:selected").text() == "01:00") {
+                $("#date1").setHours(13);
+            }
+            else if ($("#secondLevel option:selected").text() == "02:00") {
+                $("#date1").setHours(14);
+            }
+            else if ($("#secondLevel option:selected").text() == "03:00") {
+                $("#date1").setHours(15);
+            }
+            else if ($("#secondLevel option:selected").text() == "04:00") {
+                $("#date1").setHours(16);
+            }
+            else if ($("#secondLevel option:selected").text() == "05:00") {
+                $("#date1").setHours(17);
+            }
+        })
+        @*結束時間*@
+        $("#btn1").bind("change", function () {
+            if ($("#secondLevel1 option:selected").text() == "08:00") {
+                $("#date2").setHours(8);
+            }
+            else if ($("#secondLevel1 option:selected").text() == "09:00") {
+                $("#date2").setHours(9);
+            }
+            else if ($("#secondLevel1 option:selected").text() == "10:00") {
+                $("#date2").setHours(10);
+            }
+            else if ($("#secondLevel1 option:selected").text() == "11:00") {
+                $("#date2").setHours(11);
+            }
+            else if ($("#secondLevel1 option:selected").text() == "12:00") {
+                $("#date2").setHours(12);
+            }
+            else if ($("#secondLevel1 option:selected").text() == "01:00") {
+                $("#date2").setHours(13);
+            }
+            else if ($("#secondLevel1 option:selected").text() == "02:00") {
+                $("#date2").setHours(14);
+            }
+            else if ($("#secondLevel1 option:selected").text() == "03:00") {
+                $("#date2").setHours(15);
+            }
+            else if ($("#secondLevel1 option:selected").text() == "04:00") {
+                $("#date2").setHours(16);
+            }
+            else if ($("#secondLevel1 option:selected").text() == "05:00") {
+                $("#date2").setHours(17);
             }
         })
     </script>
@@ -119,6 +209,6 @@
 
 
 
-    
+
 
 }

@@ -21,7 +21,7 @@
         <EntityTypeShape EntityType="BusinessDataBaseModel.CommentMain" Width="1.5" PointX="5.25" PointY="40.75" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.CompanyVehicle" Width="1.5" PointX="3" PointY="16.625" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.CompanyVehicleHistory" Width="1.5" PointX="5.25" PointY="21.125" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.Department" Width="1.5" PointX="3" PointY="31.875" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.Department" Width="1.5" PointX="0.625" PointY="24.875" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Employee" Width="1.5" PointX="3" PointY="21" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Event" Width="1.5" PointX="6" PointY="14.875" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.File" Width="1.5" PointX="5.25" PointY="46.5" />

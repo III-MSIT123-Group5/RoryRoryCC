@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EIPBussinessSystem_MVC.Models;
+using EIPBussinessSystem_MVC.ViewModels;
 
 namespace EIPBussinessSystem_MVC.Controllers
 {
@@ -43,6 +44,7 @@ namespace EIPBussinessSystem_MVC.Controllers
             ViewBag.EmployeeID = new SelectList(db.Employees, "employeeID", "EmployeeName");
             ViewBag.GroupID = new SelectList(db.Groups, "GroupID", "GroupName");
             ViewBag.EmployeeID = new SelectList(db.Employees, "employeeID", "EmployeeName");
+
             return View();
         }
 

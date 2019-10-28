@@ -199,8 +199,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Metadatas\BulletinBoards.cs" />
-    <Compile Include="Metadatas\BulletinBoardsMetadata.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
@@ -232,6 +230,7 @@
     <Compile Include="Models\BulletinBoard.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BulletinBoardsViewModel.cs" />
     <Compile Include="Models\BussinessSystemModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -277,6 +276,7 @@
     <Compile Include="Models\File.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetEmployeeIDClass.cs" />
     <Compile Include="Models\Group.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
@@ -321,7 +321,6 @@
     <Compile Include="Models\RewardandPunishment.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SecondLevelViewModel.cs" />
     <Compile Include="Models\Suggestion.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
@@ -334,21 +333,21 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\VehicleBorrow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\CreateBulletinBoardsViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Views\ReportTimeSystems\Metadata\ReportTimeSystems.cs" />
     <Compile Include="Views\ReportTimeSystems\Metadata\ReportTimeSystemsMetadata.cs" />
-    <Compile Include="Views\ReportTimeSystems\Metadata\Resource1.en-US.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource1.en-US.resx</DependentUpon>
-    </Compile>
     <Compile Include="Views\ReportTimeSystems\Metadata\Resource1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportTimeSystems\Metadata\Resource1.en-US.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.en-US.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -677,6 +676,16 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ReportTimeSystems\Metadata\Resource1.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReportTimeSystems\Metadata\Resource1.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
