@@ -5,6 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <Diagram DiagramId="88e40f0d3f2d46e99bf756632cb2eb00" Name="Diagram1" ZoomLevel="81">
         <EntityTypeShape EntityType="BusinessDataBaseModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Account" Width="1.5" PointX="2.75" PointY="6.75" />
@@ -45,6 +46,8 @@
         <EntityTypeShape EntityType="BusinessDataBaseModel.SuggestionHistory" Width="1.5" PointX="8.25" PointY="15.75" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.SurveyMain" Width="1.5" PointX="10.75" PointY="6.75" />
 =======
+=======
+>>>>>>> parent of 6bf8af5... Merge branch 'master' of https://github.com/III-MSIT123-Group5/RoryRoryCC
       <Diagram DiagramId="88e40f0d3f2d46e99bf756632cb2eb00" Name="Diagram1" ZoomLevel="58">
         <EntityTypeShape EntityType="BusinessDataBaseModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="1.875" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Account" Width="1.5" PointX="0.75" PointY="4.875" />
@@ -83,6 +86,9 @@
         <EntityTypeShape EntityType="BusinessDataBaseModel.MeetingRoomHistory" Width="1.5" PointX="6" PointY="17.625" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.SuggestionHistory" Width="1.5" PointX="6" PointY="13.5" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.SurveyMain" Width="1.5" PointX="13.75" PointY="8.875" />
+<<<<<<< HEAD
+>>>>>>> parent of 6bf8af5... Merge branch 'master' of https://github.com/III-MSIT123-Group5/RoryRoryCC
+=======
 >>>>>>> parent of 6bf8af5... Merge branch 'master' of https://github.com/III-MSIT123-Group5/RoryRoryCC
         <AssociationConnector Association="BusinessDataBaseModel.FK_ActivitiesChild_ActivitiesMain" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_ActivitiesChild_Employee" />

@@ -13,6 +13,7 @@ namespace EIPBussinessSystem_MVC.Models
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         [Display(Name = "員工姓名")]
         public string EmpoyeeName { get; set; }
@@ -90,6 +91,8 @@ namespace EIPBussinessSystem_MVC.Models
 
         [Display(Name = "個人照片")]
         public string Photo { get; set; }
+=======
+>>>>>>> parent of 6bf8af5... Merge branch 'master' of https://github.com/III-MSIT123-Group5/RoryRoryCC
 =======
 >>>>>>> parent of 6bf8af5... Merge branch 'master' of https://github.com/III-MSIT123-Group5/RoryRoryCC
     }

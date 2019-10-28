@@ -1231,6 +1231,7 @@
           <AssociationSet Name="FK_ReportTimeSystem_Event" Association="BusinessDataBaseModel.FK_ReportTimeSystem_Event">
             <End Role="Event" EntitySet="Events" />
             <End Role="ReportTimeSystem" EntitySet="ReportTimeSystems" />
+<<<<<<< HEAD
           </AssociationSet>
           <EntitySet Name="AspNetRoles" EntityType="BusinessDataBaseModel.AspNetRole" />
           <AssociationSet Name="FK_Employee_Office" Association="BusinessDataBaseModel.FK_Employee_Office">
@@ -1240,6 +1241,8 @@
           <AssociationSet Name="AspNetUserRoles1" Association="BusinessDataBaseModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
+=======
+>>>>>>> parent of 6bf8af5... Merge branch 'master' of https://github.com/III-MSIT123-Group5/RoryRoryCC
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
