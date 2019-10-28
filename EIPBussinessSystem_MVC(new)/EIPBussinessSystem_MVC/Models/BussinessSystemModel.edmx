@@ -663,6 +663,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Employee_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="departmentID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Employee_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Employee1" Type="Self.Employee" Multiplicity="*" />
@@ -675,6 +687,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Employee_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Employee_Office">
           <End Role="Office" Type="Self.Office" Multiplicity="0..1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
@@ -684,6 +708,18 @@
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Position">
+          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="positionID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="PositionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1069,12 +1105,24 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_Employee_Department" Association="Self.FK_Employee_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
           <AssociationSet Name="FK_Employee_Employee" Association="Self.FK_Employee_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Employee1" EntitySet="Employee" />
           </AssociationSet>
+          <AssociationSet Name="FK_Employee_Group" Association="Self.FK_Employee_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
           <AssociationSet Name="FK_Employee_Office" Association="Self.FK_Employee_Office">
             <End Role="Office" EntitySet="Office" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Position" Association="Self.FK_Employee_Position">
+            <End Role="Position" EntitySet="Position" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
           <AssociationSet Name="FK_File_Employee" Association="Self.FK_File_Employee">
@@ -1269,6 +1317,10 @@
             <End Role="Employee" EntitySet="Employees" />
             <End Role="CompanyVehicleHistory" EntitySet="CompanyVehicleHistories" />
           </AssociationSet>
+          <AssociationSet Name="FK_Employee_Department" Association="BusinessDataBaseModel.FK_Employee_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
           <AssociationSet Name="FK_Group_Department" Association="BusinessDataBaseModel.FK_Group_Department">
             <End Role="Department" EntitySet="Departments" />
             <End Role="Group" EntitySet="Groups" />
@@ -1281,8 +1333,16 @@
             <End Role="Employee" EntitySet="Employees" />
             <End Role="Employee1" EntitySet="Employees" />
           </AssociationSet>
+          <AssociationSet Name="FK_Employee_Group" Association="BusinessDataBaseModel.FK_Employee_Group">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
           <AssociationSet Name="FK_Employee_Office" Association="BusinessDataBaseModel.FK_Employee_Office">
             <End Role="Office" EntitySet="Offices" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Position" Association="BusinessDataBaseModel.FK_Employee_Position">
+            <End Role="Position" EntitySet="Positions" />
             <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
           <AssociationSet Name="FK_File_Employee" Association="BusinessDataBaseModel.FK_File_Employee">
@@ -1543,6 +1603,7 @@
           <Property Name="departmentID" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BulletinBoards" Relationship="BusinessDataBaseModel.FK_Bulletin_board_Department" FromRole="Department" ToRole="BulletinBoard" />
+          <NavigationProperty Name="Employees" Relationship="BusinessDataBaseModel.FK_Employee_Department" FromRole="Department" ToRole="Employee" />
           <NavigationProperty Name="Groups" Relationship="BusinessDataBaseModel.FK_Group_Department" FromRole="Department" ToRole="Group" />
           <NavigationProperty Name="SuggestionHistories" Relationship="BusinessDataBaseModel.FK_Suggestion_history_Department" FromRole="Department" ToRole="SuggestionHistory" />
         </EntityType>
@@ -1573,9 +1634,12 @@
           <NavigationProperty Name="BulletinBoards1" Relationship="BusinessDataBaseModel.FK_BulletinBoard_Employee" FromRole="Employee" ToRole="BulletinBoard" />
           <NavigationProperty Name="CommentGrandchilds" Relationship="BusinessDataBaseModel.FK_CommentGrandchild_Employee" FromRole="Employee" ToRole="CommentGrandchild" />
           <NavigationProperty Name="CompanyVehicleHistories" Relationship="BusinessDataBaseModel.FK_Company_vehicle_history_Employee" FromRole="Employee" ToRole="CompanyVehicleHistory" />
+          <NavigationProperty Name="Department" Relationship="BusinessDataBaseModel.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
           <NavigationProperty Name="Employee1" Relationship="BusinessDataBaseModel.FK_Employee_Employee" FromRole="Employee" ToRole="Employee1" />
           <NavigationProperty Name="Employee2" Relationship="BusinessDataBaseModel.FK_Employee_Employee" FromRole="Employee1" ToRole="Employee" />
+          <NavigationProperty Name="Group" Relationship="BusinessDataBaseModel.FK_Employee_Group" FromRole="Employee" ToRole="Group" />
           <NavigationProperty Name="Office" Relationship="BusinessDataBaseModel.FK_Employee_Office" FromRole="Employee" ToRole="Office" />
+          <NavigationProperty Name="Position" Relationship="BusinessDataBaseModel.FK_Employee_Position" FromRole="Employee" ToRole="Position" />
           <NavigationProperty Name="Files" Relationship="BusinessDataBaseModel.FK_File_Employee" FromRole="Employee" ToRole="File" />
           <NavigationProperty Name="MeetingRoomHistories" Relationship="BusinessDataBaseModel.FK_Meeting_room_history_Employee" FromRole="Employee" ToRole="MeetingRoomHistory" />
           <NavigationProperty Name="Messages" Relationship="BusinessDataBaseModel.FK_Message_Employee" FromRole="Employee" ToRole="Message" />
@@ -1615,6 +1679,7 @@
           <Property Name="DepartmentID" Type="Int32" />
           <NavigationProperty Name="BulletinBoards" Relationship="BusinessDataBaseModel.FK_Bulletin_board_Group" FromRole="Group" ToRole="BulletinBoard" />
           <NavigationProperty Name="Department" Relationship="BusinessDataBaseModel.FK_Group_Department" FromRole="Group" ToRole="Department" />
+          <NavigationProperty Name="Employees" Relationship="BusinessDataBaseModel.FK_Employee_Group" FromRole="Group" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Leave">
           <Key>
@@ -1676,6 +1741,7 @@
           </Key>
           <Property Name="positionID" Type="Int32" Nullable="false" />
           <Property Name="position1" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Employees" Relationship="BusinessDataBaseModel.FK_Employee_Position" FromRole="Position" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Recipient">
           <Key>
@@ -2016,6 +2082,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Employee_Department">
+          <End Type="BusinessDataBaseModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="departmentID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Group_Department">
           <End Type="BusinessDataBaseModel.Department" Role="Department" Multiplicity="0..1" />
           <End Type="BusinessDataBaseModel.Group" Role="Group" Multiplicity="*" />
@@ -2052,6 +2130,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Employee_Group">
+          <End Type="BusinessDataBaseModel.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Employee_Office">
           <End Type="BusinessDataBaseModel.Office" Role="Office" Multiplicity="0..1" />
           <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="*" />
@@ -2061,6 +2151,18 @@
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Position">
+          <End Type="BusinessDataBaseModel.Position" Role="Position" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="positionID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="PositionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
