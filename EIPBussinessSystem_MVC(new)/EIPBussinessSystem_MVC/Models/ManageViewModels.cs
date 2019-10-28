@@ -51,41 +51,23 @@ namespace EIPBussinessSystem_MVC.Models
 
         [Display(Name = "雇用日期")]
         public DateTime HireDay { get; set; }
+                
+        [Display(Name = "辦公室")]
+        public string OfficeName { get; set; }
 
-        //private int _officeID;
-        //[Display(Name = "辦公室")]
-        //public int OfficeID {
-        //    get
-        //    {
-        //        string OffName = "Head Office";
-        //        switch (_officeID)
-        //        {
-        //            case 1:
-        //                OffName = "Head Office";
-        //                break;
-        //            case 2:
-        //                OffName = "Branch Office";
-        //        }
-        //    }
-        //    set
-        //    {
-        //        _officeID = value;
-        //    }
-        //}
+        [Display(Name = "部門")] //須改為名(注意型態)
+        public int DepartmentName { get; set; }
 
-        [Display(Name = "部門")]
-        public int DepartmentID { get; set; }
-
-        [Display(Name = "組別")]
+        [Display(Name = "組別")]//須改為名(注意型態)
         public int GroupID { get; set; }
 
-        [Display(Name = "職位名稱")]
+        [Display(Name = "職位名稱")]//須改為名(注意型態)
         public int PositionID { get; set; }
 
-        [Display(Name = "直系主管")]
-        public int ManagerID { get; set; }
+        [Display(Name = "直系主管")]//須改為名(注意型態)
+        public string ManagerID { get; set; }
 
-        [Display(Name = "在職狀態")]
+        [Display(Name = "在職狀態")]//須改為名(注意型態)
         public bool Employed { get; set; }
 
         [Display(Name = "個人照片")]
