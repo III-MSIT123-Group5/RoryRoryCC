@@ -4,10 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>公務車輛檢視</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "CompanyVehicles")'" type="button" style="float:left; margin-top:10px; margin-bottom:20px"><i class="glyphicon glyphicon-plus"> 新增公務車</i></button>
+
 </p>
 <table class="table">
     <tr>
