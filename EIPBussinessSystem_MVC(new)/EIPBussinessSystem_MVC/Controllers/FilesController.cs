@@ -31,7 +31,11 @@ namespace EIPBussinessSystem_MVC.Controllers
             var UserID = User.Identity.GetUserId();
             var Acc = db.AspNetUsers.Find(UserID);
             var Empquery = db.Employees.Where(f => f.Account.Equals(Acc.UserName)).Select(f => new { f.employeeID });
-
+            int EmpID = 0;
+            foreach(var e in Empquery)
+            {
+                EmpID = e.employeeID;
+            }
 
             if (files.First() != null)
             {
@@ -48,7 +52,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                         FileName = Path.GetFileNameWithoutExtension(file.FileName),
                         Data = TargetFilename,
                         FileSize = file.ContentLength.ToString(),
-                        EmployeeID = 1032,
+                        EmployeeID = EmpID,
                         /* LoginID,*/
                         UploadDate = DateTime.Now,
                         Extension = Path.GetExtension(file.FileName)
