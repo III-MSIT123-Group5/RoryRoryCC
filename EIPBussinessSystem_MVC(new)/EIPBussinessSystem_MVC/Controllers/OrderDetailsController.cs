@@ -87,28 +87,22 @@ namespace EIPBussinessSystem_MVC.Controllers
             }
 
             if (ModelState.IsValid)
-            {
-                var report = from RM in this.db.RequisitionMains
-                             join OD in this.db.OrderDetails on RM.OrderID equals OD.OrderID
-                             where RM.EmployeeID == EmpID
-                             select OD;
-
-                db.RequisitionMains.Add(new Models.RequisitionMain {
-                    EmployeeID=EmpID,
-                    RequisitionDate=DateTime.Now
-                });
-
+            {  
                 db.OrderDetails.Add(new Models.OrderDetail
                 {
-                    ProductName=orderDetail.ProductName,
-                    UnitPrice=orderDetail.UnitPrice,
-                    Quantity=orderDetail.Quantity,
-                    Note=orderDetail.Note
+                    ProductName = orderDetail.ProductName,
+                    UnitPrice = orderDetail.UnitPrice,
+                    Quantity = orderDetail.Quantity,
+                    Note = orderDetail.Note,                   
+                    RequisitionMain = (new Models.RequisitionMain
+                    {
+                        ReportID = 2,
+                        EmployeeID = EmpID,
+                        RequisitionDate = DateTime.Now
+                    })
                 });
-                
-                //儲存修改
-                db.SaveChanges();
 
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -139,6 +133,18 @@ namespace EIPBussinessSystem_MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "OrderDetailID,OrderID,Note,ProductName,UnitPrice,Quantity,TotalPrice")] OrderDetail orderDetail)
         {
+            var userid = User.Identity.GetUserId();
+            var account = db.AspNetUsers.Find(userid);
+
+            var empquery = from EM in db.Employees
+                           where EM.Account == account.UserName
+                           select new { EM.employeeID };
+
+            foreach (var e in empquery)
+            {
+                EmpID = e.employeeID;
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(orderDetail).State = EntityState.Modified;
