@@ -35,12 +35,12 @@
     </div>
     <br />
     @*側邊功能列表*@
-    <div class="col-sm-3 col-md-2 sidebar" style="float:left;width:310px;font-family:Raleway;">
-        <ul class="nav nav-sidebar">                  
-
-            <li>@Html.ActionLink("公佈欄", "Index", "BulletinBoards", null, new { Style = "color:#483d8b" })</li>
-            <li>@Html.ActionLink("借車紀錄", "Index", "CompanyVehicles", null, new { Style = "color:#483d8b" })</li>
-            <li>@Html.ActionLink("工時回報", "Index", "ReportTimeSystems", null, new { Style = "color:#483d8b" })</li>
+    <div class="col-sm-3 col-md-2 sidebar" style="float:left; width:310px; font-family:Raleway;">
+        <ul class="nav nav-sidebar">
+    
+            <li>@Html.ActionLink("BulletinBoard", "Index", "BulletinBoards", null, new { Style = "color:#483d8b" })</li>
+            <li>@Html.ActionLink("公務車檢視", "Index", "CompanyVehicles", null, new { Style = "color:#483d8b" })</li>
+            <li>@Html.ActionLink("公務車申請", "Index", "CompanyVehicleBorrow", null, new { Style = "color:#483d8b" })</li>
             <li>@Html.ActionLink("檔案管理", "Index", "Files", null, new { Style = "color:#483d8b" })</li>
             <li>@Html.ActionLink("請購系統", "Index", "OrderDetails", null, new { Style = "color:#483d8b" })</li> 
             @*下拉式功能*@

@@ -1,0 +1,115 @@
+﻿@model IEnumerable<EIPBussinessSystem_MVC.Models.CompanyVehicleHistory>
+
+
+
+
+
+<meta name="viewport" content="width=device-width" />
+@section styles
+{
+
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(init);
+        function init()
+        {
+            var FirstLevel = $("select[name='firstdropdown']").val();//第一層選擇的值
+            ShowSecondDropDownList(FirstLevel);
+
+            $("select[name='firstdropdown']").change(function () {
+                var FirstLevel = $(this).val();
+                ShowSecondDropDownList(FirstLevel);
+            });
+        }
+        function ShowSecondDropDownList(FirstLevel)
+        {
+            $.ajax({
+                url: "@Url.Action("ShowSecondDropDownList", "CompanyVehicleBorrow")",
+                 type: "GET",
+                 data: { FirstLevel: FirstLevel },
+                 async: false,
+                 success: function (data) {
+                     $("span").empty().html(data);
+                 }
+             });
+        }
+    </script>
+
+}
+
+
+
+@{
+    ViewBag.Title = "公務車租借";
+}
+<p>
+    @Html.ActionLink("搜尋", "Search")
+</p>
+
+@Html.DropDownList("firstdropdown", (IEnumerable<SelectListItem>)ViewData["FirstLevelItems"])
+<br />
+<span></span>
+
+
+
+<table class="table"></table>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<h2>借車紀錄</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.purpose)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyVehicle.brand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.purpose)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyVehicle.brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.VehicleHistoryID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.VehicleHistoryID }) |
+            </td>
+        </tr>
+    }
+
+</table>
+@section scripts
+{
+
+}

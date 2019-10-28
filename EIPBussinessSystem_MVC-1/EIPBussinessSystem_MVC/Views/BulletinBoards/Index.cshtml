@@ -1,0 +1,72 @@
+﻿@model IEnumerable<EIPBussinessSystem_MVC.Models.BulletinBoard>
+
+@{
+    ViewBag.Title = "佈告欄";
+}
+
+<h2>佈告欄</h2>
+
+<p>
+    <button onclick="location.href='@Url.Action("Create", "BulletinBoards")'" type="button" class="btn btn-info">新增貼文</button>
+
+    @*@Html.ActionLink("新增貼文", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Group.GroupName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee1.EmployeeName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Content)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Group.GroupName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee1.EmployeeName)
+        </td>
+        <td>
+            <div style="margin:5px">
+                <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit", new { id=item.Num})'" type="button"><i class="glyphicon glyphicon-pencil"> 編輯</i></button>
+            </div>
+            <div style="margin:5px">
+                <button class="btn btn-warning" onclick="location.href='@Url.Action("Details", new { id=item.Num})'" type="button"><i class="glyphicon glyphicon-list"> 內容</i></button>
+            </div>
+            <div style="margin:5px">
+                <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new { id=item.Num})'" type="button"><i class="glyphicon glyphicon-trash"> 刪除</i></button>
+            </div>
+
+        </td>
+    </tr>
+}
+
+</table>

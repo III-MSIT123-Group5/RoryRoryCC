@@ -19,7 +19,6 @@ namespace EIPBussinessSystem_MVC.Models
         {
             this.CompanyVehicles = new HashSet<CompanyVehicle>();
             this.MeetingRooms = new HashSet<MeetingRoom>();
-          
         }
     
         public int officeID { get; set; }
@@ -30,6 +29,5 @@ namespace EIPBussinessSystem_MVC.Models
         public virtual ICollection<CompanyVehicle> CompanyVehicles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MeetingRoom> MeetingRooms { get; set; }
-        
     }
 }
