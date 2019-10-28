@@ -121,6 +121,6 @@
     <value>ReportName</value>
   </data>
   <data name="ReportNameEmpty" xml:space="preserve">
-    <value>Please enter ReportName</value>
+    <value>Please input ReportName.</value>
   </data>
 </root>

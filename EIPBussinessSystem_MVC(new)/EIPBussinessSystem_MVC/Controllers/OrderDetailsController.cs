@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EIPBussinessSystem_MVC.Models;
+using Microsoft.AspNet.Identity;
 using PagedList;
 //
 namespace EIPBussinessSystem_MVC.Controllers
@@ -18,9 +19,9 @@ namespace EIPBussinessSystem_MVC.Controllers
         // GET: OrderDetails
         public ActionResult Index(string searchProductName, string searchOrderID)
         {
-            var report = from RM in this.db.RequisitionMains
-                         join OD in this.db.OrderDetails on RM.OrderID equals OD.OrderID
-                         where RM.EmployeeID == 1032
+            var report = from RM in this.db.RequisitionMains.AsEnumerable()
+                         join OD in this.db.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
+                         where RM.EmployeeID == Convert.ToInt32(User.Identity.GetUserId())
                          select OD;
             if (!String.IsNullOrEmpty(searchProductName))
             {

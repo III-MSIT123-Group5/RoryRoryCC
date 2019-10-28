@@ -1,38 +1,7 @@
 ﻿@model IEnumerable<EIPBussinessSystem_MVC.Models.CompanyVehicleHistory>
-
-
-
-
-
-<meta name="viewport" content="width=device-width" />
 @section styles
 {
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(init);
-        function init()
-        {
-            var FirstLevel = $("select[name='firstdropdown']").val();//第一層選擇的值
-            ShowSecondDropDownList(FirstLevel);
-
-            $("select[name='firstdropdown']").change(function () {
-                var FirstLevel = $(this).val();
-                ShowSecondDropDownList(FirstLevel);
-            });
-        }
-        function ShowSecondDropDownList(FirstLevel)
-        {
-            $.ajax({
-                url: "@Url.Action("ShowSecondDropDownList", "CompanyVehicleBorrow")",
-                 type: "GET",
-                 data: { FirstLevel: FirstLevel },
-                 async: false,
-                 success: function (data) {
-                     $("span").empty().html(data);
-                 }
-             });
-        }
-    </script>
 
 }
 
@@ -45,19 +14,36 @@
     @Html.ActionLink("搜尋", "Search")
 </p>
 
-@Html.DropDownList("firstdropdown", (IEnumerable<SelectListItem>)ViewData["FirstLevelItems"])
-<br />
-<span></span>
+
+<div>
+    <select id="firstLevel" style="width:100px" class="form-control">
+        <option>上午</option>
+        <option>下午</option>
+    </select>
+    <br />
+    <br />
+    <select id="secondLevel" style="width:100px" class="form-control">
+        <option>08:00</option>
+        <option>09:00</option>
+        <option>10:00</option>
+        <option>11:00</option>
+        <option>12:00</option>
+    </select>
+    <br />
+    <br />
+    <input type="button" id ="btn1" class="btn-success" value="查詢" />
+</div>
 
 
 
-<table class="table"></table>
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
+
+
+
+
+@*@Html.DropDownList("firstdropdown", (IEnumerable<SelectListItem>)ViewData["FirstLevelItems"])
+    <br />
+    <div id="div1"></div>
+    <table class="table"></table>*@
 <h2>借車紀錄</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -110,5 +96,29 @@
 </table>
 @section scripts
 {
+    @*時間combobox*@
+    <script>
+        var data1 = ["08:00", "09:00", "10:00", "11:00", "12:00"];
+        var data2 = ["01:00", "02:00", "03:00", "04:00", "05:00"];
+
+        $("#firstLevel").bind("change", function () {
+            if ($("#firstLevel option:selected").text() == "上午") {
+                $("#secondLevel").empty();
+                for (var i = 0; i < data1.length; i++)
+                    $("#secondLevel").append('<option>' + data1[i] + '</option>');
+            }
+            else if ($("#firstLevel option:selected").text() == "下午") {
+                $("#secondLevel").empty();
+                for (var i = 0; i < data2.length; i++)
+                    $("#secondLevel").append('<option>' + data2[i] + '</option>');
+            }
+        })
+    </script>
+
+
+
+
+
+    
 
 }
