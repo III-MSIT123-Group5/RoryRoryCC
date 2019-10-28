@@ -16,15 +16,44 @@ namespace EIPBussinessSystem_MVC.Controllers
         // GET: CompanyVehicleBorrow
         public ActionResult Index()
         {
-           
             var companyVehicleHistories = db.CompanyVehicleHistories.Include(c => c.CompanyVehicle).Include(c => c.Employee);
+
             return View(companyVehicleHistories);
         }
+        public ActionResult Finded(DateTime dTPStartTime, DateTime dTPEndTime)
+        {
+            var items = (from p in db.CompanyVehicleHistories
+                         where (dTPStartTime >= p.StartDateTime && dTPEndTime <= p.EndDateTime) || ((dTPStartTime >= p.StartDateTime && dTPStartTime < p.EndDateTime) && dTPEndTime > p.EndDateTime) || (dTPStartTime < p.StartDateTime && (dTPEndTime > p.StartDateTime && dTPEndTime <= p.EndDateTime)) || (dTPStartTime < p.StartDateTime && dTPEndTime > p.EndDateTime)
+                         select new { p.LicenseNumber }).ToList();
+            var licence = (from dl in db.CompanyVehicleHistories
+                           select new { dl.LicenseNumber }).ToList();
+            var freelicence = (from rl in licence
+                              where items.Contains(rl) == false
+                              select rl).ToList();
+            for(var i = 0; i < freelicence.Count(); i++)
+            {
+                var LicenceNum = freelicence[i].LicenseNumber;
+                var funcLicence = (from dc in db.CompanyVehicles
+                                   where dc.LicenseNumber == LicenceNum
+                                   select new
+                                   {
+                                       dc.LicenseNumber,
+                                       dc.brand,
+                                       dc.serial,
+                                       dc.MaxPassenger,
+                                       dc.officeID,
+                                       dc.VehiclePhoto
+                                   }).FirstOrDefault();
+                
+            }
+            return View();
 
+
+
+
+
+        }
         [HttpGet]
-        
-
-        
         public ActionResult Details(int? id)
         {
             if (id == null)

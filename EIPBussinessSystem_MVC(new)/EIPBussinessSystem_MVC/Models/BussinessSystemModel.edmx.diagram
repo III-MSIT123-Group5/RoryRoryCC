@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="88e40f0d3f2d46e99bf756632cb2eb00" Name="Diagram1" ZoomLevel="133">
+      <Diagram DiagramId="88e40f0d3f2d46e99bf756632cb2eb00" Name="Diagram1" ZoomLevel="147">
         <EntityTypeShape EntityType="BusinessDataBaseModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Account" Width="1.5" PointX="2.75" PointY="6.75" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.ActivitiesChild" Width="1.5" PointX="7.5" PointY="32.375" />
@@ -21,7 +21,7 @@
         <EntityTypeShape EntityType="BusinessDataBaseModel.CommentMain" Width="1.5" PointX="5.25" PointY="40.75" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.CompanyVehicle" Width="1.5" PointX="3" PointY="16.625" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.CompanyVehicleHistory" Width="1.5" PointX="5.25" PointY="21.125" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.Department" Width="1.5" PointX="3" PointY="31.875" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.Department" Width="1.5" PointX="0.625" PointY="24.875" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Employee" Width="1.5" PointX="3" PointY="21" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Event" Width="1.5" PointX="6" PointY="14.875" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.File" Width="1.5" PointX="5.25" PointY="46.5" />

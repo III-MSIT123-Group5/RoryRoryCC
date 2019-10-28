@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using EIPBussinessSystem_MVC.Models;
 using Microsoft.AspNet.Identity;
 using PagedList;
+
 //
 namespace EIPBussinessSystem_MVC.Controllers
 {
@@ -16,12 +17,26 @@ namespace EIPBussinessSystem_MVC.Controllers
     {
         private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
 
+        int EmpID = 0;
+
         // GET: OrderDetails
-        public ActionResult Index(string searchProductName, string searchOrderID)
+        public ActionResult Index(string searchProductName)
         {
+            var userid = User.Identity.GetUserId();
+            var account = db.AspNetUsers.Find(userid);
+           
+            var empquery = from EM in db.Employees
+                           where EM.Account == account.UserName
+                           select new { EM.employeeID };
+
+            foreach (var e in empquery)
+            {
+                EmpID = e.employeeID;
+            }
+
             var report = from RM in this.db.RequisitionMains.AsEnumerable()
                          join OD in this.db.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
-                         where RM.EmployeeID == 1032 
+                         where RM.EmployeeID == EmpID
                          select OD;
             if (!String.IsNullOrEmpty(searchProductName))
             {
@@ -59,14 +74,41 @@ namespace EIPBussinessSystem_MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "OrderDetailID,OrderID,Note,ProductName,UnitPrice,Quantity,TotalPrice")] OrderDetail orderDetail)
         {
+            var userid = User.Identity.GetUserId();
+            var account = db.AspNetUsers.Find(userid);
+
+            var empquery = from EM in db.Employees
+                           where EM.Account == account.UserName
+                           select new { EM.employeeID };
+
+            foreach (var e in empquery)
+            {
+                EmpID = e.employeeID;
+            }
+
             if (ModelState.IsValid)
             {
                 var report = from RM in this.db.RequisitionMains
                              join OD in this.db.OrderDetails on RM.OrderID equals OD.OrderID
-                             where RM.EmployeeID == 1032
+                             where RM.EmployeeID == EmpID
                              select OD;
-                db.OrderDetails.Add(orderDetail);
+
+                db.RequisitionMains.Add(new Models.RequisitionMain {
+                    EmployeeID=EmpID,
+                    RequisitionDate=DateTime.Now
+                });
+
+                db.OrderDetails.Add(new Models.OrderDetail
+                {
+                    ProductName=orderDetail.ProductName,
+                    UnitPrice=orderDetail.UnitPrice,
+                    Quantity=orderDetail.Quantity,
+                    Note=orderDetail.Note
+                });
+                
+                //儲存修改
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
