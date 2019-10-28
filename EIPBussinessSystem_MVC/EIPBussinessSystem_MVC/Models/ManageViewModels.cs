@@ -52,26 +52,27 @@ namespace EIPBussinessSystem_MVC.Models
         [Display(Name = "雇用日期")]
         public DateTime HireDay { get; set; }
 
-        private int _officeID;
-        [Display(Name = "辦公室")]
-        public int OfficeID {
-            get
-            {
-                string OffName = "Head Office";
-                switch (_officeID)
-                {
-                    case 1:
-                        OffName = "Head Office";
-                        break;
-                    case 2:
-                        OffName = "Branch Office";
-                }
-            }
-            set
-            {
-                _officeID = value;
-            }
-        }
+        //private int _officeID;
+        //[Display(Name = "辦公室")]
+        //public int OfficeID
+        //{
+        //    get
+        //    {
+        //        string OffName = "Head Office";
+        //        switch (_officeID)
+        //        {
+        //            case 1:
+        //                OffName = "Head Office";
+        //                break;
+        //            case 2:
+        //                OffName = "Branch Office";
+        //        }
+        //    }
+        //    set
+        //    {
+        //        _officeID = value;
+        //    }
+        //}
 
         [Display(Name = "部門")]
         public int DepartmentID { get; set; }
