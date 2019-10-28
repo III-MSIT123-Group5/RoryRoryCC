@@ -1,0 +1,124 @@
+﻿@model IEnumerable<EIPBussinessSystem_MVC.Models.CompanyVehicleHistory>
+@section styles
+{
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+}
+
+
+
+@{
+    ViewBag.Title = "公務車租借";
+}
+<p>
+    @Html.ActionLink("搜尋", "Search")
+</p>
+
+
+<div>
+    <select id="firstLevel" style="width:100px" class="form-control">
+        <option>上午</option>
+        <option>下午</option>
+    </select>
+    <br />
+    <br />
+    <select id="secondLevel" style="width:100px" class="form-control">
+        <option>08:00</option>
+        <option>09:00</option>
+        <option>10:00</option>
+        <option>11:00</option>
+        <option>12:00</option>
+    </select>
+    <br />
+    <br />
+    <input type="button" id ="btn1" class="btn-success" value="查詢" />
+</div>
+
+
+
+
+
+
+
+@*@Html.DropDownList("firstdropdown", (IEnumerable<SelectListItem>)ViewData["FirstLevelItems"])
+    <br />
+    <div id="div1"></div>
+    <table class="table"></table>*@
+<h2>借車紀錄</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.purpose)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyVehicle.brand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.purpose)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyVehicle.brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.VehicleHistoryID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.VehicleHistoryID }) |
+            </td>
+        </tr>
+    }
+
+</table>
+@section scripts
+{
+    @*時間combobox*@
+    <script>
+        var data1 = ["08:00", "09:00", "10:00", "11:00", "12:00"];
+        var data2 = ["01:00", "02:00", "03:00", "04:00", "05:00"];
+
+        $("#firstLevel").bind("change", function () {
+            if ($("#firstLevel option:selected").text() == "上午") {
+                $("#secondLevel").empty();
+                for (var i = 0; i < data1.length; i++)
+                    $("#secondLevel").append('<option>' + data1[i] + '</option>');
+            }
+            else if ($("#firstLevel option:selected").text() == "下午") {
+                $("#secondLevel").empty();
+                for (var i = 0; i < data2.length; i++)
+                    $("#secondLevel").append('<option>' + data2[i] + '</option>');
+            }
+        })
+    </script>
+
+
+
+
+
+    
+
+}
