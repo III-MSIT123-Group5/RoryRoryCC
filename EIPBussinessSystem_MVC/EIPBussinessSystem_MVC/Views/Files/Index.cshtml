@@ -7,15 +7,23 @@
 <h2>檔案管理</h2>
 @using (Html.BeginForm("DownloadChoose", "Files", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <p>
-        @Html.ActionLink("檔案上傳", "Upload", "Files", null, new { @class = "btn btn-primary" })
-        @Html.ActionLink("全部下載", "DownloadAll", "Files", null, new { @class = "btn btn-primary" })
-        <button type="submit" title="下載" class="btn btn-primary">下載 </button>
-    </p>
+<p>
+    @Html.ActionLink("檔案上傳", "Upload", "Files", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("全部下載", "DownloadAll", "Files", null, new { @class = "btn btn-primary" })
+    <button type="submit" title="下載" class="btn btn-primary">下載 </button>
+    <h4 style="margin-right:55px; float:right; margin-top:10px; margin-bottom:20px">
+        產品名稱：
+        @Html.TextBox("FileName")
+        <button class="btn btn-light" type="submit" style="background-color:#AAAAAA; color:white"><i class="glyphicon glyphicon-search"> 搜尋</i></button>
+    </h4>
+</p>
     <table class="table">
         <tr>
             <th>
-                <input type="checkbox" name="Cheak" />
+                <input type="checkbox" id="CheakAll" />
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FileName)
@@ -43,6 +51,9 @@
             <tr>
                 <td>
                     <input type="checkbox" name="Cheak" value="@item.FileID" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FileID)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FileName)
@@ -75,4 +86,17 @@
         }
 
     </table>
+}
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#CheakAll").click(function () {
+                if ($("#CheakAll").prop("checked")) {//如果全選按鈕有被選擇的話（被選擇是true）
+                    $("input[name='Cheak']").prop("checked", true);//把所有的核取方框的property都變成勾選
+                } else {
+                    $("input[name='Cheak']").prop("checked", false);//把所有的核取方框的property都取消勾選
+                }
+            })
+        })
+    </script>   
 }

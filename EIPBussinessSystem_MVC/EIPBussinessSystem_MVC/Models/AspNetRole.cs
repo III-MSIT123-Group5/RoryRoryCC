@@ -12,11 +12,18 @@ namespace EIPBussinessSystem_MVC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserRole
+    public partial class AspNetRole
     {
-        public string UserId { get; set; }
-        public string RoleId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AspNetRole()
+        {
+            this.AspNetUsers = new HashSet<AspNetUser>();
+        }
     
-        public virtual AspNetUser AspNetUser { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }
