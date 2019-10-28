@@ -64,12 +64,20 @@ namespace EIPBussinessSystem_MVC.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "已新增您的電話號碼。"
                 : message == ManageMessageId.RemovePhoneSuccess ? "已移除您的電話號碼。"
                 : "";
-            
+
             var userId = User.Identity.GetUserId();
-            var acc = User.Identity.GetUserName();
-            var Emp = db.Employees.Find(acc);
-            var aspUs = db.AspNetUsers.Find(acc);
+            var acc = db.AspNetUsers.Find(userId);
+            var empquery = from em in db.Employees
+                           where em.Account == acc.UserName
+                           select new { em.employeeID };
+            int EmpID = 1032;
+            foreach (var e in empquery)
+            {
+                EmpID = e.employeeID;
+            }
             
+            var Emp = db.Employees.Find(EmpID);                 
+
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
@@ -80,12 +88,17 @@ namespace EIPBussinessSystem_MVC.Controllers
                 
                 EmpoyeeName = Emp.EmployeeName,
                 Account = Emp.Account,
-                Email = aspUs.Email,
+                Email = acc.Email,
                 Gender = Emp.Gender,
                 BirthDay = (DateTime)Emp.Birth,
                 HireDay = (DateTime)Emp.HireDate,
-            
-
+                OfficeName = Emp.Office.office_name,
+                DepartmentName= (int)Emp.DepartmentID,
+                GroupID = (int)Emp.GroupID,
+                PositionID =(int)Emp.PositionID,
+                ManagerID =Emp.Employee2.EmployeeName,
+                Employed = (bool)Emp.Employed,
+                Photo = Emp.Photo,
             };
 
 
