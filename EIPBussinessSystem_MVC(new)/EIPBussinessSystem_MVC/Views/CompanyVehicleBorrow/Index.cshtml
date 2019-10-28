@@ -4,14 +4,12 @@
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 
 }
-
-
-
 @{
     ViewBag.Title = "公務車租借";
 }
-<div>
-    <input type="date" id="date1" style="width:180px" class="input-group-addon" />
+<div style="width:300px;border:1px solid black;margin:20px;">
+    <h3>起始時間</h3>
+    <input type="datetime-local" id="date1" style="width:180px" />
     <select id="firstLevel" style="width:100px" class="form-control">
         <option>上午</option>
         <option>下午</option>
@@ -25,8 +23,10 @@
     </select>
     <br />
 </div>
-<div>
-    <input type="date" id="date2" style="width:180px" class="input-group-addon" />
+
+<div style="width:300px;border:1px solid black;margin:20px">
+    <h3>結束時間</h3>
+    <input type="datetime-local" id="date2" style="width:180px" />
     <select id="firstLevel1" style="width:100px" class="form-control">
         <option>上午</option>
         <option>下午</option>
@@ -41,72 +41,63 @@
     <br />
     <input type="button" id="btn1" class="btn-success" value="查詢" />
 </div>
-
-
-
-
-
-
-
-@*@Html.DropDownList("firstdropdown", (IEnumerable<SelectListItem>)ViewData["FirstLevelItems"])
-    <br />
-    <div id="div1"></div>
-    <table class="table"></table>*@
-<h2>借車紀錄</h2>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.StartDateTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDateTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.purpose)
+            @Html.DisplayNameFor(model => model.CompanyVehicle.LicenseNumber)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CompanyVehicle.brand)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+            @Html.DisplayNameFor(model => model.CompanyVehicle.serial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyVehicle.MaxPassenger)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyVehicle.officeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyVehicle.VehiclePhoto)
         </th>
         <th></th>
     </tr>
-
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.purpose)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyVehicle.brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.VehicleHistoryID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.VehicleHistoryID }) |
-            </td>
+            <th>
+                @Html.DisplayFor(modelitem => item.CompanyVehicle.LicenseNumber)
+            </th>
+            <th>
+                @Html.DisplayFor(modelitem => item.CompanyVehicle.brand)
+            </th>
+            <th>
+                @Html.DisplayFor(modelitem => item.CompanyVehicle.serial)
+            </th>
+            <th>
+                @Html.DisplayFor(modelitem => item.CompanyVehicle.MaxPassenger)
+            </th>
+            <th>
+                @Html.DisplayFor(modelitem => item.CompanyVehicle.officeID)
+            </th>
+            <th>
+                @Html.DisplayFor(modelitem => item.CompanyVehicle.VehiclePhoto)
+            </th>
+            <th></th>
         </tr>
     }
-
 </table>
-@section scripts
+
+
+
+
+   
+    @section scripts
 {
 
-    @*開始時間*@
-    <script>
+        @*開始時間*@
+        <script>
         var data1 = ["08:00", "09:00", "10:00", "11:00", "12:00"];
         var data2 = ["01:00", "02:00", "03:00", "04:00", "05:00"];
 
@@ -135,10 +126,10 @@
                     $("#secondLevel1").append(`<option> ${data2[i]}</option>`);
             }
         })
-    </script>
-    <script>
+        </script>
+        <script>
         @* 開始時間 *@
-        $("#btn1").bind("change", function () {
+        $("#btn1").bind("click", function () {
             if ($("#secondLevel option:selected").text() == "08:00") {
                 $("#date1").setHours(8);
             }
@@ -171,7 +162,7 @@
             }
         })
         @*結束時間*@
-        $("#btn1").bind("change", function () {
+        $("#btn1").bind("click", function () {
             if ($("#secondLevel1 option:selected").text() == "08:00") {
                 $("#date2").setHours(8);
             }
@@ -200,10 +191,19 @@
                 $("#date2").setHours(16);
             }
             else if ($("#secondLevel1 option:selected").text() == "05:00") {
-                $("#date2").setHours(17);
+                var dt = $("#date2").val();
+                dt.setHours(17);
             }
-        })
-    </script>
+
+        });
+        </script>
+        <script>
+            $("#btn1").bind("click", function ()
+            {
+                alert($("#date1").val())
+                }
+            );
+        </script>
 
 
 
@@ -211,4 +211,4 @@
 
 
 
-}
+    }
