@@ -23,13 +23,3 @@ select,
 textarea {
     max-width: 280px;
 }
-
-.RTSdetail {
-    white-space:normal;
-    font-size:35px;
-}
-
-    .RTSdetail dd {
-        font-size: 20px;
-        
-    }

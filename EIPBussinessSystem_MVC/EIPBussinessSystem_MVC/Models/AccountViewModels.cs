@@ -65,7 +65,7 @@ namespace EIPBussinessSystem_MVC.Models
     public class RegisterViewModel     //註冊model    
     {
         [Required(ErrorMessage = "請輸入{0}！")]
-        [Display(Name = "員工姓名")]
+        [Display(Name = "姓名")]
         public string EmpoyeeName { get; set; }
 
         [Required(ErrorMessage = "請輸入{0}！")]

@@ -10,7 +10,6 @@ using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
 using EIPBussinessSystem_MVC.Models;
-using Ionic.Zip;
 
 namespace EIPBussinessSystem_MVC.Controllers
 {
@@ -31,17 +30,19 @@ namespace EIPBussinessSystem_MVC.Controllers
             {
                 foreach (HttpPostedFileBase file in files)
                 {
-                    
                     string SourceFilename = Path.GetFileName(file.FileName);
                     string TargetFilename = Path.Combine(Server.MapPath(
                         "~/Uploads"), SourceFilename);
                     file.SaveAs(TargetFilename);
 
-
+                    /////////////////////////////////////////////////
+                    byte[] WriteTagMsg = { 0x52, 0x46, 0x49, 0x44, 0x01, 0x06, 0x21, 0x01, 0x00, 0x02, 0x11, 0x11 };
+                    ////////////////////////////////////////////////////
                     db.Files.Add(new Models.File
                     {
                         FileName = Path.GetFileNameWithoutExtension(file.FileName),
-                        Data = TargetFilename,
+                        Data = WriteTagMsg,
+                        //TargetFilename,
                         FileSize = file.ContentLength.ToString(),
                         EmployeeID = 1032,
                         /* LoginID,*/
@@ -79,7 +80,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                 System.IO.File.Delete(DownloadFileName);
             }
 
-            System.IO.Compression.ZipFile.CreateFromDirectory(UploadsFolder, DownloadFileName);
+            ZipFile.CreateFromDirectory(UploadsFolder, DownloadFileName);
             ContentDisposition cd = new ContentDisposition
             {
                 FileName = ZipFileName,
@@ -91,39 +92,28 @@ namespace EIPBussinessSystem_MVC.Controllers
         public ActionResult DownloadChoose(string[] Cheak)
         {
             string DownloadFileName = null;
-            string ZipFileName = "All.zip";
-            string FileName = null;
-            using (Ionic.Zip.ZipFile zip = new Ionic.Zip.ZipFile())
+
+
+            //string DownloadFileName = null;
+            for (int i = 0; i < Cheak.Length + 1; i++)
             {
-                for (int i = 0; i < Cheak.Length; i++)
+                DownloadFileName = Path.Combine(Server.MapPath("~/Uploads"), Cheak.ElementAt(i));
+                ContentDisposition cd = new ContentDisposition
                 {
-                    var q = db.Files.AsEnumerable().Where(f => f.FileID.ToString() == Cheak.ElementAt(i));
-                    FileName = q.Select(f => f.FileName).FirstOrDefault() + q.Select(f => f.Extension).FirstOrDefault();
-                    DownloadFileName = Path.Combine(Server.MapPath("~/Uploads"), FileName);
-                    //壓縮檔案
-                    zip.AddFile(DownloadFileName, "");
-                    zip.Save(DownloadFileName);
-                }
-               
+                    FileName = Cheak.ElementAt(i),
+                    Inline = false,
+                };
+                Response.AppendHeader("Content-Disposition", cd.ToString());
+                ;
             }
-            ContentDisposition cd = new ContentDisposition
-            {
-                FileName = ZipFileName,
-                Inline = false,
-            };
-            Response.AppendHeader("Content-Disposition", cd.ToString());
             return File(DownloadFileName, MediaTypeNames.Application.Octet);
         }
         /// ///////////////////////////////////////////////////
 
         // GET: Files
-        public ActionResult Index(string FileName)
+        public ActionResult Index()
         {
             var files = db.Files.Include(f => f.Employee);
-            if (!String.IsNullOrEmpty(FileName))
-            {
-                files = files.Where(s => s.FileName.Contains(FileName));
-            }
             return View(files.ToList());
         }
 
@@ -199,6 +189,7 @@ namespace EIPBussinessSystem_MVC.Controllers
             Models.File file = db.Files.Find(id);
             db.Files.Remove(file);
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

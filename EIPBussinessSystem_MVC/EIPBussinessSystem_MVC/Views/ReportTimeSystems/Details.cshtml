@@ -4,32 +4,21 @@
     ViewBag.Title = "Details";
 }
 
-
-
-
 <h2>Details</h2>
 
 <div>
     <h4>ReportTimeSystem</h4>
     <hr />
-    <dl class="RTSdetail">
-        
+    <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.ReportName)
         </dt>
-        <text>      </text>
+
         <dd>
             @Html.DisplayFor(model => model.ReportName)
         </dd>
-        
+
         <dt>
-            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
-        </dt>
-        
-        <dd>
-            @Html.DisplayFor(model => model.Employee.EmployeeName)
-        </dd>
-         <dt>
             @Html.DisplayNameFor(model => model.StartTime)
         </dt>
 
@@ -77,7 +66,13 @@
             @Html.DisplayFor(model => model.Discontinue)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.Employee.EmployeeName)
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Event.EventName)

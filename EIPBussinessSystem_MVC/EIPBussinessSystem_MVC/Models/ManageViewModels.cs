@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
@@ -13,6 +12,7 @@ namespace EIPBussinessSystem_MVC.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+<<<<<<< HEAD
 
         [Display(Name = "員工姓名")]
         public string EmpoyeeName { get; set; }
@@ -90,6 +90,8 @@ namespace EIPBussinessSystem_MVC.Models
 
         [Display(Name = "個人照片")]
         public string Photo { get; set; }
+=======
+>>>>>>> parent of 6bf8af5... Merge branch 'master' of https://github.com/III-MSIT123-Group5/RoryRoryCC
     }
 
     public class ManageLoginsViewModel

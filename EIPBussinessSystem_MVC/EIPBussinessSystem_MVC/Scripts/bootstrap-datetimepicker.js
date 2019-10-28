@@ -33,11 +33,6 @@
 /*global require:false */
 /*global jQuery:false */
 /*global moment:false */
-$(function () {
-    $('#datetimepicker1').datetimepicker();
-});
-
-
 (function (factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {

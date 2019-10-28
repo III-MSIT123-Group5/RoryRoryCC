@@ -5,11 +5,6 @@
 }
 
 <h2>Index</h2>
-<style>
-    th, td {
-        width:10%;
-    }
-</style>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -20,20 +15,19 @@
         <th>
             @Html.DisplayNameFor(model => model.ReportName)
         </th>
-        <th >
+        <th>
             @Html.DisplayNameFor(model => model.StartTime)
         </th>
-        <th >
+        <th>
             @Html.DisplayNameFor(model => model.EndTime)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.EventHours)
-            
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Note)
         </th>
-        <th >
+        <th>
             @Html.DisplayNameFor(model => model.ApplyDateTime)
         </th>
         
@@ -43,10 +37,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Event.EventName)
         </th>
-        <th>
-
-        </th>
-        
+        <th></th>
     </tr>
 
 
@@ -57,14 +48,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.ReportName)
         </td>
-        <td >
+        <td>
             @Html.DisplayFor(modelItem => item.StartTime)
         </td>
-        <td >
+        <td>
             @Html.DisplayFor(modelItem => item.EndTime)
         </td>
         <td>
-            @*@Html.DisplayFor(modelItem => item.EventHours)*@
+            @Html.DisplayFor(modelItem => item.EventHours)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Note)
@@ -78,15 +69,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
         </td>
-
+        
         <td>
-
-            <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit", new { id=item.ReportID})'" type="button"><i class="glyphicon glyphicon-pencil"> 編輯</i></button>
-            |
-            <button class="btn btn-warning" onclick="location.href='@Url.Action("Details", new { id=item.ReportID})'" type="button"><i class="glyphicon glyphicon-list"> 內容</i></button>
-            |
-            <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new { id=item.ReportID})'" type="button"><i class="glyphicon glyphicon-trash"> 刪除</i></button>
-
+            @Html.ActionLink("Edit", "Edit", new { id=item.ReportID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ReportID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ReportID })
         </td>
     </tr>
 }
