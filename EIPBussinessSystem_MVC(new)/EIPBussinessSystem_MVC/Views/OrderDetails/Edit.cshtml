@@ -21,30 +21,15 @@
     @Html.HiddenFor(model => model.OrderDetailID)
 
     <div style="margin-bottom:70px">
-        @Html.LabelFor(model => model.RequisitionMain.EmployeeID, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.RequisitionMain.EmployeeID, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.RequisitionMain.EmployeeID, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div style="margin-bottom:120px">
         @Html.LabelFor(model => model.OrderID, "OrderID", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("OrderID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.DropDownList("OrderID", null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+            @Html.HiddenFor(model => model.OrderID)
             @Html.ValidationMessageFor(model => model.OrderID, "", new { @class = "text-danger" })
         </div>
     </div>
 
-    <div style="margin-bottom:170px">
-        @Html.LabelFor(model => model.RequisitionMain.RequisitionDate, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.RequisitionMain.RequisitionDate, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.RequisitionMain.RequisitionDate, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div style="margin-bottom:220px">
+    <div style="margin-bottom:120px">
         @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
@@ -52,7 +37,7 @@
         </div>
     </div>
 
-    <div style="margin-bottom:270px">
+    <div style="margin-bottom:170px">
         @Html.LabelFor(model => model.UnitPrice, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control" } })
@@ -60,7 +45,7 @@
         </div>
     </div>
 
-    <div style="margin-bottom:320px">
+    <div style="margin-bottom:220px">
         @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
@@ -68,22 +53,15 @@
         </div>
     </div>
 
-    <div style="margin-bottom:370px">
-        @Html.LabelFor(model => model.TotalPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.TotalPrice, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div style="margin-bottom:420px">
+    <div style="margin-bottom:270px">
         @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
         </div>
     </div>
-    <div style="margin-bottom:470px">
+
+    <div style="margin-bottom:320px">
         <div class="col-md-offset-2 col-md-10">
             <button class="btn btn-success" type="submit" style="color:white"><i class="glyphicon glyphicon-floppy-save"> 儲存</i></button>
         </div>
