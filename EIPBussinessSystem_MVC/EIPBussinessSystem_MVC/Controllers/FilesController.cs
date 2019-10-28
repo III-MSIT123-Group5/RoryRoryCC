@@ -31,19 +31,17 @@ namespace EIPBussinessSystem_MVC.Controllers
             {
                 foreach (HttpPostedFileBase file in files)
                 {
+                    
                     string SourceFilename = Path.GetFileName(file.FileName);
                     string TargetFilename = Path.Combine(Server.MapPath(
                         "~/Uploads"), SourceFilename);
                     file.SaveAs(TargetFilename);
 
-                    /////////////////////////////////////////////////
-                    byte[] WriteTagMsg = { 0x52, 0x46, 0x49, 0x44, 0x01, 0x06, 0x21, 0x01, 0x00, 0x02, 0x11, 0x11 };
-                    ////////////////////////////////////////////////////
+
                     db.Files.Add(new Models.File
                     {
                         FileName = Path.GetFileNameWithoutExtension(file.FileName),
-                        Data = WriteTagMsg,
-                        //TargetFilename,
+                        Data = TargetFilename,
                         FileSize = file.ContentLength.ToString(),
                         EmployeeID = 1032,
                         /* LoginID,*/
@@ -103,9 +101,10 @@ namespace EIPBussinessSystem_MVC.Controllers
                     FileName = q.Select(f => f.FileName).FirstOrDefault() + q.Select(f => f.Extension).FirstOrDefault();
                     DownloadFileName = Path.Combine(Server.MapPath("~/Uploads"), FileName);
                     //壓縮檔案
-                    zip.AddFile(FileName,"");
-                    zip.Save(FileName);
+                    zip.AddFile(DownloadFileName, "");
+                    zip.Save(DownloadFileName);
                 }
+               
             }
             ContentDisposition cd = new ContentDisposition
             {
@@ -118,9 +117,13 @@ namespace EIPBussinessSystem_MVC.Controllers
         /// ///////////////////////////////////////////////////
 
         // GET: Files
-        public ActionResult Index()
+        public ActionResult Index(string FileName)
         {
             var files = db.Files.Include(f => f.Employee);
+            if (!String.IsNullOrEmpty(FileName))
+            {
+                files = files.Where(s => s.FileName.Contains(FileName));
+            }
             return View(files.ToList());
         }
 
@@ -196,7 +199,6 @@ namespace EIPBussinessSystem_MVC.Controllers
             Models.File file = db.Files.Find(id);
             db.Files.Remove(file);
             db.SaveChanges();
-
             return RedirectToAction("Index");
         }
 
