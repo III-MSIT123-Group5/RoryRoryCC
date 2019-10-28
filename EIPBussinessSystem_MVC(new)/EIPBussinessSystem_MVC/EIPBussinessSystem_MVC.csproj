@@ -277,6 +277,7 @@
     <Compile Include="Models\File.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetEmployeeIDClass.cs" />
     <Compile Include="Models\Group.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>

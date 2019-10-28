@@ -74,10 +74,23 @@ namespace EIPBussinessSystem_MVC.Controllers
             {
                 return View(model);
             }
+            //var userId = User.Identity.GetUserId();
+            //var acc = db.AspNetUsers.Find(userId);
+            //var empquery = from em in db.Employees.AsEnumerable()
+            //               where em.Account == acc.UserName
+            //               select new { em.employeeID };
+
+            //foreach (var e in empquery)
+            //{
+            //    GetEmployeeIDClass.GetEmployeeID = e.employeeID;
+            //}
 
             // 這不會計算為帳戶鎖定的登入失敗
             // 若要啟用密碼失敗來觸發帳戶鎖定，請變更為 shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
+
+            
+            
             switch (result)
             {
                 case SignInStatus.Success:
@@ -216,8 +229,20 @@ namespace EIPBussinessSystem_MVC.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "確認您的帳戶", "請按一下此連結確認您的帳戶 <a href=\"" + callbackUrl + "\">這裏</a>");
-                 
-                        var addEmployee = new EIPBussinessSystem_MVC.Models.Employee
+
+                    string m_address = "https://icon-icons.com/icons2/2061/PNG/512/happy_consumer_people_man_icon_124583.png";
+                    switch (model.Gender)
+                    {
+                        case "F":
+                            m_address = "https://cdn.icon-icons.com/icons2/2061/PNG/512/girl_people_face_consumer_icon_124586.png";
+                            break;
+                        case "M":
+                            m_address = "https://icon-icons.com/icons2/2061/PNG/512/happy_consumer_people_man_icon_124583.png";
+                            break;
+                    }
+
+
+                    var addEmployee = new EIPBussinessSystem_MVC.Models.Employee
                         {
                             EmployeeName = model.EmpoyeeName,
                             Gender = model.Gender,
@@ -229,7 +254,8 @@ namespace EIPBussinessSystem_MVC.Controllers
                             PositionID = Convert.ToInt32(model.PositionID),
                             ManagerID = Convert.ToInt32(model.ManagerID),
                             Employed = Convert.ToBoolean(model.Employed),
-                            GroupID = Convert.ToInt32(model.GroupID)
+                            GroupID = Convert.ToInt32(model.GroupID),
+                            Photo = m_address,
                         };
                         db.Employees.Add(addEmployee);
                         db.SaveChanges();
