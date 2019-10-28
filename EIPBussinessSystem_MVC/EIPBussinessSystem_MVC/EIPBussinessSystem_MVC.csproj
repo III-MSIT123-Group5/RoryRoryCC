@@ -215,6 +215,9 @@
     <Compile Include="Models\ApprovalStatu.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AspNetUser.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>

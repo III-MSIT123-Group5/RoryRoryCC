@@ -83,5 +83,6 @@ namespace EIPBussinessSystem_MVC.Models
         public virtual ICollection<SuggestionHistory> SuggestionHistories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReportTimeSystem> ReportTimeSystems { get; set; }
+        public virtual Office Office { get; set; }
     }
 }

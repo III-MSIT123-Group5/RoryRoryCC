@@ -63,5 +63,6 @@ namespace EIPBussinessSystem_MVC.Models
         public virtual DbSet<SuggestionHistory> SuggestionHistories { get; set; }
         public virtual DbSet<SurveyMain> SurveyMains { get; set; }
         public virtual DbSet<ReportTimeSystem> ReportTimeSystems { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
     }
 }
