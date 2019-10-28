@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using EIPBussinessSystem_MVC.Models;
 using EIPBussinessSystem_MVC.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace EIPBussinessSystem_MVC.Controllers
 {
@@ -55,17 +56,59 @@ namespace EIPBussinessSystem_MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Num,EmployeeID,DepartmentID,GroupID,Content,PostTime")] BulletinBoard bulletinBoard)
         {
+            int DID = 0;
+            int GID = 0;
+
+
+            var userid = User.Identity.GetUserId();
+            var acc = db.AspNetUsers.Find(userid);
+            var empquery = from em in db.Employees
+                           where em.Account == acc.UserName
+                           select new { em.employeeID };
+            int EmpID = 0;
+            foreach (var e in empquery)
+            {
+                EmpID = e.employeeID;
+            }
+
+            //var Emp = db.Employees.Find(EmpID);
+
+            var q = from e in this.db.Employees.AsEnumerable()
+                    join d in db.Departments.AsEnumerable()
+                    on e.DepartmentID equals d.departmentID
+                    join g in db.Groups.AsEnumerable()
+                    on e.GroupID equals g.GroupID
+                    where e.employeeID == EmpID
+                    select new { e.GroupID , e.DepartmentID ,e.EmployeeName };
+
+            foreach (var n in q)
+            {
+                DID = Convert.ToInt32(n.DepartmentID);
+                GID = Convert.ToInt32(n.GroupID);
+            }
+
+
+            var q2 = new BulletinBoard
+            {
+                EmployeeID = EmpID,
+                GroupID = GID,
+                DepartmentID = DID,
+                PostTime = DateTime.Now,
+            };
+
+
             if (ModelState.IsValid)
             {
                 db.BulletinBoards.Add(bulletinBoard);
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DepartmentID = new SelectList(db.Departments, "departmentID", "name", bulletinBoard.DepartmentID);
-            ViewBag.EmployeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", bulletinBoard.EmployeeID);
-            ViewBag.GroupID = new SelectList(db.Groups, "GroupID", "GroupName", bulletinBoard.GroupID);
-            ViewBag.EmployeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", bulletinBoard.EmployeeID);
+            //ViewBag.DepartmentID = new SelectList(db.Departments, "departmentID", "name", bulletinBoard.DepartmentID);
+            //ViewBag.EmployeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", bulletinBoard.EmployeeID);
+            //ViewBag.GroupID = new SelectList(db.Groups, "GroupID", "GroupName", bulletinBoard.GroupID);
+            //ViewBag.EmployeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", bulletinBoard.EmployeeID);
             return View(bulletinBoard);
         }
 

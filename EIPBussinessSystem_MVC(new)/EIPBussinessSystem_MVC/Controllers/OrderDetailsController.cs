@@ -21,7 +21,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         {
             var report = from RM in this.db.RequisitionMains.AsEnumerable()
                          join OD in this.db.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
-                         where RM.EmployeeID == Convert.ToInt32(User.Identity.GetUserId())
+                         where RM.EmployeeID == 1032 
                          select OD;
             if (!String.IsNullOrEmpty(searchProductName))
             {

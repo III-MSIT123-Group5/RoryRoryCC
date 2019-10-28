@@ -4,69 +4,77 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>刪除預覽</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>BulletinBoard</h4>
+@*<h3>Are you sure you want to delete this?</h3>*@
+<tr>
+    <h4>刪除公佈欄貼文</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
+    <table>
+        <tr>
+            <th style="width:200px; text-align:right">
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.Content)
+            </th>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.Content)
-        </dd>
+        <tr>
+            <th style="width:200px; text-align:right">
+                @Html.DisplayNameFor(model => model.PostTime)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.PostTime)
+            </th>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PostTime)
-        </dt>
+        <tr>
+            <th style="width:200px; text-align:right">
+                @Html.DisplayNameFor(model => model.Department.name)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.Department.name)
+            </th>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.PostTime)
-        </dd>
+        <tr>
+            <th style="width:200px; text-align:right">
+                @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.Employee.EmployeeName)
+            </th>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Department.name)
-        </dt>
+        <tr>
+            <th style="width:200px; text-align:right">
+                @Html.DisplayNameFor(model => model.Group.GroupName)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.Group.GroupName)
+            </th>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.Department.name)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
-        </dt>
+    </table>
+    <br />
 
-        <dd>
-            @Html.DisplayFor(model => model.Employee.EmployeeName)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Group.GroupName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Group.GroupName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Employee1.EmployeeName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Employee1.EmployeeName)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+    <div>
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <button class="btn btn-danger" type="submit" style="color:white"><i class="glyphicon glyphicon-trash" onclick="return confirm('確定要刪除此條貼文嗎?')"> 刪除</i></button>
+            <br /><br />
+            @Html.ActionLink("回到公佈欄", "Index")
         </div>
     }
-</div>
+    </div>
