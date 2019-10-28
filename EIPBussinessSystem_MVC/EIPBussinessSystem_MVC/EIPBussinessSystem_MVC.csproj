@@ -338,15 +338,15 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Views\ReportTimeSystems\Metadata\ReportTimeSystems.cs" />
     <Compile Include="Views\ReportTimeSystems\Metadata\ReportTimeSystemsMetadata.cs" />
-    <Compile Include="Views\ReportTimeSystems\Metadata\Resource1.en-US.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource1.en-US.resx</DependentUpon>
-    </Compile>
     <Compile Include="Views\ReportTimeSystems\Metadata\Resource1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportTimeSystems\Metadata\Resource1.en-US.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.en-US.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -676,6 +676,16 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ReportTimeSystems\Metadata\Resource1.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReportTimeSystems\Metadata\Resource1.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

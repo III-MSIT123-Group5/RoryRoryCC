@@ -23,7 +23,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                                     on RTS.employeeID equals emp.employeeID
                                     join eve in db.Events
                                     on RTS.EventID equals eve.EventID
-                                    where RTS.Discontinue == true //&& RTS.employeeID == ClassEmployee.LoginEmployeeID
+                                    where RTS.Discontinue == true && RTS.employeeID == 1032
                                     select RTS;
 
 
@@ -130,6 +130,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             ReportTimeSystem reportTimeSystem = db.ReportTimeSystems.Find(id);
+
             db.ReportTimeSystems.Remove(reportTimeSystem);
             db.SaveChanges();
             return RedirectToAction("Index");
