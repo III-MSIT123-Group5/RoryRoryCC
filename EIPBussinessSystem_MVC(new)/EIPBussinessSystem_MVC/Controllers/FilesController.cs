@@ -49,7 +49,7 @@ namespace EIPBussinessSystem_MVC.Controllers
 
                     db.Files.Add(new Models.File
                     {
-                        FileName = Path.GetFileNameWithoutExtension(file.FileName),
+                        FileName = SourceFilename,
                         Data = TargetFilename,
                         FileSize = file.ContentLength.ToString(),
                         EmployeeID = EmpID,
@@ -66,11 +66,10 @@ namespace EIPBussinessSystem_MVC.Controllers
 
         public FileResult Download(string FileName)
         {
-            var q = db.Files.AsEnumerable().Where(f => f.FileName.Equals(FileName)).Select(f => f.Extension).FirstOrDefault();
-            string DownloadFileName = Path.Combine(Server.MapPath("~/Uploads"), FileName)+q;
+            string DownloadFileName = Path.Combine(Server.MapPath("~/Uploads"), FileName);
             ContentDisposition cd = new ContentDisposition
             {
-                FileName = FileName+q,
+                FileName = FileName,
                 Inline = false,
             };
             Response.AppendHeader("Content-Disposition", cd.ToString());
@@ -109,7 +108,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                 for (int i = 0; i < Cheak.Length; i++)
                 {
                     var q = db.Files.AsEnumerable().Where(f => f.FileID.ToString() == Cheak.ElementAt(i));
-                    FileName = q.Select(f => f.FileName).FirstOrDefault() + q.Select(f => f.Extension).FirstOrDefault();
+                    FileName = q.Select(f => f.FileName).FirstOrDefault();
                     DownloadFileName = Path.Combine(Server.MapPath("~/Uploads"), FileName);
                     //壓縮檔案
                     zip.AddFile(DownloadFileName, "");
@@ -137,55 +136,7 @@ namespace EIPBussinessSystem_MVC.Controllers
             return View(files.ToList());
         }
 
-        // GET: Files/Details/5
-        public ActionResult Details(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Models.File file = db.Files.Find(id);
-            if (file == null)
-            {
-                return HttpNotFound();
-            }
-            return View(file);
-        }
-
-
-        // GET: Files/Edit/5
-        public ActionResult Edit(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Models.File file = db.Files.Find(id);
-            if (file == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.EmployeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", file.EmployeeID);
-            return View(file);
-        }
-
-        // POST: Files/Edit/5
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FileID,FileName,FileSize,EmployeeID,UploadDate,Data,Extension")] Models.File file)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(file).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.EmployeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", file.EmployeeID);
-            return View(file);
-        }
-
+ 
         // GET: Files/Delete/5
         public ActionResult Delete(long? id)
         {
@@ -220,6 +171,5 @@ namespace EIPBussinessSystem_MVC.Controllers
             }
             base.Dispose(disposing);
         }
-
     }
 }

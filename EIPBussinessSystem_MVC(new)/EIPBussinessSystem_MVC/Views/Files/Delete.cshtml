@@ -1,72 +1,70 @@
 ﻿@model EIPBussinessSystem_MVC.Models.File
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "刪除檔案";
 }
 
-<h2>Delete</h2>
+<h2>刪除檔案</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<hr />
 <div>
-    <h4>File</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FileName)
-        </dt>
+    <table>
+        <tr>
+            <th style="width:100px; text-align:right">
+                @Html.DisplayNameFor(model => model.FileName)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.FileName)
+            </th>
+        </tr>
+        <tr>
+            <th style="width:100px; text-align:right">
+                @Html.DisplayNameFor(model => model.FileSize)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.FileSize)
+            </th>
+        </tr>
+        <tr>
+            <th style="width:100px; text-align:right">
+                @Html.DisplayNameFor(model => model.UploadDate)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.UploadDate)
+            </th>
+        </tr>
+        <tr>
+            <th style="width:100px; text-align:right">
+                @Html.DisplayNameFor(model => model.Extension)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.Extension)
+            </th>
+        </tr>
+        <tr>
+            <th style="width:100px; text-align:right">
+                @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.Employee.EmployeeName)
+            </th>
+        </tr>
+    </table>
+    <br />
+    <br />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.FileName)
-        </dd>
+        <div class="form-actions no-color">
+            <button class="btn btn-danger" type="submit" style="color:white"><i class="glyphicon glyphicon-trash"> 刪除</i></button> |
+            @Html.ActionLink("  返回檔案管理", "Index")
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FileSize)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FileSize)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UploadDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UploadDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Data)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Data)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Extension)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Extension)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Employee.EmployeeName)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-
-    <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        @Html.ActionLink("Back to List", "Index")
-    </div>
     }
 </div>
