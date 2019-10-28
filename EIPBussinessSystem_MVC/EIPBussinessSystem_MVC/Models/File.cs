@@ -19,7 +19,7 @@ namespace EIPBussinessSystem_MVC.Models
         public string FileSize { get; set; }
         public int EmployeeID { get; set; }
         public System.DateTime UploadDate { get; set; }
-        public byte[] Data { get; set; }
+        public string Data { get; set; }
         public string Extension { get; set; }
     
         public virtual Employee Employee { get; set; }

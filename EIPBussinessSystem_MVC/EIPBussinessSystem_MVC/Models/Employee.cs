@@ -29,9 +29,9 @@ namespace EIPBussinessSystem_MVC.Models
             this.Messages = new HashSet<Message>();
             this.Recipients = new HashSet<Recipient>();
             this.Replies = new HashSet<Reply>();
+            this.ReportTimeSystems = new HashSet<ReportTimeSystem>();
             this.RequisitionMains = new HashSet<RequisitionMain>();
             this.SuggestionHistories = new HashSet<SuggestionHistory>();
-            this.ReportTimeSystems = new HashSet<ReportTimeSystem>();
         }
     
         public int employeeID { get; set; }
@@ -67,6 +67,7 @@ namespace EIPBussinessSystem_MVC.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employee1 { get; set; }
         public virtual Employee Employee2 { get; set; }
+        public virtual Office Office { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<File> Files { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -78,10 +79,10 @@ namespace EIPBussinessSystem_MVC.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reply> Replies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ReportTimeSystem> ReportTimeSystems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RequisitionMain> RequisitionMains { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SuggestionHistory> SuggestionHistories { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ReportTimeSystem> ReportTimeSystems { get; set; }
     }
 }

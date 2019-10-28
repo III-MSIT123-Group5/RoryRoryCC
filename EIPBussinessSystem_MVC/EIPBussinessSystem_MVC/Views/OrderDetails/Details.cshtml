@@ -9,74 +9,89 @@
 <div>
     <h4>OrderDetail</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.RequisitionMain.EmployeeID)
-        </dt>
+    <table>
+        <tr>
+            <th style="width:200px; text-align:right">
+                @Html.DisplayNameFor(model => model.RequisitionMain.EmployeeID)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.RequisitionMain.EmployeeID)
+            </th>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.RequisitionMain.EmployeeID)
-        </dd>
+        <tr>
+            <th style="width:200px; text-align:right">
+                @Html.DisplayNameFor(model => model.RequisitionMain.OrderID)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.RequisitionMain.OrderID)
+            </th>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RequisitionMain.OrderID)
-        </dt>
+        <tr>
+            <th style="width:200px; text-align:right">
+                @Html.DisplayNameFor(model => model.RequisitionMain.RequisitionDate)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.RequisitionMain.RequisitionDate)
+            </th>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.RequisitionMain.OrderID)
-        </dd>
+        <tr>
+            <th style="width:200px; text-align:right">
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.ProductName)
+            </th>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RequisitionMain.RequisitionDate)
-        </dt>
+        <tr>
+            <th style="width:200px; text-align:right">
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.UnitPrice)
+            </th>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.RequisitionMain.RequisitionDate)
-        </dd>
+        <tr>
+            <th style="width:200px; text-align:right">
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.Quantity)
+            </th>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
+        <tr>
+            <th style="width:200px; text-align:right">
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.TotalPrice)
+            </th>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UnitPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UnitPrice)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TotalPrice)
-        </dd>
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Note)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Note)
-        </dd>
-    </dl>
+        <tr>
+            <th style="width:200px; text-align:right">
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.Note)
+            </th>
+        </tr>
+    </table>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderDetailID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("編輯請購單", "Edit", new { id = Model.OrderDetailID }) |
+    @Html.ActionLink("返回請購明細", "Index")
 </p>
