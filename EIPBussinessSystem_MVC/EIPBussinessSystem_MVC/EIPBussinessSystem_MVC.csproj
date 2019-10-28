@@ -199,6 +199,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Metadatas\BulletinBoards.cs" />
+    <Compile Include="Metadatas\BulletinBoardsMetadata.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
