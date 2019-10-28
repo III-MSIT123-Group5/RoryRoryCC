@@ -58,10 +58,11 @@ namespace EIPBussinessSystem_MVC.Controllers
 
         public FileResult Download(string FileName)
         {
-            string DownloadFileName = Path.Combine(Server.MapPath("~/Uploads"), FileName);
+            var q = db.Files.AsEnumerable().Where(f => f.FileName.Equals(FileName)).Select(f => f.Extension).FirstOrDefault();
+            string DownloadFileName = Path.Combine(Server.MapPath("~/Uploads"), FileName)+q;
             ContentDisposition cd = new ContentDisposition
             {
-                FileName = FileName,
+                FileName = FileName+q,
                 Inline = false,
             };
             Response.AppendHeader("Content-Disposition", cd.ToString());
@@ -88,6 +89,8 @@ namespace EIPBussinessSystem_MVC.Controllers
             Response.AppendHeader("Content-Disposition", cd.ToString());
             return File(DownloadFileName, MediaTypeNames.Application.Octet);
         }
+
+
         public ActionResult DownloadChoose(string[] Cheak)
         {
             string DownloadFileName = null;
@@ -104,7 +107,6 @@ namespace EIPBussinessSystem_MVC.Controllers
                     zip.AddFile(DownloadFileName, "");
                     zip.Save(DownloadFileName);
                 }
-               
             }
             ContentDisposition cd = new ContentDisposition
             {
