@@ -112,19 +112,30 @@ namespace EIPBussinessSystem_MVC.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ReportID,ReportName,employeeID,StartTime,EndTime,EventHours,EventID,Note,ApplyDateTime,Discontinue")] ReportTimeSystem reportTimeSystem)
+        public ActionResult Edit(ReportTimeSystem reportTimeSystem)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(reportTimeSystem).State = EntityState.Modified;
-
-
+                db.ReportTimeSystems.Add(new Models.ReportTimeSystem
+                {
+                    ReportName = reportTimeSystem.ReportName,
+                    employeeID = 1032,
+                    ApplyDateTime = DateTime.Now,
+                    StartTime = reportTimeSystem.StartTime,
+                    EndTime = reportTimeSystem.EndTime,
+                    EventHours = (reportTimeSystem.EndTime - reportTimeSystem.StartTime).Hours,
+                    EventID = reportTimeSystem.EventID,
+                    Note = reportTimeSystem.Note,
+                    Discontinue = true
+                });
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                
             }
             ViewBag.employeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", reportTimeSystem.employeeID);
             ViewBag.EventID = new SelectList(db.Events, "EventID", "EventName", reportTimeSystem.EventID);
-            return View(reportTimeSystem);
+            //return View(reportTimeSystem);
+            return RedirectToAction("Index");
         }
 
         // GET: ReportTimeSystems/Delete/5
