@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using EIPBussinessSystem_MVC.Models;
 using Ionic.Zip;
+using Microsoft.AspNet.Identity;
 
 namespace EIPBussinessSystem_MVC.Controllers
 {
@@ -19,7 +20,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
 
         public ActionResult Upload()
-        {
+        { 
             return View();
         }
 
@@ -27,11 +28,15 @@ namespace EIPBussinessSystem_MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Upload(IEnumerable<HttpPostedFileBase> files)
         {
+            var UserID = User.Identity.GetUserId();
+            var Acc = db.AspNetUsers.Find(UserID);
+            var Empquery = db.Employees.Where(f => f.Account.Equals(Acc.UserName)).Select(f => new { f.employeeID });
+
+
             if (files.First() != null)
             {
                 foreach (HttpPostedFileBase file in files)
                 {
-                    
                     string SourceFilename = Path.GetFileName(file.FileName);
                     string TargetFilename = Path.Combine(Server.MapPath(
                         "~/Uploads"), SourceFilename);
@@ -52,7 +57,6 @@ namespace EIPBussinessSystem_MVC.Controllers
                     db.SaveChanges();
                 }
             }
-
             return RedirectToAction("Index");
         }
 
@@ -212,5 +216,6 @@ namespace EIPBussinessSystem_MVC.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }
