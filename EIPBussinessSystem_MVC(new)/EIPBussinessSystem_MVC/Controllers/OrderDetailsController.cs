@@ -20,11 +20,12 @@ namespace EIPBussinessSystem_MVC.Controllers
         int EmpID = 0;
 
         // GET: OrderDetails
+        [Authorize]
         public ActionResult Index(string searchProductName)
         {
             var userid = User.Identity.GetUserId();
             var account = db.AspNetUsers.Find(userid);
-           
+
             var empquery = from EM in db.Employees
                            where EM.Account == account.UserName
                            select new { EM.employeeID };
@@ -42,10 +43,15 @@ namespace EIPBussinessSystem_MVC.Controllers
             {
                 report = report.Where(s => s.ProductName.Contains(searchProductName));
             }
-            return View(report.ToList());         
+            else
+            {
+                return View(report.ToList());
+            }
+            return View(report.ToList());
         }
 
         // GET: OrderDetails/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -61,6 +67,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         }
 
         // GET: OrderDetails/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.OrderID = new SelectList(db.RequisitionMains, "OrderID", "OrderID");
@@ -87,13 +94,13 @@ namespace EIPBussinessSystem_MVC.Controllers
             }
 
             if (ModelState.IsValid)
-            {  
+            {
                 db.OrderDetails.Add(new Models.OrderDetail
                 {
                     ProductName = orderDetail.ProductName,
                     UnitPrice = orderDetail.UnitPrice,
                     Quantity = orderDetail.Quantity,
-                    Note = orderDetail.Note,                   
+                    Note = orderDetail.Note,
                     RequisitionMain = (new Models.RequisitionMain
                     {
                         ReportID = 2,
@@ -111,6 +118,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         }
 
         // GET: OrderDetails/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -156,6 +164,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         }
 
         // GET: OrderDetails/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
