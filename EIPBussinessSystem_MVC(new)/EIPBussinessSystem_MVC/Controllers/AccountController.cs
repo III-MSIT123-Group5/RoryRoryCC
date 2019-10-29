@@ -154,7 +154,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.Gender =new List<SelectListItem>()
+            ViewBag.Gender = new List<SelectListItem>()
             {
                 new SelectListItem {Text="男",Value="M" },
                 new SelectListItem {Text="女",Value="F" },
@@ -163,16 +163,6 @@ namespace EIPBussinessSystem_MVC.Controllers
             {
                 new SelectListItem{Text="Head Office", Value="1"},
                 new SelectListItem{Text="Branch Office", Value="2"},
-            };
-            var DepartmentSelector = new List<SelectListItem>()
-            {
-                new SelectListItem{Text="無組別", Value="0"},
-                new SelectListItem{Text="總經理", Value="1"},
-                new SelectListItem{Text="業務部", Value="2"},
-                new SelectListItem{Text="行政部", Value="3"},
-                new SelectListItem{Text="產品部", Value="4"},
-                new SelectListItem{Text="財務部", Value="5"},
-                new SelectListItem{Text="資訊部", Value="6"},
             };
             var GroupIDSelector = new List<SelectListItem>()
             {
@@ -191,23 +181,47 @@ namespace EIPBussinessSystem_MVC.Controllers
                 new SelectListItem{Text="總經理", Value="1"},
                 new SelectListItem{Text="部長", Value="2"},
                 new SelectListItem{Text="組長", Value="3"},
-                new SelectListItem{Text="員工", Value="4"},                
+                new SelectListItem{Text="員工", Value="4"},
             };
             var EmployedSelector = new List<SelectListItem>()
             {
                 new SelectListItem{Text="在職中", Value="true"},
-                new SelectListItem{Text="已離職", Value="false" },               
-            };                       
+                new SelectListItem{Text="已離職", Value="false" },
+            };
 
-            
+
             ViewBag.OfficeSt = OfficeSelector;
-            ViewBag.DepartSt = DepartmentSelector;
             ViewBag.GroupIDSt = GroupIDSelector;
             ViewBag.PositionIDSt = PositionIDSelector;
             ViewBag.EmployedSt = EmployedSelector;
 
+            var q = db.Departments.Select(p => p);
+            var DepST = new List<SelectListItem>();          
+                foreach (var item in q)
+            {
+                DepST.Add(new SelectListItem { Text = item.name, Value = item.departmentID.ToString() });
+            }
+
+            ViewBag.DepartST = DepST;
+
+
             return View();
         }
+
+        [HttpPost]
+        public ActionResult GetGrpIDbyDeptID(string DepartmentID)
+        {
+            var q = db.Groups.AsEnumerable().Where(p => p.DepartmentID == int.Parse(DepartmentID)).Select(p => p);
+            var GropST = new List<SelectListItem>();
+            foreach(var item in q)
+            {
+                GropST.Add(new SelectListItem { Text = item.GroupName, Value = item.GroupID.ToString() });
+            }
+            ViewBag.GroupIDSt = GropST;
+
+            return  ViewBag.GroupIDSt;
+        }
+
 
         //
         // POST: /Account/Register

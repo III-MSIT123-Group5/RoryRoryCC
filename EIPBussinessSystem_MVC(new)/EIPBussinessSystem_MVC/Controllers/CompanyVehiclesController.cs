@@ -109,6 +109,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                         data = br.ReadBytes(Request.Files["File1"].ContentLength);
                     }
                     companyVehicle.VehiclePhoto = data;
+                   
                 }
                 else
                 {

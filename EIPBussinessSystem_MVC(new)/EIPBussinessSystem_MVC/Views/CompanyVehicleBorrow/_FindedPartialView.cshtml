@@ -1,0 +1,54 @@
+﻿@model IEnumerable<EIPBussinessSystem_MVC.Models.CompanyVehicle>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LicenseNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.brand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.serial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxPassenger)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Office.office_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VehiclePhoto)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LicenseNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.brand)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.serial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaxPassenger)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Office.office_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VehiclePhoto)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.LicenseNumber }) |
+            @Html.ActionLink("Details", "Details", new { id=item.LicenseNumber }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.LicenseNumber })
+        </td>
+    </tr>
+}
+
+</table>

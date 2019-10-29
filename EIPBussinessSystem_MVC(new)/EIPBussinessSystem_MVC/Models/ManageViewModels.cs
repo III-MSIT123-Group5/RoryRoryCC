@@ -14,6 +14,9 @@ namespace EIPBussinessSystem_MVC.Models
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
 
+        [Display(Name = "員工編號")]
+        public int EmployeeID { get; set; }
+
         [Display(Name = "員工姓名")]
         public string EmpoyeeName { get; set; }
 
