@@ -23,6 +23,7 @@ namespace EIPBussinessSystem_MVC.Models
         [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd tt hh:mm}", ApplyFormatInEditMode = true)]
         public System.DateTime StartTime { get; set; }
 
+        
         [Required(ErrorMessage = "請輸入{0}")]
         [Display(Name = "EndTime")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd tt hh:mm}", ApplyFormatInEditMode = true)]
