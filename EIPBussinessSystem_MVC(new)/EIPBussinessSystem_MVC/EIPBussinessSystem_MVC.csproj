@@ -199,6 +199,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Metadatas\BulletinBoardsMetadata.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
@@ -231,6 +232,7 @@
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BulletinBoardsViewModel.cs" />
+    <Compile Include="Models\BulletinBoardsViewModel_Edit.cs" />
     <Compile Include="Models\BussinessSystemModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -334,6 +336,11 @@
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CreateBulletinBoardsViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -396,7 +403,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="favicon.ico" />
+    <Content Include="Images\favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -684,6 +691,10 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Resource1.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\ReportTimeSystems\Metadata\Resource1.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource1.en-US.Designer.cs</LastGenOutput>

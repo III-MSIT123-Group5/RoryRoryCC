@@ -34,6 +34,7 @@ namespace BusinessSystem
         private void altoButton1_Click(object sender, EventArgs e)
         {
             dbContext = new BusinessDataBaseEntities();
+
             int departmentID=0;
             int groupID=0;
 
@@ -49,7 +50,7 @@ namespace BusinessSystem
                     groupID = Convert.ToInt32(n.GroupID);
                 }
 
-     var q = new BusinessSystemDBEntityModel.BulletinBoard
+                var q = new BusinessSystemDBEntityModel.BulletinBoard
                 {
                     EmployeeID = ClassEmployee.LoginEmployeeID,
                     GroupID = groupID,
