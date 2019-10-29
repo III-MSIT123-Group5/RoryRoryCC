@@ -87,6 +87,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
                 
+                EmployeeID=Emp.employeeID,
                 EmpoyeeName = Emp.EmployeeName,
                 Account = Emp.Account,
                 Email = acc.Email,
@@ -108,14 +109,14 @@ namespace EIPBussinessSystem_MVC.Controllers
        //POST: /Manage/Index
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index([Bind(Include = "Photo")] Employee Emp)
+        public ActionResult Index([Bind(Include = "EmployeeID,Photo")] IndexViewModel Emp)
         {
             if (ModelState.IsValid)
             {
-                Employee e = db.Employees.Find(Emp.employeeID);
-                e.Photo = Emp.Photo;
-                db.Entry(e).State = EntityState.Modified;
-                db.SaveChanges();
+                //var e = db.Employees.Find(Emp.EmployeeID);            
+                //e.Photo = Emp.Photo;
+                //db.Entry(e).State = EntityState.Modified;
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
 

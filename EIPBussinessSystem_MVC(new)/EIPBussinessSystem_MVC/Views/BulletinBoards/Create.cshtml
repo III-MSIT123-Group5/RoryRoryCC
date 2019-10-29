@@ -52,9 +52,10 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model =>model.Content, htmlAttributes: "貼文內容")*@
             <div class="col-md-10">
 
-                @Html.TextAreaFor(model => model.Content, new { rows="10",cols="150",@class="form-control", @MaxLength="10000" })
+                @Html.TextAreaFor(model => model.Content, new { rows = "10", cols = "150", @class = "form-control", @MaxLength = "10000" })
                 @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -69,7 +70,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="送出貼文" class="btn btn-primary"/>
+                <input type="submit" value="送出貼文" class="btn btn-primary"/>
                
             </div>
         </div>

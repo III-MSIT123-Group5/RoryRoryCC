@@ -24,9 +24,10 @@ namespace EIPBussinessSystem_MVC.Controllers
                                     on RTS.employeeID equals emp.employeeID
                                     join eve in db.Events
                                     on RTS.EventID equals eve.EventID
+                                    orderby RTS.ReportID 
                                     where RTS.Discontinue == true && RTS.employeeID == 1032
                                     select RTS;
-
+            reportTimeSystems = reportTimeSystems.OrderByDescending(rt=>rt.ReportID);
 
             return View(reportTimeSystems);
         }
@@ -114,8 +115,10 @@ namespace EIPBussinessSystem_MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ReportTimeSystem reportTimeSystem)
         {
+
             if (ModelState.IsValid)
             {
+
                 db.ReportTimeSystems.Add(new Models.ReportTimeSystem
                 {
                     ReportName = reportTimeSystem.ReportName,
@@ -127,11 +130,11 @@ namespace EIPBussinessSystem_MVC.Controllers
                     EventID = reportTimeSystem.EventID,
                     Note = reportTimeSystem.Note,
                     Discontinue = true
+
                 });
                 db.SaveChanges();
-
-                
             }
+
             ViewBag.employeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", reportTimeSystem.employeeID);
             ViewBag.EventID = new SelectList(db.Events, "EventID", "EventName", reportTimeSystem.EventID);
             //return View(reportTimeSystem);
