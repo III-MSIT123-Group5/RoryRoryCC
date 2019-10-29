@@ -54,17 +54,14 @@
                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group">
+                    @*<div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <div class="checkbox" style="text-align:center">
-
                                 @Html.CheckBoxFor(m => m.RememberMe)
                                 @Html.LabelFor(m => m.RememberMe)
-
                             </div>
-
                         </div>
-                    </div>
+                    </div>*@
                     <div class="form-group">
                         <div @*class="col-md-offset-2 col-md-10"*@>
                             <button type="submit" class="btn btn-default" style="background-color:#6A5ACD">登入</button>
@@ -72,10 +69,7 @@
                         </div>
                     </div>
                     <div>
-
                         <p>@Html.ActionLink("註冊為新使用者", "Register")</p>
-
-
                     </div>
 
                     @* 請在啟用密碼重設功能的帳戶確認之後啟用此項目
@@ -84,8 +78,6 @@
                 </p>*@
                 }
             </section>
-
-
         @*</form>*@
     </div>
 </div>

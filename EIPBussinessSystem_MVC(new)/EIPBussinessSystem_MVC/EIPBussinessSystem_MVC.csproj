@@ -403,6 +403,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\B_icon.png" />
     <Content Include="Images\B_icon_32.png" />
+    <Content Include="Images\封面.jpg" />
     <Content Include="Models\BussinessSystemModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BussinessSystemModel.edmx</DependentUpon>
