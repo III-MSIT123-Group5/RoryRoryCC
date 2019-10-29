@@ -7,97 +7,82 @@
 @{
     ViewBag.Title = "公務車租借";
 }
-<div style="width:300px;border:1px solid black;margin:20px;">
-    <h3>起始時間</h3>
-    <input type="datetime-local" id="date1" style="width:180px" />
-    <select id="firstLevel" style="width:100px" class="form-control">
-        <option>上午</option>
-        <option>下午</option>
-    </select>
-    <select id="secondLevel" style="width:100px" class="form-control">
-        <option>08:00</option>
-        <option>09:00</option>
-        <option>10:00</option>
-        <option>11:00</option>
-        <option>12:00</option>
-    </select>
-    <br />
-</div>
 
-<div style="width:300px;border:1px solid black;margin:20px">
-    <h3>結束時間</h3>
-    <input type="datetime-local" id="date2" style="width:180px" />
-    <select id="firstLevel1" style="width:100px" class="form-control">
-        <option>上午</option>
-        <option>下午</option>
-    </select>
-    <select id="secondLevel1" style="width:100px" class="form-control">
-        <option>08:00</option>
-        <option>09:00</option>
-        <option>10:00</option>
-        <option>11:00</option>
-        <option>12:00</option>
-    </select>
-    <br />
-    <input type="button" id="btn1" class="btn-success" value="查詢" />
-</div>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyVehicle.LicenseNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyVehicle.brand)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyVehicle.serial)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyVehicle.MaxPassenger)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyVehicle.officeID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyVehicle.VehiclePhoto)
-        </th>
-        <th></th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <th>
-                @Html.DisplayFor(modelitem => item.CompanyVehicle.LicenseNumber)
-            </th>
-            <th>
-                @Html.DisplayFor(modelitem => item.CompanyVehicle.brand)
-            </th>
-            <th>
-                @Html.DisplayFor(modelitem => item.CompanyVehicle.serial)
-            </th>
-            <th>
-                @Html.DisplayFor(modelitem => item.CompanyVehicle.MaxPassenger)
-            </th>
-            <th>
-                @Html.DisplayFor(modelitem => item.CompanyVehicle.officeID)
-            </th>
-            <th>
-                @Html.DisplayFor(modelitem => item.CompanyVehicle.VehiclePhoto)
-            </th>
-            <th></th>
-        </tr>
-    }
-</table>
+<form id="addForm" action="Useradd.action" typeof="post">
+    <div style="width:300px;border:1px solid black;margin:20px;">
+        <h3>起始時間</h3>
+        <input type="datetime-local" id="date1" style="width:360px" />
+        @*<select id="firstLevel" style="width:100px" class="form-control">
+                <option>上午</option>
+                <option>下午</option>
+            </select>*@
+        @*<select id="secondLevel" style="width:100px" class="form-control">
+                <option>08:00</option>
+                <option>09:00</option>
+                <option>10:00</option>
+                <option>11:00</option>
+                <option>12:00</option>
+            </select>*@
+        <br />
+    </div>
+
+    <div style="width:300px;border:1px solid black;margin:20px">
+        <h3>結束時間</h3>
+        <input type="datetime-local" id="date2" style="width:360px" />
+        @*<select id="firstLevel1" style="width:100px" class="form-control">
+                <option>上午</option>
+                <option>下午</option>
+            </select>
+            <select id="secondLevel1" style="width:100px" class="form-control">
+                <option>08:00</option>
+                <option>09:00</option>
+                <option>10:00</option>
+                <option>11:00</option>
+                <option>12:00</option>
+            </select>*@
+        <br />
+        <input type="button" id="btn1" class="btn-success" value="查詢" />
+    </div>
+</form>
+
+
+
+<div id="succ"></div>
+
+@*<table class="table" id="succ">
+    @Html.Partial("_FindedPartialView")
+</table>*@
 
 
 
 
-   
-    @section scripts
+
+@section scripts
 {
+    <script>
+        $("#btn1").bind("click", function () {
+            UpdateVehicle();
+        })
+        function UpdateVehicle() {
+            var data1 = {
+                stime :  $("#date1").val(),
+                etime :  $("#date2").val()
+            };
+            $.ajax({
+                url: "@Url.Action("Finded","CompanyVehicleBorrow")",                
+                type: "post",               
+                data: JSON.stringify(data1),
+                success: function (result) { $("#succ").html(result); },
+                error: function (e) { alert(e.responseText);},      
+               
+            });
+        }
+    </script>
 
-        @*開始時間*@
-        <script>
+
+
+    @*@*開始時間*@
+    <script>
         var data1 = ["08:00", "09:00", "10:00", "11:00", "12:00"];
         var data2 = ["01:00", "02:00", "03:00", "04:00", "05:00"];
 
@@ -113,25 +98,27 @@
                     $("#secondLevel").append(`<option> ${data2[i]}</option>`);
             }
         });
-        @*結束時間*@
-        $("#firstLevel1").bind("change", function () {
-            if ($("#firstLevel1 option:selected").text() == "上午") {
-                $("#secondLevel1").empty();
-                for (var i = 0; i < data1.length; i++)
-                    $("#secondLevel1").append(`<option>${data1[i]} </option>`);
+        $("#secondLevel").bind("change", function () {
+            if ($("#secondLevel option:selected").text() == "08:00")
+            {
+                $("#date1").setHours(8)
+                $("#date1").setMinutes(0)
+                $("#date1").setSeconds(0)
+
+
             }
-            else if ($("#firstLevel1 option:selected").text() == "下午") {
-                $("#secondLevel1").empty();
-                for (var i = 0; i < data2.length; i++)
-                    $("#secondLevel1").append(`<option> ${data2[i]}</option>`);
-            }
+
+
         })
-        </script>
-        <script>
+        @*結束時間*@
+
+    </script>
+    <script>
         @* 開始時間 *@
         $("#btn1").bind("click", function () {
             if ($("#secondLevel option:selected").text() == "08:00") {
-                $("#date1").setHours(8);
+                var st = $("#date1").val();
+                st.setHours(17);
             }
             else if ($("#secondLevel option:selected").text() == "09:00") {
                 $("#date1").setHours(9);
@@ -196,19 +183,13 @@
             }
 
         });
-        </script>
-        <script>
-            $("#btn1").bind("click", function ()
-            {
-                alert($("#date1").val())
-                }
-            );
-        </script>
+    </script>
+    <script>
+        $("#btn1").bind("click", function () {
+            alert($("#date1").val())
+        }
+        );
+    </script>*
 
 
-
-
-
-
-
-    }
+}

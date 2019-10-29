@@ -277,6 +277,7 @@
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetEmployeeIDClass.cs" />
+    <Compile Include="Models\getTimeViewModels.cs" />
     <Compile Include="Models\Group.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
@@ -661,6 +662,7 @@
     <Content Include="Views\Files\Delete.cshtml" />
     <Content Include="Views\Files\Index.cshtml" />
     <Content Include="Views\Files\Upload.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\_FindedPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

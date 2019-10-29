@@ -21,33 +21,22 @@ namespace EIPBussinessSystem_MVC.Controllers
         }
 
 
-        //public ActionResult Finded(DateTime dTPStartTime, DateTime dTPEndTime)
-        //{
-        //    var items = (from p in db.CompanyVehicleHistories
-        //                 where (dTPStartTime >= p.StartDateTime && dTPEndTime <= p.EndDateTime) || ((dTPStartTime >= p.StartDateTime && dTPStartTime < p.EndDateTime) && dTPEndTime > p.EndDateTime) || (dTPStartTime < p.StartDateTime && (dTPEndTime > p.StartDateTime && dTPEndTime <= p.EndDateTime)) || (dTPStartTime < p.StartDateTime && dTPEndTime > p.EndDateTime)
-        //                 select new { p.LicenseNumber }).ToList();
-        //    var licence = (from dl in db.CompanyVehicleHistories
-        //                   select new { dl.LicenseNumber }).ToList();
-        //    var freelicence = (from rl in licence
-        //                      where items.Contains(rl) == false
-        //                      select rl).ToList();
-        //    for(var i = 0; i < freelicence.Count(); i++)
-        //    {
-        //        var LicenceNum = freelicence[i].LicenseNumber;
-        //        var funcLicence = (from dc in db.CompanyVehicles
-        //                           where dc.LicenseNumber == LicenceNum
-        //                           select new
-        //                           {
-        //                               dc.LicenseNumber,
-        //                               dc.brand,
-        //                               dc.serial,
-        //                               dc.MaxPassenger,
-        //                               dc.officeID,
-        //                               dc.VehiclePhoto
-        //                           }).FirstOrDefault();
-        //    }
+        [HttpPost]
+        public ActionResult Finded(getTimeViewModels gt)
+        {
+            List<getTimeViewModels> list11 = new List<getTimeViewModels>();
+            var items = (from p in db.CompanyVehicleHistories
+                         where (gt.stime >= p.StartDateTime && gt.etime <= p.EndDateTime) || ((gt.stime >= p.StartDateTime && gt.stime < p.EndDateTime) && gt.etime > p.EndDateTime) || (gt.stime < p.StartDateTime && (gt.etime > p.StartDateTime && gt.etime <= p.EndDateTime)) || (gt.stime < p.StartDateTime && gt.etime > p.EndDateTime)
+                         select new { p.LicenseNumber }).ToList();
+            var licence = (from dl in db.CompanyVehicleHistories
+                           select new { dl.LicenseNumber }).ToList();
+            var freelicence = (from rl in licence
+                               where items.Contains(rl) == false
+                               select rl).ToList();
+            return PartialView("_FindedPartialView",freelicence);
+        }
 
-        //}
+
         [HttpGet]
         public ActionResult Details(int? id)
         {
