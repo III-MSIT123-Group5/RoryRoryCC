@@ -16,7 +16,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.EmpoyeeName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.EmpoyeeName, new { @class = "form-control" })            
+            @Html.TextBoxFor(m => m.EmpoyeeName, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.EmpoyeeName, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -79,14 +79,17 @@
     <div class="form-group">
         @Html.LabelFor(m => m.DepartmentID, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownList("DepartmentID", (IEnumerable<SelectListItem>)ViewBag.DepartSt, new { @class = "form-control" })
+            @*@using (Ajax.BeginForm("GetGrpIDbyDeptID", null, new AjaxOptions { UpdateTargetId = "DepartmentID.val()" }, new { id = "DepID" }))
+            {*@
+                @Html.DropDownList("DepartmentID", (IEnumerable<SelectListItem>)ViewBag.DepartST, new { @class = "form-control" })
+              @*}*@
             @Html.ValidationMessageFor(model => model.DepartmentID, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.GroupID, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownList("GroupID", (IEnumerable<SelectListItem>)ViewBag.GroupIDSt, new { @class = "form-control" })
+            @Html.DropDownList("GroupID",null, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.GroupID, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -120,12 +123,23 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryunobtrusiveajax")
+
+    <script>
+        function doSubmit(form) {
+            form.submit();
+        }
+
+
+
+
+    </script>
 
     @if (TempData["message"] != null)
     {
-    <script type="text/javascript">
+        <script type="text/javascript">
         var message = @Html.Raw(Json.Encode(TempData["message"]));
         alert(message);
-    </script>
+        </script>
     }
 }
