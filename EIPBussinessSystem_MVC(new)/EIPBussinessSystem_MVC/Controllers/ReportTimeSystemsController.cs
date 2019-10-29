@@ -115,6 +115,8 @@ namespace EIPBussinessSystem_MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ReportTimeSystem reportTimeSystem)
         {
+            var q = (reportTimeSystem.EndTime.Subtract(reportTimeSystem.StartTime)).TotalHours;
+            
 
             if (ModelState.IsValid)
             {
@@ -126,7 +128,9 @@ namespace EIPBussinessSystem_MVC.Controllers
                     ApplyDateTime = DateTime.Now,
                     StartTime = reportTimeSystem.StartTime,
                     EndTime = reportTimeSystem.EndTime,
-                    EventHours = (reportTimeSystem.EndTime - reportTimeSystem.StartTime).Hours,
+                    //EventHours = (reportTimeSystem.EndTime - reportTimeSystem.StartTime).Hours,
+                    //EventHours = reportTimeSystem.EndTime.Subtract(reportTimeSystem.StartTime).TotalHours,
+                    EventHours = q,
                     EventID = reportTimeSystem.EventID,
                     Note = reportTimeSystem.Note,
                     Discontinue = true
