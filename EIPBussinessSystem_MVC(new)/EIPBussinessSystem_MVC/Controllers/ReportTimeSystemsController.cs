@@ -121,21 +121,7 @@ namespace EIPBussinessSystem_MVC.Controllers
             if (ModelState.IsValid)
             {
 
-                db.ReportTimeSystems.Add(new Models.ReportTimeSystem
-                {
-                    ReportName = reportTimeSystem.ReportName,
-                    employeeID = 1032,
-                    ApplyDateTime = DateTime.Now,
-                    StartTime = reportTimeSystem.StartTime,
-                    EndTime = reportTimeSystem.EndTime,
-                    //EventHours = (reportTimeSystem.EndTime - reportTimeSystem.StartTime).Hours,
-                    //EventHours = reportTimeSystem.EndTime.Subtract(reportTimeSystem.StartTime).TotalHours,
-                    EventHours = q,
-                    EventID = reportTimeSystem.EventID,
-                    Note = reportTimeSystem.Note,
-                    Discontinue = true
-
-                });
+                db.Entry(reportTimeSystem).State = EntityState.Modified;
                 db.SaveChanges();
             }
 
