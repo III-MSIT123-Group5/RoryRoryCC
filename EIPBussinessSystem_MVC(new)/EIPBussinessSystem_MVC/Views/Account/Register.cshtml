@@ -51,7 +51,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownList("Gender", null, new { @class = "form-control" })
+            @Html.DropDownList("Gender", null, "--請選擇--", new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -72,45 +72,48 @@
     <div class="form-group">
         @Html.LabelFor(m => m.OfficeID, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownList("OfficeID", (IEnumerable<SelectListItem>)ViewBag.OfficeSt, new { @class = "form-control" })
+            @Html.DropDownList("OfficeID", null, "--請選擇--", new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.OfficeID, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.DepartmentID, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @*@using (Ajax.BeginForm("GetGrpIDbyDeptID", null, new AjaxOptions { UpdateTargetId = "DepartmentID.val()" }, new { id = "DepID" }))
-            {*@
-                @Html.DropDownList("DepartmentID", (IEnumerable<SelectListItem>)ViewBag.DepartST, new { @class = "form-control" })
-              @*}*@
+            @Html.DropDownList("DepartmentID", null, "--請選擇--", new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.DepartmentID, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.GroupID, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.GroupID, new { @class = "col-md-2 control-label" })   @*//連動department*@
         <div class="col-md-10">
-            @Html.DropDownList("GroupID", (IEnumerable<SelectListItem>)ViewBag.GroupIDSt, new { @class = "form-control" })
+            <div id="DivGroup">
+                @Html.DropDownList("GroupID", null, "--請選擇--", new { @class = "form-control" })
+            </div>
             @Html.ValidationMessageFor(model => model.GroupID, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.PositionID, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.PositionID, new { @class = "col-md-2 control-label" })     @*//連動group*@
         <div class="col-md-10">
-            @Html.DropDownList("PositionID", (IEnumerable<SelectListItem>)ViewBag.PositionIDSt, new { @class = "form-control" })
+            <div id="DivPosition">
+                @Html.DropDownList("PositionID", null, "--請選擇--", new { @class = "form-control" })
+            </div>
             @Html.ValidationMessageFor(model => model.PositionID, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.ManagerID, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.ManagerID, new { @class = "col-md-2 control-label" })     @*//依上述查主管名*@
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.ManagerID, new { @class = "form-control" })
+            <div id="DivManagerID">
+                @Html.TextBoxFor(m => m.ManagerID, new { @class = "form-control" })
+            </div>
             @Html.ValidationMessageFor(model => model.ManagerID, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Employed, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownList("Employed", (IEnumerable<SelectListItem>)ViewBag.EmployedSt, new { @class = "form-control" })
+            @Html.DropDownList("Employed", null, "--請選擇--", new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Employed, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -126,11 +129,20 @@
     @Scripts.Render("~/bundles/jqueryunobtrusiveajax")
 
     <script>
-        function doSubmit(form) {
-            form.submit();
+        $("#DepartmentID").bind("change", function () {
+            UpdateGroupStor();
+        });
+
+        function UpdateGroupStor() {
+            $.ajax({
+                type:"POST",
+                url: "@Url.Action("GetGrpIDbyDeptID", "Account")/" + DepartmentID.value,
+              }).done(function (result) {
+                $("#DivGroup").html(result);
+                }).fail(function (e) {
+                    alert(e.responseText);
+                });
         }
-
-
 
 
     </script>

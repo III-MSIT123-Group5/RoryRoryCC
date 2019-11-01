@@ -446,6 +446,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -671,6 +673,7 @@
     <Content Include="Views\Files\Index.cshtml" />
     <Content Include="Views\Files\Upload.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\_FindedPartialView.cshtml" />
+    <Content Include="Views\Account\_GetGrpIDbyDeptIDPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

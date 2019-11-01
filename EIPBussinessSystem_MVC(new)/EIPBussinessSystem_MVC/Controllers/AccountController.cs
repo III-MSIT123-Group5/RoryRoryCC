@@ -158,68 +158,33 @@ namespace EIPBussinessSystem_MVC.Controllers
             {
                 new SelectListItem {Text="男",Value="M" },
                 new SelectListItem {Text="女",Value="F" },
-            };
-            var OfficeSelector = new List<SelectListItem>()
-            {
-                new SelectListItem{Text="Head Office", Value="1"},
-                new SelectListItem{Text="Branch Office", Value="2"},
-            };
-            var GroupIDSelector = new List<SelectListItem>()
-            {
-                new SelectListItem{Text="無組別", Value="0"},
-                new SelectListItem{Text="總務組", Value="1"},
-                new SelectListItem{Text="人資組", Value="2"},
-                new SelectListItem{Text="行政部室", Value="3"},
-                new SelectListItem{Text="業務部室", Value="4"},
-                new SelectListItem{Text="產品部室", Value="5"},
-                new SelectListItem{Text="財務部室", Value="6"},
-                new SelectListItem{Text="資訊部室", Value="7"},
-                new SelectListItem{Text="總經理室", Value="8"},
-            };
-            var PositionIDSelector = new List<SelectListItem>()
-            {
-                new SelectListItem{Text="總經理", Value="1"},
-                new SelectListItem{Text="部長", Value="2"},
-                new SelectListItem{Text="組長", Value="3"},
-                new SelectListItem{Text="員工", Value="4"},
-            };
-            var EmployedSelector = new List<SelectListItem>()
+            };       
+            ViewBag.Employed = new List<SelectListItem>()
             {
                 new SelectListItem{Text="在職中", Value="true"},
                 new SelectListItem{Text="已離職", Value="false" },
             };
-
-
-            ViewBag.OfficeSt = OfficeSelector;
-            ViewBag.GroupIDSt = GroupIDSelector;
-            ViewBag.PositionIDSt = PositionIDSelector;
-            ViewBag.EmployedSt = EmployedSelector;
-
-            var q = db.Departments.Select(p => p);
-            var DepST = new List<SelectListItem>();          
-                foreach (var item in q)
-            {
-                DepST.Add(new SelectListItem { Text = item.name, Value = item.departmentID.ToString() });
-            }
-
-            ViewBag.DepartST = DepST;
-
+            ViewBag.DepartmentID = new SelectList(db.Departments, "departmentID", "name");
+            ViewBag.GroupID = new SelectList(db.Groups, "GroupID", "GroupName");
+            ViewBag.OfficeID = new SelectList(db.Offices, "officeID", "office_name") ;            
+            ViewBag.PositionID = new SelectList(db.Positions, "positionID", "position1");
 
             return View();
         }
-
-        [HttpPost]
-        public ActionResult GetGrpIDbyDeptID(string DepartmentID)
+               
+        [HttpPost]          //todo .ajax方法：依DepartmentID抓Group
+        public ActionResult GetGrpIDbyDeptID(int? id)
         {
-            var q = db.Groups.AsEnumerable().Where(p => p.DepartmentID == int.Parse(DepartmentID)).Select(p => p);
-            var GropST = new List<SelectListItem>();
-            foreach(var item in q)
+            var q = db.Groups.Where(p => p.DepartmentID == id );
+            ViewBag.GroupID = new SelectList(q, "GroupID", "GroupName");
+            if (q != null)
             {
-                GropST.Add(new SelectListItem { Text = item.GroupName, Value = item.GroupID.ToString() });
+                return PartialView("_GetGrpIDbyDeptIDPartial", new SelectList(q, "GroupID", "GroupName"));
             }
-            ViewBag.GroupIDSt = GropST;
-
-            return  ViewBag.GroupIDSt;
+            else
+            {
+                return HttpNotFound();
+            }
         }
 
 
