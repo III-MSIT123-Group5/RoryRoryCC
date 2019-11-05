@@ -28,7 +28,7 @@ namespace EIPBussinessSystem_MVC
             routes.MapRoute(
                name: "SelectRegister",
                url: "{controller}/{action}/{id}",
-               defaults: new { controller = "Account", action = "GetGrpIDbyDeptID", DeptID = UrlParameter.Optional }
+               defaults: new { controller = "Account", action = "GetGrpIDbyDeptID", id = UrlParameter.Optional }
            );
         }
     }

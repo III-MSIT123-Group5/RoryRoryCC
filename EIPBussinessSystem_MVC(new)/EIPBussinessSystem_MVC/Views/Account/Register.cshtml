@@ -129,22 +129,32 @@
     @Scripts.Render("~/bundles/jqueryunobtrusiveajax")
 
     <script>
-        $("#DepartmentID").bind("change", UpdateGroupStor );
+        $("#DepartmentID").bind("change", function () {
+            UpdateGroupStor();
+            UpdatePosiStor();
+        });
 
         function UpdateGroupStor() {
             $.ajax({
                 type:"Post",
-                url:"@Url.RouteUrl("SelectRegister", new { Controller = "Account", Action = "GetGrpIDbyDeptID", DeptID = 1 })",
-
-                    @*@Url.Action("GetGrpIDbyDeptID","Account"),*@
-                //data: { "DeptID": $("#DepartmentID").val() }
+                url: "@Url.Action("GetGrpIDbyDeptID", "Account")/" + DepartmentID.value ,
             }).done(function (data) {
-                alert(@Url.RouteUrl("SelectRegister", new { Controller = "Account", Action = "GetGrpIDbyDeptID", DeptID = 1 }));
                 $("#DivGroup").html(data);
                 }).fail(function (e) {
-                    alert(e.responseText);
+                    alert(e.readyState);
                 });
         }
+        function UpdatePosiStor() {
+            $.ajax({
+                type: "Post",                
+                url: "@Url.Action("GetPosiIDbyDeptID", "Account")/" + DepartmentID.value,
+            }).done(function (data) {
+                $("#DivPosition").html(data);
+                }).fail(function (e) {
+                    alert(e.readyState);
+                });
+        }
+        
 
 
     </script>

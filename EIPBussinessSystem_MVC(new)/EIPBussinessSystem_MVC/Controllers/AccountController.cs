@@ -173,9 +173,10 @@ namespace EIPBussinessSystem_MVC.Controllers
         }
                
         [HttpPost]          //todo .ajax方法：依DepartmentID抓Group
-        public ActionResult GetGrpIDbyDeptID(int? DeptID)
+        [AllowAnonymous]
+        public ActionResult GetGrpIDbyDeptID(int? id)
         {
-            var q = db.Groups.Where(p => p.DepartmentID == DeptID);
+            var q = db.Groups.Where(p => p.DepartmentID == id);
             ViewBag.GroupID = new SelectList(q, "GroupID", "GroupName");
             if (q != null)
             {
@@ -184,6 +185,31 @@ namespace EIPBussinessSystem_MVC.Controllers
             else
             {
                 return HttpNotFound();
+            }
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult GetPosiIDbyDeptID(int? id)
+        {
+            if(id != 1)
+            {
+                var q = db.Positions.Where(p => p.positionID != 1);
+                ViewBag.PositionID = new SelectList(q, "positionID", "position1");
+                if (q != null)
+                {
+                    return PartialView("_GetPosiIDbyDeptIDPartial" , new SelectList(q, "positionID", "position1"));
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
+            }
+            else
+            {
+                var q = db.Positions;
+                 ViewBag.PositionID = new SelectList(q, "positionID", "position1");
+                return PartialView("_GetPosiIDbyDeptIDPartial" , new SelectList(db.Positions, "positionID", "position1"));
             }
         }
 

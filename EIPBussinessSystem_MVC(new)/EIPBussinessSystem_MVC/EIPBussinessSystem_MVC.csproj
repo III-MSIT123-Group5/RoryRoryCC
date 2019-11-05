@@ -678,6 +678,7 @@
     <Content Include="Views\Files\Upload.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\_FindedPartialView.cshtml" />
     <Content Include="Views\Shared\_GetGrpIDbyDeptIDPartial.cshtml" />
+    <Content Include="Views\Shared\_GetPosiIDbyDeptIDPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,8 +7,7 @@
 
     <title>Business System</title>
     <link href="~/Images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css")    
     @RenderSection("styles", required: false)
 </head>
 <body>
@@ -17,9 +16,9 @@
             <div class="navbar-header">
 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span id ="s1" class="icon-bar"></span>
-                    <span id ="s2" class="icon-bar"></span>
-                    <span id ="s3" class="icon-bar"></span>
+                    <span id="s1" class="icon-bar"></span>
+                    <span id="s2" class="icon-bar"></span>
+                    <span id="s3" class="icon-bar"></span>
                 </button>
                 <a href="@Url.Action("Index","Home")" class="navbar-brand"><img src="@Url.Content("~/Images/B_icon_32.png")" alt="Home" /></a>
                 @Html.ActionLink("Business System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", Style = "color:White" })
@@ -27,8 +26,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("首頁", "Index", "Home", new { Style = "color:White" })</li>
-                    <li>@Html.ActionLink("關於", "About", "Home", new { Style = "color:White" })</li>
-                    <li>@Html.ActionLink("連絡人", "Contact", "Home", new { Style = "color:White" })</li>*@
+                        <li>@Html.ActionLink("關於", "About", "Home", new { Style = "color:White" })</li>
+                        <li>@Html.ActionLink("連絡人", "Contact", "Home", new { Style = "color:White" })</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -39,7 +38,7 @@
     @*側邊功能列表*@
     <div class="col-sm-3 col-md-2 sidebar" style="float:left;width:310px;font-family:Raleway;">
         <ul class="nav nav-sidebar">
-            <li>@Html.ActionLink("  公佈欄", "Index", "BulletinBoards", null, new { Style = "color:#483d8b", @class="glyphicon glyphicon-bullhorn" })</li>
+            <li>@Html.ActionLink("  公佈欄", "Index", "BulletinBoards", null, new { Style = "color:#483d8b", @class = "glyphicon glyphicon-bullhorn" })</li>
             @*下拉式功能*@
             <li class="nav-item" style="width:310px">
                 <a class="nav collapsed" href="#" data-toggle="collapse" data-target="#collapseRequisition" aria-expanded="true" aria-controls="collapseRequisition" style="width:310px">
@@ -58,8 +57,8 @@
                     </div>
                 </div>
             </li>
-            <li>@Html.ActionLink("  工時回報", "Index", "ReportTimeSystems", null, new { Style = "color:#483d8b", @class= "glyphicon glyphicon-time" })</li>
-            <li>@Html.ActionLink("  檔案管理", "Index", "Files", null, new { Style = "color:#483d8b", @class= "glyphicon glyphicon-file" })</li>
+            <li>@Html.ActionLink("  工時回報", "Index", "ReportTimeSystems", null, new { Style = "color:#483d8b", @class = "glyphicon glyphicon-time" })</li>
+            <li>@Html.ActionLink("  檔案管理", "Index", "Files", null, new { Style = "color:#483d8b", @class = "glyphicon glyphicon-file" })</li>
             @*下拉式功能*@
             <li class="nav-item" style="width:310px">
                 <a class="nav collapsed" href="#" data-toggle="collapse" data-target="#collapseBusinessCar" aria-expanded="true" aria-controls="collapseBusinessCar" style="width:310px">
@@ -78,7 +77,7 @@
         </ul>
 
     </div>
-   
+
     <div class="container body-content" style="width:1500px">
         @RenderBody()
         <hr />
@@ -86,7 +85,7 @@
             <p>&copy; @DateTime.Now.Year - MSIT123第5組專題</p>
         </footer>
     </div>
-
+    @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 
