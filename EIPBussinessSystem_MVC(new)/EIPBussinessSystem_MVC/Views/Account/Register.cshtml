@@ -129,16 +129,18 @@
     @Scripts.Render("~/bundles/jqueryunobtrusiveajax")
 
     <script>
-        $("#DepartmentID").bind("change", function () {
-            UpdateGroupStor();
-        });
+        $("#DepartmentID").bind("change", UpdateGroupStor );
 
         function UpdateGroupStor() {
             $.ajax({
-                type:"POST",
-                url: "@Url.Action("GetGrpIDbyDeptID", "Account")/" + DepartmentID.value,
-              }).done(function (result) {
-                $("#DivGroup").html(result);
+                type:"Post",
+                url:"@Url.RouteUrl("SelectRegister", new { Controller = "Account", Action = "GetGrpIDbyDeptID", DeptID = 1 })",
+
+                    @*@Url.Action("GetGrpIDbyDeptID","Account"),*@
+                //data: { "DeptID": $("#DepartmentID").val() }
+            }).done(function (data) {
+                alert(@Url.RouteUrl("SelectRegister", new { Controller = "Account", Action = "GetGrpIDbyDeptID", DeptID = 1 }));
+                $("#DivGroup").html(data);
                 }).fail(function (e) {
                     alert(e.responseText);
                 });

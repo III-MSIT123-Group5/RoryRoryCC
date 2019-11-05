@@ -173,13 +173,13 @@ namespace EIPBussinessSystem_MVC.Controllers
         }
                
         [HttpPost]          //todo .ajax方法：依DepartmentID抓Group
-        public ActionResult GetGrpIDbyDeptID(int? id)
+        public ActionResult GetGrpIDbyDeptID(int? DeptID)
         {
-            var q = db.Groups.Where(p => p.DepartmentID == id );
+            var q = db.Groups.Where(p => p.DepartmentID == DeptID);
             ViewBag.GroupID = new SelectList(q, "GroupID", "GroupName");
             if (q != null)
             {
-                return PartialView("_GetGrpIDbyDeptIDPartial", new SelectList(q, "GroupID", "GroupName"));
+                return PartialView("_GetGrpIDbyDeptIDPartial", new SelectList(q, "GroupID", "GroupName"));                
             }
             else
             {
