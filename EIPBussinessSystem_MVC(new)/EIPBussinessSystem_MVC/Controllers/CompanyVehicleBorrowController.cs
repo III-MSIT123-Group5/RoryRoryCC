@@ -16,24 +16,59 @@ namespace EIPBussinessSystem_MVC.Controllers
         // GET: CompanyVehicleBorrow
         public ActionResult Index()
         {
-            var companyVehicleHistories = db.CompanyVehicleHistories.Include(c => c.CompanyVehicle).Include(c => c.Employee);
-            return View(companyVehicleHistories);
+            //var companyVehicles = db.CompanyVehicles.Include(c => c.Office);
+            //return View(companyVehicles.ToList());
+            ViewBag.Title = "公務車租借";
+
+            return View();
         }
 
+        //public ActionResult Finded2(string LicenseNumber)
+        //{
 
-        [HttpPost]
-        public ActionResult Finded(getTimeViewModels gt)
+        //}
+
+
+        public ActionResult Finded1()
         {
-            List<getTimeViewModels> list11 = new List<getTimeViewModels>();
-            var items = (from p in db.CompanyVehicleHistories
-                         where (gt.stime >= p.StartDateTime && gt.etime <= p.EndDateTime) || ((gt.stime >= p.StartDateTime && gt.stime < p.EndDateTime) && gt.etime > p.EndDateTime) || (gt.stime < p.StartDateTime && (gt.etime > p.StartDateTime && gt.etime <= p.EndDateTime)) || (gt.stime < p.StartDateTime && gt.etime > p.EndDateTime)
-                         select new { p.LicenseNumber }).ToList();
-            var licence = (from dl in db.CompanyVehicleHistories
-                           select new { dl.LicenseNumber }).ToList();
-            var freelicence = (from rl in licence
-                               where items.Contains(rl) == false
-                               select rl).ToList();
-            return PartialView("_FindedPartialView",freelicence);
+            var Canuse = from c in db.CompanyVehicles
+                         select new
+                         {
+                             c.LicenseNumber,
+                         };
+            return Json(Canuse, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Finded()
+        {
+            //var items = (from p in db.CompanyVehicleHistories
+            //             where (Stime >= p.StartDateTime && Etime <= p.EndDateTime) || ((Stime >= p.StartDateTime && Stime < p.EndDateTime) && Etime > p.EndDateTime) || (Stime < p.StartDateTime && (Etime > p.StartDateTime && Etime <= p.EndDateTime)) || (Stime < p.StartDateTime && Etime > p.EndDateTime)
+            //             select new { p.LicenseNumber }).ToList();
+            //var licence = (from dl in db.CompanyVehicles
+            //               select new
+            //               {
+            //                   dl.LicenseNumber,
+            //                   dl.brand,
+            //                   dl.serial,
+            //                   dl.MaxPassenger,
+            //                   dl.officeID,
+            //               }).ToList();
+            //var freelicence = from rl in licence
+            //                  where rl.LicenseNumber.Contains(items) == false
+            //                  select new
+            //                  {
+            //                      rl.LicenseNumber,
+            //                  };
+            var items = from p in db.CompanyVehicleHistories
+                        select new
+                        {
+                            p.LicenseNumber,
+                            p.StartDateTime,
+                            p.EndDateTime
+
+                        };
+            var jsonitems = Json(items);
+            return Json(items,JsonRequestBehavior.AllowGet);
         }
 
 
