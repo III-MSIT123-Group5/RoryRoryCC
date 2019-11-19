@@ -339,7 +339,7 @@ namespace BusinessSystem
                     break;
             }
         }               
-
+        //=======================
         private void cmbDepartmentID_MouseClick(object sender, MouseEventArgs e)
         {
             switch (this.cmbPositionID.SelectedIndex)

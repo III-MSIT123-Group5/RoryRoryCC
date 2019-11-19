@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EIPBussinessSystem_MVC.Models.CompanyVehicleHistory>
+﻿@model IEnumerable<EIPBussinessSystem_MVC.Models.CompanyVehicle>
 @section styles
 {
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -11,47 +11,27 @@
 <form id="addForm" action="Useradd.action" typeof="post">
     <div style="width:300px;border:1px solid black;margin:20px;">
         <h3>起始時間</h3>
-        <input type="datetime-local" id="date1" style="width:360px" />
-        @*<select id="firstLevel" style="width:100px" class="form-control">
-                <option>上午</option>
-                <option>下午</option>
-            </select>*@
-        @*<select id="secondLevel" style="width:100px" class="form-control">
-                <option>08:00</option>
-                <option>09:00</option>
-                <option>10:00</option>
-                <option>11:00</option>
-                <option>12:00</option>
-            </select>*@
+        <input type="date" id="date1" style="width:360px" />
+        <select id="firstLevel" style="width:100px" class="form-control"></select>
+        <select id="secondLevel" style="width:100px" class="form-control"></select>
         <br />
     </div>
 
     <div style="width:300px;border:1px solid black;margin:20px">
         <h3>結束時間</h3>
-        <input type="datetime-local" id="date2" style="width:360px" />
-        @*<select id="firstLevel1" style="width:100px" class="form-control">
-                <option>上午</option>
-                <option>下午</option>
-            </select>
-            <select id="secondLevel1" style="width:100px" class="form-control">
-                <option>08:00</option>
-                <option>09:00</option>
-                <option>10:00</option>
-                <option>11:00</option>
-                <option>12:00</option>
-            </select>*@
+        <input type="date" id="date2" style="width:360px" />
+        <select id="firstLevel1" style="width:100px" class="form-control"></select>
+        <select id="secondLevel1" style="width:100px" class="form-control"></select>
         <br />
         <input type="button" id="btn1" class="btn-success" value="查詢" />
     </div>
 </form>
-
+<div id="test1"></div>
 
 
 <div id="succ"></div>
 
-@*<table class="table" id="succ">
-    @Html.Partial("_FindedPartialView")
-</table>*@
+
 
 
 
@@ -60,136 +40,245 @@
 @section scripts
 {
     <script>
-        $("#btn1").bind("click", function () {
-            UpdateVehicle();
+        //
+        //各種變數
+        //
+        var firL = document.querySelector("#firstLevel")
+        var secL = document.querySelector("#secondLevel")
+        //
+        //
+        //
+        $(document).ready(function () {
+            selecttime();
         })
-        function UpdateVehicle() {
-            var data1 = {
-                stime :  $("#date1").val(),
-                etime :  $("#date2").val()
-            };
+        $("#firstLevel").change(function () {
+            changeLevel();
+
+        })
+        $("#firstLevel1").change(function () {
+            changeLevel1();
+        })
+        $("#btn1").click(function () {
+            getDate();
+        })
+
+        //
+        //抓取年月日
+        //
+        function getDate() {
+            var line1 = "-";
+            var pik1 = ":";
+            //成功取起始時間的年分,月份,日期
+            var dt = $("#date1").val();
+            var d = new Date(dt);
+            var yearObj = d.getFullYear();
+            var monthObj = d.getMonth()+1;
+            var dateObj = d.getDate();
+            var ht = $("#secondLevel").val();
+            //成功取結束時間的年分,月份,日期
+            var dt = $("#date2").val();
+            var d1 = new Date(dt);
+            var yearObj1 = d1.getFullYear();
+            var monthObj1 = d1.getMonth() + 1;
+            var dateObj1 = d1.getDate();
+            var ht1 = $("#secondLevel1").val();
+            //
+            //需要的時間格式
+            //
+            var dtS = yearObj + line1 + monthObj + line1 + dateObj + " " + ht + pik1 + 0 + pik1 + 0;
+            var dtE = yearObj1 + line1 + monthObj1 + line1 + dateObj1 + " " + ht1 + pik1 + 0 + pik1 + 0  ;
+            //
+            //送入資料庫
+            //
+            //
+            //創建變數===================
+            //
+            var NeedLN = [];
+            var UseLN = [];
+            var NoUseLN = [];
+            var StimeU = [];
+            var EtimeU = [];
+            var count = 0;
+            //
+            //============================
+            //
+            //
+            //取所有車牌========================
+            //
             $.ajax({
-                url: "@Url.Action("Finded","CompanyVehicleBorrow")",                
-                type: "post",               
-                data: JSON.stringify(data1),
-                success: function (result) { $("#succ").html(result); },
-                error: function (e) { alert(e.responseText);},      
-               
-            });
+                url: '@Url.Action("Finded1","CompanyVehicleBorrow")',
+                type: "GET",
+                dataType: "json",
+            }).done(function (u) {
+                for (var i = 0,max = u.length; i < max; i++) {
+                    UseLN[i] = u[i].LicenseNumber;
+                }
+                console.log(UseLN);
+                })
+            //
+            //===================================
+            //
+            //
+            //取HisTory的車牌，起始時間，歸還時間
+            //
+            $.ajax({
+                url:'@Url.Action("Finded", "CompanyVehicleBorrow")',
+                type: "GET",
+                dataType:"json",
+            }).done(function (p) {
+                for (var j = 0, max = p.length; j < max; j++) {
+                    var Stim = parseInt(String(p[j].StartDateTime).substring(6, 19));
+                    var Etim = parseInt(String(p[j].EndDateTime).substring(6, 19));
+                    var Stime = timestampToTime(Stim);
+                    var Etime = timestampToTime(Etim);
+                    NoUseLN[j] = p[j].LicenseNumber;
+                    StimeU[j] = Stime;
+                    EtimeU[j] = Etime;
+
+                    console.log(p[0].StartDateTime);
+                }
+                })
+            //
+            //=============================================
+            //
+            
         }
-    </script>
+                @*$.ajax({
+                    url: '@Url.Action("Finded","CompanyVehicleBorrow")',
+                    type: "GET",
+                    dataType: "json",
+                }).done(function (p) {*@
+                    //console.log(p.LicenseNumber)
+                    //console.log(u.LicenseNumber)
+                    //var NoUseLN = [];
+                    //var count = 0;
+                    //for (var i = 0, max = u.length; i < max; i++) {
+                    //    for (var j = 0, max1 = p.length; j < max1; j++) {
+                    //        var Stim = parseInt(String(p[j].StartDateTime).substring(6, 19));
+                    //        var Etim = parseInt(String(p[j].EndDateTime).substring(6, 19));
+                    //        var Stime = timestampToTime(Stim);
+                    //        var Etime = timestampToTime(Etim);
+                    //        //判斷
+                    //        if ((dtS >= Stime && dtE <= Etime) ||
+                    //            ((dtS >= Stime && dtS < Etime) && dtE > Etime) ||
+                    //            (dtS < Stime && (dtE > Stime && Etime)) ||
+                    //            (dtS < Stime && dtE > Etime))
+                    //        {
+                    //            NoUseLN[count] = p.LicenseNumber;
+                    //            count++;
+                    //        }
+                    //    }
+                    //    if (p[i].LicenseNumber.indexof(NoUseLN) !== -1) {
+                    //        console.log(p[i].LicenseNumber);
+                    //    }
+                    //}
 
+                
+                //-----------------
+                //var Stim = parseInt(String(p[i].StartDateTime).substring(6, 19));
+                //var Etim = parseInt(String(p[i].EndDateTime).substring(6, 19));
+                //var Stime = timestampToTime(Stim);
+                //var Etime = timestampToTime(Etim);
+                //console.log(Stime);
+                //console.log(Etime);
+                //-----------------
+                    @*if ((dtS >= p[i].StartDateTime && dtE <= p[i].EndDateTime) || ((dtS >= p[i].StartDateTime && dtS < p[i].EndDateTime) && dtE > p[i].EndDateTime) || (dtS < p[i].StartDateTime && (dtE > p[i].StartDateTime && dtE <= p[i].EndDateTime)) || (dtS < p[i].StartDateTime && dtE > p[i].EndDateTime)) {
+                        $.ajax({
+                            url: '@Url.Action("Finded1","CompanyVehicleBorrow")',
+                            type: "GET",
+                            dataType:"json"
+                        }).done(function (u) {
+                        })*@
+            //})
+        
+        function timestampToTime(timestamp) {
 
+            var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
 
-    @*@*開始時間*@
-    <script>
-        var data1 = ["08:00", "09:00", "10:00", "11:00", "12:00"];
-        var data2 = ["01:00", "02:00", "03:00", "04:00", "05:00"];
+            var Y = date.getFullYear() + '-';
 
-        $("#firstLevel").bind("change", function () {
+            var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+
+            var D = date.getDate() + ' ';
+
+            var h = date.getHours() + ':';
+
+            var m = date.getMinutes() + ':';
+
+            var s = date.getSeconds();
+
+            return Y + M + D + h + m + s;
+
+        }
+        //if ((dtS >= p[i].StartDateTime && dtE <= p[i].EndDateTime) || ((dtS >= p[i].StartDateTime && dtS < p[i].EndDateTime) && dtE > p[i].EndDateTime) || (dtS < p[i].StartDateTime && (dtE > p[i].StartDateTime && dtE <= p[i].EndDateTime)) || (dtS < p[i].StartDateTime && dtE > p[i].EndDateTime)) {
+
+        //
+        //產生起始時間
+        //
+        function selecttime() {
+            //時段產生
+            $("#firstLevel").append('<option value="0">上午</option>')
+            $("#firstLevel").append('<option value="1">下午</option>')
+            $("#firstLevel1").append('<option value="0">上午</option>')
+            $("#firstLevel1").append('<option value="1">下午</option>')
+            //時間產生
+            for (var i = 8; i <= 12; i++) {
+                $("#secondLevel").append(`<option value = "${i}">${i}:00</option>`)
+                $("#secondLevel1").append(`<option value = "${i}">${i}:00</option>`)
+            }
+        }
+        //
+        //起始時間的firstLevel的Change事件
+        //
+        function changeLevel() {
+            //
+            //起始時間change事件===========================================
+            //
             if ($("#firstLevel option:selected").text() == "上午") {
                 $("#secondLevel").empty();
-                for (var i = 0; i < data1.length; i++)
-                    $("#secondLevel").append(`<option>${data1[i]} </option>`);
+                for (var i = 8; i <= 12; i++) {
+                    $("#secondLevel").append(`<option value = "${i}">${i}:00</option>`)
+                }
             }
             else if ($("#firstLevel option:selected").text() == "下午") {
                 $("#secondLevel").empty();
-                for (var i = 0; i < data2.length; i++)
-                    $("#secondLevel").append(`<option> ${data2[i]}</option>`);
+                for (var i = 13; i <= 17; i++) {
+                    $("#secondLevel").append(`<option value = "${i}">${i}:00</option>`)
+                }
             }
-        });
-        $("#secondLevel").bind("change", function () {
-            if ($("#secondLevel option:selected").text() == "08:00")
-            {
-                $("#date1").setHours(8)
-                $("#date1").setMinutes(0)
-                $("#date1").setSeconds(0)
-
-
-            }
-
-
-        })
-        @*結束時間*@
-
-    </script>
-    <script>
-        @* 開始時間 *@
-        $("#btn1").bind("click", function () {
-            if ($("#secondLevel option:selected").text() == "08:00") {
-                var st = $("#date1").val();
-                st.setHours(17);
-            }
-            else if ($("#secondLevel option:selected").text() == "09:00") {
-                $("#date1").setHours(9);
-            }
-            else if ($("#secondLevel option:selected").text() == "10:00") {
-                $("#date1").setHours(10);
-            }
-            else if ($("#secondLevel option:selected").text() == "11:00") {
-                $("#date1").setHours(11);
-            }
-            else if ($("#secondLevel option:selected").text() == "12:00") {
-                $("#date1").setHours(12);
-            }
-            else if ($("#secondLevel option:selected").text() == "01:00") {
-                $("#date1").setHours(13);
-            }
-            else if ($("#secondLevel option:selected").text() == "02:00") {
-                $("#date1").setHours(14);
-            }
-            else if ($("#secondLevel option:selected").text() == "03:00") {
-                $("#date1").setHours(15);
-            }
-            else if ($("#secondLevel option:selected").text() == "04:00") {
-                $("#date1").setHours(16);
-            }
-            else if ($("#secondLevel option:selected").text() == "05:00") {
-                $("#date1").setHours(17);
-            }
-        })
-        @*結束時間*@
-        $("#btn1").bind("click", function () {
-            if ($("#secondLevel1 option:selected").text() == "08:00") {
-                $("#date2").setHours(8);
-            }
-            else if ($("#secondLevel1 option:selected").text() == "09:00") {
-                $("#date2").setHours(9);
-            }
-            else if ($("#secondLevel1 option:selected").text() == "10:00") {
-                $("#date2").setHours(10);
-            }
-            else if ($("#secondLevel1 option:selected").text() == "11:00") {
-                $("#date2").setHours(11);
-            }
-            else if ($("#secondLevel1 option:selected").text() == "12:00") {
-                $("#date2").setHours(12);
-            }
-            else if ($("#secondLevel1 option:selected").text() == "01:00") {
-                $("#date2").setHours(13);
-            }
-            else if ($("#secondLevel1 option:selected").text() == "02:00") {
-                $("#date2").setHours(14);
-            }
-            else if ($("#secondLevel1 option:selected").text() == "03:00") {
-                $("#date2").setHours(15);
-            }
-            else if ($("#secondLevel1 option:selected").text() == "04:00") {
-                $("#date2").setHours(16);
-            }
-            else if ($("#secondLevel1 option:selected").text() == "05:00") {
-                var dt = $("#date2").val();
-                dt.setHours(17);
-            }
-
-        });
-    </script>
-    <script>
-        $("#btn1").bind("click", function () {
-            alert($("#date1").val())
+            //
+            //===============================================================
+            //
         }
-        );
-    </script>*
+        //
+        //結束時間的firstLevel的Change事件
+        //
+        function changeLevel1() {
+            //
+            //結束時間change事件===========================================
+            //
+            if ($("#firstLevel1 option:selected").text() == "上午") {
+                $("#secondLevel1").empty();
+                for (var i = 8; i <= 12; i++) {
+                    $("#secondLevel1").append(`<option value = "${i}">${i}:00</option>`)
+                }
+            }
+            else if ($("#firstLevel1 option:selected").text() == "下午") {
+                $("#secondLevel1").empty();
+                for (var i = 13; i <= 17; i++) {
+                    $("#secondLevel1").append(`<option value = "${i}">${i}:00</option>`)
+                }
+            }
+            //
+            //===============================================================
+            //
+        }
+
+    </script>
+
+
+
+
 
 
 }

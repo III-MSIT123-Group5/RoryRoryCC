@@ -5,10 +5,10 @@ using System.Web;
 
 namespace EIPBussinessSystem_MVC.Models
 {
-    public class getTimeViewModels
+    public class GetTimeViewModels
     {
-        public DateTime stime { get; set; }
-        public DateTime etime { get; set; }
-        public string id { get; set; }
+        public string Stime { get; set; }
+        public string Etime { get; set; }
+        public string Id { get; set; }
     }
 }
