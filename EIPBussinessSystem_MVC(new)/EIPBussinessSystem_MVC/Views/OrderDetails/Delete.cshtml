@@ -95,7 +95,7 @@
         @Html.AntiForgeryToken()
 
     <div class="form-actions no-color">
-        <button class="btn btn-danger" type="submit" style="color:white"><i class="glyphicon glyphicon-trash"> 刪除</i></button> |
+        <button class="btn btn-danger" type="submit" style="color:white" onclick="return confirm('確定要刪除嗎?')"><i class="glyphicon glyphicon-trash"> 刪除</i></button> |
         @Html.ActionLink("返回請購明細", "Index")
     </div>
     }

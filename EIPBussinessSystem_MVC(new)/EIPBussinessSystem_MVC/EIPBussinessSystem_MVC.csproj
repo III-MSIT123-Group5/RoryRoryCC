@@ -71,6 +71,7 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -417,6 +418,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="Images\favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -686,6 +688,7 @@
     <Content Include="Views\Files\Index.cshtml" />
     <Content Include="Views\Files\Upload.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\_FindedPartialView.cshtml" />
+    <Content Include="calendar.cshtml" />
     <Content Include="Views\Shared\_GetGrpIDbyDeptIDPartial.cshtml" />
     <Content Include="Views\Shared\_GetPosiIDbyDeptIDPartial.cshtml" />
     <Content Include="Views\Shared\_GetManagerIDPartial.cshtml" />
@@ -743,7 +746,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51179</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51179/</IISUrl>
+          <IISUrl>http://localhost:51192/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

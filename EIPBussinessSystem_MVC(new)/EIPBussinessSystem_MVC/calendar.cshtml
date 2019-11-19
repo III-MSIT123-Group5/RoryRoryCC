@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "calendar";
+}
+
+<h2>calendar</h2>
+
+<script>
+    $(document).ready(
+        function load() {
+            for (var i = 0; i < 6; i++)
+            {
+                for (var j = 0; i < 4; i++)
+                {
+                    document.getElementById("Calendar1").innerHTML = "\"HELLO\"";
+                    
+                }
+            }
+
+            document.getElementById("Calendar1").innerHTML = 0;
+                
+        }
+    )
+
+</script>
+
+<body>
+    <div id="Calendar1">
+        <table>
+            <tr>
+                <th>
+                    <label>星期一</label>
+                    <label>星期一</label>
+                    <label>星期一</label>
+                    <label>星期一</label>
+                    <label>星期一</label>
+                </th>
+                <td></td>
+
+            </tr>
+        </table>
+    </div>
+</body>
