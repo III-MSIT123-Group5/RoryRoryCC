@@ -8,7 +8,7 @@
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 @section styles{
-   @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css")
 }
 
 @using (Html.BeginForm())
@@ -80,7 +80,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Note, new { @class = "not" } )
+                @Html.TextAreaFor(model => model.Note, new { @class = "not" })
                 @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -118,10 +118,15 @@
             </div>
         </div>
     </div>
-
+    
+    
 
 }
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
 }
+
