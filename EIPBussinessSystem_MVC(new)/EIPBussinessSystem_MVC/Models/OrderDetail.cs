@@ -11,29 +11,15 @@ namespace EIPBussinessSystem_MVC.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class OrderDetail
     {
-        [Display(Name = "請購單編號")]
         public int OrderDetailID { get; set; }
-
-        [Display(Name = "表單編號")]
         public Nullable<int> OrderID { get; set; }
-
-        [Display(Name = "請購原因")]
         public string Note { get; set; }
-
-        [Display(Name = "產品名稱")]
         public string ProductName { get; set; }
-
-        [Display(Name = "單價")]
         public decimal UnitPrice { get; set; }
-
-        [Display(Name = "數量")]
         public int Quantity { get; set; }
-
-        [Display(Name = "總價")]
         public Nullable<decimal> TotalPrice { get; set; }
     
         public virtual RequisitionMain RequisitionMain { get; set; }

@@ -24,7 +24,7 @@
         <EntityTypeShape EntityType="BusinessDataBaseModel.Department" Width="1.5" PointX="0.75" PointY="20.375" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Employee" Width="1.5" PointX="5.25" PointY="24.125" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Event" Width="1.5" PointX="5.25" PointY="21.25" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.File" Width="1.5" PointX="7.5" PointY="49.5" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.File" Width="1.5" PointX="4.625" PointY="37.375" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Group" Width="1.5" PointX="3" PointY="33.625" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Leave" Width="1.5" PointX="6.75" PointY="6.75" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.MeetingRoom" Width="1.5" PointX="5.25" PointY="33.125" />
@@ -84,6 +84,9 @@
         <AssociationConnector Association="BusinessDataBaseModel.FK_RequisitionMain_ReportCategory" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Suggestion_history_Suggestion" />
         <AssociationConnector Association="BusinessDataBaseModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.EventCalendar" Width="1.5" PointX="13.5" PointY="18.625" />
+        <AssociationConnector Association="BusinessDataBaseModel.FK_EventCalendar_Department" />
+        <AssociationConnector Association="BusinessDataBaseModel.FK_EventCalendar_Employee" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
