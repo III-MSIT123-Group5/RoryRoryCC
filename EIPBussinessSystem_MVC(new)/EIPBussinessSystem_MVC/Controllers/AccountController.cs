@@ -214,33 +214,41 @@ namespace EIPBussinessSystem_MVC.Controllers
             }
         }
 
-        [HttpPost]           //todo .ajax方法：
+        [HttpPost]           //todo .get json方法：
         [AllowAnonymous]
         public ActionResult GetManagerID(int DepartmentID, int GroupID, int PositionID)
         {
-            switch (PositionID)
+            if (PositionID == 4)    //員工     
             {
-                case 4:     //員工                    
-                    var qposiEmp=db.Employees.Where(p=>p.DepartmentID==DepartmentID && p.GroupID==GroupID&&p.PositionID==PositionID-1);
-                    ViewBag.ManagerID = new SelectList(qposiEmp, "employeeID", "EmployeeName");
-                    if (qposiEmp !=null)  //有組長
-                    {                        
-                        return PartialView("_GetManagerIDPartial", new SelectList(qposiEmp, "employeeID", "EmployeeName"));
-                    }
-                    else     //無組長
-                    {
-                        var qposinoncapEmp = db.Employees.Where(p => p.DepartmentID == DepartmentID && p.GroupID == GroupID && p.PositionID == PositionID - 2);
-                        ViewBag.ManagerID = new SelectList(qposinoncapEmp, "employeeID", "EmployeeName");
-                        return PartialView("_GetManagerIDPartial", new SelectList(qposiEmp, "employeeID", "EmployeeName"));
-                    }
-                    break;
+                var qposiEmp = db.Employees.Where(p => p.DepartmentID == DepartmentID && p.GroupID == GroupID && p.PositionID == PositionID - 1).Select(p => new { p.employeeID, p.EmployeeName });
+                //ViewBag.ManagerID = new SelectList(qposiEmp, "employeeID", "EmployeeName");
+                if (qposiEmp != null)  //有組長
+                {
+                    return Json(qposiEmp, JsonRequestBehavior.AllowGet);
+                }
+                else     //無組長
+                {
+                    var qposinoncapEmp = db.Employees.Where(p => p.DepartmentID == DepartmentID && p.GroupID == GroupID && p.PositionID == PositionID - 2).Select(p => new { p.employeeID, p.EmployeeName });
+                    //ViewBag.ManagerID = new SelectList(qposinoncapEmp, "employeeID", "EmployeeName");
+                    return Json(qposinoncapEmp, JsonRequestBehavior.AllowGet);
+                }
+            }
+            //else if (PositionID == 3)
+            //{
 
-                default:
-                    var qposiGM = db.Employees.Where(P => P.PositionID == 0);
-                    ViewBag.ManagerID = new SelectList(qposiGM, "employeeID", "EmployeeName");
-                    return PartialView("_GetManagerIDPartial", new SelectList(qposiGM, "employeeID", "EmployeeName"));
-                    break;
-            }            
+            //}
+            //else if (PositionID == 2)
+            //{
+
+            //}
+            else
+            {
+                var qposiGM = db.Employees.Where(P => P.PositionID == 1).Select(p => new { p.employeeID, p.EmployeeName });
+                //ViewBag.ManagerID = new SelectList(qposiGM, "employeeID", "EmployeeName");
+                return PartialView("_GetManagerIDPartial", new SelectList(qposiGM, "employeeID", "EmployeeName"));
+            }
+              
+                       
         }
 
         //

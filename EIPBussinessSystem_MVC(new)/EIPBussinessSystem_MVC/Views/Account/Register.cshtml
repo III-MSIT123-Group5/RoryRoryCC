@@ -105,7 +105,7 @@
         @Html.LabelFor(m => m.ManagerID, new { @class = "col-md-2 control-label" })     @*//依上述查主管名*@
         <div class="col-md-10">
             <div id="DivManagerID">
-                @Html.DropDownList("ManagerID", null, "--請選擇--", new { @class = "form-control"})
+                @Html.DropDownList("ManagerID", null, "--請選擇--", new { @class = "form-control" , id="IDManageIDst"})
             </div>
             @Html.ValidationMessageFor(model => model.ManagerID, "", new { @class = "text-danger" })
         </div>
@@ -149,7 +149,7 @@
         }
         function UpdatePosiStor() {
             $.ajax({
-                type: "Post",                
+                type: "Post",
                 url: "@Url.Action("GetPosiIDbyDeptID", "Account")/" + DepartmentID.value,
             }).done(function (data) {
                 $("#DivPosition").html(data);
@@ -157,17 +157,25 @@
                     alert(e.readyState);
                 });
         }
-        function UpateManageStor() {           
-            $.ajax({
+        function UpateManageStor() {
+            $.getJSON("@Url.Action("GetManagerID", "Account")/" + DepartmentID.value+"/" + GroupID.value + "/" + PositionID.value, function (datas) {
+                $("#IDManageIDst").empty();
+                datas.forEach(function (item) {
+                    var ops = new Option(item.employeeID, item.EmployeeName);
+                    $("#IDManageIDst").append(ops);
+                });
+            });
+
+            @*$.ajax({
                 type: "Post",
-                url: "@Url.RouteUrl("GetManagerIDRoute", new { controller = "Account", action = "GetManagerID" })/" + DepartmentID.value + "/" + GroupID.value + "/" + PositionID.value ,               
+                url: "@Url.Action("GetManagerID", "Account")/" + GroupID.value + "/" + PositionID.value ,
             }).done(function (data) {
                 $("#DivManagerID").html(data);
             }).fail(function (e) {
                 alert(e.readyState);
-            });
+            });*@
         }
-        
+
 
 
     </script>
