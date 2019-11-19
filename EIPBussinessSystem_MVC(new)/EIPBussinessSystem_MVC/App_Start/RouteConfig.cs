@@ -11,7 +11,7 @@ namespace EIPBussinessSystem_MVC
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");                        
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
                 name: "Default",
@@ -30,6 +30,13 @@ namespace EIPBussinessSystem_MVC
                url: "{controller}/{action}/{id}",
                defaults: new { controller = "Account", action = "GetGrpIDbyDeptID", id = UrlParameter.Optional }
            );
+
+            routes.MapRoute(
+                name: "GetManagerIDRoute",
+                url: "{ controller }/{action}/{DepartmentID}/{GroupID}/{PositionID}",
+                defaults: new { controller = "Account", action = "GetManagerID", DepartmentID = UrlParameter.Optional, GroupID = UrlParameter.Optional, PositionID = UrlParameter.Optional}
+                   );
+
         }
     }
 }

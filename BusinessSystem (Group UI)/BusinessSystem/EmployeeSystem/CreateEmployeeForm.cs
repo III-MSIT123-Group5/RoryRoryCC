@@ -304,7 +304,7 @@ namespace BusinessSystem
                                    && f.DepartmentID == this.cmbDepartmentID.SelectedIndex
                                    && f.PositionID == this.cmbPositionID.SelectedIndex    //cmbPositionID.SelectedIndex+1才是該員的職稱
                                    select f.employeeID;
-                    if (QposiEmp.Any())
+                    if (QposiEmp !=null)
                     {
                         this.cmbManagerID.DataSource = QposiEmp.ToList();
                     }
