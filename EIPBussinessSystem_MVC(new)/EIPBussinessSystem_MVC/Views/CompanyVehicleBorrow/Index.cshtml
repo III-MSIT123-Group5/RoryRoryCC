@@ -72,7 +72,7 @@
             var dt = $("#date1").val();
             var d = new Date(dt);
             var yearObj = d.getFullYear();
-            var monthObj = d.getMonth()+1;
+            var monthObj = d.getMonth() + 1;
             var dateObj = d.getDate();
             var ht = $("#secondLevel").val();
             //成功取結束時間的年分,月份,日期
@@ -86,7 +86,7 @@
             //需要的時間格式
             //
             var dtS = yearObj + line1 + monthObj + line1 + dateObj + " " + ht + pik1 + 0 + pik1 + 0;
-            var dtE = yearObj1 + line1 + monthObj1 + line1 + dateObj1 + " " + ht1 + pik1 + 0 + pik1 + 0  ;
+            var dtE = yearObj1 + line1 + monthObj1 + line1 + dateObj1 + " " + ht1 + pik1 + 0 + pik1 + 0;
             //
             //送入資料庫
             //
@@ -94,10 +94,12 @@
             //創建變數===================
             //
             var NeedLN = [];
+            var need = 0;
             var UseLN = [];
             var NoUseLN = [];
             var StimeU = [];
             var EtimeU = [];
+            var countarray = [];
             var count = 0;
             //
             //============================
@@ -110,11 +112,11 @@
                 type: "GET",
                 dataType: "json",
             }).done(function (u) {
-                for (var i = 0,max = u.length; i < max; i++) {
+                for (var i = 0, max = u.length; i < max; i++) {
                     UseLN[i] = u[i].LicenseNumber;
                 }
                 console.log(UseLN);
-                })
+            })
             //
             //===================================
             //
@@ -122,9 +124,9 @@
             //取HisTory的車牌，起始時間，歸還時間
             //
             $.ajax({
-                url:'@Url.Action("Finded", "CompanyVehicleBorrow")',
+                url: '@Url.Action("Finded", "CompanyVehicleBorrow")',
                 type: "GET",
-                dataType:"json",
+                dataType: "json",
             }).done(function (p) {
                 for (var j = 0, max = p.length; j < max; j++) {
                     var Stim = parseInt(String(p[j].StartDateTime).substring(6, 19));
@@ -134,10 +136,35 @@
                     NoUseLN[j] = p[j].LicenseNumber;
                     StimeU[j] = Stime;
                     EtimeU[j] = Etime;
-
-                    console.log(p[0].StartDateTime);
+                }
+                for (var q = 0; q < StimeU.length; q++)
+                    if ((dtS >= StimeU[q] && dtE <= EtimeU[q]) ||
+                        ((dtS >= StimeU[q] && dtS < EtimeU[q]) && dtE > EtimeU[q]) ||
+                        (dtS < StimeU[q] && (dtE > StimeU[q] && EtimeU[q])) ||
+                        (dtS < StimeU[q] && dtE > EtimeU[q])) {
+                        countarray[count] = NoUseLN[q];
+                        count++;
+                        console.log(countarray[count])
+                    }
+            })
+            $.ajax({
+                 url: '@Url.Action("Finded1","CompanyVehicleBorrow")',
+                type: "GET",
+                dataType: "json",
+            }).done(function (r) {
+                for (var o = 0; o < r.length; o++) {
+                    if (r[o].LicenseNumber != countarray) {
+                        $("#test1").append("<tr>")
+                        $("#test1").append(`<td>${r[o].LicenseNumber}</td>`);
+                        $("#test1").append(`<td>${r[o].brand}</td>`);
+                        $("#test1").append(`<td>${r[o].serial}</td>`);
+                        $("#test1").append(`<td>${r[o].MaxPassenger}</td>`);
+                        $("#test1").append(`<td>${r[o].officeID}</td>`);
+                        $("#test1").append("</tr>")
+                    }
                 }
                 })
+             
             //
             //=============================================
             //
@@ -159,10 +186,10 @@
                     //        var Stime = timestampToTime(Stim);
                     //        var Etime = timestampToTime(Etim);
                     //        //判斷
-                    //        if ((dtS >= Stime && dtE <= Etime) ||
-                    //            ((dtS >= Stime && dtS < Etime) && dtE > Etime) ||
-                    //            (dtS < Stime && (dtE > Stime && Etime)) ||
-                    //            (dtS < Stime && dtE > Etime))
+                            //if ((dtS >= Stime && dtE <= Etime) ||
+                            //    ((dtS >= Stime && dtS < Etime) && dtE > Etime) ||
+                            //    (dtS < Stime && (dtE > Stime && Etime)) ||
+                            //    (dtS < Stime && dtE > Etime))
                     //        {
                     //            NoUseLN[count] = p.LicenseNumber;
                     //            count++;

@@ -35,6 +35,11 @@ namespace EIPBussinessSystem_MVC.Controllers
                          select new
                          {
                              c.LicenseNumber,
+                             c.brand,
+                             c.serial,
+                             c.MaxPassenger,
+                             c.officeID
+
                          };
             return Json(Canuse, JsonRequestBehavior.AllowGet);
         }
