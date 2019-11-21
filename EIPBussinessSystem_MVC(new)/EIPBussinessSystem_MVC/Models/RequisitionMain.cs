@@ -11,8 +11,7 @@ namespace EIPBussinessSystem_MVC.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class RequisitionMain
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,16 +19,10 @@ namespace EIPBussinessSystem_MVC.Models
         {
             this.OrderDetails = new HashSet<OrderDetail>();
         }
-
-        [Display(Name = "表單編號")]
+    
         public int OrderID { get; set; }
-
         public Nullable<int> ReportID { get; set; }
-
-        [Display(Name = "員工編號")]
         public Nullable<int> EmployeeID { get; set; }
-
-        [Display(Name = "請購日期")]
         public Nullable<System.DateTime> RequisitionDate { get; set; }
         public Nullable<int> ApprovalStatusID { get; set; }
     

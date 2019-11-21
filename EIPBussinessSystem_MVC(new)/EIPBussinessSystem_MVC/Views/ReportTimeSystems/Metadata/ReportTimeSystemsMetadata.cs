@@ -20,13 +20,13 @@ namespace EIPBussinessSystem_MVC.Models
 
         [Required(ErrorMessage = "請輸入{0}")]
         [Display(Name = "StartTime")]
-        [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd tt hh:mm}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
         public System.DateTime StartTime { get; set; }
 
         
         [Required(ErrorMessage = "請輸入{0}")]
         [Display(Name = "EndTime")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd tt hh:mm}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
         public System.DateTime EndTime { get; set; }
 
         
