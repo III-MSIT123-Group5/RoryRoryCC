@@ -389,6 +389,17 @@
     <Content Include="Models\BusinessSystemModel.edmx.diagram">
       <DependentUpon>BusinessSystemModel.edmx</DependentUpon>
     </Content>
+    <Content Include="fonts\HanaMinA.ttf" />
+    <Content Include="fonts\HanaMinB.ttf" />
+    <Content Include="fonts\Noto\NotoSansCJKtc-Black.otf" />
+    <Content Include="fonts\Noto\NotoSansCJKtc-Bold.otf" />
+    <Content Include="fonts\Noto\NotoSansCJKtc-DemiLight.otf" />
+    <Content Include="fonts\Noto\NotoSansCJKtc-Light.otf" />
+    <Content Include="fonts\Noto\NotoSansCJKtc-Medium.otf" />
+    <Content Include="fonts\Noto\NotoSansCJKtc-Regular.otf" />
+    <Content Include="fonts\Noto\NotoSansCJKtc-Thin.otf" />
+    <Content Include="fonts\Noto\NotoSansMonoCJKtc-Bold.otf" />
+    <Content Include="fonts\Noto\NotoSansMonoCJKtc-Regular.otf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

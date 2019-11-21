@@ -351,10 +351,12 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
 
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
      color: #3a776d;
+     font-size:large;
 }
 
     #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item > .nav-link:hover {
         color: white;
+        font-size:large;
     }
 
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level > li > a,
@@ -505,3 +507,17 @@ footer.sticky-footer {
 .hover a:hover {
     background-color: #abe0e4;
 }
+
+
+@font-face {
+    font-family: 'HanaMinA';
+    src: url('../fonts/HanaMinA.ttf') format('truetype');
+
+    font-family: 'NotoSansCJKtc-Light';
+    src: url('../fonts/Noto/NotoSansCJKtc-Light.otf') format('opentype');
+
+    font-family: 'NotoSansCJKtc-Bold';
+    src: url('../fonts/Noto/NotoSansCJKtc-Bold.otf') format('opentype');
+}
+
+
