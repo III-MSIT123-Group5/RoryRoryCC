@@ -1,0 +1,117 @@
+﻿@model IEnumerable<BusinessSystemMVC_Admin_page_.Models.BulletinBoard>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Bulletin board</h2>
+
+<div style="width:90%;margin:0 auto">
+
+    <table id="BulletinTable">
+        <thead>
+            <tr>
+                <th>Content</th>
+                <th>PostTime</th>
+                <th>name</th>
+                <th>EmployeeName</th>
+                @*<th>GroupName</th>*@
+                @*<th>EmployeeName</th>*@
+            </tr>
+        </thead>
+    </table>
+
+</div>
+
+<link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+@section scripts{
+
+    <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+    @*<script src="~/Scripts/dateFormat.js" type="text/javascript"></script>*@
+    @*<script src="~/Scripts/jquery.dateformat-1.0.js"></script>*@
+
+    <script src="~/Scripts/moment.min.js"></script>
+
+    <script>
+
+
+        $(document).ready(function () {
+
+            $('#BulletinTable').DataTable({
+            "ajax":{
+                url: '@Url.Action("LoadData", "BulletinBoards")',
+                type: "GET",
+                dataType: 'json',
+            },
+                "columnDefs": [
+                 { "targets":0,"data": "Content"},
+                 { "targets": 1, "data": "PostTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss")}},
+                 { "targets": 2,"data": "name"},
+                 { "targets": 3,"data": "EmployeeName"},
+
+                 ]
+                   
+            });
+
+
+        });
+
+    </script>
+
+}
+
+
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Group.GroupName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee1.EmployeeName)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Group.GroupName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee1.EmployeeName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Num }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Num }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Num })
+            </td>
+        </tr>
+    }
+
+    </table>*@
