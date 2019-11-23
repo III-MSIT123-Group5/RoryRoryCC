@@ -19,7 +19,9 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public Nullable<int> EmployeeID { get; set; }
         public Nullable<int> DepartmentID { get; set; }
         public Nullable<int> GroupID { get; set; }
+
         public string Content { get; set; }
+        [Required(ErrorMessage ="貼文不可為空!")]
 
         public Nullable<System.DateTime> PostTime { get; set; }
     

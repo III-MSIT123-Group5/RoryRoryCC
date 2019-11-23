@@ -18,6 +18,12 @@ namespace BusinessSystemMVC_Admin_page_
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+            name: "BulletinBoards",
+            url: "{controller}/{action}/{id}",
+            defaults: new { controller = "BulletinBoards", action = "Index", id = UrlParameter.Optional }
+            );
         }
     }
 }

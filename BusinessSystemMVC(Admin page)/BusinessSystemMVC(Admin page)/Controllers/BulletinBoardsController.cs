@@ -7,12 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BusinessSystemMVC_Admin_page_.Models;
+using Microsoft.AspNet.Identity;
 
 namespace BusinessSystemMVC_Admin_page_.Controllers
 {
     public class BulletinBoardsController : Controller
     {
         private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
+
 
         // GET: BulletinBoards
         public ActionResult Index()
@@ -39,15 +41,90 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                                
                            };
 
-                var datas = data.OrderBy(o => o.PostTime).ToList();
+                //var datas = data.OrderBy(o => o.PostTime).ToList();
 
+<<<<<<< HEAD
                 return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+                //return Json(data, JsonRequestBehavior.AllowGet );
+=======
+                //return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+                return Json(data, JsonRequestBehavior.AllowGet );
+>>>>>>> 4abcedc5e310790d47b2ca65ca01b0d15a5d1c76
             }
 
         }
 
+<<<<<<< HEAD
+        [HttpGet]
+        public ActionResult AddOrEdit(int id = 0)
+        {
+            var userid = User.Identity.GetUserId();
+            var account = db.AspNetUsers.Find(userid);
+
+            if (id == 0)
+            {
+                return View(new BulletinBoard());
+            }
+            else
+            {
+                using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+                {
+                    return View(db.BulletinBoards.Where(x => x.EmployeeID == id).FirstOrDefault<BulletinBoard>());
+                }
+            }
+            
+        }
+
+
+        [HttpPost]
+        public ActionResult AddOrEdit(BulletinBoard b)
+        {
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+                if (b.EmployeeID == 0)
+                {
+                    db.BulletinBoards.Add(b);
+                    db.SaveChanges();
+
+                    return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    db.Entry(b).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+                BulletinBoard b = db.BulletinBoards.Where(x => x.EmployeeID == id).FirstOrDefault<BulletinBoard>();
+                db.BulletinBoards.Remove(b);
+                db.SaveChanges();
+
+                return Json(new { success = true, message = "刪除成功" }, JsonRequestBehavior.AllowGet);
+
+
+            }
+       
+    }
+
+
+
+            // GET: BulletinBoards/Details/5
+            public ActionResult Details(long? id)
+=======
+        
+
         // GET: BulletinBoards/Details/5
         public ActionResult Details(long? id)
+>>>>>>> 4abcedc5e310790d47b2ca65ca01b0d15a5d1c76
         {
             if (id == null)
             {
@@ -132,30 +209,30 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
         // GET: BulletinBoards/Delete/5
-        public ActionResult Delete(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BulletinBoard bulletinBoard = db.BulletinBoards.Find(id);
-            if (bulletinBoard == null)
-            {
-                return HttpNotFound();
-            }
-            return View(bulletinBoard);
-        }
+        //public ActionResult Delete(long? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    BulletinBoard bulletinBoard = db.BulletinBoards.Find(id);
+        //    if (bulletinBoard == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(bulletinBoard);
+        //}
 
-        // POST: BulletinBoards/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
-        {
-            BulletinBoard bulletinBoard = db.BulletinBoards.Find(id);
-            db.BulletinBoards.Remove(bulletinBoard);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: BulletinBoards/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(long id)
+        //{
+        //    BulletinBoard bulletinBoard = db.BulletinBoards.Find(id);
+        //    db.BulletinBoards.Remove(bulletinBoard);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

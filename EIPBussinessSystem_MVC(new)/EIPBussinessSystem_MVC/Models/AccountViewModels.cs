@@ -94,9 +94,16 @@ namespace EIPBussinessSystem_MVC.Models
         public string Gender { get; set; }
 
         [Required(ErrorMessage = "請選擇{0}！")]
-        [DataType(DataType.Date)]
-        [Display(Name = "生日")]
-        public DateTime BirthDay { get; set; }
+        [Display(Name = "生日年份")]
+        public DateTime BirthYear { get; set; }
+
+        [Required(ErrorMessage = "請選擇{0}！")]
+        [Display(Name = "生日月份")]
+        public DateTime BirthMonth { get; set; }
+
+        [Required(ErrorMessage = "請選擇{0}！")]
+        [Display(Name = "生日日期")]
+        public DateTime BirthDate { get; set; }
 
         [Required(ErrorMessage = "請選擇{0}！")]
         [DataType(DataType.Date)]
