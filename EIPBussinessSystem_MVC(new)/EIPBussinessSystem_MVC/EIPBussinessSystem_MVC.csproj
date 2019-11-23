@@ -695,6 +695,7 @@
     <Content Include="Views\Shared\_GetGrpIDbyDeptIDPartial.cshtml" />
     <Content Include="Views\Shared\_GetPosiIDbyDeptIDPartial.cshtml" />
     <Content Include="Views\Shared\_GetManagerIDPartial.cshtml" />
+    <Content Include="Views\Shared\_HRSystemPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
