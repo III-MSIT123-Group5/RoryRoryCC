@@ -39,12 +39,15 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                                
                            };
 
-                var datas = data.OrderBy(o => o.PostTime).ToList();
+                //var datas = data.OrderBy(o => o.PostTime).ToList();
 
-                return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+                //return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+                return Json(data, JsonRequestBehavior.AllowGet );
             }
 
         }
+
+        
 
         // GET: BulletinBoards/Details/5
         public ActionResult Details(long? id)
