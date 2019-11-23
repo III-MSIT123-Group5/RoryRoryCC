@@ -6,8 +6,7 @@
 
 <style>
     button {
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         font-family: 'NotoSansCJKtc-Bold';
     }
 
@@ -16,19 +15,6 @@
     }
 </style>
 
-<h2>　　公佈欄</h2>
-
-=======
-=======
->>>>>>> 4abcedc5e310790d47b2ca65ca01b0d15a5d1c76
-        font-family:'NotoSansCJKtc-Bold';
-    }
-
-    h2 {
-        font-family:'NotoSansCJKtc-Bold';
-    }
-
-</style>
 
 <h2>　　公佈欄</h2>
 
@@ -41,13 +27,7 @@
 
 <div>
     <table id="Btable">
-<<<<<<< HEAD
-
-
-
     </table>
-
-
 
 </div>
 
@@ -66,8 +46,6 @@
                     $('#Btable').append("<tr><th>留言內容</th><th>張貼時間</th><th>部門</th><th>姓名</th>");
                     for (var j = 0; j < datas.length; j++) {
 
-
-=======
 
 
 
@@ -112,7 +90,30 @@
     }
 
 @*<div style="width:90%;margin:0 auto">
->>>>>>> 4abcedc5e310790d47b2ca65ca01b0d15a5d1c76
+
+
+    </table>
+
+
+
+</div>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+           $.ajax({
+                url: '@Url.Action("LoadData", "BulletinBoards")',
+                method: 'GET',
+                dataType: 'json'
+            })
+            .done(function (datas) {
+
+                    $('#Btable').append("<tr><th>留言內容</th><th>張貼時間</th><th>部門</th><th>姓名</th>");
+                    for (var j = 0; j < datas.length; j++) {
+
+
 
                             $('#tableC').append("<tr>");
                             $('#tableC').append("<td>" + datas[j].Content + "</td>");
@@ -131,8 +132,7 @@
     </script>        
     }
 
-@*<div style="width:90%;margin:0 auto">
->>>>>>> 4abcedc5e310790d47b2ca65ca01b0d15a5d1c76
+
 
 @*<button onclick="location.href='@Url.Action("Create", "BulletinBoards")'" type="button" class="btn btn-success"><i class="fa fa-comment" aria-hidden="true"></i> 新增貼文</button>*@
 
@@ -147,49 +147,25 @@
                 <th>張貼時間</th>
                 <th>部門</th>
                 <th>姓名</th>
-<<<<<<< HEAD
-<<<<<<< HEAD
                 <th>編輯/刪除</th>
-=======
->>>>>>> 4abcedc5e310790d47b2ca65ca01b0d15a5d1c76
-=======
->>>>>>> 4abcedc5e310790d47b2ca65ca01b0d15a5d1c76
+
             </tr>
         </thead>
     </table>
-
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 
 </div>
 
 <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-=======
-</div>*@
-
-@*<link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" />*@
->>>>>>> 4abcedc5e310790d47b2ca65ca01b0d15a5d1c76
-
-=======
-</div>*@
 
 @*<link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" />*@
 
->>>>>>> 4abcedc5e310790d47b2ca65ca01b0d15a5d1c76
-@*@section scripts{
 
-<<<<<<< HEAD
+@Section Scripts{
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script src="~/Scripts/moment.js"></script>
-=======
-    <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
-
-
-    <script src="~/Scripts/moment.min.js"></script>
->>>>>>> 4abcedc5e310790d47b2ca65ca01b0d15a5d1c76
 
     <script>
         var Popup, dataTable;
@@ -270,6 +246,7 @@
 
         }
 
+
         function Delete(id) {
             if (confirm('確定要刪除此筆貼文嗎?'))
             {
@@ -281,13 +258,11 @@
 
                             dataTable.ajax.reload();
 
-<<<<<<< HEAD
                             $.notify(data.message, {
                                 globalPosition: "top center",
                                 className: "success"
                             })
 
-<<<<<<< HEAD
                         }
                     }
 
@@ -296,9 +271,7 @@
         }
     </script>
 }
-=======
-}*@
->>>>>>> 4abcedc5e310790d47b2ca65ca01b0d15a5d1c76
+
 
 @*@section scripts{
     <script>
@@ -384,9 +357,6 @@
         </script>
 
     }*@
-=======
-}*@
->>>>>>> 4abcedc5e310790d47b2ca65ca01b0d15a5d1c76
 
 
 

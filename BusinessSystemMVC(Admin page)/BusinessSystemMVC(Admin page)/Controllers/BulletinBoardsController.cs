@@ -43,18 +43,12 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
                 //var datas = data.OrderBy(o => o.PostTime).ToList();
 
-<<<<<<< HEAD
-                return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
-                //return Json(data, JsonRequestBehavior.AllowGet );
-=======
                 //return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
                 return Json(data, JsonRequestBehavior.AllowGet );
->>>>>>> 4abcedc5e310790d47b2ca65ca01b0d15a5d1c76
             }
 
         }
 
-<<<<<<< HEAD
         [HttpGet]
         public ActionResult AddOrEdit(int id = 0)
         {
@@ -119,12 +113,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             // GET: BulletinBoards/Details/5
             public ActionResult Details(long? id)
-=======
-        
-
-        // GET: BulletinBoards/Details/5
-        public ActionResult Details(long? id)
->>>>>>> 4abcedc5e310790d47b2ca65ca01b0d15a5d1c76
         {
             if (id == null)
             {
