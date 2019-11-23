@@ -233,22 +233,17 @@ namespace EIPBussinessSystem_MVC.Controllers
                     return Json(qposinoncapEmp, JsonRequestBehavior.AllowGet);
                 }
             }
-            //else if (PositionID == 3)
-            //{
-
-            //}
-            //else if (PositionID == 2)
-            //{
-
-            //}
+            else if (PositionID == 3)
+            {
+                var qposiGL = db.Employees.Where(p => p.DepartmentID == DepartmentID && p.PositionID == 2).Select(p=>new { p.employeeID, p.EmployeeName });
+                return Json(qposiGL,JsonRequestBehavior.AllowGet);
+            }
             else
             {
                 var qposiGM = db.Employees.Where(P => P.PositionID == 1).Select(p => new { p.employeeID, p.EmployeeName });
                 //ViewBag.ManagerID = new SelectList(qposiGM, "employeeID", "EmployeeName");
                 return PartialView("_GetManagerIDPartial", new SelectList(qposiGM, "employeeID", "EmployeeName"));
-            }
-              
-                       
+            }   
         }
 
         //
