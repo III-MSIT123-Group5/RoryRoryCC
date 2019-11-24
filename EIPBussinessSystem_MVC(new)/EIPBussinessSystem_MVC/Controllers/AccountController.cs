@@ -266,7 +266,7 @@ namespace EIPBussinessSystem_MVC.Controllers
             {
                 var qposiGM = db.Employees.Where(P => P.PositionID == 1).Select(p => new { p.employeeID, p.EmployeeName });
                 //ViewBag.ManagerID = new SelectList(qposiGM, "employeeID", "EmployeeName");
-                return PartialView("_GetManagerIDPartial", new SelectList(qposiGM, "employeeID", "EmployeeName"));
+                return Json(qposiGM, JsonRequestBehavior.AllowGet);
             }
         }
 

@@ -134,10 +134,7 @@
             UpdateGroupStor();
             UpdatePosiStor();
         });
-        $("#PositionID").bind("change", function () {
-            UpateManageStor();
-        });
-
+     
         $("#test").bind("click", function () {
             HTMLModElement.BirthDay = DTPBirth.value;
             alert(HTMLModElement.BirthDay);
@@ -175,27 +172,31 @@
                 url: "@Url.Action("GetPosiIDbyDeptID", "Account")/" + DepartmentID.value,
             }).done(function (data) {
                 $("#DivPosition").html(data);
+                $("#PositionID").bind("change", function () {
+                    UpateManageStor();
+                });
                 }).fail(function (e) {
                     alert(e.readyState);
                 });
         }
-        function UpateManageStor() {
-            $.getJSON("@Url.Action("GetManagerID", "Account")/" + DepartmentID.value+"/" + GroupID.value + "/" + PositionID.value, function (datas) {
+        function UpateManageStor() {         
+            $.ajax({
+                type: "Post",
+                data: {
+                    DepartmentID: DepartmentID.value,
+                    GroupID: GroupID.value,
+                    PositionID: PositionID.value
+                },
+                url: "@Url.Action("GetManagerID", "Account")"  ,
+            }).done(function (datas) {
                 $("#IDManageIDst").empty();
                 datas.forEach(function (item) {
-                    var ops = new Option(item.employeeID, item.EmployeeName);
+                    var ops = new Option(item.EmployeeName, item.employeeID);
                     $("#IDManageIDst").append(ops);
                 });
-            });
-
-            @*$.ajax({
-                type: "Post",
-                url: "@Url.Action("GetManagerID", "Account")/" + GroupID.value + "/" + PositionID.value ,
-            }).done(function (data) {
-                $("#DivManagerID").html(data);
             }).fail(function (e) {
                 alert(e.readyState);
-            });*@
+            });
         }
       
 
