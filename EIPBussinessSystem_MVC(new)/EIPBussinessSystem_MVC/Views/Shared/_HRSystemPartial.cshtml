@@ -1,0 +1,23 @@
+﻿@*下拉式功能*@
+@using System.Web.Security
+@if (User.IsInRole("HRGroup"))
+{
+    <li class="nav-item" style="width:310px">
+        <a class="nav collapsed" href="#" data-toggle="collapse" data-target="#collapseHRSystem" aria-expanded="true" aria-controls="collapseBusinessCar" style="width:290px">
+            <i class="glyphicon glyphicon-th-list" style="color:#483d8b">   人資系統</i>
+            <span style="text-align: start "></span>
+            <i class="glyphicon glyphicon-chevron-down" style="float:right;color:#483d8b"></i>
+        </a>
+        <div id="collapseHRSystem" class="collapse" aria-labelledby="headingBusinessCar" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded" style="margin:5px 0px 0px 46px">
+                <div style="margin:11px 0px 11px 0px">
+                    @Html.ActionLink("新進人員註冊", "Register", "Account", null, new { Style = "color:#483d8b" })
+                </div>
+                <div style="margin:11px 0px 11px 0px">
+                    @Html.ActionLink("修改人員資料", "Register", "Account", null, new { Style = "color:#483d8b" })
+                </div>
+            </div>
+        </div>
+    </li>
+}
+

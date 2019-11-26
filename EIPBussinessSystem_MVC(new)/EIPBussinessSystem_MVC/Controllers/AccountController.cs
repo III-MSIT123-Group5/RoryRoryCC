@@ -10,12 +10,13 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using EIPBussinessSystem_MVC.Models;
 using System.Collections.Generic;
+using System.Web.Security;
 
 namespace EIPBussinessSystem_MVC.Controllers
 {
     [Authorize]
     public class AccountController : Controller
-    {
+    {  
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -24,7 +25,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         }
         BusinessDataBaseEntities db = new BusinessDataBaseEntities();
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -36,9 +37,9 @@ namespace EIPBussinessSystem_MVC.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -89,8 +90,8 @@ namespace EIPBussinessSystem_MVC.Controllers
             // 若要啟用密碼失敗來觸發帳戶鎖定，請變更為 shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
 
-            
-            
+
+
             switch (result)
             {
                 case SignInStatus.Success:
@@ -135,7 +136,7 @@ namespace EIPBussinessSystem_MVC.Controllers
             // 如果使用者輸入不正確的代碼來表示一段指定的時間，則使用者帳戶 
             // 會有一段指定的時間遭到鎖定。 
             // 您可以在 IdentityConfig 中設定帳戶鎖定設定
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -158,21 +159,44 @@ namespace EIPBussinessSystem_MVC.Controllers
             {
                 new SelectListItem {Text="男",Value="M" },
                 new SelectListItem {Text="女",Value="F" },
-            };       
+            };
             ViewBag.Employed = new List<SelectListItem>()
             {
                 new SelectListItem{Text="在職中", Value="true"},
                 new SelectListItem{Text="已離職", Value="false" },
             };
+            int ThisYear = DateTime.Now.Year;
+            List<int> birYearList = new List<int>();
+            List<int> birMonth = new List<int>();
+            List<int> birDate = new List<int>();
+            for (int i = ThisYear - 18; i > ThisYear - 65; i--)
+            {
+                birYearList.Add(i);
+            }
+            for (int i = 1; i <= 12; i++)
+            {
+                birMonth.Add(i);
+            }
+            for (int i = 1; i <= 31; i++)
+            {
+                birDate.Add(i);
+            }
+            var qYear = birYearList.Select(p => new { YearText = p.ToString(), YearValue = p });
+            var qMonth = birMonth.Select(p => new { MonthText = p.ToString(), MonthValue = p });
+            var qDate = birDate.Select(p => new { DateText = p.ToString(), DateVallue = p });
+
+            ViewBag.BirthYear = new SelectList(qYear, "YearValue", "YearText");
+            ViewBag.BirthMonth = new SelectList(qMonth, "MonthValue", "MonthText");
+            ViewBag.BirthDate = new SelectList(qDate, "DateVallue", "DateText");
             ViewBag.DepartmentID = new SelectList(db.Departments, "departmentID", "name");
             ViewBag.GroupID = new SelectList(db.Groups, "GroupID", "GroupName");
-            ViewBag.OfficeID = new SelectList(db.Offices, "officeID", "office_name") ;            
+            ViewBag.OfficeID = new SelectList(db.Offices, "officeID", "office_name");
             ViewBag.PositionID = new SelectList(db.Positions, "positionID", "position1");
             ViewBag.ManagerID = new SelectList(db.Employees.Where(p => p.employeeID == 1004), "employeeID", "EmployeeName");
 
             return View();
         }
-               
+
         [HttpPost]          //todo .ajax方法：依DepartmentID抓Group
         [AllowAnonymous]
         public ActionResult GetGrpIDbyDeptID(int? id)
@@ -181,7 +205,7 @@ namespace EIPBussinessSystem_MVC.Controllers
             ViewBag.GroupID = new SelectList(q, "GroupID", "GroupName");
             if (q != null)
             {
-                return PartialView("_GetGrpIDbyDeptIDPartial", new SelectList(q, "GroupID", "GroupName"));                
+                return PartialView("_GetGrpIDbyDeptIDPartial", new SelectList(q, "GroupID", "GroupName"));
             }
             else
             {
@@ -193,13 +217,13 @@ namespace EIPBussinessSystem_MVC.Controllers
         [AllowAnonymous]
         public ActionResult GetPosiIDbyDeptID(int? id)
         {
-            if(id != 1)
+            if (id != 1)
             {
                 var q = db.Positions.Where(p => p.positionID != 1);
                 ViewBag.PositionID = new SelectList(q, "positionID", "position1");
                 if (q != null)
                 {
-                    return PartialView("_GetPosiIDbyDeptIDPartial" , new SelectList(q, "positionID", "position1"));
+                    return PartialView("_GetPosiIDbyDeptIDPartial", new SelectList(q, "positionID", "position1"));
                 }
                 else
                 {
@@ -209,8 +233,8 @@ namespace EIPBussinessSystem_MVC.Controllers
             else
             {
                 var q = db.Positions;
-                 ViewBag.PositionID = new SelectList(q, "positionID", "position1");
-                return PartialView("_GetPosiIDbyDeptIDPartial" , new SelectList(db.Positions, "positionID", "position1"));
+                ViewBag.PositionID = new SelectList(q, "positionID", "position1");
+                return PartialView("_GetPosiIDbyDeptIDPartial", new SelectList(db.Positions, "positionID", "position1"));
             }
         }
 
@@ -233,22 +257,17 @@ namespace EIPBussinessSystem_MVC.Controllers
                     return Json(qposinoncapEmp, JsonRequestBehavior.AllowGet);
                 }
             }
-            //else if (PositionID == 3)
-            //{
-
-            //}
-            //else if (PositionID == 2)
-            //{
-
-            //}
+            else if (PositionID == 3)
+            {
+                var qposiGL = db.Employees.Where(p => p.DepartmentID == DepartmentID && p.PositionID == 2).Select(p => new { p.employeeID, p.EmployeeName });
+                return Json(qposiGL, JsonRequestBehavior.AllowGet);
+            }
             else
             {
                 var qposiGM = db.Employees.Where(P => P.PositionID == 1).Select(p => new { p.employeeID, p.EmployeeName });
                 //ViewBag.ManagerID = new SelectList(qposiGM, "employeeID", "EmployeeName");
-                return PartialView("_GetManagerIDPartial", new SelectList(qposiGM, "employeeID", "EmployeeName"));
+                return Json(qposiGM, JsonRequestBehavior.AllowGet);
             }
-              
-                       
         }
 
         //
@@ -285,29 +304,30 @@ namespace EIPBussinessSystem_MVC.Controllers
 
 
                     var addEmployee = new EIPBussinessSystem_MVC.Models.Employee
-                        {
-                            EmployeeName = model.EmpoyeeName,
-                            Gender = model.Gender,
-                            Birth = model.BirthDay,
-                            HireDate = model.HireDay,
-                            Account = model.Account,
-                            OfficeID = Convert.ToInt32(model.OfficeID),
-                            DepartmentID = Convert.ToInt32(model.DepartmentID),
-                            PositionID = Convert.ToInt32(model.PositionID),
-                            ManagerID = Convert.ToInt32(model.ManagerID),
-                            Employed = Convert.ToBoolean(model.Employed),
-                            GroupID = Convert.ToInt32(model.GroupID),
-                            Photo = m_address,
-                        };
-                        db.Employees.Add(addEmployee);
-                        db.SaveChanges();
+                    {
+                        EmployeeName = model.EmpoyeeName,
+                        Gender = model.Gender,
+                        //todo birthday = model.BirthYear + month +day
+                        Birth = new DateTime(model.BirthYear.Year, model.BirthMonth.Month, Convert.ToInt32(model.BirthDate.Date)),
+                        HireDate = model.HireDay,
+                        Account = model.Account,
+                        OfficeID = Convert.ToInt32(model.OfficeID),
+                        DepartmentID = Convert.ToInt32(model.DepartmentID),
+                        PositionID = Convert.ToInt32(model.PositionID),
+                        ManagerID = Convert.ToInt32(model.ManagerID),
+                        Employed = Convert.ToBoolean(model.Employed),
+                        GroupID = Convert.ToInt32(model.GroupID),
+                        Photo = m_address,
+                    };
+                    db.Employees.Add(addEmployee);
+                    db.SaveChanges();
 
                     TempData["message"] = $"已成功新增 {model.EmpoyeeName} 的帳號。";
                     return RedirectToAction("Register", "Account");
                     //return RedirectToAction("Index", "Home"); 
                 }
                 AddErrors(result);
-                
+
 
             }
 

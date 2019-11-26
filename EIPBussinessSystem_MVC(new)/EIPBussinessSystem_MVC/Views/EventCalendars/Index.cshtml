@@ -1,0 +1,88 @@
+﻿@model IEnumerable<EIPBussinessSystem_MVC.Models.EventCalendar>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+ 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+ 
+<h2>日曆</h2>
+
+<div>
+    
+    <i class="fas fa-plus-square fa-5x" onclick="location.href='@Url.Action("Create", "EventCalendars")'"></i>
+    
+</div>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsImportant)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsFullday)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Subject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsImportant)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsFullday)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CalendarID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CalendarID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CalendarID })
+        </td>
+    </tr>
+}
+
+</table>
