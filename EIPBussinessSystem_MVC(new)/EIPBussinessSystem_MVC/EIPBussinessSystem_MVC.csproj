@@ -211,6 +211,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AspNetUserRolesController.cs" />
     <Compile Include="Controllers\CompanyVehicleBorrowController.cs" />
     <Compile Include="Controllers\CompanyVehiclesController.cs" />
     <Compile Include="Controllers\BulletinBoardsController.cs" />
@@ -251,6 +252,9 @@
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserRole.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BulletinBoard.cs">
@@ -711,6 +715,13 @@
     <Content Include="Views\EventCalendars\Details.cshtml" />
     <Content Include="Views\EventCalendars\Edit.cshtml" />
     <Content Include="Views\EventCalendars\Index.cshtml" />
+    <Content Include="Views\Shared\_HRSystemPartial.cshtml" />
+    <Content Include="Views\AspNetUserRoles\Create.cshtml" />
+    <Content Include="Views\AspNetUserRoles\Delete.cshtml" />
+    <Content Include="Views\AspNetUserRoles\Details.cshtml" />
+    <Content Include="Views\AspNetUserRoles\Edit.cshtml" />
+    <Content Include="Views\AspNetUserRoles\Index.cshtml" />
+    <Content Include="Views\Shared\_ITSystemPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

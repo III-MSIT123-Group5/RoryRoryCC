@@ -4,17 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="88e40f0d3f2d46e99bf756632cb2eb00" Name="Diagram1" ZoomLevel="86">
+      <Diagram DiagramId="88e40f0d3f2d46e99bf756632cb2eb00" Name="Diagram1" ZoomLevel="67">
         <EntityTypeShape EntityType="BusinessDataBaseModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Account" Width="1.5" PointX="2.75" PointY="6.75" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.ActivitiesChild" Width="1.5" PointX="9.75" PointY="30.125" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.ActivitiesMain" Width="1.5" PointX="7.5" PointY="33.75" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.ApprovalProcedure" Width="1.5" PointX="4.75" PointY="6.75" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.ApprovalStatu" Width="1.5" PointX="8.25" PointY="16.125" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="3.5" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="1" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.BulletinBoard" Width="1.5" PointX="7.5" PointY="26.625" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.CommentChild" Width="1.5" PointX="9.75" PointY="33.625" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.CommentGrandchild" Width="1.5" PointX="12" PointY="30.375" />
@@ -48,8 +44,6 @@
         <AssociationConnector Association="BusinessDataBaseModel.FK_ActivitiesMain_Employee" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_CommentChild_ActivitiesMain" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_RequisitionMain_ApprovalStatus" />
-        <AssociationConnector Association="BusinessDataBaseModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="BusinessDataBaseModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Bulletin_board_Department" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Bulletin_board_Employee" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Bulletin_board_Group" />
@@ -83,10 +77,18 @@
         <AssociationConnector Association="BusinessDataBaseModel.FK_OrderDetail_RequisitionMain1" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_RequisitionMain_ReportCategory" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Suggestion_history_Suggestion" />
-        <AssociationConnector Association="BusinessDataBaseModel.AspNetUserRoles" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.EventCalendar" Width="1.5" PointX="13.5" PointY="18.625" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_EventCalendar_Department" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_EventCalendar_Employee" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetRole" Width="1.5" PointX="5.125" PointY="13" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetUserClaim" Width="1.5" PointX="4.25" PointY="15.25" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetUserLogin" Width="1.5" PointX="1.75" PointY="17.375" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetUserRole" Width="1.5" PointX="2.75" PointY="13.125" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetUser" Width="1.5" PointX="0.75" PointY="12.875" />
+        <AssociationConnector Association="BusinessDataBaseModel.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" />
+        <AssociationConnector Association="BusinessDataBaseModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="BusinessDataBaseModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="BusinessDataBaseModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
