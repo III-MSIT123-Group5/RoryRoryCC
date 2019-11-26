@@ -22,13 +22,6 @@ namespace EIPBussinessSystem_MVC.Controllers
 
             return View();
         }
-
-        //public ActionResult Finded2(string LicenseNumber)
-        //{
-
-        //}
-
-
         public ActionResult Finded1()
         {
             var Canuse = from c in db.CompanyVehicles
@@ -46,34 +39,29 @@ namespace EIPBussinessSystem_MVC.Controllers
 
         public ActionResult Finded()
         {
-            //var items = (from p in db.CompanyVehicleHistories
-            //             where (Stime >= p.StartDateTime && Etime <= p.EndDateTime) || ((Stime >= p.StartDateTime && Stime < p.EndDateTime) && Etime > p.EndDateTime) || (Stime < p.StartDateTime && (Etime > p.StartDateTime && Etime <= p.EndDateTime)) || (Stime < p.StartDateTime && Etime > p.EndDateTime)
-            //             select new { p.LicenseNumber }).ToList();
-            //var licence = (from dl in db.CompanyVehicles
-            //               select new
-            //               {
-            //                   dl.LicenseNumber,
-            //                   dl.brand,
-            //                   dl.serial,
-            //                   dl.MaxPassenger,
-            //                   dl.officeID,
-            //               }).ToList();
-            //var freelicence = from rl in licence
-            //                  where rl.LicenseNumber.Contains(items) == false
-            //                  select new
-            //                  {
-            //                      rl.LicenseNumber,
-            //                  };
             var items = from p in db.CompanyVehicleHistories
                         select new
                         {
                             p.LicenseNumber,
                             p.StartDateTime,
                             p.EndDateTime
-
                         };
             var jsonitems = Json(items);
             return Json(items,JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult getchange([Bind(Include = "LicenseNumber,StartDateTime,EndDateTime,purpose")]CompanyVehicleHistory companyVehicleHistory)
+        {
+            if (ModelState.IsValid)
+            {
+                db.CompanyVehicleHistories.Add(companyVehicleHistory);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(companyVehicleHistory);
         }
 
 
