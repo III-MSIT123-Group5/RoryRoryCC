@@ -56,41 +56,61 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
             //return Json(data, JsonRequestBehavior.AllowGet);
         }
-
-    
-    //id=0
-    [HttpGet]
-    public ActionResult AddOrEdit(int? id)
-    {
-        var userid = User.Identity.GetUserId();
-        var account = db.AspNetUsers.Find(userid);
-
-
-        int UserID = Convert.ToInt32(userid);
-
-
-        if (id == 0)
+        //id=0
+        [HttpGet]
+        public ActionResult AddOrEdit(int? id)
         {
-            return View(new BulletinBoard());
-        }
-        else
-        {
-            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+
+            var userid = User.Identity.GetUserId();
+            var account = db.AspNetUsers.Find(userid);
+
+            var empquery = from em in db.Employees
+                           where em.Account == account.UserName
+                           select new { em.employeeID };
+
+            int EmpID = 0;
+            foreach (var e in empquery)
             {
-                var bb = db.BulletinBoards.FirstOrDefault(x => x.Num == id.Value);
-                var emp = db.Employees.FirstOrDefault(x => x.employeeID == UserID);
+                EmpID = e.employeeID;
+            }
 
-                BulletinBoardEmployeeViewModel vm = new BulletinBoardEmployeeViewModel();
-                vm.BulletinBoardData = bb;
-                vm.EmployeesCollection = emp;
+            int UserID = Convert.ToInt32(userid);
 
-                return View(vm);
+            if (id == 0)
+            {
+                return View(new BulletinBoard());
+            }
+            else
+            {
+                using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+                {
+                    var bb = db.BulletinBoards.FirstOrDefault(x => x.Num == id.Value);
+                    var emp = db.Employees.FirstOrDefault(x => x.employeeID == EmpID);
 
-                //return View(db.BulletinBoards.Where(x => x.Num == id).FirstOrDefault<BulletinBoard>());
+                    if (id == 0)
+                    {
+                        return View(new BulletinBoard());
+                    }
+                    else
+                    {
+                        using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+                        {
+                            var bb = db.BulletinBoards.FirstOrDefault(x => x.Num == id.Value);
+                            var emp = db.Employees.FirstOrDefault(x => x.employeeID == UserID);
+
+                            BulletinBoardEmployeeViewModel vm = new BulletinBoardEmployeeViewModel();
+                            vm.BulletinBoardData = bb;
+                            vm.EmployeesCollection = emp;
+
+                            return View(vm);
+
+                            //return View(db.BulletinBoards.Where(x => x.Num == id).FirstOrDefault<BulletinBoard>());
+                        }
+                    }
+
+                }
             }
         }
-
-    }
 
     [HttpPost]
     public ActionResult AddOrEdit(BulletinBoard b)
