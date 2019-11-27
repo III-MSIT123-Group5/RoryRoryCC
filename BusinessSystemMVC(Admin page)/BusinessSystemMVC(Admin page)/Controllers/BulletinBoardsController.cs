@@ -96,8 +96,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             }
         }
 
-    }
-
     [HttpPost]
     public ActionResult AddOrEdit(BulletinBoard b)
     {
