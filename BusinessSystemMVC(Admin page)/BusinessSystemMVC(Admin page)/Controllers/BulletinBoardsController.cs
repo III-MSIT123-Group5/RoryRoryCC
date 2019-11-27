@@ -75,24 +75,25 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             }
 
 
-        if (id == 0)
-        {
-            return View(new BulletinBoard());
-        }
-        else
-        {
-            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            if (id == 0)
             {
-                var bb = db.BulletinBoards.FirstOrDefault(x => x.Num == id.Value);
-                var emp = db.Employees.FirstOrDefault(x => x.employeeID == EmpID);
+                return View(new BulletinBoard());
+            }
+            else
+            {
+                using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+                {
+                    var bb = db.BulletinBoards.FirstOrDefault(x => x.Num == id.Value);
+                    var emp = db.Employees.FirstOrDefault(x => x.employeeID == EmpID);
 
-                BulletinBoardEmployeeViewModel vm = new BulletinBoardEmployeeViewModel();
-                vm.BulletinBoardData = bb;
-                vm.EmployeesCollection = emp;
+                    BulletinBoardEmployeeViewModel vm = new BulletinBoardEmployeeViewModel();
+                    vm.BulletinBoardData = bb;
+                    vm.EmployeesCollection = emp;
 
-                return View(vm);
+                    return View(vm);
 
-                //return View(db.BulletinBoards.Where(x => x.Num == id).FirstOrDefault<BulletinBoard>());
+                    //return View(db.BulletinBoards.Where(x => x.Num == id).FirstOrDefault<BulletinBoard>());
+                }
             }
         }
 
