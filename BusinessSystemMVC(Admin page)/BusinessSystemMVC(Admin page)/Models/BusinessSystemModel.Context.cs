@@ -29,11 +29,13 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<ActivitiesChild> ActivitiesChilds { get; set; }
         public virtual DbSet<ActivitiesMain> ActivitiesMains { get; set; }
+        public virtual DbSet<Approval> Approvals { get; set; }
         public virtual DbSet<ApprovalProcedure> ApprovalProcedures { get; set; }
         public virtual DbSet<ApprovalStatu> ApprovalStatus { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<BulletinBoard> BulletinBoards { get; set; }
         public virtual DbSet<CommentChild> CommentChilds { get; set; }
@@ -44,6 +46,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<EventCalendar> EventCalendars { get; set; }
         public virtual DbSet<File> Files { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<Leave> Leaves { get; set; }
@@ -60,7 +63,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual DbSet<RewardandPunishment> RewardandPunishments { get; set; }
         public virtual DbSet<Suggestion> Suggestions { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<EventCalendar> EventCalendars { get; set; }
         public virtual DbSet<MeetingRoomHistory> MeetingRoomHistories { get; set; }
         public virtual DbSet<SuggestionHistory> SuggestionHistories { get; set; }
         public virtual DbSet<SurveyMain> SurveyMains { get; set; }

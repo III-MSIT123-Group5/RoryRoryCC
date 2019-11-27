@@ -24,6 +24,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
             this.CommentGrandchilds = new HashSet<CommentGrandchild>();
             this.CompanyVehicleHistories = new HashSet<CompanyVehicleHistory>();
             this.Employee1 = new HashSet<Employee>();
+            this.EventCalendars = new HashSet<EventCalendar>();
             this.Files = new HashSet<File>();
             this.MeetingRoomHistories = new HashSet<MeetingRoomHistory>();
             this.Messages = new HashSet<Message>();
@@ -71,6 +72,8 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual Group Group { get; set; }
         public virtual Office Office { get; set; }
         public virtual Position Position { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EventCalendar> EventCalendars { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<File> Files { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

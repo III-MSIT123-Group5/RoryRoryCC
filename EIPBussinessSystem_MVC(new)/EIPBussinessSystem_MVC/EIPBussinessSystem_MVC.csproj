@@ -201,6 +201,7 @@
     <Compile Include="App_Start\RouteConfig2.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApprovalsController.cs" />
     <Compile Include="Controllers\CompanyVehicleBorrowController.cs" />
     <Compile Include="Controllers\CompanyVehiclesController.cs" />
     <Compile Include="Controllers\BulletinBoardsController.cs" />
@@ -224,6 +225,9 @@
     <Compile Include="Models\ActivitiesMain.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Approval.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ApprovalProcedure.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
@@ -240,6 +244,9 @@
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserRole.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BulletinBoard.cs">
@@ -695,6 +702,11 @@
     <Content Include="Views\Shared\_GetGrpIDbyDeptIDPartial.cshtml" />
     <Content Include="Views\Shared\_GetPosiIDbyDeptIDPartial.cshtml" />
     <Content Include="Views\Shared\_GetManagerIDPartial.cshtml" />
+    <Content Include="Views\Approvals\Create.cshtml" />
+    <Content Include="Views\Approvals\Delete.cshtml" />
+    <Content Include="Views\Approvals\Details.cshtml" />
+    <Content Include="Views\Approvals\Edit.cshtml" />
+    <Content Include="Views\Approvals\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

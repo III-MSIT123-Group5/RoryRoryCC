@@ -23,8 +23,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         public ActionResult LoadData()
         {//.OrderBy(b => b.PostTime).ToList();
-            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
-            {
+           
                 var data = from b in db.BulletinBoards
                            join emp in db.Employees
                            on b.EmployeeID equals emp.employeeID
@@ -44,8 +43,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 //return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
                 return Json(data, JsonRequestBehavior.AllowGet );
             }
-
-        }
 
         
 

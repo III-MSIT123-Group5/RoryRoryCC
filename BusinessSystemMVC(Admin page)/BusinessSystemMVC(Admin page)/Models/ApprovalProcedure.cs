@@ -14,12 +14,21 @@ namespace BusinessSystemMVC_Admin_page_.Models
     
     public partial class ApprovalProcedure
     {
-        public int ApprovalID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ApprovalProcedure()
+        {
+            this.Approvals = new HashSet<Approval>();
+        }
+    
+        public int ApprovalProcedureID { get; set; }
         public Nullable<int> PositionID { get; set; }
         public string ApprovalReportName { get; set; }
         public Nullable<bool> ApprovalSupervisor { get; set; }
         public Nullable<bool> ApprovalDirector { get; set; }
         public Nullable<bool> ApprovalGenalManager { get; set; }
         public Nullable<bool> ApprovalFinancialDirector { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Approval> Approvals { get; set; }
     }
 }

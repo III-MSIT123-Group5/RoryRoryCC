@@ -19,9 +19,9 @@ namespace EIPBussinessSystem_MVC.Models
         {
             this.BulletinBoards = new HashSet<BulletinBoard>();
             this.Employees = new HashSet<Employee>();
+            this.EventCalendars = new HashSet<EventCalendar>();
             this.Groups = new HashSet<Group>();
             this.SuggestionHistories = new HashSet<SuggestionHistory>();
-            this.EventCalendars = new HashSet<EventCalendar>();
         }
     
         public int departmentID { get; set; }
@@ -32,10 +32,10 @@ namespace EIPBussinessSystem_MVC.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EventCalendar> EventCalendars { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Group> Groups { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SuggestionHistory> SuggestionHistories { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EventCalendar> EventCalendars { get; set; }
     }
 }
