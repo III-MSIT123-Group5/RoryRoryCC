@@ -74,7 +74,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 EmpID = e.employeeID;
             }
 
-        int UserID = Convert.ToInt32(userid);
+            int UserID = Convert.ToInt32(userid);
 
             if (id == 0)
             {
@@ -85,30 +85,32 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
                 {
                     var bb = db.BulletinBoards.FirstOrDefault(x => x.Num == id.Value);
-                    var emp = db.Employees.FirstOrDefault(x=>x.employeeID == EmpID);
+                    var emp = db.Employees.FirstOrDefault(x => x.employeeID == EmpID);
 
-        if (id == 0)
-        {
-            return View(new BulletinBoard());
-        }
-        else
-        {
-            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
-            {
-                var bb = db.BulletinBoards.FirstOrDefault(x => x.Num == id.Value);
-                var emp = db.Employees.FirstOrDefault(x => x.employeeID == UserID);
+                    if (id == 0)
+                    {
+                        return View(new BulletinBoard());
+                    }
+                    else
+                    {
+                        using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+                        {
+                            var bb = db.BulletinBoards.FirstOrDefault(x => x.Num == id.Value);
+                            var emp = db.Employees.FirstOrDefault(x => x.employeeID == UserID);
 
-                BulletinBoardEmployeeViewModel vm = new BulletinBoardEmployeeViewModel();
-                vm.BulletinBoardData = bb;
-                vm.EmployeesCollection = emp;
+                            BulletinBoardEmployeeViewModel vm = new BulletinBoardEmployeeViewModel();
+                            vm.BulletinBoardData = bb;
+                            vm.EmployeesCollection = emp;
 
-                return View(vm);
+                            return View(vm);
 
-                //return View(db.BulletinBoards.Where(x => x.Num == id).FirstOrDefault<BulletinBoard>());
+                            //return View(db.BulletinBoards.Where(x => x.Num == id).FirstOrDefault<BulletinBoard>());
+                        }
+                    }
+
+                }
             }
         }
-
-    }
 
     [HttpPost]
     public ActionResult AddOrEdit(BulletinBoard b)
