@@ -32,8 +32,15 @@ namespace EIPBussinessSystem_MVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            bundles.Add(new ScriptBundle("~/bundles/calendarjs").Include(
+                     "~/Scripts/bootstrap.js",
+                     "~/Scripts/jquery-1.12.4.js",
+                     "~/Scripts/bootstrap-datetimepicker.js"));
+            bundles.Add(new StyleBundle("~/Content/calendarcss").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/site.css",
+                      "~/Content/bootstrap - datetimepicker.css"));
 
-           
 
         }
     }

@@ -55,12 +55,13 @@
             @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.BirthDay, new { @class = "col-md-2 control-label" })
+    <div class="form-group" >
+        @Html.Label("生日", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.EditorFor(m => m.BirthDay, new { htmlAttributes = new { @class = "form-control", id = "DTPBirth" } })
-            @Html.ValidationMessageFor(model => model.BirthDay, "", new { @class = "text-danger" })
-        </div>
+                @Html.DropDownList("BirthYear", null, new { @class = "form-control", @style = "width:90px" })
+                @Html.DropDownList("BirthMonth", null, new { @class = "form-control", @style = "width:70px" })
+                @Html.DropDownList("BirthDate", null, new { @class = "form-control", @style = "width:70px" })
+         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.HireDay, new { @class = "col-md-2 control-label" })
@@ -118,7 +119,8 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="註冊" />
+            <input id="RegisterSubmit" type="submit" class="btn btn-default" value="註冊" />
+            <input id="test" type="button" class="btn btn-default" value="test" />
         </div>
     </div>
 }
@@ -132,10 +134,28 @@
             UpdateGroupStor();
             UpdatePosiStor();
         });
-        $("#PositionID").bind("change", function () {
-            UpateManageStor();
+     
+        $("#test").bind("click", function () {
+            HTMLModElement.BirthDay = DTPBirth.value;
+            alert(HTMLModElement.BirthDay);
         });
 
+        $("#BirthMonth").bind("change", function () {
+            $("#BirthDate").empty();
+            for (let i = 1; i <= getDays(); i++) {
+                var ops = new Option(i, i);
+                $("#BirthDate").append(ops);
+            }
+        });
+
+        function getDays() {
+            var yy = $("#BirthYear").val();
+            var mm = $("#BirthMonth").val();
+            var dd = new Date(yy, mm, 0);
+            var days = dd.getDate();
+            return days;
+            }
+        
         function UpdateGroupStor() {
             $.ajax({
                 type:"Post",
@@ -152,32 +172,33 @@
                 url: "@Url.Action("GetPosiIDbyDeptID", "Account")/" + DepartmentID.value,
             }).done(function (data) {
                 $("#DivPosition").html(data);
+                $("#PositionID").bind("change", function () {
+                    UpateManageStor();
+                });
                 }).fail(function (e) {
                     alert(e.readyState);
                 });
         }
-        function UpateManageStor() {
-            $.getJSON("@Url.Action("GetManagerID", "Account")/" + DepartmentID.value+"/" + GroupID.value + "/" + PositionID.value, function (datas) {
+        function UpateManageStor() {         
+            $.ajax({
+                type: "Post",
+                data: {
+                    DepartmentID: DepartmentID.value,
+                    GroupID: GroupID.value,
+                    PositionID: PositionID.value
+                },
+                url: "@Url.Action("GetManagerID", "Account")"  ,
+            }).done(function (datas) {
                 $("#IDManageIDst").empty();
                 datas.forEach(function (item) {
-                    var ops = new Option(item.employeeID, item.EmployeeName);
+                    var ops = new Option(item.EmployeeName, item.employeeID);
                     $("#IDManageIDst").append(ops);
                 });
-            });
-
-            @*$.ajax({
-                type: "Post",
-                url: "@Url.Action("GetManagerID", "Account")/" + GroupID.value + "/" + PositionID.value ,
-            }).done(function (data) {
-                $("#DivManagerID").html(data);
             }).fail(function (e) {
                 alert(e.readyState);
-            });*@
+            });
         }
-        //!!!!!!!!!!!!!!!!
-        $("#DTPBirth").datepicker({
-            endDate: '01/01/2018'
-        })
+      
 
 
     </script>

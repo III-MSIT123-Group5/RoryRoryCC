@@ -8,28 +8,37 @@
     ViewBag.Title = "公務車租借";
 }
 
-<form id="addForm" action="Useradd.action" typeof="post">
-    <div style="width:300px;border:1px solid black;margin:20px;">
-        <h3>起始時間</h3>
-        <input type="date" id="date1" style="width:360px" />
-        <select id="firstLevel" style="width:100px" class="form-control"></select>
-        <select id="secondLevel" style="width:100px" class="form-control"></select>
-        <br />
+<div id="addForm" action="Useradd.action" typeof="post">
+    <div style="width:900px;border:1px solid black;margin:20px;"> 
+        <div>
+            <h3>起始時間 : <a><input type="date" id="date1" class="datepicker-decades" /></a></h3>
+            
+        </div>
+        <div>
+            <select id="firstLevel" style="width:100px" class="form-control"></select>
+        </div>
+        <div>
+            <select id="secondLevel" style="width:100px" class="form-control"></select>
+        </div>
     </div>
 
-    <div style="width:300px;border:1px solid black;margin:20px">
-        <h3>結束時間</h3>
-        <input type="date" id="date2" style="width:360px" />
-        <select id="firstLevel1" style="width:100px" class="form-control"></select>
-        <select id="secondLevel1" style="width:100px" class="form-control"></select>
-        <br />
-        <input type="button" id="btn1" class="btn-success" value="查詢" />
+    <div style="width:900px;border:1px solid black;margin:20px">
+        <div>
+            <h3>結束時間 : <a><input type="date" id="date2" class="datepicker-decades" /></a></h3>
+            
+        </div>
+        <div>
+            <select id="firstLevel1" style="width:100px" class="form-control"></select>
+        </div>
+        <div>
+            <select id="secondLevel1" style="width:100px" class="form-control"></select>
+        </div>
+        <div>
+            <input type="button" id="btn1" class="btn-success" value="查詢" />
+        </div>
     </div>
-</form>
-<div id="test1"></div>
-
-
-<div id="succ"></div>
+</div>
+<table id="test2"  class="table"></table>
 
 
 
@@ -37,9 +46,9 @@
 
 
 
-@section scripts
+    @section scripts
 {
-    <script>
+        <script>
         //
         //各種變數
         //
@@ -148,76 +157,68 @@
                     }
             })
             $.ajax({
-                 url: '@Url.Action("Finded1","CompanyVehicleBorrow")',
+                url: '@Url.Action("Finded1","CompanyVehicleBorrow")',
                 type: "GET",
                 dataType: "json",
             }).done(function (r) {
+                $("#test2").append('<tr"></tr>')
+                $("#test2").append(`<th>車輛選擇</th>`)
+                $("#test2").append(`<th>車牌號碼</th>`)
+                $("#test2").append(`<th>車輛廠牌</th>`)
+                $("#test2").append(`<th>車輛型號</th>`)
+                $("#test2").append(`<th>載客人數</th>`)
+                $("#test2").append(`<th>辦公室編號</th>`)
+                $("#test2").append(`<th>外出事由</th>`)
+                $("#test2").append(`<th>確認訂車</th>`)
                 for (var o = 0; o < r.length; o++) {
                     if (r[o].LicenseNumber != countarray) {
-                        $("#test1").append("<tr>")
-                        $("#test1").append(`<td>${r[o].LicenseNumber}</td>`);
-                        $("#test1").append(`<td>${r[o].brand}</td>`);
-                        $("#test1").append(`<td>${r[o].serial}</td>`);
-                        $("#test1").append(`<td>${r[o].MaxPassenger}</td>`);
-                        $("#test1").append(`<td>${r[o].officeID}</td>`);
-                        $("#test1").append("</tr>")
+                        $("#test2").append(`<tr>
+        <td><div style="margin:5px"><input type="checkbox" class = 'btn btn-primary' style="zoom:180%;"></div></td>
+        <td>${r[o].LicenseNumber}</td>
+        <td>${r[o].brand}</td>
+        <td>${r[o].serial}</td>
+        <td>${r[o].MaxPassenger}</td>
+        <td>${r[o].officeID}</td>
+        <td><input type="text" id = "${r[o].LicenseNumber}t" ></td>
+        <td><input type="button" id="${ r[o].LicenseNumber}" class = 'btn btn-primary' value="選擇車輛"></td>
+        </tr>`)
+                        $(`#${r[o].LicenseNumber}`).click(function () {
+                            getLNfunc(this.id);
+                        })
+
                     }
                 }
                 })
-             
             //
             //=============================================
             //
-            
-        }
-                @*$.ajax({
-                    url: '@Url.Action("Finded","CompanyVehicleBorrow")',
+            }
+
+
+            //
+            //找到需要的資料
+            //
+            function getLNfunc(id) {
+                $.ajax({
+                    url: '@Url.Action("Finded1","CompanyVehicleBorrow")',
                     type: "GET",
                     dataType: "json",
-                }).done(function (p) {*@
-                    //console.log(p.LicenseNumber)
-                    //console.log(u.LicenseNumber)
-                    //var NoUseLN = [];
-                    //var count = 0;
-                    //for (var i = 0, max = u.length; i < max; i++) {
-                    //    for (var j = 0, max1 = p.length; j < max1; j++) {
-                    //        var Stim = parseInt(String(p[j].StartDateTime).substring(6, 19));
-                    //        var Etim = parseInt(String(p[j].EndDateTime).substring(6, 19));
-                    //        var Stime = timestampToTime(Stim);
-                    //        var Etime = timestampToTime(Etim);
-                    //        //判斷
-                            //if ((dtS >= Stime && dtE <= Etime) ||
-                            //    ((dtS >= Stime && dtS < Etime) && dtE > Etime) ||
-                            //    (dtS < Stime && (dtE > Stime && Etime)) ||
-                            //    (dtS < Stime && dtE > Etime))
-                    //        {
-                    //            NoUseLN[count] = p.LicenseNumber;
-                    //            count++;
-                    //        }
-                    //    }
-                    //    if (p[i].LicenseNumber.indexof(NoUseLN) !== -1) {
-                    //        console.log(p[i].LicenseNumber);
-                    //    }
-                    //}
+                }).done(function (data) {
+                    for (var j = 0, max = data.length; j < max; j++) {
+                        if (data[j].LicenseNumber == id) {
+                            console.log(data[j].LicenseNumber);
+                            console.log(data[j].brand);
+                            console.log(data[j].serial);
+                            console.log(data[j].MaxPassenger);
+                            console.log(data[j].officeID);
+                        }
+                    }
+                })
+            }
 
-                
-                //-----------------
-                //var Stim = parseInt(String(p[i].StartDateTime).substring(6, 19));
-                //var Etim = parseInt(String(p[i].EndDateTime).substring(6, 19));
-                //var Stime = timestampToTime(Stim);
-                //var Etime = timestampToTime(Etim);
-                //console.log(Stime);
-                //console.log(Etime);
-                //-----------------
-                    @*if ((dtS >= p[i].StartDateTime && dtE <= p[i].EndDateTime) || ((dtS >= p[i].StartDateTime && dtS < p[i].EndDateTime) && dtE > p[i].EndDateTime) || (dtS < p[i].StartDateTime && (dtE > p[i].StartDateTime && dtE <= p[i].EndDateTime)) || (dtS < p[i].StartDateTime && dtE > p[i].EndDateTime)) {
-                        $.ajax({
-                            url: '@Url.Action("Finded1","CompanyVehicleBorrow")',
-                            type: "GET",
-                            dataType:"json"
-                        }).done(function (u) {
-                        })*@
-            //})
-        
+
+
+
         function timestampToTime(timestamp) {
 
             var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
@@ -237,6 +238,7 @@
             return Y + M + D + h + m + s;
 
         }
+
         //if ((dtS >= p[i].StartDateTime && dtE <= p[i].EndDateTime) || ((dtS >= p[i].StartDateTime && dtS < p[i].EndDateTime) && dtE > p[i].EndDateTime) || (dtS < p[i].StartDateTime && (dtE > p[i].StartDateTime && dtE <= p[i].EndDateTime)) || (dtS < p[i].StartDateTime && dtE > p[i].EndDateTime)) {
 
         //
@@ -301,11 +303,11 @@
             //
         }
 
-    </script>
+        </script>
 
 
 
 
 
 
-}
+    }

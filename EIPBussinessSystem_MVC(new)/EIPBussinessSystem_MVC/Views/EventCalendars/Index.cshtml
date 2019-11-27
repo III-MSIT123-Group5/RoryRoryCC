@@ -1,0 +1,108 @@
+﻿@model IEnumerable<EIPBussinessSystem_MVC.Models.EventCalendar>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+<link href='~/package/calendar/core/main.css' rel='stylesheet' />
+<link href='~/package/calendar/daygrid/main.css' rel='stylesheet' />
+<script src='~/package/calendar/core/main.js'></script>
+<script src='~/package/calendar/interaction/main.js'></script>
+<script src='~/package/calendar/daygrid/main.js'></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: ['interaction', 'dayGrid'],
+        defaultDate: '2019-08-12',
+        editable: true,
+        eventLimit: true, // allow "more" link when too many events
+        events: [
+                {
+            title: 'All Day Event',
+        start: '2019-08-01'
+    },
+                {
+            title: 'Long Event',
+        start: '2019-08-07',
+        end: '2019-08-10'
+    },
+                {
+            groupId: 999,
+        title: 'Repeating Event',
+        start: '2019-08-09T16:00:00'
+    },
+                {
+            groupId: 999,
+        title: 'Repeating Event',
+        start: '2019-08-16T16:00:00'
+    },
+                {
+            title: 'Conference',
+        start: '2019-08-11',
+        end: '2019-08-13'
+    },
+                {
+            title: 'Meeting',
+        start: '2019-08-12T10:30:00',
+        end: '2019-08-12T12:30:00'
+    },
+                {
+            title: 'Lunch',
+        start: '2019-08-12T12:00:00'
+    },
+                {
+            title: 'Meeting',
+        start: '2019-08-12T14:30:00'
+    },
+                {
+            title: 'Happy Hour',
+        start: '2019-08-12T17:30:00'
+    },
+                {
+            title: 'Dinner',
+        start: '2019-08-12T20:00:00'
+    },
+                {
+            title: 'Birthday Party',
+        start: '2019-08-13T07:00:00'
+    },
+                {
+            title: 'Click for Google',
+        url: 'http://google.com/',
+        start: '2019-08-28'
+    }
+]
+});
+
+calendar.render();
+});
+
+
+</script>
+
+
+<h2>日曆</h2>
+
+
+<div>
+
+    <i class="fas fa-plus-square fa-5x" onclick="location.href='@Url.Action("Create", "EventCalendars")'"></i>
+
+</div>
+
+
+
+<div class="col-3">
+
+
+
+</div>
+<div class="col-12">
+    <div id='calendar'></div>
+</div>
+
