@@ -74,18 +74,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 EmpID = e.employeeID;
             }
 
-        int UserID = Convert.ToInt32(userid);
-
-            if (id == 0)
-            {
-                return View(new BulletinBoard());
-            }
-            else
-            {
-                using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
-                {
-                    var bb = db.BulletinBoards.FirstOrDefault(x => x.Num == id.Value);
-                    var emp = db.Employees.FirstOrDefault(x=>x.employeeID == EmpID);
 
         if (id == 0)
         {
@@ -96,7 +84,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
                 var bb = db.BulletinBoards.FirstOrDefault(x => x.Num == id.Value);
-                var emp = db.Employees.FirstOrDefault(x => x.employeeID == UserID);
+                var emp = db.Employees.FirstOrDefault(x => x.employeeID == EmpID);
 
                 BulletinBoardEmployeeViewModel vm = new BulletinBoardEmployeeViewModel();
                 vm.BulletinBoardData = bb;
