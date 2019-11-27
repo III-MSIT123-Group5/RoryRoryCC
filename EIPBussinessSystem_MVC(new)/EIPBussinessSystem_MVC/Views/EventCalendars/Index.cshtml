@@ -13,7 +13,18 @@
 <script src='~/package/calendar/daygrid/main.js'></script>
 
     <script>
+       
+
+
         document.addEventListener('DOMContentLoaded', function () {
+            $("#UpdateEvent").hover(function () {
+                $(this).css('color', '#b4c9ef')
+            }, function () {
+                $(this).css('color', '')
+            });
+           
+
+
         var calendarEl = document.getElementById('calendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -79,20 +90,28 @@
 ]
 });
 
-calendar.render();
+            calendar.render();
+            $("div > button").hover(function () {
+                $(this).css('background-color', '#b4c9ef')
+            }, function () {
+                $(this).css('background-color', '')
+            });
 });
 
-
+        
 </script>
 
 
-<h2>日曆</h2>
+<h2 style="background-color:#b4c9ef">日曆</h2>
 
-
+<script>
+    
+    
+</script>
 <div>
-
-    <i class="fas fa-plus-square fa-5x" onclick="location.href='@Url.Action("Create", "EventCalendars")'"></i>
-
+    
+    <i class="fas fa-plus-square fa-5x" id="UpdateEvent" onclick="location.href='@Url.Action("Create", "EventCalendars")'"></i>
+    
 </div>
 
 
