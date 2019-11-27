@@ -12,7 +12,9 @@ namespace BusinessSystemMVC_Admin_page_
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                            "~/Scripts/jquery.validate*",
+                        "~/Scripts/jquery-ui-1.12.1.js"
+                        ));
 
             // 使用開發版本的 Modernizr 進行開發並學習。然後，當您
             // 準備好可進行生產時，請使用 https://modernizr.com 的建置工具，只挑選您需要的測試。
@@ -20,13 +22,25 @@ namespace BusinessSystemMVC_Admin_page_
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                        "~/Scripts/bootstrap.js",
+                     "~/Scripts/jquery.unobtrusive - ajax.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/dataTables.bootstrap4.css",
                       "~/Content/font-awesome.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/calendarjs").Include(
+                     "~/Scripts/bootstrap.js",
+                     "~/Scripts/jquery-1.12.4.js",
+                     "~/Scripts/bootstrap-datetimepicker.js"));
+            bundles.Add(new StyleBundle("~/Content/calendarcss").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/site.css",
+                      "~/Content/bootstrap - datetimepicker.css"));
+
+
         }
     }
 }
