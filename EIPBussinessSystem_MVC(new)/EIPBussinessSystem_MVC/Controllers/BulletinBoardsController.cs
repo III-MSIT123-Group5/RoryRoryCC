@@ -14,7 +14,7 @@ namespace EIPBussinessSystem_MVC.Controllers
 {
     public class BulletinBoardsController : Controller
     {
-        private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
+        private BusinessDataBaseEntities1 db = new BusinessDataBaseEntities1();
 
         // GET: BulletinBoards
         public ActionResult Index()

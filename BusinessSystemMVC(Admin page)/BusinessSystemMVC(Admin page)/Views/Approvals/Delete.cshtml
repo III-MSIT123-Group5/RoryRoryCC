@@ -1,0 +1,88 @@
+﻿@model BusinessSystemMVC_Admin_page_.Models.Approval
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Approval</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstSignerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstSignerID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstSignStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstSignStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondSignerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondSignerID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondSignStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondSignStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThirdSignerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThirdSignerID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThirdSignStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThirdSignStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApprovalProcedure.ApprovalReportName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApprovalProcedure.ApprovalReportName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequisitionMain.OrderID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequisitionMain.OrderID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -24,8 +24,10 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public Nullable<int> ReportID { get; set; }
         public Nullable<int> EmployeeID { get; set; }
         public Nullable<System.DateTime> RequisitionDate { get; set; }
+        public Nullable<decimal> Price { get; set; }
         public Nullable<int> ApprovalStatusID { get; set; }
     
+        public virtual Approval Approval { get; set; }
         public virtual ApprovalStatu ApprovalStatu { get; set; }
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

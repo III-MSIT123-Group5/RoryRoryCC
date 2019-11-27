@@ -24,5 +24,8 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public string Description { get; set; }
         public Nullable<bool> IsImportant { get; set; }
         public Nullable<bool> IsFullday { get; set; }
+    
+        public virtual Department Department { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

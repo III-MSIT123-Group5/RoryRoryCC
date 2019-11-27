@@ -15,7 +15,7 @@ namespace EIPBussinessSystem_MVC.Controllers
 {
     public class OrderDetailsController : Controller
     {
-        private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
+        private BusinessDataBaseEntities1 db = new BusinessDataBaseEntities1();
 
         int EmpID = 0;
 
@@ -105,13 +105,32 @@ namespace EIPBussinessSystem_MVC.Controllers
                     {
                         ReportID = 2,
                         EmployeeID = EmpID,
-                        RequisitionDate = DateTime.Now
-                    })
+                        RequisitionDate = DateTime.Now,
+                        //Approval = (new Models.Approval
+                        //{                        
+                        //    ApprovalProcedureID=5
+                        //})
+                    })                    
                 });
-
+                if (orderDetail.TotalPrice > 10000)
+                {
+                    db.Approvals.Add(new Models.Approval
+                    {
+                        ApprovalProcedureID = 5
+                    });
+                }
+                else if (orderDetail.TotalPrice >= 10000)
+                {
+                    db.Approvals.Add(new Models.Approval
+                    {
+                        ApprovalProcedureID = 5
+                    });
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            
 
             ViewBag.OrderID = new SelectList(db.RequisitionMains, "OrderID", "OrderID", orderDetail.OrderID);
             return View(orderDetail);

@@ -211,6 +211,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApprovalsController.cs" />
     <Compile Include="Controllers\AspNetUserRolesController.cs" />
     <Compile Include="Controllers\CompanyVehicleBorrowController.cs" />
     <Compile Include="Controllers\CompanyVehiclesController.cs" />
@@ -234,6 +235,9 @@
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ActivitiesMain.cs">
+      <DependentUpon>BussinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Approval.cs">
       <DependentUpon>BussinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ApprovalProcedure.cs">
@@ -436,7 +440,6 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="HtmlPage1.html" />
     <Content Include="Images\favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -459,6 +462,12 @@
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="bundleconfig.json" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <EntityDeploy Include="Models\BussinessSystemModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BussinessSystemModel.Designer.cs</LastGenOutput>
@@ -466,12 +475,6 @@
     <Content Include="Models\BussinessSystemModel.edmx.diagram">
       <DependentUpon>BussinessSystemModel.edmx</DependentUpon>
     </Content>
-    <None Include="bundleconfig.json" />
-    <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="fonts\fontawesome-webfont.woff2" />
-    <Content Include="fonts\fontawesome-webfont.woff" />
-    <Content Include="fonts\fontawesome-webfont.ttf" />
-    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
@@ -710,6 +713,11 @@
     <Content Include="Views\Shared\_GetGrpIDbyDeptIDPartial.cshtml" />
     <Content Include="Views\Shared\_GetPosiIDbyDeptIDPartial.cshtml" />
     <Content Include="Views\Shared\_GetManagerIDPartial.cshtml" />
+    <Content Include="Views\Approvals\Create.cshtml" />
+    <Content Include="Views\Approvals\Delete.cshtml" />
+    <Content Include="Views\Approvals\Details.cshtml" />
+    <Content Include="Views\Approvals\Edit.cshtml" />
+    <Content Include="Views\Approvals\Index.cshtml" />
     <Content Include="Views\EventCalendars\Create.cshtml" />
     <Content Include="Views\EventCalendars\Delete.cshtml" />
     <Content Include="Views\EventCalendars\Details.cshtml" />

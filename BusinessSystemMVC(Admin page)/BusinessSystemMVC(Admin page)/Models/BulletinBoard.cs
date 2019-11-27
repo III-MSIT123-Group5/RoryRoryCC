@@ -11,18 +11,14 @@ namespace BusinessSystemMVC_Admin_page_.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class BulletinBoard
     {
         public long Num { get; set; }
         public Nullable<int> EmployeeID { get; set; }
         public Nullable<int> DepartmentID { get; set; }
         public Nullable<int> GroupID { get; set; }
-
         public string Content { get; set; }
-        [Required(ErrorMessage ="貼文不可為空!")]
-
         public Nullable<System.DateTime> PostTime { get; set; }
     
         public virtual Department Department { get; set; }
