@@ -11,7 +11,8 @@ namespace BusinessSystemMVC_Admin_page_.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class BulletinBoard
     {
         public long Num { get; set; }
