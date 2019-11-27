@@ -15,7 +15,7 @@ namespace EIPBussinessSystem_MVC.Controllers
 {
     public class OrderDetailsController : Controller
     {
-        private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
+        private BusinessDataBaseEntities1 db = new BusinessDataBaseEntities1();
 
         int EmpID = 0;
 

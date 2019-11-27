@@ -23,7 +23,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         public AccountController()
         {
         }
-        BusinessDataBaseEntities db = new BusinessDataBaseEntities();
+        BusinessDataBaseEntities1 db = new BusinessDataBaseEntities1();
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {

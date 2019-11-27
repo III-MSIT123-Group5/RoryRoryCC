@@ -17,7 +17,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        BusinessDataBaseEntities db = new BusinessDataBaseEntities();
+        BusinessDataBaseEntities1 db = new BusinessDataBaseEntities1();
 
         public ManageController()
         {

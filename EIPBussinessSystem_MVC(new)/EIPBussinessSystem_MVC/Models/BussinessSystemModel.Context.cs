@@ -13,10 +13,10 @@ namespace EIPBussinessSystem_MVC.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BusinessDataBaseEntities : DbContext
+    public partial class BusinessDataBaseEntities1 : DbContext
     {
-        public BusinessDataBaseEntities()
-            : base("name=BusinessDataBaseEntities")
+        public BusinessDataBaseEntities1()
+            : base("name=BusinessDataBaseEntities1")
         {
         }
     
@@ -32,6 +32,11 @@ namespace EIPBussinessSystem_MVC.Models
         public virtual DbSet<Approval> Approvals { get; set; }
         public virtual DbSet<ApprovalProcedure> ApprovalProcedures { get; set; }
         public virtual DbSet<ApprovalStatu> ApprovalStatus { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<BulletinBoard> BulletinBoards { get; set; }
         public virtual DbSet<CommentChild> CommentChilds { get; set; }
         public virtual DbSet<CommentGrandchild> CommentGrandchilds { get; set; }
@@ -61,11 +66,5 @@ namespace EIPBussinessSystem_MVC.Models
         public virtual DbSet<MeetingRoomHistory> MeetingRoomHistories { get; set; }
         public virtual DbSet<SuggestionHistory> SuggestionHistories { get; set; }
         public virtual DbSet<SurveyMain> SurveyMains { get; set; }
-        public virtual DbSet<EventCalendar> EventCalendars { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }

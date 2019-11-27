@@ -14,7 +14,7 @@ namespace EIPBussinessSystem_MVC.Controllers
 {
     public class ReportTimeSystemsController : Controller
     {
-        private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
+        private BusinessDataBaseEntities1 db = new BusinessDataBaseEntities1();
 
         // GET: ReportTimeSystems
         public ActionResult Index()

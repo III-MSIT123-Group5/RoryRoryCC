@@ -12,7 +12,7 @@ namespace EIPBussinessSystem_MVC.Controllers
 {
     public class CompanyVehicleBorrowController : Controller
     {
-        private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
+        private BusinessDataBaseEntities1 db = new BusinessDataBaseEntities1();
         // GET: CompanyVehicleBorrow
         public ActionResult Index()
         {

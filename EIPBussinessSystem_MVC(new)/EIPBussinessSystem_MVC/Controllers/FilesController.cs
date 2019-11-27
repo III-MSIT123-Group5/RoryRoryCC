@@ -17,7 +17,7 @@ namespace EIPBussinessSystem_MVC.Controllers
 {
     public class FilesController : Controller
     {
-        private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
+        private BusinessDataBaseEntities1 db = new BusinessDataBaseEntities1();
 
         public ActionResult Upload()
         { 

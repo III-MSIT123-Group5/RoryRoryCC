@@ -13,7 +13,7 @@ namespace EIPBussinessSystem_MVC.Controllers
 {
     public class CompanyVehiclesController : Controller
     {
-        private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
+        private BusinessDataBaseEntities1 db = new BusinessDataBaseEntities1();
 
         // GET: CompanyVehicles
         public ActionResult Index()

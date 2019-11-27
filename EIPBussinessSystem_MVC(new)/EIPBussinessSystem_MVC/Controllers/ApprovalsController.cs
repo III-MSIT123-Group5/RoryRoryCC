@@ -12,7 +12,7 @@ namespace EIPBussinessSystem_MVC.Controllers
 {
     public class ApprovalsController : Controller
     {
-        private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
+        private BusinessDataBaseEntities1 db = new BusinessDataBaseEntities1();
 
         // GET: Approvals
         public ActionResult Index()
