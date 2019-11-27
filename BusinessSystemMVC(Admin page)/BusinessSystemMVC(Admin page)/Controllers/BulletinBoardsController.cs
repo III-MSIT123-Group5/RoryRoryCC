@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -7,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BusinessSystemMVC_Admin_page_.Models;
+using BusinessSystemMVC_Admin_page_.ViewModels;
 using Microsoft.AspNet.Identity;
 
 namespace BusinessSystemMVC_Admin_page_.Controllers
@@ -16,6 +18,12 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
 
 
+        public IEnumerator GetEnumerator()
+        {
+            return (IEnumerator)this;
+        }
+
+
         // GET: BulletinBoards
         public ActionResult Index()
         {
@@ -23,7 +31,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(bulletinBoards.ToList());
         }
 
-        public ActionResult LoadData()
+
+
+    public ActionResult LoadData()
         {//.OrderBy(b => b.PostTime).ToList();
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
@@ -38,22 +48,27 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                                b.PostTime,
                                d.name,
                                emp.EmployeeName,
+                               b.Num
                                
                            };
 
-                //var datas = data.OrderBy(o => o.PostTime).ToList();
+                var datas = data.ToList();
 
-                //return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
-                return Json(data, JsonRequestBehavior.AllowGet );
+                return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+                //return Json(data, JsonRequestBehavior.AllowGet);
             }
 
         }
-
+        //id=0
         [HttpGet]
-        public ActionResult AddOrEdit(int id = 0)
+        public ActionResult AddOrEdit(int? id)
         {
             var userid = User.Identity.GetUserId();
             var account = db.AspNetUsers.Find(userid);
+
+
+            int UserID = Convert.ToInt32(userid);
+
 
             if (id == 0)
             {
@@ -63,7 +78,16 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             {
                 using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
                 {
-                    return View(db.BulletinBoards.Where(x => x.EmployeeID == id).FirstOrDefault<BulletinBoard>());
+                    var bb = db.BulletinBoards.FirstOrDefault(x => x.Num == id.Value);
+                    var emp = db.Employees.FirstOrDefault(x=>x.employeeID == UserID);
+
+                    BulletinBoardEmployeeViewModel vm = new BulletinBoardEmployeeViewModel();
+                    vm.BulletinBoardData = bb;
+                    vm.EmployeesCollection = emp;
+
+                    return View(vm);
+
+                    //return View(db.BulletinBoards.Where(x => x.Num == id).FirstOrDefault<BulletinBoard>());
                 }
             }
             
@@ -98,7 +122,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
-                BulletinBoard b = db.BulletinBoards.Where(x => x.EmployeeID == id).FirstOrDefault<BulletinBoard>();
+                BulletinBoard b = db.BulletinBoards.Where(x => x.Num == id).FirstOrDefault<BulletinBoard>();
                 db.BulletinBoards.Remove(b);
                 db.SaveChanges();
 
