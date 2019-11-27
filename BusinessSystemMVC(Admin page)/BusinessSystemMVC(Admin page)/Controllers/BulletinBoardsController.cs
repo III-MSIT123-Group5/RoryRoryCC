@@ -63,11 +63,19 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         [HttpGet]
         public ActionResult AddOrEdit(int? id)
         {
+
             var userid = User.Identity.GetUserId();
             var account = db.AspNetUsers.Find(userid);
 
+            var empquery = from em in db.Employees
+                           where em.Account == account.UserName
+                           select new { em.employeeID };
 
-            int UserID = Convert.ToInt32(userid);
+            int EmpID = 0;
+            foreach (var e in empquery)
+            {
+                EmpID = e.employeeID;
+            }
 
 
             if (id == 0)
@@ -79,7 +87,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
                 {
                     var bb = db.BulletinBoards.FirstOrDefault(x => x.Num == id.Value);
-                    var emp = db.Employees.FirstOrDefault(x=>x.employeeID == UserID);
+                    var emp = db.Employees.FirstOrDefault(x=>x.employeeID == EmpID);
 
                     BulletinBoardEmployeeViewModel vm = new BulletinBoardEmployeeViewModel();
                     vm.BulletinBoardData = bb;
