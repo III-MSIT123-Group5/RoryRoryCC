@@ -1,0 +1,58 @@
+﻿@model BusinessSystemMVC_Admin_page_.Models.CompanyVehicleHistory
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CompanyVehicleHistory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.purpose)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.purpose)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyVehicle.brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyVehicle.brand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.EmployeeName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VehicleHistoryID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
