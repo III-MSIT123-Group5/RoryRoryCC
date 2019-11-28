@@ -3,65 +3,120 @@
     ViewBag.Title = "管理";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
     <h4>變更帳戶設定</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>密碼:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("變更密碼", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("建立", "SetPassword")
-            }
-            ]
-        </dd>
-        <dt>外部登入:</dt>
-        <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("管理", "ManageLogins") ]
-        </dd>
-        @*
-            電話號碼可用作為雙重要素驗證系統中的第二項驗證要素。
-             
-             請參閱<a href="https://go.microsoft.com/fwlink/?LinkId=403804">此文章</a>
-                以取得設定此 ASP.NET 應用程式使用簡訊來支援雙重要素驗證的詳細資料。
-             
-             設定了雙重驗證之後，請取消對下列區塊的註解
-        *@
-        @*  
-            <dt>電話號碼:</dt>
+
+    @using (Html.BeginForm("Index", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <dl class="dl-horizontal">
+            <dt></dt>
+            <dd></dd>
+            <dt>@Html.DisplayNameFor(m => m.Photo)</dt>
             <dd>
-                @(Model.PhoneNumber ?? "None")
-                @if (Model.PhoneNumber != null)
+                <div>
+                    <img id="imgPhoto" src="@Html.DisplayFor(m=>m.Photo)" style="height: 250px ; width:auto" />
+                </div>
+                @Html.AntiForgeryToken()
+                @Html.TextBox("txtPhoto", @Html.DisplayFor(m => m.Photo), new { @class = "col-md-2 control-label", @disabled = "disabled" })
+                @Html.TextBox("btnChangePhoto", "變更", new { @type = "button", @class = "btn btn-primary" })
+                @Html.TextBox("btnSavePhoto", "儲存", new { @type = "button", @class = "btn btn-primary" })
+            </dd>
+            <dt>@Html.DisplayNameFor(m => m.EmployeeID)</dt>
+            <dd>
+                @Html.DisplayFor(m => m.EmployeeID, new { @type = "input", @disabled = "disabled" })
+            </dd>
+            <dt>@Html.DisplayNameFor(m => m.EmpoyeeName)</dt>
+            <dd>
+                @Html.DisplayFor(m => m.EmpoyeeName)
+            </dd>
+            <dt>@Html.DisplayNameFor(m => m.Account)</dt>
+            <dd>
+                @Html.DisplayFor(m => m.Account)
+            </dd>
+            <dt>密碼</dt>
+            <dd>
+                [
+                @if (Model.HasPassword)
                 {
-                    <br />
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
-                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>[<input type="submit" value="移除" class="btn-link" />]</text>
-                    }
+                    @Html.ActionLink("變更密碼", "ChangePassword")
                 }
                 else
                 {
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+                    @Html.ActionLink("建立", "SetPassword")
                 }
+                ]
             </dd>
-        *@
-        <dt>雙因素驗證:</dt>
-        <dd>
-            <p>
-                未設定任何雙重要素驗證提供者。請參閱<a href="https://go.microsoft.com/fwlink/?LinkId=403804">此文章</a>
-                以取得設定此 ASP.NET 應用程式以支援雙重要素驗證的詳細資料。
-            </p>
+            <dt>@Html.DisplayNameFor(m => m.Email)</dt>
+            <dd>
+                @Html.DisplayFor(m => m.Email)
+            </dd>
+            <dt>@Html.DisplayNameFor(m => m.Gender)</dt>
+            <dd>
+                @Html.DisplayFor(m => m.Gender)
+            </dd>
+            <dt>@Html.DisplayNameFor(m => m.OfficeName)</dt>
+            <dd>
+                @Html.DisplayFor(m => m.OfficeName)
+            </dd>
+            <dt>@Html.DisplayNameFor(m => m.DepartmentName)</dt>
+            <dd>
+                @Html.DisplayFor(m => m.DepartmentName)
+            </dd>
+            <dt>@Html.DisplayNameFor(m => m.GroupID)</dt>
+            <dd>
+                @Html.DisplayFor(m => m.GroupID)
+            </dd>
+            <dt>@Html.DisplayNameFor(m => m.PositionID)</dt>
+            <dd>
+                @Html.DisplayFor(m => m.PositionID)
+            </dd>
+            <dt>@Html.DisplayNameFor(m => m.ManagerID)</dt>
+            <dd>
+                @Html.DisplayFor(m => m.ManagerID)
+            </dd>
+            <dt>@Html.DisplayNameFor(m => m.Employed)</dt>
+            <dd>
+                @Html.DisplayFor(m => m.Employed)
+            </dd>
+
+            @*
+                電話號碼可用作為雙重要素驗證系統中的第二項驗證要素。
+
+                 請參閱<a href="https://go.microsoft.com/fwlink/?LinkId=403804">此文章</a>
+                    以取得設定此 ASP.NET 應用程式使用簡訊來支援雙重要素驗證的詳細資料。
+
+                 設定了雙重驗證之後，請取消對下列區塊的註解
+            *@
+            @*
+                <dt>電話號碼:</dt>
+                <dd>
+                    @(Model.PhoneNumber ?? "None")
+                    @if (Model.PhoneNumber != null)
+                    {
+                        <br />
+                        <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
+                        using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <text>[<input type="submit" value="移除" class="btn-link" />]</text>
+                        }
+                    }
+                    else
+                    {
+                        <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+                    }
+                </dd>
+            *@
+            @*<dt>雙因素驗證:</dt>
+                <dd>
+                    <p>
+                        未設定任何雙重要素驗證提供者。請參閱<a href="https://go.microsoft.com/fwlink/?LinkId=403804">此文章</a>
+                        以取得設定此 ASP.NET 應用程式以支援雙重要素驗證的詳細資料。
+                    </p>*@
             @*@if (Model.TwoFactor)
                 {
                     using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -82,6 +137,23 @@
                         </text>
                     }
                 }*@
-        </dd>
-    </dl>
+            @*</dd>*@
+        </dl>
+    }
 </div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $("#btnChangePhoto").click(function () {
+            $("#txtPhoto").removeAttr("disabled");
+        })
+
+        $("#btnSavePhoto").click(function () {
+            $("#txtPhoto").attr("disabled", "disabled");
+            $("#imgPhoto").attr("src", $("#txtPhoto").val());
+        })
+
+    </script>
+}
