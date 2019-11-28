@@ -33,7 +33,7 @@
         <EntityTypeShape EntityType="BusinessDataBaseModel.MeetingRoom" Width="1.5" PointX="8.25" PointY="19.875" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Message" Width="1.5" PointX="7.5" PointY="55.5" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Office" Width="1.5" PointX="3" PointY="33" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.OrderDetail" Width="1.5" PointX="12.75" PointY="39.25" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.OrderDetail" Width="1.5" PointX="12.75" PointY="39.625" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Position" Width="1.5" PointX="3" PointY="30.625" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Recipient" Width="1.5" PointX="9.75" PointY="40.375" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Reply" Width="1.5" PointX="12" PointY="44" />
