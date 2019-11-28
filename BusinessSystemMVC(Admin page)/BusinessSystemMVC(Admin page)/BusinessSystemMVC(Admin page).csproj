@@ -189,6 +189,7 @@
     <Compile Include="Controllers\BulletinBoardsController.cs" />
     <Compile Include="Controllers\CompanyVehicleBorrowController.cs" />
     <Compile Include="Controllers\CompanyVehiclesController.cs" />
+    <Compile Include="Controllers\EventCalendarsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RequisitionMainsController.cs" />
@@ -560,6 +561,11 @@
     <Content Include="Views\CompanyVehicles\Edit.cshtml" />
     <Content Include="Views\CompanyVehicles\Index.cshtml" />
     <Content Include="Views\CompanyVehicles\_ShowPhotoPartial.cshtml" />
+    <Content Include="Views\EventCalendars\Create.cshtml" />
+    <Content Include="Views\EventCalendars\Delete.cshtml" />
+    <Content Include="Views\EventCalendars\Details.cshtml" />
+    <Content Include="Views\EventCalendars\Edit.cshtml" />
+    <Content Include="Views\EventCalendars\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
