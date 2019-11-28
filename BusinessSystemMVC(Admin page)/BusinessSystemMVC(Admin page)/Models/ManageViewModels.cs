@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
@@ -12,6 +13,69 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+
+        [Display(Name = "員工編號")]
+        public int EmployeeID { get; set; }
+
+        [Display(Name = "員工姓名")]
+        public string EmpoyeeName { get; set; }
+
+        [Display(Name = "帳號")]
+        public string Account { get; set; }
+
+        [Display(Name = "電子郵件")]
+        public string Email { get; set; }
+
+        private string _gendername;
+        [Display(Name = "性別")]
+        public string Gender
+        {
+            get
+            {
+                string gn = "男";
+                switch (_gendername)
+                {
+                    case "M":
+                        gn = "男";
+                        break;
+                    case "F":
+                        gn = "女";
+                        break;
+                }
+                return gn;
+            }
+            set
+            {
+                _gendername = value;
+            }
+        }
+
+        [Display(Name = "生日")]
+        public DateTime BirthDay { get; set; }
+
+        [Display(Name = "雇用日期")]
+        public DateTime HireDay { get; set; }
+
+        [Display(Name = "辦公室")]
+        public string OfficeName { get; set; }
+
+        [Display(Name = "部門")]
+        public string DepartmentName { get; set; }
+
+        [Display(Name = "組別")]
+        public string GroupID { get; set; }
+
+        [Display(Name = "職位名稱")]
+        public string PositionID { get; set; }
+
+        [Display(Name = "直系主管")]
+        public string ManagerID { get; set; }
+
+        [Display(Name = "在職狀態")]
+        public bool Employed { get; set; }
+
+        [Display(Name = "個人照片")]
+        public string Photo { get; set; }
     }
 
     public class ManageLoginsViewModel

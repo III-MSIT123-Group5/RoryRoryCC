@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <title>Business System</title>
+    <link href="~/Images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", required: false)
@@ -23,7 +26,7 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-        <a class="navbar-brand" href="@Url.Action("Index", "Home")" style="line-height:50px; margin-left:5px">Business System</a>        
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")" style="line-height:50px; margin-left:5px">Business System</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>        
@@ -83,63 +86,69 @@
                         </li>
                     </ul>
                 </li>
+                @*只有HR可看見HRsystem*@
+                @Html.Partial("_HRSystemPartial")
+                @*只有IT可看見HRsystem*@
+                @Html.Partial("_ITSystemPartial")
+
+
                 @*<li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="Tables">
-                <a class="nav-link" href="tables.html">
-                    <i class="fa fa-fw fa-table"></i>
-                    <span class="nav-link-text">Tables</span>
-                </a>
-            </li>
-            <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="Example Pages">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
-                    <i class="fa fa-fw fa-file"></i>
-                    <span class="nav-link-text">Example Pages</span>
-                </a>
-                <ul class="sidenav-second-level collapse" id="collapseExamplePages">
-                    <li class="color hover">
-                        <a href="login.html">Login Page</a>
+                        <a class="nav-link" href="tables.html">
+                            <i class="fa fa-fw fa-table"></i>
+                            <span class="nav-link-text">Tables</span>
+                        </a>
                     </li>
-                    <li class="color hover">
-                        <a href="register.html">Registration Page</a>
-                    </li>
-                    <li class="color hover">
-                        <a href="forgot-password.html">Forgot Password Page</a>
-                    </li>
-                    <li class="color hover">
-                        <a href="blank.html">Blank Page</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="Menu Levels">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
-                    <i class="fa fa-fw fa-sitemap"></i>
-                    <span class="nav-link-text">Menu Levels</span>
-                </a>
-                <ul class="sidenav-second-level collapse" id="collapseMulti">
-                    <li class="color hover">
-                        <a href="#">Second Level Item</a>
-                    </li>
-                    <li class="color hover">
-                        <a href="#">Second Level Item</a>
-                    </li>
-                    <li class="color hover">
-                        <a href="#">Second Level Item</a>
-                    </li>
-                    <li class="color hover">
-                        <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">Third Level</a>
-                        <ul class="sidenav-third-level collapse" id="collapseMulti2">
+                    <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="Example Pages">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
+                            <i class="fa fa-fw fa-file"></i>
+                            <span class="nav-link-text">Example Pages</span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="collapseExamplePages">
                             <li class="color hover">
-                                <a href="#">Third Level Item</a>
+                                <a href="login.html">Login Page</a>
                             </li>
                             <li class="color hover">
-                                <a href="#">Third Level Item</a>
+                                <a href="register.html">Registration Page</a>
                             </li>
                             <li class="color hover">
-                                <a href="#">Third Level Item</a>
+                                <a href="forgot-password.html">Forgot Password Page</a>
+                            </li>
+                            <li class="color hover">
+                                <a href="blank.html">Blank Page</a>
                             </li>
                         </ul>
                     </li>
-                </ul>
-            </li>*@
+                    <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
+                            <i class="fa fa-fw fa-sitemap"></i>
+                            <span class="nav-link-text">Menu Levels</span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="collapseMulti">
+                            <li class="color hover">
+                                <a href="#">Second Level Item</a>
+                            </li>
+                            <li class="color hover">
+                                <a href="#">Second Level Item</a>
+                            </li>
+                            <li class="color hover">
+                                <a href="#">Second Level Item</a>
+                            </li>
+                            <li class="color hover">
+                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">Third Level</a>
+                                <ul class="sidenav-third-level collapse" id="collapseMulti2">
+                                    <li class="color hover">
+                                        <a href="#">Third Level Item</a>
+                                    </li>
+                                    <li class="color hover">
+                                        <a href="#">Third Level Item</a>
+                                    </li>
+                                    <li class="color hover">
+                                        <a href="#">Third Level Item</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>*@
             </ul>
             <ul class="navbar-nav sidenav-toggler">
                 <li class="nav-item color hover">
@@ -150,8 +159,8 @@
             </ul>
             <div class="navbar-nav ml-auto">  @Html.Partial("_LoginPartial")</div>
             @*<ul class="navbar-nav ml-auto">
-            <div>  @Html.Partial("_LoginPartial")</div>
-        </ul>*@
+                    <div>  @Html.Partial("_LoginPartial")</div>
+                </ul>*@
         </div>
     </nav>
     <div class="content-wrapper">
@@ -184,14 +193,14 @@
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <a class="btn btn-primary" href="login.html">Logout</a>
-                    </div>   
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")    
+    @Scripts.Render("~/bundles/bootstrap")
     <script>
         (function ($) {
             "use strict"; // Start of use strict
@@ -239,7 +248,8 @@
             });
         })(jQuery); // End of use strict
     </script>
-
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

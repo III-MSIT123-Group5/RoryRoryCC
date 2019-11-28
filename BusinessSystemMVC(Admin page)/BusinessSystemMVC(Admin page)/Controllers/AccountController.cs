@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BusinessSystemMVC_Admin_page_.Models;
+using System.Collections.Generic;
 
 namespace BusinessSystemMVC_Admin_page_.Controllers
 {
@@ -21,8 +22,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         public AccountController()
         {
         }
+        BusinessDataBaseEntities db = new BusinessDataBaseEntities();
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -34,9 +36,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -53,7 +55,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
         //
-        // GET: /Account/Login
+        // GET: /Account/Login    登入
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -72,10 +74,23 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             {
                 return View(model);
             }
+            //var userId = User.Identity.GetUserId();
+            //var acc = db.AspNetUsers.Find(userId);
+            //var empquery = from em in db.Employees.AsEnumerable()
+            //               where em.Account == acc.UserName
+            //               select new { em.employeeID };
+
+            //foreach (var e in empquery)
+            //{
+            //    GetEmployeeIDClass.GetEmployeeID = e.employeeID;
+            //}
 
             // 這不會計算為帳戶鎖定的登入失敗
             // 若要啟用密碼失敗來觸發帳戶鎖定，請變更為 shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
+
+
+
             switch (result)
             {
                 case SignInStatus.Success:
@@ -120,7 +135,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             // 如果使用者輸入不正確的代碼來表示一段指定的時間，則使用者帳戶 
             // 會有一段指定的時間遭到鎖定。 
             // 您可以在 IdentityConfig 中設定帳戶鎖定設定
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -135,11 +150,123 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
         //
-        // GET: /Account/Register
+        // GET: /Account/Register  註冊
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.Gender = new List<SelectListItem>()
+            {
+                new SelectListItem {Text="男",Value="M" },
+                new SelectListItem {Text="女",Value="F" },
+            };
+            ViewBag.Employed = new List<SelectListItem>()
+            {
+                new SelectListItem{Text="在職中", Value="true"},
+                new SelectListItem{Text="已離職", Value="false" },
+            };
+            int ThisYear = DateTime.Now.Year;
+            List<int> birYearList = new List<int>();
+            List<int> birMonth = new List<int>();
+            List<int> birDate = new List<int>();
+            for (int i = ThisYear - 18; i > ThisYear - 65; i--)
+            {
+                birYearList.Add(i);
+            }
+            for (int i = 1; i <= 12; i++)
+            {
+                birMonth.Add(i);
+            }
+            for (int i = 1; i <= 31; i++)
+            {
+                birDate.Add(i);
+            }
+            var qYear = birYearList.Select(p => new { YearText = p.ToString(), YearValue = p });
+            var qMonth = birMonth.Select(p => new { MonthText = p.ToString(), MonthValue = p });
+            var qDate = birDate.Select(p => new { DateText = p.ToString(), DateVallue = p });
+
+            ViewBag.BirthYear = new SelectList(qYear, "YearValue", "YearText");
+            ViewBag.BirthMonth = new SelectList(qMonth, "MonthValue", "MonthText");
+            ViewBag.BirthDate = new SelectList(qDate, "DateVallue", "DateText");
+            ViewBag.DepartmentID = new SelectList(db.Departments, "departmentID", "name");
+            ViewBag.GroupID = new SelectList(db.Groups, "GroupID", "GroupName");
+            ViewBag.OfficeID = new SelectList(db.Offices, "officeID", "office_name");
+            ViewBag.PositionID = new SelectList(db.Positions, "positionID", "position1");
+            ViewBag.ManagerID = new SelectList(db.Employees.Where(p => p.employeeID == 1004), "employeeID", "EmployeeName");
+
             return View();
+        }
+
+        [HttpPost]          //todo .ajax方法：依DepartmentID抓Group
+        [AllowAnonymous]
+        public ActionResult GetGrpIDbyDeptID(int? id)
+        {
+            var q = db.Groups.Where(p => p.DepartmentID == id);
+            ViewBag.GroupID = new SelectList(q, "GroupID", "GroupName");
+            if (q != null)
+            {
+                return PartialView("_GetGrpIDbyDeptIDPartial", new SelectList(q, "GroupID", "GroupName"));
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+        }
+
+        [HttpPost]           //todo .ajax方法：
+        [AllowAnonymous]
+        public ActionResult GetPosiIDbyDeptID(int? id)
+        {
+            if (id != 1)
+            {
+                var q = db.Positions.Where(p => p.positionID != 1);
+                ViewBag.PositionID = new SelectList(q, "positionID", "position1");
+                if (q != null)
+                {
+                    return PartialView("_GetPosiIDbyDeptIDPartial", new SelectList(q, "positionID", "position1"));
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
+            }
+            else
+            {
+                var q = db.Positions;
+                ViewBag.PositionID = new SelectList(q, "positionID", "position1");
+                return PartialView("_GetPosiIDbyDeptIDPartial", new SelectList(db.Positions, "positionID", "position1"));
+            }
+        }
+
+        [HttpPost]           //todo .get json方法：
+        [AllowAnonymous]
+        public ActionResult GetManagerID(int DepartmentID, int GroupID, int PositionID)
+        {
+            if (PositionID == 4)    //員工     
+            {
+                var qposiEmp = db.Employees.Where(p => p.DepartmentID == DepartmentID && p.GroupID == GroupID && p.PositionID == PositionID - 1).Select(p => new { p.employeeID, p.EmployeeName });
+                //ViewBag.ManagerID = new SelectList(qposiEmp, "employeeID", "EmployeeName");
+                if (qposiEmp != null)  //有組長
+                {
+                    return Json(qposiEmp, JsonRequestBehavior.AllowGet);
+                }
+                else     //無組長
+                {
+                    var qposinoncapEmp = db.Employees.Where(p => p.DepartmentID == DepartmentID && p.GroupID == GroupID && p.PositionID == PositionID - 2).Select(p => new { p.employeeID, p.EmployeeName });
+                    //ViewBag.ManagerID = new SelectList(qposinoncapEmp, "employeeID", "EmployeeName");
+                    return Json(qposinoncapEmp, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else if (PositionID == 3)
+            {
+                var qposiGL = db.Employees.Where(p => p.DepartmentID == DepartmentID && p.PositionID == 2).Select(p => new { p.employeeID, p.EmployeeName });
+                return Json(qposiGL, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var qposiGM = db.Employees.Where(P => P.PositionID == 1).Select(p => new { p.employeeID, p.EmployeeName });
+                //ViewBag.ManagerID = new SelectList(qposiGM, "employeeID", "EmployeeName");
+                return Json(qposiGM, JsonRequestBehavior.AllowGet);
+            }
         }
 
         //
@@ -151,25 +278,62 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Account, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false); //註冊後自重登入
+
                     // 如需如何進行帳戶確認及密碼重設的詳細資訊，請前往 https://go.microsoft.com/fwlink/?LinkID=320771
                     // 傳送包含此連結的電子郵件
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "確認您的帳戶", "請按一下此連結確認您的帳戶 <a href=\"" + callbackUrl + "\">這裏</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    string m_address = "https://icon-icons.com/icons2/2061/PNG/512/happy_consumer_people_man_icon_124583.png";
+                    switch (model.Gender)
+                    {
+                        case "F":
+                            m_address = "https://cdn.icon-icons.com/icons2/2061/PNG/512/girl_people_face_consumer_icon_124586.png";
+                            break;
+                        case "M":
+                            m_address = "https://icon-icons.com/icons2/2061/PNG/512/happy_consumer_people_man_icon_124583.png";
+                            break;
+                    }
+
+
+                    var addEmployee = new BusinessSystemMVC_Admin_page_.Models.Employee
+                    {
+                        EmployeeName = model.EmpoyeeName,
+                        Gender = model.Gender,
+                        //todo birthday = model.BirthYear + month +day
+                        Birth = new DateTime(model.BirthYear.Year, model.BirthMonth.Month, Convert.ToInt32(model.BirthDate.Date)),
+                        HireDate = model.HireDay,
+                        Account = model.Account,
+                        OfficeID = Convert.ToInt32(model.OfficeID),
+                        DepartmentID = Convert.ToInt32(model.DepartmentID),
+                        PositionID = Convert.ToInt32(model.PositionID),
+                        ManagerID = Convert.ToInt32(model.ManagerID),
+                        Employed = Convert.ToBoolean(model.Employed),
+                        GroupID = Convert.ToInt32(model.GroupID),
+                        Photo = m_address,
+                    };
+                    db.Employees.Add(addEmployee);
+                    db.SaveChanges();
+
+                    TempData["message"] = $"已成功新增 {model.EmpoyeeName} 的帳號。";
+                    return RedirectToAction("Register", "Account");
+                    //return RedirectToAction("Index", "Home"); 
                 }
                 AddErrors(result);
+
+
             }
 
             // 如果執行到這裡，發生某項失敗，則重新顯示表單
-            return View(model);
+            //return View(model);
+            TempData["message"] = $"帳號新增失敗，請再次確認帳號是否重覆。";
+            return RedirectToAction("Register", "Account");
         }
 
         //
