@@ -12,11 +12,11 @@
         <EntityTypeShape EntityType="BusinessDataBaseModel.Approval" Width="1.5" PointX="12.75" PointY="35.375" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.ApprovalProcedure" Width="1.5" PointX="10.5" PointY="23.625" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.ApprovalStatu" Width="1.5" PointX="8.25" PointY="49.25" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetRole" Width="1.5" PointX="3.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetUserClaim" Width="1.5" PointX="3" PointY="8.5" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetUserLogin" Width="1.5" PointX="3" PointY="3.375" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetUserRole" Width="1.5" PointX="6" PointY="4.625" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetUser" Width="1.5" PointX="0.75" PointY="3.625" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetRole" Width="1.5" PointX="2.75" PointY="1.625" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetUserClaim" Width="1.5" PointX="2.75" PointY="5.5" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetUserLogin" Width="1.5" PointX="1" PointY="1.625" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetUserRole" Width="1.5" PointX="2.75" PointY="3.375" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetUser" Width="1.5" PointX="1" PointY="3.625" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.BulletinBoard" Width="1.5" PointX="7.5" PointY="31.375" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.CommentChild" Width="1.5" PointX="9.75" PointY="58.5" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.CommentGrandchild" Width="1.5" PointX="12" PointY="47.125" />
@@ -33,7 +33,7 @@
         <EntityTypeShape EntityType="BusinessDataBaseModel.MeetingRoom" Width="1.5" PointX="8.25" PointY="19.875" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Message" Width="1.5" PointX="7.5" PointY="55.5" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Office" Width="1.5" PointX="3" PointY="33" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.OrderDetail" Width="1.5" PointX="12.75" PointY="39.25" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.OrderDetail" Width="1.5" PointX="12.75" PointY="39.625" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Position" Width="1.5" PointX="3" PointY="30.625" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Recipient" Width="1.5" PointX="9.75" PointY="40.375" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Reply" Width="1.5" PointX="12" PointY="44" />

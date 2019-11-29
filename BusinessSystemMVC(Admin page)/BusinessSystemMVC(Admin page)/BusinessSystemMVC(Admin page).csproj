@@ -187,8 +187,12 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApprovalsController.cs" />
     <Compile Include="Controllers\BulletinBoardsController.cs" />
+    <Compile Include="Controllers\CompanyVehicleBorrowController.cs" />
+    <Compile Include="Controllers\CompanyVehiclesController.cs" />
+    <Compile Include="Controllers\EventCalendarsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Controllers\RequisitionMainsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -409,6 +413,10 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Images\B_icon.png" />
+    <Content Include="Images\B_icon_32.png" />
+    <Content Include="Images\favicon.ico" />
+    <Content Include="Images\封面.jpg" />
     <Content Include="Models\BusinessSystemModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BusinessSystemModel.edmx</DependentUpon>
@@ -432,16 +440,6 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="Scripts\bootstrap.min.js.map" />
-    <Content Include="Scripts\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.js.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-grid.css.map" />
     <EntityDeploy Include="Models\BusinessSystemModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BusinessSystemModel.Designer.cs</LastGenOutput>
@@ -460,6 +458,16 @@
     <Content Include="fonts\Noto\NotoSansCJKtc-Thin.otf" />
     <Content Include="fonts\Noto\NotoSansMonoCJKtc-Bold.otf" />
     <Content Include="fonts\Noto\NotoSansMonoCJKtc-Regular.otf" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -471,6 +479,8 @@
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.dateformat-1.0.js" />
     <Content Include="Scripts\jquery.dateFormat.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -547,6 +557,31 @@
     <Content Include="Views\Approvals\Edit.cshtml" />
     <Content Include="Views\Approvals\Index.cshtml" />
     <Content Include="Views\BulletinBoards\AddOrEdit.cshtml" />
+    <Content Include="Views\Shared\_GetGrpIDbyDeptIDPartial.cshtml" />
+    <Content Include="Views\Shared\_GetPosiIDbyDeptIDPartial.cshtml" />
+    <Content Include="Views\Shared\_HRSystemPartial.cshtml" />
+    <Content Include="Views\Shared\_ITSystemPartial.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Create.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Delete.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Details.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Edit.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Index.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\_Vehicletime.cshtml" />
+    <Content Include="Views\CompanyVehicles\Create.cshtml" />
+    <Content Include="Views\CompanyVehicles\Delete.cshtml" />
+    <Content Include="Views\CompanyVehicles\Edit.cshtml" />
+    <Content Include="Views\CompanyVehicles\Index.cshtml" />
+    <Content Include="Views\CompanyVehicles\_ShowPhotoPartial.cshtml" />
+    <Content Include="Views\OrderDetails\Create.cshtml" />
+    <Content Include="Views\OrderDetails\Delete.cshtml" />
+    <Content Include="Views\OrderDetails\Details.cshtml" />
+    <Content Include="Views\OrderDetails\Edit.cshtml" />
+    <Content Include="Views\OrderDetails\Index.cshtml" />
+    <Content Include="Views\EventCalendars\Create.cshtml" />
+    <Content Include="Views\EventCalendars\Delete.cshtml" />
+    <Content Include="Views\EventCalendars\Details.cshtml" />
+    <Content Include="Views\EventCalendars\Edit.cshtml" />
+    <Content Include="Views\EventCalendars\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

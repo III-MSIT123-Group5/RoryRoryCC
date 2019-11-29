@@ -1,0 +1,132 @@
+﻿@model IEnumerable<BusinessSystemMVC_Admin_page_.Models.EventCalendar>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+<link href='~/package/calendar/core/main.css' rel='stylesheet' />
+<link href='~/package/calendar/daygrid/main.css' rel='stylesheet' />
+<link href='~/package/calendar/timegrid/main.css' rel='stylesheet' />
+
+<script src='~/package/calendar/core/main.js'></script>
+<script src='~/package/calendar/interaction/main.js'></script>
+<script src='~/package/calendar/daygrid/main.js'></script>
+<script src='~/package/calendar/timegrid/main.js'></script>
+<script>
+
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        $("#UpdateEvent").hover(function () {
+            $(this).css('color', '#b4c9ef')
+        }, function () {
+            $(this).css('color', '')
+        });
+
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['interaction', 'dayGrid', 'timeGrid', 'list'],
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                },
+                defaultDate: '2019-08-12',
+                navLinks: true, // can click day/week names to navigate views
+                businessHours: true, // display business hours
+                editable: true,
+                events: [
+                    {
+                        title: 'Business Lunch',
+                        start: '2019-08-03T13:00:00',
+                        constraint: 'businessHours'
+                    },
+                    {
+                        title: 'Meeting',
+                        start: '2019-08-13T11:00:00',
+                        constraint: 'availableForMeeting', // defined below
+                        color: '#257e4a'
+                    },
+                    {
+                        title: 'Conference',
+                        start: '2019-08-18',
+                        end: '2019-08-20'
+                    },
+                    {
+                        title: 'Party',
+                        start: '2019-08-29T20:00:00'
+                    },
+
+                    // areas where "Meeting" must be dropped
+                    {
+                        groupId: 'availableForMeeting',
+                        start: '2019-08-11T10:00:00',
+                        end: '2019-08-11T16:00:00',
+                        rendering: 'background'
+                    },
+                    {
+                        groupId: 'availableForMeeting',
+                        start: '2019-08-13T10:00:00',
+                        end: '2019-08-13T16:00:00',
+                        rendering: 'background'
+                    },
+
+                    // red areas where no events can be dropped
+                    {
+                        start: '2019-08-24',
+                        end: '2019-08-28',
+                        overlap: false,
+                        rendering: 'background',
+                        color: '#ff9f89'
+                    },
+                    {
+                        start: '2019-08-06',
+                        end: '2019-08-08',
+                        overlap: false,
+                        rendering: 'background',
+                        color: '#ff9f89'
+                    }
+                ]
+            });
+
+            calendar.render();
+        
+
+        $("div > button").hover(function () {
+            $(this).css('background-color', '#b4c9ef')
+        }, function () {
+            $(this).css('background-color', '')
+        });
+    });
+
+    
+
+</script>
+
+
+<h2 >日曆</h2>
+
+<script>
+
+
+</script>
+<div>
+
+    <i class="fas fa-plus-square fa-5x" id="UpdateEvent" onclick="location.href='@Url.Action("Create", "EventCalendars")'"></i>
+
+</div>
+
+
+
+<div class="col-3">
+
+
+
+</div>
+<div class="col-12">
+    <div id='calendar'></div>
+</div>
+
