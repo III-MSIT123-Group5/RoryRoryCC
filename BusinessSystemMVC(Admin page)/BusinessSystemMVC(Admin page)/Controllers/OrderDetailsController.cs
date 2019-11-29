@@ -13,9 +13,10 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 {
     public class OrderDetailsController : Controller
     {
-        private BusinessDataBaseEntities db = new BusinessDataBaseEntities();             
+        private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
 
         int EmpID = 0;
+        int EmpManagerID = 0;
 
         // GET: OrderDetails
         [Authorize]
@@ -84,12 +85,17 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             var empquery = from EM in db.Employees
                            where EM.Account == account.UserName
-                           select new { EM.employeeID };
+                           select new { EM.employeeID, EM.ManagerID };
 
             foreach (var e in empquery)
             {
                 EmpID = e.employeeID;
+                EmpManagerID = Convert.ToInt32(e.ManagerID);
             }
+
+            var test = from EM in db.Employees
+                       where EM.Account == account.UserName
+                       select new { EM.ManagerID };
 
             decimal TemporaryUnitPrice = orderDetail.UnitPrice;
             int TemporaryQuantity = orderDetail.Quantity;
@@ -106,13 +112,17 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                         Quantity = orderDetail.Quantity,
                         Note = orderDetail.Note,
                         RequisitionMain = (new Models.RequisitionMain
-                        {                            
+                        {
                             ReportID = 2,
-                            EmployeeID = EmpID,
                             RequisitionDate = DateTime.Now,
                             Approval = (new Models.Approval
                             {
-                                ApprovalProcedureID = 6
+                                ApprovalProcedureID = 6,
+                                //FirstSignerID = 
+                               
+                                //     from EM in db.Employees
+                                //where EM.Account == account.UserName
+                                //select new { EM.employeeID };
                             })
                         })
                     });
@@ -234,6 +244,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }        
+        }
     }
 }
+
+
