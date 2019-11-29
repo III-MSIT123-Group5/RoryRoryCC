@@ -58,7 +58,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
         //id=0
         [HttpGet]
-        public ActionResult AddOrEdit(int? id)
+        public ActionResult AddOrEdit(int id = 0)
         {
 
             var userid = User.Identity.GetUserId();
@@ -66,7 +66,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             var empquery = from em in db.Employees
                            where em.Account == account.UserName
-                           select new { em.employeeID };
+                           select new { em.employeeID,
+                           em.GroupID,em.DepartmentID};
 
             int EmpID = 0;
             foreach (var e in empquery)
@@ -75,51 +76,87 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             }
 
 
-        if (id == 0)
-        {
-            return View(new BulletinBoard());
-        }
-        else
-        {
-            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            if (id == 0)
             {
-                var bb = db.BulletinBoards.FirstOrDefault(x => x.Num == id.Value);
-                var emp = db.Employees.FirstOrDefault(x => x.employeeID == EmpID);
-
-                BulletinBoardEmployeeViewModel vm = new BulletinBoardEmployeeViewModel();
-                vm.BulletinBoardData = bb;
-                vm.EmployeesCollection = emp;
-
-                return View(vm);
-
-                //return View(db.BulletinBoards.Where(x => x.Num == id).FirstOrDefault<BulletinBoard>());
-            }
-        }
-
-    [HttpPost]
-    public ActionResult AddOrEdit(BulletinBoard b)
-    {
-        using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
-        {
-            if (b.EmployeeID == 0)
-            {
-                db.BulletinBoards.Add(b);
-                db.SaveChanges();
-
-                return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
+                return View(new BulletinBoard());
             }
             else
             {
-                db.Entry(b).State = EntityState.Modified;
-                db.SaveChanges();
+                using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+                {
+                    //var bb = db.BulletinBoards.FirstOrDefault(x => x.Num == id.Value);
+                    //var emp = db.Employees.FirstOrDefault(x => x.employeeID == EmpID);
 
-                return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
+                    //BulletinBoardEmployeeViewModel vm = new BulletinBoardEmployeeViewModel();
+                    //vm.BulletinBoardData = bb;
+                    //vm.EmployeesCollection = emp;
+
+                    //return View(vm);
+
+                    return View(db.BulletinBoards.Where(x => x.Num == id).FirstOrDefault<BulletinBoard>());
+                }
             }
-
         }
-    }
 
-    [HttpPost]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddOrEdit(BulletinBoard b)
+        {
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+                if (b.Num == 0)
+                {
+                    //db.BulletinBoards.Add(b);
+
+                    var userid = User.Identity.GetUserId();
+                    var account = db.AspNetUsers.Find(userid);
+
+                    var empquery = from em in db.Employees
+                                   where em.Account == account.UserName
+                                   select new
+                                   {
+                                       em.employeeID,
+                                       em.GroupID,
+                                       em.DepartmentID
+                                   };
+
+                    int EmpID = 0;
+                    int? DID = 0;
+                    int? GID = 0;
+
+                    foreach (var e in empquery)
+                    {
+                        EmpID = e.employeeID;
+                        DID = e.DepartmentID;
+                        GID = e.GroupID;
+                    }
+
+
+                    db.BulletinBoards.Add(new BulletinBoard()
+                    {
+                        Content = b.Content,
+                        PostTime = DateTime.Now,
+                        DepartmentID = DID,
+                        GroupID = GID,
+                        EmployeeID = EmpID
+
+                    });
+                    db.SaveChanges();
+
+                    return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    db.Entry(b).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+        }
+
+        [HttpPost]
     public ActionResult Delete(int id)
     {
         using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
