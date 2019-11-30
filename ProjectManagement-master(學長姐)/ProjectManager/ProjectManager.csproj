@@ -1,0 +1,725 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7B4159E0-5250-4B47-9660-4C9482057675}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProjectManager</RootNamespace>
+    <AssemblyName>ProjectManager</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.0.0.999, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.0.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.4.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.0\lib\net451\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.1\lib\net45\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.1\lib\net45\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.1\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.1\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\ProjectManagement.ldf">
+      <DependentUpon>ProjectManagement.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\ProjectManagement.mdf" />
+    <Content Include="favicon\favicon-16x16.png" />
+    <Content Include="favicon\favicon-32x32.png" />
+    <Content Include="favicon\favicon-96x96.png" />
+    <Content Include="favicon\favicon.ico" />
+    <Content Include="image\Excel-Icon.png" />
+    <Content Include="image\Excelicon.png" />
+    <Content Include="Content\AdminLTE.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fontawesome-all.min.css" />
+    <Content Include="Content\fullcalendar.css" />
+    <Content Include="Content\fullcalendar.min.css" />
+    <Content Include="Content\fullcalendar.print.css" />
+    <Content Include="Content\fullcalendar.print.min.css" />
+    <Content Include="Content\Login.css" />
+    <Content Include="Content\Main.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\PMScore.css" />
+    <Content Include="Content\skin-black.css" />
+    <Content Include="image\bookmark_icon30.png" />
+    <Content Include="image\leader.png" />
+    <Content Include="image\notask2.png" />
+    <Content Include="image\sign-check-icon.png" />
+    <Content Include="Models\ProjectManageModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ProjectManageModel.edmx</DependentUpon>
+      <LastGenOutput>ProjectManageModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ProjectManageModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ProjectManageModel.edmx</DependentUpon>
+      <LastGenOutput>ProjectManageModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\BindingEnterSGR.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.0.min.js" />
+    <Content Include="Scripts\SignalRChat.js" />
+    <Content Include="Scripts\fullcalendar.js" />
+    <Content Include="Scripts\fullcalendar.min.js" />
+    <Content Include="Scripts\fullcalendar\fullcalendar.js" />
+    <Content Include="Scripts\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Scripts\fullcalendar\gcal.js" />
+    <Content Include="Scripts\fullcalendar\gcal.min.js" />
+    <Content Include="Scripts\fullcalendar\locale-all.js" />
+    <Content Include="Scripts\fullcalendar\locale\af.js" />
+    <Content Include="Scripts\fullcalendar\locale\ar-dz.js" />
+    <Content Include="Scripts\fullcalendar\locale\ar-kw.js" />
+    <Content Include="Scripts\fullcalendar\locale\ar-ly.js" />
+    <Content Include="Scripts\fullcalendar\locale\ar-ma.js" />
+    <Content Include="Scripts\fullcalendar\locale\ar-sa.js" />
+    <Content Include="Scripts\fullcalendar\locale\ar-tn.js" />
+    <Content Include="Scripts\fullcalendar\locale\ar.js" />
+    <Content Include="Scripts\fullcalendar\locale\bg.js" />
+    <Content Include="Scripts\fullcalendar\locale\bs.js" />
+    <Content Include="Scripts\fullcalendar\locale\ca.js" />
+    <Content Include="Scripts\fullcalendar\locale\cs.js" />
+    <Content Include="Scripts\fullcalendar\locale\da.js" />
+    <Content Include="Scripts\fullcalendar\locale\de-at.js" />
+    <Content Include="Scripts\fullcalendar\locale\de-ch.js" />
+    <Content Include="Scripts\fullcalendar\locale\de.js" />
+    <Content Include="Scripts\fullcalendar\locale\el.js" />
+    <Content Include="Scripts\fullcalendar\locale\en-au.js" />
+    <Content Include="Scripts\fullcalendar\locale\en-ca.js" />
+    <Content Include="Scripts\fullcalendar\locale\en-gb.js" />
+    <Content Include="Scripts\fullcalendar\locale\en-ie.js" />
+    <Content Include="Scripts\fullcalendar\locale\en-nz.js" />
+    <Content Include="Scripts\fullcalendar\locale\es-do.js" />
+    <Content Include="Scripts\fullcalendar\locale\es-us.js" />
+    <Content Include="Scripts\fullcalendar\locale\es.js" />
+    <Content Include="Scripts\fullcalendar\locale\et.js" />
+    <Content Include="Scripts\fullcalendar\locale\eu.js" />
+    <Content Include="Scripts\fullcalendar\locale\fa.js" />
+    <Content Include="Scripts\fullcalendar\locale\fi.js" />
+    <Content Include="Scripts\fullcalendar\locale\fr-ca.js" />
+    <Content Include="Scripts\fullcalendar\locale\fr-ch.js" />
+    <Content Include="Scripts\fullcalendar\locale\fr.js" />
+    <Content Include="Scripts\fullcalendar\locale\gl.js" />
+    <Content Include="Scripts\fullcalendar\locale\he.js" />
+    <Content Include="Scripts\fullcalendar\locale\hi.js" />
+    <Content Include="Scripts\fullcalendar\locale\hr.js" />
+    <Content Include="Scripts\fullcalendar\locale\hu.js" />
+    <Content Include="Scripts\fullcalendar\locale\id.js" />
+    <Content Include="Scripts\fullcalendar\locale\is.js" />
+    <Content Include="Scripts\fullcalendar\locale\it.js" />
+    <Content Include="Scripts\fullcalendar\locale\ja.js" />
+    <Content Include="Scripts\fullcalendar\locale\ka.js" />
+    <Content Include="Scripts\fullcalendar\locale\kk.js" />
+    <Content Include="Scripts\fullcalendar\locale\ko.js" />
+    <Content Include="Scripts\fullcalendar\locale\lb.js" />
+    <Content Include="Scripts\fullcalendar\locale\lt.js" />
+    <Content Include="Scripts\fullcalendar\locale\lv.js" />
+    <Content Include="Scripts\fullcalendar\locale\mk.js" />
+    <Content Include="Scripts\fullcalendar\locale\ms-my.js" />
+    <Content Include="Scripts\fullcalendar\locale\ms.js" />
+    <Content Include="Scripts\fullcalendar\locale\nb.js" />
+    <Content Include="Scripts\fullcalendar\locale\nl-be.js" />
+    <Content Include="Scripts\fullcalendar\locale\nl.js" />
+    <Content Include="Scripts\fullcalendar\locale\nn.js" />
+    <Content Include="Scripts\fullcalendar\locale\pl.js" />
+    <Content Include="Scripts\fullcalendar\locale\pt-br.js" />
+    <Content Include="Scripts\fullcalendar\locale\pt.js" />
+    <Content Include="Scripts\fullcalendar\locale\ro.js" />
+    <Content Include="Scripts\fullcalendar\locale\ru.js" />
+    <Content Include="Scripts\fullcalendar\locale\sk.js" />
+    <Content Include="Scripts\fullcalendar\locale\sl.js" />
+    <Content Include="Scripts\fullcalendar\locale\sq.js" />
+    <Content Include="Scripts\fullcalendar\locale\sr-cyrl.js" />
+    <Content Include="Scripts\fullcalendar\locale\sr.js" />
+    <Content Include="Scripts\fullcalendar\locale\sv.js" />
+    <Content Include="Scripts\fullcalendar\locale\th.js" />
+    <Content Include="Scripts\fullcalendar\locale\tr.js" />
+    <Content Include="Scripts\fullcalendar\locale\uk.js" />
+    <Content Include="Scripts\fullcalendar\locale\vi.js" />
+    <Content Include="Scripts\fullcalendar\locale\zh-cn.js" />
+    <Content Include="Scripts\fullcalendar\locale\zh-tw.js" />
+    <Content Include="Scripts\gcal.js" />
+    <Content Include="Scripts\gcal.min.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="image\NoTask.jpg" />
+    <Content Include="webfonts\fa-brands-400.svg" />
+    <Content Include="webfonts\fa-regular-400.svg" />
+    <Content Include="webfonts\fa-solid-900.svg" />
+    <Content Include="Content\WorkloadBar.css" />
+    <Content Include="Content\_all-skins.css" />
+    <Content Include="Global.asax" />
+    <Content Include="image\001.jpg" />
+    <Content Include="image\ajax-loader.gif" />
+    <Content Include="image\arrow.gif" />
+    <Content Include="image\avatar.png" />
+    <Content Include="image\CancelIcon.png" />
+    <Content Include="image\collapse.png" />
+    <Content Include="image\expand.png" />
+    <Content Include="image\loading.gif" />
+    <Content Include="image\user2-160x160.jpg" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Fonts\NotoSansCJKtc-Regular.otf" />
+    <Content Include="webfonts\fa-brands-400.eot" />
+    <Content Include="webfonts\fa-brands-400.ttf" />
+    <Content Include="webfonts\fa-brands-400.woff" />
+    <Content Include="webfonts\fa-brands-400.woff2" />
+    <Content Include="webfonts\fa-regular-400.eot" />
+    <Content Include="webfonts\fa-regular-400.ttf" />
+    <Content Include="webfonts\fa-regular-400.woff" />
+    <Content Include="webfonts\fa-regular-400.woff2" />
+    <Content Include="webfonts\fa-solid-900.eot" />
+    <Content Include="webfonts\fa-solid-900.ttf" />
+    <Content Include="webfonts\fa-solid-900.woff" />
+    <Content Include="webfonts\fa-solid-900.woff2" />
+    <Content Include="libman.json" />
+    <EntityDeploy Include="Models\ProjectManageModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ProjectManageModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ProjectManageModel.edmx.diagram">
+      <DependentUpon>ProjectManageModel.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\AUTHORS.txt" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\external\jquery\jquery.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\images\ui-icons_444444_256x240.png" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\images\ui-icons_555555_256x240.png" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\images\ui-icons_777620_256x240.png" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\images\ui-icons_777777_256x240.png" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\index.html" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\jquery-ui.css" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\jquery-ui.min.css" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\jquery-ui.structure.css" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\jquery-ui.structure.min.css" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\jquery-ui.theme.css" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\jquery-ui.theme.min.css" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\LICENSE.txt" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.treegrid.js" />
+    <Content Include="Scripts\jquery.treegrid.min.js" />
+    <Content Include="Scripts\login.js" />
+    <Content Include="Scripts\Main.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\CostController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\JobTitleController.cs" />
+    <Compile Include="Controllers\MembersController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\PerfomanceController.cs" />
+    <Compile Include="Controllers\PermissionsController.cs" />
+    <Compile Include="Controllers\ProjectCategoryController.cs" />
+    <Compile Include="Controllers\ProjectDetailsController.cs" />
+    <Compile Include="Controllers\MyBoardController.cs" />
+    <Compile Include="Controllers\ProjectMBacksideController.cs" />
+    <Compile Include="Controllers\ProjectMemberController.cs" />
+    <Compile Include="Controllers\ProjectsBacksideController.cs" />
+    <Compile Include="Controllers\ProjectStatusController.cs" />
+    <Compile Include="Controllers\SelectMBoardController.cs" />
+    <Compile Include="Controllers\SelectProjectController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\TasksController.cs" />
+    <Compile Include="Controllers\TaskStatusController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Models\BLL\CostBL.cs" />
+    <Compile Include="Models\BLL\DocumentBL.cs" />
+    <Compile Include="Models\BLL\NotificationBL.cs" />
+    <Compile Include="Models\BLL\PermissionBL.cs" />
+    <Compile Include="Models\BLL\ProjectMemberBL.cs" />
+    <Compile Include="Models\BLL\ProjectsBL.cs" />
+    <Compile Include="Models\BLL\TasksBL.cs" />
+    <Compile Include="Models\BLL\TreeGridModel.cs" />
+    <Compile Include="Models\Calendar.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CalendarCategory.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CostEstimateSheet.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CostEstimateSheetDetail.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CostPool.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dashboard.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataObject\AllowCrossSiteJsonAttribute.cs" />
+    <Compile Include="Models\DataObject\ExcelTasks.cs" />
+    <Compile Include="Models\DataObject\Grouped.cs" />
+    <Compile Include="Models\DataObject\StoredProcedureForDemo.cs" />
+    <Compile Include="Models\Department.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Document.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DocumentCategory.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DocumentModified.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employee.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IRepository.cs" />
+    <Compile Include="Models\JobTitle.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Meeting.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MeetingDetail.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Members.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MetaData\Calendar.cs" />
+    <Compile Include="Models\MetaData\Project.cs" />
+    <Compile Include="Models\MetaData\Employee.cs" />
+    <Compile Include="Models\MetaData\Tasks.cs" />
+    <Compile Include="Models\PartialClass\Employee.cs" />
+    <Compile Include="Models\PartialClass\Project.cs" />
+    <Compile Include="Models\Permissions.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PreTasks.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Project.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectCategory.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectDiscuss.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectManageModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectManageModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectManageModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectManageModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectManageModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectMembers.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectStatus.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Repository.cs" />
+    <Compile Include="Models\Repository\TasksRepository.cs" />
+    <Compile Include="Models\ResourceCategory.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TaskDetail.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TaskDetailStatus.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TaskModified.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TaskResource.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tasks.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TaskStatus.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewModel\BoardVM.cs" />
+    <Compile Include="Models\ViewModel\ChartDataVM.cs" />
+    <Compile Include="Models\ViewModel\CostEstimateSheetDetailVM.cs" />
+    <Compile Include="Models\ViewModel\DisplayProjectStatusCountVM.cs" />
+    <Compile Include="Models\ViewModel\DisplayTaskStatusCountVM.cs" />
+    <Compile Include="Models\ViewModel\DisplayWorkloadVM.cs" />
+    <Compile Include="Models\ViewModel\EmployeeInfo.cs" />
+    <Compile Include="Models\ViewModel\InviteMemberVM.cs" />
+    <Compile Include="Models\ViewModel\NotificationVM.cs" />
+    <Compile Include="Models\ViewModel\ProjectMemberScoreVM.cs" />
+    <Compile Include="Models\ViewModel\HolidaysVM.cs" />
+    <Compile Include="Models\ViewModel\DocumentVM.cs" />
+    <Compile Include="Models\ViewModel\ProjectMemberTaskCompletedRateVM.cs" />
+    <Compile Include="Models\ViewModel\CostEstimateSheetVM.cs" />
+    <Compile Include="Models\ViewModel\ProjectResourceVM.cs" />
+    <Compile Include="Models\ViewModel\ResourceFilterVM.cs" />
+    <Compile Include="Models\ViewModel\SelectMBoardVM.cs" />
+    <Compile Include="Models\ViewModel\TaskVM.cs" />
+    <Compile Include="Models\ViewModel\WidgetsVM.cs" />
+    <Compile Include="Models\WidgetDetail.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Widgets.cs">
+      <DependentUpon>ProjectManageModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Views\Shared\Link.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Cost\Index.cshtml" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Cost\ExpCatMgr.cshtml" />
+    <Content Include="Views\Cost\ExpList.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-ui-1.12.1-Effects\package.json" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\MyBoard\Index.cshtml" />
+    <Content Include="Views\SelectProject\Index.cshtml" />
+    <Content Include="Views\Cost\GetTaskResources.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\ProjectMember\Index.cshtml" />
+    <Content Include="Views\ProjectDetails\ProjectReport.cshtml" />
+    <Content Include="Views\Cost\AddTaskResource.cshtml" />
+    <Content Include="Views\ProjectDetails\ProjectEdit.cshtml" />
+    <Content Include="Views\Department\Edit.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Department\Insert.cshtml" />
+    <Content Include="Views\JobTitle\Edit.cshtml" />
+    <Content Include="Views\JobTitle\Index.cshtml" />
+    <Content Include="Views\JobTitle\Insert.cshtml" />
+    <Content Include="Views\Members\Index.cshtml" />
+    <Content Include="Views\Permissions\Edit.cshtml" />
+    <Content Include="Views\Permissions\Index.cshtml" />
+    <Content Include="Views\Permissions\Insert.cshtml" />
+    <Content Include="Views\ProjectCategory\Edit.cshtml" />
+    <Content Include="Views\ProjectCategory\Index.cshtml" />
+    <Content Include="Views\ProjectCategory\Insert.cshtml" />
+    <Content Include="Views\ProjectStatus\Edit.cshtml" />
+    <Content Include="Views\ProjectStatus\Index.cshtml" />
+    <Content Include="Views\ProjectStatus\Insert.cshtml" />
+    <Content Include="Views\TaskDetailStatus\Edit.cshtml" />
+    <Content Include="Views\TaskDetailStatus\Index.cshtml" />
+    <Content Include="Views\TaskDetailStatus\Insert.cshtml" />
+    <Content Include="Views\TaskStatus\Edit.cshtml" />
+    <Content Include="Views\TaskStatus\Index.cshtml" />
+    <Content Include="Views\TaskStatus\Insert.cshtml" />
+    <Content Include="Views\ProjectDetails\ProjectDistribution.cshtml" />
+    <Content Include="Views\ProjectDetails\TreeGridPartialView.cshtml" />
+    <Content Include="Views\ProjectMember\AssignTask.cshtml" />
+    <Content Include="Views\Shared\_PartialPageNav.cshtml" />
+    <Content Include="Views\Shared\_GuestLayout.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Shared\_PMLayout.cshtml" />
+    <Content Include="Views\Shared\_PGLayout.cshtml" />
+    <Content Include="Views\Shared\_ManagerLayout.cshtml" />
+    <Content Include="Views\Members\EditPermission.cshtml" />
+    <Content Include="Views\Tasks\Index.cshtml" />
+    <Content Include="Views\Tasks\Insert.cshtml" />
+    <Content Include="Views\Tasks\Edit.cshtml" />
+    <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Add.cshtml" />
+    <Content Include="Views\Members\Edit.cshtml" />
+    <Content Include="Views\Perfomance\Index.cshtml" />
+    <Content Include="Views\Cost\Charts.cshtml" />
+    <Content Include="Views\Perfomance\Watch.cshtml" />
+    <Content Include="Views\Perfomance\TaskScoreAVGReview.cshtml" />
+    <Content Include="Views\Perfomance\ScoreByPM.cshtml" />
+    <Content Include="Views\Perfomance\ScoreByMySelf.cshtml" />
+    <Content Include="Views\Notification\Index.cshtml" />
+    <Content Include="Views\SelectMBoard\Index.cshtml" />
+    <Content Include="Views\ProjectsBackside\Index.cshtml" />
+    <Content Include="Views\ProjectsBackside\Edit.cshtml" />
+    <Content Include="Views\ProjectsBackside\Insert.cshtml" />
+    <Content Include="Views\Document\Index.cshtml" />
+    <Content Include="Views\Tasks\TreeGridPartialView_backSide.cshtml" />
+    <Content Include="Views\Tasks\AsideRightPartialView.cshtml" />
+    <Content Include="Views\Document\GetDocument.cshtml" />
+    <Content Include="Views\Perfomance\ChoseProject.cshtml" />
+    <Content Include="Views\Document\Modified.cshtml" />
+    <Content Include="Views\Document\Delete.cshtml" />
+    <Content Include="Views\Document\MDelete.cshtml" />
+    <Content Include="Views\ProjectDetails\AsideRightReadOnlyMode.cshtml" />
+    <Content Include="Views\ProjectDetails\AsideRightEditMode.cshtml" />
+    <Content Include="Views\ProjectDetails\AsideRightInsertMode.cshtml" />
+    <Content Include="Views\Home\GetMyTasksPV.cshtml" />
+    <Content Include="Views\Home\GetAllProjectsPV.cshtml" />
+    <Content Include="Views\Home\GetMyProjectsPV.cshtml" />
+    <Content Include="Views\Home\TaskCardsPV.cshtml" />
+    <Content Include="Views\Home\ProjectCardsPV.cshtml" />
+    <Content Include="Views\ProjectMBackside\Index.cshtml" />
+    <Content Include="Views\ProjectMBackside\EditMember.cshtml" />
+    <Content Include="Views\Cost\CostEstimation.cshtml" />
+    <Content Include="Views\Cost\GetCostEstimationSheets.cshtml" />
+    <Content Include="Views\Cost\CreateEstimationSheet.cshtml" />
+    <Content Include="Views\Cost\ViewSheet.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Document\1\" />
+    <Folder Include="Document\2\" />
+    <Folder Include="Document\3\" />
+    <Folder Include="Document\Excel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>52240</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:52240/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>此專案參考這部電腦上所缺少的 NuGet 套件。請啟用 NuGet 套件還原，以下載該套件。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -15,8 +15,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
     {
         private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
 
-        int EmpID = 0;
-        int EmpManagerID = 0;
+        int EmpID = 0;        
 
         // GET: OrderDetails
         [Authorize]
@@ -69,6 +68,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         [Authorize]
         public ActionResult Create()
         {
+
+
             ViewBag.OrderID = new SelectList(db.RequisitionMains, "OrderID", "OrderID");
             return View();
         }
@@ -85,17 +86,27 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             var empquery = from EM in db.Employees
                            where EM.Account == account.UserName
-                           select new { EM.employeeID, EM.ManagerID };
+                           select new
+                           {
+                               EM.employeeID,
+                               EM.ManagerID
+                           };
+
+            int? EmpManagerID = 0;
 
             foreach (var e in empquery)
             {
                 EmpID = e.employeeID;
-                EmpManagerID = Convert.ToInt32(e.ManagerID);
+                EmpManagerID = e.ManagerID;
             }
 
-            var test = from EM in db.Employees
-                       where EM.Account == account.UserName
-                       select new { EM.ManagerID };
+            var a = from EM in db.Employees
+                    where EM.employeeID == EmpManagerID
+                    select new {
+                        EM.ManagerID
+                    };
+
+            Console.Write(a);
 
             decimal TemporaryUnitPrice = orderDetail.UnitPrice;
             int TemporaryQuantity = orderDetail.Quantity;
@@ -118,11 +129,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                             Approval = (new Models.Approval
                             {
                                 ApprovalProcedureID = 6,
-                                //FirstSignerID = 
-
-                                //     from EM in db.Employees
-                                //where EM.Account == account.UserName
-                                //select new { EM.employeeID };
+                                FirstSignerID = EmpManagerID,
+                                FirstSignStatus = "未審核",
                             })
                         })
                     });
@@ -146,7 +154,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                             RequisitionDate = DateTime.Now,
                             Approval = (new Models.Approval
                             {
-                                ApprovalProcedureID = 5
+                                ApprovalProcedureID = 5,
+                                FirstSignerID = EmpManagerID,
+                                FirstSignStatus="未審核",
                             })
                         })
                     });

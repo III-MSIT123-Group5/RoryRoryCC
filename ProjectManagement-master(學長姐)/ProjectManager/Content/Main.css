@@ -1,0 +1,722 @@
+﻿body {
+    margin: 0;
+    background-color: #ecf0f5;
+    min-width: 100%;
+    overflow-x: hidden;
+}
+
+@font-face {
+    font-family: Noto Sans CJK TC;
+    src: url(/Fonts/NotoSansCJKtc-Regular.otf);
+}
+
+*:not([class*="icon"]):not(i) {
+    font-family: 'Noto Sans CJK TC', 'FontAwesome', 'Material Icons Extended', 'Material-Design-Icons', 'QualcommIcon', 'VideoJS', 'icons101', 'AmebaNewSymbols', 'videofont', 'ohpOffice365Icons', "anchorjs-icons", 'consumer-icons', 'tm-detail-font', 'iconfont', 'FabricMDL2Icons', 'Noto Emoji', Arial !important;
+}
+
+.main {
+    padding-top: 56px;
+    transition: margin .5s;
+    position: relative;
+    /*min-height: 700px;*/
+}
+
+.main-left-toggle {
+    margin-left: 250px;
+}
+
+.content {
+    padding: 15px;
+    transition: .5s;
+}
+
+.content-right-taggle {
+    margin-right: 250px;
+}
+
+/*Right-sidenav*/
+.right-sidenav {
+    height: 700px;
+    min-width: 250px;
+    width: auto;
+    position: fixed;
+    z-index: 1;
+    top: 120px;
+    right: 0;
+    background-color: #25292c;
+    overflow-x: hidden;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.right-sidenav-open {
+    transform: translate(250px, 0);
+}
+
+.right-sidenav-toggle {
+    margin-right: 250px;
+}
+
+.right-sidenav a, .right-dropdown-btn {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: lightgray;
+    display: block;
+    transition: 0.3s;
+}
+
+.right-dropdown-btn {
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    transition: 0.3s;
+}
+
+    .right-dropdown-btn:focus {
+        outline: none;
+    }
+
+
+
+
+
+@media screen and (max-height: 450px) {
+    .right-sidenav {
+        padding-top: 15px;
+    }
+
+        .right-sidenav a, .right-dropdown-btn {
+            font-size: 18px;
+        }
+}
+
+.right-active {
+    color: white;
+}
+
+.right-sidenav > ul {
+    padding-top: 50px;
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.right-sidenav i {
+    width: 30px;
+}
+
+/*Left-sidenav*/
+.left-sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #25292c;
+    overflow-x: hidden;
+    transition: 0.5s;
+    margin-top: 56px;
+}
+
+.left-sidenav-open {
+    transform: translate(0px, 0);
+}
+
+.left-sidenav-collapse {
+    transform: translate(-250px, 0);
+}
+
+.left-sidenav ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.left-sidenav li {
+    border-left: 5px solid #25292c;
+}
+
+    .left-sidenav li:hover {
+        background-color: #313539;
+    }
+
+.left-sidenav a:hover {
+    color: white;
+}
+
+.left-sidenav i {
+    width: 30px;
+}
+
+.left-sidenav li.active {
+    border-left: 5px solid darkcyan;
+}
+
+.left-sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: lightgray;
+    display: block;
+}
+
+/* Dropdown */
+.dropdown-container {
+    background-color: #313539;
+    padding-left: 8px;
+}
+
+.dropdown-btn {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: lightgray;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+}
+
+
+dropdown-btn:focus {
+    outline: none;
+}
+
+dropdown-btn > a {
+    border: none;
+}
+
+.fa-caret-down {
+    float: right;
+    padding-right: 8px;
+}
+/*navbar*/
+.top-navbar {
+    background-color: darkcyan;
+    position: fixed;
+    top: 0;
+    max-height: 56px;
+    width: 100%;
+    display: block;
+    transition: top 0.3s, padding .5s;
+    z-index: 2;
+}
+
+.topnav-right > a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 17px;
+    overflow-x: hidden;
+}
+
+.top-navbar > span:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav-right {
+    float: right;
+}
+
+.leftOpenbtn {
+    cursor: pointer;
+    height: 56px;
+    width: 56px;
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 23px;
+}
+
+.title, .title:hover {
+    cursor: pointer;
+    height: 56px;
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 23px;
+}
+/*nav drop down*/
+.navdropbtn {
+    background-color: transparent;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+    .navdropbtn:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .navdropbtn:focus {
+        outline: none;
+    }
+
+.dropdown {
+    float: right;
+}
+
+.IsRead {
+    background-color: #e1e8f2;
+    color: black;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 300px;
+    overflow: auto;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    right: 0;
+    z-index: 1;
+}
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content p {
+        font-size: 12px;
+    }
+    .dropdown-content span {
+        font-size: 12px;
+    }
+
+.dropdown a:hover {
+    background-color: #ddd;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+/*messageButton*/
+.dropupbtn:hover {
+    background-color: #6f6f6f
+}
+
+.dropupbtn {
+    background-color: #25292c;
+    color: white;
+    padding: 5px 10px;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.dropup {
+    display: block;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 99999;
+    outline: none;
+    cursor: pointer;
+}
+
+.dropup-content {
+    display: none;
+    position: absolute;
+    background-color: lightgray;
+    min-width: 160px;
+    bottom: 40px;
+    z-index: 1;
+    right: 0;
+    border-radius:10px;
+}
+
+    .dropup-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+        .dropup-content a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+
+.dropup-content-toggle {
+    display: block;
+}
+
+/*rightsideopen*/
+.rightOpenbtn:hover {
+    background-color: #6f6f6f
+}
+
+.rightOpenbtn {
+    display: block;
+    position: fixed;
+    top: 65px;
+    right: 10px;
+    z-index: 99999;
+    border: none;
+    outline: none;
+    background-color: #25292c;
+    color: lightgray;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 10px;
+    font-size: 17px;
+    transition: display 5s;
+}
+
+.user-image {
+    float: left;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: -2px;
+}
+
+.label {
+    position: absolute;
+    top: 9px;
+    right: 7px;
+    text-align: center;
+    font-size: 9px;
+    padding: 2px 3px;
+    line-height: .9;
+    border-radius: 25%;
+    background-color: red;
+}
+
+.message {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: center;
+    font-size: 9px;
+    padding: 2px 3px;
+    line-height: .9;
+    border-radius: 25%;
+    background-color: red;
+}
+
+.content-header {
+    background: transparent;
+    box-shadow: none;
+    position: relative;
+    padding: 15px 15px 0 15px;
+    margin: 0 30px;
+}
+
+.breadcrumb > .active {
+    color: #777;
+}
+
+.breadcrumb > li + li::before {
+    padding: 0 5px;
+    color: #ccc;
+}
+
+.content-header > .breadcrumb {
+    float: right;
+    background: transparent;
+    margin-top: 0px;
+    margin-bottom: 0;
+    font-size: 15px;
+    padding: 7px 5px;
+    position: absolute;
+    top: 15px;
+    right: 45px;
+    border-radius: 2px;
+}
+
+    .content-header > .breadcrumb > li > a {
+        color: #444;
+        text-decoration: none;
+    }
+
+        .content-header > .breadcrumb > li > a > .fa,
+        .content-header > .breadcrumb > li > a > .glyphicon,
+        .content-header > .breadcrumb > li > a > .ion {
+            margin-right: 5px;
+        }
+
+    .content-header > .breadcrumb > li + li:before {
+        content: '>\00a0';
+    }
+    
+
+@media (max-width: 991px) {
+    .content-header > .breadcrumb {
+        position: relative;
+        margin-top: 5px;
+        top: 0;
+        right: 0;
+        float: none;
+        background: #d2d6de;
+        padding-left: 10px;
+    }
+
+        .content-header > .breadcrumb li:before {
+            color: #97a0b3;
+        }
+}
+@media screen and (min-width: 450px) and (max-width: 1366px) {
+    .dropupbtn {
+        background-color: #25292c;
+        color: white;
+        padding: 4px 7px;
+        font-size: 16px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .rightOpenbtn {
+        display: block;
+        position: fixed;
+        top: 50px;
+        right: 10px;
+        z-index: 99999;
+        border: none;
+        outline: none;
+        background-color: #25292c;
+        color: lightgray;
+        cursor: pointer;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border-radius: 10px;
+        font-size: 16px;
+        line-height: 32px;
+        transition: display 5s;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 8px 16px;
+        font-size: 12px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content p {
+        font-size: 12px;
+        margin: 0;
+    }
+
+    .dropdown-content span {
+        font-size: 12px;
+        margin-top: 3px;
+    }
+
+    .user-image {
+        width: 22px;
+        height: 22px;
+        margin-right: 10px;
+        margin-top: -2px;
+    }
+
+    .label {
+        position: absolute;
+        top: 5px;
+        right: 3px;
+        text-align: center;
+        font-size: 9px;
+        padding: 2px 3px;
+        line-height: .9;
+        border-radius: 25%;
+        background-color: red;
+    }
+
+    .navdropbtn {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .right-sidenav {
+        height: auto;
+    }
+
+        .right-sidenav form {
+            width: 300px;
+        }
+
+        .right-sidenav a, .right-dropdown-btn {
+            font-size: 16px;
+        }
+
+    body > .left-sidenav {
+        width: 185px;
+        margin-top: 40px;
+    }
+
+    body > .left-sidenav-collapse {
+        transform: translate(-185px, 0);
+    }
+
+    body > .left-sidenav a {
+        padding: 8px 8px 8px 20px;
+        font-size: 14px;
+    }
+
+    .dropdown-btn {
+        padding: 8px 8px 8px 20px;
+        font-size: 14px;
+    }
+
+    body > .left-sidenav span {
+        font-size: 14px;
+    }
+
+    body > .left-sidenav i {
+        width: 25px;
+    }
+
+    body > .main-left-toggle {
+        margin-left: 185px;
+    }
+
+    .fa-caret-down {
+        padding-top: 3px;
+    }
+
+    .title, .title:hover {
+        height: 40px;
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 9px 10px 10px 10px;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    .top-navbar {
+        max-height: 40px;
+    }
+
+    .leftOpenbtn {
+        height: 40px;
+        width: 40px;
+        padding: 10px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+}
+
+/*-------------聊天室----------------*/
+.chat-box {
+    border-radius: 10px;
+    background: #efefef;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26 );
+    position: fixed;
+    bottom: 53px;
+    right: 10px;
+}
+.chat-box-header {
+    background: darkcyan /*#5A5EB9*/;
+    height: 65px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    padding-top: 20px;
+}
+.chat-box-toggle {
+    float: right;
+    margin-right: 15px;
+    cursor: pointer;
+}
+.chat-logs {
+    padding: 15px;
+    height: 370px;
+    overflow-y: scroll;
+}
+#message {
+    background: #f4f7f9;
+    width: 100%;
+    position: relative;
+    height: 47px;
+    padding-top: 10px;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    border: none;
+    resize: none;
+    outline: none;
+    color: #888;
+    border-top: none;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    overflow: hidden;
+}
+.chat-submit {
+    position: absolute;
+    bottom: 5px;
+    right: 0;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    border-radius: 50%;
+    color: #676780;
+    width: 35px;
+    height: 35px;
+}
+.chat-input > form {
+    margin-bottom: 0;
+}
+#chat-overlay {
+    background: rgba(255,255,255,0.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: none;
+}
+.chat-msg {
+    display:flex; 
+}
+.cm-msg-text {
+    color: #666;
+    max-width: 75%;
+    margin-left: 10px;
+    word-wrap: break-word;
+    border-radius: 6px;
+    background-color: rgba(204, 217, 230, 0.5);
+    margin-bottom: 8px;
+    padding: 0 5px;
+}
+
+    
+   

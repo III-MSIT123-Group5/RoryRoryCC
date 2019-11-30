@@ -1,0 +1,164 @@
+﻿@model ProjectManager.Models.ProjectMemberScoreVM
+@{
+    ViewBag.Title = "專案經理評分";
+}
+
+@section style{
+    <link href="~/Content/PMScore.css" rel="stylesheet" />
+}
+<!-- Team -->
+<p hidden id="pjGUID">@Model.ProjectGUIDShow</p>
+<section id="team" class="pb-5">
+    <div class="container">
+        <h5 class="section-title h1">專案團隊成員評分介面</h5>
+        <div class="row" id="cardarea">
+            @if (Model.ProjectMembers.Count() == 0)
+            {
+                <p>成員都已經評分過了</p>
+            }
+            <!-- Team member -->
+            @foreach (var member in Model.ProjectMembers)
+            {
+                <div class="col-xs-12 col-sm-6 col-md-4" id="cardareaChild">
+                    <p hidden>@member.EmployeeGUID</p>
+                    <div class="image-flip">
+                        <div class="mainflip">
+                            <div class="frontside">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <p><img class=" img-fluid" src="~/image/leader.png"></p>
+                                        <h4 class="card-title" id="empName">@member.Employee.EmployeeName</h4>
+                                        <p class="card-text">@member.Employee.JobTitle.TitleName</p>
+                                        @if (member.Selfscore != null)
+                                        {
+                                            <p>目前自評:@member.Selfscore</p>
+                                        }
+                                        else
+                                        {
+                                            <p>目前自評:尚未評分</p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="backside">
+                                <div class="card">
+                                    <div class="card-body text-center mt-4">
+                                        <h4 class="card-title" data-guid="@member.EmployeeGUID">@member.Employee.EmployeeName</h4>
+                                        <p class="card-text" style="width:300px">此專案承接工作數:@member.Project.Tasks.Where(p => p.EmployeeGUID == member.EmployeeGUID).Count()</p>
+                                        <p class="card-text">已完成的工作數:@member.Project.Tasks.Where(p => p.EmployeeGUID == member.EmployeeGUID && p.TaskStatusID == 4).Count()</p>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" data-memberguid="@member.EmployeeGUID" id="scoreBtn">
+                                            我要評分
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <p class="heading lead" id="modalEmpName" data-guid="">
+                    這裡放對某某評分
+                </p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">×</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-file-text-o fa-4x mb-3 animated rotateIn"></i>
+                    <strong>對其近期表現進行評分</strong>
+                </div>
+                <hr>
+                <div class="boxes">
+                    <input type="checkbox" id="box-1" value="30">
+                    <label for="box-1" title="按專案進度完成所有功能開發(30%)">能夠於專案開始後依規定時間內完成基本功能開發</label>
+                    <input type="checkbox" id="box-2" value="30">
+                    <label for="box-2" title="維護專案(30%)">能夠依照客戶需求, 依規定時間內完成修改項目</label>
+                    <input type="checkbox" id="box-3" value="20">
+                    <label for="box-3" title="確保軟體品質與穩定度(20%)">軟體嚴重程度的Bug依規定時限內修改完</label>
+                    <input type="checkbox" id="box-4" value="10">
+                    <label for="box-4" title="團隊合作(10%)">能夠與團隊有效溝通</label>
+                    <input type="checkbox" id="box-5" value="10">
+                    <label for="box-5" title="知識學習與分享(10%)">至少一次的團隊內技術發表</label>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer justify-content-center">
+                    <a class="btn btn-outline-primary waves-effect" id="sendScoreBtn">
+                        送出評分
+                        <i class="fa fa-paper-plane ml-1"></i>
+                    </a>
+                    <a class="btn btn-outline-primary waves-effect" data-dismiss="modal" id="cancelscore">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section script{
+    <script>
+        $(document).ready(function ()
+        {
+            let cardareacount = $("#cardarea").children().length;
+            let EmployeeGUID;
+            $(".backside").on("click", 'button', function ()
+            {
+                var EmployeeName = $(this).siblings(".card-title").text()
+                EmployeeGUID = $(this).siblings(".card-title").data("guid");
+                $("#modalEmpName").text("對" + EmployeeName + "進行評分").attr("data-guid", EmployeeGUID);
+            })
+            $("label").tooltip();
+
+            var score = 0;
+            var scoreArea = $(".boxes");
+            $("#sendScoreBtn").click(function ()
+            {
+                var ChkBoxLength = scoreArea.children().length - 5;
+
+                for (var i = 0; i <= ChkBoxLength; i++)
+                {
+                    var inputelement = $(".boxes input:eq('" + i + "')");
+                    if (inputelement.is(':checked'))
+                    {
+                        score += parseInt(inputelement.val());
+                    }
+                }
+                    $.ajax({
+                        url: '@Url.Action("EditPMScore", "Perfomance")',
+                        data: { "EmployeeGUID": EmployeeGUID, "PMScore": score, "ProjectGUID": $("#pjGUID").text()},
+                        type:"post",
+                        success: function (data)
+                        {
+                            scoreArea.children("input").prop("checked", false);
+                            $('#exampleModalCenter').modal('hide');
+                            for (var i = 0; i <= cardareacount; i++)
+                            {
+                                let carditem = $("#cardarea").children("#cardareaChild:eq('" + i + "')");
+                                let EmpGUID = carditem.children("p").text();
+                                if (EmpGUID == EmployeeGUID)
+                                {
+                                    carditem.html('<img src="/image/sign-check-icon.png" style="width:250px;"/><h3 style="text-align:center;margin-top:auto;margin-right:10px"><strong>'+ score +'分</strong></h3>');
+                                    carditem.fadeOut(1800, function () {$(this).remove()});
+                                }
+                            }
+                            score = 0;
+                        }
+                });
+            })
+            $("#cancelscore").click(function () { $(".boxes").children("input").prop("checked", false)})
+        })
+
+    </script>
+
+}
