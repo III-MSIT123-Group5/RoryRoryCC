@@ -39,39 +39,40 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequisitionMain.OrderID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstSignerID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstSignStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SecondSignerID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SecondSignStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ThirdSignerID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ThirdSignStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApprovalProcedure.ApprovalReportName)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequisitionMain.OrderID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstSignerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstSignStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecondSignerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecondSignStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThirdSignerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThirdSignStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovalProcedure.ApprovalReportName)
+            </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ApprovalID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ApprovalID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ApprovalID })
-        </td>
-    </tr>
-}
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.OrderID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.OrderID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.OrderID })
+            </td>
+        </tr>
+    }
 
 </table>
