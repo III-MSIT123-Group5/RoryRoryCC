@@ -553,6 +553,10 @@
     <Content Include="Views\OrderDetails\Details.cshtml" />
     <Content Include="Views\OrderDetails\Edit.cshtml" />
     <Content Include="Views\OrderDetails\Index.cshtml" />
+    <Content Include="Views\Shared\_GetGrpIDbyDeptIDPartial.cshtml" />
+    <Content Include="Views\Shared\_GetPosiIDbyDeptIDPartial.cshtml" />
+    <Content Include="Views\Shared\_HRSystemPartial.cshtml" />
+    <Content Include="Views\Shared\_ITSystemPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

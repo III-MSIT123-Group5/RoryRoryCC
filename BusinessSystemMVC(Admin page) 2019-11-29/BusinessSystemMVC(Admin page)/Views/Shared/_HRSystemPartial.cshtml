@@ -1,0 +1,20 @@
+﻿@*下拉式功能*@
+@using System.Web.Security
+@if (User.IsInRole("HRGroup"))
+{
+    <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="人資系統">
+        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseHRsystem" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-th-list"></i>
+            <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">人資系統</span>
+        </a>
+        <ul class="sidenav-second-level collapse" id="collapseHRsystem">
+            <li class="color hover">
+                @Html.ActionLink("新進人員註冊", "Register", "Account", null, new { Style = "font-family:'NotoSansCJKtc-Bold'" })
+            </li>
+            <li class="color hover">
+                @Html.ActionLink("修改人員資料", "Register", "Account", null, new { Style = "font-family:'NotoSansCJKtc-Bold'" })
+            </li>            
+        </ul>
+    </li>
+}
+

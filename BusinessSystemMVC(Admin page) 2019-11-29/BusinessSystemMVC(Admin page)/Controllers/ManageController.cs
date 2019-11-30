@@ -16,6 +16,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        BusinessDataBaseEntities db = new BusinessDataBaseEntities();
+
         public ManageController()
         {
         }
@@ -32,9 +34,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -64,16 +66,62 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            var acc = db.AspNetUsers.Find(userId);
+            var empquery = from em in db.Employees
+                           where em.Account == acc.UserName
+                           select new { em.employeeID };
+            int EmpID = 1032;
+            foreach (var e in empquery)
+            {
+                EmpID = e.employeeID;
+            }
+
+            var Emp = db.Employees.Find(EmpID);
+
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+
+                EmployeeID = Emp.employeeID,
+                EmpoyeeName = Emp.EmployeeName,
+                Account = Emp.Account,
+                Email = acc.Email,
+                Gender = Emp.Gender,
+                BirthDay = (DateTime)Emp.Birth,
+                HireDay = (DateTime)Emp.HireDate,
+                OfficeName = Emp.Office.office_name,
+                DepartmentName = Emp.Department.name,
+                GroupID = Emp.Group.GroupName,
+                PositionID = Emp.Position.position1,
+                ManagerID = Emp.Employee2.EmployeeName,
+                Employed = (bool)Emp.Employed,
+                Photo = Emp.Photo,
             };
             return View(model);
         }
+
+        //
+        //POST: /Manage/Index
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index([Bind(Include = "EmployeeID,Photo")] IndexViewModel Emp)
+        {
+            if (ModelState.IsValid)
+            {
+                //var e = db.Employees.Find(Emp.EmployeeID);            
+                //e.Photo = Emp.Photo;
+                //db.Entry(e).State = EntityState.Modified;
+                //db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
 
         //
         // POST: /Manage/RemoveLogin
@@ -333,7 +381,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             base.Dispose(disposing);
         }
 
-#region Helper
+        #region Helper
         // 新增外部登入時用來當做 XSRF 保護
         private const string XsrfKey = "XsrfId";
 
@@ -384,6 +432,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }
