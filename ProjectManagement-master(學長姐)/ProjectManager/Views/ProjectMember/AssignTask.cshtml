@@ -1,0 +1,475 @@
+﻿@using ProjectManager.Models
+@using System.Globalization;
+@model IEnumerable<ProjectManager.Models.ProjectMembers>
+@{
+    ViewBag.Title = "分配工作";
+}
+
+@section style
+{
+    <link href="~/Content/WorkloadBar.css" rel="stylesheet" />
+    <style>
+        #projectMemberDivL2 {
+            width: 180px;
+            float: left;
+            margin: 10px;
+            box-shadow: 5px 5px 5px grey;
+        }
+
+        .flip {
+            margin: 0px;
+            padding: 5px;
+            text-align: center;
+            background: darkcyan;
+            cursor: pointer;
+            font-family: 'Arial';
+        }
+
+        .draggable {
+            cursor: pointer;
+        }
+
+            .draggable:hover {
+                background-color: aliceblue;
+            }
+
+        .asidetitle {
+            color: aliceblue;
+            margin-left: 30px;
+            margin-top: 20px;
+        }
+    </style>
+}
+@using (Html.BeginForm("ExportExcel", "ProjectMember", FormMethod.Post, new { name = "myForm" }))
+{
+    @Html.Hidden("hHtml")
+}
+@using (Html.BeginForm("ExportToExcel", "ProjectMember", FormMethod.Post, new { hidden = "hidden" }))
+{
+    <button class="btn btn-outline-dark" id="ExportExcelDetail"><i class="fas fa-file-excel"></i>匯出分配總表</button>
+}
+
+<button type="button" class="btn btn-light" id="ExportExcel" onclick="exportExcel()" style="margin:10px"><i class="fas fa-file-export"></i>匯出簡易分配表</button>
+<button class="btn btn-success" id="ExportExcelalter"><img src="~/image/Excel-Icon.png" height="24" />匯出分配總表</button>
+<form method="post" action="~/ProjectMember/EditTaskM" class="form-horizontal" style="margin:auto">
+    <div class="row">
+        <div class="col-3">
+            <div style="margin-top:10px;">
+                <div class="flip" style="border-radius:10px">
+                    <font color="aliceblue">查看分配狀態</font>
+                    
+                </div>
+                <div class="panel">
+                    <table class="table table-bordered" id="mappingTable">
+                        <thead>
+                            <tr><th>員工姓名</th><th>分配工作</th><th style="width:130px">退回/留言</th></tr>
+                        </thead>
+                        <tbody>
+                            <!--RunIN-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-7" id="projectMemberDivL1">
+            @foreach (var _projectMember in Model)
+            {
+                <div class="card border-primary mb-3 " style="max-width: 18rem;" id="projectMemberDivL2">
+                    <div class="card-header bg-transparent border-success" style="width:180px"><p data-tag=@_projectMember.Employee.EmployeeGUID><img src="~/image/avatar.png" class="rounded-circle img-thumbnail" style="width:50px;cursor:pointer" />@_projectMember.Employee.EmployeeName </p></div>
+                    <div class="card-body text-primary droppable" style="height:50px;border-style:dashed;">
+                        <!--TaskArea Start-->
+                        <!--TaskArea End-->
+                    </div>
+                    <div class="card-footer bg-transparent border-success">
+                        <h6>工作負荷</h6>
+                        @{
+                            double rawercent;
+                            bool flag = true;
+                            foreach (var item in ViewBag.Workload as IEnumerable<Group<string, DisplayWorkloadVM>>)
+                            {
+                                int? valid = item.Sum;
+                                int total = 40;
+
+                                rawercent = Math.Round((double)(valid * 100) / total,0);
+                                if (valid > total)
+                                {
+                                    valid = (int)valid - total;
+                                }
+
+                                double percent = Math.Round((double)(valid * 100) / total,0);
+
+                                if (_projectMember.Employee.EmployeeName == item.Key)
+                                {
+
+                                    if (rawercent >= 100 && rawercent < 200)
+                                    {
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped bg-warning" style="width:@percent%;">@rawercent %</div>
+                                        </div>
+                                        flag = false;
+                                    }
+                                    else if (rawercent >= 200)
+                                    {
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped bg-danger" style="width:@percent%;">@rawercent %</div>
+                                        </div>
+                                        flag = false;
+                                    }
+                                    else
+                                    {
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped bg-success" style="width:@percent%;">@percent %</div>
+                                        </div>
+                                        flag = false;
+                                    }
+                                }
+                            }
+                            if (flag)
+                            {
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-success" style="width:0%;"><font color="red">目前無進行中工作</font></div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+        @section asideRight{
+            <!--TaskList Start-->
+            <h3 class="asidetitle">工作項目</h3>
+            <div style="margin:20px;overflow-y:auto;height:300px">
+                <ul class="list-group" id="taskitem">
+                    @foreach (var _task in (IEnumerable<Tasks>)ViewBag.LoadTask)
+                    {
+                        <li class="list-group-item draggable" data-tag="@_task.TaskName" data-tag2="@_task.TaskGUID" title="@_task.TaskName" style="cursor:move">@_task.TaskName</li>
+                    }
+                </ul>
+            </div>
+            <!--TaskList End-->
+            <h3 class="asidetitle">工作描述</h3>
+            <div class="col-sm">
+                <div id="taskdescription" style="height:200px;margin:10px; width:230px;background-color:white;border-radius:.25rem">
+
+                </div>
+                <button type="submit" class="btn btn alert-light" id="submitBtn" style="margin-left:35px;margin-top:3px;">分配完成</button>
+                <input type="hidden" id="rowcount" name="TotalRow" />
+                <input type="hidden" id="firstrow" name="FirstRow" />
+                <input type="hidden" id="lastrow" name="LastRow" />
+                <input type="hidden" id="mappingTime" name="MappingTime" value="@DateTime.Now" />
+                <input type="button" class="btn btn-danger" id="reset" value="重新分配" style="margin-top:3px">
+            </div>
+        </div>
+        }
+    </form>
+
+    <!-- Modal LeaveMessage-->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLongTitle">員工姓名</h4><button class="btn btn-default" style="margin-left:20px;" type="button" id="tagDemoBtn">Demo</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="~/ProjectMember/LeaveMessageTag" class="form-horizontal">
+                    <input type="hidden" id="HideTaskGUID" name="TaskGUID" />
+                    <div class="modal-body">
+                        <div class="container">
+                            <textarea placeholder="輸入留言" id="text" name="text" rows="5" style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; width:400px; "></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">離開</button>
+                        <a class="btn btn-light" id="leaveMessaageBtn">確定留言</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--ProjectMember Detail Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="memberModalBody">
+                    <table id="PMemberTable" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>此專案所承接工作</th>
+                                <th>工作預計工時</th>
+                                <th>退回工作</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <p id="workHours" hidden></p>
+                    <div id="notaskpic" hidden="hidden">
+                        <img src="~/image/NoTask2.png" style="width:250px" />
+                        <p style="display:inline" id="notaskMessage">目前在此專案沒有承接工作</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">離開</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @section script{
+    <script>
+        $(document).ready(function ()
+        {
+            $('#nav-taskDistribute-tab').css("border-bottom","solid");
+                var topTable = $("#mappingTable>tbody");
+                var submitCount = 0;
+                var flag = true;
+            $(".draggable").draggable({ drag: function (e, ui) { $(".droppable").effect("highlight", {}, 1500); }, helper: 'clone', appendTo: 'body', zIndex: 5, /*containment: '.row no-gutters'}*/ });
+                $(".droppable").droppable({
+                    drop: function (event, ui)
+                    {
+                        $(".droppable").stop(true, true);
+                        var empID = $(this).prev().children("p").data("tag");
+                        var empName = $(this).prev().text();
+                        var taskGUID = ui.draggable.data("tag2");
+                        var taskName = ui.draggable.data("tag");
+
+                        ui.draggable.text("").attr("style", "width:2px;float:left;padding:10px;border-radius:80%;background-color:darkcyan").tooltip();
+                        ui.draggable.appendTo($(this))
+
+                        var cell1hid = $("<input/>").attr("name", "EmployeeGUID" + submitCount).attr("type", "hidden").val(empID);
+                        var cell2hid = $("<input/>").attr("name", "TaskGUID" + submitCount).attr("type", "hidden").val(taskGUID);
+
+                        var cell1 = $("<td></td>").text(empName);
+                        var cell2 = $("<td></td>").text(taskName);
+                        var cell3 = $('<td></td>').html('<a class="btn btn-danger mr-2" title="退回清單"><i class="fas fa-undo-alt"></i></a><a class="btn btn-success" title="備忘"><i class="far fa-comment"></i></a>');
+                        var row = $("<tr></tr>").append([cell1, cell2, cell3, cell1hid, cell2hid]);
+                        topTable.append(row);
+
+                        var orow = $("#mappingTable").find('tr').length - 1;
+                        for (var i = 0; i < orow; i++)
+                        {
+                            var value = $("#mappingTable tr:eq('" + i + "')").children("td:eq(1)").text()
+                            var name = $("#mappingTable tr:eq('" + i + "')").children("td:eq(0)").text()
+                            if (taskName == value && empName != name)
+                            {
+                                $("#mappingTable tr:eq('" + i + "')").remove();
+                            }
+                        }
+                        submitCount++;
+                        var TotalRow = $("#mappingTable").find('tr').length;
+                        var FirstRow = $("#mappingTable tr:eq(1)").children("input:nth-child(4)").attr("name").substring(12, 15);
+                        var LastRow = $("#mappingTable tr:last").children("input:nth-child(4)").attr("name").substring(12, 15);
+                        $("#rowcount").val(TotalRow);
+                        $("#firstrow").val(FirstRow);
+                        $("#lastrow").val(parseInt(LastRow)+1);
+                        $(this).parent().effect("highlight", "slow");
+                        if (flag) { $(".panel").slideToggle("slow"); flag = false }
+                    }
+                });
+
+                $("#mappingTable").on("click", 'a', function () {
+                    var taskName = $(this).parent().prev().text();
+                    var taskGUID = $(this).parent().next().next().val();
+                    if ($(this).attr("title") == "退回清單") {
+                        //submitCount -= 1;
+                        $(this).parent().parent().remove();
+                        var backToList = $("<li></li>").attr("class", "list-group-item draggable")
+                            .attr("data-tag", taskName).text(taskName)
+                            .attr("data-tag2", taskGUID)
+                            .attr("title",taskName)
+                            .draggable({ drag: function (e, ui) { }, helper: 'clone', appendTo: 'body', zIndex: 5 });
+                        $(".list-group").append(backToList);
+                        var memberCardDiv = document.getElementById("projectMemberDivL1");
+
+                        for (var i = 1; i <= memberCardDiv.childElementCount; i++)
+                        {
+                            var cardTwoDiv = $('#projectMemberDivL1 div:nth-child(' + i + ')').children("div:nth-child(2)");
+
+                            for (var j = 1; j <= cardTwoDiv.children().length; j++)
+                            {
+                                var memberCardLi = cardTwoDiv.children('#projectMemberDivL1 li:nth-child(' + j + ')').data("tag")
+                                if (memberCardLi == taskName)
+                                {
+                                    cardTwoDiv.children('#projectMemberDivL1 li:nth-child(' + j + ')').remove();
+                                }
+                            }
+                        }
+
+                    }
+                    else {
+                        var EmpName = $(this).parent().prev().prev().text()
+                        $('#exampleModalCenter').modal('show');
+                        $('#exampleModalCenter h4').text("對 " + EmpName + "說明工作注意事項");
+                        $("#HideTaskGUID").val(taskGUID);
+                    }
+                });
+
+                $(".panel").slideToggle("slow");
+
+                $(function () //Task Table
+                {
+                    $(".flip").click(function () {
+                        $(".panel").slideToggle("slow");
+                    });
+                });
+
+                $("#reset").click(function () //重新分配
+                {
+                    topTable.children().remove();
+                    submitCount = 0;
+                    ReloadTasksList();
+                    $(".droppable").empty();
+                })
+
+                function ReloadTasksList()
+                {
+                    $.getJSON('@Url.Action("ReloadTaskList", "ProjectMember")', function (datas)
+                    {
+                        var list = $('#taskitem');
+                        var docFrag = $(document.createDocumentFragment());
+                        $.each(datas, function (idx, _task) {
+                            var li = $("<li></li>").text(_task.TaskName).attr("class", "list-group-item draggable")
+                                .attr("data-tag", _task.TaskName).attr("data-tag2", _task.TaskGUID).draggable({ drag: function (e, ui) { }, helper: 'clone', appendTo: 'body', zIndex: 5 });
+                            docFrag.append(li);
+                        })
+                        list.html(docFrag);
+                    })
+                }
+
+                $("#taskitem").on("click", 'li', function () //點擊工作描述show出
+                {
+                    var TaskGUID = $(this).data("tag2");
+                    var descArea = $("#taskdescription");
+                    descArea.empty();
+                    $.ajax({
+                        url: '@Url.Action("GetTaskDesc", "ProjectMember")',
+                        data: { "TaskGUID": TaskGUID },
+                        success: function (data) {
+                            var p;
+                            p = $("<p style='overflow-wrap: break-word'></p>").text(data)
+                            descArea.append(p);
+                        }
+                    });
+                })
+
+                let orginvalue;
+                let backTaskBar;
+                $(".mb-3").on("click", 'img', function () //觀看成員目前在此專案承接工作/退回工作
+                {
+                    orginvalue = parseInt($(this).parent().parent().siblings(".card-footer").children().children().text().substr(0, 3));
+                    backTaskBar = $(this).parent().parent().siblings(".card-footer").children().children();
+                    var EmployeeGUID = $(this).parent().data("tag");
+                    var EmployeeName = $(this).parent().text();
+                    var docfrag = $(document.createDocumentFragment());
+                    let TotalEstWorkTime = 0;
+                    $("#exampleModalLabel").text(EmployeeName);
+                     $.ajax({
+                        url: '@Url.Action("GetProjectMemberTasks", "ProjectMember")',
+                        data: { "EmployeeGUID": EmployeeGUID},
+                        success: function (datas)
+                        {
+                            $("#PMemberTable").show();
+                            $("#notaskpic").prop("hidden", true);
+                            if (datas.length != 0)
+                            {
+                                $.each(datas, function (idx, _task)
+                                {
+                                    var cell1 = $("<td></td>").text(_task.TaskName).attr("data-tag", _task.TaskGUID)
+                                    var cell2 = $("<td></td>").text(_task.EstWorkTime);
+                                    var cell3 = $("<td></td>").html('<a class="btn alert-warning" title="取消這項工作"><i class="fas fa-undo"></i></a>');
+                                    var row = $("<tr></tr>").append([cell1, cell2, cell3]);
+                                    docfrag.append(row);
+                                    TotalEstWorkTime += _task.EstWorkTime;
+                                    $("#workHours").text(TotalEstWorkTime);
+                                })
+                                $("#PMemberTable>tbody").html(docfrag);
+                            }
+                            else
+                            {
+                                $("#PMemberTable").hide();
+                                $("#notaskpic").prop("hidden", false);
+                            }
+                        }
+                    });
+                    $('#exampleModal').modal('show');
+                })
+
+                $("#exampleModal").on("click", 'a', function ()//Change LoadingBar and Cancel Tasks
+                {
+                    var thisWorkHours = parseInt($(this).parent().prev().text());
+                    var thisrow = $(this).parents().eq(1);
+                    var TaskGUID = $(this).parents().eq(1).children('td:first').data("tag");
+                    var BarValue = orginvalue -= (thisWorkHours * 100 / 40);
+                    if (BarValue < 100) {
+                        backTaskBar.removeClass().addClass("progress-bar progress-bar-striped bg-success");
+                    }
+                    else if (BarValue >= 100 && BarValue <= 200){
+                        backTaskBar.removeClass().addClass("progress-bar progress-bar-striped bg-warning");
+                    }
+                    backTaskBar.width(BarValue + "%");
+                    backTaskBar.text(BarValue + "%");
+                    if (BarValue<=3)
+                    {
+                        backTaskBar.html("<font color='red'>目前無進行中工作</font>");
+                    }
+                    $.ajax({
+                        url: '@Url.Action("CancelTask", "ProjectMember")',
+                        data: {"TaskGUID": TaskGUID},
+                        success: function (data)
+                        {
+                            thisrow.remove();
+                            ReloadTasksList();
+                        }
+                    });
+                })
+                $("#submitBtn").click(function ()
+                {
+                    $(this).text("分配中");
+                })
+                $("#ExportExcelalter").click(function ()
+                {
+                    $("#ExportExcelDetail").click();
+                })
+
+                $(".modal-footer").on("click", 'a', function ()
+                {
+                    var TaskGUID = $(this).parent().siblings("#HideTaskGUID").val();
+                    var Tag = $("#text").val();
+                    $.ajax({
+                        url: '@Url.Action("LeaveMessageTag", "ProjectMember")',
+                        data: {"TaskGUID": TaskGUID,"Tag":Tag},
+                        success: function (data)
+                        {
+                            $("#text").val("");
+                            $('#exampleModalCenter').modal('hide');
+                        }
+                });
+            })
+            $("#tagDemoBtn").click(function ()
+            {
+                $("#text").val("此項目客戶要求高，務必確實執行");
+            })
+        })
+            function exportExcel()
+            {
+                var sHtml = htmlEncode($("#mappingTable")[0].outerHTML);
+                $("input[name='hHtml']").val(sHtml);
+                $("form[name='myForm']").submit();
+            }
+            function htmlEncode(value)
+            {
+                return $('<div/>').text(value).html();
+        }
+    </script>
+    }
+    
+    @section nav{
+        @Html.Partial("_PartialPageNav", "Shared")
+    }
