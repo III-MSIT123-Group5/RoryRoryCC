@@ -1,0 +1,252 @@
+﻿@using ProjectManager.Models
+@{
+    ViewBag.Title = "專案報表";
+    int jobTitleID = ViewBag.titleID;
+}
+@section nav{
+    <div id="ProjectDetail_nav"></div>
+}
+@section style{
+    <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .chart-layout {
+            height: 370px;
+        }
+    </style>
+
+}
+
+<div class="row mb-3">
+    <div class="col-lg-6 col-sm-12">
+        <div id="RootTasksCompletedRateContainer" class="chart-container bg-light p-3 chart-layout">
+            <canvas id="RootTasksCompletedRateChart"></canvas>
+        </div>
+    </div>
+    <div class="col-lg-6 col-sm-12">
+        <div id="RootTasksSumOfWorkTimeContainer" class="chart-container bg-light p-3 chart-layout">
+            <canvas id="RootTasksSumOfWorkTimeChart"></canvas>
+        </div>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-lg-6 col-sm-12">
+        <div id="MemberWorkTimeContainer" class="chart-container bg-light p-3 chart-layout">
+            <canvas id="MemberWorkTimeSumChart"></canvas>
+        </div>
+    </div>
+    <div class="col-lg-6 col-sm-12">
+        <div id="TasksByStatusContainer" class="chart-container bg-light p-3 chart-layout">
+            <canvas id="TasksByStatusChart"></canvas>
+        </div>
+    </div>
+</div>
+
+
+@section script{
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+
+            Chart.defaults.global.defaultFontFamily = 'Noto Sans CJK TC';
+            Chart.defaults.global.defaultFontSize = 16;
+            Chart.defaults.global.tooltips.titleFontStyle = 'normal';
+
+            BuildRootTasks_CompletedRateChart();
+            BuildRootTasks_SumOfWorkTimeChart();
+            BuildMembers_SumOfWorkTimeChart();
+            TasksByStatus();
+
+            function BuildRootTasks_CompletedRateChart() {
+                $.getJSON("@Url.Action("RootTasksCompletedRate", "ProjectDetails")", null, function (datas) {
+                    var TasksCompletedRateChart = new Chart($('#RootTasksCompletedRateChart'),
+                        {
+                            type: 'horizontalBar',
+                            data: datas,
+                            options: {
+                                maintainAspectRatio: false,
+                                elements: {
+                                    rectangle: {
+                                        borderWidth: 0,
+                                    }
+                                },
+                                responsive: true,
+                                legend: {
+                                    display: false,
+                                    position: 'bottom',
+                                },
+                                title: {
+                                    display: true,
+                                    text: '根工作項目完成度',
+                                    fontSize: 20,
+                                    padding: 10,
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        gridLines: { display: false },
+                                        fontSize: 16
+                                    }],
+                                    xAxes: [{
+                                        gridLines: { display: true },
+                                        ticks: {
+                                            min: 0,
+                                            max: 100,
+                                            stepSize: 10,
+                                        },
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: '完成百分比(%)',
+                                        },
+                                    }]
+                                },
+                                tooltips: {
+                                    yPadding: 10,
+                                    xPadding: 10,
+                                    bodySpacing: 10,
+                                    //callbacks: {
+                                    //    afterLabel: function (tooltipItem, chart) {
+                                    //        return "%";
+                                    //    }
+                                    //},
+                                }
+                            }
+                        });
+                });
+            }
+            function BuildRootTasks_SumOfWorkTimeChart(){
+                $.getJSON("@Url.Action("RootTasksEstWorkTimeSum", "ProjectDetails")", null, function (datas) {
+                    var TasksSumOfWorkTimeChart = new Chart($('#RootTasksSumOfWorkTimeChart'),
+                        {
+                            type: 'doughnut',
+                            data: datas,
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                legend: {
+                                    position: 'top',
+                                },
+                                title: {
+                                    display: true,
+                                    text: '根工作項目工時總數',
+                                    fontSize: 20,
+                                    padding: 10,
+                                },
+                                animation: {
+                                    animateScale: true,
+                                    animateRotate: true
+                                }
+                            }
+                        });
+                });
+            }
+            function BuildMembers_SumOfWorkTimeChart() {
+                $.getJSON("@Url.Action("ProjectMembersEstWorkTimeSum", "ProjectDetails")", null, function (datas) {
+                    var MembersSumOfWorkTimeChart = new Chart($('#MemberWorkTimeSumChart'),
+                        {
+                            type: 'bar',
+                            data: datas,
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                legend: {
+                                    display: false,
+                                },
+                                title: {
+                                    display: true,
+                                    text: '專案成員預計工時總數',
+                                    fontSize: 20,
+                                    padding: 10,
+                                },
+                                tooltips: {
+                                    mode: 'index',
+                                    intersect: false,
+                                },
+                                hover: {
+                                    mode: 'nearest',
+                                    intersect: true
+                                },
+                                scales: {
+                                    xAxes: [{
+                                        display: true,
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: '專案成員'
+                                        }
+                                    }],
+                                    yAxes: [{
+                                        display: true,
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: '工時總和'
+                                        },
+                                        ticks: {
+                                            min: 0,
+                                        },
+                                    }]
+                                }
+                            }
+                        });
+                });
+            }
+
+            function TasksByStatus()
+            {
+                $.getJSON("@Url.Action("TasksByStatus", "ProjectDetails")", null, function (datas)
+                {
+                    var TasksByStatusChart = new Chart($('#TasksByStatusChart'),
+                        {
+                            type: 'bar',
+                            data: datas,
+                            options:
+                            {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                legend:
+                                {
+                                    display:false,
+                                    position: 'top',
+                                },
+                                title:
+                                {
+                                    display: true,
+                                    text: '任務狀態統計',
+                                    fontSize: 20,
+                                    padding: 10,
+                                },
+                                animation:
+                                {
+                                    animateScale: true,
+                                    animateRotate: true
+                                },
+                            }
+                        });
+                });
+            }
+
+            //Permission
+            if (@jobTitleID == @((int)PermissionBL.Emp_Title.Admin) || @jobTitleID == @((int)PermissionBL.Emp_Title.PM))
+            {
+                $('#ProjectDetail_nav').load("@Url.Action("GetProjectDetailNav", "ProjectDetails")", function () {
+                    $('#ProjectDetail_nav').find('#nav-repo-tab').css('border-bottom', 'solid');
+                });                
+            }
+        });
+
+
+
+    </script>
+    <style>
+    </style>
+}

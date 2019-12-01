@@ -1,0 +1,82 @@
+﻿@model BusinessSystemMVC_Admin_page_.Models.Approval
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Approval</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstSignerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstSignerID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstSignStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstSignStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondSignerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondSignerID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondSignStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondSignStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThirdSignerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThirdSignerID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThirdSignStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThirdSignStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApprovalProcedure.ApprovalReportName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApprovalProcedure.ApprovalReportName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequisitionMain.OrderID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequisitionMain.OrderID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ApprovalProcedureID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

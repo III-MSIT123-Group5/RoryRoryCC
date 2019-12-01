@@ -1,0 +1,16 @@
+﻿@*下拉式功能*@
+@using System.Web.Security
+@if (User.IsInRole("ITDepartment"))
+{
+    <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="資訊系統">
+        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseITsystem" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-th-list"></i>
+            <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">資訊系統</span>
+        </a>
+        <ul class="sidenav-second-level collapse" id="collapseITsystem">
+            <li class="color hover">
+                @Html.ActionLink("權限管理", "Index", "AspNetUserRoles", null, new { Style = "font-family:'NotoSansCJKtc-Bold'" })
+            </li>
+        </ul>
+    </li>
+}
