@@ -67,16 +67,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             var userId = User.Identity.GetUserId();
             var acc = db.AspNetUsers.Find(userId);
-            var empquery = from em in db.Employees
-                           where em.Account == acc.UserName
-                           select new { em.employeeID };
-            int EmpID = 1032;
-            foreach (var e in empquery)
-            {
-                EmpID = e.employeeID;
-            }
+       
 
-            var Emp = db.Employees.Find(EmpID);
+          
 
             var model = new IndexViewModel
             {
@@ -86,20 +79,20 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
 
-                EmployeeID = Emp.employeeID,
-                EmpoyeeName = Emp.EmployeeName,
-                Account = Emp.Account,
+                EmployeeID = EmployeeDetail.EmployeeID,
+                EmpoyeeName = EmployeeDetail.Name,
+                Account = EmployeeDetail.Account,
                 Email = acc.Email,
-                Gender = Emp.Gender,
-                BirthDay = (DateTime)Emp.Birth,
-                HireDay = (DateTime)Emp.HireDate,
-                OfficeName = Emp.Office.office_name,
-                DepartmentName = Emp.Department.name,
-                GroupID = Emp.Group.GroupName,
-                PositionID = Emp.Position.position1,
-                ManagerID = Emp.Employee2.EmployeeName,
-                Employed = (bool)Emp.Employed,
-                Photo = Emp.Photo,
+                Gender = EmployeeDetail.Gender,
+                BirthDay = EmployeeDetail.BirthDay,
+                HireDay = EmployeeDetail.HireDay,
+                OfficeName = EmployeeDetail.OfficeName,
+                DepartmentName = EmployeeDetail.DepartmentName,
+                GroupID = EmployeeDetail.GroupName,
+                PositionID = EmployeeDetail.PositionName,
+                ManagerID = EmployeeDetail.ManagerName,
+                Employed = EmployeeDetail.Employed,
+                Photo = EmployeeDetail.PhotoAdress,
             };
             return View(model);
         }

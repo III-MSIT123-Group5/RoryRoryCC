@@ -22,6 +22,8 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public string SecondSignStatus { get; set; }
         public Nullable<int> ThirdSignerID { get; set; }
         public string ThirdSignStatus { get; set; }
+        public Nullable<int> FourthSignerID { get; set; }
+        public string FourthSignStatus { get; set; }
     
         public virtual ApprovalProcedure ApprovalProcedure { get; set; }
         public virtual RequisitionMain RequisitionMain { get; set; }

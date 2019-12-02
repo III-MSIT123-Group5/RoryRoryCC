@@ -84,29 +84,30 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             var userid = User.Identity.GetUserId();
             var account = db.AspNetUsers.Find(userid);
 
-            var empquery = from EM in db.Employees
-                           where EM.Account == account.UserName
-                           select new
-                           {
-                               EM.employeeID,
-                               EM.ManagerID
-                           };
+            //找登入員工的第一層上司ID(組長)
+            var empquery1 = from EM1 in db.Employees
+                           where EM1.Account == account.UserName
+                           select new { EM1.employeeID, EM1.ManagerID }; 
 
-            int? EmpManagerID = 0;
+            int? Signer1ID = 0;
 
-            foreach (var e in empquery)
+            foreach (var e in empquery1)
             {
                 EmpID = e.employeeID;
-                EmpManagerID = e.ManagerID;
+                Signer1ID = e.ManagerID;
             }
 
-            var a = from EM in db.Employees
-                    where EM.employeeID == EmpManagerID
-                    select new {
-                        EM.ManagerID
-                    };
+            //找登入員工的第二層上司ID(部長)
+            var empquery2 = from EM2 in db.Employees
+                    where EM2.employeeID == Signer1ID
+                     select new { EM2.ManagerID };
 
-            Console.Write(a);
+            int? Signer2ID = 0;
+
+            foreach(var e in empquery2)
+            {
+                Signer2ID = e.ManagerID;
+            }
 
             decimal TemporaryUnitPrice = orderDetail.UnitPrice;
             int TemporaryQuantity = orderDetail.Quantity;
@@ -114,32 +115,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             if (ModelState.IsValid)
             {
-                if (TemporaryTotalPrice >= 10000)
-                {
-                    db.OrderDetails.Add(new Models.OrderDetail
-                    {
-                        ProductName = orderDetail.ProductName,
-                        UnitPrice = orderDetail.UnitPrice,
-                        Quantity = orderDetail.Quantity,
-                        Note = orderDetail.Note,
-                        RequisitionMain = (new Models.RequisitionMain
-                        {
-                            ReportID = 2,
-                            RequisitionDate = DateTime.Now,
-                            Approval = (new Models.Approval
-                            {
-                                ApprovalProcedureID = 6,
-                                FirstSignerID = EmpManagerID,
-                                FirstSignStatus = "未審核",
-                            })
-                        })
-                    });
-
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-
-                else if (TemporaryTotalPrice < 10000)
+                if (TemporaryTotalPrice < 10000)
                 {
                     db.OrderDetails.Add(new Models.OrderDetail
                     {
@@ -155,11 +131,49 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                             Approval = (new Models.Approval
                             {
                                 ApprovalProcedureID = 5,
-                                FirstSignerID = EmpManagerID,
+                                FirstSignerID = Signer1ID,
                                 FirstSignStatus="未審核",
+                                SecondSignerID = Signer2ID,
+                                SecondSignStatus = "未審核",
+                                ThirdSignerID=null,
+                                ThirdSignStatus="免審核",
+                                FourthSignerID=1008,
+                                FourthSignStatus= "未審核"
                             })
                         })
                     });
+                }
+
+                else if (TemporaryTotalPrice >= 10000)
+                {
+                    db.OrderDetails.Add(new Models.OrderDetail
+                    {
+                        ProductName = orderDetail.ProductName,
+                        UnitPrice = orderDetail.UnitPrice,
+                        Quantity = orderDetail.Quantity,
+                        Note = orderDetail.Note,
+                        RequisitionMain = (new Models.RequisitionMain
+                        {
+                            ReportID = 2,
+                            EmployeeID = EmpID,
+                            RequisitionDate = DateTime.Now,
+                            Approval = (new Models.Approval
+                            {
+                                ApprovalProcedureID = 6,
+                                FirstSignerID = Signer1ID,
+                                FirstSignStatus = "未審核",
+                                SecondSignerID = Signer2ID,
+                                SecondSignStatus = "未審核",
+                                ThirdSignerID = 1004,
+                                ThirdSignStatus = "未審核",
+                                FourthSignerID = 1008,
+                                FourthSignStatus = "未審核"
+                            })
+                        })
+                    });
+
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
 
                 db.SaveChanges();
@@ -257,5 +271,3 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
     }
 }
-
-

@@ -544,11 +544,6 @@
     <Content Include="Views\RequisitionMains\Details.cshtml" />
     <Content Include="Views\RequisitionMains\Edit.cshtml" />
     <Content Include="Views\RequisitionMains\Index.cshtml" />
-    <Content Include="Views\Approvals\Create.cshtml" />
-    <Content Include="Views\Approvals\Delete.cshtml" />
-    <Content Include="Views\Approvals\Details.cshtml" />
-    <Content Include="Views\Approvals\Edit.cshtml" />
-    <Content Include="Views\Approvals\Index.cshtml" />
     <Content Include="Views\BulletinBoards\AddOrEdit.cshtml" />
     <Content Include="Views\OrderDetails\Create.cshtml" />
     <Content Include="Views\OrderDetails\Delete.cshtml" />
@@ -559,6 +554,11 @@
     <Content Include="Views\Shared\_GetPosiIDbyDeptIDPartial.cshtml" />
     <Content Include="Views\Shared\_HRSystemPartial.cshtml" />
     <Content Include="Views\Shared\_ITSystemPartial.cshtml" />
+    <Content Include="Views\Approvals\Create.cshtml" />
+    <Content Include="Views\Approvals\Delete.cshtml" />
+    <Content Include="Views\Approvals\Details.cshtml" />
+    <Content Include="Views\Approvals\Edit.cshtml" />
+    <Content Include="Views\Approvals\Index.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Create.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Delete.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Details.cshtml" />

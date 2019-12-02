@@ -7,8 +7,19 @@ namespace BusinessSystemMVC_Admin_page_.Models
 {
     public static  class EmployeeDetail
     { 
-       public static string Name{get;set;}
+        public static string Name{get;set;}
         public static int EmployeeID { get; set; }
+        public static string Account { get; set; }
+        public static string Gender { get; set; }
+        public static DateTime BirthDay { get; set; }
+        public static DateTime HireDay { get; set; }
+        public static string OfficeName { get; set; }
+        public static string DepartmentName { get; set; }
+        public static string ManagerName { get; set; }
+        public static bool Employed { get; set; }
+        public static string PhotoAdress { get; set; }
+        public static string GroupName { get; set; }
+        public static string PositionName { get; set; }
     }
 
 
