@@ -10,7 +10,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 {
     public class HomeController : Controller
     {
-        BusinessDataBaseEntities db = new BusinessDataBaseEntities();
+        private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
 
         public ActionResult Index()
         {
@@ -49,6 +49,33 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult GetEmpID()
+        {
+            var userid = User.Identity.GetUserId();
+            var account = db.AspNetUsers.Find(userid);
+
+            var empquery = from em in db.Employees
+                           where em.Account == account.UserName
+                           select new
+                           {
+                               em.employeeID,
+                               em.EmployeeName
+                           };
+
+            //string EmpName;
+            //int EmpID = 0;
+            //foreach (var e in empquery)
+            //{
+            //    EmpID = e.employeeID;
+            //    EmpName = e.EmployeeName;
+            //}
+
+            var datas = empquery.ToList();
+
+            return Json(new {data = datas }, JsonRequestBehavior.AllowGet);
+
         }
     }
 }

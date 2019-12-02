@@ -157,7 +157,10 @@
                     </a>
                 </li>
             </ul>
-            <div class="navbar-nav ml-auto">  @Html.Partial("_LoginPartial")</div>
+            <div class="navbar-nav ml-auto">
+                @Html.Partial("_LoginPartial")
+                @RenderSection("scripts2", required: false)
+            </div>
             @*<ul class="navbar-nav ml-auto">
                     <div>  @Html.Partial("_LoginPartial")</div>
                 </ul>*@
