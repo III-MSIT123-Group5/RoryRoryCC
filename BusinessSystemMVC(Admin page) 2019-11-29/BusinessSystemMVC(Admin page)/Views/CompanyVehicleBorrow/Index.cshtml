@@ -220,14 +220,19 @@
         <td>${data[j].MaxPassenger}</td>
         <td>${data[j].officeID}</td>
         <td><input type="text" id = "${data[j].LicenseNumber}t" ></td>
-        <td><input type="button" id="${ data[j].LicenseNumber}" class = 'btn btn-primary' value="選擇車輛"></td>
+        <td><input type="button" id="${ data[j].LicenseNumber}" class = 'btn btn-primary' value="確認申請"></td>
+        <td><input type="button" id="${ data[j].LicenseNumber}back" class = 'btn btn-success' value="返回"></td>
         </tr>`)
+                                (`#${data[j].LicenseNumber}back`).click(function () {
+                                })
                         }
                     }
                 })
             }
-
-
+        //
+        //紀錄傳回資料庫
+        //
+        
 
 
         function timestampToTime(timestamp) {
