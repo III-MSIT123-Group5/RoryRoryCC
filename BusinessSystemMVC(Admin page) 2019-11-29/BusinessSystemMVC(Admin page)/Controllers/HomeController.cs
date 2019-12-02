@@ -14,6 +14,15 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         public ActionResult Index()
         {
+            string person = User.Identity.GetUserId();
+            var acc = db.AspNetUsers.Find(person);
+            var q = db.Employees.Where(p => p.Account == acc.UserName).Select(p => p);
+            foreach (var a in q)
+            {
+                EmployeeDetail.Name = a.EmployeeName;
+                EmployeeDetail.EmployeeID = a.employeeID;
+            }
+
             return View();
         }
 

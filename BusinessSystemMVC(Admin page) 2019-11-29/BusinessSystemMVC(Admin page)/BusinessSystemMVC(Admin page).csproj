@@ -187,8 +187,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApprovalsController.cs" />
     <Compile Include="Controllers\BulletinBoardsController.cs" />
+    <Compile Include="Controllers\CompanyVehicleBorrowController.cs" />
+    <Compile Include="Controllers\CompanyVehiclesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Controllers\RequisitionMainsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -547,6 +550,26 @@
     <Content Include="Views\Approvals\Edit.cshtml" />
     <Content Include="Views\Approvals\Index.cshtml" />
     <Content Include="Views\BulletinBoards\AddOrEdit.cshtml" />
+    <Content Include="Views\OrderDetails\Create.cshtml" />
+    <Content Include="Views\OrderDetails\Delete.cshtml" />
+    <Content Include="Views\OrderDetails\Details.cshtml" />
+    <Content Include="Views\OrderDetails\Edit.cshtml" />
+    <Content Include="Views\OrderDetails\Index.cshtml" />
+    <Content Include="Views\Shared\_GetGrpIDbyDeptIDPartial.cshtml" />
+    <Content Include="Views\Shared\_GetPosiIDbyDeptIDPartial.cshtml" />
+    <Content Include="Views\Shared\_HRSystemPartial.cshtml" />
+    <Content Include="Views\Shared\_ITSystemPartial.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Create.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Delete.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Details.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Edit.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\Index.cshtml" />
+    <Content Include="Views\CompanyVehicleBorrow\_Vehicletime.cshtml" />
+    <Content Include="Views\CompanyVehicles\Create.cshtml" />
+    <Content Include="Views\CompanyVehicles\Delete.cshtml" />
+    <Content Include="Views\CompanyVehicles\Edit.cshtml" />
+    <Content Include="Views\CompanyVehicles\Index.cshtml" />
+    <Content Include="Views\CompanyVehicles\_ShowPhotoPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

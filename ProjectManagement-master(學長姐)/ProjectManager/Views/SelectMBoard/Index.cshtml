@@ -1,0 +1,92 @@
+﻿@model IEnumerable<ProjectManager.Models.SelectMBoardVM>
+@{
+    ViewBag.Title = "選擇成員";
+}
+
+@section style{
+    <style>
+        h4:hover {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .bookMark {
+            position: relative;
+            top: -6px;
+            float: right;
+            margin-right: 0.5rem !important;
+        }
+
+        .ProjectCard {
+            position: relative;
+            display: -ms-flexbox;
+            display: inline-block !important;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 10rem;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1.5px solid rgba(0, 0, 0, 0.1);
+            border-radius: 0.3rem;
+            margin-right: 1rem !important;
+            margin-bottom: 0.5rem !important;
+            margin-top: 0.25rem !important;
+        }
+
+            .ProjectCard .card-header {
+                height: 80px;                
+                background-color: #343a40 !important;
+                padding-top: 1rem !important;
+                padding-bottom: 1rem !important;
+            }
+            .ProjectCard .card-footer {
+                padding: 0.75rem 1.25rem;                
+                padding-top: 0.5rem !important;
+                padding-bottom: 1rem !important;                
+            }
+
+        .bg-alarm {
+            background-color: #fab759 !important;
+        }
+        .rightOpenbtn {
+            display: none;
+        }
+        .container {
+            margin-top: 4rem !important;
+        }
+    </style>
+}
+@*<h2>選擇成員</h2>*@
+<div class="my-4 container" style="text-align: center;">
+    @foreach (var p in Model.ToList())
+    {
+        <a href='@Url.Action("Index", "MyBoard",new { id= p.EmployeeGuid})'>
+            <div class="ProjectCard" style="width:18rem;">
+                <div class="card-header">
+                    <span class="text-light">任務完成比率</span><span class="text-light float-right">@(p.CompletedTaskCount)/@(p.InchargeTaskCount)</span>
+                    <div class="progress cardbar mt-1">
+                        @{
+                              string percent = string.Format("{0}%", p.CompletedRate);
+                              string value = p.CompletedRate.ToString();
+                         }
+                        <div class="progress-bar" role="progressbar" style="width: @percent;" aria-valuenow="@value" aria-valuemin="0" aria-valuemax="100">@percent</div>                    </div>
+                </div>
+                <div class="card-footer text-center text-muted "> 
+                   @p.EmployeeName
+                </div>
+            </div>
+        </a>
+    }
+</div>
+@section script{
+    <script>
+        $('#li_MyBoard').addClass('active');
+        $(document).ready(function () {
+            var breadProjecta = $(' <a> 選擇專案</a >').attr("href", "/SelectProject/Index");
+            var breadProjectLi = $('<li></li>').append(breadProjecta);
+            $('.breadcrumb>li').first().after(breadProjectLi);
+        })
+
+    </script>
+}

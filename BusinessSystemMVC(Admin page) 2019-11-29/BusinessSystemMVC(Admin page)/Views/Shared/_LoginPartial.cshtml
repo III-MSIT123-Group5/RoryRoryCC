@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+@using BusinessSystemMVC_Admin_page_.Models
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -92,11 +93,8 @@
             </li>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <li style="margin:auto">
-                <span style="color:white">
-                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", style = "color:white;font-size:larger;font-family:NotoSansCJKtc-Bold" })
-                </span>
-                <br />
-                <span id="empID">
+                <span style="color:white" id="spanHelloLink">
+                    @Html.ActionLink("Hello " + EmployeeDetail.Name + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", style = "color:white;font-size:larger;font-family:NotoSansCJKtc-Bold" })
                 </span>
             </li>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -122,32 +120,5 @@ else
             <li>@Html.ActionLink("登入", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
         </ul>*@
 }
+      
 
-@section scripts2{
-
-    <script>
-    $(document).ready(function () {
-
-    //$('#test').click(function () {
-
-    $.ajax({
-        url: '@Url.Action("GetEmpID", "Home")',
-        method: 'GET',
-        dataType:'json'
-        })
-        .done(function (datas) {
-            
-            $('#empID').html('EFG');
-
-            for (var j = 0; j < datas.length; j++) {
-
-                $('#empID').text(datas[j].EmployeeName);
-                //console.log(datas);
-            }
-
-    })
-
-    });
-
-    </script>
-}
