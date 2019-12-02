@@ -21,6 +21,17 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             {
                 EmployeeDetail.Name = a.EmployeeName;
                 EmployeeDetail.EmployeeID = a.employeeID;
+                EmployeeDetail.Account = a.Account;
+                EmployeeDetail.Gender = a.Gender;
+                EmployeeDetail.BirthDay = (DateTime)a.Birth;
+                EmployeeDetail.HireDay = (DateTime)a.HireDate;
+                EmployeeDetail.OfficeName = a.Office.office_name;
+                EmployeeDetail.DepartmentName = a.Department.name;
+                EmployeeDetail.ManagerName = a.Employee2.EmployeeName;
+                EmployeeDetail.Employed = (bool)a.Employed;
+                EmployeeDetail.PhotoAdress = a.Photo;
+                EmployeeDetail.GroupName = a.Group.GroupName;
+                EmployeeDetail.PositionName = a.Position.position1;
             }
 
             return View();
