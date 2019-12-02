@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNet.Identity;
 
 namespace BusinessSystemMVC_Admin_page_.Models
 {
     public static  class EmployeeDetail
-    {
-        public static string Name{get;set;}
+    { 
+       public static string Name{get;set;}
         public static int EmployeeID { get; set; }
     }
 
