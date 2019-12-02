@@ -53,6 +53,8 @@
           <Property Name="SecondSignStatus" Type="nvarchar" MaxLength="10" />
           <Property Name="ThirdSignerID" Type="int" />
           <Property Name="ThirdSignStatus" Type="nvarchar" MaxLength="10" />
+          <Property Name="FourthSignerID" Type="int" />
+          <Property Name="FourthSignStatus" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="ApprovalProcedure">
           <Key>
@@ -1581,6 +1583,8 @@
           <Property Name="SecondSignStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ThirdSignerID" Type="Int32" />
           <Property Name="ThirdSignStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FourthSignerID" Type="Int32" />
+          <Property Name="FourthSignStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ApprovalProcedure" Relationship="BusinessDataBaseModel.FK_Approval_ApprovalProcedure" FromRole="Approval" ToRole="ApprovalProcedure" />
           <NavigationProperty Name="RequisitionMain" Relationship="BusinessDataBaseModel.FK_Approval_RequisitionMain" FromRole="Approval" ToRole="RequisitionMain" />
         </EntityType>
@@ -2635,6 +2639,8 @@
           <EntitySetMapping Name="Approvals">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.Approval">
               <MappingFragment StoreEntitySet="Approval">
+                <ScalarProperty Name="FourthSignStatus" ColumnName="FourthSignStatus" />
+                <ScalarProperty Name="FourthSignerID" ColumnName="FourthSignerID" />
                 <ScalarProperty Name="ThirdSignStatus" ColumnName="ThirdSignStatus" />
                 <ScalarProperty Name="ThirdSignerID" ColumnName="ThirdSignerID" />
                 <ScalarProperty Name="SecondSignStatus" ColumnName="SecondSignStatus" />

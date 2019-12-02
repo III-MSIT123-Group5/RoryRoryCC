@@ -4,7 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BusinessSystemMVC_Admin_page_.Models
 {
-    public static  class EmployeeDetail
+    //public static  class EmployeeDetail
+    public static class EmployeeDetail
     {
         public static string Name{get;set;}
         public static int EmployeeID { get; set; }
