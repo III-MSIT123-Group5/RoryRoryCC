@@ -1,0 +1,10 @@
+﻿@model BusinessSystemMVC_Admin_page_.Models.CompanyVehicle
+@if (Model.VehiclePhoto != null)
+{
+    <img src="@Url.Action("ShowPhoto", "CompanyVehicles", new {LicenceNumber=Model.LicenseNumber})" style="width:320px;height:200px" />
+}
+else
+{
+    <img src="@Url.Content("~/Images/noimage.jpg")" style="width:320px;height:200px" />
+}
+
