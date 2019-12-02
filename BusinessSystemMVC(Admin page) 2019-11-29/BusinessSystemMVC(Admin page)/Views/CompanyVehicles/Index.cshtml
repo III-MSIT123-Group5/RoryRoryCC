@@ -1,0 +1,80 @@
+﻿@model IEnumerable<BusinessSystemMVC_Admin_page_.Models.CompanyVehicle>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>公務車輛檢視</h2>
+
+<p>
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "CompanyVehicles")'" type="button" style="float:left; margin-top:10px; margin-bottom:20px"><i class="glyphicon glyphicon-plus"> 新增公務車</i></button>
+
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.VehiclePhoto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LicenseNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VehicleYear)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PurchaseDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.brand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.serial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxPassenger)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Office.office_name)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <div style="margin:5px">
+                    @Html.ActionLink("編輯", "Edit", new { id = item.LicenseNumber }, new { @class = "btn btn-primary" })
+                </div>
+                <div style="margin:5px">
+                    @Html.ActionLink("刪除", "Delete", new { id = item.LicenseNumber }, new { @class = "btn btn-danger" })
+                </div>
+            </td>
+            <td>
+                @Html.Partial("_ShowPhotoPartial", item)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LicenseNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.serial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxPassenger)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Office.office_name)
+            </td>
+        </tr>
+    }
+</table>
