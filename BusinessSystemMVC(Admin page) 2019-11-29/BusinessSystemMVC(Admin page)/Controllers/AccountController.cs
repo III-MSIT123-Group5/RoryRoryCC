@@ -88,14 +88,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             // 這不會計算為帳戶鎖定的登入失敗
             // 若要啟用密碼失敗來觸發帳戶鎖定，請變更為 shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
-            string na = User.Identity.GetUserName();
-            var q = db.Employees.Where(p => p.Account == na).Select(p=>p);
-
-            foreach(var a in q)
-            {
-                EmployeeDetail.Name = a.EmployeeName;
-                EmployeeDetail.EmployeeID = a.employeeID;
-            }
 
             switch (result)
             {
@@ -361,17 +353,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public ActionResult getName(string UserName)
-        //{
-        //{
 
-
-        //    return Json( ,httpa)
-        //}
-
-        //
         // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
