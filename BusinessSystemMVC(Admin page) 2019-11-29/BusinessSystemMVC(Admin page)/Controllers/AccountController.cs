@@ -289,18 +289,16 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "確認您的帳戶", "請按一下此連結確認您的帳戶 <a href=\"" + callbackUrl + "\">這裏</a>");
 
                     string m_address = "https://icon-icons.com/icons2/2061/PNG/512/happy_consumer_people_man_icon_124583.png";
-                    switch (model.Gender)
+                   if(model.Gender == "F")
                     {
-                        case "F":
-                            m_address = "https://cdn.icon-icons.com/icons2/2061/PNG/512/girl_people_face_consumer_icon_124586.png";
-                            break;
-                        case "M":
-                            m_address = "https://icon-icons.com/icons2/2061/PNG/512/happy_consumer_people_man_icon_124583.png";
-                            break;
+                        m_address = "https://cdn.icon-icons.com/icons2/2061/PNG/512/girl_people_face_consumer_icon_124586.png";
                     }
-
-
-                    var addEmployee = new BusinessSystemMVC_Admin_page_.Models.Employee
+                    else
+                    {
+                        m_address = "https://icon-icons.com/icons2/2061/PNG/512/happy_consumer_people_man_icon_124583.png";
+                    }
+                   
+                    var addEmployee = new Employee
                     {
                         EmployeeName = model.EmpoyeeName,
                         Gender = model.Gender,

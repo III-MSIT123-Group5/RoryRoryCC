@@ -146,13 +146,25 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script type="text/javascript">
+        var txtPhoto = $("#txtPhoto");
+
         $("#btnChangePhoto").click(function () {
-            $("#txtPhoto").removeAttr("disabled");
+            txtPhoto.removeAttr("disabled");
+            txtPhoto.select;
         })
 
         $("#btnSavePhoto").click(function () {
-            $("#txtPhoto").attr("disabled", "disabled");
-            $("#imgPhoto").attr("src", $("#txtPhoto").val());
+            var txtPadress = txtPhoto.val();
+            txtPhoto.attr("disabled", "disabled");           
+            $.ajax({
+                url: "@Url.Action("UpdatePhoto","Manage")",
+                type: "get",
+                data: { PhotoAdress : txtPadress},
+            }).done(function () {
+                $("#imgPhoto").attr("src", txtPadress);
+                }).fail(function () {
+                    alert("照片儲存失敗");
+                })
         })
 
     </script>
