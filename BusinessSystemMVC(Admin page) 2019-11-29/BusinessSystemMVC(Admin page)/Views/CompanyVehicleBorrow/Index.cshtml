@@ -102,6 +102,7 @@
             //
             //創建變數===================
             //
+            var pur;
             var UseLN = [];
             var NoUseLN = [];
             var StimeU = [];
@@ -144,15 +145,18 @@
                     StimeU[j] = Stime;
                     EtimeU[j] = Etime;
                 }
+                console.log(StimeU)
+                console.log(EtimeU)
+                console.log(NoUseLN)
                 for (var q = 0; q < StimeU.length; q++)
                     if ((dtS >= StimeU[q] && dtE <= EtimeU[q]) ||
                         ((dtS >= StimeU[q] && dtS < EtimeU[q]) && dtE > EtimeU[q]) ||
-                        (dtS < StimeU[q] && (dtE > StimeU[q] && EtimeU[q])) ||
+                        (dtS < StimeU[q] && (dtE > StimeU[q] && dtE<=EtimeU[q])) ||
                         (dtS < StimeU[q] && dtE > EtimeU[q])) {
                         countarray[count] = NoUseLN[q];
                         count++;
-                        console.log(countarray[count])
                     }
+                console.log(countarray);
             })
             $.ajax({
                 url: '@Url.Action("Finded1","CompanyVehicleBorrow")',
@@ -168,9 +172,10 @@
                 $("#test2").append(`<th>外出事由</th>`)
                 $("#test2").append(`<th>確認訂車</th>`)
                 for (var o = 0; o < r.length; o++) {
-                    if (r[o].LicenseNumber != countarray) {
+                    console.log(r[o].LicenseNumber)
+                    if ($.inArray(r[o].LicenseNumber, countarray) == -1) {
                         $("#test2").append(`<tr>
-        <td>${r[o].LicenseNumber}</td>
+        <td ">${r[o].LicenseNumber}</td>
         <td>${r[o].brand}</td>
         <td>${r[o].serial}</td>
         <td>${r[o].MaxPassenger}</td>
@@ -179,16 +184,8 @@
         <td><input type="button" id="${ r[o].LicenseNumber}" class = 'btn btn-primary' value="選擇車輛"></td>
         </tr>`)
                         $(`#${r[o].LicenseNumber}`).click(function () {
-                            $("#test2").empty();
-                            $("#test2").append('<tr></tr>')
-                            $("#test2").append(`<th>車牌號碼</th>`)
-                            $("#test2").append(`<th>車輛廠牌</th>`)
-                            $("#test2").append(`<th>車輛型號</th>`)
-                            $("#test2").append(`<th>載客人數</th>`)
-                            $("#test2").append(`<th>辦公室編號</th>`)
-                            $("#test2").append(`<th>外出事由</th>`)
-                            $("#test2").append(`<th>確認訂車</th>`)
-                            getLNfunc(this.id)
+                            console.log($(`#${this.id}t`).val());
+                            getLNfunc(this.id, dtS, dtE, $(`#${this.id}t`).val())
                         })
 
                     }
@@ -203,12 +200,31 @@
             //
             //找到需要的資料
             //
+        function getLNfunc(id, dts, dte, purpose) {
+            console.log(dts,dte,purpose,id)
+            //var jsonData = JSON.stringify({ dtS: dts, dtE: dte,LNid:id, purpose:purpose});
+            $.ajax({
+                url: '@Url.Action("Post1", "CompanyVehicleBorrow")',
+                type: "get",
+                //contentType: "application/json; chartset-utf-8",
+                data: {
+                    dtS: dts,
+                    dtE: dte,
+                    LNid: id,
+                    purpose:purpose
+                }
+            }).done(function () {
+                alert("save");
+            })
+        }
 
 
-            function getLNfunc(id) {
+
+
+        function getLNfunc1(id) {
                 $.ajax({
                     url: '@Url.Action("Finded1","CompanyVehicleBorrow")',
-                    type: "GET",
+                    type: "POST",
                     dataType: "json",
                 }).done(function (data) {
                     for (var j = 0, max = data.length; j < max; j++) {
@@ -224,6 +240,7 @@
         <td><input type="button" id="${ data[j].LicenseNumber}back" class = 'btn btn-success' value="返回"></td>
         </tr>`)
                                 (`#${data[j].LicenseNumber}back`).click(function () {
+
                                 })
                         }
                     }
