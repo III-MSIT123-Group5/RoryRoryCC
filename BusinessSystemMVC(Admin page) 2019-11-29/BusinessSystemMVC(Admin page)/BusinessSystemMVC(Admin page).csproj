@@ -588,6 +588,7 @@
     <Content Include="Views\EventCalendars\Details.cshtml" />
     <Content Include="Views\EventCalendars\Edit.cshtml" />
     <Content Include="Views\EventCalendars\Index.cshtml" />
+    <Content Include="Views\Account\UnCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -288,17 +288,17 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "確認您的帳戶", "請按一下此連結確認您的帳戶 <a href=\"" + callbackUrl + "\">這裏</a>");
 
-                    string m_address = "https://icon-icons.com/icons2/2061/PNG/512/happy_consumer_people_man_icon_124583.png";
+                    string m_address = "https://www.freeiconspng.com/uploads/male-icon-4.jpg";
                    if(model.Gender == "F")
                     {
-                        m_address = "https://cdn.icon-icons.com/icons2/2061/PNG/512/girl_people_face_consumer_icon_124586.png";
+                        m_address = "https://www.freeiconspng.com/uploads/female-icon-23.png";
                     }
                     else
                     {
-                        m_address = "https://icon-icons.com/icons2/2061/PNG/512/happy_consumer_people_man_icon_124583.png";
+                        m_address = "https://www.freeiconspng.com/uploads/male-icon-4.jpg";
                     }
                    
-                    var addEmployee = new Employee
+                    var addEmployee = new EmployeeApprovalTemp
                     {
                         EmployeeName = model.EmpoyeeName,
                         Gender = model.Gender,
@@ -313,11 +313,15 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                         Employed = model.Employed,
                         GroupID = Convert.ToInt32(model.GroupID),
                         Photo = m_address,
+                        CreateOrUpdate="Create",
+                        SignState=false,
+                       Editor=EmployeeDetail.EmployeeID,
+                       EditorTime=DateTime.Now,
                     };
-                    db.Employees.Add(addEmployee);
+                    db.EmployeeApprovalTemps.Add(addEmployee);
                     db.SaveChanges();
 
-                    TempData["message"] = $"已成功新增 {model.EmpoyeeName} 的帳號。";
+                    TempData["message"] = $"新增 {model.EmpoyeeName} 的帳號請求已送出，待簽核完成。";
                     return RedirectToAction("Register", "Account");
                     //return RedirectToAction("Index", "Home"); 
                 }
@@ -638,6 +642,13 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
+
+        [AllowAnonymous]
+        public ActionResult UnCreate()
+        {
+            return View();
+        }
+
         #endregion
     }
 }

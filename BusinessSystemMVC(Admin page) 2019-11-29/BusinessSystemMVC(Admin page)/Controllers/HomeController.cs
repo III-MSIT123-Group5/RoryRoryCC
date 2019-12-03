@@ -20,7 +20,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             if(q == null)
             {
-
+                return RedirectToAction("UnCreate", "Account");
             }
 
             foreach (var a in q)
