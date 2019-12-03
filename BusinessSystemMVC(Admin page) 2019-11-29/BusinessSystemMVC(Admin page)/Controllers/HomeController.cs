@@ -17,6 +17,12 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             string person = User.Identity.GetUserId();
             var acc = db.AspNetUsers.Find(person);
             var q = db.Employees.Where(p => p.Account == acc.UserName).Select(p => p);
+
+            if(q == null)
+            {
+
+            }
+
             foreach (var a in q)
             {
                 EmployeeDetail.Name = a.EmployeeName;

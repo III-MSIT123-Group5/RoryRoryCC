@@ -99,7 +99,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "登入嘗試失試。");
+                    ModelState.AddModelError("", "嘗試登入失試。");
                     return View(model);
             }
         }
@@ -149,7 +149,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         //
         // GET: /Account/Register  註冊
-        [AllowAnonymous]
+        [Authorize(Roles = "HRGroup")]
         public ActionResult Register()
         {
             ViewBag.Gender = new List<SelectListItem>()
@@ -270,7 +270,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "HRGroup")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
