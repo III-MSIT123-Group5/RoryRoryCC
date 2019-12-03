@@ -12,6 +12,9 @@
 <script src='~/package/calendar/interaction/main.js'></script>
 <script src='~/package/calendar/daygrid/main.js'></script>
 <script src='~/package/calendar/timegrid/main.js'></script>
+
+
+
 <script>
 
 
@@ -97,7 +100,10 @@
             $(this).css('background-color', '#b4c9ef')
         }, function () {
             $(this).css('background-color', '')
-        });
+            });
+
+
+        
     });
 
 
@@ -114,7 +120,8 @@
 </div>
 
 <div class="col-3">
-
+    
+    <div id="datetimepick"></div>
 </div>
 <div class="col-9" >
     <div id='calendar'></div>
@@ -148,4 +155,5 @@
             //})
 
     </script>
+
 }
