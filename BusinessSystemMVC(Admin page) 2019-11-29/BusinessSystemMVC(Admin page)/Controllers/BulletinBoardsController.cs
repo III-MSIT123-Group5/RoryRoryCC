@@ -43,12 +43,12 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                        on b.DepartmentID equals d.departmentID
                        select new
                        {
-                           b.Content,
-                           b.PostTime,
-                           d.name,
-                           emp.EmployeeName,
-                           b.Num
-
+                          b.Content,
+                          b.PostTime,
+                          d.name,
+                          emp.EmployeeName,
+                          b.Num,
+                          emp.Photo
                        };
 
             var datas = data.ToList();
@@ -84,14 +84,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             {
                 using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
                 {
-                    //var bb = db.BulletinBoards.FirstOrDefault(x => x.Num == id.Value);
-                    //var emp = db.Employees.FirstOrDefault(x => x.employeeID == EmpID);
-
-                    //BulletinBoardEmployeeViewModel vm = new BulletinBoardEmployeeViewModel();
-                    //vm.BulletinBoardData = bb;
-                    //vm.EmployeesCollection = emp;
-
-                    //return View(vm);
 
                     return View(db.BulletinBoards.Where(x => x.Num == id).FirstOrDefault<BulletinBoard>());
                 }

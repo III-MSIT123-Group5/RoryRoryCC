@@ -1,0 +1,70 @@
+﻿@model BusinessSystemMVC_Admin_page_.Models.File
+
+@{
+    ViewBag.Title = "刪除檔案";
+}
+
+<h2>刪除檔案</h2>
+
+<hr />
+<div>
+    <table>
+        <tr>
+            <th style="width:100px; text-align:right">
+                @Html.DisplayNameFor(model => model.FileName)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.FileName)
+            </th>
+        </tr>
+        <tr>
+            <th style="width:100px; text-align:right">
+                @Html.DisplayNameFor(model => model.FileSize)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.FileSize)
+            </th>
+        </tr>
+        <tr>
+            <th style="width:100px; text-align:right">
+                @Html.DisplayNameFor(model => model.UploadDate)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.UploadDate)
+            </th>
+        </tr>
+        <tr>
+            <th style="width:100px; text-align:right">
+                @Html.DisplayNameFor(model => model.Extension)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.Extension)
+            </th>
+        </tr>
+        <tr>
+            <th style="width:100px; text-align:right">
+                @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+            </th>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>
+                @Html.DisplayFor(model => model.Employee.EmployeeName)
+            </th>
+        </tr>
+    </table>
+    <br />
+    <br />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <button class="btn btn-danger" type="submit" style="color:white"><i class="glyphicon glyphicon-trash"> 刪除</i></button> |
+            @Html.ActionLink("  返回檔案管理", "Index")
+        </div>
+
+    }
+</div>
