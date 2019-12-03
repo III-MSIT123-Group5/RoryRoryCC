@@ -53,6 +53,8 @@
           <Property Name="SecondSignStatus" Type="nvarchar" MaxLength="10" />
           <Property Name="ThirdSignerID" Type="int" />
           <Property Name="ThirdSignStatus" Type="nvarchar" MaxLength="10" />
+          <Property Name="FourthSignerID" Type="int" />
+          <Property Name="FourthSignStatus" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="ApprovalProcedure">
           <Key>
@@ -218,10 +220,32 @@
           <Property Name="Employed" Type="bit" />
           <Property Name="GroupID" Type="int" />
           <Property Name="Photo" Type="nvarchar(max)" />
-          <Property Name="LeaveLessThreeDaysID" Type="int" />
-          <Property Name="LeaveOverThreeDaysID" Type="int" />
-          <Property Name="ApprovalLessTenKID" Type="int" />
-          <Property Name="ApprovalOverTenKID" Type="int" />
+        </EntityType>
+        <EntityType Name="EmployeeApprovalTemp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Birth" Type="date" Nullable="false" />
+          <Property Name="HireDate" Type="datetime" Nullable="false" />
+          <Property Name="Account" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="OfficeID" Type="int" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+          <Property Name="PositionID" Type="int" Nullable="false" />
+          <Property Name="ManagerID" Type="int" Nullable="false" />
+          <Property Name="Employed" Type="bit" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateOrUpdate" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Editor" Type="int" Nullable="false" />
+          <Property Name="EditorTime" Type="datetime" Nullable="false" />
+          <Property Name="GroupLeaderID" Type="int" />
+          <Property Name="GroupLeaderSignTime" Type="datetime" />
+          <Property Name="DepartmentLeaderID" Type="int" />
+          <Property Name="DepartmentLeaderSignTime" Type="datetime" />
+          <Property Name="SignState" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -776,6 +800,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EmployeeApprovalTemp_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="EmployeeApprovalTemp" Type="Self.EmployeeApprovalTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="EmployeeApprovalTemp">
+              <PropertyRef Name="Editor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeApprovalTemp_Employee1">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="EmployeeApprovalTemp" Type="Self.EmployeeApprovalTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="EmployeeApprovalTemp">
+              <PropertyRef Name="GroupLeaderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeApprovalTemp_Employee2">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="EmployeeApprovalTemp" Type="Self.EmployeeApprovalTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="EmployeeApprovalTemp">
+              <PropertyRef Name="DepartmentLeaderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_EventCalendar_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
           <End Role="EventCalendar" Type="Self.EventCalendar" Multiplicity="*" />
@@ -1070,6 +1130,7 @@
           <EntitySet Name="CompanyVehicleHistory" EntityType="Self.CompanyVehicleHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeApprovalTemp" EntityType="Self.EmployeeApprovalTemp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventCalendar" EntityType="Self.EventCalendar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="File" EntityType="Self.File" Schema="dbo" store:Type="Tables" />
@@ -1212,6 +1273,18 @@
             <End Role="Position" EntitySet="Position" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
+          <AssociationSet Name="FK_EmployeeApprovalTemp_Employee" Association="Self.FK_EmployeeApprovalTemp_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeApprovalTemp_Employee1" Association="Self.FK_EmployeeApprovalTemp_Employee1">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeApprovalTemp_Employee2" Association="Self.FK_EmployeeApprovalTemp_Employee2">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemp" />
+          </AssociationSet>
           <AssociationSet Name="FK_EventCalendar_Department" Association="Self.FK_EventCalendar_Department">
             <End Role="Department" EntitySet="Department" />
             <End Role="EventCalendar" EntitySet="EventCalendar" />
@@ -1322,6 +1395,7 @@
           <EntitySet Name="CompanyVehicleHistories" EntityType="BusinessDataBaseModel.CompanyVehicleHistory" />
           <EntitySet Name="Departments" EntityType="BusinessDataBaseModel.Department" />
           <EntitySet Name="Employees" EntityType="BusinessDataBaseModel.Employee" />
+          <EntitySet Name="EmployeeApprovalTemps" EntityType="BusinessDataBaseModel.EmployeeApprovalTemp" />
           <EntitySet Name="Events" EntityType="BusinessDataBaseModel.Event" />
           <EntitySet Name="EventCalendars" EntityType="BusinessDataBaseModel.EventCalendar" />
           <EntitySet Name="Files" EntityType="BusinessDataBaseModel.File" />
@@ -1463,6 +1537,18 @@
             <End Role="Position" EntitySet="Positions" />
             <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
+          <AssociationSet Name="FK_EmployeeApprovalTemp_Employee" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeApprovalTemp_Employee1" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Employee1">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeApprovalTemp_Employee2" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Employee2">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
+          </AssociationSet>
           <AssociationSet Name="FK_EventCalendar_Employee" Association="BusinessDataBaseModel.FK_EventCalendar_Employee">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="EventCalendar" EntitySet="EventCalendars" />
@@ -1581,6 +1667,8 @@
           <Property Name="SecondSignStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ThirdSignerID" Type="Int32" />
           <Property Name="ThirdSignStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FourthSignerID" Type="Int32" />
+          <Property Name="FourthSignStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ApprovalProcedure" Relationship="BusinessDataBaseModel.FK_Approval_ApprovalProcedure" FromRole="Approval" ToRole="ApprovalProcedure" />
           <NavigationProperty Name="RequisitionMain" Relationship="BusinessDataBaseModel.FK_Approval_RequisitionMain" FromRole="Approval" ToRole="RequisitionMain" />
         </EntityType>
@@ -1769,10 +1857,6 @@
           <Property Name="Employed" Type="Boolean" />
           <Property Name="GroupID" Type="Int32" />
           <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LeaveLessThreeDaysID" Type="Int32" />
-          <Property Name="LeaveOverThreeDaysID" Type="Int32" />
-          <Property Name="ApprovalLessTenKID" Type="Int32" />
-          <Property Name="ApprovalOverTenKID" Type="Int32" />
           <NavigationProperty Name="ActivitiesChilds" Relationship="BusinessDataBaseModel.FK_ActivitiesChild_Employee" FromRole="Employee" ToRole="ActivitiesChild" />
           <NavigationProperty Name="ActivitiesMains" Relationship="BusinessDataBaseModel.FK_ActivitiesMain_Employee" FromRole="Employee" ToRole="ActivitiesMain" />
           <NavigationProperty Name="BulletinBoards" Relationship="BusinessDataBaseModel.FK_Bulletin_board_Employee" FromRole="Employee" ToRole="BulletinBoard" />
@@ -1785,6 +1869,9 @@
           <NavigationProperty Name="Group" Relationship="BusinessDataBaseModel.FK_Employee_Group" FromRole="Employee" ToRole="Group" />
           <NavigationProperty Name="Office" Relationship="BusinessDataBaseModel.FK_Employee_Office" FromRole="Employee" ToRole="Office" />
           <NavigationProperty Name="Position" Relationship="BusinessDataBaseModel.FK_Employee_Position" FromRole="Employee" ToRole="Position" />
+          <NavigationProperty Name="EmployeeApprovalTemps" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Employee" FromRole="Employee" ToRole="EmployeeApprovalTemp" />
+          <NavigationProperty Name="EmployeeApprovalTemps1" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Employee1" FromRole="Employee" ToRole="EmployeeApprovalTemp" />
+          <NavigationProperty Name="EmployeeApprovalTemps2" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Employee2" FromRole="Employee" ToRole="EmployeeApprovalTemp" />
           <NavigationProperty Name="EventCalendars" Relationship="BusinessDataBaseModel.FK_EventCalendar_Employee" FromRole="Employee" ToRole="EventCalendar" />
           <NavigationProperty Name="Files" Relationship="BusinessDataBaseModel.FK_File_Employee" FromRole="Employee" ToRole="File" />
           <NavigationProperty Name="MeetingRoomHistories" Relationship="BusinessDataBaseModel.FK_Meeting_room_history_Employee" FromRole="Employee" ToRole="MeetingRoomHistory" />
@@ -1794,6 +1881,35 @@
           <NavigationProperty Name="ReportTimeSystems" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Employee" FromRole="Employee" ToRole="ReportTimeSystem" />
           <NavigationProperty Name="RequisitionMains" Relationship="BusinessDataBaseModel.FK_RequisitionMain_Employee" FromRole="Employee" ToRole="RequisitionMain" />
           <NavigationProperty Name="SuggestionHistories" Relationship="BusinessDataBaseModel.FK_Suggestion_history_Employee" FromRole="Employee" ToRole="SuggestionHistory" />
+        </EntityType>
+        <EntityType Name="EmployeeApprovalTemp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Birth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="HireDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Account" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeID" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <Property Name="PositionID" Type="Int32" Nullable="false" />
+          <Property Name="ManagerID" Type="Int32" Nullable="false" />
+          <Property Name="Employed" Type="Boolean" Nullable="false" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateOrUpdate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Editor" Type="Int32" Nullable="false" />
+          <Property Name="EditorTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GroupLeaderID" Type="Int32" />
+          <Property Name="GroupLeaderSignTime" Type="DateTime" Precision="3" />
+          <Property Name="DepartmentLeaderID" Type="Int32" />
+          <Property Name="DepartmentLeaderSignTime" Type="DateTime" Precision="3" />
+          <Property Name="SignState" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EmployeebyEditor" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Employee" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
+          <NavigationProperty Name="EmployeebyGroupLeader" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Employee1" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
+          <NavigationProperty Name="EmployeebyDepartmentLeader" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Employee2" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -2395,6 +2511,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EmployeeApprovalTemp_Employee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="EmployeeApprovalTemp">
+              <PropertyRef Name="Editor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeApprovalTemp_Employee1">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="EmployeeApprovalTemp">
+              <PropertyRef Name="GroupLeaderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeApprovalTemp_Employee2">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="EmployeeApprovalTemp">
+              <PropertyRef Name="DepartmentLeaderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_EventCalendar_Employee">
           <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="1" />
           <End Type="BusinessDataBaseModel.EventCalendar" Role="EventCalendar" Multiplicity="*" />
@@ -2635,6 +2787,8 @@
           <EntitySetMapping Name="Approvals">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.Approval">
               <MappingFragment StoreEntitySet="Approval">
+                <ScalarProperty Name="FourthSignStatus" ColumnName="FourthSignStatus" />
+                <ScalarProperty Name="FourthSignerID" ColumnName="FourthSignerID" />
                 <ScalarProperty Name="ThirdSignStatus" ColumnName="ThirdSignStatus" />
                 <ScalarProperty Name="ThirdSignerID" ColumnName="ThirdSignerID" />
                 <ScalarProperty Name="SecondSignStatus" ColumnName="SecondSignStatus" />
@@ -2799,10 +2953,6 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="ApprovalOverTenKID" ColumnName="ApprovalOverTenKID" />
-                <ScalarProperty Name="ApprovalLessTenKID" ColumnName="ApprovalLessTenKID" />
-                <ScalarProperty Name="LeaveOverThreeDaysID" ColumnName="LeaveOverThreeDaysID" />
-                <ScalarProperty Name="LeaveLessThreeDaysID" ColumnName="LeaveLessThreeDaysID" />
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
                 <ScalarProperty Name="Employed" ColumnName="Employed" />
@@ -2816,6 +2966,33 @@
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
                 <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeApprovalTemps">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.EmployeeApprovalTemp">
+              <MappingFragment StoreEntitySet="EmployeeApprovalTemp">
+                <ScalarProperty Name="SignState" ColumnName="SignState" />
+                <ScalarProperty Name="DepartmentLeaderSignTime" ColumnName="DepartmentLeaderSignTime" />
+                <ScalarProperty Name="DepartmentLeaderID" ColumnName="DepartmentLeaderID" />
+                <ScalarProperty Name="GroupLeaderSignTime" ColumnName="GroupLeaderSignTime" />
+                <ScalarProperty Name="GroupLeaderID" ColumnName="GroupLeaderID" />
+                <ScalarProperty Name="EditorTime" ColumnName="EditorTime" />
+                <ScalarProperty Name="Editor" ColumnName="Editor" />
+                <ScalarProperty Name="CreateOrUpdate" ColumnName="CreateOrUpdate" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="Employed" ColumnName="Employed" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="Birth" ColumnName="Birth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
