@@ -71,6 +71,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                 Inline = false,
             };
             Response.AppendHeader("Content-Disposition", cd.ToString());
+            Dispose();
             return File(DownloadFileName, MediaTypeNames.Application.Octet);
         }
 
@@ -92,6 +93,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                 Inline = false,
             };
             Response.AppendHeader("Content-Disposition", cd.ToString());
+            Dispose();
             return File(DownloadFileName, MediaTypeNames.Application.Octet);
         }
 
@@ -119,6 +121,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                 Inline = false,
             };
             Response.AppendHeader("Content-Disposition", cd.ToString());
+            Dispose();
             return File(DownloadFileName, MediaTypeNames.Application.Octet);
         }
         /// ///////////////////////////////////////////////////
@@ -157,6 +160,9 @@ namespace EIPBussinessSystem_MVC.Controllers
         {
             BusinessSystemMVC_Admin_page_.Models.File file = db.Files.Find(id);
             db.Files.Remove(file);
+            string FileName = db.Files.Where(f => f.FileID == id).Select(f => f.FileName).FirstOrDefault();
+            string DeleteFileName = Path.Combine(Server.MapPath("~/Uploads"), FileName);
+            System.IO.File.Delete(DeleteFileName);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
