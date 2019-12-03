@@ -91,14 +91,14 @@
                 })
             });
 
-            $("[id*=Cheak] input").on("change", function () {
+            $("input[name='Cheak']").on("change", function () {
 
                 //全部都選到了,"全部"這個選項打勾,反之,則取消
-                if ($("[id*=Cheak] input").length == $("[id*=Cheak] input:checked").length) {
+                if ($("input[name='Cheak']").length == $("input[name='Cheak']:checked").length) {
                     $("#CheakAll").prop("checked", true);
                 }
                 else {
-                    $("#CheakAll").removeAttr("checked");
+                    $("#CheakAll").prop("checked", false);
                 }
             });
 
