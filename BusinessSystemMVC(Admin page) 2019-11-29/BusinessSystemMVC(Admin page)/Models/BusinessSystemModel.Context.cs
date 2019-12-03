@@ -39,12 +39,15 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<BulletinBoard> BulletinBoards { get; set; }
         public virtual DbSet<CommentChild> CommentChilds { get; set; }
-        public virtual DbSet<CommentGrandchild> CommentGrandchilds { get; set; }
+        public virtual DbSet<CommentContent> CommentContents { get; set; }
         public virtual DbSet<CommentMain> CommentMains { get; set; }
+        public virtual DbSet<CommentOption> CommentOptions { get; set; }
+        public virtual DbSet<CommentQuestion> CommentQuestions { get; set; }
         public virtual DbSet<CompanyVehicle> CompanyVehicles { get; set; }
         public virtual DbSet<CompanyVehicleHistory> CompanyVehicleHistories { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<EmployeeApprovalTemp> EmployeeApprovalTemps { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<EventCalendar> EventCalendars { get; set; }
         public virtual DbSet<File> Files { get; set; }

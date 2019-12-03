@@ -253,10 +253,16 @@
     <Compile Include="Models\CommentChild.cs">
       <DependentUpon>BusinessSystemModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CommentGrandchild.cs">
+    <Compile Include="Models\CommentContent.cs">
       <DependentUpon>BusinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CommentMain.cs">
+      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CommentOption.cs">
+      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CommentQuestion.cs">
       <DependentUpon>BusinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CompanyVehicle.cs">
@@ -272,6 +278,9 @@
       <DependentUpon>BusinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs">
+      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployeeApprovalTemp.cs">
       <DependentUpon>BusinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Event.cs">
@@ -570,6 +579,11 @@
     <Content Include="Views\CompanyVehicles\Edit.cshtml" />
     <Content Include="Views\CompanyVehicles\Index.cshtml" />
     <Content Include="Views\CompanyVehicles\_ShowPhotoPartial.cshtml" />
+    <Content Include="Views\SurveyMains\Create.cshtml" />
+    <Content Include="Views\SurveyMains\Delete.cshtml" />
+    <Content Include="Views\SurveyMains\Details.cshtml" />
+    <Content Include="Views\SurveyMains\Edit.cshtml" />
+    <Content Include="Views\SurveyMains\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

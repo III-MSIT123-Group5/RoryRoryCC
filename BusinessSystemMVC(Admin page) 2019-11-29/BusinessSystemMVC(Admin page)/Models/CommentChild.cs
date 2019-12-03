@@ -14,25 +14,15 @@ namespace BusinessSystemMVC_Admin_page_.Models
     
     public partial class CommentChild
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CommentChild()
-        {
-            this.CommentGrandchilds = new HashSet<CommentGrandchild>();
-            this.Replies = new HashSet<Reply>();
-        }
+        public Nullable<int> CommentMainID { get; set; }
+        public int Num { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
+        public Nullable<int> CommentQuestionID { get; set; }
+        public Nullable<int> Rate { get; set; }
+        public Nullable<System.DateTime> ReplyTime { get; set; }
     
-        public int CommentTypeID { get; set; }
-        public string CommentTypeName { get; set; }
-        public Nullable<int> CommentID { get; set; }
-        public string Question { get; set; }
-        public Nullable<System.DateTime> SentTime { get; set; }
-        public Nullable<int> ActivityMainID { get; set; }
-    
-        public virtual ActivitiesMain ActivitiesMain { get; set; }
         public virtual CommentMain CommentMain { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CommentGrandchild> CommentGrandchilds { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reply> Replies { get; set; }
+        public virtual CommentQuestion CommentQuestion { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

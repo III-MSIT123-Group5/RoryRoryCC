@@ -20,7 +20,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public Nullable<int> EmployeeID { get; set; }
         public Nullable<System.DateTime> ReplyTime { get; set; }
     
-        public virtual CommentChild CommentChild { get; set; }
         public virtual Employee Employee { get; set; }
     }
 }

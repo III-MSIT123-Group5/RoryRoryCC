@@ -12,25 +12,18 @@ namespace BusinessSystemMVC_Admin_page_.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CommentMain
+    public partial class CommentOption
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CommentMain()
+        public CommentOption()
         {
-            this.CommentChilds = new HashSet<CommentChild>();
+            this.CommentContents = new HashSet<CommentContent>();
         }
     
-        public int CommentMainID { get; set; }
-        public string CommentName { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
-        public Nullable<System.DateTime> SendTime { get; set; }
-        public Nullable<int> CommentContentID { get; set; }
-        public Nullable<int> ActivityMainID { get; set; }
+        public int CommentOptionID { get; set; }
+        public string CommentOption1 { get; set; }
     
-        public virtual ActivitiesMain ActivitiesMain { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CommentChild> CommentChilds { get; set; }
-        public virtual CommentContent CommentContent { get; set; }
-        public virtual Employee Employee { get; set; }
+        public virtual ICollection<CommentContent> CommentContents { get; set; }
     }
 }
