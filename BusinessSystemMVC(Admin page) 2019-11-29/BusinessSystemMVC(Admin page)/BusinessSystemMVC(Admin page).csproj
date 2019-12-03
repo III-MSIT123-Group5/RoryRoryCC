@@ -281,6 +281,9 @@
     <Compile Include="Models\Employee.cs">
       <DependentUpon>BusinessSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmployeeApprovalTemp.cs">
+      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Event.cs">
       <DependentUpon>BusinessSystemModel.tt</DependentUpon>
     </Compile>

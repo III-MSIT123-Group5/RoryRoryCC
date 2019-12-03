@@ -21,6 +21,9 @@
             @Html.DisplayNameFor(model => model.RequisitionMain.OrderID)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.RequisitionMain.Price)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.RequisitionMain.Approval.ApprovalProcedureID)
         </th>
         <th>
@@ -47,43 +50,46 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RequisitionMain.Employee.EmployeeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RequisitionMain.RequisitionDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RequisitionMain.OrderID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RequisitionMain.Approval.ApprovalProcedureID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RequisitionMain.Approval.ApprovalProcedure.ApprovalReportName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Note)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.OrderDetailID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.OrderDetailID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.OrderDetailID })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequisitionMain.Employee.EmployeeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequisitionMain.RequisitionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequisitionMain.OrderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequisitionMain.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequisitionMain.Approval.ApprovalProcedureID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequisitionMain.Approval.ApprovalProcedure.ApprovalReportName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Note)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.OrderDetailID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.OrderDetailID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.OrderDetailID })
+        </td>
+    </tr>
     }
 
 </table>

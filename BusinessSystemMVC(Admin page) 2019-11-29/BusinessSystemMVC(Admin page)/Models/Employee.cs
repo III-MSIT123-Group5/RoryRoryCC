@@ -48,10 +48,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public Nullable<bool> Employed { get; set; }
         public Nullable<int> GroupID { get; set; }
         public string Photo { get; set; }
-        public Nullable<int> LeaveLessThreeDaysID { get; set; }
-        public Nullable<int> LeaveOverThreeDaysID { get; set; }
-        public Nullable<int> ApprovalLessTenKID { get; set; }
-        public Nullable<int> ApprovalOverTenKID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ActivitiesChild> ActivitiesChilds { get; set; }
