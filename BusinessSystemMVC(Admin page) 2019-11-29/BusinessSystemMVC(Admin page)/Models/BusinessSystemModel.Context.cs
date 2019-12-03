@@ -56,7 +56,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual DbSet<Office> Offices { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
-        public virtual DbSet<Recipients> Recipients { get; set; }
+        public virtual DbSet<Recipient> Recipients { get; set; }
         public virtual DbSet<Reply> Replies { get; set; }
         public virtual DbSet<ReportCategory> ReportCategories { get; set; }
         public virtual DbSet<ReportTimeSystem> ReportTimeSystems { get; set; }

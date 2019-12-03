@@ -1907,9 +1907,9 @@
           <Property Name="DepartmentLeaderID" Type="Int32" />
           <Property Name="DepartmentLeaderSignTime" Type="DateTime" Precision="3" />
           <Property Name="SignState" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="EmployeebyEditor" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Employee" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
-          <NavigationProperty Name="EmployeebyGroupLeader" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Employee1" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
-          <NavigationProperty Name="EmployeebyDepartmentLeader" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Employee2" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
+          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Employee" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
+          <NavigationProperty Name="Employee1" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Employee1" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
+          <NavigationProperty Name="Employee2" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Employee2" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Event">
           <Key>

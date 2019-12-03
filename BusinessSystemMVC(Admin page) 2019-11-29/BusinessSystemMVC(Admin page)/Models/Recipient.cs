@@ -12,7 +12,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Recipients
+    public partial class Recipient
     {
         public long MessageID { get; set; }
         public int EmployeeID { get; set; }
