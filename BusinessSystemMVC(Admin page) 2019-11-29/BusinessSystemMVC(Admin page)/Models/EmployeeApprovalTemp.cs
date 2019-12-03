@@ -15,7 +15,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
     public partial class EmployeeApprovalTemp
     {
         public int ID { get; set; }
-        public int employeeID { get; set; }
         public string EmployeeName { get; set; }
         public string Gender { get; set; }
         public System.DateTime Birth { get; set; }
@@ -29,10 +28,16 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public int GroupID { get; set; }
         public string Photo { get; set; }
         public string CreateOrUpdate { get; set; }
+        public int Editor { get; set; }
+        public System.DateTime EditorTime { get; set; }
         public Nullable<int> GroupLeaderID { get; set; }
         public Nullable<System.DateTime> GroupLeaderSignTime { get; set; }
         public Nullable<int> DepartmentLeaderID { get; set; }
         public Nullable<System.DateTime> DepartmentLeaderSignTime { get; set; }
         public bool SignState { get; set; }
+    
+        public virtual Employee EmployeebyEditor { get; set; }
+        public virtual Employee EmployeebyGroupLeader { get; set; }
+        public virtual Employee EmployeebyDepartmentLeader { get; set; }
     }
 }

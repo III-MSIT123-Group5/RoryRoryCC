@@ -12,6 +12,14 @@
 <script src='~/package/calendar/interaction/main.js'></script>
 <script src='~/package/calendar/daygrid/main.js'></script>
 <script src='~/package/calendar/timegrid/main.js'></script>
+
+
+<link href='~/Content/bootstrap-datetimepicker.css' rel='stylesheet' />
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+
 <script>
 
 
@@ -98,6 +106,13 @@
         }, function () {
             $(this).css('background-color', '')
         });
+
+
+        
+        $('#datetime').datetimepicker();
+         
+        
+
     });
 
 
@@ -114,9 +129,9 @@
 </div>
 
 <div class="col-3">
-
+    <div id='datetime'></div> 
 </div>
-<div class="col-9" >
+<div class="col-9">
     <div id='calendar'></div>
 </div>
 
@@ -133,19 +148,20 @@
 
 
 
-            //var jsonData = JSON.stringify({
-            //    employeeName: $("#employeeName").val(),
-            //    subject: $("#subject").val(),
-            //    DepartmentID: $("#DepartmentID").val(),
-            //    StartTime: $("#StartTime").val(),
-            //    EndTime: $("#EndTime").val(),
-            //    Location: $("#Location").val(),
-            //    Description: $("#Description").val(),
-            //    IsImportant: $("#IsImportant").val(),
-            //    IsFullday: $("#IsFullday").val()
+                    //var jsonData = JSON.stringify({
+                    //    employeeName: $("#employeeName").val(),
+                    //    subject: $("#subject").val(),
+                    //    DepartmentID: $("#DepartmentID").val(),
+                    //    StartTime: $("#StartTime").val(),
+                    //    EndTime: $("#EndTime").val(),
+                    //    Location: $("#Location").val(),
+                    //    Description: $("#Description").val(),
+                    //    IsImportant: $("#IsImportant").val(),
+                    //    IsFullday: $("#IsFullday").val()
 
 
-            //})
+                    //})
 
     </script>
+
 }
