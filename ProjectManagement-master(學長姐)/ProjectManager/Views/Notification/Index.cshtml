@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ProjectManager.Models.ViewModel.NotificationVM>
+
+@{
+    ViewBag.Title = "你的通知";
+}
+@section style
+{
+    <style>
+        .projectLink {
+            padding: 15px;
+            background-color: white;
+        }
+        .projectLink span {
+           font-size: 14px;
+        }
+
+            .projectLink:hover {
+                background-color: #e6e8eb;
+                text-decoration: underline;
+            }
+
+        .tasktime {
+            float: right;
+        }
+    </style>
+}
+<div class="container mt-2">
+    <hr />
+    @foreach (var vm in Model)
+    {
+    <div class="projectLink" data-category="@vm.Category" data-projectGUID="@vm.ProjectGUID">
+        @switch (vm.Category)
+        {
+            case "Task":
+                <span>「@vm.MangerName 」在「 @vm.ProjectName 」分配了「@vm.TaskName」給你</span>
+                break;
+            case "InvideProject":
+                <span>「@vm.MangerName 」邀請你加入了「 @vm.ProjectName 」專案</span>
+                break;
+            case "Calendar":
+                <span>「@vm.CalendarDate.ToShortDateString()」新增了「@vm.CalendarName」活動</span>
+                break;
+        }
+
+        <span class="tasktime">@vm.NotificationDate</span>
+    </div>
+    }
+
+</div>
+@section script
+            {
+    <script>
+        $(document).ready(function () {
+            $('.projectLink').click(function () {
+                
+                switch ($(this).data('category')) {
+                    case 'Task':
+                         $.post("@Url.Action("SetCookiesForMyBoard", "Home")", { projectGUID: $(this).attr("data-projectGUID") },
+                    function (userGUID) {
+                        location.href = "/MyBoard/Index/" + userGUID;
+                    });
+                        break;
+                    case 'InvideProject':
+                         $.post("@Url.Action("SetCookiesForMyBoard", "Home")", { projectGUID: $(this).attr("data-projectGUID") },
+                    function (userGUID) {
+                        location.href = "/MyBoard/Index/" + userGUID;
+                    });
+                        break;
+                    case 'Calendar':
+                        location.href = "/Calendar/Index/";
+                        break;
+                }
+                       
+            });
+
+                    
+        });
+    </script>
+}
