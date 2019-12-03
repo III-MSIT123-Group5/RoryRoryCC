@@ -28,7 +28,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
             this.Files = new HashSet<File>();
             this.MeetingRoomHistories = new HashSet<MeetingRoomHistory>();
             this.Messages = new HashSet<Message>();
-            this.Recipients = new HashSet<Recipient>();
+            this.Recipients = new HashSet<Recipients>();
             this.Replies = new HashSet<Reply>();
             this.ReportTimeSystems = new HashSet<ReportTimeSystem>();
             this.RequisitionMains = new HashSet<RequisitionMain>();
@@ -77,7 +77,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Message> Messages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Recipient> Recipients { get; set; }
+        public virtual ICollection<Recipients> Recipients { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reply> Replies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

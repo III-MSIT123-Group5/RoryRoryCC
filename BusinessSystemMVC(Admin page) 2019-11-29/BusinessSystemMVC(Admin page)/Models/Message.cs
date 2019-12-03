@@ -17,7 +17,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Message()
         {
-            this.Recipients = new HashSet<Recipient>();
+            this.Recipients = new HashSet<Recipients>();
         }
     
         public long MessageID { get; set; }
@@ -29,6 +29,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
     
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Recipient> Recipients { get; set; }
+        public virtual ICollection<Recipients> Recipients { get; set; }
     }
 }

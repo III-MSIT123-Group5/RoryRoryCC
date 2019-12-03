@@ -595,10 +595,8 @@
     <Content Include="Views\Messages\Details.cshtml" />
     <Content Include="Views\Messages\Edit.cshtml" />
     <Content Include="Views\Messages\Index.cshtml" />
-    <Content Include="Views\Recipients\Create.cshtml" />
     <Content Include="Views\Recipients\Delete.cshtml" />
     <Content Include="Views\Recipients\Details.cshtml" />
-    <Content Include="Views\Recipients\Edit.cshtml" />
     <Content Include="Views\Recipients\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
