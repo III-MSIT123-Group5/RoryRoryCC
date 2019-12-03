@@ -46,23 +46,31 @@
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseBussinessCar">
                         <li class="color hover">
-                            <a href="navbar.html" style="font-family:'NotoSansCJKtc-Bold'">公務車管理</a>
+                            <a href="@Url.Action("Index","CompanyVehicles")" style="font-family:'NotoSansCJKtc-Bold'">公務車管理</a>
                         </li>
                         <li class="color hover">
-                            <a href="cards.html" style="font-family:'NotoSansCJKtc-Bold'">公務車租借</a>
+                            <a href="@Url.Action("Index","CompanyVehicleBorrow")" style="font-family:'NotoSansCJKtc-Bold'">公務車租借</a>
                         </li>
                     </ul>
                 </li>
-                @*工時回報*@
-                <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="工時回報">
-                    <a class="nav-link" href="tables.html">
-                        <i class="fa fa-fw fa-clock-o"></i>
-                        <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">工時回報</span>
+                @*行事曆*@
+                <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="行事曆">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseCalendar" data-parent="#exampleAccordion">
+                        <i class="fa fa-fw fa-th-list"></i>
+                        <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">行事曆</span>
                     </a>
+                    <ul class="sidenav-second-level collapse" id="collapseCalendar">
+                        <li class="color hover">
+                            <a href="@Url.Action("Index", "EventCalendars")" style="font-family:'NotoSansCJKtc-Bold'">行事曆</a>
+                        </li>
+                        <li class="color hover">
+                            <a href="calendar.html" style="font-family:'NotoSansCJKtc-Bold'">統計分析</a>
+                        </li>
+                    </ul>
                 </li>
                 @*檔案管理*@
                 <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="檔案管理">
-                    <a class="nav-link" href="tables.html">
+                    <a class="nav-link" href="@Url.Action("Index", "Files")">
                         <i class="fa fa-fw fa-file"></i>
                         <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">檔案管理</span>
                     </a>
@@ -211,14 +219,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-    <script src="~/Scripts/notify.min.js"></script>
-    @RenderSection("scripts", required: false)
 
-    <script>       
+    <script>
         (function ($) {
             "use strict"; // Start of use strict
             // Configure tooltips for collapsed side navigation
@@ -266,5 +268,10 @@
         })(jQuery); // End of use strict
     </script>
 
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/notify.min.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

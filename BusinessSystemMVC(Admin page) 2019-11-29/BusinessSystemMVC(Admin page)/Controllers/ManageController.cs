@@ -22,7 +22,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         {
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+    public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -425,6 +425,15 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             Error
         }
 
-        #endregion
-    }
+        //update photo
+        [AllowAnonymous]
+        public void UpdatePhoto(string PhotoAdress)
+        {
+            var upPhoto = db.Employees.Find(EmployeeDetail.EmployeeID);
+            upPhoto.Photo = PhotoAdress;
+            db.SaveChanges();
+         }
+
+    #endregion
+}
 }

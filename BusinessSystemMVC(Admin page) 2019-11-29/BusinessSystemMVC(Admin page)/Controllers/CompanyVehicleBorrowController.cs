@@ -22,6 +22,23 @@ namespace EIPBussinessSystem_MVC.Controllers
 
             return View();
         }
+       
+
+        [AllowAnonymous]
+        public void Post1(DateTime dtS,DateTime dtE,string LNid,string purpose)
+        {
+            var saveCars = new BusinessSystemMVC_Admin_page_.Models.CompanyVehicleHistory
+            {
+                StartDateTime = dtS,
+                EndDateTime = dtE,
+                employeeID = EmployeeDetail.EmployeeID,
+                LicenseNumber = LNid,
+                purpose = purpose
+            };
+            db.CompanyVehicleHistories.Add(saveCars);
+            db.SaveChanges();
+        }
+
         public ActionResult Finded1()
         {
             var Canuse = from c in db.CompanyVehicles

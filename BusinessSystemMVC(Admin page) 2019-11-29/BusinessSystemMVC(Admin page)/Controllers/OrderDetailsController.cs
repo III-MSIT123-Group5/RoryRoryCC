@@ -128,6 +128,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                             ReportID = 2,
                             EmployeeID = EmpID,
                             RequisitionDate = DateTime.Now,
+                            Price = TemporaryTotalPrice,
                             Approval = (new Models.Approval
                             {
                                 ApprovalProcedureID = 5,
@@ -157,6 +158,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                             ReportID = 2,
                             EmployeeID = EmpID,
                             RequisitionDate = DateTime.Now,
+                            Price = TemporaryTotalPrice,
                             Approval = (new Models.Approval
                             {
                                 ApprovalProcedureID = 6,
