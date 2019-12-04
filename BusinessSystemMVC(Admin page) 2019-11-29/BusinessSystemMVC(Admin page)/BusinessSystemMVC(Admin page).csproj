@@ -612,6 +612,8 @@
     <Content Include="Views\Recipients\Delete.cshtml" />
     <Content Include="Views\Recipients\Details.cshtml" />
     <Content Include="Views\Recipients\Index.cshtml" />
+    <Content Include="Views\Shared\_SignOffSystemPartial.cshtml" />
+    <Content Include="Views\Shared\_HRSignSystemPartail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
