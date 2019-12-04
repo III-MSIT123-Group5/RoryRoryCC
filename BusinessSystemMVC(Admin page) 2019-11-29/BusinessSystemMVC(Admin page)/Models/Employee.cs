@@ -21,7 +21,8 @@ namespace BusinessSystemMVC_Admin_page_.Models
             this.ActivitiesMains = new HashSet<ActivitiesMain>();
             this.BulletinBoards = new HashSet<BulletinBoard>();
             this.BulletinBoards1 = new HashSet<BulletinBoard>();
-            this.CommentGrandchilds = new HashSet<CommentGrandchild>();
+            this.CommentChilds = new HashSet<CommentChild>();
+            this.CommentMains = new HashSet<CommentMain>();
             this.CompanyVehicleHistories = new HashSet<CompanyVehicleHistory>();
             this.Employee1 = new HashSet<Employee>();
             this.EmployeeApprovalTemps = new HashSet<EmployeeApprovalTemp>();
@@ -61,7 +62,9 @@ namespace BusinessSystemMVC_Admin_page_.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BulletinBoard> BulletinBoards1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CommentGrandchild> CommentGrandchilds { get; set; }
+        public virtual ICollection<CommentChild> CommentChilds { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CommentMain> CommentMains { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompanyVehicleHistory> CompanyVehicleHistories { get; set; }
         public virtual Department Department { get; set; }

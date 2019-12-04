@@ -262,10 +262,16 @@
     <Compile Include="Models\CommentChild.cs">
       <DependentUpon>BusinessSystemModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CommentGrandchild.cs">
+    <Compile Include="Models\CommentContent.cs">
       <DependentUpon>BusinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CommentMain.cs">
+      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CommentOption.cs">
+      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CommentQuestion.cs">
       <DependentUpon>BusinessSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CompanyVehicle.cs">
@@ -601,6 +607,8 @@
     <Content Include="Views\Recipients\Details.cshtml" />
     <Content Include="Views\Recipients\Index.cshtml" />
     <Content Include="Views\Recipients\AddOrEdit.cshtml" />
+    <Content Include="Views\Shared\_SignOffSystemPartial.cshtml" />
+    <Content Include="Views\Shared\_HRSignSystemPartail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

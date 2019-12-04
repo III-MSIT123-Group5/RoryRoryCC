@@ -49,12 +49,16 @@
           <Property Name="ApprovalProcedureID" Type="int" />
           <Property Name="FirstSignerID" Type="int" />
           <Property Name="FirstSignStatus" Type="nvarchar" MaxLength="10" />
+          <Property Name="FirstSignDate" Type="datetime" />
           <Property Name="SecondSignerID" Type="int" />
           <Property Name="SecondSignStatus" Type="nvarchar" MaxLength="10" />
+          <Property Name="SecondSignDate" Type="datetime" />
           <Property Name="ThirdSignerID" Type="int" />
           <Property Name="ThirdSignStatus" Type="nvarchar" MaxLength="10" />
+          <Property Name="ThirdSignDate" Type="datetime" />
           <Property Name="FourthSignerID" Type="int" />
           <Property Name="FourthSignStatus" Type="nvarchar" MaxLength="10" />
+          <Property Name="ForthSignDate" Type="datetime" />
         </EntityType>
         <EntityType Name="ApprovalProcedure">
           <Key>
@@ -148,29 +152,48 @@
         </EntityType>-->
         <EntityType Name="CommentChild">
           <Key>
-            <PropertyRef Name="CommentTypeID" />
+            <PropertyRef Name="Num" />
           </Key>
-          <Property Name="CommentTypeID" Type="int" Nullable="false" />
-          <Property Name="CommentTypeName" Type="nvarchar" MaxLength="50" />
-          <Property Name="CommentID" Type="int" />
-          <Property Name="Question" Type="nvarchar(max)" />
-          <Property Name="SentTime" Type="datetime" />
-          <Property Name="ActivityMainID" Type="int" />
-        </EntityType>
-        <EntityType Name="CommentGrandchild">
-          <Key>
-            <PropertyRef Name="CommentGrandchildID" />
-          </Key>
-          <Property Name="CommentGrandchildID" Type="int" Nullable="false" />
-          <Property Name="CommentTypeID" Type="int" />
+          <Property Name="CommentMainID" Type="int" />
+          <Property Name="Num" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeID" Type="int" />
+          <Property Name="CommentQuestionID" Type="int" />
+          <Property Name="Rate" Type="int" />
+          <Property Name="ReplyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CommentContent">
+          <Key>
+            <PropertyRef Name="CommentContentID" />
+          </Key>
+          <Property Name="CommentContentID" Type="int" Nullable="false" />
+          <Property Name="CommentContent" Type="nvarchar" MaxLength="50" />
+          <Property Name="CommentOptionID" Type="int" />
         </EntityType>
         <EntityType Name="CommentMain">
           <Key>
-            <PropertyRef Name="CommentID" />
+            <PropertyRef Name="CommentMainID" />
           </Key>
-          <Property Name="CommentID" Type="int" Nullable="false" />
+          <Property Name="CommentMainID" Type="int" Nullable="false" />
           <Property Name="CommentName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="SendTime" Type="datetime" />
+          <Property Name="CommentContentID" Type="int" />
+          <Property Name="ActivityMainID" Type="int" />
+        </EntityType>
+        <EntityType Name="CommentOption">
+          <Key>
+            <PropertyRef Name="CommentOptionID" />
+          </Key>
+          <Property Name="CommentOptionID" Type="int" Nullable="false" />
+          <Property Name="CommentOption" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CommentQuestion">
+          <Key>
+            <PropertyRef Name="CommentQuestionID" />
+          </Key>
+          <Property Name="CommentContentID" Type="int" />
+          <Property Name="CommentQuestionID" Type="int" Nullable="false" />
+          <Property Name="Question" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CompanyVehicle">
           <Key>
@@ -600,51 +623,99 @@
         <!--產生期間發現錯誤:
 錯誤 6004: 資料表 'BusinessDataBase.dbo.BusinessTrip' 被某個關聯性參考，但是找不到。
         <Association Name="FK_Business Trip_Employee" />-->
-        <Association Name="FK_CommentChild_ActivitiesMain">
-          <End Role="ActivitiesMain" Type="Self.ActivitiesMain" Multiplicity="0..1" />
-          <End Role="CommentChild" Type="Self.CommentChild" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ActivitiesMain">
-              <PropertyRef Name="ActivityMainID" />
-            </Principal>
-            <Dependent Role="CommentChild">
-              <PropertyRef Name="ActivityMainID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CommentChild_CommentMain">
+        <Association Name="FK_CommentChild_CommentMain1">
           <End Role="CommentMain" Type="Self.CommentMain" Multiplicity="0..1" />
           <End Role="CommentChild" Type="Self.CommentChild" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CommentMain">
-              <PropertyRef Name="CommentID" />
+              <PropertyRef Name="CommentMainID" />
             </Principal>
             <Dependent Role="CommentChild">
-              <PropertyRef Name="CommentID" />
+              <PropertyRef Name="CommentMainID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CommentGrandchild_CommentChild">
-          <End Role="CommentChild" Type="Self.CommentChild" Multiplicity="0..1" />
-          <End Role="CommentGrandchild" Type="Self.CommentGrandchild" Multiplicity="*" />
+        <Association Name="FK_CommentChild_CommentQuestion">
+          <End Role="CommentQuestion" Type="Self.CommentQuestion" Multiplicity="0..1" />
+          <End Role="CommentChild" Type="Self.CommentChild" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CommentChild">
-              <PropertyRef Name="CommentTypeID" />
+            <Principal Role="CommentQuestion">
+              <PropertyRef Name="CommentQuestionID" />
             </Principal>
-            <Dependent Role="CommentGrandchild">
-              <PropertyRef Name="CommentTypeID" />
+            <Dependent Role="CommentChild">
+              <PropertyRef Name="CommentQuestionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CommentGrandchild_Employee">
+        <Association Name="FK_CommentChild_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="CommentGrandchild" Type="Self.CommentGrandchild" Multiplicity="*" />
+          <End Role="CommentChild" Type="Self.CommentChild" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="employeeID" />
             </Principal>
-            <Dependent Role="CommentGrandchild">
+            <Dependent Role="CommentChild">
               <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentContent_CommentOption">
+          <End Role="CommentOption" Type="Self.CommentOption" Multiplicity="0..1" />
+          <End Role="CommentContent" Type="Self.CommentContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommentOption">
+              <PropertyRef Name="CommentOptionID" />
+            </Principal>
+            <Dependent Role="CommentContent">
+              <PropertyRef Name="CommentOptionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentMain_ActivitiesMain">
+          <End Role="ActivitiesMain" Type="Self.ActivitiesMain" Multiplicity="0..1" />
+          <End Role="CommentMain" Type="Self.CommentMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivitiesMain">
+              <PropertyRef Name="ActivityMainID" />
+            </Principal>
+            <Dependent Role="CommentMain">
+              <PropertyRef Name="ActivityMainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentMain_CommentContent">
+          <End Role="CommentContent" Type="Self.CommentContent" Multiplicity="0..1" />
+          <End Role="CommentMain" Type="Self.CommentMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommentContent">
+              <PropertyRef Name="CommentContentID" />
+            </Principal>
+            <Dependent Role="CommentMain">
+              <PropertyRef Name="CommentContentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentMain_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="CommentMain" Type="Self.CommentMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="CommentMain">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentQuestion_CommentContent">
+          <End Role="CommentContent" Type="Self.CommentContent" Multiplicity="0..1" />
+          <End Role="CommentQuestion" Type="Self.CommentQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommentContent">
+              <PropertyRef Name="CommentContentID" />
+            </Principal>
+            <Dependent Role="CommentQuestion">
+              <PropertyRef Name="CommentContentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -977,18 +1048,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reply_CommentChild">
-          <End Role="CommentChild" Type="Self.CommentChild" Multiplicity="0..1" />
-          <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CommentChild">
-              <PropertyRef Name="CommentTypeID" />
-            </Principal>
-            <Dependent Role="Reply">
-              <PropertyRef Name="CommentTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Reply_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
@@ -1124,8 +1183,10 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BulletinBoard" EntityType="Self.BulletinBoard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CommentChild" EntityType="Self.CommentChild" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CommentGrandchild" EntityType="Self.CommentGrandchild" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentContent" EntityType="Self.CommentContent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CommentMain" EntityType="Self.CommentMain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentOption" EntityType="Self.CommentOption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentQuestion" EntityType="Self.CommentQuestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyVehicle" EntityType="Self.CompanyVehicle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyVehicleHistory" EntityType="Self.CompanyVehicleHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
@@ -1209,21 +1270,37 @@
             <End Role="Employee" EntitySet="Employee" />
             <End Role="BulletinBoard" EntitySet="BulletinBoard" />
           </AssociationSet>
-          <AssociationSet Name="FK_CommentChild_ActivitiesMain" Association="Self.FK_CommentChild_ActivitiesMain">
-            <End Role="ActivitiesMain" EntitySet="ActivitiesMain" />
-            <End Role="CommentChild" EntitySet="CommentChild" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CommentChild_CommentMain" Association="Self.FK_CommentChild_CommentMain">
+          <AssociationSet Name="FK_CommentChild_CommentMain1" Association="Self.FK_CommentChild_CommentMain1">
             <End Role="CommentMain" EntitySet="CommentMain" />
             <End Role="CommentChild" EntitySet="CommentChild" />
           </AssociationSet>
-          <AssociationSet Name="FK_CommentGrandchild_CommentChild" Association="Self.FK_CommentGrandchild_CommentChild">
+          <AssociationSet Name="FK_CommentChild_CommentQuestion" Association="Self.FK_CommentChild_CommentQuestion">
+            <End Role="CommentQuestion" EntitySet="CommentQuestion" />
             <End Role="CommentChild" EntitySet="CommentChild" />
-            <End Role="CommentGrandchild" EntitySet="CommentGrandchild" />
           </AssociationSet>
-          <AssociationSet Name="FK_CommentGrandchild_Employee" Association="Self.FK_CommentGrandchild_Employee">
+          <AssociationSet Name="FK_CommentChild_Employee" Association="Self.FK_CommentChild_Employee">
             <End Role="Employee" EntitySet="Employee" />
-            <End Role="CommentGrandchild" EntitySet="CommentGrandchild" />
+            <End Role="CommentChild" EntitySet="CommentChild" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentContent_CommentOption" Association="Self.FK_CommentContent_CommentOption">
+            <End Role="CommentOption" EntitySet="CommentOption" />
+            <End Role="CommentContent" EntitySet="CommentContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentMain_ActivitiesMain" Association="Self.FK_CommentMain_ActivitiesMain">
+            <End Role="ActivitiesMain" EntitySet="ActivitiesMain" />
+            <End Role="CommentMain" EntitySet="CommentMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentMain_CommentContent" Association="Self.FK_CommentMain_CommentContent">
+            <End Role="CommentContent" EntitySet="CommentContent" />
+            <End Role="CommentMain" EntitySet="CommentMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentMain_Employee" Association="Self.FK_CommentMain_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="CommentMain" EntitySet="CommentMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentQuestion_CommentContent" Association="Self.FK_CommentQuestion_CommentContent">
+            <End Role="CommentContent" EntitySet="CommentContent" />
+            <End Role="CommentQuestion" EntitySet="CommentQuestion" />
           </AssociationSet>
           <AssociationSet Name="FK_Company vehicle history_Company vehicle" Association="Self.FK_Company vehicle history_Company vehicle">
             <End Role="CompanyVehicle" EntitySet="CompanyVehicle" />
@@ -1329,10 +1406,6 @@
             <End Role="Message" EntitySet="Message" />
             <End Role="Recipient" EntitySet="Recipient" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reply_CommentChild" Association="Self.FK_Reply_CommentChild">
-            <End Role="CommentChild" EntitySet="CommentChild" />
-            <End Role="Reply" EntitySet="Reply" />
-          </AssociationSet>
           <AssociationSet Name="FK_Reply_Employee" Association="Self.FK_Reply_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Reply" EntitySet="Reply" />
@@ -1389,8 +1462,10 @@
           <EntitySet Name="AspNetUsers" EntityType="BusinessDataBaseModel.AspNetUser" />
           <EntitySet Name="BulletinBoards" EntityType="BusinessDataBaseModel.BulletinBoard" />
           <EntitySet Name="CommentChilds" EntityType="BusinessDataBaseModel.CommentChild" />
-          <EntitySet Name="CommentGrandchilds" EntityType="BusinessDataBaseModel.CommentGrandchild" />
+          <EntitySet Name="CommentContents" EntityType="BusinessDataBaseModel.CommentContent" />
           <EntitySet Name="CommentMains" EntityType="BusinessDataBaseModel.CommentMain" />
+          <EntitySet Name="CommentOptions" EntityType="BusinessDataBaseModel.CommentOption" />
+          <EntitySet Name="CommentQuestions" EntityType="BusinessDataBaseModel.CommentQuestion" />
           <EntitySet Name="CompanyVehicles" EntityType="BusinessDataBaseModel.CompanyVehicle" />
           <EntitySet Name="CompanyVehicleHistories" EntityType="BusinessDataBaseModel.CompanyVehicleHistory" />
           <EntitySet Name="Departments" EntityType="BusinessDataBaseModel.Department" />
@@ -1429,9 +1504,9 @@
             <End Role="Employee" EntitySet="Employees" />
             <End Role="ActivitiesMain" EntitySet="ActivitiesMains" />
           </AssociationSet>
-          <AssociationSet Name="FK_CommentChild_ActivitiesMain" Association="BusinessDataBaseModel.FK_CommentChild_ActivitiesMain">
+          <AssociationSet Name="FK_CommentMain_ActivitiesMain" Association="BusinessDataBaseModel.FK_CommentMain_ActivitiesMain">
             <End Role="ActivitiesMain" EntitySet="ActivitiesMains" />
-            <End Role="CommentChild" EntitySet="CommentChilds" />
+            <End Role="CommentMain" EntitySet="CommentMains" />
           </AssociationSet>
           <AssociationSet Name="FK_Approval_ApprovalProcedure" Association="BusinessDataBaseModel.FK_Approval_ApprovalProcedure">
             <End Role="ApprovalProcedure" EntitySet="ApprovalProcedures" />
@@ -1477,21 +1552,33 @@
             <End Role="Employee" EntitySet="Employees" />
             <End Role="BulletinBoard" EntitySet="BulletinBoards" />
           </AssociationSet>
-          <AssociationSet Name="FK_CommentChild_CommentMain" Association="BusinessDataBaseModel.FK_CommentChild_CommentMain">
+          <AssociationSet Name="FK_CommentChild_CommentMain1" Association="BusinessDataBaseModel.FK_CommentChild_CommentMain1">
             <End Role="CommentMain" EntitySet="CommentMains" />
             <End Role="CommentChild" EntitySet="CommentChilds" />
           </AssociationSet>
-          <AssociationSet Name="FK_CommentGrandchild_CommentChild" Association="BusinessDataBaseModel.FK_CommentGrandchild_CommentChild">
+          <AssociationSet Name="FK_CommentChild_CommentQuestion" Association="BusinessDataBaseModel.FK_CommentChild_CommentQuestion">
+            <End Role="CommentQuestion" EntitySet="CommentQuestions" />
             <End Role="CommentChild" EntitySet="CommentChilds" />
-            <End Role="CommentGrandchild" EntitySet="CommentGrandchilds" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reply_CommentChild" Association="BusinessDataBaseModel.FK_Reply_CommentChild">
-            <End Role="CommentChild" EntitySet="CommentChilds" />
-            <End Role="Reply" EntitySet="Replies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CommentGrandchild_Employee" Association="BusinessDataBaseModel.FK_CommentGrandchild_Employee">
+          <AssociationSet Name="FK_CommentChild_Employee" Association="BusinessDataBaseModel.FK_CommentChild_Employee">
             <End Role="Employee" EntitySet="Employees" />
-            <End Role="CommentGrandchild" EntitySet="CommentGrandchilds" />
+            <End Role="CommentChild" EntitySet="CommentChilds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentContent_CommentOption" Association="BusinessDataBaseModel.FK_CommentContent_CommentOption">
+            <End Role="CommentOption" EntitySet="CommentOptions" />
+            <End Role="CommentContent" EntitySet="CommentContents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentMain_CommentContent" Association="BusinessDataBaseModel.FK_CommentMain_CommentContent">
+            <End Role="CommentContent" EntitySet="CommentContents" />
+            <End Role="CommentMain" EntitySet="CommentMains" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentQuestion_CommentContent" Association="BusinessDataBaseModel.FK_CommentQuestion_CommentContent">
+            <End Role="CommentContent" EntitySet="CommentContents" />
+            <End Role="CommentQuestion" EntitySet="CommentQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentMain_Employee" Association="BusinessDataBaseModel.FK_CommentMain_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="CommentMain" EntitySet="CommentMains" />
           </AssociationSet>
           <AssociationSet Name="FK_Company_vehicle_history_Company_vehicle" Association="BusinessDataBaseModel.FK_Company_vehicle_history_Company_vehicle">
             <End Role="CompanyVehicle" EntitySet="CompanyVehicles" />
@@ -1653,7 +1740,7 @@
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ActivitiesChilds" Relationship="BusinessDataBaseModel.FK_ActivitiesChild_ActivitiesMain" FromRole="ActivitiesMain" ToRole="ActivitiesChild" />
           <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_ActivitiesMain_Employee" FromRole="ActivitiesMain" ToRole="Employee" />
-          <NavigationProperty Name="CommentChilds" Relationship="BusinessDataBaseModel.FK_CommentChild_ActivitiesMain" FromRole="ActivitiesMain" ToRole="CommentChild" />
+          <NavigationProperty Name="CommentMains" Relationship="BusinessDataBaseModel.FK_CommentMain_ActivitiesMain" FromRole="ActivitiesMain" ToRole="CommentMain" />
         </EntityType>
         <EntityType Name="Approval">
           <Key>
@@ -1663,12 +1750,16 @@
           <Property Name="ApprovalProcedureID" Type="Int32" />
           <Property Name="FirstSignerID" Type="Int32" />
           <Property Name="FirstSignStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FirstSignDate" Type="DateTime" Precision="3" />
           <Property Name="SecondSignerID" Type="Int32" />
           <Property Name="SecondSignStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SecondSignDate" Type="DateTime" Precision="3" />
           <Property Name="ThirdSignerID" Type="Int32" />
           <Property Name="ThirdSignStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ThirdSignDate" Type="DateTime" Precision="3" />
           <Property Name="FourthSignerID" Type="Int32" />
           <Property Name="FourthSignStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ForthSignDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ApprovalProcedure" Relationship="BusinessDataBaseModel.FK_Approval_ApprovalProcedure" FromRole="Approval" ToRole="ApprovalProcedure" />
           <NavigationProperty Name="RequisitionMain" Relationship="BusinessDataBaseModel.FK_Approval_RequisitionMain" FromRole="Approval" ToRole="RequisitionMain" />
         </EntityType>
@@ -1769,36 +1860,61 @@
         </EntityType>
         <EntityType Name="CommentChild">
           <Key>
-            <PropertyRef Name="CommentTypeID" />
+            <PropertyRef Name="Num" />
           </Key>
-          <Property Name="CommentTypeID" Type="Int32" Nullable="false" />
-          <Property Name="CommentTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CommentID" Type="Int32" />
-          <Property Name="Question" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SentTime" Type="DateTime" Precision="3" />
-          <Property Name="ActivityMainID" Type="Int32" />
-          <NavigationProperty Name="ActivitiesMain" Relationship="BusinessDataBaseModel.FK_CommentChild_ActivitiesMain" FromRole="CommentChild" ToRole="ActivitiesMain" />
-          <NavigationProperty Name="CommentMain" Relationship="BusinessDataBaseModel.FK_CommentChild_CommentMain" FromRole="CommentChild" ToRole="CommentMain" />
-          <NavigationProperty Name="CommentGrandchilds" Relationship="BusinessDataBaseModel.FK_CommentGrandchild_CommentChild" FromRole="CommentChild" ToRole="CommentGrandchild" />
-          <NavigationProperty Name="Replies" Relationship="BusinessDataBaseModel.FK_Reply_CommentChild" FromRole="CommentChild" ToRole="Reply" />
-        </EntityType>
-        <EntityType Name="CommentGrandchild">
-          <Key>
-            <PropertyRef Name="CommentGrandchildID" />
-          </Key>
-          <Property Name="CommentGrandchildID" Type="Int32" Nullable="false" />
-          <Property Name="CommentTypeID" Type="Int32" />
+          <Property Name="CommentMainID" Type="Int32" />
+          <Property Name="Num" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmployeeID" Type="Int32" />
-          <NavigationProperty Name="CommentChild" Relationship="BusinessDataBaseModel.FK_CommentGrandchild_CommentChild" FromRole="CommentGrandchild" ToRole="CommentChild" />
-          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_CommentGrandchild_Employee" FromRole="CommentGrandchild" ToRole="Employee" />
+          <Property Name="CommentQuestionID" Type="Int32" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="ReplyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CommentMain" Relationship="BusinessDataBaseModel.FK_CommentChild_CommentMain1" FromRole="CommentChild" ToRole="CommentMain" />
+          <NavigationProperty Name="CommentQuestion" Relationship="BusinessDataBaseModel.FK_CommentChild_CommentQuestion" FromRole="CommentChild" ToRole="CommentQuestion" />
+          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_CommentChild_Employee" FromRole="CommentChild" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="CommentContent">
+          <Key>
+            <PropertyRef Name="CommentContentID" />
+          </Key>
+          <Property Name="CommentContentID" Type="Int32" Nullable="false" />
+          <Property Name="CommentContent1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CommentOptionID" Type="Int32" />
+          <NavigationProperty Name="CommentOption" Relationship="BusinessDataBaseModel.FK_CommentContent_CommentOption" FromRole="CommentContent" ToRole="CommentOption" />
+          <NavigationProperty Name="CommentMains" Relationship="BusinessDataBaseModel.FK_CommentMain_CommentContent" FromRole="CommentContent" ToRole="CommentMain" />
+          <NavigationProperty Name="CommentQuestions" Relationship="BusinessDataBaseModel.FK_CommentQuestion_CommentContent" FromRole="CommentContent" ToRole="CommentQuestion" />
         </EntityType>
         <EntityType Name="CommentMain">
           <Key>
-            <PropertyRef Name="CommentID" />
+            <PropertyRef Name="CommentMainID" />
           </Key>
-          <Property Name="CommentID" Type="Int32" Nullable="false" />
+          <Property Name="CommentMainID" Type="Int32" Nullable="false" />
           <Property Name="CommentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CommentChilds" Relationship="BusinessDataBaseModel.FK_CommentChild_CommentMain" FromRole="CommentMain" ToRole="CommentChild" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="SendTime" Type="DateTime" Precision="3" />
+          <Property Name="CommentContentID" Type="Int32" />
+          <Property Name="ActivityMainID" Type="Int32" />
+          <NavigationProperty Name="ActivitiesMain" Relationship="BusinessDataBaseModel.FK_CommentMain_ActivitiesMain" FromRole="CommentMain" ToRole="ActivitiesMain" />
+          <NavigationProperty Name="CommentChilds" Relationship="BusinessDataBaseModel.FK_CommentChild_CommentMain1" FromRole="CommentMain" ToRole="CommentChild" />
+          <NavigationProperty Name="CommentContent" Relationship="BusinessDataBaseModel.FK_CommentMain_CommentContent" FromRole="CommentMain" ToRole="CommentContent" />
+          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_CommentMain_Employee" FromRole="CommentMain" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="CommentOption">
+          <Key>
+            <PropertyRef Name="CommentOptionID" />
+          </Key>
+          <Property Name="CommentOptionID" Type="Int32" Nullable="false" />
+          <Property Name="CommentOption1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CommentContents" Relationship="BusinessDataBaseModel.FK_CommentContent_CommentOption" FromRole="CommentOption" ToRole="CommentContent" />
+        </EntityType>
+        <EntityType Name="CommentQuestion">
+          <Key>
+            <PropertyRef Name="CommentQuestionID" />
+          </Key>
+          <Property Name="CommentContentID" Type="Int32" />
+          <Property Name="CommentQuestionID" Type="Int32" Nullable="false" />
+          <Property Name="Question" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CommentChilds" Relationship="BusinessDataBaseModel.FK_CommentChild_CommentQuestion" FromRole="CommentQuestion" ToRole="CommentChild" />
+          <NavigationProperty Name="CommentContent" Relationship="BusinessDataBaseModel.FK_CommentQuestion_CommentContent" FromRole="CommentQuestion" ToRole="CommentContent" />
         </EntityType>
         <EntityType Name="CompanyVehicle">
           <Key>
@@ -1861,7 +1977,8 @@
           <NavigationProperty Name="ActivitiesMains" Relationship="BusinessDataBaseModel.FK_ActivitiesMain_Employee" FromRole="Employee" ToRole="ActivitiesMain" />
           <NavigationProperty Name="BulletinBoards" Relationship="BusinessDataBaseModel.FK_Bulletin_board_Employee" FromRole="Employee" ToRole="BulletinBoard" />
           <NavigationProperty Name="BulletinBoards1" Relationship="BusinessDataBaseModel.FK_BulletinBoard_Employee" FromRole="Employee" ToRole="BulletinBoard" />
-          <NavigationProperty Name="CommentGrandchilds" Relationship="BusinessDataBaseModel.FK_CommentGrandchild_Employee" FromRole="Employee" ToRole="CommentGrandchild" />
+          <NavigationProperty Name="CommentChilds" Relationship="BusinessDataBaseModel.FK_CommentChild_Employee" FromRole="Employee" ToRole="CommentChild" />
+          <NavigationProperty Name="CommentMains" Relationship="BusinessDataBaseModel.FK_CommentMain_Employee" FromRole="Employee" ToRole="CommentMain" />
           <NavigationProperty Name="CompanyVehicleHistories" Relationship="BusinessDataBaseModel.FK_Company_vehicle_history_Employee" FromRole="Employee" ToRole="CompanyVehicleHistory" />
           <NavigationProperty Name="Department" Relationship="BusinessDataBaseModel.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
           <NavigationProperty Name="Employee1" Relationship="BusinessDataBaseModel.FK_Employee_Employee" FromRole="Employee" ToRole="Employee1" />
@@ -2042,7 +2159,6 @@
           <Property Name="ReplyContent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EmployeeID" Type="Int32" />
           <Property Name="ReplyTime" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="CommentChild" Relationship="BusinessDataBaseModel.FK_Reply_CommentChild" FromRole="Reply" ToRole="CommentChild" />
           <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_Reply_Employee" FromRole="Reply" ToRole="Employee" />
         </EntityType>
         <EntityType Name="ReportCategory">
@@ -2179,14 +2295,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CommentChild_ActivitiesMain">
+        <Association Name="FK_CommentMain_ActivitiesMain">
           <End Type="BusinessDataBaseModel.ActivitiesMain" Role="ActivitiesMain" Multiplicity="0..1" />
-          <End Type="BusinessDataBaseModel.CommentChild" Role="CommentChild" Multiplicity="*" />
+          <End Type="BusinessDataBaseModel.CommentMain" Role="CommentMain" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ActivitiesMain">
               <PropertyRef Name="ActivityMainID" />
             </Principal>
-            <Dependent Role="CommentChild">
+            <Dependent Role="CommentMain">
               <PropertyRef Name="ActivityMainID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2331,50 +2447,86 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CommentChild_CommentMain">
+        <Association Name="FK_CommentChild_CommentMain1">
           <End Type="BusinessDataBaseModel.CommentMain" Role="CommentMain" Multiplicity="0..1" />
           <End Type="BusinessDataBaseModel.CommentChild" Role="CommentChild" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CommentMain">
-              <PropertyRef Name="CommentID" />
+              <PropertyRef Name="CommentMainID" />
             </Principal>
             <Dependent Role="CommentChild">
-              <PropertyRef Name="CommentID" />
+              <PropertyRef Name="CommentMainID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CommentGrandchild_CommentChild">
-          <End Type="BusinessDataBaseModel.CommentChild" Role="CommentChild" Multiplicity="0..1" />
-          <End Type="BusinessDataBaseModel.CommentGrandchild" Role="CommentGrandchild" Multiplicity="*" />
+        <Association Name="FK_CommentChild_CommentQuestion">
+          <End Type="BusinessDataBaseModel.CommentQuestion" Role="CommentQuestion" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.CommentChild" Role="CommentChild" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CommentChild">
-              <PropertyRef Name="CommentTypeID" />
+            <Principal Role="CommentQuestion">
+              <PropertyRef Name="CommentQuestionID" />
             </Principal>
-            <Dependent Role="CommentGrandchild">
-              <PropertyRef Name="CommentTypeID" />
+            <Dependent Role="CommentChild">
+              <PropertyRef Name="CommentQuestionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reply_CommentChild">
-          <End Type="BusinessDataBaseModel.CommentChild" Role="CommentChild" Multiplicity="0..1" />
-          <End Type="BusinessDataBaseModel.Reply" Role="Reply" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CommentChild">
-              <PropertyRef Name="CommentTypeID" />
-            </Principal>
-            <Dependent Role="Reply">
-              <PropertyRef Name="CommentTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CommentGrandchild_Employee">
+        <Association Name="FK_CommentChild_Employee">
           <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
-          <End Type="BusinessDataBaseModel.CommentGrandchild" Role="CommentGrandchild" Multiplicity="*" />
+          <End Type="BusinessDataBaseModel.CommentChild" Role="CommentChild" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="employeeID" />
             </Principal>
-            <Dependent Role="CommentGrandchild">
+            <Dependent Role="CommentChild">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentContent_CommentOption">
+          <End Type="BusinessDataBaseModel.CommentOption" Role="CommentOption" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.CommentContent" Role="CommentContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommentOption">
+              <PropertyRef Name="CommentOptionID" />
+            </Principal>
+            <Dependent Role="CommentContent">
+              <PropertyRef Name="CommentOptionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentMain_CommentContent">
+          <End Type="BusinessDataBaseModel.CommentContent" Role="CommentContent" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.CommentMain" Role="CommentMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommentContent">
+              <PropertyRef Name="CommentContentID" />
+            </Principal>
+            <Dependent Role="CommentMain">
+              <PropertyRef Name="CommentContentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentQuestion_CommentContent">
+          <End Type="BusinessDataBaseModel.CommentContent" Role="CommentContent" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.CommentQuestion" Role="CommentQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommentContent">
+              <PropertyRef Name="CommentContentID" />
+            </Principal>
+            <Dependent Role="CommentQuestion">
+              <PropertyRef Name="CommentContentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentMain_Employee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.CommentMain" Role="CommentMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="CommentMain">
               <PropertyRef Name="EmployeeID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2787,12 +2939,16 @@
           <EntitySetMapping Name="Approvals">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.Approval">
               <MappingFragment StoreEntitySet="Approval">
+                <ScalarProperty Name="ForthSignDate" ColumnName="ForthSignDate" />
                 <ScalarProperty Name="FourthSignStatus" ColumnName="FourthSignStatus" />
                 <ScalarProperty Name="FourthSignerID" ColumnName="FourthSignerID" />
+                <ScalarProperty Name="ThirdSignDate" ColumnName="ThirdSignDate" />
                 <ScalarProperty Name="ThirdSignStatus" ColumnName="ThirdSignStatus" />
                 <ScalarProperty Name="ThirdSignerID" ColumnName="ThirdSignerID" />
+                <ScalarProperty Name="SecondSignDate" ColumnName="SecondSignDate" />
                 <ScalarProperty Name="SecondSignStatus" ColumnName="SecondSignStatus" />
                 <ScalarProperty Name="SecondSignerID" ColumnName="SecondSignerID" />
+                <ScalarProperty Name="FirstSignDate" ColumnName="FirstSignDate" />
                 <ScalarProperty Name="FirstSignStatus" ColumnName="FirstSignStatus" />
                 <ScalarProperty Name="FirstSignerID" ColumnName="FirstSignerID" />
                 <ScalarProperty Name="ApprovalProcedureID" ColumnName="ApprovalProcedureID" />
@@ -2890,29 +3046,50 @@
           <EntitySetMapping Name="CommentChilds">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.CommentChild">
               <MappingFragment StoreEntitySet="CommentChild">
-                <ScalarProperty Name="ActivityMainID" ColumnName="ActivityMainID" />
-                <ScalarProperty Name="SentTime" ColumnName="SentTime" />
-                <ScalarProperty Name="Question" ColumnName="Question" />
-                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
-                <ScalarProperty Name="CommentTypeName" ColumnName="CommentTypeName" />
-                <ScalarProperty Name="CommentTypeID" ColumnName="CommentTypeID" />
+                <ScalarProperty Name="ReplyTime" ColumnName="ReplyTime" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="CommentQuestionID" ColumnName="CommentQuestionID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="CommentMainID" ColumnName="CommentMainID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CommentGrandchilds">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.CommentGrandchild">
-              <MappingFragment StoreEntitySet="CommentGrandchild">
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="CommentTypeID" ColumnName="CommentTypeID" />
-                <ScalarProperty Name="CommentGrandchildID" ColumnName="CommentGrandchildID" />
+          <EntitySetMapping Name="CommentContents">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.CommentContent">
+              <MappingFragment StoreEntitySet="CommentContent">
+                <ScalarProperty Name="CommentOptionID" ColumnName="CommentOptionID" />
+                <ScalarProperty Name="CommentContent1" ColumnName="CommentContent" />
+                <ScalarProperty Name="CommentContentID" ColumnName="CommentContentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CommentMains">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.CommentMain">
               <MappingFragment StoreEntitySet="CommentMain">
+                <ScalarProperty Name="ActivityMainID" ColumnName="ActivityMainID" />
+                <ScalarProperty Name="CommentContentID" ColumnName="CommentContentID" />
+                <ScalarProperty Name="SendTime" ColumnName="SendTime" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="CommentName" ColumnName="CommentName" />
-                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+                <ScalarProperty Name="CommentMainID" ColumnName="CommentMainID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommentOptions">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.CommentOption">
+              <MappingFragment StoreEntitySet="CommentOption">
+                <ScalarProperty Name="CommentOption1" ColumnName="CommentOption" />
+                <ScalarProperty Name="CommentOptionID" ColumnName="CommentOptionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommentQuestions">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.CommentQuestion">
+              <MappingFragment StoreEntitySet="CommentQuestion">
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="CommentQuestionID" ColumnName="CommentQuestionID" />
+                <ScalarProperty Name="CommentContentID" ColumnName="CommentContentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

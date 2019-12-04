@@ -12,25 +12,23 @@ namespace BusinessSystemMVC_Admin_page_.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CommentMain
+    public partial class CommentContent
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CommentMain()
+        public CommentContent()
         {
-            this.CommentChilds = new HashSet<CommentChild>();
+            this.CommentMains = new HashSet<CommentMain>();
+            this.CommentQuestions = new HashSet<CommentQuestion>();
         }
     
-        public int CommentMainID { get; set; }
-        public string CommentName { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
-        public Nullable<System.DateTime> SendTime { get; set; }
-        public Nullable<int> CommentContentID { get; set; }
-        public Nullable<int> ActivityMainID { get; set; }
+        public int CommentContentID { get; set; }
+        public string CommentContent1 { get; set; }
+        public Nullable<int> CommentOptionID { get; set; }
     
-        public virtual ActivitiesMain ActivitiesMain { get; set; }
+        public virtual CommentOption CommentOption { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CommentChild> CommentChilds { get; set; }
-        public virtual CommentContent CommentContent { get; set; }
-        public virtual Employee Employee { get; set; }
+        public virtual ICollection<CommentMain> CommentMains { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CommentQuestion> CommentQuestions { get; set; }
     }
 }

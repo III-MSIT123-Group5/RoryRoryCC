@@ -18,7 +18,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public ActivitiesMain()
         {
             this.ActivitiesChilds = new HashSet<ActivitiesChild>();
-            this.CommentChilds = new HashSet<CommentChild>();
+            this.CommentMains = new HashSet<CommentMain>();
         }
     
         public int ActivityMainID { get; set; }
@@ -31,6 +31,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual ICollection<ActivitiesChild> ActivitiesChilds { get; set; }
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CommentChild> CommentChilds { get; set; }
+        public virtual ICollection<CommentMain> CommentMains { get; set; }
     }
 }
