@@ -194,6 +194,7 @@
     <Compile Include="Controllers\BulletinBoardsController.cs" />
     <Compile Include="Controllers\CompanyVehicleBorrowController.cs" />
     <Compile Include="Controllers\CompanyVehiclesController.cs" />
+    <Compile Include="Controllers\EmployeeApprovalTempsController.cs" />
     <Compile Include="Controllers\EventCalendarsController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -614,6 +615,12 @@
     <Content Include="Views\Recipients\Index.cshtml" />
     <Content Include="Views\Shared\_SignOffSystemPartial.cshtml" />
     <Content Include="Views\Shared\_HRSignSystemPartail.cshtml" />
+    <Content Include="Views\EmployeeApprovalTemps\Create.cshtml" />
+    <Content Include="Views\EmployeeApprovalTemps\Delete.cshtml" />
+    <Content Include="Views\EmployeeApprovalTemps\Details.cshtml" />
+    <Content Include="Views\EmployeeApprovalTemps\Edit.cshtml" />
+    <Content Include="Views\EmployeeApprovalTemps\Index.cshtml" />
+    <Content Include="Views\Shared\_RequisitionSignSystemPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,7 +1,5 @@
 ﻿@*下拉式功能*@
 @using System.Web.Security
-@if (User.IsInRole("GeneralManager") || User.IsInRole("DepartmentLeader") || User.IsInRole("GroupLeader"))
-{
     <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="簽核系統">
         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseSignsystem" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-th-list"></i>
@@ -9,7 +7,10 @@
         </a>
         <ul class="sidenav-second-level collapse" id="collapseSignsystem">
             <li class="color hover">
-                @Html.ActionLink("請購簽核", "Index", "Approvals", null, new { Style = "font-family:'NotoSansCJKtc-Bold'" })                
+                @Html.ActionLink("簽核進度查詢", "", "", null, new { Style = "font-family:'NotoSansCJKtc-Bold'" })
+            </li>
+            <li class="color hover">
+                @Html.Partial("_RequisitionSignSystemPartial")
             </li>
             <li class="color hover">
                 @Html.Partial("_HRSignSystemPartail")

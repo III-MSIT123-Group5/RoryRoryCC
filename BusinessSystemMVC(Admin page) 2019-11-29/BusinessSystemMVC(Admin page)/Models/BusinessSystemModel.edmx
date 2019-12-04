@@ -269,6 +269,7 @@
           <Property Name="DepartmentLeaderID" Type="int" />
           <Property Name="DepartmentLeaderSignTime" Type="datetime" />
           <Property Name="SignState" Type="bit" Nullable="false" />
+          <Property Name="Rejection" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -2024,6 +2025,7 @@
           <Property Name="DepartmentLeaderID" Type="Int32" />
           <Property Name="DepartmentLeaderSignTime" Type="DateTime" Precision="3" />
           <Property Name="SignState" Type="Boolean" Nullable="false" />
+          <Property Name="Rejection" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Employee" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
           <NavigationProperty Name="Employee1" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Employee1" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
           <NavigationProperty Name="Employee2" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Employee2" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
@@ -3149,6 +3151,7 @@
           <EntitySetMapping Name="EmployeeApprovalTemps">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.EmployeeApprovalTemp">
               <MappingFragment StoreEntitySet="EmployeeApprovalTemp">
+                <ScalarProperty Name="Rejection" ColumnName="Rejection" />
                 <ScalarProperty Name="SignState" ColumnName="SignState" />
                 <ScalarProperty Name="DepartmentLeaderSignTime" ColumnName="DepartmentLeaderSignTime" />
                 <ScalarProperty Name="DepartmentLeaderID" ColumnName="DepartmentLeaderID" />

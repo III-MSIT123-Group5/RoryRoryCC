@@ -317,6 +317,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                         SignState=false,
                        Editor=EmployeeDetail.EmployeeID,
                        EditorTime=DateTime.Now,
+                       Rejection=false,
                     };
                     db.EmployeeApprovalTemps.Add(addEmployee);
                     db.SaveChanges();
