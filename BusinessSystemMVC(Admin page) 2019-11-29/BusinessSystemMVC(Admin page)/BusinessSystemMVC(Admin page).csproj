@@ -198,7 +198,6 @@
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Controllers\RecipientsController.cs" />
     <Compile Include="Controllers\RequisitionMainsController.cs" />
@@ -606,15 +605,13 @@
     <Content Include="Views\EventCalendars\Edit.cshtml" />
     <Content Include="Views\EventCalendars\Index.cshtml" />
     <Content Include="Views\Account\UnCreate.cshtml" />
-    <Content Include="Views\Messages\Create.cshtml" />
-    <Content Include="Views\Messages\Delete.cshtml" />
-    <Content Include="Views\Messages\Details.cshtml" />
-    <Content Include="Views\Messages\Edit.cshtml" />
-    <Content Include="Views\Messages\Index.cshtml" />
     <Content Include="Views\Recipients\Delete.cshtml" />
     <Content Include="Views\Recipients\Details.cshtml" />
     <Content Include="Views\Recipients\Index.cshtml" />
     <Content Include="Views\EventCalendars\AddOrEdit.cshtml" />
+    <Content Include="Views\Recipients\AddOrEdit.cshtml" />
+    <Content Include="Views\Shared\_SignOffSystemPartial.cshtml" />
+    <Content Include="Views\Shared\_HRSignSystemPartail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

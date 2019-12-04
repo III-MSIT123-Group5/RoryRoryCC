@@ -96,17 +96,25 @@
                             <a href="@Url.Action("Index", "RequisitionMains")" style="font-family:'NotoSansCJKtc-Bold'">RequisitionMain_DataTable</a>
                         </li>
                         <li class="color hover">
-                            <a href="@Url.Action("Index", "Approvals")" style="font-family:'NotoSansCJKtc-Bold'">請購簽核</a>
-                        </li>
-                        <li class="color hover">
                             <a href="forgot-password.html" style="font-family:'NotoSansCJKtc-Bold'">統計分析</a>
                         </li>
                     </ul>
+                </li>
+                @*內部訊息*@
+                <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="內部訊息">
+                    <a class="nav-link" href="@Url.Action("Index", "Recipients")">
+                        <i class="fa fa-fw fa-file"></i>
+                        <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">內部訊息</span>
+                    </a>
                 </li>
                 @*只有HR可看見HRsystem*@
                 @Html.Partial("_HRSystemPartial")
                 @*只有IT可看見HRsystem*@
                 @Html.Partial("_ITSystemPartial")
+                @*只有組級上以可看見SignOffsystem*@
+                @Html.Partial("_SignOffSystemPartial")
+
+
                 @*<li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="Tables">
                         <a class="nav-link" href="tables.html">
                             <i class="fa fa-fw fa-table"></i>
