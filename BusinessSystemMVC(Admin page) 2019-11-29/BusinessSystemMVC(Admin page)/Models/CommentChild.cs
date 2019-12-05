@@ -21,6 +21,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public Nullable<int> Rate { get; set; }
         public Nullable<System.DateTime> ReplyTime { get; set; }
     
+        public virtual CommentMain CommentMain { get; set; }
         public virtual CommentQuestion CommentQuestion { get; set; }
         public virtual Employee Employee { get; set; }
     }
