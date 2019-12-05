@@ -18,6 +18,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public Position()
         {
             this.Employees = new HashSet<Employee>();
+            this.EmployeeApprovalTemps = new HashSet<EmployeeApprovalTemp>();
         }
     
         public int positionID { get; set; }
@@ -25,5 +26,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeApprovalTemp> EmployeeApprovalTemps { get; set; }
     }
 }
