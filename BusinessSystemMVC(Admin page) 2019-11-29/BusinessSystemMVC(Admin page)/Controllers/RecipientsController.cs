@@ -2,10 +2,10 @@
 using System;
 using System.Collections;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using System.Data.Entity;
 
 namespace BusinessSystemMVC_Admin_page_.Controllers
 {
@@ -30,13 +30,13 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             //顯示
             var recipient = from r in db.Recipients
                             join emp in db.Employees
-                            on r.EmployeeID equals emp.employeeID
-                            join m in db.Messages 
+                            on r.Message.EmployeeID equals emp.employeeID
+                            join m in db.Messages
                             on r.MessageID equals m.MessageID
-                            where r.EmployeeID == EmployeeDetail.EmployeeID
+                            where r.EmployeeID == EmployeeDetail.EmployeeID && r.Status.Equals("true")
                             select new
                             {
-                                m.MessageID,
+                                r.RecipientID,
                                 emp.EmployeeName,
                                 m.Title,
                                 m.Data,
@@ -63,16 +63,16 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
                 db.Recipients.Add(new Recipient
                 {
-                    EmployeeID = EmployeeDetail.EmployeeID,
-                    Status = "0",
+                    EmployeeID = r.EmployeeID,
+                    Status = "true",
 
                     Message = (new Message
                     {
-                        EmployeeID = r.Message.EmployeeID,
+                        EmployeeID = EmployeeDetail.EmployeeID,
                         Title = r.Message.Title,
                         Data = r.Message.Data,
                         MailingDate = DateTime.Now,
-                        Status="0"
+                        Status = "true"
                     })
 
                 });
@@ -100,29 +100,19 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
 
         // GET: Recipients/Delete/5
-        public ActionResult Delete(long? id)
+        [HttpPost]
+        public ActionResult Delete(int id)
         {
-            if (id == null)
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Recipient recipient = db.Recipients.Find(id);
-            if (recipient == null)
-            {
-                return HttpNotFound();
-            }
-            return View(recipient);
-        }
 
-        // POST: Recipients/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
-        {
-            Recipient recipient = db.Recipients.Find(id);
-            db.Recipients.Remove(recipient);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+
+                var recipient = db.Recipients.Where(r => r.RecipientID == id && r.Status.Equals("true")).FirstOrDefault();
+                recipient.Status = "false";
+                db.SaveChanges();
+
+                return Json(new { success = true, message = "刪除成功" }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         protected override void Dispose(bool disposing)

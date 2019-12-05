@@ -17,6 +17,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public long MessageID { get; set; }
         public int EmployeeID { get; set; }
         public string Status { get; set; }
+        public long RecipientID { get; set; }
     
         public virtual Employee Employee { get; set; }
         public virtual Message Message { get; set; }

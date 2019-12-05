@@ -173,7 +173,7 @@
           <Key>
             <PropertyRef Name="CommentMainID" />
           </Key>
-          <Property Name="CommentMainID" Type="int" Nullable="false" />
+          <Property Name="CommentMainID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CommentName" Type="nvarchar" MaxLength="50" />
           <Property Name="EmployeeID" Type="int" />
           <Property Name="SendTime" Type="datetime" />
@@ -400,6 +400,7 @@
           <Property Name="MessageID" Type="bigint" Nullable="false" />
           <Property Name="EmployeeID" Type="int" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RecipientID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Reply">
           <Key>
@@ -1988,7 +1989,7 @@
           <Key>
             <PropertyRef Name="CommentMainID" />
           </Key>
-          <Property Name="CommentMainID" Type="Int32" Nullable="false" />
+          <Property Name="CommentMainID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CommentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EmployeeID" Type="Int32" />
           <Property Name="SendTime" Type="DateTime" Precision="3" />
@@ -2259,6 +2260,7 @@
           <Property Name="MessageID" Type="Int64" Nullable="false" />
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RecipientID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_Recipient_Employee" FromRole="Recipient" ToRole="Employee" />
           <NavigationProperty Name="Message" Relationship="BusinessDataBaseModel.FK_Recipient_Message" FromRole="Recipient" ToRole="Message" />
         </EntityType>
@@ -3454,6 +3456,7 @@
           <EntitySetMapping Name="Recipients">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.Recipient">
               <MappingFragment StoreEntitySet="Recipient">
+                <ScalarProperty Name="RecipientID" ColumnName="RecipientID" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="MessageID" ColumnName="MessageID" />
