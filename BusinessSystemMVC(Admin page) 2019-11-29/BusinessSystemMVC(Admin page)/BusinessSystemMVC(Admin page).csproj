@@ -54,6 +54,10 @@
       <HintPath>..\packages\DropDownList.Optgroup.MVC.1.0.0\lib\net40\DropDownList_Optgroup.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -198,11 +202,11 @@
     <Compile Include="Controllers\CommentMainsController.cs" />
     <Compile Include="Controllers\CompanyVehicleBorrowController.cs" />
     <Compile Include="Controllers\CompanyVehiclesController.cs" />
+    <Compile Include="Controllers\EmployeeApprovalTempsController.cs" />
     <Compile Include="Controllers\EventCalendarsController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Controllers\RecipientsController.cs" />
     <Compile Include="Controllers\RequisitionMainsController.cs" />
@@ -520,6 +524,8 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Views\EventCalendars\Businesscalendar.js" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -608,12 +614,6 @@
     <Content Include="Views\EventCalendars\Edit.cshtml" />
     <Content Include="Views\EventCalendars\Index.cshtml" />
     <Content Include="Views\Account\UnCreate.cshtml" />
-    <Content Include="Views\Messages\Create.cshtml" />
-    <Content Include="Views\Messages\Delete.cshtml" />
-    <Content Include="Views\Messages\Details.cshtml" />
-    <Content Include="Views\Messages\Edit.cshtml" />
-    <Content Include="Views\Messages\Index.cshtml" />
-    <Content Include="Views\Recipients\Delete.cshtml" />
     <Content Include="Views\Recipients\Details.cshtml" />
     <Content Include="Views\Recipients\Index.cshtml" />
     <Content Include="Views\CommentMains\Create.cshtml" />
@@ -622,6 +622,18 @@
     <Content Include="Views\CommentMains\Edit.cshtml" />
     <Content Include="Views\CommentMains\Index.cshtml" />
     <Content Include="Views\CommentMains\AddOrEdit.cshtml" />
+    <Content Include="Views\OrderDetails\Success.cshtml" />
+    <Content Include="Views\OrderDetails\AddOrEdit.cshtml" />
+    <Content Include="Views\EventCalendars\AddOrEdit.cshtml" />
+    <Content Include="Views\Recipients\AddOrEdit.cshtml" />
+    <Content Include="Views\Shared\_SignOffSystemPartial.cshtml" />
+    <Content Include="Views\Shared\_HRSignSystemPartail.cshtml" />
+    <Content Include="Views\EmployeeApprovalTemps\Create.cshtml" />
+    <Content Include="Views\EmployeeApprovalTemps\Delete.cshtml" />
+    <Content Include="Views\EmployeeApprovalTemps\Details.cshtml" />
+    <Content Include="Views\EmployeeApprovalTemps\Edit.cshtml" />
+    <Content Include="Views\EmployeeApprovalTemps\Index.cshtml" />
+    <Content Include="Views\Shared\_RequisitionSignSystemPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

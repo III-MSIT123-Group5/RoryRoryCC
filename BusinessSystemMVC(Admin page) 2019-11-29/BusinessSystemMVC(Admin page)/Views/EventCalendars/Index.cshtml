@@ -4,6 +4,7 @@
     ViewBag.Title = "Index";
 }
 
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
 <link href='~/package/calendar/core/main.css' rel='stylesheet' />
 <link href='~/package/calendar/daygrid/main.css' rel='stylesheet' />
@@ -13,16 +14,7 @@
 <script src='~/package/calendar/daygrid/main.js'></script>
 <script src='~/package/calendar/timegrid/main.js'></script>
 
-
-<link href='~/Content/bootstrap-datetimepicker.css' rel='stylesheet' />
-<script src="~/Scripts/moment.min.js"></script>
-<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-
-
 <script>
-
-
 
     document.addEventListener('DOMContentLoaded', function () {
         $("#UpdateEvent").hover(function () {
@@ -31,7 +23,7 @@
             $(this).css('color', '')
         });
 
-        var calendarEl = document.getElementById('calendar');
+        var calendarEl = document.getElementById('evecalendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
             plugins: ['interaction', 'dayGrid', 'timeGrid', 'list'],
@@ -100,18 +92,10 @@
 
         calendar.render();
 
-
-        $("div > button").hover(function () {
-            $(this).css('background-color', '#b4c9ef')
-        }, function () {
-            $(this).css('background-color', '')
-        });
-
-
         
-        $('#datetime').datetimepicker();
-         
-        
+
+
+
 
     });
 
@@ -128,12 +112,36 @@
     <i class="fas fa-plus-square fa-5x" id="UpdateEvent" onclick="location.href='@Url.Action("Create", "EventCalendars")'"></i>
 </div>
 
-<div class="col-3">
-    <div id='datetime'></div> 
+
+<div class="col-8" style="float:left">
+    <div id='evecalendar'></div>
 </div>
-<div class="col-9">
-    <div id='calendar'></div>
+
+<div class="col-4" style="float:right">
+    
+        <table id="mincal">
+            <thead>
+                <tr>
+                    <th>星期日</th>
+                    <th>星期一</th>
+                    <th>星期二</th>
+                    <th>星期三</th>
+                    <th>星期四</th>
+                    <th>星期五</th>
+                    <th>星期六</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+
+        </table>
+    </div>
 </div>
+
+
+
+
 
 @section scripts{
     <script>
@@ -148,19 +156,19 @@
 
 
 
-                    //var jsonData = JSON.stringify({
-                    //    employeeName: $("#employeeName").val(),
-                    //    subject: $("#subject").val(),
-                    //    DepartmentID: $("#DepartmentID").val(),
-                    //    StartTime: $("#StartTime").val(),
-                    //    EndTime: $("#EndTime").val(),
-                    //    Location: $("#Location").val(),
-                    //    Description: $("#Description").val(),
-                    //    IsImportant: $("#IsImportant").val(),
-                    //    IsFullday: $("#IsFullday").val()
+                                            //var jsonData = JSON.stringify({
+                                            //    employeeName: $("#employeeName").val(),
+                                            //    subject: $("#subject").val(),
+                                            //    DepartmentID: $("#DepartmentID").val(),
+                                            //    StartTime: $("#StartTime").val(),
+                                            //    EndTime: $("#EndTime").val(),
+                                            //    Location: $("#Location").val(),
+                                            //    Description: $("#Description").val(),
+                                            //    IsImportant: $("#IsImportant").val(),
+                                            //    IsFullday: $("#IsFullday").val()
 
 
-                    //})
+                                            //})
 
     </script>
 

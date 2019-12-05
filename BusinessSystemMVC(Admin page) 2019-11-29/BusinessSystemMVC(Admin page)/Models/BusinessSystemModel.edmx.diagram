@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a983fed1d51c40af9ae72a9a0720573a" Name="Diagram1">
+      <Diagram DiagramId="a983fed1d51c40af9ae72a9a0720573a" Name="Diagram1" ZoomLevel="81">
         <EntityTypeShape EntityType="BusinessDataBaseModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="1.5" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Account" Width="1.5" PointX="5.75" PointY="4.5" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.ActivitiesChild" Width="1.5" PointX="12.75" PointY="50.125" />
