@@ -1,0 +1,81 @@
+﻿@model BusinessSystemMVC_Admin_page_.Models.CommentMain
+@{
+    Layout = null;
+
+    var commentContentItems = ViewBag.CommentContentItems as List<GroupedSelectListItem>;
+}
+
+<style>
+
+    label {
+        font-family: 'NotoSansCJKtc-Bold';
+    }
+
+</style>
+
+@using (Html.BeginForm("AddOrEdit", "CommentMains", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.CommentMainID)
+    @Html.HiddenFor(model => model.EmployeeID)
+    @Html.HiddenFor(model => model.SendTime)
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.CommentContentID, "CommentOptionID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CommentOptionID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CommentContentID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CommentContentID, "CommentContentID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("CommentContentID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CommentContentID, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CommentContentID, "活動名稱", htmlAttributes: new { @class = "control-label col-md-2 label" })
+        <div class="col-md-10">
+            @Html.DropDownGroupList("CommentContent", commentContentItems, "請選擇活動", htmlAttributes: new { @class = "label" } )
+
+        </div>
+    </div>
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.CommentContentID, "CommentContentID", htmlAttributes: new { @class = "control-label col-md-2 label" })
+        <div class="col-md-10">
+            @Html.DropDownGroupList("CommentContent", commentContentItems, "請選擇活動")
+
+        </div>
+    </div>*@
+    <div class="form-group">
+        @Html.LabelFor(model => model.CommentName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CommentName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CommentName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.Content, new { @class = "control-label" })
+
+            @Html.TextAreaFor(model => model.Content, new { rows = "8", cols = "150", @class = "form-control", @MaxLength = "1000" })
+            @Html.ValidationMessageFor(model => model.Content)
+
+        </div>*@
+
+
+    <div class="form-group" style="float:right">
+        @*<button type="submit" class="btn btn-success">送出貼文</button>
+            <button type="reset" class="btn btn-warning">清除</button>*@
+        <div>
+            <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
+            <input type="submit" value="送出貼文" class="btn btn-success" style="margin-right:10px" />
+
+        </div>
+    </div>
+
+}
