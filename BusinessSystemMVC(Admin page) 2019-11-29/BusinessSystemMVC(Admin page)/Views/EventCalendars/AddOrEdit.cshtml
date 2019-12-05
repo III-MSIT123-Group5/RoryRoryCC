@@ -1,0 +1,66 @@
+﻿@model BusinessSystemMVC_Admin_page_.Models.EventCalendar
+{
+
+    Layout = null;
+}
+
+
+
+@using (Html.BeginForm("AddOrEdit", "EventCalendarsController", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.CalendarID)
+    @Html.HiddenFor(model => model.employeeID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Subject, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Subject, new { rows = "8", cols = "150", @class = "form-control", @MaxLength = "1000" })
+        @Html.ValidationMessageFor(model => model.Subject)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DepartmentID, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.DepartmentID, new { rows = "8", cols = "150", @class = "form-control", @MaxLength = "1000" })
+        @Html.ValidationMessageFor(model => model.DepartmentID)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.StartTime, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.StartTime, new { rows = "8", cols = "150", @class = "form-control", @MaxLength = "1000" })
+        @Html.ValidationMessageFor(model => model.StartTime)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.EndTime, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.EndTime, new { rows = "8", cols = "150", @class = "form-control", @MaxLength = "1000" })
+        @Html.ValidationMessageFor(model => model.EndTime)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Location, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Location, new { rows = "8", cols = "150", @class = "form-control", @MaxLength = "1000" })
+        @Html.ValidationMessageFor(model => model.Location)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Description, new { rows = "8", cols = "150", @class = "form-control", @MaxLength = "1000" })
+        @Html.ValidationMessageFor(model => model.Description)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsFullday, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.IsFullday, new { rows = "8", cols = "150", @class = "form-control", @MaxLength = "1000" })
+        @Html.ValidationMessageFor(model => model.IsFullday)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsImportant, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.IsImportant, new { rows = "8", cols = "150", @class = "form-control", @MaxLength = "1000" })
+        @Html.ValidationMessageFor(model => model.IsImportant)
+    </div>
+
+    <div class="form-group" style="float:right">
+
+        <div>
+            <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
+            <input type="submit" value="送出貼文" class="btn btn-success" style="margin-right:10px" />
+
+        </div>
+    </div>
+
+}

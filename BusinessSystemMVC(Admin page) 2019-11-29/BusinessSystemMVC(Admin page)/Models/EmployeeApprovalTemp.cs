@@ -35,9 +35,15 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public Nullable<int> DepartmentLeaderID { get; set; }
         public Nullable<System.DateTime> DepartmentLeaderSignTime { get; set; }
         public bool SignState { get; set; }
+        public bool Rejection { get; set; }
     
+        public virtual Department Department { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual Employee Employee1 { get; set; }
         public virtual Employee Employee2 { get; set; }
+        public virtual Employee Employee3 { get; set; }
+        public virtual Group Group { get; set; }
+        public virtual Office Office { get; set; }
+        public virtual Position Position { get; set; }
     }
 }

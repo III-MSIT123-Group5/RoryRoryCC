@@ -1,0 +1,178 @@
+﻿@model BusinessSystemMVC_Admin_page_.Models.EmployeeApprovalTemp
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EmployeeApprovalTemp</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Birth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HireDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HireDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Account)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfficeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfficeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartmentID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartmentID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PositionID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PositionID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManagerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManagerID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateOrUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateOrUpdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditorTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditorTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupLeaderSignTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupLeaderSignTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartmentLeaderSignTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartmentLeaderSignTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SignState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SignState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee1.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee1.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee2.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee2.EmployeeName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

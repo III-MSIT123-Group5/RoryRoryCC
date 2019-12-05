@@ -57,7 +57,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            
             ViewBag.DepartmentID = new SelectList(db.Departments, "departmentID", "name", eventCalendar.DepartmentID);
             ViewBag.employeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", eventCalendar.employeeID);
             return View(eventCalendar);
