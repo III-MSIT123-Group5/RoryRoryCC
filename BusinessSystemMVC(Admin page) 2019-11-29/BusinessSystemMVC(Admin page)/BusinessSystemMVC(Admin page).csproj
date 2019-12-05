@@ -209,7 +209,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Controllers\RecipientsController.cs" />
-    <Compile Include="Controllers\RequisitionMainsController.cs" />
     <Compile Include="Controllers\Test.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -574,11 +573,6 @@
     <Content Include="Views\BulletinBoards\Details.cshtml" />
     <Content Include="Views\BulletinBoards\Edit.cshtml" />
     <Content Include="Views\BulletinBoards\Index.cshtml" />
-    <Content Include="Views\RequisitionMains\Create.cshtml" />
-    <Content Include="Views\RequisitionMains\Delete.cshtml" />
-    <Content Include="Views\RequisitionMains\Details.cshtml" />
-    <Content Include="Views\RequisitionMains\Edit.cshtml" />
-    <Content Include="Views\RequisitionMains\Index.cshtml" />
     <Content Include="Views\BulletinBoards\AddOrEdit.cshtml" />
     <Content Include="Views\OrderDetails\Create.cshtml" />
     <Content Include="Views\OrderDetails\Delete.cshtml" />
@@ -634,6 +628,7 @@
     <Content Include="Views\EmployeeApprovalTemps\Edit.cshtml" />
     <Content Include="Views\EmployeeApprovalTemps\Index.cshtml" />
     <Content Include="Views\Shared\_RequisitionSignSystemPartial.cshtml" />
+    <Content Include="Views\Shared\_RequisitionSystemPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
