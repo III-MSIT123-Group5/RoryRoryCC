@@ -619,6 +619,7 @@
     <Content Include="Views\EmployeeApprovalTemps\Edit.cshtml" />
     <Content Include="Views\EmployeeApprovalTemps\Index.cshtml" />
     <Content Include="Views\Shared\_RequisitionSignSystemPartial.cshtml" />
+    <Content Include="Views\EmployeeApprovalTemps\LoadDataDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

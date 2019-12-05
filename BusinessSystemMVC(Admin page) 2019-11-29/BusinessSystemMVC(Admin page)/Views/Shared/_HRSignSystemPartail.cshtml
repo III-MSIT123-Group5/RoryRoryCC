@@ -1,5 +1,5 @@
 ﻿@*只有HR組級以上才有使用權限*@
 @if ( User.IsInRole("GeneralManager") || (User.IsInRole("HRGroup") && (User.IsInRole("GroupLeader") || User.IsInRole("DepartmentLeader"))))
 {
-    @Html.ActionLink("人資系統簽核", "", "", null, new { Style = "font-family:'NotoSansCJKtc-Bold'" })
+    @Html.ActionLink("人資系統簽核", "Index", "EmployeeApprovalTemps", null, new { Style = "font-family:'NotoSansCJKtc-Bold'" })
 }

@@ -21,11 +21,66 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(/*employeeApprovalTemps*/);
         }
 
-        //public ActionResult LoadData()
-        //{
-        //    var q = db.EmployeeApprovalTemps.Where(p=>p.SignState ==false).Select(p=>new { p.EmployeeName, p.Gender, p.Account, })
-        //}
+        [HttpGet]
+        [Authorize(Roles = "GroupLeader,DepartmentLeader,HRGroup")]
+        public ActionResult LoadData()
+        {
+            var q = db.EmployeeApprovalTemps.Where(p => p.SignState == false && ((p.Employee1.ManagerID == EmployeeDetail.EmployeeID && p.GroupLeaderID ==null )|| (p.Employee2.ManagerID == EmployeeDetail.EmployeeID && p.DepartmentLeaderID==null))).Select(p => new { p.EmployeeName, p.Gender, p.Account, p.Department.name, p.Group.GroupName, p.Position.position1, p.EditorTime, p.ID });
+            var datas = q.ToList();
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+        }
 
+        [HttpGet]
+        [Authorize(Roles = "GroupLeader,DepartmentLeader,HRGroup")]
+        public ActionResult LoadDataDetail(int ID)
+        {
+            return View(db.EmployeeApprovalTemps.Where(p=>p.ID == ID).FirstOrDefault<EmployeeApprovalTemp>());
+        }
+
+        //[HttpGet]
+        //[Authorize(Roles = "GroupLeader,DepartmentLeader,HRGroup")]
+        //public ActionResult AcceptRegister(int ID)
+        //{
+        //    var q = db.EmployeeApprovalTemps.Where(p => p.ID == ID).FirstOrDefault();
+        //    if(q.GroupLeaderID == null && q.SignState ==false &&q.Rejection == false && EmployeeDetail.GroupName== "人資組" && EmployeeDetail.PositionName== "組長")
+        //    {
+        //        q.GroupLeaderID = EmployeeDetail.EmployeeID;
+        //        q.GroupLeaderSignTime = DateTime.Now;
+        //        db.SaveChanges();
+        //    }
+
+        //    if (q.GroupLeaderID != null && q.DepartmentLeaderID ==null && q.SignState == false && q.Rejection == false && EmployeeDetail.DepartmentName == "行政部" && EmployeeDetail.PositionName == "部長")
+        //    {
+        //        q.DepartmentLeaderID = EmployeeDetail.EmployeeID;
+        //        q.DepartmentLeaderSignTime = DateTime.Now;
+        //        db.SaveChanges();
+        //    }
+
+        //    if (q.SignState == false && q.GroupLeaderID !=null && q.DepartmentLeaderID !=null && q.Rejection ==false)
+        //    {
+        //        q.SignState = true;
+        //        q.Rejection = false;
+        //        var addFormalEmployee = new Employee
+        //        {
+        //            EmployeeName = q.EmployeeName,
+        //            Gender = q.Gender,
+        //            Birth = q.Birth,
+        //            HireDate = q.HireDate,
+        //            Account = q.Account,
+        //            OfficeID = q.OfficeID,
+        //            DepartmentID = q.DepartmentID,
+        //            PositionID = q.PositionID,
+        //            ManagerID = q.ManagerID,
+        //            Employed = true,
+        //            GroupID = q.GroupID,
+        //            Photo = q.Photo
+        //        };
+        //        db.Employees.Add(addFormalEmployee);
+        //        db.SaveChanges();
+        //    }            
+
+        //    return 
+        //}
 
 
         // GET: EmployeeApprovalTemps/Details/5

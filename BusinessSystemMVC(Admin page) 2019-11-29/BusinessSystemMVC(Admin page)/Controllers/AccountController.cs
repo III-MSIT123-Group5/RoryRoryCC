@@ -310,7 +310,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                         DepartmentID = Convert.ToInt32(model.DepartmentID),
                         PositionID = Convert.ToInt32(model.PositionID),
                         ManagerID = Convert.ToInt32(model.ManagerID),
-                        Employed = model.Employed,
+                        Employed = true,
                         GroupID = Convert.ToInt32(model.GroupID),
                         Photo = m_address,
                         CreateOrUpdate="Create",
