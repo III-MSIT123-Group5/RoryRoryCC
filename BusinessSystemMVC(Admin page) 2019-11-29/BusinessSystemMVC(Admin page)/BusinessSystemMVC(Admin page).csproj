@@ -606,7 +606,6 @@
     <Content Include="Views\EventCalendars\Edit.cshtml" />
     <Content Include="Views\EventCalendars\Index.cshtml" />
     <Content Include="Views\Account\UnCreate.cshtml" />
-    <Content Include="Views\Recipients\Delete.cshtml" />
     <Content Include="Views\Recipients\Details.cshtml" />
     <Content Include="Views\Recipients\Index.cshtml" />
     <Content Include="Views\EventCalendars\AddOrEdit.cshtml" />
