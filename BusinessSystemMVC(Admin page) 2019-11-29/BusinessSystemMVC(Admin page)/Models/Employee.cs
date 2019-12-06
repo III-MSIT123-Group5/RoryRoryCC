@@ -25,10 +25,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
             this.CommentMains = new HashSet<CommentMain>();
             this.CompanyVehicleHistories = new HashSet<CompanyVehicleHistory>();
             this.Employee1 = new HashSet<Employee>();
-            this.EmployeeApprovalTemps = new HashSet<EmployeeApprovalTemp>();
-            this.EmployeeApprovalTemps1 = new HashSet<EmployeeApprovalTemp>();
-            this.EmployeeApprovalTemps2 = new HashSet<EmployeeApprovalTemp>();
-            this.EmployeeApprovalTemps3 = new HashSet<EmployeeApprovalTemp>();
             this.EventCalendars = new HashSet<EventCalendar>();
             this.Files = new HashSet<File>();
             this.MeetingRoomHistories = new HashSet<MeetingRoomHistory>();
@@ -38,6 +34,10 @@ namespace BusinessSystemMVC_Admin_page_.Models
             this.ReportTimeSystems = new HashSet<ReportTimeSystem>();
             this.RequisitionMains = new HashSet<RequisitionMain>();
             this.SuggestionHistories = new HashSet<SuggestionHistory>();
+            this.EmployeeApprovalTemps = new HashSet<EmployeeApprovalTemp>();
+            this.EmployeeApprovalTemps1 = new HashSet<EmployeeApprovalTemp>();
+            this.EmployeeApprovalTemps2 = new HashSet<EmployeeApprovalTemp>();
+            this.EmployeeApprovalTemps3 = new HashSet<EmployeeApprovalTemp>();
         }
     
         public int employeeID { get; set; }
@@ -76,14 +76,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual Office Office { get; set; }
         public virtual Position Position { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeeApprovalTemp> EmployeeApprovalTemps { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeeApprovalTemp> EmployeeApprovalTemps1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeeApprovalTemp> EmployeeApprovalTemps2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeeApprovalTemp> EmployeeApprovalTemps3 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EventCalendar> EventCalendars { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<File> Files { get; set; }
@@ -101,5 +93,13 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual ICollection<RequisitionMain> RequisitionMains { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SuggestionHistory> SuggestionHistories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeApprovalTemp> EmployeeApprovalTemps { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeApprovalTemp> EmployeeApprovalTemps1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeApprovalTemp> EmployeeApprovalTemps2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeApprovalTemp> EmployeeApprovalTemps3 { get; set; }
     }
 }

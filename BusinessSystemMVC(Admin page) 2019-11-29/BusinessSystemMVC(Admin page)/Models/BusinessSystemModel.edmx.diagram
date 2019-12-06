@@ -27,7 +27,6 @@
         <EntityTypeShape EntityType="BusinessDataBaseModel.CompanyVehicleHistory" Width="1.5" PointX="10.5" PointY="39.125" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Department" Width="1.5" PointX="0.75" PointY="30.125" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Employee" Width="1.5" PointX="8.25" PointY="35.25" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.EmployeeApprovalTemp" Width="1.5" PointX="16.5" PointY="30.125" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Event" Width="1.5" PointX="8.25" PointY="48.625" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.EventCalendar" Width="1.5" PointX="13.5" PointY="34.25" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.File" Width="1.5" PointX="10.5" PointY="70.75" />
@@ -75,7 +74,6 @@
         <AssociationConnector Association="BusinessDataBaseModel.FK_Company_vehicle_Office" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Company_vehicle_history_Employee" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Employee_Department" />
-        <AssociationConnector Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Department" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_EventCalendar_Department" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Group_Department" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Suggestion_history_Department" />
@@ -83,10 +81,6 @@
         <AssociationConnector Association="BusinessDataBaseModel.FK_Employee_Group" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Employee_Office" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Employee_Position" />
-        <AssociationConnector Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_DepartmentLeaderByEmployee" />
-        <AssociationConnector Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_EditorByEmployee" />
-        <AssociationConnector Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_GroupLeaderByEmployee" />
-        <AssociationConnector Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_ManagerByEmployee" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_EventCalendar_Employee" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_File_Employee" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Meeting_room_history_Employee" />
@@ -96,9 +90,6 @@
         <AssociationConnector Association="BusinessDataBaseModel.FK_ReportTimeSystem_Employee" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_RequisitionMain_Employee" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Suggestion_history_Employee" />
-        <AssociationConnector Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Group" />
-        <AssociationConnector Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Office" />
-        <AssociationConnector Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Position" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_ReportTimeSystem_Event" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Meeting_room_history_Meeting_room" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Meeting_room_Office" />
@@ -106,6 +97,15 @@
         <AssociationConnector Association="BusinessDataBaseModel.FK_OrderDetail_RequisitionMain1" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_RequisitionMain_ReportCategory" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_Suggestion_history_Suggestion" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.EmployeeApprovalTemp" Width="1.5" PointX="16.5" PointY="30" />
+        <AssociationConnector Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Department" />
+        <AssociationConnector Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_DepartmentLeaderByEmployee" />
+        <AssociationConnector Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_EditorByEmployee" />
+        <AssociationConnector Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_GroupLeaderByEmployee" />
+        <AssociationConnector Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_ManagerByEmployee" />
+        <AssociationConnector Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Group" />
+        <AssociationConnector Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Office" />
+        <AssociationConnector Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Position" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

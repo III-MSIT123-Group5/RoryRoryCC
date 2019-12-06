@@ -6,17 +6,13 @@
         button {
             font-family: 'NotoSansCJKtc-Bold';
         }
-
         h2 {
             font-family: 'NotoSansCJKtc-Bold';
         }
     </style>
-
     <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 }
-
-
 <h2>SignOffSystemView</h2>
 
 @Html.Partial("_HRSignOffSystemPartial")
@@ -34,6 +30,7 @@
         //==========Rory的啦======================================
         var Popup, dataTable; //height="75%" width="75%" src=\"'height="75%"
 
+        //註冊進度
         $(document).ready(function () {
             dataTable = $('#NewEmpStable').DataTable({
                 "ajax": {
@@ -43,21 +40,17 @@
                 },
                 "columnDefs": [
 
-                    { "targets": 0, "data": "EmployeeName", "width": "60px" },
+                    {
+                        "targets": 0, "data": "EmployeeName", "width": "60px" ,
+                        "orderable": false,
+                        "searchable": false, },
                     { "targets": 1, "data": "Gender", "width": "60px" },
                     { "targets": 2, "data": "Account", "width": "60px" },
                     { "targets": 3, "data": "name", "width": "60px"  },    /*department*/
                     { "targets": 4, "data": "GroupName", "width": "60px" },
                     { "targets": 5, "data": "position1", "width": "60px"  },
                     { "targets": 6, "data": "EditorTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
-                    {
-                        "targets": 7, "data": "ID", "render": function (data) {
-                            return `<a class='btn btn-warning btn-sm' onclick=PopupDetail("@Url.Action("LoadDataDetail", "EmployeeApprovalTemps")/${data}")><i class="fa fa-align-left"></i> 詳細資料</a><a class='btn btn-warning btn-sm'  style='margin-left:5px' onclick=AcceptSign("@Url.Action("AcceptRegister", "EmployeeApprovalTemps")/${data}")><i class="fa fa-check-square-o"></i> 核准</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=RejectSign("@Url.Action("RejectRegister", "EmployeeApprovalTemps")/${data}")><i class='fa fa-hand-paper-o'></i> 駁回</a>`
-                        },
-                        "orderable": false,
-                        "searchable": false,
-                        "width": "150px"
-                    }
+                    { "targets": 7, "data": "ID", "width": "150px"     }
                 ],
                 "language": {
                     "emptyTable": "無待簽核事項。"

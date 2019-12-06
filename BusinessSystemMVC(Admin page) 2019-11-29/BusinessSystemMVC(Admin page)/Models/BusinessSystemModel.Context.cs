@@ -47,7 +47,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual DbSet<CompanyVehicleHistory> CompanyVehicleHistories { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<EmployeeApprovalTemp> EmployeeApprovalTemps { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<EventCalendar> EventCalendars { get; set; }
         public virtual DbSet<File> Files { get; set; }
@@ -69,5 +68,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual DbSet<MeetingRoomHistory> MeetingRoomHistories { get; set; }
         public virtual DbSet<SuggestionHistory> SuggestionHistories { get; set; }
         public virtual DbSet<SurveyMain> SurveyMains { get; set; }
+        public virtual DbSet<EmployeeApprovalTemp> EmployeeApprovalTemps { get; set; }
     }
 }

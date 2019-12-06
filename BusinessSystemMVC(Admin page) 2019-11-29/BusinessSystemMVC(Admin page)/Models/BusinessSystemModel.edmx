@@ -48,15 +48,19 @@
           <Property Name="OrderID" Type="int" Nullable="false" />
           <Property Name="ApprovalProcedureID" Type="int" />
           <Property Name="FirstSignerID" Type="int" />
+          <Property Name="FirstSignerName" Type="nvarchar" MaxLength="10" />
           <Property Name="FirstSignStatus" Type="nvarchar" MaxLength="10" />
           <Property Name="FirstSignDate" Type="datetime" />
           <Property Name="SecondSignerID" Type="int" />
+          <Property Name="SecondSignerName" Type="nvarchar" MaxLength="10" />
           <Property Name="SecondSignStatus" Type="nvarchar" MaxLength="10" />
           <Property Name="SecondSignDate" Type="datetime" />
           <Property Name="ThirdSignerID" Type="int" />
+          <Property Name="ThirdSignerName" Type="nvarchar" MaxLength="10" />
           <Property Name="ThirdSignStatus" Type="nvarchar" MaxLength="10" />
           <Property Name="ThirdSignDate" Type="datetime" />
           <Property Name="FourthSignerID" Type="int" />
+          <Property Name="FourthSignerName" Type="nvarchar" MaxLength="10" />
           <Property Name="FourthSignStatus" Type="nvarchar" MaxLength="10" />
           <Property Name="ForthSignDate" Type="datetime" />
         </EntityType>
@@ -141,15 +145,6 @@
           <Property Name="Content" Type="nvarchar" MaxLength="50" />
           <Property Name="PostTime" Type="datetime" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.BusinessTrip' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="BusinessTrip">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="start_date_time" Type="datetime" />
-          <Property Name="end_date_time" Type="datetime" />
-          <Property Name="adress" Type="nchar" MaxLength="10" />
-          <Property Name="description" Type="nvarchar(max)" />
-        </EntityType>-->
         <EntityType Name="CommentChild">
           <Key>
             <PropertyRef Name="Num" />
@@ -270,6 +265,7 @@
           <Property Name="DepartmentLeaderSignTime" Type="datetime" />
           <Property Name="SignState" Type="bit" Nullable="false" />
           <Property Name="Rejection" Type="bit" Nullable="false" />
+          <Property Name="StatusDescript" Type="nvarchar" MaxLength="12" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -320,13 +316,6 @@
           <Property Name="leaveID" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="leave_name" Type="nchar" MaxLength="20" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.LeaveHistory' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="LeaveHistory">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="leaveID" Type="nchar" MaxLength="10" />
-          <Property Name="Description" Type="nvarchar(max)" />
-        </EntityType>-->
         <EntityType Name="MeetingRoom">
           <Key>
             <PropertyRef Name="meetingID" />
@@ -384,14 +373,6 @@
           <Property Name="positionID" Type="int" Nullable="false" />
           <Property Name="position" Type="nchar" MaxLength="30" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.PurchasingOrder' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="PurchasingOrder">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="items" Type="nchar" MaxLength="10" />
-          <Property Name="quantity" Type="int" />
-          <Property Name="unit price" Type="money" />
-        </EntityType>-->
         <EntityType Name="Recipient">
           <Key>
             <PropertyRef Name="MessageID" />
@@ -452,15 +433,6 @@
           <Property Name="Reward/PunishmentID" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Reward/PunishmentName" Type="nchar" MaxLength="10" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.RewardandPunishmentHistory' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="RewardandPunishmentHistory">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="Date" Type="datetime" />
-          <Property Name="Reward/Punishment" Type="nchar" MaxLength="10" />
-          <Property Name="managerID" Type="nchar" MaxLength="10" />
-          <Property Name="Description" Type="nvarchar(max)" />
-        </EntityType>-->
         <EntityType Name="Suggestion">
           <Key>
             <PropertyRef Name="suggestionID" />
@@ -481,12 +453,6 @@
           <Property Name="content" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.SurveyChild' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="SurveyChild">
-          <Property Name="SurveyID" Type="int" />
-          <Property Name="Survey" Type="nvarchar" MaxLength="50" />
-        </EntityType>-->
-        <!--產生期間發現錯誤:
 警告 6002: 資料表/檢視 'BusinessDataBase.dbo.SurveyMain' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="SurveyMain">
           <Key>
@@ -506,14 +472,6 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.WorkingHours' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="WorkingHours">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="clock_in_time" Type="datetime" />
-          <Property Name="clock_out_time" Type="datetime" />
-          <Property Name="leaveID" Type="nchar" MaxLength="10" />
-        </EntityType>-->
         <Association Name="FK_ActivitiesChild_ActivitiesMain">
           <End Role="ActivitiesMain" Type="Self.ActivitiesMain" Multiplicity="0..1" />
           <End Role="ActivitiesChild" Type="Self.ActivitiesChild" Multiplicity="*" />
@@ -622,9 +580,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.BusinessTrip' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_Business Trip_Employee" />-->
         <Association Name="FK_CommentChild_CommentMain1">
           <End Role="CommentMain" Type="Self.CommentMain" Multiplicity="0..1" />
           <End Role="CommentChild" Type="Self.CommentChild" Multiplicity="*" />
@@ -1017,12 +972,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.LeaveHistory' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_LeaveHistory_Employee" />-->
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.LeaveHistory' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_LeaveHistory_Leave" />-->
         <Association Name="FK_Meeting room history_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="MeetingRoomHistory" Type="Self.MeetingRoomHistory" Multiplicity="*" />
@@ -1083,9 +1032,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.PurchasingOrder' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_Purchasing Order_Employee" />-->
         <Association Name="FK_Recipient_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Recipient" Type="Self.Recipient" Multiplicity="*" />
@@ -1182,12 +1128,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.RewardandPunishmentHistory' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_RewardandPunishmentHistory_Employee" />-->
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.RewardandPunishmentHistory' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_RewardandPunishmentHistory_RewardandPunishment" />-->
         <Association Name="FK_Suggestion history_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
           <End Role="SuggestionHistory" Type="Self.SuggestionHistory" Multiplicity="*" />
@@ -1224,12 +1164,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.WorkingHours' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_Working hours_Employee" />-->
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.WorkingHours' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_Working hours_Leave" />-->
         <EntityContainer Name="BusinessDataBaseModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
@@ -1552,7 +1486,6 @@
           <EntitySet Name="CompanyVehicleHistories" EntityType="BusinessDataBaseModel.CompanyVehicleHistory" />
           <EntitySet Name="Departments" EntityType="BusinessDataBaseModel.Department" />
           <EntitySet Name="Employees" EntityType="BusinessDataBaseModel.Employee" />
-          <EntitySet Name="EmployeeApprovalTemps" EntityType="BusinessDataBaseModel.EmployeeApprovalTemp" />
           <EntitySet Name="Events" EntityType="BusinessDataBaseModel.Event" />
           <EntitySet Name="EventCalendars" EntityType="BusinessDataBaseModel.EventCalendar" />
           <EntitySet Name="Files" EntityType="BusinessDataBaseModel.File" />
@@ -1678,10 +1611,6 @@
             <End Role="Department" EntitySet="Departments" />
             <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
-          <AssociationSet Name="FK_EmployeeApprovalTemp_Department" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Department">
-            <End Role="Department" EntitySet="Departments" />
-            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
-          </AssociationSet>
           <AssociationSet Name="FK_EventCalendar_Department" Association="BusinessDataBaseModel.FK_EventCalendar_Department">
             <End Role="Department" EntitySet="Departments" />
             <End Role="EventCalendar" EntitySet="EventCalendars" />
@@ -1709,22 +1638,6 @@
           <AssociationSet Name="FK_Employee_Position" Association="BusinessDataBaseModel.FK_Employee_Position">
             <End Role="Position" EntitySet="Positions" />
             <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmployeeApprovalTemp_DepartmentLeaderByEmployee" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_DepartmentLeaderByEmployee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmployeeApprovalTemp_EditorByEmployee" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_EditorByEmployee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmployeeApprovalTemp_GroupLeaderByEmployee" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_GroupLeaderByEmployee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmployeeApprovalTemp_ManagerByEmployee" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_ManagerByEmployee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
           </AssociationSet>
           <AssociationSet Name="FK_EventCalendar_Employee" Association="BusinessDataBaseModel.FK_EventCalendar_Employee">
             <End Role="Employee" EntitySet="Employees" />
@@ -1762,18 +1675,6 @@
             <End Role="Employee" EntitySet="Employees" />
             <End Role="SuggestionHistory" EntitySet="SuggestionHistories" />
           </AssociationSet>
-          <AssociationSet Name="FK_EmployeeApprovalTemp_Group" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Group">
-            <End Role="Group" EntitySet="Groups" />
-            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmployeeApprovalTemp_Office" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Office">
-            <End Role="Office" EntitySet="Offices" />
-            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmployeeApprovalTemp_Position" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Position">
-            <End Role="Position" EntitySet="Positions" />
-            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
-          </AssociationSet>
           <AssociationSet Name="FK_ReportTimeSystem_Event" Association="BusinessDataBaseModel.FK_ReportTimeSystem_Event">
             <End Role="Event" EntitySet="Events" />
             <End Role="ReportTimeSystem" EntitySet="ReportTimeSystems" />
@@ -1801,6 +1702,39 @@
           <AssociationSet Name="FK_Suggestion_history_Suggestion" Association="BusinessDataBaseModel.FK_Suggestion_history_Suggestion">
             <End Role="Suggestion" EntitySet="Suggestions" />
             <End Role="SuggestionHistory" EntitySet="SuggestionHistories" />
+          </AssociationSet>
+          <EntitySet Name="EmployeeApprovalTemps" EntityType="BusinessDataBaseModel.EmployeeApprovalTemp" />
+          <AssociationSet Name="FK_EmployeeApprovalTemp_Department" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeApprovalTemp_DepartmentLeaderByEmployee" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_DepartmentLeaderByEmployee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeApprovalTemp_EditorByEmployee" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_EditorByEmployee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeApprovalTemp_GroupLeaderByEmployee" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_GroupLeaderByEmployee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeApprovalTemp_ManagerByEmployee" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_ManagerByEmployee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeApprovalTemp_Group" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Group">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeApprovalTemp_Office" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Office">
+            <End Role="Office" EntitySet="Offices" />
+            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeApprovalTemp_Position" Association="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Position">
+            <End Role="Position" EntitySet="Positions" />
+            <End Role="EmployeeApprovalTemp" EntitySet="EmployeeApprovalTemps" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -1864,6 +1798,10 @@
           <Property Name="ForthSignDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ApprovalProcedure" Relationship="BusinessDataBaseModel.FK_Approval_ApprovalProcedure" FromRole="Approval" ToRole="ApprovalProcedure" />
           <NavigationProperty Name="RequisitionMain" Relationship="BusinessDataBaseModel.FK_Approval_RequisitionMain" FromRole="Approval" ToRole="RequisitionMain" />
+          <Property Name="FirstSignerName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SecondSignerName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ThirdSignerName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FourthSignerName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ApprovalProcedure">
           <Key>
@@ -2054,10 +1992,10 @@
           <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BulletinBoards" Relationship="BusinessDataBaseModel.FK_Bulletin_board_Department" FromRole="Department" ToRole="BulletinBoard" />
           <NavigationProperty Name="Employees" Relationship="BusinessDataBaseModel.FK_Employee_Department" FromRole="Department" ToRole="Employee" />
-          <NavigationProperty Name="EmployeeApprovalTemps" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Department" FromRole="Department" ToRole="EmployeeApprovalTemp" />
           <NavigationProperty Name="EventCalendars" Relationship="BusinessDataBaseModel.FK_EventCalendar_Department" FromRole="Department" ToRole="EventCalendar" />
           <NavigationProperty Name="Groups" Relationship="BusinessDataBaseModel.FK_Group_Department" FromRole="Department" ToRole="Group" />
           <NavigationProperty Name="SuggestionHistories" Relationship="BusinessDataBaseModel.FK_Suggestion_history_Department" FromRole="Department" ToRole="SuggestionHistory" />
+          <NavigationProperty Name="EmployeeApprovalTemps" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Department" FromRole="Department" ToRole="EmployeeApprovalTemp" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -2089,10 +2027,6 @@
           <NavigationProperty Name="Group" Relationship="BusinessDataBaseModel.FK_Employee_Group" FromRole="Employee" ToRole="Group" />
           <NavigationProperty Name="Office" Relationship="BusinessDataBaseModel.FK_Employee_Office" FromRole="Employee" ToRole="Office" />
           <NavigationProperty Name="Position" Relationship="BusinessDataBaseModel.FK_Employee_Position" FromRole="Employee" ToRole="Position" />
-          <NavigationProperty Name="EmployeeApprovalTemps" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_DepartmentLeaderByEmployee" FromRole="Employee" ToRole="EmployeeApprovalTemp" />
-          <NavigationProperty Name="EmployeeApprovalTemps1" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_EditorByEmployee" FromRole="Employee" ToRole="EmployeeApprovalTemp" />
-          <NavigationProperty Name="EmployeeApprovalTemps2" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_GroupLeaderByEmployee" FromRole="Employee" ToRole="EmployeeApprovalTemp" />
-          <NavigationProperty Name="EmployeeApprovalTemps3" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_ManagerByEmployee" FromRole="Employee" ToRole="EmployeeApprovalTemp" />
           <NavigationProperty Name="EventCalendars" Relationship="BusinessDataBaseModel.FK_EventCalendar_Employee" FromRole="Employee" ToRole="EventCalendar" />
           <NavigationProperty Name="Files" Relationship="BusinessDataBaseModel.FK_File_Employee" FromRole="Employee" ToRole="File" />
           <NavigationProperty Name="MeetingRoomHistories" Relationship="BusinessDataBaseModel.FK_Meeting_room_history_Employee" FromRole="Employee" ToRole="MeetingRoomHistory" />
@@ -2102,41 +2036,10 @@
           <NavigationProperty Name="ReportTimeSystems" Relationship="BusinessDataBaseModel.FK_ReportTimeSystem_Employee" FromRole="Employee" ToRole="ReportTimeSystem" />
           <NavigationProperty Name="RequisitionMains" Relationship="BusinessDataBaseModel.FK_RequisitionMain_Employee" FromRole="Employee" ToRole="RequisitionMain" />
           <NavigationProperty Name="SuggestionHistories" Relationship="BusinessDataBaseModel.FK_Suggestion_history_Employee" FromRole="Employee" ToRole="SuggestionHistory" />
-        </EntityType>
-        <EntityType Name="EmployeeApprovalTemp">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Birth" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="HireDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Account" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
-          <Property Name="OfficeID" Type="Int32" Nullable="false" />
-          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
-          <Property Name="PositionID" Type="Int32" Nullable="false" />
-          <Property Name="ManagerID" Type="Int32" Nullable="false" />
-          <Property Name="Employed" Type="Boolean" Nullable="false" />
-          <Property Name="GroupID" Type="Int32" Nullable="false" />
-          <Property Name="Photo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreateOrUpdate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Editor" Type="Int32" Nullable="false" />
-          <Property Name="EditorTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="GroupLeaderID" Type="Int32" />
-          <Property Name="GroupLeaderSignTime" Type="DateTime" Precision="3" />
-          <Property Name="DepartmentLeaderID" Type="Int32" />
-          <Property Name="DepartmentLeaderSignTime" Type="DateTime" Precision="3" />
-          <Property Name="SignState" Type="Boolean" Nullable="false" />
-          <Property Name="Rejection" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Department" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Department" FromRole="EmployeeApprovalTemp" ToRole="Department" />
-          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_DepartmentLeaderByEmployee" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
-          <NavigationProperty Name="Employee1" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_EditorByEmployee" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
-          <NavigationProperty Name="Employee2" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_GroupLeaderByEmployee" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
-          <NavigationProperty Name="Employee3" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_ManagerByEmployee" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
-          <NavigationProperty Name="Group" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Group" FromRole="EmployeeApprovalTemp" ToRole="Group" />
-          <NavigationProperty Name="Office" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Office" FromRole="EmployeeApprovalTemp" ToRole="Office" />
-          <NavigationProperty Name="Position" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Position" FromRole="EmployeeApprovalTemp" ToRole="Position" />
+          <NavigationProperty Name="EmployeeApprovalTemps" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_DepartmentLeaderByEmployee" FromRole="Employee" ToRole="EmployeeApprovalTemp" />
+          <NavigationProperty Name="EmployeeApprovalTemps1" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_EditorByEmployee" FromRole="Employee" ToRole="EmployeeApprovalTemp" />
+          <NavigationProperty Name="EmployeeApprovalTemps2" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_GroupLeaderByEmployee" FromRole="Employee" ToRole="EmployeeApprovalTemp" />
+          <NavigationProperty Name="EmployeeApprovalTemps3" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_ManagerByEmployee" FromRole="Employee" ToRole="EmployeeApprovalTemp" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -2227,8 +2130,8 @@
           <Property Name="office_address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CompanyVehicles" Relationship="BusinessDataBaseModel.FK_Company_vehicle_Office" FromRole="Office" ToRole="CompanyVehicle" />
           <NavigationProperty Name="Employees" Relationship="BusinessDataBaseModel.FK_Employee_Office" FromRole="Office" ToRole="Employee" />
-          <NavigationProperty Name="EmployeeApprovalTemps" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Office" FromRole="Office" ToRole="EmployeeApprovalTemp" />
           <NavigationProperty Name="MeetingRooms" Relationship="BusinessDataBaseModel.FK_Meeting_room_Office" FromRole="Office" ToRole="MeetingRoom" />
+          <NavigationProperty Name="EmployeeApprovalTemps" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Office" FromRole="Office" ToRole="EmployeeApprovalTemp" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -2693,18 +2596,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EmployeeApprovalTemp_Department">
-          <End Type="BusinessDataBaseModel.Department" Role="Department" Multiplicity="1" />
-          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Department">
-              <PropertyRef Name="departmentID" />
-            </Principal>
-            <Dependent Role="EmployeeApprovalTemp">
-              <PropertyRef Name="DepartmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_EventCalendar_Department">
           <End Type="BusinessDataBaseModel.Department" Role="Department" Multiplicity="0..1" />
           <End Type="BusinessDataBaseModel.EventCalendar" Role="EventCalendar" Multiplicity="*" />
@@ -2786,54 +2677,6 @@
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="PositionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmployeeApprovalTemp_DepartmentLeaderByEmployee">
-          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
-          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="EmployeeApprovalTemp">
-              <PropertyRef Name="DepartmentLeaderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmployeeApprovalTemp_EditorByEmployee">
-          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="1" />
-          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="EmployeeApprovalTemp">
-              <PropertyRef Name="Editor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmployeeApprovalTemp_GroupLeaderByEmployee">
-          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
-          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="EmployeeApprovalTemp">
-              <PropertyRef Name="GroupLeaderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmployeeApprovalTemp_ManagerByEmployee">
-          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="1" />
-          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="EmployeeApprovalTemp">
-              <PropertyRef Name="ManagerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2945,42 +2788,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EmployeeApprovalTemp_Group">
-          <End Type="BusinessDataBaseModel.Group" Role="Group" Multiplicity="1" />
-          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Group">
-              <PropertyRef Name="GroupID" />
-            </Principal>
-            <Dependent Role="EmployeeApprovalTemp">
-              <PropertyRef Name="GroupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmployeeApprovalTemp_Office">
-          <End Type="BusinessDataBaseModel.Office" Role="Office" Multiplicity="1" />
-          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Office">
-              <PropertyRef Name="officeID" />
-            </Principal>
-            <Dependent Role="EmployeeApprovalTemp">
-              <PropertyRef Name="OfficeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmployeeApprovalTemp_Position">
-          <End Type="BusinessDataBaseModel.Position" Role="Position" Multiplicity="1" />
-          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Position">
-              <PropertyRef Name="positionID" />
-            </Principal>
-            <Dependent Role="EmployeeApprovalTemp">
-              <PropertyRef Name="PositionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ReportTimeSystem_Event">
           <End Type="BusinessDataBaseModel.Event" Role="Event" Multiplicity="1" />
           <End Type="BusinessDataBaseModel.ReportTimeSystem" Role="ReportTimeSystem" Multiplicity="*" />
@@ -3065,6 +2872,138 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="EmployeeApprovalTemp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Birth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="HireDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Account" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeID" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <Property Name="PositionID" Type="Int32" Nullable="false" />
+          <Property Name="ManagerID" Type="Int32" Nullable="false" />
+          <Property Name="Employed" Type="Boolean" Nullable="false" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateOrUpdate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Editor" Type="Int32" Nullable="false" />
+          <Property Name="EditorTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GroupLeaderID" Type="Int32" />
+          <Property Name="GroupLeaderSignTime" Type="DateTime" Precision="3" />
+          <Property Name="DepartmentLeaderID" Type="Int32" />
+          <Property Name="DepartmentLeaderSignTime" Type="DateTime" Precision="3" />
+          <Property Name="SignState" Type="Boolean" Nullable="false" />
+          <Property Name="Rejection" Type="Boolean" Nullable="false" />
+          <Property Name="StatusDescript" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Department" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Department" FromRole="EmployeeApprovalTemp" ToRole="Department" />
+          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_DepartmentLeaderByEmployee" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
+          <NavigationProperty Name="Employee1" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_EditorByEmployee" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
+          <NavigationProperty Name="Employee2" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_GroupLeaderByEmployee" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
+          <NavigationProperty Name="Employee3" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_ManagerByEmployee" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
+          <NavigationProperty Name="Group" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Group" FromRole="EmployeeApprovalTemp" ToRole="Group" />
+          <NavigationProperty Name="Office" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Office" FromRole="EmployeeApprovalTemp" ToRole="Office" />
+          <NavigationProperty Name="Position" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Position" FromRole="EmployeeApprovalTemp" ToRole="Position" />
+        </EntityType>
+        <Association Name="FK_EmployeeApprovalTemp_Department">
+          <End Type="BusinessDataBaseModel.Department" Role="Department" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="departmentID" />
+            </Principal>
+            <Dependent Role="EmployeeApprovalTemp">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeApprovalTemp_DepartmentLeaderByEmployee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="EmployeeApprovalTemp">
+              <PropertyRef Name="DepartmentLeaderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeApprovalTemp_EditorByEmployee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="EmployeeApprovalTemp">
+              <PropertyRef Name="Editor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeApprovalTemp_GroupLeaderByEmployee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="EmployeeApprovalTemp">
+              <PropertyRef Name="GroupLeaderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeApprovalTemp_ManagerByEmployee">
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="EmployeeApprovalTemp">
+              <PropertyRef Name="ManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeApprovalTemp_Group">
+          <End Type="BusinessDataBaseModel.Group" Role="Group" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="EmployeeApprovalTemp">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeApprovalTemp_Office">
+          <End Type="BusinessDataBaseModel.Office" Role="Office" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="officeID" />
+            </Principal>
+            <Dependent Role="EmployeeApprovalTemp">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeApprovalTemp_Position">
+          <End Type="BusinessDataBaseModel.Position" Role="Position" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.EmployeeApprovalTemp" Role="EmployeeApprovalTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="positionID" />
+            </Principal>
+            <Dependent Role="EmployeeApprovalTemp">
+              <PropertyRef Name="PositionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3113,6 +3052,10 @@
           <EntitySetMapping Name="Approvals">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.Approval">
               <MappingFragment StoreEntitySet="Approval">
+                <ScalarProperty Name="FourthSignerName" ColumnName="FourthSignerName" />
+                <ScalarProperty Name="ThirdSignerName" ColumnName="ThirdSignerName" />
+                <ScalarProperty Name="SecondSignerName" ColumnName="SecondSignerName" />
+                <ScalarProperty Name="FirstSignerName" ColumnName="FirstSignerName" />
                 <ScalarProperty Name="ForthSignDate" ColumnName="ForthSignDate" />
                 <ScalarProperty Name="FourthSignStatus" ColumnName="FourthSignStatus" />
                 <ScalarProperty Name="FourthSignerID" ColumnName="FourthSignerID" />
@@ -3317,34 +3260,6 @@
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
                 <ScalarProperty Name="employeeID" ColumnName="employeeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EmployeeApprovalTemps">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.EmployeeApprovalTemp">
-              <MappingFragment StoreEntitySet="EmployeeApprovalTemp">
-                <ScalarProperty Name="Rejection" ColumnName="Rejection" />
-                <ScalarProperty Name="SignState" ColumnName="SignState" />
-                <ScalarProperty Name="DepartmentLeaderSignTime" ColumnName="DepartmentLeaderSignTime" />
-                <ScalarProperty Name="DepartmentLeaderID" ColumnName="DepartmentLeaderID" />
-                <ScalarProperty Name="GroupLeaderSignTime" ColumnName="GroupLeaderSignTime" />
-                <ScalarProperty Name="GroupLeaderID" ColumnName="GroupLeaderID" />
-                <ScalarProperty Name="EditorTime" ColumnName="EditorTime" />
-                <ScalarProperty Name="Editor" ColumnName="Editor" />
-                <ScalarProperty Name="CreateOrUpdate" ColumnName="CreateOrUpdate" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-                <ScalarProperty Name="Employed" ColumnName="Employed" />
-                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
-                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
-                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
-                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
-                <ScalarProperty Name="Account" ColumnName="Account" />
-                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
-                <ScalarProperty Name="Birth" ColumnName="Birth" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3564,6 +3479,35 @@
                 <ScalarProperty Name="Question" ColumnName="Question" />
                 <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
                 <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeApprovalTemps">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.EmployeeApprovalTemp">
+              <MappingFragment StoreEntitySet="EmployeeApprovalTemp">
+                <ScalarProperty Name="StatusDescript" ColumnName="StatusDescript" />
+                <ScalarProperty Name="Rejection" ColumnName="Rejection" />
+                <ScalarProperty Name="SignState" ColumnName="SignState" />
+                <ScalarProperty Name="DepartmentLeaderSignTime" ColumnName="DepartmentLeaderSignTime" />
+                <ScalarProperty Name="DepartmentLeaderID" ColumnName="DepartmentLeaderID" />
+                <ScalarProperty Name="GroupLeaderSignTime" ColumnName="GroupLeaderSignTime" />
+                <ScalarProperty Name="GroupLeaderID" ColumnName="GroupLeaderID" />
+                <ScalarProperty Name="EditorTime" ColumnName="EditorTime" />
+                <ScalarProperty Name="Editor" ColumnName="Editor" />
+                <ScalarProperty Name="CreateOrUpdate" ColumnName="CreateOrUpdate" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="Employed" ColumnName="Employed" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="Birth" ColumnName="Birth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -297,7 +297,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     {
                         m_address = "https://www.freeiconspng.com/uploads/male-icon-4.jpg";
                     }
-                   
+
                     var addEmployee = new EmployeeApprovalTemp
                     {
                         EmployeeName = model.EmpoyeeName,
@@ -313,11 +313,12 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                         Employed = true,
                         GroupID = Convert.ToInt32(model.GroupID),
                         Photo = m_address,
-                        CreateOrUpdate="Create",
-                        SignState=false,
-                       Editor=EmployeeDetail.EmployeeID,
-                       EditorTime=DateTime.Now,
-                       Rejection=false,
+                        CreateOrUpdate = "Create",
+                        SignState = false,
+                        Editor = EmployeeDetail.EmployeeID,
+                        EditorTime = DateTime.Now,
+                        Rejection = false,
+                        StatusDescript = "待組長簽核"
                     };
                     db.EmployeeApprovalTemps.Add(addEmployee);
                     db.SaveChanges();

@@ -36,6 +36,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public Nullable<System.DateTime> DepartmentLeaderSignTime { get; set; }
         public bool SignState { get; set; }
         public bool Rejection { get; set; }
+        public string StatusDescript { get; set; }
     
         public virtual Department Department { get; set; }
         public virtual Employee Employee { get; set; }

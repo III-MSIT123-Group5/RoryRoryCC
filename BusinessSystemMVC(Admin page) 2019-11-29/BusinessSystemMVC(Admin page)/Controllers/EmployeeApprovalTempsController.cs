@@ -57,6 +57,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             {
                 q.GroupLeaderID = EmployeeDetail.EmployeeID;
                 q.GroupLeaderSignTime = DateTime.Now;
+                q.StatusDescript = "待部長簽核";
                 db.SaveChanges();
             }
 
@@ -73,6 +74,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             {
                 q.SignState = true;
                 q.Rejection = false;
+                q.StatusDescript = "簽核完成";
                 var addFormalEmployee = new Employee
                 {
                     EmployeeName = q.EmployeeName,
@@ -86,7 +88,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     ManagerID = q.ManagerID,
                     Employed = true,
                     GroupID = q.GroupID,
-                    Photo = q.Photo
+                    Photo = q.Photo                    
                 };
                 db.Employees.Add(addFormalEmployee);
                 db.SaveChanges();
@@ -103,6 +105,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 q.GroupLeaderID = EmployeeDetail.EmployeeID;
                 q.GroupLeaderSignTime = DateTime.Now;
                 q.Rejection = true;
+                q.StatusDescript = "已遭組長駁回";
                 db.SaveChanges();
             }
 
@@ -112,10 +115,27 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 q.DepartmentLeaderID = EmployeeDetail.EmployeeID;
                 q.DepartmentLeaderSignTime = DateTime.Now;
                 q.Rejection = true;
+                q.StatusDescript = "已遭部長駁回";
                 db.SaveChanges();
             }
             return Json(new { success = true, message = "駁回簽核成功" }, JsonRequestBehavior.AllowGet);
         }
+
+        //[HttpGet]
+        //[Authorize(Roles = "HRGroup")]
+        //public ActionResult RegistingLoadData()
+        //{
+            
+        //    var q = db.EmployeeApprovalTemps.Where(p => p.Editor == EmployeeDetail.EmployeeID && p.SignState == false && p.Rejection == false);
+           
+
+           
+           
+            
+
+
+        //    return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+        //}
 
         // GET: EmployeeApprovalTemps/Details/5
         public ActionResult Details(int? id)
