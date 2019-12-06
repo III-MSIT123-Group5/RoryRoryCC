@@ -1,11 +1,8 @@
 ﻿@model BusinessSystemMVC_Admin_page_.Models.Approval
 
 @{
-    /**/
-
     Layout = null;
 }
-
 
 
 @using (Html.BeginForm("AddOrEdit", "Approvals", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
@@ -16,65 +13,55 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.OrderID, new { @class = "control-label" })
-        @Html.EditorFor(model => model.OrderID, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.OrderID, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
         @Html.ValidationMessageFor(model => model.OrderID)
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.FirstSignerID, new { @class = "control-label" })
-        @Html.EditorFor(model => model.FirstSignerID, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.FirstSignerID)
+        @Html.LabelFor(model => model.FirstSignerName, new { @class = "control-label" })
+        @Html.EditorFor(model => model.FirstSignerName, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+        @Html.ValidationMessageFor(model => model.FirstSignerName)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.FirstSignDate, new { @class = "control-label" })
-        @Html.EditorFor(model => model.FirstSignDate, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.FirstSignDate, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
         @Html.ValidationMessageFor(model => model.FirstSignDate)
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.SecondSignerID, new { @class = "control-label" })
-        @Html.EditorFor(model => model.SecondSignerID, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.SecondSignerID)
+        @Html.LabelFor(model => model.SecondSignerName, new { @class = "control-label" })
+        @Html.EditorFor(model => model.SecondSignerName, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+        @Html.ValidationMessageFor(model => model.SecondSignerName)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.SecondSignDate, new { @class = "control-label" })
-        @Html.EditorFor(model => model.SecondSignDate, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.SecondSignDate, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
         @Html.ValidationMessageFor(model => model.SecondSignDate)
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ThirdSignerID, new { @class = "control-label" })
-        @Html.EditorFor(model => model.ThirdSignerID, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.ThirdSignerID)
+        @Html.LabelFor(model => model.ThirdSignerName, new { @class = "control-label" })
+        @Html.EditorFor(model => model.ThirdSignerName, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+        @Html.ValidationMessageFor(model => model.ThirdSignerName)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.ThirdSignDate, new { @class = "control-label" })
-        @Html.EditorFor(model => model.ThirdSignDate, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.ThirdSignDate, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
         @Html.ValidationMessageFor(model => model.ThirdSignDate)
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.FourthSignerID, new { @class = "control-label" })
-        @Html.EditorFor(model => model.FourthSignerID, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.FourthSignerID)
+        @Html.LabelFor(model => model.FourthSignerName, new { @class = "control-label" })
+        @Html.EditorFor(model => model.FourthSignerName, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+        @Html.ValidationMessageFor(model => model.FourthSignerName)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.ForthSignDate, new { @class = "control-label" })
-        @Html.EditorFor(model => model.ForthSignDate, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.ForthSignDate, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
         @Html.ValidationMessageFor(model => model.ForthSignDate)
     </div>
-
-
-    <div class="form-group" style="float:right">
-        <div>
-            <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
-            <input type="submit" value="送出" class="btn btn-success" style="margin-right:10px" />
-
-        </div>
-    </div>
-
 }

@@ -84,18 +84,54 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 {
                     EmpID = e.employeeID;
                     Signer1ID = e.ManagerID;
+                    
                 }
 
                 //找登入員工的第二層上司ID(部長)
                 var empquery2 = from EM2 in db.Employees
                                 where EM2.employeeID == Signer1ID
-                                select new { EM2.ManagerID };
+                                select new { EM2.EmployeeName, EM2.ManagerID };
 
                 int? Signer2ID = 0;
+                string Signer1Name="";
 
                 foreach (var e in empquery2)
                 {
+                    Signer1Name = e.EmployeeName;
                     Signer2ID = e.ManagerID;
+                }
+
+                var empquery3 = from EM3 in db.Employees
+                                where EM3.employeeID == Signer2ID
+                                select new { EM3.EmployeeName };
+
+                string Signer2Name="";
+
+                foreach (var e in empquery3)
+                {
+                    Signer2Name = e.EmployeeName;
+                }
+
+                var GM = from EGM in db.Employees
+                         where EGM.employeeID == 1004
+                         select new { EGM.EmployeeName };
+
+                string Signer3Name = "";
+
+                foreach (var e in GM)
+                {
+                    Signer3Name = e.EmployeeName;
+                }
+
+                var GA = from EGA in db.Employees
+                         where EGA.employeeID == 1008
+                         select new { EGA.EmployeeName };
+
+                string Signer4Name = "";
+
+                foreach (var e in GA)
+                {
+                    Signer4Name = e.EmployeeName;
                 }
 
                 decimal TemporaryUnitPrice = orderDetail.UnitPrice;
@@ -120,12 +156,16 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                             {
                                 ApprovalProcedureID = 5,
                                 FirstSignerID = Signer1ID,
+                                FirstSignerName=Signer1Name,
                                 FirstSignStatus = "未審核",
                                 SecondSignerID = Signer2ID,
+                                SecondSignerName=Signer2Name,
                                 SecondSignStatus = "未審核",
                                 ThirdSignerID = null,
+                                ThirdSignerName="-----",
                                 ThirdSignStatus = "免審核",
                                 FourthSignerID = 1008,
+                                FourthSignerName=Signer4Name,
                                 FourthSignStatus = "未審核"
                             })
                         })
@@ -150,12 +190,16 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                             {
                                 ApprovalProcedureID = 6,
                                 FirstSignerID = Signer1ID,
+                                FirstSignerName = Signer1Name,
                                 FirstSignStatus = "未審核",
                                 SecondSignerID = Signer2ID,
+                                SecondSignerName = Signer2Name,
                                 SecondSignStatus = "未審核",
                                 ThirdSignerID = 1004,
+                                ThirdSignerName=Signer3Name,
                                 ThirdSignStatus = "未審核",
                                 FourthSignerID = 1008,
+                                FourthSignerName = Signer4Name,
                                 FourthSignStatus = "未審核"
                             })
                         })
@@ -176,7 +220,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             OrderDetail orderDetail = db.OrderDetails.Find(id);

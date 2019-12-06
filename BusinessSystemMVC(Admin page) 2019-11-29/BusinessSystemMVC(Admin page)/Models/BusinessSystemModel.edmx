@@ -48,15 +48,19 @@
           <Property Name="OrderID" Type="int" Nullable="false" />
           <Property Name="ApprovalProcedureID" Type="int" />
           <Property Name="FirstSignerID" Type="int" />
+          <Property Name="FirstSignerName" Type="nvarchar" MaxLength="10" />
           <Property Name="FirstSignStatus" Type="nvarchar" MaxLength="10" />
           <Property Name="FirstSignDate" Type="datetime" />
           <Property Name="SecondSignerID" Type="int" />
+          <Property Name="SecondSignerName" Type="nvarchar" MaxLength="10" />
           <Property Name="SecondSignStatus" Type="nvarchar" MaxLength="10" />
           <Property Name="SecondSignDate" Type="datetime" />
           <Property Name="ThirdSignerID" Type="int" />
+          <Property Name="ThirdSignerName" Type="nvarchar" MaxLength="10" />
           <Property Name="ThirdSignStatus" Type="nvarchar" MaxLength="10" />
           <Property Name="ThirdSignDate" Type="datetime" />
           <Property Name="FourthSignerID" Type="int" />
+          <Property Name="FourthSignerName" Type="nvarchar" MaxLength="10" />
           <Property Name="FourthSignStatus" Type="nvarchar" MaxLength="10" />
           <Property Name="ForthSignDate" Type="datetime" />
         </EntityType>
@@ -1851,15 +1855,19 @@
           <Property Name="OrderID" Type="Int32" Nullable="false" />
           <Property Name="ApprovalProcedureID" Type="Int32" />
           <Property Name="FirstSignerID" Type="Int32" />
+          <Property Name="FirstSignerName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="FirstSignStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="FirstSignDate" Type="DateTime" Precision="3" />
           <Property Name="SecondSignerID" Type="Int32" />
+          <Property Name="SecondSignerName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="SecondSignStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="SecondSignDate" Type="DateTime" Precision="3" />
           <Property Name="ThirdSignerID" Type="Int32" />
+          <Property Name="ThirdSignerName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ThirdSignStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ThirdSignDate" Type="DateTime" Precision="3" />
           <Property Name="FourthSignerID" Type="Int32" />
+          <Property Name="FourthSignerName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="FourthSignStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ForthSignDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ApprovalProcedure" Relationship="BusinessDataBaseModel.FK_Approval_ApprovalProcedure" FromRole="Approval" ToRole="ApprovalProcedure" />
@@ -3115,15 +3123,19 @@
               <MappingFragment StoreEntitySet="Approval">
                 <ScalarProperty Name="ForthSignDate" ColumnName="ForthSignDate" />
                 <ScalarProperty Name="FourthSignStatus" ColumnName="FourthSignStatus" />
+                <ScalarProperty Name="FourthSignerName" ColumnName="FourthSignerName" />
                 <ScalarProperty Name="FourthSignerID" ColumnName="FourthSignerID" />
                 <ScalarProperty Name="ThirdSignDate" ColumnName="ThirdSignDate" />
                 <ScalarProperty Name="ThirdSignStatus" ColumnName="ThirdSignStatus" />
+                <ScalarProperty Name="ThirdSignerName" ColumnName="ThirdSignerName" />
                 <ScalarProperty Name="ThirdSignerID" ColumnName="ThirdSignerID" />
                 <ScalarProperty Name="SecondSignDate" ColumnName="SecondSignDate" />
                 <ScalarProperty Name="SecondSignStatus" ColumnName="SecondSignStatus" />
+                <ScalarProperty Name="SecondSignerName" ColumnName="SecondSignerName" />
                 <ScalarProperty Name="SecondSignerID" ColumnName="SecondSignerID" />
                 <ScalarProperty Name="FirstSignDate" ColumnName="FirstSignDate" />
                 <ScalarProperty Name="FirstSignStatus" ColumnName="FirstSignStatus" />
+                <ScalarProperty Name="FirstSignerName" ColumnName="FirstSignerName" />
                 <ScalarProperty Name="FirstSignerID" ColumnName="FirstSignerID" />
                 <ScalarProperty Name="ApprovalProcedureID" ColumnName="ApprovalProcedureID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />

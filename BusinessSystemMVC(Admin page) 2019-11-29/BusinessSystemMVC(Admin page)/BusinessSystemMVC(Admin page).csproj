@@ -631,6 +631,7 @@
     <Content Include="Views\Approvals\Edit.cshtml" />
     <Content Include="Views\Approvals\Index.cshtml" />
     <Content Include="Views\Approvals\AddOrEdit.cshtml" />
+    <Content Include="Views\Approvals\IndexSign.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

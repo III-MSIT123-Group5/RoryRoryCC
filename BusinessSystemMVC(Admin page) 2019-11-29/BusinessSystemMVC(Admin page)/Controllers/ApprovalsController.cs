@@ -22,9 +22,18 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(approvals.ToList());
         }
 
+        public ActionResult IndexSign()
+        {
+            var approvals = db.Approvals.Include(a => a.ApprovalProcedure).Include(a => a.RequisitionMain);
+            return View(approvals.ToList());
+
+        }
+
         public ActionResult LoadData()
         {
-            var data = from AS in db.Approvals
+            var data = from AS in db.Approvals.AsEnumerable()
+                       join RM in db.RequisitionMains.AsEnumerable() on AS.OrderID equals RM.OrderID
+                       where RM.EmployeeID == EmployeeDetail.EmployeeID
                        select new
                        {
                            AS.OrderID,
@@ -65,46 +74,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddOrEdit(Approval approval)
         {
-                if (approval.OrderID == 0)
-                {
-                    var userid = User.Identity.GetUserId();
-                    var account = db.AspNetUsers.Find(userid);
-
-                    var empquery = from em in db.Employees
-                                   where em.Account == account.UserName
-                                   select new
-                                   {
-                                       em.employeeID,
-                                   };
-
-                    int EmpID = 0;
-
-                    foreach (var e in empquery)
-                    {
-                        EmpID = e.employeeID;
-                    }
-
-
-                    db.Approvals.Add(new Approval()
-                    {
-                        OrderID=approval.OrderID,
-                        
-                        
-
-                    });
-                    db.SaveChanges();
-
-                    return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    db.Entry(approval).State = EntityState.Modified;
-                    db.SaveChanges();
-
-                    return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
-                }
-
-            
+            return Json(JsonRequestBehavior.AllowGet);
         }
 
 

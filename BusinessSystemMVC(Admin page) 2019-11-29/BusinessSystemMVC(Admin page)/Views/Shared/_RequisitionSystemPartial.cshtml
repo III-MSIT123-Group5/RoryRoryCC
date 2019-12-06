@@ -1,4 +1,5 @@
-﻿@if (User.IsInRole("Employee"))
+﻿@*只有員工才有使用權限*@
+@if (User.IsInRole("Employee"))
 {
     <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="請購系統">
         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseRequisition" data-parent="#exampleAccordion">
