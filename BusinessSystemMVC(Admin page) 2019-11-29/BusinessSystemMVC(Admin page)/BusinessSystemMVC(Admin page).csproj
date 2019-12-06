@@ -632,6 +632,8 @@
     <Content Include="Views\Approvals\Index.cshtml" />
     <Content Include="Views\Approvals\AddOrEdit.cshtml" />
     <Content Include="Views\Approvals\IndexSign.cshtml" />
+    <Content Include="Views\Shared\_HRSignOffSystemPartial.cshtml" />
+    <Content Include="Views\Home\SignOffSystemView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
