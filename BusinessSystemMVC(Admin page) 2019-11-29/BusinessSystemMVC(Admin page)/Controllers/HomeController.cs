@@ -44,7 +44,11 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 EmployeeDetail.PositionName = a.Position.position1;
                 EmployeeDetail.PositionID = (int)a.PositionID;
             }
+            return View();
+        }
 
+        public ActionResult SignOffSystemView()
+        {
             return View();
         }
 
