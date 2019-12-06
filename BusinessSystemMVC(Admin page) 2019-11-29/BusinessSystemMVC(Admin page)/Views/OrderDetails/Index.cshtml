@@ -5,11 +5,11 @@
 }
 
 <style>
-    button {
+    button, h2 {
         font-family: 'NotoSansCJKtc-Bold';
     }
 
-    h2 {
+    th, td {
         font-family: 'NotoSansCJKtc-Bold';
     }
 </style>
@@ -103,7 +103,7 @@
                         "data": "OrderDetailID",
                         "className": "text-center align-middle",
                         "render": function (data) {
-                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/OrderDetails/Export/" + data + "')><i class='fa fa-file-excel-o'></i> 下載</a><a class='btn btn-danger btn-sm' style='margin-left:5px; background-color:	#FF0000' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
+                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/OrderDetails/Export/" + data + "')><i class='fa fa-file-excel-o'></i> 下載</a><a class='btn btn-danger btn-sm' style='margin-left:5px; background-color:#FF0000' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
                         },
                         "orderable": false,
                         "searchable": false,

@@ -17,17 +17,15 @@
 
 @Html.Partial("_HRSignOffSystemPartial")
 
-
-
-
+@Html.Partial("_RequisitionProgressPartial")
 
 @section scripts{
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script src="/Scripts/moment.js"></script>
 
+    @*==========Rory的啦=========*@
     <script>
-        //==========Rory的啦======================================
         var Popup, dataTable; //height="75%" width="75%" src=\"'height="75%"
 
         //註冊進度
@@ -146,8 +144,111 @@
                 });
             }
         }
-        //==========Rory的啦======================================
+    </script>
 
+    @*==========晨瑋=========*@
+    <script>
+        var Popup, dataTable; //height="75%" width="75%" src=\"'height="75%"
 
+        $(document).ready(function () {
+            dataTable = $('#ApprovalTable').DataTable({
+                "ajax": {
+                    url: '/Approvals/LoadData',
+                    method: 'GET',
+                    dataType: 'json'
+                },
+                "columnDefs": [
+                    {
+                        "targets": 0,
+                        "data": "OrderID",
+                        "width": "100px",
+                        "className": "text-center align-middle"
+                    },
+                    {
+                        "targets": 1,
+                        "data": "FirstSignStatus",
+                        "width": "170px",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 2,
+                        "data": "SecondSignStatus",
+                        "width": "170px",
+                        "className": "text-center align-middle"
+                    },
+                    {
+                        "targets": 3,
+                        "data": "ThirdSignStatus",
+                        "width": "170px",
+                        "className": "text-center align-middle"
+                    },
+                    {
+                        "targets": 4,
+                        "data": "FourthSignStatus",
+                        "width": "170px",
+                        "className": "text-center align-middle"
+                    },
+                    {
+                        "targets": 5,
+                        "data": "OrderID",
+                        "className": "text-center align-middle",
+                        "render": function (data) {
+                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/Approvals/AddOrEdit/" + data + "')><i class='fa fa-list-alt'></i> 內容</a>"
+                        },
+                        "orderable": false,
+                        "searchable": false,
+                        "width": "150px"
+                    }
+
+                ],
+                "language": {
+                    "emptyTable": "目前無未簽核請購單"
+                }
+            });
+        });
+
+        function PopupForm(url) {
+            var formDiv = $('<div/>');
+            $.get(url)
+                .done(function (response) {
+                    formDiv.html(response);
+
+                    Popup = formDiv.dialog({
+                        autoOpen: true,
+                        resizable: false,
+                        title: '詳細簽核',
+                        height: 600,
+                        width: 400,
+                        close: function () {
+                            Popup.dialog('destroy').remove();
+                        }
+                    });
+                });
+        }
+
+        function SubmitForm(form) {
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.action,
+                    data: $(form).serialize(),
+                    success: function (data) {
+                        if (data.success) {
+
+                            Popup.dialog("close");
+                            dataTable.ajax.reload();
+
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            })
+                        }
+
+                    }
+                });
+            }
+            return false;
+        }
     </script>
 }
