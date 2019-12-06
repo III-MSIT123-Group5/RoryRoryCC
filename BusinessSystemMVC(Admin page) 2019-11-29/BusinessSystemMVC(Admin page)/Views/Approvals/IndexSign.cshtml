@@ -1,12 +1,9 @@
 ﻿@model IEnumerable<BusinessSystemMVC_Admin_page_.Models.Approval>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstSignerID)
+            @Html.DisplayNameFor(model => model.RequisitionMain.OrderID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstSignerName)
@@ -18,9 +15,6 @@
             @Html.DisplayNameFor(model => model.FirstSignDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SecondSignerID)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.SecondSignerName)
         </th>
         <th>
@@ -28,9 +22,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.SecondSignDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ThirdSignerID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ThirdSignerName)
@@ -41,10 +32,7 @@
         <th>
             @Html.DisplayNameFor(model => model.ThirdSignDate)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FourthSignerID)
-        </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.FourthSignerName)
         </th>
         <th>
@@ -52,20 +40,14 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ForthSignDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApprovalProcedure.ApprovalReportName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RequisitionMain.OrderID)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstSignerID)
+            @Html.DisplayFor(modelItem => item.RequisitionMain.OrderID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FirstSignerName)
@@ -77,9 +59,6 @@
             @Html.DisplayFor(modelItem => item.FirstSignDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SecondSignerID)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.SecondSignerName)
         </td>
         <td>
@@ -87,9 +66,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SecondSignDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ThirdSignerID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ThirdSignerName)
@@ -100,10 +76,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.ThirdSignDate)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FourthSignerID)
-        </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.FourthSignerName)
         </td>
         <td>
@@ -111,17 +84,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ForthSignDate)
-        </td>
+        </td>*@
         <td>
-            @Html.DisplayFor(modelItem => item.ApprovalProcedure.ApprovalReportName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequisitionMain.OrderID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.OrderID }) 
         </td>
     </tr>
 }

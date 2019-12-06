@@ -148,7 +148,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             {
                 db.Entry(approval).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexSign");
             }
             ViewBag.ApprovalProcedureID = new SelectList(db.ApprovalProcedures, "ApprovalProcedureID", "ApprovalReportName", approval.ApprovalProcedureID);
             ViewBag.OrderID = new SelectList(db.RequisitionMains, "OrderID", "OrderID", approval.OrderID);
