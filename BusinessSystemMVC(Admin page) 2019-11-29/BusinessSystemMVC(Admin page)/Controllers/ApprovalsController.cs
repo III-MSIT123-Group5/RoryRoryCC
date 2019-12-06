@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BusinessSystemMVC_Admin_page_.Models;
+using Microsoft.AspNet.Identity;
 
 namespace BusinessSystemMVC_Admin_page_.Controllers
 {
@@ -20,6 +21,92 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             var approvals = db.Approvals.Include(a => a.ApprovalProcedure).Include(a => a.RequisitionMain);
             return View(approvals.ToList());
         }
+
+        public ActionResult LoadData()
+        {
+            var data = from AS in db.Approvals
+                       select new
+                       {
+                           AS.OrderID,
+                           AS.FirstSignerID,
+                           AS.FirstSignDate,
+                           AS.FirstSignStatus,
+                           AS.SecondSignerID,
+                           AS.SecondSignDate,
+                           AS.SecondSignStatus,
+                           AS.ThirdSignerID,
+                           AS.ThirdSignDate,
+                           AS.ThirdSignStatus,
+                           AS.FourthSignerID,
+                           AS.ForthSignDate,
+                           AS.FourthSignStatus
+                       };
+
+            var datas = data.ToList();
+
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+        }
+
+        //id=0
+        [HttpGet]
+        public ActionResult AddOrEdit(int id = 0)
+        {
+            if (id == 0)
+            {
+                return View(new Approval());
+            }
+            else
+            {
+                return View(db.Approvals.Where(x => x.OrderID == id).FirstOrDefault<Approval>());
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddOrEdit(Approval approval)
+        {
+                if (approval.OrderID == 0)
+                {
+                    var userid = User.Identity.GetUserId();
+                    var account = db.AspNetUsers.Find(userid);
+
+                    var empquery = from em in db.Employees
+                                   where em.Account == account.UserName
+                                   select new
+                                   {
+                                       em.employeeID,
+                                   };
+
+                    int EmpID = 0;
+
+                    foreach (var e in empquery)
+                    {
+                        EmpID = e.employeeID;
+                    }
+
+
+                    db.Approvals.Add(new Approval()
+                    {
+                        OrderID=approval.OrderID,
+                        
+                        
+
+                    });
+                    db.SaveChanges();
+
+                    return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    db.Entry(approval).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
+                }
+
+            
+        }
+
 
         // GET: Approvals/Details/5
         public ActionResult Details(int? id)
@@ -49,7 +136,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderID,ApprovalProcedureID,FirstSignerID,FirstSignStatus,SecondSignerID,SecondSignStatus,ThirdSignerID,ThirdSignStatus,FourthSignerID,FourthSignStatus")] Approval approval)
+        public ActionResult Create([Bind(Include = "OrderID,ApprovalProcedureID,FirstSignerID,FirstSignStatus,FirstSignDate,SecondSignerID,SecondSignStatus,SecondSignDate,ThirdSignerID,ThirdSignStatus,ThirdSignDate,FourthSignerID,FourthSignStatus,ForthSignDate")] Approval approval)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +172,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderID,ApprovalProcedureID,FirstSignerID,FirstSignStatus,SecondSignerID,SecondSignStatus,ThirdSignerID,ThirdSignStatus,FourthSignerID,FourthSignStatus")] Approval approval)
+        public ActionResult Edit([Bind(Include = "OrderID,ApprovalProcedureID,FirstSignerID,FirstSignStatus,FirstSignDate,SecondSignerID,SecondSignStatus,SecondSignDate,ThirdSignerID,ThirdSignStatus,ThirdSignDate,FourthSignerID,FourthSignStatus,ForthSignDate")] Approval approval)
         {
             if (ModelState.IsValid)
             {
