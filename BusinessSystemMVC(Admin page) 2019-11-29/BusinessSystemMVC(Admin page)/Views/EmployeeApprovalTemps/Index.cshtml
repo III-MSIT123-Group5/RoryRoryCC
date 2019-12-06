@@ -66,7 +66,7 @@
                     { "targets": 6, "data": "EditorTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
                     {
                         "targets": 7, "data": "ID", "render": function (data) {
-                            return `<a class='btn btn-warning btn-sm' onclick=PopupForm("@Url.Action("LoadDataDetail", "EmployeeApprovalTemps")/${data}")><i class='fa fa-pencil'></i> 詳細資料</a><a class='btn btn-warning btn-sm'  style='margin-left:5px' onclick=PopupForm("@Url.Action("LoadDataDetail", "EmployeeApprovalTemps")/${data}")><i class='fa fa-pencil'></i> 核准</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=/*Delete(${data})*/><i class='fa fa-trash'></i> 駁回</a>`
+                            return `<a class='btn btn-warning btn-sm' onclick=PopupForm("@Url.Action("LoadDataDetail", "EmployeeApprovalTemps")/${data}")><i class="fa fa-align-left"></i> 詳細資料</a><a class='btn btn-warning btn-sm'  style='margin-left:5px' onclick=AcceptSign("@Url.Action("AcceptRegister", "EmployeeApprovalTemps")/${data}")><i class="fa fa-check-square-o"></i> 核准</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=RejectSign("@Url.Action("RejectRegister", "EmployeeApprovalTemps")/${data}")><i class='fa fa-hand-paper-o'></i> 駁回</a>`
                         },
                         "orderable": false,
                         "searchable": false,
@@ -79,12 +79,12 @@
             });
         });
 
-        function PopupForm(url) {
+        //詳細資料
+        function PopupForm(Url) {
             var formDiv = $('<div/>');
-            $.get(url)
+            $.get(Url)
                 .done(function (response) {
                     formDiv.html(response);
-
                     Popup = formDiv.dialog({
                         autoOpen: true,
                         resizable: false,
@@ -96,6 +96,76 @@
                         }
                     });
                 });
+        }
+        //核准
+        function AcceptSign(Url) {
+            if (confirm('確定簽核此筆資料嗎?')) {
+                $.ajax({
+                    type: "POST",
+                    url: Url,
+                }).done(function (data) {
+                    if (data.success) {
+                        dataTable.ajax.reload();
+                        $.notify(data.message, {
+                            globalPosition: "top center",
+                            className: "success"
+                        })
+                    }
+                });
+            }
+        }
+
+        function PopupAcceptSign(Url) {
+            if (confirm('確定簽核此筆資料嗎?')) {
+                $.ajax({
+                    type: "POST",
+                    url: Url,
+                }).done(function (data) {
+                    if (data.success) {
+                        Popup.dialog('destroy').remove();
+                        dataTable.ajax.reload();
+                        $.notify(data.message, {
+                            globalPosition: "top center",
+                            className: "success"
+                        })
+                    }
+                });
+            }
+        }
+
+        function RejectSign(Url) {
+            if (confirm('確定駁回此筆資料嗎?')) {
+                $.ajax({
+                    type: "POST",
+                    url: Url,
+                }).done(function (data) {
+                    if (data.success) {
+                        dataTable.ajax.reload();
+                        $.notify(data.message, {
+                            globalPosition: "top center",
+                            className: "success"
+                        })
+                    }
+                });
+            }
+        }
+
+        function PopupRejectSign(Url) {
+            if (confirm('確定駁回此筆資料嗎?')) {
+                $.ajax({
+                    type: "POST",
+                    url: Url,
+                }).done(function (data) {
+                    if (data.success) {
+                        Popup.dialog('destroy').remove();
+                        dataTable.ajax.reload();
+                        $.notify(data.message, {
+                            globalPosition: "top center",
+                            className: "success"
+                        })
+                    }
+                });
+            }
         }
 
         function SubmitForm(form) {
@@ -138,13 +208,12 @@
                                 globalPosition: "top center",
                                 className: "success"
                             })
-
                         }
                     }
-
                 });
             }
         }
+
     </script>
 
 

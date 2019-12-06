@@ -178,6 +178,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a class='btn btn-warning btn-sm' style='margin-left:5px' onclick=PopupAcceptSign("@Url.Action("AcceptRegister", "EmployeeApprovalTemps")/@Model.ID")><i class="fa fa-check-square-o"></i> 核准</a>
+    <a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=PopupRejectSign("@Url.Action("RejectRegister", "EmployeeApprovalTemps")/@Model.ID")><i class='fa fa-hand-paper-o'></i> 駁回</a>
 </p>
