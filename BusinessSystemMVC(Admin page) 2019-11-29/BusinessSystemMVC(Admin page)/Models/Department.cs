@@ -19,10 +19,10 @@ namespace BusinessSystemMVC_Admin_page_.Models
         {
             this.BulletinBoards = new HashSet<BulletinBoard>();
             this.Employees = new HashSet<Employee>();
+            this.EmployeeApprovalTemps = new HashSet<EmployeeApprovalTemp>();
             this.EventCalendars = new HashSet<EventCalendar>();
             this.Groups = new HashSet<Group>();
             this.SuggestionHistories = new HashSet<SuggestionHistory>();
-            this.EmployeeApprovalTemps = new HashSet<EmployeeApprovalTemp>();
         }
     
         public int departmentID { get; set; }
@@ -33,12 +33,12 @@ namespace BusinessSystemMVC_Admin_page_.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeApprovalTemp> EmployeeApprovalTemps { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EventCalendar> EventCalendars { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Group> Groups { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SuggestionHistory> SuggestionHistories { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeeApprovalTemp> EmployeeApprovalTemps { get; set; }
     }
 }

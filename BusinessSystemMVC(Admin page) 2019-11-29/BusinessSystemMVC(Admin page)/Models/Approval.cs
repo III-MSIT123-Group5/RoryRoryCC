@@ -32,10 +32,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public string FourthSignerName { get; set; }
         public string FourthSignStatus { get; set; }
         public Nullable<System.DateTime> ForthSignDate { get; set; }
-        public string FirstSignerName { get; set; }
-        public string SecondSignerName { get; set; }
-        public string ThirdSignerName { get; set; }
-        public string FourthSignerName { get; set; }
     
         public virtual ApprovalProcedure ApprovalProcedure { get; set; }
         public virtual RequisitionMain RequisitionMain { get; set; }

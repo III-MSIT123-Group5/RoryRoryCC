@@ -19,8 +19,8 @@ namespace BusinessSystemMVC_Admin_page_.Models
         {
             this.CompanyVehicles = new HashSet<CompanyVehicle>();
             this.Employees = new HashSet<Employee>();
-            this.MeetingRooms = new HashSet<MeetingRoom>();
             this.EmployeeApprovalTemps = new HashSet<EmployeeApprovalTemp>();
+            this.MeetingRooms = new HashSet<MeetingRoom>();
         }
     
         public int officeID { get; set; }
@@ -32,8 +32,8 @@ namespace BusinessSystemMVC_Admin_page_.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MeetingRoom> MeetingRooms { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeApprovalTemp> EmployeeApprovalTemps { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MeetingRoom> MeetingRooms { get; set; }
     }
 }
