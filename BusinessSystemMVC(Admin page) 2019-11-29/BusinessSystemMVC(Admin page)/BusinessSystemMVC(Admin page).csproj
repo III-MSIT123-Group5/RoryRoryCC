@@ -583,11 +583,6 @@
     <Content Include="Views\Shared\_GetPosiIDbyDeptIDPartial.cshtml" />
     <Content Include="Views\Shared\_HRSystemPartial.cshtml" />
     <Content Include="Views\Shared\_ITSystemPartial.cshtml" />
-    <Content Include="Views\Approvals\Create.cshtml" />
-    <Content Include="Views\Approvals\Delete.cshtml" />
-    <Content Include="Views\Approvals\Details.cshtml" />
-    <Content Include="Views\Approvals\Edit.cshtml" />
-    <Content Include="Views\Approvals\Index.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Create.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Delete.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Details.cshtml" />
@@ -630,6 +625,12 @@
     <Content Include="Views\Shared\_RequisitionSignSystemPartial.cshtml" />
     <Content Include="Views\EmployeeApprovalTemps\LoadDataDetail.cshtml" />
     <Content Include="Views\Shared\_RequisitionSystemPartial.cshtml" />
+    <Content Include="Views\Approvals\Create.cshtml" />
+    <Content Include="Views\Approvals\Delete.cshtml" />
+    <Content Include="Views\Approvals\Details.cshtml" />
+    <Content Include="Views\Approvals\Edit.cshtml" />
+    <Content Include="Views\Approvals\Index.cshtml" />
+    <Content Include="Views\Approvals\AddOrEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
