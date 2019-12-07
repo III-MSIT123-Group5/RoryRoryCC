@@ -6,6 +6,7 @@
         button {
             font-family: 'NotoSansCJKtc-Bold';
         }
+
         h2 {
             font-family: 'NotoSansCJKtc-Bold';
         }
@@ -17,7 +18,8 @@
 
 @Html.Partial("_HRSignOffSystemPartial")
 
-@Html.Partial("_RequisitionProgressPartial")
+@Html.Partial("_RequisitionSignProgressPartial")
+
 
 @section scripts{
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
@@ -151,9 +153,9 @@
         var Popup, dataTable; //height="75%" width="75%" src=\"'height="75%"
 
         $(document).ready(function () {
-            dataTable = $('#ApprovalTable').DataTable({
+            dataTable = $('#ApprovalProgressTable').DataTable({
                 "ajax": {
-                    url: '/Approvals/LoadData',
+                    url: '/OrderDetails/LoadDataSignProgress',
                     method: 'GET',
                     dataType: 'json'
                 },
@@ -193,7 +195,7 @@
                         "data": "OrderID",
                         "className": "text-center align-middle",
                         "render": function (data) {
-                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/Approvals/AddOrEdit/" + data + "')><i class='fa fa-list-alt'></i> 內容</a>"
+                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/OrderDetails/AddOrEditSignProgress/" + data + "')><i class='fa fa-list-alt'></i> 內容</a>"
                         },
                         "orderable": false,
                         "searchable": false,
@@ -251,4 +253,5 @@
             return false;
         }
     </script>
+
 }

@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BusinessSystemMVC_Admin_page_.Models;
-using Microsoft.AspNet.Identity;
 
 namespace BusinessSystemMVC_Admin_page_.Controllers
 {
@@ -21,62 +20,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             var approvals = db.Approvals.Include(a => a.ApprovalProcedure).Include(a => a.RequisitionMain);
             return View(approvals.ToList());
         }
-
-        public ActionResult IndexSign()
-        {
-            var approvals = db.Approvals.Include(a => a.ApprovalProcedure).Include(a => a.RequisitionMain);
-            return View(approvals.ToList());
-
-        }
-
-        public ActionResult LoadData()
-        {
-            var data = from AS in db.Approvals.AsEnumerable()
-                       join RM in db.RequisitionMains.AsEnumerable() on AS.OrderID equals RM.OrderID
-                       where RM.EmployeeID == EmployeeDetail.EmployeeID
-                       select new
-                       {
-                           AS.OrderID,
-                           AS.FirstSignerID,
-                           AS.FirstSignDate,
-                           AS.FirstSignStatus,
-                           AS.SecondSignerID,
-                           AS.SecondSignDate,
-                           AS.SecondSignStatus,
-                           AS.ThirdSignerID,
-                           AS.ThirdSignDate,
-                           AS.ThirdSignStatus,
-                           AS.FourthSignerID,
-                           AS.ForthSignDate,
-                           AS.FourthSignStatus
-                       };
-
-            var datas = data.ToList();
-
-            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
-        }
-
-        //id=0
-        [HttpGet]
-        public ActionResult AddOrEdit(int id = 0)
-        {
-            if (id == 0)
-            {
-                return View(new Approval());
-            }
-            else
-            {
-                return View(db.Approvals.Where(x => x.OrderID == id).FirstOrDefault<Approval>());
-            }
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddOrEdit(Approval approval)
-        {
-            return Json(JsonRequestBehavior.AllowGet);
-        }
-
 
         // GET: Approvals/Details/5
         public ActionResult Details(int? id)
@@ -106,7 +49,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderID,ApprovalProcedureID,FirstSignerID,FirstSignStatus,FirstSignDate,SecondSignerID,SecondSignStatus,SecondSignDate,ThirdSignerID,ThirdSignStatus,ThirdSignDate,FourthSignerID,FourthSignStatus,ForthSignDate")] Approval approval)
+        public ActionResult Create([Bind(Include = "OrderID,ApprovalProcedureID,FirstSignerID,FirstSignerName,FirstSignStatus,FirstSignDate,SecondSignerID,SecondSignerName,SecondSignStatus,SecondSignDate,ThirdSignerID,ThirdSignerName,ThirdSignStatus,ThirdSignDate,FourthSignerID,FourthSignerName,FourthSignStatus,ForthSignDate")] Approval approval)
         {
             if (ModelState.IsValid)
             {
@@ -142,13 +85,13 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderID,ApprovalProcedureID,FirstSignerID,FirstSignStatus,FirstSignDate,SecondSignerID,SecondSignStatus,SecondSignDate,ThirdSignerID,ThirdSignStatus,ThirdSignDate,FourthSignerID,FourthSignStatus,ForthSignDate")] Approval approval)
+        public ActionResult Edit([Bind(Include = "OrderID,ApprovalProcedureID,FirstSignerID,FirstSignerName,FirstSignStatus,FirstSignDate,SecondSignerID,SecondSignerName,SecondSignStatus,SecondSignDate,ThirdSignerID,ThirdSignerName,ThirdSignStatus,ThirdSignDate,FourthSignerID,FourthSignerName,FourthSignStatus,ForthSignDate")] Approval approval)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(approval).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("IndexSign");
+                return RedirectToAction("Index");
             }
             ViewBag.ApprovalProcedureID = new SelectList(db.ApprovalProcedures, "ApprovalProcedureID", "ApprovalReportName", approval.ApprovalProcedureID);
             ViewBag.OrderID = new SelectList(db.RequisitionMains, "OrderID", "OrderID", approval.OrderID);

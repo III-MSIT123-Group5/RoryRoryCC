@@ -625,16 +625,16 @@
     <Content Include="Views\Shared\_RequisitionSignSystemPartial.cshtml" />
     <Content Include="Views\EmployeeApprovalTemps\LoadDataDetail.cshtml" />
     <Content Include="Views\Shared\_RequisitionSystemPartial.cshtml" />
+    <Content Include="Views\Shared\_HRSignOffSystemPartial.cshtml" />
+    <Content Include="Views\Home\SignOffSystemView.cshtml" />
+    <Content Include="Views\OrderDetails\IndexSignProgress.cshtml" />
+    <Content Include="Views\OrderDetails\AddOrEditSignProgress.cshtml" />
+    <Content Include="Views\Shared\_RequisitionSignProgressPartial.cshtml" />
     <Content Include="Views\Approvals\Create.cshtml" />
     <Content Include="Views\Approvals\Delete.cshtml" />
     <Content Include="Views\Approvals\Details.cshtml" />
     <Content Include="Views\Approvals\Edit.cshtml" />
     <Content Include="Views\Approvals\Index.cshtml" />
-    <Content Include="Views\Approvals\AddOrEdit.cshtml" />
-    <Content Include="Views\Approvals\IndexSign.cshtml" />
-    <Content Include="Views\Shared\_HRSignOffSystemPartial.cshtml" />
-    <Content Include="Views\Home\SignOffSystemView.cshtml" />
-    <Content Include="Views\Shared\_RequisitionProgressPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

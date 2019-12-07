@@ -32,6 +32,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             var report = from RM in this.db.RequisitionMains.AsEnumerable()
                          join OD in this.db.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
                          where RM.EmployeeID == EmployeeDetail.EmployeeID
+                         orderby RM.RequisitionDate descending
                          select new
                          {
                              RM.EmployeeID,
@@ -41,7 +42,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                              OD.Quantity,
                              OD.TotalPrice,
                              OD.Note,
-                             OD.OrderDetailID
+                             OD.OrderDetailID,
+                             OD.OrderID
                          };
 
             var datas = report.ToList();
@@ -250,44 +252,90 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                              OD.Note
                          };
 
-            try
+            Application application = new Application();
+            Workbook workbook = application.Workbooks.Add(Missing.Value);
+            Worksheet worksheet = workbook.ActiveSheet;
+            worksheet.Cells[1, 1] = "OrderID";
+            worksheet.Cells[1, 2] = "ProductName";
+            worksheet.Cells[1, 3] = "UnitPrice";
+            worksheet.Cells[1, 4] = "Quantity";
+            worksheet.Cells[1, 5] = "TotalPrice";
+            worksheet.Cells[1, 6] = "Note";
+
+            int row = 2;
+            foreach (var e in report)
             {
-                Application application = new Application();
-                Workbook workbook = application.Workbooks.Add(Missing.Value);
-                Worksheet worksheet = workbook.ActiveSheet;
-                worksheet.Cells[1, 1] = "OrderID";
-                worksheet.Cells[1, 2] = "ProductName";
-                worksheet.Cells[1, 3] = "UnitPrice";
-                worksheet.Cells[1, 4] = "Quantity";
-                worksheet.Cells[1, 5] = "TotalPrice";
-                worksheet.Cells[1, 6] = "Note";
-
-                int row = 2;
-                foreach (var e in report)
-                {
-                    worksheet.Cells[row, 1] = e.OrderID;
-                    worksheet.Cells[row, 2] = e.ProductName;
-                    worksheet.Cells[row, 3] = e.UnitPrice;
-                    worksheet.Cells[row, 4] = e.Quantity;
-                    worksheet.Cells[row, 5] = e.TotalPrice;
-                    worksheet.Cells[row, 6] = e.Note;
-                    row++;
-                }
-
-                workbook.SaveAs("D:\\ExportToExcel.xls");
-                workbook.Close();
-                Marshal.ReleaseComObject(workbook);
-
-                application.Quit();
-                Marshal.FinalReleaseComObject(application);
-
-                ViewBag.Result = "下載成功";
+                worksheet.Cells[row, 1] = e.OrderID;
+                worksheet.Cells[row, 2] = e.ProductName;
+                worksheet.Cells[row, 3] = e.UnitPrice;
+                worksheet.Cells[row, 4] = e.Quantity;
+                worksheet.Cells[row, 5] = e.TotalPrice;
+                worksheet.Cells[row, 6] = e.Note;
+                row++;
             }
-            catch (Exception ex)
+
+            workbook.SaveAs("D:\\ExportToExcel.xls");
+            workbook.Close();
+            Marshal.ReleaseComObject(workbook);
+
+            application.Quit();
+            Marshal.FinalReleaseComObject(application);
+
+            return Json(new { success = true, message = "下載成功" }, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        public ActionResult IndexSignProgress()
+        {
+            return View();
+        }
+
+        public ActionResult LoadDataSignProgress()
+        {
+            var data = from AS in db.Approvals.AsEnumerable()
+                       join RM in db.RequisitionMains.AsEnumerable() on AS.OrderID equals RM.OrderID
+                       where RM.EmployeeID == EmployeeDetail.EmployeeID
+                       select new
+                       {
+                           AS.OrderID,
+                           AS.FirstSignerID,
+                           AS.FirstSignDate,
+                           AS.FirstSignStatus,
+                           AS.SecondSignerID,
+                           AS.SecondSignDate,
+                           AS.SecondSignStatus,
+                           AS.ThirdSignerID,
+                           AS.ThirdSignDate,
+                           AS.ThirdSignStatus,
+                           AS.FourthSignerID,
+                           AS.ForthSignDate,
+                           AS.FourthSignStatus
+                       };
+
+            var datas = data.ToList();
+
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult AddOrEditSignProgress(int id = 0)
+        {
+            if (id == 0)
             {
-                ViewBag.Result = ex.Message;
+                return View(new OrderDetail());
             }
-            return View("Success");
+            else
+            {
+                return View(db.OrderDetails.Where(x => x.OrderID == id).FirstOrDefault<OrderDetail>());
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddOrEditSignProgress(OrderDetail orderDetail)
+        {
+            return Json(JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
