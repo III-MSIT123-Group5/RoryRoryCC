@@ -16,16 +16,17 @@
         button, h2 {
             font-family: 'NotoSansCJKtc-Bold';
         }
-        
+
         th, td {
             font-family: 'NotoSansCJKtc-Light';
         }
     </style>
 
+
 </head>
 <body>
     <h2>意見調查</h2>
-    <br/>
+    <br />
     <a href="@Url.Action("Create","CommentMains")">新增</a>
     <p>
         <button class="btn btn-success" style="margin-bottom:10px" onclick="PopupForm('/CommentMains/AddOrEdit')"><i class="fa fa-plus" aria-hidden="true"></i> 新增調查</button>
@@ -44,58 +45,9 @@
             </thead>
         </table>
 
-
-
     </div>
-    @*<table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.CommentName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SendTime)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ActivitiesMain.ActivityName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CommentContent.CommentContent1)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Employee.EmployeeName)
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CommentName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SendTime)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ActivitiesMain.ActivityName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CommentContent.CommentContent1)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.CommentMainID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.CommentMainID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.CommentMainID })
-                    </td>
-                </tr>
-            }
-
-        </table>*@
-
-
+    @*@Scripts.Render("~/bundles/jquery")
+    @RenderSection("scriptsAdd", required: false)*@
 
     <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
@@ -120,7 +72,7 @@
 
                         { "targets": 0, "data": "CommentMainID", "width": "60px" },
                         { "targets": 1, "data": "CommentContent1", "width": "60px" },
-                        { "targets": 2, "data": "CommentName", "width": "150px" },
+                        { "targets": 2, "data": "CommentName", "width": "200px" },
                         { "targets": 3, "data": "EmployeeName", "width": "60px" },
                         { "targets": 4, "data": "SendTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "100px" },
                         {

@@ -48,15 +48,19 @@
           <Property Name="OrderID" Type="int" Nullable="false" />
           <Property Name="ApprovalProcedureID" Type="int" />
           <Property Name="FirstSignerID" Type="int" />
+          <Property Name="FirstSignerName" Type="nvarchar" MaxLength="10" />
           <Property Name="FirstSignStatus" Type="nvarchar" MaxLength="10" />
           <Property Name="FirstSignDate" Type="datetime" />
           <Property Name="SecondSignerID" Type="int" />
+          <Property Name="SecondSignerName" Type="nvarchar" MaxLength="10" />
           <Property Name="SecondSignStatus" Type="nvarchar" MaxLength="10" />
           <Property Name="SecondSignDate" Type="datetime" />
           <Property Name="ThirdSignerID" Type="int" />
+          <Property Name="ThirdSignerName" Type="nvarchar" MaxLength="10" />
           <Property Name="ThirdSignStatus" Type="nvarchar" MaxLength="10" />
           <Property Name="ThirdSignDate" Type="datetime" />
           <Property Name="FourthSignerID" Type="int" />
+          <Property Name="FourthSignerName" Type="nvarchar" MaxLength="10" />
           <Property Name="FourthSignStatus" Type="nvarchar" MaxLength="10" />
           <Property Name="ForthSignDate" Type="datetime" />
         </EntityType>
@@ -270,6 +274,7 @@
           <Property Name="DepartmentLeaderSignTime" Type="datetime" />
           <Property Name="SignState" Type="bit" Nullable="false" />
           <Property Name="Rejection" Type="bit" Nullable="false" />
+          <Property Name="StatusDescript" Type="nvarchar" MaxLength="12" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -685,7 +690,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CommentMain_CommentContent">
+        <Association Name="FK_CommentMain_CommentContent1">
           <End Role="CommentContent" Type="Self.CommentContent" Multiplicity="0..1" />
           <End Role="CommentMain" Type="Self.CommentMain" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1352,7 +1357,7 @@
             <End Role="ActivitiesMain" EntitySet="ActivitiesMain" />
             <End Role="CommentMain" EntitySet="CommentMain" />
           </AssociationSet>
-          <AssociationSet Name="FK_CommentMain_CommentContent" Association="Self.FK_CommentMain_CommentContent">
+          <AssociationSet Name="FK_CommentMain_CommentContent1" Association="Self.FK_CommentMain_CommentContent1">
             <End Role="CommentContent" EntitySet="CommentContent" />
             <End Role="CommentMain" EntitySet="CommentMain" />
           </AssociationSet>
@@ -1650,7 +1655,7 @@
             <End Role="CommentOption" EntitySet="CommentOptions" />
             <End Role="CommentContent" EntitySet="CommentContents" />
           </AssociationSet>
-          <AssociationSet Name="FK_CommentMain_CommentContent" Association="BusinessDataBaseModel.FK_CommentMain_CommentContent">
+          <AssociationSet Name="FK_CommentMain_CommentContent1" Association="BusinessDataBaseModel.FK_CommentMain_CommentContent1">
             <End Role="CommentContent" EntitySet="CommentContents" />
             <End Role="CommentMain" EntitySet="CommentMains" />
           </AssociationSet>
@@ -1851,15 +1856,19 @@
           <Property Name="OrderID" Type="Int32" Nullable="false" />
           <Property Name="ApprovalProcedureID" Type="Int32" />
           <Property Name="FirstSignerID" Type="Int32" />
+          <Property Name="FirstSignerName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="FirstSignStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="FirstSignDate" Type="DateTime" Precision="3" />
           <Property Name="SecondSignerID" Type="Int32" />
+          <Property Name="SecondSignerName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="SecondSignStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="SecondSignDate" Type="DateTime" Precision="3" />
           <Property Name="ThirdSignerID" Type="Int32" />
+          <Property Name="ThirdSignerName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ThirdSignStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ThirdSignDate" Type="DateTime" Precision="3" />
           <Property Name="FourthSignerID" Type="Int32" />
+          <Property Name="FourthSignerName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="FourthSignStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ForthSignDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ApprovalProcedure" Relationship="BusinessDataBaseModel.FK_Approval_ApprovalProcedure" FromRole="Approval" ToRole="ApprovalProcedure" />
@@ -1982,7 +1991,7 @@
           <Property Name="CommentContent1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CommentOptionID" Type="Int32" />
           <NavigationProperty Name="CommentOption" Relationship="BusinessDataBaseModel.FK_CommentContent_CommentOption" FromRole="CommentContent" ToRole="CommentOption" />
-          <NavigationProperty Name="CommentMains" Relationship="BusinessDataBaseModel.FK_CommentMain_CommentContent" FromRole="CommentContent" ToRole="CommentMain" />
+          <NavigationProperty Name="CommentMains" Relationship="BusinessDataBaseModel.FK_CommentMain_CommentContent1" FromRole="CommentContent" ToRole="CommentMain" />
           <NavigationProperty Name="CommentQuestions" Relationship="BusinessDataBaseModel.FK_CommentQuestion_CommentContent" FromRole="CommentContent" ToRole="CommentQuestion" />
         </EntityType>
         <EntityType Name="CommentMain">
@@ -1997,7 +2006,7 @@
           <Property Name="ActivityMainID" Type="Int32" />
           <NavigationProperty Name="ActivitiesMain" Relationship="BusinessDataBaseModel.FK_CommentMain_ActivitiesMain" FromRole="CommentMain" ToRole="ActivitiesMain" />
           <NavigationProperty Name="CommentChilds" Relationship="BusinessDataBaseModel.FK_CommentChild_CommentMain1" FromRole="CommentMain" ToRole="CommentChild" />
-          <NavigationProperty Name="CommentContent" Relationship="BusinessDataBaseModel.FK_CommentMain_CommentContent" FromRole="CommentMain" ToRole="CommentContent" />
+          <NavigationProperty Name="CommentContent" Relationship="BusinessDataBaseModel.FK_CommentMain_CommentContent1" FromRole="CommentMain" ToRole="CommentContent" />
           <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_CommentMain_Employee" FromRole="CommentMain" ToRole="Employee" />
         </EntityType>
         <EntityType Name="CommentOption">
@@ -2129,6 +2138,7 @@
           <Property Name="DepartmentLeaderSignTime" Type="DateTime" Precision="3" />
           <Property Name="SignState" Type="Boolean" Nullable="false" />
           <Property Name="Rejection" Type="Boolean" Nullable="false" />
+          <Property Name="StatusDescript" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Department" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_Department" FromRole="EmployeeApprovalTemp" ToRole="Department" />
           <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_DepartmentLeaderByEmployee" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
           <NavigationProperty Name="Employee1" Relationship="BusinessDataBaseModel.FK_EmployeeApprovalTemp_EditorByEmployee" FromRole="EmployeeApprovalTemp" ToRole="Employee" />
@@ -2609,7 +2619,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CommentMain_CommentContent">
+        <Association Name="FK_CommentMain_CommentContent1">
           <End Type="BusinessDataBaseModel.CommentContent" Role="CommentContent" Multiplicity="0..1" />
           <End Type="BusinessDataBaseModel.CommentMain" Role="CommentMain" Multiplicity="*" />
           <ReferentialConstraint>
@@ -3115,15 +3125,19 @@
               <MappingFragment StoreEntitySet="Approval">
                 <ScalarProperty Name="ForthSignDate" ColumnName="ForthSignDate" />
                 <ScalarProperty Name="FourthSignStatus" ColumnName="FourthSignStatus" />
+                <ScalarProperty Name="FourthSignerName" ColumnName="FourthSignerName" />
                 <ScalarProperty Name="FourthSignerID" ColumnName="FourthSignerID" />
                 <ScalarProperty Name="ThirdSignDate" ColumnName="ThirdSignDate" />
                 <ScalarProperty Name="ThirdSignStatus" ColumnName="ThirdSignStatus" />
+                <ScalarProperty Name="ThirdSignerName" ColumnName="ThirdSignerName" />
                 <ScalarProperty Name="ThirdSignerID" ColumnName="ThirdSignerID" />
                 <ScalarProperty Name="SecondSignDate" ColumnName="SecondSignDate" />
                 <ScalarProperty Name="SecondSignStatus" ColumnName="SecondSignStatus" />
+                <ScalarProperty Name="SecondSignerName" ColumnName="SecondSignerName" />
                 <ScalarProperty Name="SecondSignerID" ColumnName="SecondSignerID" />
                 <ScalarProperty Name="FirstSignDate" ColumnName="FirstSignDate" />
                 <ScalarProperty Name="FirstSignStatus" ColumnName="FirstSignStatus" />
+                <ScalarProperty Name="FirstSignerName" ColumnName="FirstSignerName" />
                 <ScalarProperty Name="FirstSignerID" ColumnName="FirstSignerID" />
                 <ScalarProperty Name="ApprovalProcedureID" ColumnName="ApprovalProcedureID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
@@ -3323,6 +3337,7 @@
           <EntitySetMapping Name="EmployeeApprovalTemps">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.EmployeeApprovalTemp">
               <MappingFragment StoreEntitySet="EmployeeApprovalTemp">
+                <ScalarProperty Name="StatusDescript" ColumnName="StatusDescript" />
                 <ScalarProperty Name="Rejection" ColumnName="Rejection" />
                 <ScalarProperty Name="SignState" ColumnName="SignState" />
                 <ScalarProperty Name="DepartmentLeaderSignTime" ColumnName="DepartmentLeaderSignTime" />

@@ -10,7 +10,6 @@
     label {
         font-family: 'NotoSansCJKtc-Bold';
     }
-
 </style>
 
 @using (Html.BeginForm("AddOrEdit", "CommentMains", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
@@ -37,27 +36,28 @@
                 </div>*@
 
     <div class="form-group">
-        @Html.LabelFor(model => model.CommentContentID, "活動名稱", htmlAttributes: new { @class = "control-label col-md-2 label" })
+        @Html.LabelFor(model => model.CommentContentID, "意見類型", htmlAttributes: new { @class = "control-label col-md-2 label" })
         <div class="col-md-10">
-            @Html.DropDownGroupList("CommentContent", commentContentItems, "請選擇活動", htmlAttributes: new { @class = "label" } )
+            @Html.DropDownGroupList("CommentContent", commentContentItems, "請選擇意見類型", htmlAttributes: new { @class = "label" })
 
         </div>
     </div>
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.CommentContentID, "CommentContentID", htmlAttributes: new { @class = "control-label col-md-2 label" })
-        <div class="col-md-10">
-            @Html.DropDownGroupList("CommentContent", commentContentItems, "請選擇活動")
 
-        </div>
-    </div>*@
     <div class="form-group">
-        @Html.LabelFor(model => model.CommentName, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.CommentName, "意見名稱", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.CommentName, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.CommentName, "", new { @class = "text-danger" })
         </div>
     </div>
 
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.CommentContentID, "CommentContentID", htmlAttributes: new { @class = "control-label col-md-2 label" })
+            <div class="col-md-10">
+                @Html.DropDownGroupList("CommentContent", commentContentItems, "請選擇活動")
+
+            </div>
+        </div>*@
 
     @*<div class="form-group">
             @Html.LabelFor(model => model.Content, new { @class = "control-label" })
@@ -66,6 +66,8 @@
             @Html.ValidationMessageFor(model => model.Content)
 
         </div>*@
+
+
 
 
     <div class="form-group" style="float:right">
@@ -79,3 +81,5 @@
     </div>
 
 }
+
+

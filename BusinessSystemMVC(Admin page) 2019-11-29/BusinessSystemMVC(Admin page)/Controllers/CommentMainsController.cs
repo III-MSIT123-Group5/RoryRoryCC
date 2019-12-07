@@ -103,8 +103,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         //}
 
 
+
         [HttpGet]
-        public ActionResult AddOrEdit(int id=0)
+        public ActionResult AddOrEdit(int id = 0)
         {
 
 
@@ -138,6 +139,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             ViewBag.CommentContentItems = items;
 
 
+
             if (id == 0)
             {
                 return View(new CommentMain());
@@ -158,47 +160,25 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddOrEdit(CommentMain c)
+        public ActionResult AddOrEdit(CommentMain c,FormCollection formCollection)
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
                 if (c.CommentMainID == 0)
                 {
-                    //db.BulletinBoards.Add(b);
-
-                    //var userid = User.Identity.GetUserId();
-                    //var account = db.AspNetUsers.Find(userid);
-
-                    //var empquery = from em in db.Employees
-                    //               where em.Account == account.UserName
-                    //               select new
-                    //               {
-                    //                   em.employeeID,
-                    //                   em.GroupID,
-                    //                   em.DepartmentID
-                    //               };
-
-
-                    //int? DID = 0;
-                    //int? GID = 0;
-
-                    //foreach (var e in empquery)
-                    //{
-                    //    EmpID = e.employeeID;
-                    //    DID = e.DepartmentID;
-                    //    GID = e.GroupID;
-                    //}
-
 
                     int EmpID = EmployeeDetail.EmployeeID;
 
+                    int ccID = 102;
+
+                    ccID = Convert.ToInt32(formCollection["CommentContent"]);
 
                     db.CommentMains.Add(new CommentMain()
                     {
                         CommentName = c.CommentName,
                         SendTime = DateTime.Now,
-                        EmployeeID = EmpID,                       
-                        CommentContentID = c.CommentContentID,
+                        EmployeeID = EmpID,                        
+                        CommentContentID = ccID, 
                         CommentMainID = c.CommentMainID,
                     });
                     db.SaveChanges();
