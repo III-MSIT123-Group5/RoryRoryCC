@@ -32,14 +32,23 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 EmployeeDetail.BirthDay = (DateTime)a.Birth;
                 EmployeeDetail.HireDay = (DateTime)a.HireDate;
                 EmployeeDetail.OfficeName = a.Office.office_name;
+                EmployeeDetail.OfficeID = (int)a.OfficeID;
                 EmployeeDetail.DepartmentName = a.Department.name;
+                EmployeeDetail.DepartmentID = (int)a.DepartmentID;
                 EmployeeDetail.ManagerName = a.Employee2.EmployeeName;
+                EmployeeDetail.ManagerID = (int)a.ManagerID;
                 EmployeeDetail.Employed = (bool)a.Employed;
                 EmployeeDetail.PhotoAdress = a.Photo;
                 EmployeeDetail.GroupName = a.Group.GroupName;
+                EmployeeDetail.GroupID = (int)a.GroupID;
                 EmployeeDetail.PositionName = a.Position.position1;
+                EmployeeDetail.PositionID = (int)a.PositionID;
             }
+            return View();
+        }
 
+        public ActionResult SignOffSystemView()
+        {
             return View();
         }
 

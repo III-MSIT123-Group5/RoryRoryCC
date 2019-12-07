@@ -22,33 +22,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         // GET: OrderDetails
         [Authorize]
-        public ActionResult Index(string searchProductName)
+        public ActionResult Index()
         {
-            //var userid = User.Identity.GetUserId();
-            //var account = db.AspNetUsers.Find(userid);
-
-            //var empquery = from EM in db.Employees
-            //               where EM.Account == account.UserName
-            //               select new { EM.employeeID };
-
-            //foreach (var e in empquery)
-            //{
-            //    EmpID = e.employeeID;
-            //}
-
-            //var report = from RM in this.db.RequisitionMains.AsEnumerable()
-            //             join OD in this.db.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
-            //             where RM.EmployeeID == EmpID
-            //             select OD;
-            //if (!String.IsNullOrEmpty(searchProductName))
-            //{
-            //    report = report.Where(s => s.ProductName.Contains(searchProductName));
-            //}
-            //else
-            //{
-            //    return View(report.ToList());
-            //}
-            //return View(report.ToList());
             return View();
         }
 
@@ -57,6 +32,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             var report = from RM in this.db.RequisitionMains.AsEnumerable()
                          join OD in this.db.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
                          where RM.EmployeeID == EmployeeDetail.EmployeeID
+                         orderby RM.RequisitionDate descending
                          select new
                          {
                              RM.EmployeeID,
@@ -66,7 +42,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                              OD.Quantity,
                              OD.TotalPrice,
                              OD.Note,
-                             OD.OrderDetailID
+                             OD.OrderDetailID,
+                             OD.OrderID
                          };
 
             var datas = report.ToList();
@@ -109,18 +86,54 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 {
                     EmpID = e.employeeID;
                     Signer1ID = e.ManagerID;
+                    
                 }
 
                 //找登入員工的第二層上司ID(部長)
                 var empquery2 = from EM2 in db.Employees
                                 where EM2.employeeID == Signer1ID
-                                select new { EM2.ManagerID };
+                                select new { EM2.EmployeeName, EM2.ManagerID };
 
                 int? Signer2ID = 0;
+                string Signer1Name="";
 
                 foreach (var e in empquery2)
                 {
+                    Signer1Name = e.EmployeeName;
                     Signer2ID = e.ManagerID;
+                }
+
+                var empquery3 = from EM3 in db.Employees
+                                where EM3.employeeID == Signer2ID
+                                select new { EM3.EmployeeName };
+
+                string Signer2Name="";
+
+                foreach (var e in empquery3)
+                {
+                    Signer2Name = e.EmployeeName;
+                }
+
+                var GM = from EGM in db.Employees
+                         where EGM.employeeID == 1004
+                         select new { EGM.EmployeeName };
+
+                string Signer3Name = "";
+
+                foreach (var e in GM)
+                {
+                    Signer3Name = e.EmployeeName;
+                }
+
+                var GA = from EGA in db.Employees
+                         where EGA.employeeID == 1008
+                         select new { EGA.EmployeeName };
+
+                string Signer4Name = "";
+
+                foreach (var e in GA)
+                {
+                    Signer4Name = e.EmployeeName;
                 }
 
                 decimal TemporaryUnitPrice = orderDetail.UnitPrice;
@@ -145,12 +158,16 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                             {
                                 ApprovalProcedureID = 5,
                                 FirstSignerID = Signer1ID,
+                                FirstSignerName=Signer1Name,
                                 FirstSignStatus = "未審核",
                                 SecondSignerID = Signer2ID,
+                                SecondSignerName=Signer2Name,
                                 SecondSignStatus = "未審核",
                                 ThirdSignerID = null,
+                                ThirdSignerName="-----",
                                 ThirdSignStatus = "免審核",
                                 FourthSignerID = 1008,
+                                FourthSignerName=Signer4Name,
                                 FourthSignStatus = "未審核"
                             })
                         })
@@ -175,12 +192,16 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                             {
                                 ApprovalProcedureID = 6,
                                 FirstSignerID = Signer1ID,
+                                FirstSignerName = Signer1Name,
                                 FirstSignStatus = "未審核",
                                 SecondSignerID = Signer2ID,
+                                SecondSignerName = Signer2Name,
                                 SecondSignStatus = "未審核",
                                 ThirdSignerID = 1004,
+                                ThirdSignerName=Signer3Name,
                                 ThirdSignStatus = "未審核",
                                 FourthSignerID = 1008,
+                                FourthSignerName = Signer4Name,
                                 FourthSignStatus = "未審核"
                             })
                         })
@@ -188,6 +209,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 }
 
                 db.SaveChanges();
+                
                 return Json(new { success = true, message = "新增成功" }, JsonRequestBehavior.AllowGet);
                 }
             else
@@ -230,229 +252,313 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                              OD.Note
                          };
 
-            try
+            Application application = new Application();
+            Workbook workbook = application.Workbooks.Add(Missing.Value);
+            Worksheet worksheet = workbook.ActiveSheet;
+            worksheet.Cells[1, 1] = "OrderID";
+            worksheet.Cells[1, 2] = "ProductName";
+            worksheet.Cells[1, 3] = "UnitPrice";
+            worksheet.Cells[1, 4] = "Quantity";
+            worksheet.Cells[1, 5] = "TotalPrice";
+            worksheet.Cells[1, 6] = "Note";
+
+            int row = 2;
+            foreach (var e in report)
             {
-                Application application = new Application();
-                Workbook workbook = application.Workbooks.Add(Missing.Value);
-                Worksheet worksheet = workbook.ActiveSheet;
-                worksheet.Cells[1, 1] = "OrderID";
-                worksheet.Cells[1, 2] = "ProductName";
-                worksheet.Cells[1, 3] = "UnitPrice";
-                worksheet.Cells[1, 4] = "Quantity";
-                worksheet.Cells[1, 5] = "TotalPrice";
-                worksheet.Cells[1, 6] = "Note";
-
-                int row = 2;
-                foreach (var e in report)
-                {
-                    worksheet.Cells[row, 1] = e.OrderID;
-                    worksheet.Cells[row, 2] = e.ProductName;
-                    worksheet.Cells[row, 3] = e.UnitPrice;
-                    worksheet.Cells[row, 4] = e.Quantity;
-                    worksheet.Cells[row, 5] = e.TotalPrice;
-                    worksheet.Cells[row, 6] = e.Note;
-                    row++;
-                }
-
-                workbook.SaveAs("D:\\ExportToExcel.xls");
-                workbook.Close();
-                Marshal.ReleaseComObject(workbook);
-
-                application.Quit();
-                Marshal.FinalReleaseComObject(application);
-
-                ViewBag.Result = "Done";
+                worksheet.Cells[row, 1] = e.OrderID;
+                worksheet.Cells[row, 2] = e.ProductName;
+                worksheet.Cells[row, 3] = e.UnitPrice;
+                worksheet.Cells[row, 4] = e.Quantity;
+                worksheet.Cells[row, 5] = e.TotalPrice;
+                worksheet.Cells[row, 6] = e.Note;
+                row++;
             }
-            catch (Exception ex)
-            {
-                ViewBag.Result = ex.Message;
-            }
-            return View("Success");
+
+            workbook.SaveAs("D:\\ExportToExcel.xls");
+            workbook.Close();
+            Marshal.ReleaseComObject(workbook);
+
+            application.Quit();
+            Marshal.FinalReleaseComObject(application);
+
+            return Json(new { success = true, message = "下載成功" }, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: OrderDetails/Details/5
-        [Authorize]
-        public ActionResult Details(int? id)
+
+
+        public ActionResult IndexSignProgress()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            OrderDetail orderDetail = db.OrderDetails.Find(id);
-            if (orderDetail == null)
-            {
-                return HttpNotFound();
-            }
-            return View(orderDetail);
-        }
-
-        // GET: OrderDetails/Create
-        [Authorize]
-        public ActionResult Create()
-        {
-
-
-            ViewBag.OrderID = new SelectList(db.RequisitionMains, "OrderID", "OrderID");
             return View();
         }
 
-        // POST: OrderDetails/Create
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
+        public ActionResult LoadDataSignProgress()
+        {
+            var data = from AS in db.Approvals.AsEnumerable()
+                       join RM in db.RequisitionMains.AsEnumerable() on AS.OrderID equals RM.OrderID
+                       where RM.EmployeeID == EmployeeDetail.EmployeeID
+                       select new
+                       {
+                           AS.OrderID,
+                           AS.FirstSignerID,
+                           AS.FirstSignDate,
+                           AS.FirstSignStatus,
+                           AS.SecondSignerID,
+                           AS.SecondSignDate,
+                           AS.SecondSignStatus,
+                           AS.ThirdSignerID,
+                           AS.ThirdSignDate,
+                           AS.ThirdSignStatus,
+                           AS.FourthSignerID,
+                           AS.ForthSignDate,
+                           AS.FourthSignStatus
+                       };
+
+            var datas = data.ToList();
+
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult AddOrEditSignProgress(int id = 0)
+        {
+            if (id == 0)
+            {
+                return View(new OrderDetail());
+            }
+            else
+            {
+                return View(db.OrderDetails.Where(x => x.OrderID == id).FirstOrDefault<OrderDetail>());
+            }
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderDetailID,OrderID,Note,ProductName,UnitPrice,Quantity,TotalPrice")] OrderDetail orderDetail)
+        public ActionResult AddOrEditSignProgress(OrderDetail orderDetail)
         {
-            var userid = User.Identity.GetUserId();
-            var account = db.AspNetUsers.Find(userid);
-
-            //找登入員工的第一層上司ID(組長)
-            var empquery1 = from EM1 in db.Employees
-                            where EM1.Account == account.UserName
-                            select new { EM1.employeeID, EM1.ManagerID };
-
-            int? Signer1ID = 0;
-
-            foreach (var e in empquery1)
-            {
-                EmpID = e.employeeID;
-                Signer1ID = e.ManagerID;
-            }
-
-            //找登入員工的第二層上司ID(部長)
-            var empquery2 = from EM2 in db.Employees
-                            where EM2.employeeID == Signer1ID
-                            select new { EM2.ManagerID };
-
-            int? Signer2ID = 0;
-
-            foreach (var e in empquery2)
-            {
-                Signer2ID = e.ManagerID;
-            }
-
-            decimal TemporaryUnitPrice = orderDetail.UnitPrice;
-            int TemporaryQuantity = orderDetail.Quantity;
-            decimal TemporaryTotalPrice = TemporaryUnitPrice * TemporaryQuantity;
-
-            if (ModelState.IsValid)
-            {
-                if (TemporaryTotalPrice < 10000)
-                {
-                    db.OrderDetails.Add(new Models.OrderDetail
-                    {
-                        ProductName = orderDetail.ProductName,
-                        UnitPrice = orderDetail.UnitPrice,
-                        Quantity = orderDetail.Quantity,
-                        Note = orderDetail.Note,
-                        RequisitionMain = (new Models.RequisitionMain
-                        {
-                            ReportID = 2,
-                            EmployeeID = EmpID,
-                            RequisitionDate = DateTime.Now,
-                            Price = TemporaryTotalPrice,
-                            Approval = (new Models.Approval
-                            {
-                                ApprovalProcedureID = 5,
-                                FirstSignerID = Signer1ID,
-                                FirstSignStatus = "未審核",
-                                SecondSignerID = Signer2ID,
-                                SecondSignStatus = "未審核",
-                                ThirdSignerID = null,
-                                ThirdSignStatus = "免審核",
-                                FourthSignerID = 1008,
-                                FourthSignStatus = "未審核"
-                            })
-                        })
-                    });
-                }
-
-                else if (TemporaryTotalPrice >= 10000)
-                {
-                    db.OrderDetails.Add(new Models.OrderDetail
-                    {
-                        ProductName = orderDetail.ProductName,
-                        UnitPrice = orderDetail.UnitPrice,
-                        Quantity = orderDetail.Quantity,
-                        Note = orderDetail.Note,
-                        RequisitionMain = (new Models.RequisitionMain
-                        {
-                            ReportID = 2,
-                            EmployeeID = EmpID,
-                            RequisitionDate = DateTime.Now,
-                            Price = TemporaryTotalPrice,
-                            Approval = (new Models.Approval
-                            {
-                                ApprovalProcedureID = 6,
-                                FirstSignerID = Signer1ID,
-                                FirstSignStatus = "未審核",
-                                SecondSignerID = Signer2ID,
-                                SecondSignStatus = "未審核",
-                                ThirdSignerID = 1004,
-                                ThirdSignStatus = "未審核",
-                                FourthSignerID = 1008,
-                                FourthSignStatus = "未審核"
-                            })
-                        })
-                    });
-
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.OrderID = new SelectList(db.RequisitionMains, "OrderID", "OrderID", orderDetail.OrderID);
-            return View(orderDetail);
+            return Json(JsonRequestBehavior.AllowGet);
         }
 
-        // GET: OrderDetails/Edit/5
-        [Authorize]
-        public ActionResult Edit(int? id)
+        protected override void Dispose(bool disposing)
         {
-            if (id == null)
+            if (disposing)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                db.Dispose();
             }
-            OrderDetail orderDetail = db.OrderDetails.Find(id);
-            if (orderDetail == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.OrderID = new SelectList(db.RequisitionMains, "OrderID", "OrderID", orderDetail.OrderID);
-            return View(orderDetail);
+            base.Dispose(disposing);
         }
 
-        // POST: OrderDetails/Edit/5
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderDetailID,OrderID,Note,ProductName,UnitPrice,Quantity,TotalPrice")] OrderDetail orderDetail)
-        {
-            var userid = User.Identity.GetUserId();
-            var account = db.AspNetUsers.Find(userid);
+        //--------------------------------------------------------------------------------------------------------
 
-            var empquery = from EM in db.Employees
-                           where EM.Account == account.UserName
-                           select new { EM.employeeID };
+        //public ActionResult Index(string searchProductName)
+        //{
+        //    var userid = User.Identity.GetUserId();
+        //    var account = db.AspNetUsers.Find(userid);
 
-            foreach (var e in empquery)
-            {
-                EmpID = e.employeeID;
-            }
+        //    var empquery = from EM in db.Employees
+        //                   where EM.Account == account.UserName
+        //                   select new { EM.employeeID };
 
-            if (ModelState.IsValid)
-            {
-                db.Entry(orderDetail).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.OrderID = new SelectList(db.RequisitionMains, "OrderID", "OrderID", orderDetail.OrderID);
-            return View(orderDetail);
-        }
+        //    foreach (var e in empquery)
+        //    {
+        //        EmpID = e.employeeID;
+        //    }
+
+        //    var report = from RM in this.db.RequisitionMains.AsEnumerable()
+        //                 join OD in this.db.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
+        //                 where RM.EmployeeID == EmpID
+        //                 select OD;
+        //    if (!String.IsNullOrEmpty(searchProductName))
+        //    {
+        //        report = report.Where(s => s.ProductName.Contains(searchProductName));
+        //    }
+        //    else
+        //    {
+        //        return View(report.ToList());
+        //    }
+        //    return View(report.ToList());
+        //}
+
+        //// GET: OrderDetails/Details/5
+        //[Authorize]
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    OrderDetail orderDetail = db.OrderDetails.Find(id);
+        //    if (orderDetail == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(orderDetail);
+        //}
+
+        //// GET: OrderDetails/Create
+        //[Authorize]
+        //public ActionResult Create()
+        //{
+        //    ViewBag.OrderID = new SelectList(db.RequisitionMains, "OrderID", "OrderID");
+        //    return View();
+        //}
+
+        //// POST: OrderDetails/Create
+        //// 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
+        //// 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "OrderDetailID,OrderID,Note,ProductName,UnitPrice,Quantity,TotalPrice")] OrderDetail orderDetail)
+        //{
+        //    var userid = User.Identity.GetUserId();
+        //    var account = db.AspNetUsers.Find(userid);
+
+        //    //找登入員工的第一層上司ID(組長)
+        //    var empquery1 = from EM1 in db.Employees
+        //                    where EM1.Account == account.UserName
+        //                    select new { EM1.employeeID, EM1.ManagerID };
+
+        //    int? Signer1ID = 0;
+
+        //    foreach (var e in empquery1)
+        //    {
+        //        EmpID = e.employeeID;
+        //        Signer1ID = e.ManagerID;
+        //    }
+
+        //    //找登入員工的第二層上司ID(部長)
+        //    var empquery2 = from EM2 in db.Employees
+        //                    where EM2.employeeID == Signer1ID
+        //                    select new { EM2.ManagerID };
+
+        //    int? Signer2ID = 0;
+
+        //    foreach (var e in empquery2)
+        //    {
+        //        Signer2ID = e.ManagerID;
+        //    }
+
+        //    decimal TemporaryUnitPrice = orderDetail.UnitPrice;
+        //    int TemporaryQuantity = orderDetail.Quantity;
+        //    decimal TemporaryTotalPrice = TemporaryUnitPrice * TemporaryQuantity;
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        if (TemporaryTotalPrice < 10000)
+        //        {
+        //            db.OrderDetails.Add(new Models.OrderDetail
+        //            {
+        //                ProductName = orderDetail.ProductName,
+        //                UnitPrice = orderDetail.UnitPrice,
+        //                Quantity = orderDetail.Quantity,
+        //                Note = orderDetail.Note,
+        //                RequisitionMain = (new Models.RequisitionMain
+        //                {
+        //                    ReportID = 2,
+        //                    EmployeeID = EmpID,
+        //                    RequisitionDate = DateTime.Now,
+        //                    Price = TemporaryTotalPrice,
+        //                    Approval = (new Models.Approval
+        //                    {
+        //                        ApprovalProcedureID = 5,
+        //                        FirstSignerID = Signer1ID,
+        //                        FirstSignStatus = "未審核",
+        //                        SecondSignerID = Signer2ID,
+        //                        SecondSignStatus = "未審核",
+        //                        ThirdSignerID = null,
+        //                        ThirdSignStatus = "免審核",
+        //                        FourthSignerID = 1008,
+        //                        FourthSignStatus = "未審核"
+        //                    })
+        //                })
+        //            });
+        //        }
+
+        //        else if (TemporaryTotalPrice >= 10000)
+        //        {
+        //            db.OrderDetails.Add(new Models.OrderDetail
+        //            {
+        //                ProductName = orderDetail.ProductName,
+        //                UnitPrice = orderDetail.UnitPrice,
+        //                Quantity = orderDetail.Quantity,
+        //                Note = orderDetail.Note,
+        //                RequisitionMain = (new Models.RequisitionMain
+        //                {
+        //                    ReportID = 2,
+        //                    EmployeeID = EmpID,
+        //                    RequisitionDate = DateTime.Now,
+        //                    Price = TemporaryTotalPrice,
+        //                    Approval = (new Models.Approval
+        //                    {
+        //                        ApprovalProcedureID = 6,
+        //                        FirstSignerID = Signer1ID,
+        //                        FirstSignStatus = "未審核",
+        //                        SecondSignerID = Signer2ID,
+        //                        SecondSignStatus = "未審核",
+        //                        ThirdSignerID = 1004,
+        //                        ThirdSignStatus = "未審核",
+        //                        FourthSignerID = 1008,
+        //                        FourthSignStatus = "未審核"
+        //                    })
+        //                })
+        //            });
+
+        //            db.SaveChanges();
+        //            return RedirectToAction("Index");
+        //        }
+
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    ViewBag.OrderID = new SelectList(db.RequisitionMains, "OrderID", "OrderID", orderDetail.OrderID);
+        //    return View(orderDetail);
+        //}
+
+        //// GET: OrderDetails/Edit/5
+        //[Authorize]
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    OrderDetail orderDetail = db.OrderDetails.Find(id);
+        //    if (orderDetail == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    ViewBag.OrderID = new SelectList(db.RequisitionMains, "OrderID", "OrderID", orderDetail.OrderID);
+        //    return View(orderDetail);
+        //}
+
+        //// POST: OrderDetails/Edit/5
+        //// 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
+        //// 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "OrderDetailID,OrderID,Note,ProductName,UnitPrice,Quantity,TotalPrice")] OrderDetail orderDetail)
+        //{
+        //    var userid = User.Identity.GetUserId();
+        //    var account = db.AspNetUsers.Find(userid);
+
+        //    var empquery = from EM in db.Employees
+        //                   where EM.Account == account.UserName
+        //                   select new { EM.employeeID };
+
+        //    foreach (var e in empquery)
+        //    {
+        //        EmpID = e.employeeID;
+        //    }
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(orderDetail).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewBag.OrderID = new SelectList(db.RequisitionMains, "OrderID", "OrderID", orderDetail.OrderID);
+        //    return View(orderDetail);
+        //}
 
         //// GET: OrderDetails/Delete/5
         //[Authorize]
@@ -484,14 +590,5 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         //    db.SaveChanges();
         //    return RedirectToAction("Index");
         //}
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

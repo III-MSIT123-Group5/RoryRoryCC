@@ -209,7 +209,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Controllers\RecipientsController.cs" />
-    <Compile Include="Controllers\RequisitionMainsController.cs" />
     <Compile Include="Controllers\Test.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -574,11 +573,6 @@
     <Content Include="Views\BulletinBoards\Details.cshtml" />
     <Content Include="Views\BulletinBoards\Edit.cshtml" />
     <Content Include="Views\BulletinBoards\Index.cshtml" />
-    <Content Include="Views\RequisitionMains\Create.cshtml" />
-    <Content Include="Views\RequisitionMains\Delete.cshtml" />
-    <Content Include="Views\RequisitionMains\Details.cshtml" />
-    <Content Include="Views\RequisitionMains\Edit.cshtml" />
-    <Content Include="Views\RequisitionMains\Index.cshtml" />
     <Content Include="Views\BulletinBoards\AddOrEdit.cshtml" />
     <Content Include="Views\OrderDetails\Create.cshtml" />
     <Content Include="Views\OrderDetails\Delete.cshtml" />
@@ -589,11 +583,6 @@
     <Content Include="Views\Shared\_GetPosiIDbyDeptIDPartial.cshtml" />
     <Content Include="Views\Shared\_HRSystemPartial.cshtml" />
     <Content Include="Views\Shared\_ITSystemPartial.cshtml" />
-    <Content Include="Views\Approvals\Create.cshtml" />
-    <Content Include="Views\Approvals\Delete.cshtml" />
-    <Content Include="Views\Approvals\Details.cshtml" />
-    <Content Include="Views\Approvals\Edit.cshtml" />
-    <Content Include="Views\Approvals\Index.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Create.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Delete.cshtml" />
     <Content Include="Views\CompanyVehicleBorrow\Details.cshtml" />
@@ -634,6 +623,21 @@
     <Content Include="Views\EmployeeApprovalTemps\Edit.cshtml" />
     <Content Include="Views\EmployeeApprovalTemps\Index.cshtml" />
     <Content Include="Views\Shared\_RequisitionSignSystemPartial.cshtml" />
+    <Content Include="Views\EmployeeApprovalTemps\LoadDataDetail.cshtml" />
+    <Content Include="Views\Shared\_RequisitionSystemPartial.cshtml" />
+    <Content Include="Views\Shared\_HRSignOffSystemPartial.cshtml" />
+    <Content Include="Views\Home\SignOffSystemView.cshtml" />
+    <Content Include="Views\OrderDetails\IndexSignProgress.cshtml" />
+    <Content Include="Views\OrderDetails\AddOrEditSignProgress.cshtml" />
+    <Content Include="Views\Shared\_RequisitionSignProgressPartial.cshtml" />
+    <Content Include="Views\Approvals\Create.cshtml" />
+    <Content Include="Views\Approvals\Delete.cshtml" />
+    <Content Include="Views\Approvals\Details.cshtml" />
+    <Content Include="Views\Approvals\Edit.cshtml" />
+    <Content Include="Views\Approvals\Index.cshtml" />
+    <Content Include="Views\Shared\_HRSignOffSystemPartial.cshtml" />
+    <Content Include="Views\Home\SignOffSystemView.cshtml" />
+    <Content Include="Views\EmployeeApprovalTemps\RejectLoadDataDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

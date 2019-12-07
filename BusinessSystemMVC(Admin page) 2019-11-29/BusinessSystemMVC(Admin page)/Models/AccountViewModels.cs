@@ -14,12 +14,17 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public static DateTime BirthDay { get; set; }
         public static DateTime HireDay { get; set; }
         public static string OfficeName { get; set; }
+        public static int  OfficeID { get; set; }
         public static string DepartmentName { get; set; }
+        public static int DepartmentID { get; set; }
         public static string ManagerName { get; set; }
+        public static int ManagerID { get; set; }
         public static bool Employed { get; set; }
         public static string PhotoAdress { get; set; }
         public static string GroupName { get; set; }
+        public static int GroupID { get; set; }
         public static string PositionName { get; set; }
+        public static int PositionID { get; set; }
     }
 
 
