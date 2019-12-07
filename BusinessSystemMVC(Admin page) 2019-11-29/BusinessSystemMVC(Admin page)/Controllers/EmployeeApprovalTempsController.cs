@@ -26,12 +26,12 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         public ActionResult LoadData()
         {
             // ((p.Employee1.ManagerID == EmployeeDetail.EmployeeID && p.GroupLeaderID ==null )|| (p.Employee2.ManagerID == EmployeeDetail.EmployeeID && p.DepartmentLeaderID==null))
-            var q = db.EmployeeApprovalTemps.Where(p => p.SignState == false).Select(p => new { p.EmployeeName, p.Gender, p.Account, p.Department.name, p.Group.GroupName, p.Position.position1, p.EditorTime, p.ID ,p.GroupLeaderID ,p.DepartmentLeaderID });
-            if(EmployeeDetail.PositionID == 3 && EmployeeDetail.GroupID == 2)
+            var q = db.EmployeeApprovalTemps.Where(p => p.SignState == false).Select(p => new { p.EmployeeName, p.Gender, p.Account, p.Department.name, p.Group.GroupName, p.Position.position1, p.EditorTime, p.ID, p.GroupLeaderID, p.DepartmentLeaderID });
+            if (EmployeeDetail.PositionID == 3 && EmployeeDetail.GroupID == 2)
             {
-                q = q.Where(p => p.GroupLeaderID == null && p.DepartmentLeaderID == null).Select(p=>p);
+                q = q.Where(p => p.GroupLeaderID == null && p.DepartmentLeaderID == null).Select(p => p);
             }
-            if(EmployeeDetail.PositionID==2 && EmployeeDetail.DepartmentID == 3)
+            if (EmployeeDetail.PositionID == 2 && EmployeeDetail.DepartmentID == 3)
             {
                 q = q.Where(p => p.GroupLeaderID != null && p.DepartmentLeaderID == null).Select(p => p);
             }
@@ -44,7 +44,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         [Authorize(Roles = "GroupLeader,DepartmentLeader,HRGroup")]
         public ActionResult LoadDataDetail(int ID)
         {
-            return View(db.EmployeeApprovalTemps.Where(p=>p.ID == ID).FirstOrDefault<EmployeeApprovalTemp>());
+            return View(db.EmployeeApprovalTemps.Where(p => p.ID == ID).FirstOrDefault());
         }
 
         [HttpPost]
@@ -88,7 +88,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     ManagerID = q.ManagerID,
                     Employed = true,
                     GroupID = q.GroupID,
-                    Photo = q.Photo                    
+                    Photo = q.Photo
                 };
                 db.Employees.Add(addFormalEmployee);
                 db.SaveChanges();
@@ -97,7 +97,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
         [HttpPost]
-        public ActionResult  RejectRegister(int ID) {
+        public ActionResult RejectRegister(int ID)
+        {
             var q = db.EmployeeApprovalTemps.Find(ID);
             //for組長
             if (q.GroupLeaderID == null && q.SignState == false && q.Rejection == false && EmployeeDetail.GroupID == 2 && EmployeeDetail.PositionID == 3)
@@ -121,21 +122,39 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return Json(new { success = true, message = "駁回簽核成功" }, JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpGet]
-        //[Authorize(Roles = "HRGroup")]
-        //public ActionResult RegistingLoadData()
-        //{
-            
-        //    var q = db.EmployeeApprovalTemps.Where(p => p.Editor == EmployeeDetail.EmployeeID && p.SignState == false && p.Rejection == false);
-           
+        //簽核進度
+        [HttpGet]
+        [Authorize(Roles = "HRGroup")]
+        public ActionResult RegistingLoadData()
+        {
+            var q = db.EmployeeApprovalTemps.Where(p => p.Editor == EmployeeDetail.EmployeeID && p.Rejection == false).Select(p => new { p.EmployeeName, p.Gender, p.Account, p.Department.name, p.Group.GroupName, p.Position.position1, p.EditorTime, p.StatusDescript });
+            var datas = q.ToList();
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+        }
 
-           
-           
-            
+        //Reject項目
+        [HttpGet]
+        [Authorize(Roles = "HRGroup")]
+        public ActionResult RejectLoadData()
+        {
+            var q = db.EmployeeApprovalTemps.Where(p => p.Editor == EmployeeDetail.EmployeeID && p.Rejection == true).Select(p => new { p.EmployeeName, p.Gender, p.Account, p.Department.name, p.Group.GroupName, p.Position.position1, p.EditorTime, p.StatusDescript, p.ID });
+            var datas = q.ToList();
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+        }
 
-
-        //    return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
-        //}
+        //Reject項目Detail
+        [HttpGet]
+        [Authorize(Roles = "HRGroup")]
+        public ActionResult RejectLoadDataDetail(int ID)
+        {
+            var q = db.EmployeeApprovalTemps.Find(ID);
+            if (q.DepartmentLeaderID == null && q.GroupLeaderID != null)
+            {
+                q.DepartmentLeaderID = q.GroupLeaderID;
+                q.DepartmentLeaderSignTime = q.GroupLeaderSignTime;
+            }
+            return View(q);
+        }
 
         // GET: EmployeeApprovalTemps/Details/5
         public ActionResult Details(int? id)

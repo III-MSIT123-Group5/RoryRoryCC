@@ -1,7 +1,4 @@
-﻿@{
-    ViewBag.Title = "SignOffSystemView";
-}
-@section Styles{
+﻿@section Styles{
     <style>
         button {
             font-family: 'NotoSansCJKtc-Bold';
@@ -14,7 +11,7 @@
     <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 }
-<h2>SignOffSystemView</h2>
+<h2>簽核進度查詢</h2>
 
 @Html.Partial("_HRSignOffSystemPartial")
 
@@ -32,25 +29,21 @@
 
         //註冊進度
         $(document).ready(function () {
-            dataTable = $('#NewEmpStable').DataTable({
+            dataTable = $('#NewEmpSateTable').DataTable({
                 "ajax": {
-                    url: '@Url.Action("LoadData", "EmployeeApprovalTemps")',
+                    url: '@Url.Action("RegistingLoadData", "EmployeeApprovalTemps")',
                     method: 'GET',
                     dataType: 'json'
                 },
                 "columnDefs": [
-
-                    {
-                        "targets": 0, "data": "EmployeeName", "width": "60px" ,
-                        "orderable": false,
-                        "searchable": false, },
+                    { "targets": 0, "data": "EmployeeName", "width": "60px" },
                     { "targets": 1, "data": "Gender", "width": "60px" },
                     { "targets": 2, "data": "Account", "width": "60px" },
                     { "targets": 3, "data": "name", "width": "60px"  },    /*department*/
                     { "targets": 4, "data": "GroupName", "width": "60px" },
                     { "targets": 5, "data": "position1", "width": "60px"  },
                     { "targets": 6, "data": "EditorTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
-                    { "targets": 7, "data": "ID", "width": "150px"     }
+                    { "targets": 7, "data": "StatusDescript", "width": "150px"     }
                 ],
                 "language": {
                     "emptyTable": "無待簽核事項。"
@@ -58,8 +51,38 @@
             });
         });
 
-        //詳細資料
-        function PopupDetail(Url) {
+        //註冊駁回
+        $(document).ready(function () {
+            dataTable = $('#RejectEmpStable').DataTable({
+                "ajax": {
+                    url: '@Url.Action("RejectLoadData", "EmployeeApprovalTemps")',
+                    method: 'GET',
+                    dataType: 'json'
+                },
+                "columnDefs": [
+                    { "targets": 0, "data": "EmployeeName", "width": "60px" },
+                    { "targets": 1, "data": "Gender", "width": "60px" },
+                    { "targets": 2, "data": "Account", "width": "60px" },
+                    { "targets": 3, "data": "name", "width": "60px"  },    /*department*/
+                    { "targets": 4, "data": "GroupName", "width": "60px" },
+                    { "targets": 5, "data": "position1", "width": "60px"  },
+                    { "targets": 6, "data": "EditorTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
+                    { "targets": 7, "data": "StatusDescript", "width": "150px" },
+                    { "targets": 8, "data": "ID","render": function (data) {
+                        return `<a class='btn btn-warning btn-sm' onclick=PopupRejectDetail("@Url.Action("RejectLoadDataDetail", "EmployeeApprovalTemps")/${data}")><i class="fa fa-align-left"></i> 詳細資料</a>`
+                        },
+                        "orderable": false,
+                        "searchable": false,
+                        "width": "50px" }
+                ],
+                "language": {
+                    "emptyTable": "無待簽核事項。"
+                }
+            });
+        });
+
+        //Reject詳細資料
+        function PopupRejectDetail(Url) {
             var formDiv = $('<div/>');
             $.get(Url)
                 .done(function (response) {
@@ -75,76 +98,6 @@
                         }
                     });
                 });
-        }
-        //核准
-        function AcceptSign(Url) {
-            if (confirm('確定簽核此筆資料嗎?')) {
-                $.ajax({
-                    type: "POST",
-                    url: Url,
-                }).done(function (data) {
-                    if (data.success) {
-                        dataTable.ajax.reload();
-                        $.notify(data.message, {
-                            globalPosition: "top center",
-                            className: "success"
-                        })
-                    }
-                });
-            }
-        }
-
-        function PopupAcceptSign(Url) {
-            if (confirm('確定簽核此筆資料嗎?')) {
-                $.ajax({
-                    type: "POST",
-                    url: Url,
-                }).done(function (data) {
-                    if (data.success) {
-                        Popup.dialog('destroy').remove();
-                        dataTable.ajax.reload();
-                        $.notify(data.message, {
-                            globalPosition: "top center",
-                            className: "success"
-                        })
-                    }
-                });
-            }
-        }
-
-        function RejectSign(Url) {
-            if (confirm('確定駁回此筆資料嗎?')) {
-                $.ajax({
-                    type: "POST",
-                    url: Url,
-                }).done(function (data) {
-                    if (data.success) {
-                        dataTable.ajax.reload();
-                        $.notify(data.message, {
-                            globalPosition: "top center",
-                            className: "success"
-                        })
-                    }
-                });
-            }
-        }
-
-        function PopupRejectSign(Url) {
-            if (confirm('確定駁回此筆資料嗎?')) {
-                $.ajax({
-                    type: "POST",
-                    url: Url,
-                }).done(function (data) {
-                    if (data.success) {
-                        Popup.dialog('destroy').remove();
-                        dataTable.ajax.reload();
-                        $.notify(data.message, {
-                            globalPosition: "top center",
-                            className: "success"
-                        })
-                    }
-                });
-            }
         }
     </script>
 
