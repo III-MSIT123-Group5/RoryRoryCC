@@ -53,6 +53,8 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual DbSet<File> Files { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<Leave> Leaves { get; set; }
+        public virtual DbSet<LeaveHistory> LeaveHistories { get; set; }
+        public virtual DbSet<LeaveHistoryApprovalTemp> LeaveHistoryApprovalTemps { get; set; }
         public virtual DbSet<MeetingRoom> MeetingRooms { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Office> Offices { get; set; }

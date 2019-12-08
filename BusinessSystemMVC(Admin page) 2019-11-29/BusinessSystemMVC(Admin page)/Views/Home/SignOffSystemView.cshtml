@@ -1,17 +1,16 @@
 ﻿@section Styles{
     <style>
-        button {
+        button, h2 {
             font-family: 'NotoSansCJKtc-Bold';
         }
 
-        h2 {
+        th, td {
             font-family: 'NotoSansCJKtc-Bold';
         }
     </style>
     <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 }
-<h2>簽核進度查詢</h2>
 
 @Html.Partial("_HRSignOffSystemPartial")
 
@@ -121,38 +120,97 @@
                     },
                     {
                         "targets": 1,
-                        "data": "FirstSignStatus",
-                        "width": "170px",
+                        "data": "ProductName",
                         "className": "text-center align-middle",
                     },
                     {
                         "targets": 2,
-                        "data": "SecondSignStatus",
-                        "width": "170px",
-                        "className": "text-center align-middle"
+                        "data": "UnitPrice",
+                        "width": "50px",
+                        "className": "text-center align-middle",
                     },
                     {
                         "targets": 3,
-                        "data": "ThirdSignStatus",
-                        "width": "170px",
-                        "className": "text-center align-middle"
+                        "data": "Quantity",
+                        "width": "50px",
+                        "className": "text-center align-middle",
                     },
                     {
                         "targets": 4,
-                        "data": "FourthSignStatus",
-                        "width": "170px",
-                        "className": "text-center align-middle"
+                        "data": "TotalPrice",
+                        "width": "50px",
+                        "className": "text-center align-middle",
                     },
                     {
                         "targets": 5,
+                        "data": "FirstSignStatus",
+                        "width": "150px",
+                        "className": "text-center align-middle",
+                        "render": function (data) {
+                            if (data = "未審核") {
+                                color = "orange";
+                            }
+                            else if (data = "審核駁回") {
+                                color = "red"
+                            }
+                            return `<span style="color: ${color}">${data}</span>`;
+                        }
+                    },
+                    {
+                        "targets": 6,
+                        "data": "SecondSignStatus",
+                        "width": "150px",
+                        "className": "text-center align-middle",
+                        "render": function (data) {
+                            if (data = "未審核") {
+                                color = "orange";
+                            }
+                            else if (data = "審核駁回") {
+                                color = "red"
+                            }
+                            return `<span style="color: ${color}">${data}</span>`;
+                        }
+                    },
+                    {
+                        "targets": 7,
+                        "data": "ThirdSignStatus",
+                        "width": "150px",
+                        "className": "text-center align-middle",
+                        "render": function (data) {
+                            if (data = "未審核") {
+                                color = "orange";
+                            }
+                            else if (data = "審核駁回") {
+                                color = "red"
+                            }
+                            return `<span style="color: ${color}">${data}</span>`;
+                        }
+                    },
+                    {
+                        "targets": 8,
+                        "data": "FourthSignStatus",
+                        "width": "150px",
+                        "className": "text-center align-middle",
+                        "render": function (data) {
+                            if (data = "未審核") {
+                                color = "orange";
+                            }
+                            else if (data = "審核駁回") {
+                                color = "red"
+                            }
+                            return `<span style="color: ${color}">${data}</span>`;
+                        }
+                    },
+                    {
+                        "targets": 9,
                         "data": "OrderID",
                         "className": "text-center align-middle",
                         "render": function (data) {
-                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/OrderDetails/AddOrEditSignProgress/" + data + "')><i class='fa fa-list-alt'></i> 內容</a>"
+                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/OrderDetails/DetailSignProgress/" + data + "')><i class='fa fa-list-alt'></i> 內容</a>"
                         },
                         "orderable": false,
                         "searchable": false,
-                        "width": "150px"
+                        "width": "100px"
                     }
 
                 ],

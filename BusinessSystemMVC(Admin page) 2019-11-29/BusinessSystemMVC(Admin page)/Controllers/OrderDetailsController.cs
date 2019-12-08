@@ -54,7 +54,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         //id=0
         [HttpGet]
-        public ActionResult AddOrEdit(int id=0)
+        public ActionResult AddOrEdit(int id = 0)
         {
             if (id == 0)
             {
@@ -86,7 +86,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 {
                     EmpID = e.employeeID;
                     Signer1ID = e.ManagerID;
-                    
+
                 }
 
                 //找登入員工的第二層上司ID(部長)
@@ -95,7 +95,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                                 select new { EM2.EmployeeName, EM2.ManagerID };
 
                 int? Signer2ID = 0;
-                string Signer1Name="";
+                string Signer1Name = "";
 
                 foreach (var e in empquery2)
                 {
@@ -107,7 +107,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                                 where EM3.employeeID == Signer2ID
                                 select new { EM3.EmployeeName };
 
-                string Signer2Name="";
+                string Signer2Name = "";
 
                 foreach (var e in empquery3)
                 {
@@ -158,16 +158,16 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                             {
                                 ApprovalProcedureID = 5,
                                 FirstSignerID = Signer1ID,
-                                FirstSignerName=Signer1Name,
+                                FirstSignerName = Signer1Name,
                                 FirstSignStatus = "未審核",
                                 SecondSignerID = Signer2ID,
-                                SecondSignerName=Signer2Name,
+                                SecondSignerName = Signer2Name,
                                 SecondSignStatus = "未審核",
                                 ThirdSignerID = null,
-                                ThirdSignerName="-----",
+                                ThirdSignerName = "-----",
                                 ThirdSignStatus = "免審核",
                                 FourthSignerID = 1008,
-                                FourthSignerName=Signer4Name,
+                                FourthSignerName = Signer4Name,
                                 FourthSignStatus = "未審核"
                             })
                         })
@@ -198,7 +198,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                                 SecondSignerName = Signer2Name,
                                 SecondSignStatus = "未審核",
                                 ThirdSignerID = 1004,
-                                ThirdSignerName=Signer3Name,
+                                ThirdSignerName = Signer3Name,
                                 ThirdSignStatus = "未審核",
                                 FourthSignerID = 1008,
                                 FourthSignerName = Signer4Name,
@@ -209,16 +209,16 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 }
 
                 db.SaveChanges();
-                
+
                 return Json(new { success = true, message = "新增成功" }, JsonRequestBehavior.AllowGet);
-                }
+            }
             else
             {
                 db.Entry(orderDetail).State = EntityState.Modified;
                 db.SaveChanges();
 
                 return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
-            }            
+            }
         }
 
         [HttpPost]
@@ -284,20 +284,21 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return Json(new { success = true, message = "下載成功" }, JsonRequestBehavior.AllowGet);
         }
 
+        //簽核流程查詢
 
-
-        public ActionResult IndexSignProgress()
-        {
-            return View();
-        }
-
+        [HttpGet]
         public ActionResult LoadDataSignProgress()
         {
-            var data = from AS in db.Approvals.AsEnumerable()
-                       join RM in db.RequisitionMains.AsEnumerable() on AS.OrderID equals RM.OrderID
+            var data = from OD in db.OrderDetails.AsEnumerable()
+                       join RM in db.RequisitionMains.AsEnumerable() on OD.OrderID equals RM.OrderID
+                       join AS in db.Approvals.AsEnumerable() on RM.OrderID equals AS.OrderID
                        where RM.EmployeeID == EmployeeDetail.EmployeeID
                        select new
                        {
+                           OD.ProductName,
+                           OD.UnitPrice,
+                           OD.Quantity,
+                           OD.TotalPrice,
                            AS.OrderID,
                            AS.FirstSignerID,
                            AS.FirstSignDate,
@@ -319,7 +320,54 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddOrEditSignProgress(int id = 0)
+        public ActionResult DetailSignProgress(int? id)
+        {
+            return View(db.OrderDetails.Where(x => x.OrderID == id).FirstOrDefault<OrderDetail>());
+        }
+
+        //簽核
+
+        [HttpGet]
+        public ActionResult IndexSign()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult LoadDataSign()
+        {
+            var data = from OD in db.OrderDetails.AsEnumerable()
+                       join RM in db.RequisitionMains.AsEnumerable() on OD.OrderID equals RM.OrderID
+                       join AS in db.Approvals.AsEnumerable() on RM.OrderID equals AS.OrderID
+                       where RM.EmployeeID == EmployeeDetail.EmployeeID
+                       select new
+                       {
+                           OD.ProductName,
+                           OD.UnitPrice,
+                           OD.Quantity,
+                           OD.TotalPrice,
+                           AS.OrderID,
+                           AS.FirstSignerID,
+                           AS.FirstSignDate,
+                           AS.FirstSignStatus,
+                           AS.SecondSignerID,
+                           AS.SecondSignDate,
+                           AS.SecondSignStatus,
+                           AS.ThirdSignerID,
+                           AS.ThirdSignDate,
+                           AS.ThirdSignStatus,
+                           AS.FourthSignerID,
+                           AS.ForthSignDate,
+                           AS.FourthSignStatus
+                       };
+
+            var datas = data.ToList();
+
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult AddOrEditSign(int id = 0)
         {
             if (id == 0)
             {
@@ -333,9 +381,26 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddOrEditSignProgress(OrderDetail orderDetail)
+        public ActionResult AddOrEditSign(BulletinBoard b)
         {
-            return Json(JsonRequestBehavior.AllowGet);
+            if (b.Num == 0)
+            {
+                db.BulletinBoards.Add(new BulletinBoard()
+                {
+
+
+                });
+                db.SaveChanges();
+
+                return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                db.Entry(b).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         protected override void Dispose(bool disposing)

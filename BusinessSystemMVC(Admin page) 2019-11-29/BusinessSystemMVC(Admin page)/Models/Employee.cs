@@ -31,6 +31,13 @@ namespace BusinessSystemMVC_Admin_page_.Models
             this.EmployeeApprovalTemps3 = new HashSet<EmployeeApprovalTemp>();
             this.EventCalendars = new HashSet<EventCalendar>();
             this.Files = new HashSet<File>();
+            this.LeaveHistories = new HashSet<LeaveHistory>();
+            this.LeaveHistoryApprovalTemps = new HashSet<LeaveHistoryApprovalTemp>();
+            this.LeaveHistoryApprovalTemps1 = new HashSet<LeaveHistoryApprovalTemp>();
+            this.LeaveHistoryApprovalTemps2 = new HashSet<LeaveHistoryApprovalTemp>();
+            this.LeaveHistoryApprovalTemps3 = new HashSet<LeaveHistoryApprovalTemp>();
+            this.LeaveHistoryApprovalTemps4 = new HashSet<LeaveHistoryApprovalTemp>();
+            this.LeaveHistoryApprovalTemps5 = new HashSet<LeaveHistoryApprovalTemp>();
             this.MeetingRoomHistories = new HashSet<MeetingRoomHistory>();
             this.Messages = new HashSet<Message>();
             this.Recipients = new HashSet<Recipient>();
@@ -43,16 +50,19 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public int employeeID { get; set; }
         public string EmployeeName { get; set; }
         public string Gender { get; set; }
-        public Nullable<System.DateTime> Birth { get; set; }
-        public Nullable<System.DateTime> HireDate { get; set; }
+        public System.DateTime Birth { get; set; }
+        public System.DateTime HireDate { get; set; }
         public string Account { get; set; }
-        public Nullable<int> OfficeID { get; set; }
-        public Nullable<int> DepartmentID { get; set; }
-        public Nullable<int> PositionID { get; set; }
-        public Nullable<int> ManagerID { get; set; }
-        public Nullable<bool> Employed { get; set; }
-        public Nullable<int> GroupID { get; set; }
+        public int OfficeID { get; set; }
+        public int DepartmentID { get; set; }
+        public int PositionID { get; set; }
+        public int ManagerID { get; set; }
+        public bool Employed { get; set; }
+        public int GroupID { get; set; }
         public string Photo { get; set; }
+        public int SpecialLeaveHours { get; set; }
+        public int PersonalLeaveHours { get; set; }
+        public int SickLeaveHours { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ActivitiesChild> ActivitiesChilds { get; set; }
@@ -87,6 +97,20 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual ICollection<EventCalendar> EventCalendars { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<File> Files { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LeaveHistory> LeaveHistories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LeaveHistoryApprovalTemp> LeaveHistoryApprovalTemps { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LeaveHistoryApprovalTemp> LeaveHistoryApprovalTemps1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LeaveHistoryApprovalTemp> LeaveHistoryApprovalTemps2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LeaveHistoryApprovalTemp> LeaveHistoryApprovalTemps3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LeaveHistoryApprovalTemp> LeaveHistoryApprovalTemps4 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LeaveHistoryApprovalTemp> LeaveHistoryApprovalTemps5 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MeetingRoomHistory> MeetingRoomHistories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
