@@ -235,21 +235,21 @@
             <PropertyRef Name="employeeID" />
           </Key>
           <Property Name="employeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
-          <Property Name="Birth" Type="date" />
-          <Property Name="HireDate" Type="datetime" />
-          <Property Name="Account" Type="nvarchar" MaxLength="12" />
-          <Property Name="OfficeID" Type="int" />
-          <Property Name="DepartmentID" Type="int" />
-          <Property Name="PositionID" Type="int" />
-          <Property Name="ManagerID" Type="int" />
-          <Property Name="Employed" Type="bit" />
-          <Property Name="GroupID" Type="int" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Birth" Type="date" Nullable="false" />
+          <Property Name="HireDate" Type="datetime" Nullable="false" />
+          <Property Name="Account" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="OfficeID" Type="int" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+          <Property Name="PositionID" Type="int" Nullable="false" />
+          <Property Name="ManagerID" Type="int" Nullable="false" />
+          <Property Name="Employed" Type="bit" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
           <Property Name="Photo" Type="nvarchar(max)" />
-          <Property Name="SpecialLeaveHours" Type="int" />
-          <Property Name="PersonalLeaveHours" Type="int" />
-          <Property Name="SickLeaveHours" Type="int" />
+          <Property Name="SpecialLeaveHours" Type="int" Nullable="false" />
+          <Property Name="PersonalLeaveHours" Type="int" Nullable="false" />
+          <Property Name="SickLeaveHours" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="EmployeeApprovalTemp">
           <Key>
@@ -335,6 +335,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="employeeID" Type="int" Nullable="false" />
           <Property Name="leaveID" Type="int" Nullable="false" />
+          <Property Name="ReleaseTime" Type="datetime" Nullable="false" />
           <Property Name="StartTime" Type="datetime" Nullable="false" />
           <Property Name="EndTime" Type="datetime" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
@@ -347,6 +348,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="employeeID" Type="int" Nullable="false" />
           <Property Name="leaveID" Type="int" Nullable="false" />
+          <Property Name="ReleaseTime" Type="datetime" Nullable="false" />
           <Property Name="StartTime" Type="datetime" Nullable="false" />
           <Property Name="EndTime" Type="datetime" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
@@ -852,7 +854,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Department">
-          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Department">
@@ -864,7 +866,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Employee1" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -876,7 +878,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Group">
-          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Group">
@@ -888,7 +890,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Office">
-          <End Role="Office" Type="Self.Office" Multiplicity="0..1" />
+          <End Role="Office" Type="Self.Office" Multiplicity="1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Office">
@@ -900,7 +902,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Position">
-          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="Position" Type="Self.Position" Multiplicity="1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Position">
@@ -1148,6 +1150,18 @@
             </Principal>
             <Dependent Role="LeaveHistoryApprovalTemp">
               <PropertyRef Name="HRGroupLeader" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveHistoryApprovalTemp_Leave">
+          <End Role="Leave" Type="Self.Leave" Multiplicity="1" />
+          <End Role="LeaveHistoryApprovalTemp" Type="Self.LeaveHistoryApprovalTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leave">
+              <PropertyRef Name="leaveID" />
+            </Principal>
+            <Dependent Role="LeaveHistoryApprovalTemp">
+              <PropertyRef Name="leaveID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1622,6 +1636,10 @@
             <End Role="Employee" EntitySet="Employee" />
             <End Role="LeaveHistoryApprovalTemp" EntitySet="LeaveHistoryApprovalTemp" />
           </AssociationSet>
+          <AssociationSet Name="FK_LeaveHistoryApprovalTemp_Leave" Association="Self.FK_LeaveHistoryApprovalTemp_Leave">
+            <End Role="Leave" EntitySet="Leave" />
+            <End Role="LeaveHistoryApprovalTemp" EntitySet="LeaveHistoryApprovalTemp" />
+          </AssociationSet>
           <AssociationSet Name="FK_Meeting room history_Employee" Association="Self.FK_Meeting room history_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="MeetingRoomHistory" EntitySet="MeetingRoomHistory" />
@@ -1974,6 +1992,10 @@
             <End Role="Leave" EntitySet="Leaves" />
             <End Role="LeaveHistory" EntitySet="LeaveHistories" />
           </AssociationSet>
+          <AssociationSet Name="FK_LeaveHistoryApprovalTemp_Leave" Association="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_Leave">
+            <End Role="Leave" EntitySet="Leaves" />
+            <End Role="LeaveHistoryApprovalTemp" EntitySet="LeaveHistoryApprovalTemps" />
+          </AssociationSet>
           <AssociationSet Name="FK_Meeting_room_history_Meeting_room" Association="BusinessDataBaseModel.FK_Meeting_room_history_Meeting_room">
             <End Role="MeetingRoom" EntitySet="MeetingRooms" />
             <End Role="MeetingRoomHistory" EntitySet="MeetingRoomHistories" />
@@ -2264,21 +2286,21 @@
             <PropertyRef Name="employeeID" />
           </Key>
           <Property Name="employeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Birth" Type="DateTime" Precision="0" />
-          <Property Name="HireDate" Type="DateTime" Precision="3" />
-          <Property Name="Account" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
-          <Property Name="OfficeID" Type="Int32" />
-          <Property Name="DepartmentID" Type="Int32" />
-          <Property Name="PositionID" Type="Int32" />
-          <Property Name="ManagerID" Type="Int32" />
-          <Property Name="Employed" Type="Boolean" />
-          <Property Name="GroupID" Type="Int32" />
+          <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Birth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="HireDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Account" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeID" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <Property Name="PositionID" Type="Int32" Nullable="false" />
+          <Property Name="ManagerID" Type="Int32" Nullable="false" />
+          <Property Name="Employed" Type="Boolean" Nullable="false" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
           <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SpecialLeaveHours" Type="Int32" />
-          <Property Name="PersonalLeaveHours" Type="Int32" />
-          <Property Name="SickLeaveHours" Type="Int32" />
+          <Property Name="SpecialLeaveHours" Type="Int32" Nullable="false" />
+          <Property Name="PersonalLeaveHours" Type="Int32" Nullable="false" />
+          <Property Name="SickLeaveHours" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ActivitiesChilds" Relationship="BusinessDataBaseModel.FK_ActivitiesChild_Employee" FromRole="Employee" ToRole="ActivitiesChild" />
           <NavigationProperty Name="ActivitiesMains" Relationship="BusinessDataBaseModel.FK_ActivitiesMain_Employee" FromRole="Employee" ToRole="ActivitiesMain" />
           <NavigationProperty Name="BulletinBoards" Relationship="BusinessDataBaseModel.FK_Bulletin_board_Employee" FromRole="Employee" ToRole="BulletinBoard" />
@@ -2406,6 +2428,7 @@
           <Property Name="leaveID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="leave_name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LeaveHistories" Relationship="BusinessDataBaseModel.FK_LeaveHistory_Leave" FromRole="Leave" ToRole="LeaveHistory" />
+          <NavigationProperty Name="LeaveHistoryApprovalTemps" Relationship="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_Leave" FromRole="Leave" ToRole="LeaveHistoryApprovalTemp" />
         </EntityType>
         <EntityType Name="LeaveHistory">
           <Key>
@@ -2414,6 +2437,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="employeeID" Type="Int32" Nullable="false" />
           <Property Name="leaveID" Type="Int32" Nullable="false" />
+          <Property Name="ReleaseTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -2428,6 +2452,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="employeeID" Type="Int32" Nullable="false" />
           <Property Name="leaveID" Type="Int32" Nullable="false" />
+          <Property Name="ReleaseTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -2451,6 +2476,7 @@
           <NavigationProperty Name="Employee3" Relationship="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_EmployeeByGroupLeader" FromRole="LeaveHistoryApprovalTemp" ToRole="Employee" />
           <NavigationProperty Name="Employee4" Relationship="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_EmployeeByHREmployee" FromRole="LeaveHistoryApprovalTemp" ToRole="Employee" />
           <NavigationProperty Name="Employee5" Relationship="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_EmployeeByHRGroupLeader" FromRole="LeaveHistoryApprovalTemp" ToRole="Employee" />
+          <NavigationProperty Name="Leave" Relationship="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_Leave" FromRole="LeaveHistoryApprovalTemp" ToRole="Leave" />
         </EntityType>
         <EntityType Name="MeetingRoom">
           <Key>
@@ -2939,7 +2965,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Department">
-          <End Type="BusinessDataBaseModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.Department" Role="Department" Multiplicity="1" />
           <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Department">
@@ -2999,7 +3025,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Employee">
-          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="1" />
           <End Type="BusinessDataBaseModel.Employee" Role="Employee1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -3011,7 +3037,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Group">
-          <End Type="BusinessDataBaseModel.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.Group" Role="Group" Multiplicity="1" />
           <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Group">
@@ -3023,7 +3049,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Office">
-          <End Type="BusinessDataBaseModel.Office" Role="Office" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.Office" Role="Office" Multiplicity="1" />
           <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Office">
@@ -3035,7 +3061,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Position">
-          <End Type="BusinessDataBaseModel.Position" Role="Position" Multiplicity="0..1" />
+          <End Type="BusinessDataBaseModel.Position" Role="Position" Multiplicity="1" />
           <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Position">
@@ -3342,6 +3368,18 @@
               <PropertyRef Name="leaveID" />
             </Principal>
             <Dependent Role="LeaveHistory">
+              <PropertyRef Name="leaveID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveHistoryApprovalTemp_Leave">
+          <End Type="BusinessDataBaseModel.Leave" Role="Leave" Multiplicity="1" />
+          <End Type="BusinessDataBaseModel.LeaveHistoryApprovalTemp" Role="LeaveHistoryApprovalTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leave">
+              <PropertyRef Name="leaveID" />
+            </Principal>
+            <Dependent Role="LeaveHistoryApprovalTemp">
               <PropertyRef Name="leaveID" />
             </Dependent>
           </ReferentialConstraint>
@@ -3770,6 +3808,7 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="ReleaseTime" ColumnName="ReleaseTime" />
                 <ScalarProperty Name="leaveID" ColumnName="leaveID" />
                 <ScalarProperty Name="employeeID" ColumnName="employeeID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -3796,6 +3835,7 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="ReleaseTime" ColumnName="ReleaseTime" />
                 <ScalarProperty Name="leaveID" ColumnName="leaveID" />
                 <ScalarProperty Name="employeeID" ColumnName="employeeID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

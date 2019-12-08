@@ -17,6 +17,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public int ID { get; set; }
         public int employeeID { get; set; }
         public int leaveID { get; set; }
+        public System.DateTime ReleaseTime { get; set; }
         public System.DateTime StartTime { get; set; }
         public System.DateTime EndTime { get; set; }
         public string Description { get; set; }

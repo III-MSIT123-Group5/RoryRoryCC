@@ -206,6 +206,7 @@
     <Compile Include="Controllers\EventCalendarsController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeaveHistoryApprovalTempsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Controllers\RecipientsController.cs" />
@@ -643,6 +644,11 @@
     <Content Include="Views\Approvals\Index.cshtml" />
     <Content Include="Views\EmployeeApprovalTemps\RejectLoadDataDetail.cshtml" />
     <Content Include="Views\OrderDetails\DetailSignProgress.cshtml" />
+    <Content Include="Views\LeaveHistoryApprovalTemps\Create.cshtml" />
+    <Content Include="Views\LeaveHistoryApprovalTemps\Delete.cshtml" />
+    <Content Include="Views\LeaveHistoryApprovalTemps\Details.cshtml" />
+    <Content Include="Views\LeaveHistoryApprovalTemps\Edit.cshtml" />
+    <Content Include="Views\LeaveHistoryApprovalTemps\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

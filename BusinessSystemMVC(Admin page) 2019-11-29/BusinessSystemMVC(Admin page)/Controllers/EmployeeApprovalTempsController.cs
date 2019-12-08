@@ -89,6 +89,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     Employed = true,
                     GroupID = q.GroupID,
                     Photo = q.Photo,
+                    SpecialLeaveHours = 49 , //hours
+                    PersonalLeaveHours = 98 ,
+                    SickLeaveHours = 210
                 };
                 db.Employees.Add(addFormalEmployee);
                 db.SaveChanges();

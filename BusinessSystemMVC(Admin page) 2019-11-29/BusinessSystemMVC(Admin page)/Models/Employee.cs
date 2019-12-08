@@ -50,19 +50,19 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public int employeeID { get; set; }
         public string EmployeeName { get; set; }
         public string Gender { get; set; }
-        public Nullable<System.DateTime> Birth { get; set; }
-        public Nullable<System.DateTime> HireDate { get; set; }
+        public System.DateTime Birth { get; set; }
+        public System.DateTime HireDate { get; set; }
         public string Account { get; set; }
-        public Nullable<int> OfficeID { get; set; }
-        public Nullable<int> DepartmentID { get; set; }
-        public Nullable<int> PositionID { get; set; }
-        public Nullable<int> ManagerID { get; set; }
-        public Nullable<bool> Employed { get; set; }
-        public Nullable<int> GroupID { get; set; }
+        public int OfficeID { get; set; }
+        public int DepartmentID { get; set; }
+        public int PositionID { get; set; }
+        public int ManagerID { get; set; }
+        public bool Employed { get; set; }
+        public int GroupID { get; set; }
         public string Photo { get; set; }
-        public Nullable<int> SpecialLeaveHours { get; set; }
-        public Nullable<int> PersonalLeaveHours { get; set; }
-        public Nullable<int> SickLeaveHours { get; set; }
+        public int SpecialLeaveHours { get; set; }
+        public int PersonalLeaveHours { get; set; }
+        public int SickLeaveHours { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ActivitiesChild> ActivitiesChilds { get; set; }
