@@ -88,7 +88,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     ManagerID = q.ManagerID,
                     Employed = true,
                     GroupID = q.GroupID,
-                    Photo = q.Photo
+                    Photo = q.Photo,
                 };
                 db.Employees.Add(addFormalEmployee);
                 db.SaveChanges();

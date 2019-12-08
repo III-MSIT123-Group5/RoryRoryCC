@@ -316,6 +316,12 @@
     <Compile Include="Models\Leave.cs">
       <DependentUpon>BusinessSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LeaveHistory.cs">
+      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LeaveHistoryApprovalTemp.cs">
+      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MeetingRoom.cs">
       <DependentUpon>BusinessSystemModel.tt</DependentUpon>

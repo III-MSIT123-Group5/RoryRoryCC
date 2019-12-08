@@ -12,18 +12,17 @@ namespace BusinessSystemMVC_Admin_page_.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Leave
+    public partial class LeaveHistory
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Leave()
-        {
-            this.LeaveHistories = new HashSet<LeaveHistory>();
-        }
-    
+        public int ID { get; set; }
+        public int employeeID { get; set; }
         public int leaveID { get; set; }
-        public string leave_name { get; set; }
+        public System.DateTime StartTime { get; set; }
+        public System.DateTime EndTime { get; set; }
+        public string Description { get; set; }
+        public string Appendix { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LeaveHistory> LeaveHistories { get; set; }
+        public virtual Employee Employee { get; set; }
+        public virtual Leave Leave { get; set; }
     }
 }
