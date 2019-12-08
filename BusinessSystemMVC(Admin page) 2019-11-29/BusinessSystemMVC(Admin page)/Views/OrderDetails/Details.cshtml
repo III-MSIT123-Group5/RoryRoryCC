@@ -4,110 +4,62 @@
     ViewBag.Title = "Details";
 }
 
-<style>
-    table, th, td {
-        border: solid 1px black;
-    }
-
-    .textleft {
-        text-align: left
-    }
-</style>
-
 <h2>Details</h2>
 
-<table style="text-align:center">
-    <tr>
-        <th style="width:100px">請購單編號</th>
-        <th style="width:80px">請購人</th>
-        <th style="width:200px">請購日期</th>
-        <th style="width:400px">原由</th>
-    </tr>
-    <tr>
-        <td>
-            @Html.DisplayFor(model => model.RequisitionMain.OrderID)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.RequisitionMain.EmployeeID)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.RequisitionMain.RequisitionDate)
-        </td>
-        <td class="textleft">
+<div>
+    <h4>OrderDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
 
+        <dd>
             @Html.DisplayFor(model => model.Note)
-        </td>
-    </tr>
-</table>
-<br />
-<table>
-    <tr style="text-align:center">
-        <th>產品名稱</th>
-        <th>單價</th>
-        <th>數量</th>
-        <th>總價</th>
-    </tr>
-    <tr>
-        <td>@Html.DisplayFor(model => model.ProductName)</td>
-        <td>@Html.DisplayFor(model => model.UnitPrice)</td>
-        <td>@Html.DisplayFor(model => model.Quantity)</td>
-        <td>@Html.DisplayFor(model => model.TotalPrice)</td>
-    </tr>
-</table>
-@*<div>
-        <h4>OrderDetail</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Note)
-            </dt>
+        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Note)
-            </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.ProductName)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.ProductName)
-            </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.UnitPrice)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UnitPrice)
+        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.UnitPrice)
-            </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Quantity)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Quantity)
-            </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.TotalPrice)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.TotalPrice)
-            </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RequisitionMain.OrderID)
+        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.RequisitionMain.OrderID)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RequisitionMain.OrderID)
+        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.RequisitionMain.OrderID)
-            </dd>
-
-        </dl>
-    </div>*@
+    </dl>
+</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.OrderDetailID }) |
     @Html.ActionLink("Back to List", "Index")

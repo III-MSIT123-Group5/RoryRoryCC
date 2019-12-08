@@ -1,0 +1,111 @@
+﻿@model BusinessSystemMVC_Admin_page_.Models.OrderDetail
+
+@{ 
+    Layout = null;
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("組長簽核人")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequisitionMain.Approval.FirstSignerName)
+        </dd>
+
+        <dt>
+            @Html.Label("組長簽核狀態")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequisitionMain.Approval.FirstSignStatus)
+        </dd>
+
+        <dt>
+            @Html.Label("組長簽核時間")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequisitionMain.Approval.FirstSignDate)
+        </dd>
+
+
+        <dd><hr /></dd>
+
+        <dt>
+            @Html.Label("部長簽核人")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequisitionMain.Approval.SecondSignerName)
+        </dd>
+
+        <dt>
+            @Html.Label("部長簽核狀態")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequisitionMain.Approval.SecondSignStatus)
+        </dd>
+        <dt>
+            @Html.Label("部長簽核時間")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequisitionMain.Approval.SecondSignDate)
+        </dd>
+
+        <dd><hr /></dd>
+
+        <dt>
+            @Html.Label("總經理簽核人")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequisitionMain.Approval.ThirdSignerName)
+        </dd>
+
+        <dt>
+            @Html.Label("總經理簽核狀態")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequisitionMain.Approval.ThirdSignStatus)
+        </dd>
+
+        <dt>
+            @Html.Label("總經理簽核時間")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequisitionMain.Approval.ThirdSignDate)
+        </dd>
+
+        <dd><hr /></dd>
+
+        <dt>
+            @Html.Label("總務組簽核人")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequisitionMain.Approval.FourthSignerName)
+        </dd>
+
+        <dt>
+            @Html.Label("總務組簽核狀態")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequisitionMain.Approval.FourthSignStatus)
+        </dd>
+
+        <dt>
+            @Html.Label("總務組簽核時間")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequisitionMain.Approval.ForthSignDate)
+        </dd>
+    </dl>
+</div>

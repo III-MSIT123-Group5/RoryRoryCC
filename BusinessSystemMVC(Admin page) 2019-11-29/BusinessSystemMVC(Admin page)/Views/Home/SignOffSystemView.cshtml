@@ -121,34 +121,58 @@
                     },
                     {
                         "targets": 1,
+                        "data": "ProductName",
+                        "width": "50px",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 2,
+                        "data": "UnitPrice",
+                        "width": "50px",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 3,
+                        "data": "Quantity",
+                        "width": "50px",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 4,
+                        "data": "TotalPrice",
+                        "width": "50px",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 5,
                         "data": "FirstSignStatus",
                         "width": "170px",
                         "className": "text-center align-middle",
                     },
                     {
-                        "targets": 2,
+                        "targets": 6,
                         "data": "SecondSignStatus",
                         "width": "170px",
                         "className": "text-center align-middle"
                     },
                     {
-                        "targets": 3,
+                        "targets": 7,
                         "data": "ThirdSignStatus",
                         "width": "170px",
                         "className": "text-center align-middle"
                     },
                     {
-                        "targets": 4,
+                        "targets": 8,
                         "data": "FourthSignStatus",
                         "width": "170px",
                         "className": "text-center align-middle"
                     },
                     {
-                        "targets": 5,
+                        "targets": 9,
                         "data": "OrderID",
                         "className": "text-center align-middle",
                         "render": function (data) {
-                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/OrderDetails/AddOrEditSignProgress/" + data + "')><i class='fa fa-list-alt'></i> 內容</a>"
+                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/OrderDetails/DetailSignProgress/" + data + "')><i class='fa fa-list-alt'></i> 內容</a>"
                         },
                         "orderable": false,
                         "searchable": false,

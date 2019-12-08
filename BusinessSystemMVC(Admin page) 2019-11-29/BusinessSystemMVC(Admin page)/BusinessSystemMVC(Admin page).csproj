@@ -635,9 +635,8 @@
     <Content Include="Views\Approvals\Details.cshtml" />
     <Content Include="Views\Approvals\Edit.cshtml" />
     <Content Include="Views\Approvals\Index.cshtml" />
-    <Content Include="Views\Shared\_HRSignOffSystemPartial.cshtml" />
-    <Content Include="Views\Home\SignOffSystemView.cshtml" />
     <Content Include="Views\EmployeeApprovalTemps\RejectLoadDataDetail.cshtml" />
+    <Content Include="Views\OrderDetails\DetailSignProgress.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
