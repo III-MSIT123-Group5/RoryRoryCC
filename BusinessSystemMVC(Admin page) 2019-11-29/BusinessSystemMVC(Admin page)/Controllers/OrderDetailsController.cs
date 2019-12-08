@@ -284,6 +284,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return Json(new { success = true, message = "下載成功" }, JsonRequestBehavior.AllowGet);
         }
 
+        //簽核流程查詢
+
         [HttpGet]
         public ActionResult LoadDataSignProgress()
         {
@@ -323,8 +325,49 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(db.OrderDetails.Where(x => x.OrderID == id).FirstOrDefault<OrderDetail>());
         }
 
+        //簽核
+
         [HttpGet]
-        public ActionResult AddOrEditSignProgress(int id = 0)
+        public ActionResult IndexSign()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult LoadDataSign()
+        {
+            var data = from OD in db.OrderDetails.AsEnumerable()
+                       join RM in db.RequisitionMains.AsEnumerable() on OD.OrderID equals RM.OrderID
+                       join AS in db.Approvals.AsEnumerable() on RM.OrderID equals AS.OrderID
+                       where RM.EmployeeID == EmployeeDetail.EmployeeID
+                       select new
+                       {
+                           OD.ProductName,
+                           OD.UnitPrice,
+                           OD.Quantity,
+                           OD.TotalPrice,
+                           AS.OrderID,
+                           AS.FirstSignerID,
+                           AS.FirstSignDate,
+                           AS.FirstSignStatus,
+                           AS.SecondSignerID,
+                           AS.SecondSignDate,
+                           AS.SecondSignStatus,
+                           AS.ThirdSignerID,
+                           AS.ThirdSignDate,
+                           AS.ThirdSignStatus,
+                           AS.FourthSignerID,
+                           AS.ForthSignDate,
+                           AS.FourthSignStatus
+                       };
+
+            var datas = data.ToList();
+
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult AddOrEditSign(int id = 0)
         {
             if (id == 0)
             {
@@ -338,9 +381,26 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddOrEditSignProgress(OrderDetail orderDetail)
+        public ActionResult AddOrEditSign(BulletinBoard b)
         {
-            return Json(JsonRequestBehavior.AllowGet);
+            if (b.Num == 0)
+            {
+                db.BulletinBoards.Add(new BulletinBoard()
+                {
+
+
+                });
+                db.SaveChanges();
+
+                return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                db.Entry(b).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         protected override void Dispose(bool disposing)
