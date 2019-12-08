@@ -618,7 +618,6 @@
     <Content Include="Views\CommentMains\Edit.cshtml" />
     <Content Include="Views\CommentMains\Index.cshtml" />
     <Content Include="Views\CommentMains\AddOrEdit.cshtml" />
-    <Content Include="Views\OrderDetails\Success.cshtml" />
     <Content Include="Views\OrderDetails\AddOrEdit.cshtml" />
     <Content Include="Views\EventCalendars\AddOrEdit.cshtml" />
     <Content Include="Views\Recipients\AddOrEdit.cshtml" />
@@ -635,7 +634,6 @@
     <Content Include="Views\Shared\_HRSignOffSystemPartial.cshtml" />
     <Content Include="Views\Home\SignOffSystemView.cshtml" />
     <Content Include="Views\OrderDetails\IndexSignProgress.cshtml" />
-    <Content Include="Views\OrderDetails\AddOrEditSignProgress.cshtml" />
     <Content Include="Views\Shared\_RequisitionSignProgressPartial.cshtml" />
     <Content Include="Views\Approvals\Create.cshtml" />
     <Content Include="Views\Approvals\Delete.cshtml" />
@@ -649,6 +647,8 @@
     <Content Include="Views\LeaveHistoryApprovalTemps\Details.cshtml" />
     <Content Include="Views\LeaveHistoryApprovalTemps\Edit.cshtml" />
     <Content Include="Views\LeaveHistoryApprovalTemps\Index.cshtml" />
+    <Content Include="Views\OrderDetails\IndexSign.cshtml" />
+    <Content Include="Views\OrderDetails\AddOrEditSign.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
