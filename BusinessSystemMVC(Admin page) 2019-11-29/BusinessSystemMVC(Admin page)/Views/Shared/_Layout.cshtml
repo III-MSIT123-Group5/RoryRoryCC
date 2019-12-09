@@ -20,7 +20,7 @@
     <link href="~/Content/jquery-ui.css" rel="stylesheet" />
     <link href="~/Content/jquery-ui.structure.css" rel="stylesheet" />
     <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
-
+    <title>Business System</title>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
     <!-- Navigation-->
@@ -50,6 +50,24 @@
                         </li>
                         <li class="color hover">
                             <a href="@Url.Action("Index","CompanyVehicleBorrow")" style="font-family:'NotoSansCJKtc-Bold'">公務車租借</a>
+                        </li>
+                        <li class="color hover">
+                            <a href="@Url.Action("Index","CompanyVehicleHistories")" style="font-family:'NotoSansCJKtc-Bold'">公務車租借紀錄</a>
+                        </li>
+                    </ul>
+                </li>
+                @*會議室*@
+                <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="會議室">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseBussinessCar" data-parent="#exampleAccordion">
+                        <i class="fa fa-fw fa-users"></i>
+                        <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">會議室</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="collapseBussinessCar">
+                        <li class="color hover">
+                            <a href="@Url.Action("Index","CompanyVehicles")" style="font-family:'NotoSansCJKtc-Bold'">會議室管理</a>
+                        </li>
+                        <li class="color hover">
+                            <a href="@Url.Action("Index","CompanyVehicleBorrow")" style="font-family:'NotoSansCJKtc-Bold'">會議室租借</a>
                         </li>
                     </ul>
                 </li>
@@ -88,7 +106,14 @@
                         <i class="fa fa-fw fa-comment"></i>
                         <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">內部訊息</span>
                     </a>
-                </li>               
+                </li>
+                @*請假系統*@
+                <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="請假系統">
+                    <a class="nav-link" href="@Url.Action("Index", "LeaveHistoryApprovalTemps")">
+                        <i class="fa fa-fw fa-clipboard"></i>
+                        <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">請假系統</span>
+                    </a>
+                </li>
                 @*請購系統*@
                 @Html.Partial("_RequisitionSystemPartial")
                 @*只有組級上以可看見SignOffsystem*@

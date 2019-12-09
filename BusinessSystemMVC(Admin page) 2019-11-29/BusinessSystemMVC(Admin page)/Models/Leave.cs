@@ -14,7 +14,19 @@ namespace BusinessSystemMVC_Admin_page_.Models
     
     public partial class Leave
     {
-        public string leaveID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Leave()
+        {
+            this.LeaveHistories = new HashSet<LeaveHistory>();
+            this.LeaveHistoryApprovalTemps = new HashSet<LeaveHistoryApprovalTemp>();
+        }
+    
+        public int leaveID { get; set; }
         public string leave_name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LeaveHistory> LeaveHistories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LeaveHistoryApprovalTemp> LeaveHistoryApprovalTemps { get; set; }
     }
 }

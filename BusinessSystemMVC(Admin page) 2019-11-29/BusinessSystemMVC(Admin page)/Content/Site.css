@@ -542,3 +542,14 @@ td.details-control {
 tr.details td.details-control {
     background: url('../images/details_close.png') no-repeat center center;
 }
+
+
+.taglabel {
+    
+    
+    border:25px,thick,#e80c4d;
+    border-top-right-radius:5px;
+    border-top-left-radius:5px;
+    border-bottom:none;
+    width:130px;
+}
