@@ -654,6 +654,8 @@
     <Content Include="Views\LeaveHistoryApprovalTemps\Index.cshtml" />
     <Content Include="Views\OrderDetails\IndexSign.cshtml" />
     <Content Include="Views\OrderDetails\AddOrEditSign.cshtml" />
+    <Content Include="Views\CompanyVehicles\AddOrEdit.cshtml" />
+    <Content Include="Views\CompanyVehicles\AddOrEdit2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

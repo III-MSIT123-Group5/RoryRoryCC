@@ -210,7 +210,8 @@
           <Property Name="serial" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="MaxPassenger" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="officeID" Type="int" Nullable="false" />
-          <Property Name="VehiclePhoto" Type="varbinary(max)" Nullable="false" />
+          <Property Name="VehiclePhoto" Type="varbinary(max)" />
+          <Property Name="VehiclePhoto2" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="CompanyVehicleHistory">
           <Key>
@@ -2251,7 +2252,8 @@
           <Property Name="serial" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="MaxPassenger" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="officeID" Type="Int32" Nullable="false" />
-          <Property Name="VehiclePhoto" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="VehiclePhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="VehiclePhoto2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CompanyVehicleHistories" Relationship="BusinessDataBaseModel.FK_Company_vehicle_history_Company_vehicle" FromRole="CompanyVehicle" ToRole="CompanyVehicleHistory" />
           <NavigationProperty Name="Office" Relationship="BusinessDataBaseModel.FK_Company_vehicle_Office" FromRole="CompanyVehicle" ToRole="Office" />
         </EntityType>
@@ -3665,6 +3667,7 @@
           <EntitySetMapping Name="CompanyVehicles">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.CompanyVehicle">
               <MappingFragment StoreEntitySet="CompanyVehicle">
+                <ScalarProperty Name="VehiclePhoto2" ColumnName="VehiclePhoto2" />
                 <ScalarProperty Name="VehiclePhoto" ColumnName="VehiclePhoto" />
                 <ScalarProperty Name="officeID" ColumnName="officeID" />
                 <ScalarProperty Name="MaxPassenger" ColumnName="MaxPassenger" />
