@@ -37,13 +37,106 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(commentMain);
         }
 
-        // GET: CommentMains/Create
-        public ActionResult Create()
+        //Get
+        public ActionResult LoadEmployee()
         {
-            ViewBag.ActivityMainID = new SelectList(db.ActivitiesMains, "ActivityMainID", "ActivityName");
-            ViewBag.CommentContentID = new SelectList(db.CommentContents, "CommentContentID", "CommentContent1");
-            ViewBag.EmployeeID = new SelectList(db.Employees, "employeeID", "EmployeeName");
-            return View();
+            var q1 = from d in db.Departments
+                     select new { d.name };
+
+            return Json(q1, JsonRequestBehavior.AllowGet);
+        }
+
+            // GET: CommentMains/Create
+            public ActionResult Create(int id = 0)
+        {
+            int EmpID = EmployeeDetail.EmployeeID;
+
+            var result = from cc in db.CommentContents
+                         join co in db.CommentOptions
+                         on cc.CommentOptionID equals co.CommentOptionID
+                         select new
+                         {
+                             cc.CommentOptionID,
+                             co.CommentOption1,
+                             cc.CommentContent1,
+                             cc.CommentContentID
+                         };
+
+            var items = new List<GroupedSelectListItem>();
+
+            foreach (var n in result)
+            {
+                items.Add(new GroupedSelectListItem()
+                {
+                    Value = n.CommentContentID.ToString(),
+                    Text = string.Format("{0} {1}", n.CommentContentID.ToString(), n.CommentContent1),
+                    GroupKey = n.CommentOptionID.ToString(),
+                    GroupName = n.CommentOption1
+
+                });
+            }
+
+            ViewBag.CommentContentItems = items;
+
+
+
+            if (id == 0)
+            {
+                return View(new CommentMain());
+
+            }
+            else
+            {
+                using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+                {
+
+                    return View(db.CommentMains.Where(x => x.CommentMainID == id).FirstOrDefault<CommentMain>());
+                }
+            }
+
+
+            //ViewBag.ActivityMainID = new SelectList(db.ActivitiesMains, "ActivityMainID", "ActivityName");
+            //ViewBag.CommentContentID = new SelectList(db.CommentContents, "CommentContentID", "CommentContent1");
+            //ViewBag.EmployeeID = new SelectList(db.Employees, "employeeID", "EmployeeName");
+            //return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(CommentMain c, FormCollection formCollection)
+        {
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+                if (c.CommentMainID == 0)
+                {
+
+                    int EmpID = EmployeeDetail.EmployeeID;
+
+                    int ccID = 102;
+
+                    ccID = Convert.ToInt32(formCollection["CommentContent"]);
+
+                    db.CommentMains.Add(new CommentMain()
+                    {
+                        CommentName = c.CommentName,
+                        SendTime = DateTime.Now,
+                        EmployeeID = EmpID,
+                        CommentContentID = ccID,
+                        CommentMainID = c.CommentMainID,
+                    });
+                    db.SaveChanges();
+
+                    return Json(new { success = true, message = "調查發布成功" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    db.Entry(c).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return Json(new { success = true, message = "調查修改成功" }, JsonRequestBehavior.AllowGet);
+                }
+
+            }
         }
 
         public ActionResult LoadData()
