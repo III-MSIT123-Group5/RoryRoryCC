@@ -78,7 +78,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                         EndTime = ecal.EndTime,
                         Location = ecal.Location,
                         Description = ecal.Description,
-                        IsFullday = ecal.IsFullday,
                         IsImportant = ecal.IsImportant
 
                     });

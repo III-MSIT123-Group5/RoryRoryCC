@@ -299,8 +299,7 @@
           <Property Name="EndTime" Type="datetime" Nullable="false" />
           <Property Name="Location" Type="nvarchar" MaxLength="20" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
-          <Property Name="IsImportant" Type="bit" />
-          <Property Name="IsFullday" Type="bit" />
+          <Property Name="IsImportant" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="File">
           <Key>
@@ -2393,8 +2392,7 @@
           <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Location" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsImportant" Type="Boolean" />
-          <Property Name="IsFullday" Type="Boolean" />
+          <Property Name="IsImportant" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Department" Relationship="BusinessDataBaseModel.FK_EventCalendar_Department" FromRole="EventCalendar" ToRole="Department" />
           <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_EventCalendar_Employee" FromRole="EventCalendar" ToRole="Employee" />
         </EntityType>
@@ -3761,7 +3759,6 @@
           <EntitySetMapping Name="EventCalendars">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.EventCalendar">
               <MappingFragment StoreEntitySet="EventCalendar">
-                <ScalarProperty Name="IsFullday" ColumnName="IsFullday" />
                 <ScalarProperty Name="IsImportant" ColumnName="IsImportant" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
