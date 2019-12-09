@@ -15,7 +15,7 @@
     }
 </style>
 
-    <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    @*<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />*@
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 }
 
@@ -27,7 +27,7 @@
     <table id="ApprovalTable" class="table table-striped table-bordered">
         <thead>
             <tr>
-                <th rowspan="2">簽核</th>
+                <th rowspan="2">簽核/駁回</th>
                 <th rowspan="2">請購單編號</th>
                 <th rowspan="2">產品</th>
                 <th rowspan="2">單價</th>
@@ -73,9 +73,11 @@
                     {
                         "targets": 0,
                         "data": "OrderID",
+                        "width":"150px",
                         "className": "text-center align-middle",
                         "render": function (data) {
-                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/OrderDetails/AddOrEditSign/" + data + "')><i class='fa fa-list-alt'></i> 簽核</a>"
+                            return `<a class='btn btn-warning btn-sm' onclick=Submit("@Url.Action("Submit", "OrderDetails")/${data}")><i class='fa fa-pencil'></i> 簽核</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Reject("@Url.Action("Reject", "OrderDetails")/${data}")><i class='fa fa-trash'></i> 駁回</a>`
+                            //return "<a class='btn btn-warning btn-sm' onclick=Submit(" + data + ")><i class='fa fa-pencil'></i> 簽核</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=PopupForm('/OrderDetails/AddOrEditSign/" + data + "')>"
                         },
                         "orderable": false,
                         "searchable": false,
@@ -197,6 +199,42 @@
             });
         });
 
+        //function Submit(id) {
+        //    if (confirm('確定要簽核此筆請購嗎?')) {
+        //        $.ajax({
+        //            type: "POST",
+        //            url: '/OrderDetails/Submit/' + id,
+        //            success: function (data) {
+        //                if (data.success) {
+        //                    dataTable.ajax.reload();
+        //                    $.notify(data.message, {
+        //                        globalPosition: "top center",
+        //                        className: "success"
+        //                    })
+        //                }
+        //            }
+        //        });
+        //    }
+        //}
+
+        function Submit(Url) {
+            if (confirm('確定要簽核此筆請購嗎?')) {
+                $.ajax({
+                    type: "POST",
+                    url: Url,
+                    success: function (data) {
+                        if (data.success) {
+                            dataTable.ajax.reload();
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            })
+                        }
+                    }
+                });
+            }
+        }
+
         function PopupForm(url) {
             var formDiv = $('<div/>');
             $.get(url)
@@ -234,12 +272,13 @@
                                 className: "success"
                             })
                         }
-
                     }
                 });
             }
             return false;
         }
+
+
     </script>
 }
 
