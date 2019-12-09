@@ -113,6 +113,42 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(leaveHistoryApprovalTemp);
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult GetNewYearTime()
+        {
+            DateTime dt = DateTime.Now.AddDays(3);
+            List<int> L = new List<int>();
+          for(int i = dt.Year; i <= dt.Year + 1; i++)
+            {
+                L.Add(i);
+            }
+            var q = L.Select(p => new { tx = p.ToString(), va = p });
+            return Json(q, JsonRequestBehavior.AllowGet);
+        }
+        [AllowAnonymous]
+        public ActionResult GetNewMonthTime(int thisYEAR)
+        {
+            DateTime dt = DateTime.Now.AddDays(3);
+            List<int> List = new List<int>();
+            if(thisYEAR == dt.Year)
+            {
+                for (int i = dt.Month; i <= 12; i++)
+                {
+                    List.Add(i);
+                }
+            }
+            else
+            {
+                for (int i = 1; i <= 12; i++)
+                {
+                    List.Add(i);
+                }
+            }
+            return Json(List.Select(p => new { Txt = p.ToString(), Val = p }), JsonRequestBehavior.AllowGet);
+        }
+
+
         // GET: LeaveHistoryApprovalTemps/Edit/5
         public ActionResult Edit(int? id)
         {
