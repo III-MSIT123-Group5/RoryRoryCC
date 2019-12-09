@@ -18,10 +18,13 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         $("#UpdateEvent").hover(function () {
-            $(this).css('color', '#b4c9ef')
+            //$(this).css('color', '#b4c9ef');
+            $(this).css('cursor', 'pointer')
         }, function () {
-            $(this).css('color', '')
-        });
+            //$(this).css('color', '')
+           
+            });
+        
 
         var calendarEl = document.getElementById('evecalendar');
 
@@ -92,10 +95,8 @@
 
         calendar.render();
 
-
-
-
-
+        
+        
 
     });
 
@@ -108,11 +109,12 @@
 
 
 </script>
+
 <div>
-    <i class="fas fa-plus-square fa-5x" id="UpdateEvent" onclick="PopupForm('/EventCalendars/AddOrEdit')"></i>     @*"location.href='@Url.Action("AddOrEdit", "EventCalendars")'"*@
+    <i class="fas fa-plus-square fa-3x" id="UpdateEvent" onclick="PopupForm('/EventCalendars/AddOrEdit')" ></i>     @*"location.href='@Url.Action("AddOrEdit", "EventCalendars")'"*@
 </div>
 
-
+<br />
 <div class="col-8" style="float:left">
     <div id='evecalendar'></div>
 </div>
@@ -136,6 +138,7 @@
     </table>
 
 </div>
+
 
 
 <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -201,7 +204,7 @@
                     Popup = formDiv.dialog({
                         autoOpen: true,
                         resizable: false,
-                        title: '撰寫公佈欄貼文',
+                        title: '新增事件',
                         height: 400,
                         width: 700,
                         close: function () {
@@ -238,7 +241,7 @@
         }
 
         function Delete(id) {
-            if (confirm('確定要刪除此筆貼文嗎?')) {
+            if (confirm('確定要刪除此筆嗎?')) {
                 $.ajax({
                     type: "POST",
                     url: '/BulletinBoards/Delete/' + id,
