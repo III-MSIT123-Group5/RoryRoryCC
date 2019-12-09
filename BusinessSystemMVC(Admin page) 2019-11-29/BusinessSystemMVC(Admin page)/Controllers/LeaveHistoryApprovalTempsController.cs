@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BusinessSystemMVC_Admin_page_.Models;
+using BusinessSystemMVC_Admin_page_.ViewModels;
 
 namespace BusinessSystemMVC_Admin_page_.Controllers
 {
@@ -51,16 +52,45 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         // GET: LeaveHistoryApprovalTemps/Create
         public ActionResult Create()
         {
-
-
+            int ThisYear = DateTime.Now.Year;
+            List<int> SYList = new List<int>();
+            List<int> SMList = new List<int>();
+            List<int> SDList = new List<int>();
+            List<int> SHList = new List<int>();
+            List<int> EYList = new List<int>();
+            List<int> EMList = new List<int>();
+            List<int> EDList = new List<int>();
+            List<int> EHList = new List<int>();
+            for(int i = ThisYear-1 ; i<= ThisYear+1; i++)
+            {
+                SYList.Add(i);
+                EYList.Add(i);
+            }
+            for (int i = 1 ; i <= 12; i++)
+            {
+                SMList.Add(i);
+                EMList.Add(i);
+            }
+            for (int i = 1 ; i <= 31; i++)
+            {
+                SDList.Add(i);
+                EDList.Add(i);
+            }
+            for (int i = 9; i <= 17; i++)
+            {
+                SHList.Add(i);
+                EHList.Add(i);
+            }
             ViewBag.leaveID = new SelectList(db.Leaves, "leaveID", "leave_name");
+            ViewBag.StartYear = new SelectList(SYList.Select(p => new { SYtxt = p.ToString(), SYval = p }), "SYval", "SYtxt");
+            ViewBag.StartMonth = new SelectList(SMList.Select(p => new { SMtxt = p.ToString(), SMval = p }), "SMval", "SMtxt");
+            ViewBag.StartDay = new SelectList(SDList.Select(p => new { SDtxt = p.ToString(), SDval = p }), "SDval", "SDtxt");
+            ViewBag.StartHour = new SelectList(SHList.Select(p => new { SHtxt = p.ToString(), SHval = p }), "SHval", "SHtxt");
+            ViewBag.EndYear = new SelectList(EYList.Select(p => new { EYtxt = p.ToString(), EYval = p }), "EYval", "EYtxt");
+            ViewBag.EndMonth = new SelectList(EMList.Select(p => new { EMtxt = p.ToString(), EMval = p }), "EMval", "EMtxt");
+            ViewBag.EndDay = new SelectList(EDList.Select(p => new { EDtxt = p.ToString(), EDval = p }), "EDval", "EDtxt");
+            ViewBag.EndHour = new SelectList(EHList.Select(p => new { EHtxt = p.ToString(), EHval = p }), "EHval", "EHtxt");
 
-            ViewBag.employeeID = new SelectList(db.Employees, "employeeID", "EmployeeName");
-            ViewBag.DepartmentLeader = new SelectList(db.Employees, "employeeID", "EmployeeName");
-            ViewBag.GeneralManager = new SelectList(db.Employees, "employeeID", "EmployeeName");
-            ViewBag.GroupLeader = new SelectList(db.Employees, "employeeID", "EmployeeName");
-            ViewBag.HREmployee = new SelectList(db.Employees, "employeeID", "EmployeeName");
-            ViewBag.HRGroupLeader = new SelectList(db.Employees, "employeeID", "EmployeeName");
             return View();
         }
         //新增請假
@@ -69,23 +99,17 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(LeaveHistoryApprovalTemp leaveHistoryApprovalTemp)
+        public ActionResult Create(LeaveHistoryApprovalTempViewModel leaveHistoryApprovalTemp)
         {
             if (ModelState.IsValid)
             {
 
 
-                db.LeaveHistoryApprovalTemps.Add(leaveHistoryApprovalTemp);
-                db.SaveChanges();
+              
                 return RedirectToAction("Index");
             }
 
-            ViewBag.employeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.employeeID);
-            ViewBag.DepartmentLeader = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.DepartmentLeader);
-            ViewBag.GeneralManager = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.GeneralManager);
-            ViewBag.GroupLeader = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.GroupLeader);
-            ViewBag.HREmployee = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.HREmployee);
-            ViewBag.HRGroupLeader = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.HRGroupLeader);
+           
             return View(leaveHistoryApprovalTemp);
         }
 
