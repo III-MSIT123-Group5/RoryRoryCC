@@ -23,7 +23,7 @@
 
 <br /><br />
 
-<button class="btn btn-success" style="margin-bottom:10px" onclick="PopupNewLeaveForm('@Url.Action("","")')"><i class="fa fa-plus" aria-hidden="true"></i> 請假申請</button>
+<button class="btn btn-success" style="margin-bottom:10px" onclick="PopupNewLeaveForm('@Url.Action("Create","LeaveHistoryApprovalTemps")')"><i class="fa fa-plus" aria-hidden="true"></i> 請假申請</button>
 <h3>已送出的請假簽核進度</h3>
 <br />
 <div style="width:92%">
@@ -58,14 +58,14 @@
                     dataType: 'json'
                 },
                 "columnDefs": [
-                    { "targets": 0, "data": "","width": "65px" },
-                    { "targets": 1, "data": "EmployeeName", "width": "60px" },
-                    { "targets": 2, "data": "name", "width": "60px" },
-                    { "targets": 3, "data": "Content" },
-                    { "targets": 4, "data": "PostTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
+                    { "targets": 0, "data": "leave_name","width": "65px" },
+                    { "targets": 1, "data": "ReleaseTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
+                    { "targets": 2, "data": "StartTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
+                    { "targets": 3, "data": "EndTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
+                    { "targets": 4, "data": "Status", "width": "100px" },
                     {
-                        "targets": 5, "data": "Num", "render": function (data) {
-                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/BulletinBoards/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
+                        "targets": 5, "data": "ID", "render": function (data) {
+                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/BulletinBoards/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 詳細資料</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=(" + data + ")><i class='fa fa-trash'></i> 取消申請</a>"
                         },
                         "orderable": false,
                         "searchable": false,
@@ -73,21 +73,20 @@
                     }
                 ],
                 "language": {
-                    "emptyTable": "目前無貼文，請點選<b>新增貼文</b>"
+                    "emptyTable": "無待簽核申請。"
                 }
             });
         });
-
-        function PopupForm(url) {
+        //新增
+        function PopupNewLeaveForm(url) {
             var formDiv = $('<div/>');
             $.get(url)
                 .done(function (response) {
                     formDiv.html(response);
-
                     Popup = formDiv.dialog({
                         autoOpen: true,
                         resizable: false,
-                        title: '撰寫公佈欄貼文',
+                        title: '請假',
                         height: 400,
                         width: 700,
                         close: function () {
@@ -97,7 +96,7 @@
                 });
         }
 
-        function SubmitForm(form) {
+        function SubmitLeaveForm(form) {
             $.validator.unobtrusive.parse(form);
             if ($(form).valid()) {
                 $.ajax({

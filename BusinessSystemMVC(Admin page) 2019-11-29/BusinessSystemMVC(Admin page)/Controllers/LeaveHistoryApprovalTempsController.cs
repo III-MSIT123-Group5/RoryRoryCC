@@ -47,9 +47,14 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(leaveHistoryApprovalTemp);
         }
 
+        //新增請假
         // GET: LeaveHistoryApprovalTemps/Create
         public ActionResult Create()
         {
+
+
+            ViewBag.leaveID = new SelectList(db.Leaves, "leaveID", "leave_name");
+
             ViewBag.employeeID = new SelectList(db.Employees, "employeeID", "EmployeeName");
             ViewBag.DepartmentLeader = new SelectList(db.Employees, "employeeID", "EmployeeName");
             ViewBag.GeneralManager = new SelectList(db.Employees, "employeeID", "EmployeeName");
@@ -58,16 +63,18 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             ViewBag.HRGroupLeader = new SelectList(db.Employees, "employeeID", "EmployeeName");
             return View();
         }
-
+        //新增請假
         // POST: LeaveHistoryApprovalTemps/Create
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,employeeID,leaveID,StartTime,EndTime,Description,Appendix,GroupLeader,GroupLeaderSignTime,DepartmentLeader,DepartmentLeaderSignTime,GeneralManager,GeneralManagerSignTime,HREmployee,HREmployeeSignTime,HRGroupLeader,HRGroupLeaderSignTime,Status,SignState,Reject")] LeaveHistoryApprovalTemp leaveHistoryApprovalTemp)
+        public ActionResult Create(LeaveHistoryApprovalTemp leaveHistoryApprovalTemp)
         {
             if (ModelState.IsValid)
             {
+
+
                 db.LeaveHistoryApprovalTemps.Add(leaveHistoryApprovalTemp);
                 db.SaveChanges();
                 return RedirectToAction("Index");
