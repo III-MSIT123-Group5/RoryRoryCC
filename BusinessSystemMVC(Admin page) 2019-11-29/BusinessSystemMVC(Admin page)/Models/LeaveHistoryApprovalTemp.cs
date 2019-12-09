@@ -35,7 +35,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public string Status { get; set; }
         public bool SignState { get; set; }
         public bool Reject { get; set; }
-
+    
         public virtual Employee Employee { get; set; }
         public virtual Employee Employee1 { get; set; }
         public virtual Employee Employee2 { get; set; }
