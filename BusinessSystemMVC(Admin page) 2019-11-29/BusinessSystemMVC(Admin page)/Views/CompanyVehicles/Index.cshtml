@@ -76,11 +76,11 @@
                         },
                         "orderable": false,
                         "searchable": false,
-                        "width": "65px"
+                        "width": "300px"
                     },
-                    { "targets": 1, "data": "LicenseNumber", "width": "60px" },
-                    { "targets": 2, "data": "VehicleYear", "width": "60px"},
-                    { "targets": 3, "data": "PurchaseDate", "width": "60px", "render": function (data) { return moment(data).format("YYYY-MM-DD") }, "width": "135px"  },
+                    { "targets": 1, "data": "LicenseNumber", "width": "75px" },
+                    { "targets": 2, "data": "VehicleYear", "width": "75px"},
+                    { "targets": 3, "data": "PurchaseDate", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD") }, "width": "135px"  },
                     { "targets": 4, "data": "brand" },
                     { "targets": 5, "data": "serial" },
                     { "targets": 6, "data": "MaxPassenger" },
@@ -106,8 +106,8 @@
                         autoOpen: true,
                         resizable: false,
                         title: '借車事由',
-                        height: 200,
-                        width: 700,
+                        height: 800,
+                        width: 400,
                         close: function () {
                             Popup.dialog('destroy').remove();
                         }

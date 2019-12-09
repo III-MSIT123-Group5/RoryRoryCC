@@ -13,36 +13,38 @@
 
 <div>
 
+
     @Html.LabelFor(Model => Model.LicenseNumber, "車牌號碼", new { @class = "control-label" })
-    @Html.TextAreaFor(Model => Model.LicenseNumber, new { rows = "1", cols = "150", @class = "form-control", @MaxLength = "8" })
+    @Html.EditorFor(Model => Model.LicenseNumber, new { htmlAttributes = new { @class = "form-control", @Value = "", @MaxLength = "8" } })
     @Html.ValidationMessageFor(model => model.LicenseNumber)
 
     @Html.LabelFor(Model => Model.VehicleYear, "車輛年份", new { @class = "control-label" })
-    @Html.TextAreaFor(Model => Model.VehicleYear, new { rows = "1", cols = "150", @class = "form-control", @MaxLength = "4" })
+    @Html.EditorFor(Model => Model.VehicleYear, new { htmlAttributes = new { @class = "form-control", Type = "year", @Value = "" ,@MaxLength="4"} })
     @Html.ValidationMessageFor(model => model.VehicleYear)
 
-    @Html.LabelFor(Model => Model.PurchaseDate, "購入日期", new { @class = "control-label" })
-    @Html.(Model => Model.PurchaseDate, new { rows = "1", cols = "20", @class = "form-control", @MaxLength = "10" })
-    @Html.ValidationMessageFor(model => model.PurchaseDate)
+    @Html.LabelFor(Model => Model.PurchaseDate, "購入時間", new { @class = "control-label" })
+    <br />
+    @Html.EditorFor(Model => Model.PurchaseDate, new { htmlAttributes = new { @class = "form-control", Type = "date" } })
+    @Html.ValidationMessageFor(model => model.PurchaseDate, "", new { @class = "text-danger" })
 
     @Html.LabelFor(Model => Model.brand, "車輛廠牌", new { @class = "control-label" })
-    @Html.TextAreaFor(Model => Model.brand, new { rows = "1", cols = "20", @class = "form-control", @MaxLength = "20" })
+    @Html.EditorFor(Model => Model.brand, new { htmlAttributes = new { @class = "form-control", @Value = ""} })
     @Html.ValidationMessageFor(model => model.brand)
 
     @Html.LabelFor(Model => Model.serial, "車輛型號", new { @class = "control-label" })
-    @Html.TextAreaFor(Model => Model.serial, new { rows = "1", cols = "20", @class = "form-control", @MaxLength = "10" })
+    @Html.EditorFor(Model => Model.serial, new { htmlAttributes = new { @class = "form-control", @Value = "" } })
     @Html.ValidationMessageFor(model => model.serial)
 
     @Html.LabelFor(Model => Model.MaxPassenger, "乘客數", new { @class = "control-label" })
-    @Html.TextAreaFor(Model => Model.MaxPassenger, new { rows = "1", cols = "20", @class = "form-control", @MaxLength = "10" })
+    @Html.EditorFor(Model => Model.MaxPassenger, new { htmlAttributes = new { @class = "form-control", @Value = "", @MaxLength = "10" } })
     @Html.ValidationMessageFor(model => model.MaxPassenger)
 
     @Html.LabelFor(Model => Model.officeID, "辦公室編號", new { @class = "control-label" })
-    @Html.TextAreaFor(Model => Model.officeID, new { rows = "1", cols = "20", @class = "form-control", @MaxLength = "10" })
+    @Html.EditorFor(Model => Model.officeID, new { htmlAttributes = new { @class = "form-control", @Value = "" } })
     @Html.ValidationMessageFor(model => model.officeID)
 
     @Html.LabelFor(Model => Model.VehiclePhoto2, "照片", new { @class = "control-label" })
-    @Html.TextAreaFor(Model => Model.VehiclePhoto2, new { rows = "1", cols = "20", @class = "form-control", @MaxLength = "10" })
+    @Html.EditorFor(Model => Model.VehiclePhoto2, new { htmlAttributes = new { @class = "form-control", @Value = "",@MaxLength="10" } })
     @Html.ValidationMessageFor(model => model.VehiclePhoto2)
 </div>
 
