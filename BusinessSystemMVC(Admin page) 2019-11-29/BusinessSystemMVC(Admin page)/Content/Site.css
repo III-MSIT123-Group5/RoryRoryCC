@@ -533,3 +533,23 @@ footer.sticky-footer {
 input.input-validation-error{
     border:1px solid #e80c4d;
 }
+
+td.details-control {
+    background: url('../images/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+
+tr.details td.details-control {
+    background: url('../images/details_close.png') no-repeat center center;
+}
+
+
+.taglabel {
+    
+    
+    border:25px,thick,#e80c4d;
+    border-top-right-radius:5px;
+    border-top-left-radius:5px;
+    border-bottom:none;
+    width:130px;
+}

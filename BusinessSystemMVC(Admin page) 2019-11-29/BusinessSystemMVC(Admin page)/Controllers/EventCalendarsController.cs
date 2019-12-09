@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BusinessSystemMVC_Admin_page_.Models;
+using Microsoft.AspNet.Identity;
 
 namespace BusinessSystemMVC_Admin_page_.Controllers
 {
@@ -36,101 +37,179 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(eventCalendar);
         }
 
-        // GET: EventCalendars/Create
-        public ActionResult Create()
+        [HttpGet]
+        public ActionResult AddOrEdit(int id = 0)
         {
-            ViewBag.DepartmentID = new SelectList(db.Departments, "departmentID", "name");
             ViewBag.employeeID = new SelectList(db.Employees, "employeeID", "EmployeeName");
-            return View();
+            ViewBag.DepartmentID = new SelectList(db.Departments,"DepartmentID", "name");
+            if (id == 0)
+            {
+                return View(new EventCalendar());
+            }
+            else
+            {
+                using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+                {
+
+                    return View(db.EventCalendars.Where(x => x.CalendarID == id).FirstOrDefault<EventCalendar>());
+                }
+            }
+           
         }
 
-        // POST: EventCalendars/Create
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CalendarID,employeeID,Subject,DepartmentID,StartTime,EndTime,Location,Description,IsImportant,IsFullday")] EventCalendar eventCalendar)
+        public ActionResult AddOrEdit(EventCalendar ecal)
         {
-            if (ModelState.IsValid)
-            {
-                db.EventCalendars.Add(eventCalendar);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            ViewBag.employeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", ecal.employeeID);
+            ViewBag.DepartmentID = new SelectList(db.Departments, "DepartmentID", "name",ecal.DepartmentID);
 
-            ViewBag.DepartmentID = new SelectList(db.Departments, "departmentID", "name", eventCalendar.DepartmentID);
-            ViewBag.employeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", eventCalendar.employeeID);
-            return View(eventCalendar);
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+
+                if (ecal.CalendarID == 0)
+                {
+                    db.EventCalendars.Add(new EventCalendar()
+                    {
+                        employeeID = EmployeeDetail.EmployeeID,
+                        Subject = ecal.Subject,
+                        DepartmentID =ecal.DepartmentID,
+                        StartTime = DateTime.Now,
+                        EndTime = ecal.EndTime,
+                        Location = ecal.Location,
+                        Description = ecal.Description,
+                        IsFullday = ecal.IsFullday,
+                        IsImportant = ecal.IsImportant
+
+                    });
+                    db.SaveChanges();
+
+                    return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    db.Entry(ecal).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    
+
+                    return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+            
         }
 
-        // GET: EventCalendars/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            EventCalendar eventCalendar = db.EventCalendars.Find(id);
-            if (eventCalendar == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.DepartmentID = new SelectList(db.Departments, "departmentID", "name", eventCalendar.DepartmentID);
-            ViewBag.employeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", eventCalendar.employeeID);
-            return View(eventCalendar);
-        }
 
-        // POST: EventCalendars/Edit/5
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CalendarID,employeeID,Subject,DepartmentID,StartTime,EndTime,Location,Description,IsImportant,IsFullday")] EventCalendar eventCalendar)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(eventCalendar).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.DepartmentID = new SelectList(db.Departments, "departmentID", "name", eventCalendar.DepartmentID);
-            ViewBag.employeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", eventCalendar.employeeID);
-            return View(eventCalendar);
-        }
 
-        // GET: EventCalendars/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            EventCalendar eventCalendar = db.EventCalendars.Find(id);
-            if (eventCalendar == null)
-            {
-                return HttpNotFound();
-            }
-            return View(eventCalendar);
-        }
 
-        // POST: EventCalendars/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            EventCalendar eventCalendar = db.EventCalendars.Find(id);
-            db.EventCalendars.Remove(eventCalendar);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+    //    // GET: EventCalendars/Create
+    //    public ActionResult Create()
+    //    {
+    //        ViewBag.DepartmentID = new SelectList(db.Departments, "departmentID", "name");
+    //        ViewBag.employeeID = new SelectList(db.Employees, "employeeID", "EmployeeName");
+    //        return View();
+    //    }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+
+
+
+
+
+
+
+    //    // POST: EventCalendars/Create
+    //    // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
+    //    // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
+    //    [HttpPost]
+    //    [ValidateAntiForgeryToken]
+    //    public ActionResult Create([Bind(Include = "CalendarID,employeeID,Subject,DepartmentID,StartTime,EndTime,Location,Description,IsImportant,IsFullday")] EventCalendar eventCalendar)
+    //    {
+    //        if (ModelState.IsValid)
+    //        {
+    //            db.EventCalendars.Add(eventCalendar);
+    //            db.SaveChanges();
+    //            return RedirectToAction("Index");
+    //        }
+            
+    //        ViewBag.DepartmentID = new SelectList(db.Departments, "departmentID", "name", eventCalendar.DepartmentID);
+    //        ViewBag.employeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", eventCalendar.employeeID);
+    //        return View(eventCalendar);
+    //    }
+
+
+
+
+
+
+    //    // GET: EventCalendars/Edit/5
+    //    public ActionResult Edit(int? id)
+    //    {
+    //        if (id == null)
+    //        {
+    //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+    //        }
+    //        EventCalendar eventCalendar = db.EventCalendars.Find(id);
+    //        if (eventCalendar == null)
+    //        {
+    //            return HttpNotFound();
+    //        }
+    //        ViewBag.DepartmentID = new SelectList(db.Departments, "departmentID", "name", eventCalendar.DepartmentID);
+    //        ViewBag.employeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", eventCalendar.employeeID);
+    //        return View(eventCalendar);
+    //    }
+
+    //    // POST: EventCalendars/Edit/5
+    //    // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
+    //    // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
+    //    [HttpPost]
+    //    [ValidateAntiForgeryToken]
+    //    public ActionResult Edit([Bind(Include = "CalendarID,employeeID,Subject,DepartmentID,StartTime,EndTime,Location,Description,IsImportant,IsFullday")] EventCalendar eventCalendar)
+    //    {
+    //        if (ModelState.IsValid)
+    //        {
+    //            db.Entry(eventCalendar).State = EntityState.Modified;
+    //            db.SaveChanges();
+    //            return RedirectToAction("Index");
+    //        }
+    //        ViewBag.DepartmentID = new SelectList(db.Departments, "departmentID", "name", eventCalendar.DepartmentID);
+    //        ViewBag.employeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", eventCalendar.employeeID);
+    //        return View(eventCalendar);
+    //    }
+
+    //    // GET: EventCalendars/Delete/5
+    //    public ActionResult Delete(int? id)
+    //    {
+    //        if (id == null)
+    //        {
+    //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+    //        }
+    //        EventCalendar eventCalendar = db.EventCalendars.Find(id);
+    //        if (eventCalendar == null)
+    //        {
+    //            return HttpNotFound();
+    //        }
+    //        return View(eventCalendar);
+    //    }
+
+    //    // POST: EventCalendars/Delete/5
+    //    [HttpPost, ActionName("Delete")]
+    //    [ValidateAntiForgeryToken]
+    //    public ActionResult DeleteConfirmed(int id)
+    //    {
+    //        EventCalendar eventCalendar = db.EventCalendars.Find(id);
+    //        db.EventCalendars.Remove(eventCalendar);
+    //        db.SaveChanges();
+    //        return RedirectToAction("Index");
+    //    }
+
+    //    protected override void Dispose(bool disposing)
+    //    {
+    //        if (disposing)
+    //        {
+    //            db.Dispose();
+    //        }
+    //        base.Dispose(disposing);
+    //    }
     }
 }

@@ -1,0 +1,170 @@
+﻿@model BusinessSystemMVC_Admin_page_.Models.LeaveHistoryApprovalTemp
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LeaveHistoryApprovalTemp</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.leaveID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.leaveID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Appendix)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Appendix)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupLeaderSignTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupLeaderSignTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartmentLeaderSignTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartmentLeaderSignTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GeneralManagerSignTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GeneralManagerSignTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HREmployeeSignTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HREmployeeSignTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HRGroupLeaderSignTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HRGroupLeaderSignTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SignState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SignState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee1.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee1.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee2.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee2.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee3.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee3.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee4.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee4.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee5.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee5.EmployeeName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

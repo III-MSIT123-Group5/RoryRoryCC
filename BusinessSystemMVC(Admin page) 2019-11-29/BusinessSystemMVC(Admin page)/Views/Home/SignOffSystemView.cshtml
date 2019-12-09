@@ -1,0 +1,268 @@
+﻿@section Styles{
+    <style>
+        button, h2 {
+            font-family: 'NotoSansCJKtc-Bold';
+        }
+
+        th, td {
+            font-family: 'NotoSansCJKtc-Bold';
+        }
+    </style>
+    <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+}
+
+@Html.Partial("_HRSignOffSystemPartial")
+
+@Html.Partial("_RequisitionSignProgressPartial")
+
+
+@section scripts{
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/Scripts/moment.js"></script>
+
+    @*==========Rory的啦=========*@
+    <script>
+        var Popup, dataTable; //height="75%" width="75%" src=\"'height="75%"
+
+        //註冊進度
+        $(document).ready(function () {
+            dataTable = $('#NewEmpSateTable').DataTable({
+                "ajax": {
+                    url: '@Url.Action("RegistingLoadData", "EmployeeApprovalTemps")',
+                    method: 'GET',
+                    dataType: 'json'
+                },
+                "columnDefs": [
+                    { "targets": 0, "data": "EmployeeName", "width": "60px" },
+                    { "targets": 1, "data": "Gender", "width": "60px" },
+                    { "targets": 2, "data": "Account", "width": "60px" },
+                    { "targets": 3, "data": "name", "width": "60px"  },    /*department*/
+                    { "targets": 4, "data": "GroupName", "width": "60px" },
+                    { "targets": 5, "data": "position1", "width": "60px"  },
+                    { "targets": 6, "data": "EditorTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
+                    { "targets": 7, "data": "StatusDescript", "width": "150px"     }
+                ],
+                "language": {
+                    "emptyTable": "無待簽核事項。"
+                }
+            });
+        });
+
+        //註冊駁回
+        $(document).ready(function () {
+            dataTable = $('#RejectEmpStable').DataTable({
+                "ajax": {
+                    url: '@Url.Action("RejectLoadData", "EmployeeApprovalTemps")',
+                    method: 'GET',
+                    dataType: 'json'
+                },
+                "columnDefs": [
+                    { "targets": 0, "data": "EmployeeName", "width": "60px" },
+                    { "targets": 1, "data": "Gender", "width": "60px" },
+                    { "targets": 2, "data": "Account", "width": "60px" },
+                    { "targets": 3, "data": "name", "width": "60px"  },    /*department*/
+                    { "targets": 4, "data": "GroupName", "width": "60px" },
+                    { "targets": 5, "data": "position1", "width": "60px"  },
+                    { "targets": 6, "data": "EditorTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
+                    { "targets": 7, "data": "StatusDescript", "width": "150px" },
+                    { "targets": 8, "data": "ID","render": function (data) {
+                        return `<a class='btn btn-warning btn-sm' onclick=PopupRejectDetail("@Url.Action("RejectLoadDataDetail", "EmployeeApprovalTemps")/${data}")><i class="fa fa-align-left"></i> 詳細資料</a>`
+                        },
+                        "orderable": false,
+                        "searchable": false,
+                        "width": "50px" }
+                ],
+                "language": {
+                    "emptyTable": "無待簽核事項。"
+                }
+            });
+        });
+
+        //Reject詳細資料
+        function PopupRejectDetail(Url) {
+            var formDiv = $('<div/>');
+            $.get(Url)
+                .done(function (response) {
+                    formDiv.html(response);
+                    Popup = formDiv.dialog({
+                        autoOpen: true,
+                        resizable: false,
+                        title: '詳細資料',
+                        height: 700,
+                        width: 400,
+                        close: function () {
+                            Popup.dialog('destroy').remove();
+                        }
+                    });
+                });
+        }
+    </script>
+
+    @*==========晨瑋=========*@
+    <script>
+        var Popup, dataTable; //height="75%" width="75%" src=\"'height="75%"
+
+        $(document).ready(function () {
+            dataTable = $('#ApprovalProgressTable').DataTable({
+                "ajax": {
+                    url: '/OrderDetails/LoadDataSignProgress',
+                    method: 'GET',
+                    dataType: 'json'
+                },
+                "columnDefs": [
+                    {
+                        "targets": 0,
+                        "data": "OrderID",
+                        "width": "100px",
+                        "className": "text-center align-middle"
+                    },
+                    {
+                        "targets": 1,
+                        "data": "ProductName",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 2,
+                        "data": "UnitPrice",
+                        "width": "50px",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 3,
+                        "data": "Quantity",
+                        "width": "50px",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 4,
+                        "data": "TotalPrice",
+                        "width": "50px",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 5,
+                        "data": "FirstSignStatus",
+                        "width": "150px",
+                        "className": "text-center align-middle",
+                        "render": function (data) {
+                            if (data = "未審核") {
+                                color = "orange";
+                            }
+                            else if (data = "審核駁回") {
+                                color = "red"
+                            }
+                            return `<span style="color: ${color}">${data}</span>`;
+                        }
+                    },
+                    {
+                        "targets": 6,
+                        "data": "SecondSignStatus",
+                        "width": "150px",
+                        "className": "text-center align-middle",
+                        "render": function (data) {
+                            if (data = "未審核") {
+                                color = "orange";
+                            }
+                            else if (data = "審核駁回") {
+                                color = "red"
+                            }
+                            return `<span style="color: ${color}">${data}</span>`;
+                        }
+                    },
+                    {
+                        "targets": 7,
+                        "data": "ThirdSignStatus",
+                        "width": "150px",
+                        "className": "text-center align-middle",
+                        "render": function (data) {
+                            if (data = "未審核") {
+                                color = "orange";
+                            }
+                            else if (data = "審核駁回") {
+                                color = "red"
+                            }
+                            return `<span style="color: ${color}">${data}</span>`;
+                        }
+                    },
+                    {
+                        "targets": 8,
+                        "data": "FourthSignStatus",
+                        "width": "150px",
+                        "className": "text-center align-middle",
+                        "render": function (data) {
+                            if (data = "未審核") {
+                                color = "orange";
+                            }
+                            else if (data = "審核駁回") {
+                                color = "red"
+                            }
+                            return `<span style="color: ${color}">${data}</span>`;
+                        }
+                    },
+                    {
+                        "targets": 9,
+                        "data": "OrderID",
+                        "className": "text-center align-middle",
+                        "render": function (data) {
+                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/OrderDetails/DetailSignProgress/" + data + "')><i class='fa fa-list-alt'></i> 內容</a>"
+                        },
+                        "orderable": false,
+                        "searchable": false,
+                        "width": "100px"
+                    }
+
+                ],
+                "language": {
+                    "emptyTable": "目前無未簽核請購單"
+                }
+            });
+        });
+
+        function PopupForm(url) {
+            var formDiv = $('<div/>');
+            $.get(url)
+                .done(function (response) {
+                    formDiv.html(response);
+
+                    Popup = formDiv.dialog({
+                        autoOpen: true,
+                        resizable: false,
+                        title: '詳細簽核',
+                        height: 600,
+                        width: 400,
+                        close: function () {
+                            Popup.dialog('destroy').remove();
+                        }
+                    });
+                });
+        }
+
+        function SubmitForm(form) {
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.action,
+                    data: $(form).serialize(),
+                    success: function (data) {
+                        if (data.success) {
+
+                            Popup.dialog("close");
+                            dataTable.ajax.reload();
+
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            })
+                        }
+
+                    }
+                });
+            }
+            return false;
+        }
+    </script>
+
+}

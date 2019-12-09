@@ -1,0 +1,183 @@
+﻿@model BusinessSystemMVC_Admin_page_.Models.EmployeeApprovalTemp
+
+@{
+    ViewBag.Title = "詳細資料";
+    Layout = null;
+}
+
+<div>
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>*@
+
+        <dt>
+            @Html.Label("員工姓名")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.Label("性別")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Birth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birth)
+        </dd>*@
+
+        <dt>
+            @Html.Label("雇用日期")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HireDate)
+        </dd>
+
+        <dt>
+            @Html.Label("帳號")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account)
+        </dd>
+
+        <dt>
+            @Html.Label("部門")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.name)
+        </dd>
+
+        <dt>
+            @Html.Label("組別")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Group.GroupName)
+        </dd>
+
+        <dt>
+            @Html.Label("職位")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Position.position1)
+        </dd>
+
+        <dt>
+            @Html.Label("主管姓名")     @*Manager*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee3.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.Label("辦公地點")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Office.office_name)
+        </dd>
+
+        <dt>
+            @Html.Label("編輯者")     @*Editor*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee1.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.Label("新增時間")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditorTime)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Employee2.EmployeeName)      GroupLeader
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee2.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupLeaderSignTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupLeaderSignTime)
+        </dd>*@
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)   DepartmentLeader
+        </dt>*@
+
+        @*<dd>
+            @Html.DisplayFor(model => model.Employee.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartmentLeaderSignTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartmentLeaderSignTime)
+        </dd>*@
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.CreateOrUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateOrUpdate)
+        </dd>*@
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.SignState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SignState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rejection)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rejection)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employed)
+        </dd>*@
+
+    </dl>
+</div>
+<p>
+    <a class='btn btn-warning btn-sm' style='margin-left:5px' onclick=PopupAcceptSign("@Url.Action("AcceptRegister", "EmployeeApprovalTemps")/@Model.ID")><i class="fa fa-check-square-o"></i> 核准</a>
+    <a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=PopupRejectSign("@Url.Action("RejectRegister", "EmployeeApprovalTemps")/@Model.ID")><i class='fa fa-hand-paper-o'></i> 駁回</a>
+</p>

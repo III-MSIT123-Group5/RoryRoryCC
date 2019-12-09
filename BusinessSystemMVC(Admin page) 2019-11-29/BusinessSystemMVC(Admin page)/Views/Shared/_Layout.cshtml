@@ -30,7 +30,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion" style="background-color:white;">
+            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion" style="background-color:white; overflow-y:auto">
                 @*公佈欄*@
                 <li class="nav-item color hover" data-toggle="tooltip" data-placement="right" title="公佈欄">
                     <a class="nav-link" href="@Url.Action("Index", "BulletinBoards")">
@@ -59,7 +59,7 @@
                 @*行事曆*@
                 <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="行事曆">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseCalendar" data-parent="#exampleAccordion">
-                        <i class="fa fa-fw fa-th-list"></i>
+                        <i class="fa fa-fw fa-calendar"></i>
                         <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">行事曆</span>
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseCalendar">
@@ -80,36 +80,36 @@
                 </li>
                 @*意見調查*@
                 <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="意見調查">
-                    <a class="nav-link" href="@Url.Action("Index", "SurveyMains")">
+                    <a class="nav-link" href="@Url.Action("Index", "CommentMains")">
                         <i class="fa fa-fw fa-clipboard"></i>
                         <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">意見調查</span>
                     </a>
                 </li>
-                @*請購系統*@
-                <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="請購系統">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseRequisition" data-parent="#exampleAccordion">
-                        <i class="fa fa-fw fa-th-list"></i>
-                        <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">請購系統</span>
+                @*內部訊息*@
+                <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="內部訊息">
+                    <a class="nav-link" href="@Url.Action("Index", "Recipients")">
+                        <i class="fa fa-fw fa-comment"></i>
+                        <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">內部訊息</span>
                     </a>
-                    <ul class="sidenav-second-level collapse" id="collapseRequisition">
-                        <li class="color hover">
-                            <a href="@Url.Action("Index", "OrderDetails")" style="font-family:'NotoSansCJKtc-Bold'">進入請購</a>
-                        </li>
-                        <li class="color hover">
-                            <a href="@Url.Action("Index", "RequisitionMains")" style="font-family:'NotoSansCJKtc-Bold'">RequisitionMain_DataTable</a>
-                        </li>
-                        <li class="color hover">
-                            <a href="@Url.Action("Index", "Approvals")" style="font-family:'NotoSansCJKtc-Bold'">請購簽核</a>
-                        </li>
-                        <li class="color hover">
-                            <a href="forgot-password.html" style="font-family:'NotoSansCJKtc-Bold'">統計分析</a>
-                        </li>
-                    </ul>
                 </li>
+                @*請假系統*@
+                <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="請假系統">
+                    <a class="nav-link" href="@Url.Action("Index", "LeaveHistoryApprovalTemps")">
+                        <i class="fa fa-fw fa-clipboard"></i>
+                        <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">請假系統</span>
+                    </a>
+                </li>
+                @*請購系統*@
+                @Html.Partial("_RequisitionSystemPartial")
+                @*只有組級上以可看見SignOffsystem*@
+                @Html.Partial("_SignOffSystemPartial")
                 @*只有HR可看見HRsystem*@
                 @Html.Partial("_HRSystemPartial")
                 @*只有IT可看見HRsystem*@
                 @Html.Partial("_ITSystemPartial")
+
+
+
                 @*<li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="Tables">
             <a class="nav-link" href="tables.html">
                 <i class="fa fa-fw fa-table"></i>
@@ -276,5 +276,6 @@
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="~/Scripts/notify.min.js"></script>
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

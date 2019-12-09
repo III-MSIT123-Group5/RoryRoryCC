@@ -4,6 +4,7 @@
     ViewBag.Title = "Index";
 }
 
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
 <link href='~/package/calendar/core/main.css' rel='stylesheet' />
 <link href='~/package/calendar/daygrid/main.css' rel='stylesheet' />
@@ -13,16 +14,7 @@
 <script src='~/package/calendar/daygrid/main.js'></script>
 <script src='~/package/calendar/timegrid/main.js'></script>
 
-
-<link href='~/Content/bootstrap-datetimepicker.css' rel='stylesheet' />
-<script src="~/Scripts/moment.min.js"></script>
-<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-
-
 <script>
-
-
 
     document.addEventListener('DOMContentLoaded', function () {
         $("#UpdateEvent").hover(function () {
@@ -31,7 +23,7 @@
             $(this).css('color', '')
         });
 
-        var calendarEl = document.getElementById('calendar');
+        var calendarEl = document.getElementById('evecalendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
             plugins: ['interaction', 'dayGrid', 'timeGrid', 'list'],
@@ -101,17 +93,9 @@
         calendar.render();
 
 
-        $("div > button").hover(function () {
-            $(this).css('background-color', '#b4c9ef')
-        }, function () {
-            $(this).css('background-color', '')
-        });
 
 
-        
-        $('#datetime').datetimepicker();
-         
-        
+
 
     });
 
@@ -125,43 +109,185 @@
 
 </script>
 <div>
-    <i class="fas fa-plus-square fa-5x" id="UpdateEvent" onclick="location.href='@Url.Action("Create", "EventCalendars")'"></i>
+    <i class="fas fa-plus-square fa-5x" id="UpdateEvent" onclick="PopupForm('/EventCalendars/AddOrEdit')"></i>     @*"location.href='@Url.Action("AddOrEdit", "EventCalendars")'"*@
 </div>
 
-<div class="col-3">
-    <div id='datetime'></div> 
+
+<div class="col-8" style="float:left">
+    <div id='evecalendar'></div>
 </div>
-<div class="col-9">
-    <div id='calendar'></div>
+
+<div class="col-4" style="float:right">
+
+    <table id="mincal">
+        <thead>
+            <tr>
+                <th>星期日</th>
+                <th>星期一</th>
+                <th>星期二</th>
+                <th>星期三</th>
+                <th>星期四</th>
+                <th>星期五</th>
+                <th>星期六</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+
+    </table>
+
 </div>
+
+
+<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
 
 @section scripts{
+
+
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+
+
     <script>
-        //在行事曆顯示database內的資料
-        $.get('http://data.ntpc.gov.tw/api/v1/rest/datastore/382000000A-000077-002', function (datas) {
-            console.log(datas);
+        var Popup, dataTable; //height="75%" width="75%" src=\"'height="75%"
 
-        })
+        //$(document).ready(function () {
+        //    dataTable = $('#Btable').DataTable({
+        //        "ajax": {
+        //            url: '/BulletinBoards/LoadData',
+        //            method: 'GET',
+        //            dataType: 'json'
+        //        },
+        //        "columnDefs": [
 
+        //            {
+        //                "targets": 0, "data": "Photo", "render": function (url, type, full) {
+        //                    return '<img height="60px" src="' + url + '"/>';
+        //                },
+        //                "orderable": false,
+        //                "searchable": false,
+        //                "width": "65px"
+        //            },
+        //            { "targets": 1, "data": "EmployeeName", "width": "60px" },
+        //            { "targets": 2, "data": "name", "width": "60px" },
+        //            { "targets": 3, "data": "Content" },
+        //            { "targets": 4, "data": "PostTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
+        //            {
+        //                "targets": 5, "data": "Num", "render": function (data) {
+        //                    return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/BulletinBoards/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
+        //                },
+        //                "orderable": false,
+        //                "searchable": false,
+        //                "width": "150px"
+        //            }
 
+        //        ],
+        //        "language": {
 
+        //            "emptyTable": "目前無貼文，請點選<b>新增貼文</b>"
+        //        }
 
+        //    });
 
+        //});
 
-                    //var jsonData = JSON.stringify({
-                    //    employeeName: $("#employeeName").val(),
-                    //    subject: $("#subject").val(),
-                    //    DepartmentID: $("#DepartmentID").val(),
-                    //    StartTime: $("#StartTime").val(),
-                    //    EndTime: $("#EndTime").val(),
-                    //    Location: $("#Location").val(),
-                    //    Description: $("#Description").val(),
-                    //    IsImportant: $("#IsImportant").val(),
-                    //    IsFullday: $("#IsFullday").val()
+        function PopupForm(url) {
+            var formDiv = $('<div/>');
+            $.get(url)
+                .done(function (response) {
+                    formDiv.html(response);
 
+                    Popup = formDiv.dialog({
+                        autoOpen: true,
+                        resizable: false,
+                        title: '撰寫公佈欄貼文',
+                        height: 400,
+                        width: 700,
+                        close: function () {
+                            Popup.dialog('destroy').remove();
+                        }
+                    });
+                });
+        }
 
-                    //})
+        function SubmitForm(form) {
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.action,
+                    data: $(form).serialize(),
+                    success: function (data) {
+                        if (data.success) {
 
+                            Popup.dialog("close");
+                            dataTable.ajax.reload();
+
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            })
+                        }
+
+                    }
+                });
+            }
+            return false;
+
+        }
+
+        function Delete(id) {
+            if (confirm('確定要刪除此筆貼文嗎?')) {
+                $.ajax({
+                    type: "POST",
+                    url: '/BulletinBoards/Delete/' + id,
+                    success: function (data) {
+                        if (data.success) {
+
+                            dataTable.ajax.reload();
+
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            })
+
+                        }
+                    }
+
+                });
+            }
+        }
     </script>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+    
 
 }
+
+@*@section scripts{
+        <script>
+            //在行事曆顯示database內的資料
+            $.get('http://data.ntpc.gov.tw/api/v1/rest/datastore/382000000A-000077-002', function (datas) {
+                console.log(datas);
+
+            })
+
+                                                                //var jsonData = JSON.stringify({
+                                                                //    employeeName: $("#employeeName").val(),
+                                                                //    subject: $("#subject").val(),
+                                                                //    DepartmentID: $("#DepartmentID").val(),
+                                                                //    StartTime: $("#StartTime").val(),
+                                                                //    EndTime: $("#EndTime").val(),
+                                                                //    Location: $("#Location").val(),
+                                                                //    Description: $("#Description").val(),
+                                                                //    IsImportant: $("#IsImportant").val(),
+                                                                //    IsFullday: $("#IsFullday").val()
+
+
+                                                                //})
+
+        </script>
+
+    }*@

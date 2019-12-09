@@ -49,7 +49,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderID,ApprovalProcedureID,FirstSignerID,FirstSignStatus,SecondSignerID,SecondSignStatus,ThirdSignerID,ThirdSignStatus,FourthSignerID,FourthSignStatus")] Approval approval)
+        public ActionResult Create([Bind(Include = "OrderID,ApprovalProcedureID,FirstSignerID,FirstSignerName,FirstSignStatus,FirstSignDate,SecondSignerID,SecondSignerName,SecondSignStatus,SecondSignDate,ThirdSignerID,ThirdSignerName,ThirdSignStatus,ThirdSignDate,FourthSignerID,FourthSignerName,FourthSignStatus,ForthSignDate")] Approval approval)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderID,ApprovalProcedureID,FirstSignerID,FirstSignStatus,SecondSignerID,SecondSignStatus,ThirdSignerID,ThirdSignStatus,FourthSignerID,FourthSignStatus")] Approval approval)
+        public ActionResult Edit([Bind(Include = "OrderID,ApprovalProcedureID,FirstSignerID,FirstSignerName,FirstSignStatus,FirstSignDate,SecondSignerID,SecondSignerName,SecondSignStatus,SecondSignDate,ThirdSignerID,ThirdSignerName,ThirdSignStatus,ThirdSignDate,FourthSignerID,FourthSignerName,FourthSignStatus,ForthSignDate")] Approval approval)
         {
             if (ModelState.IsValid)
             {
