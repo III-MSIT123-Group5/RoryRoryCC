@@ -1,4 +1,4 @@
-﻿@if (User.IsInRole("Employee"))
+﻿@if (!(User.IsInRole("GeneralManager") || User.IsInRole("GroupLeader") || User.IsInRole("DepartmentLeader")))
 {
     @model IEnumerable<BusinessSystemMVC_Admin_page_.Models.OrderDetail>
 
