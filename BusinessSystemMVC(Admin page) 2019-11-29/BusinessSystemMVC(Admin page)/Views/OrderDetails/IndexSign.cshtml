@@ -5,21 +5,21 @@
 }
 
 @section Styles{
-    <style>
-        button {
-            font-family: 'NotoSansCJKtc-Bold';
-        }
+<style>
+    button, h2 {
+        font-family: 'NotoSansCJKtc-Bold';
+    }
 
-        h2 {
-            font-family: 'NotoSansCJKtc-Bold';
-        }
-    </style>
+    th, td {
+        font-family: 'NotoSansCJKtc-Bold';
+    }
+</style>
 
     <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 }
 
-<h2>請購簽核查詢</h2>
+<h2>請購簽核</h2>
 
 <br /><br />
 
@@ -27,12 +27,27 @@
     <table id="ApprovalTable" class="table table-striped table-bordered">
         <thead>
             <tr>
-                <th>請購單編號</th>
-                <th>組長簽核狀態</th>
-                <th>部長簽核狀態</th>
-                <th>總經理簽核狀態</th>
-                <th>總務組簽核狀態</th>
-                <th>詳細內容</th>
+                <th rowspan="2">簽核</th>
+                <th rowspan="2">請購單編號</th>
+                <th rowspan="2">產品</th>
+                <th rowspan="2">單價</th>
+                <th rowspan="2">數量</th>
+                <th rowspan="2">總價</th>
+                <th rowspan="2">原由</th>
+                <th colspan="2">第一層簽核狀態</th>
+                <th colspan="2">第二層簽核狀態</th>
+                <th colspan="2">第三層簽核狀態</th>
+                <th colspan="2">第四層簽核狀態</th>                            
+            </tr>
+            <tr>
+                <th>簽核人</th>
+                <th>簽核狀態</th>
+                <th>簽核人</th>
+                <th>簽核狀態</th>
+                <th>簽核人</th>
+                <th>簽核狀態</th>
+                <th>簽核人</th>
+                <th>簽核狀態</th>
             </tr>
         </thead>
     </table>
@@ -58,44 +73,123 @@
                     {
                         "targets": 0,
                         "data": "OrderID",
-                        "width": "100px",
-                        "className": "text-center align-middle"
-                    },
-                    {
-                        "targets": 1,
-                        "data": "FirstSignStatus",
-                        "width": "170px",
-                        "className": "text-center align-middle",
-                    },
-                    {
-                        "targets": 2,
-                        "data": "SecondSignStatus",
-                        "width": "170px",
-                        "className": "text-center align-middle"
-                    },
-                    {
-                        "targets": 3,
-                        "data": "ThirdSignStatus",
-                        "width": "170px",
-                        "className": "text-center align-middle"
-                    },
-                    {
-                        "targets": 4,
-                        "data": "FourthSignStatus",
-                        "width": "170px",
-                        "className": "text-center align-middle"
-                    },
-                    {
-                        "targets": 5,
-                        "data": "OrderID",
                         "className": "text-center align-middle",
                         "render": function (data) {
                             return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/OrderDetails/AddOrEditSign/" + data + "')><i class='fa fa-list-alt'></i> 簽核</a>"
                         },
                         "orderable": false,
                         "searchable": false,
-                        "width": "150px"
-                    }
+                    },
+                    {
+                        "targets": 1,
+                        "data": "OrderID",
+                        "className": "text-center align-middle"
+                    },
+                    {
+                        "targets": 2,
+                        "data": "ProductName",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 3,
+                        "data": "UnitPrice",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 4,
+                        "data": "Quantity",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 5,
+                        "data": "TotalPrice",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 6,
+                        "data": "Note",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 7,
+                        "data": "FirstSignerName",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 8,
+                        "data": "FirstSignStatus",
+                        "className": "text-center align-middle",
+                        "render": function (data) {
+                            if (data == "未審核") {
+                                color = "orange";
+                            }
+                            else{
+                                color = "red"
+                            }
+                            return `<span style="color: ${color}">${data}</span>`;
+                        }
+                    },
+                    {
+                        "targets": 9,
+                        "data": "SecondSignerName",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 10,
+                        "data": "SecondSignStatus",
+                        "className": "text-center align-middle",
+                        "render": function (data) {
+                            if (data == "未審核") {
+                                color = "orange";
+                            }
+                            else {
+                                color = "red"
+                            }
+                            return `<span style="color: ${color}">${data}</span>`;
+                        }
+                    },
+                    {
+                        "targets": 11,
+                        "data": "ThirdSignerName",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 12,
+                        "data": "ThirdSignStatus",
+                        "className": "text-center align-middle",
+                        "render": function (data) {
+
+                            if (data == "未審核") {
+                                color = "orange";
+                            }
+                            else if (data == "免審核") {
+                                color = "black";
+                            }
+                            else{
+                                color = "red";
+                            }
+                            return `<span style="color: ${color}">${data}</span>`;
+                        }
+                    },
+                    {
+                        "targets": 13,
+                        "data": "FourthSignerName",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 14,
+                        "data": "FourthSignStatus",
+                        "className": "text-center align-middle",
+                        "render": function (data) {
+                            if (data == "未審核") {
+                                color = "orange";
+                            }
+                            else {
+                                color = "red"
+                            }
+                            return `<span style="color: ${color}">${data}</span>`;
+                        }
+                    },
                 ],
                 "language": {
                     "emptyTable": "目前無未簽核請購單"

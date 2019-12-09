@@ -339,25 +339,22 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             var data = from OD in db.OrderDetails.AsEnumerable()
                        join RM in db.RequisitionMains.AsEnumerable() on OD.OrderID equals RM.OrderID
                        join AS in db.Approvals.AsEnumerable() on RM.OrderID equals AS.OrderID
-                       where RM.EmployeeID == EmployeeDetail.EmployeeID
+                       where AS.FirstSignerID == EmployeeDetail.EmployeeID || AS.SecondSignerID == EmployeeDetail.EmployeeID || AS.ThirdSignerID == EmployeeDetail.EmployeeID || AS.FourthSignerID == EmployeeDetail.EmployeeID
                        select new
                        {
                            OD.ProductName,
                            OD.UnitPrice,
                            OD.Quantity,
                            OD.TotalPrice,
+                           OD.Note,
                            AS.OrderID,
-                           AS.FirstSignerID,
-                           AS.FirstSignDate,
+                           AS.FirstSignerName,                           
                            AS.FirstSignStatus,
-                           AS.SecondSignerID,
-                           AS.SecondSignDate,
+                           AS.SecondSignerName,
                            AS.SecondSignStatus,
-                           AS.ThirdSignerID,
-                           AS.ThirdSignDate,
+                           AS.ThirdSignerName,
                            AS.ThirdSignStatus,
-                           AS.FourthSignerID,
-                           AS.ForthSignDate,
+                           AS.FourthSignerName,
                            AS.FourthSignStatus
                        };
 

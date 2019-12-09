@@ -201,6 +201,7 @@
     <Compile Include="Controllers\BulletinBoardsController.cs" />
     <Compile Include="Controllers\CommentMainsController.cs" />
     <Compile Include="Controllers\CompanyVehicleBorrowController.cs" />
+    <Compile Include="Controllers\CompanyVehicleHistoriesController.cs" />
     <Compile Include="Controllers\CompanyVehiclesController.cs" />
     <Compile Include="Controllers\EmployeeApprovalTempsController.cs" />
     <Compile Include="Controllers\EventCalendarsController.cs" />
@@ -214,8 +215,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Metadatas\BulletinBoard.cs" />
-    <Compile Include="Metadatas\BulletinBoardMetadata.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>BusinessSystemModel.tt</DependentUpon>
     </Compile>
@@ -375,6 +374,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\BulletinBoardEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\LeaveHistoryApprovalTempViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-datetimepicker.css" />
@@ -610,6 +610,12 @@
     <Content Include="Views\Account\UnCreate.cshtml" />
     <Content Include="Views\Recipients\Details.cshtml" />
     <Content Include="Views\Recipients\Index.cshtml" />
+    <Content Include="Views\CompanyVehicleHistories\Create.cshtml" />
+    <Content Include="Views\CompanyVehicleHistories\Delete.cshtml" />
+    <Content Include="Views\CompanyVehicleHistories\Details.cshtml" />
+    <Content Include="Views\CompanyVehicleHistories\Edit.cshtml" />
+    <Content Include="Views\CompanyVehicleHistories\Index.cshtml" />
+    <Content Include="Views\CompanyVehicleHistories\AddOrEdit.cshtml" />
     <Content Include="Views\CommentMains\Create.cshtml" />
     <Content Include="Views\CommentMains\Delete.cshtml" />
     <Content Include="Views\CommentMains\Details.cshtml" />
@@ -650,6 +656,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="imgcar\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -682,7 +689,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>57798</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:57798/</IISUrl>
+          <IISUrl>http://localhost:57721/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
