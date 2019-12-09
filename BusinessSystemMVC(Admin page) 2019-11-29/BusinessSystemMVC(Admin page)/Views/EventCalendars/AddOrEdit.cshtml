@@ -123,22 +123,13 @@
     @Html.ValidationMessageFor(model => model.Description)
     <br />
 
-    <div class="taglabel">
-        @Html.TextBoxFor(model => model.IsFullday, new { rows = "8", cols = "100", @class = "form-control", @MaxLength = "1000", @style = "width:300px" })
-
-        @*@Html.CheckBoxFor(model =>model.IsFullday)*@
-
-
-        @Html.LabelFor(model => model.IsFullday, new { @class = "control-label" })
-
-        @Html.ValidationMessageFor(model => model.IsFullday)
-    </div>
-
-
-
+    
     <div class="taglabel" style="display:inline-block">
 
-        @Html.TextBoxFor(model => model.IsImportant, new { rows = "8", cols = "100", @class = "form-control", @MaxLength = "1000", @style = "width:300px" })
+        @*@Html.TextBoxFor(model => model.IsImportant, new { rows = "8", cols = "100", @class = "form-control", @MaxLength = "1000", @style = "width:300px" })*@
+
+        @Html.CheckBoxFor(model => model.IsImportant)
+
         @Html.LabelFor(model => model.IsImportant, new { @class = "control-label" })
         @Html.ValidationMessageFor(model => model.IsImportant)
     </div>
