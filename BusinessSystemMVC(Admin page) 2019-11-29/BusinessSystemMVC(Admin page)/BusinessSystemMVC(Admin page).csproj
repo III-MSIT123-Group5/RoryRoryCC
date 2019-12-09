@@ -193,6 +193,7 @@
     <Compile Include="Controllers\ApprovalsController.cs" />
     <Compile Include="Controllers\BulletinBoardsController.cs" />
     <Compile Include="Controllers\CompanyVehicleBorrowController.cs" />
+    <Compile Include="Controllers\CompanyVehicleHistoriesController.cs" />
     <Compile Include="Controllers\CompanyVehiclesController.cs" />
     <Compile Include="Controllers\EventCalendarsController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
@@ -612,9 +613,16 @@
     <Content Include="Views\Recipients\Delete.cshtml" />
     <Content Include="Views\Recipients\Details.cshtml" />
     <Content Include="Views\Recipients\Index.cshtml" />
+    <Content Include="Views\CompanyVehicleHistories\Create.cshtml" />
+    <Content Include="Views\CompanyVehicleHistories\Delete.cshtml" />
+    <Content Include="Views\CompanyVehicleHistories\Details.cshtml" />
+    <Content Include="Views\CompanyVehicleHistories\Edit.cshtml" />
+    <Content Include="Views\CompanyVehicleHistories\Index.cshtml" />
+    <Content Include="Views\CompanyVehicleHistories\AddOrEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="imgcar\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -647,7 +655,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>57798</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:57798/</IISUrl>
+          <IISUrl>http://localhost:57721/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

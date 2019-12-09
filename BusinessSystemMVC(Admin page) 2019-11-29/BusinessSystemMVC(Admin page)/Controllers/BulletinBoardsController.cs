@@ -131,7 +131,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                         DepartmentID = DID,
                         GroupID = GID,
                         EmployeeID = EmpID
-
                     });
                     db.SaveChanges();
 

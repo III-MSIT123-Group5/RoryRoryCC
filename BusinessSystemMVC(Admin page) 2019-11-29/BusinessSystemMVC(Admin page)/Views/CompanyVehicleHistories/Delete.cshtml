@@ -1,0 +1,64 @@
+﻿@model BusinessSystemMVC_Admin_page_.Models.CompanyVehicleHistory
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>CompanyVehicleHistory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.purpose)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.purpose)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyVehicle.brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyVehicle.brand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.EmployeeName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
