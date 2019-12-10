@@ -133,11 +133,6 @@
             UpdatePosiStor();
         });
 
-        $("#test").bind("click", function () {
-            HTMLModElement.BirthDay = DTPBirth.value;
-            alert(HTMLModElement.BirthDay);
-        });
-
         $("#BirthMonth").bind("change", function () {
             $("#BirthDate").empty();
             for (let i = 1; i <= getDays(); i++) {
