@@ -71,7 +71,7 @@
                     { "targets": 4, "data": "RoomAddress" },
                     {
                         "targets": 5, "data": "meetingID", "render": function (data) {
-                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/MeetingRooms/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
+                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/MeetingRooms/AddOrEdit/" + data + `')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete("${data}")><i class='fa fa-trash'></i> 刪除</a>`
                         },
                         "orderable": false,
                         "searchable": false,
@@ -139,11 +139,7 @@
             if (confirm('確定要刪除此筆貼文嗎?')) {
                 $.ajax({
                     type: "POST",
-                    url: '@Url.Action("Delete","MeetingRooms")' ,
-                    data:{
-                        id:id
-                    },
-                    dataType: 'json',
+                    url: '@Url.Action("Delete","MeetingRooms")/'+id ,
                     success: function (data) {
                         if (data.success) {
 
