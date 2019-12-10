@@ -21,8 +21,10 @@ namespace BusinessSystemMVC_Admin_page_.Models
         }
     
         public string meetingID { get; set; }
+        public string meetingName { get; set; }
         public Nullable<int> officeID { get; set; }
         public Nullable<int> max_member { get; set; }
+        public string RoomAddress { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MeetingRoomHistory> MeetingRoomHistories { get; set; }

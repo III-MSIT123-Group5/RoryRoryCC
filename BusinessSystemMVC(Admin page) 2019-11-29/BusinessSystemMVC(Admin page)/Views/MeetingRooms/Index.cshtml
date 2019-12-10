@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BusinessSystemMVC_Admin_page_.Models.BulletinBoard>
+﻿@model IEnumerable<BusinessSystemMVC_Admin_page_.Models.MeetingRoom>
 
 @{
     ViewBag.Title = "Index";
@@ -7,32 +7,29 @@
 <style>
 
 
-    button, h2 {
+    button {
         font-family: 'NotoSansCJKtc-Bold';
     }
 
-    th, td {
+    h2 {
         font-family: 'NotoSansCJKtc-Bold';
     }
 </style>
 
-<h2>公佈欄</h2>
-
-
-@*<button onclick="location.href='/BulletinBoards/Create'" type="button" class="btn btn-success"><i class="fa fa-comment" aria-hidden="true"></i> 新增貼文</button>*@
+<h2>會議室管理</h2>
 
 <br /><br />
 
-<button class="btn btn-success" style="margin-bottom:10px" onclick="PopupForm('/BulletinBoards/AddOrEdit')"><i class="fa fa-plus" aria-hidden="true"></i> 新增貼文</button>
+<button class="btn btn-success" style="margin-bottom:10px" onclick="PopupForm('/MeetingRooms/AddOrEdit2')"><i class="fa fa-plus" aria-hidden="true"></i> 新增會議室</button>
 <div style="width:92%">
-    <table id="Btable" class="table table-striped table-bordered">
+    <table id="Htable" class="table table-striped table-bordered">
         <thead>
             <tr>
-                <th>圖片</th>
-                <th>姓名</th>
-                <th>部門</th>
-                <th>留言內容</th>
-                <th>張貼時間</th>
+                <th>會議室ID</th>
+                <th>會議室名稱</th>
+                <th>容納人數</th>
+                <th>辦公室ID</th>
+                <th>辦公室位置</th>
                 <th>編輯/刪除</th>
             </tr>
         </thead>
@@ -49,44 +46,43 @@
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script src="/Scripts/moment.js"></script>
-
     <script>
+
+
+
+
+
+
+
         var Popup, dataTable; //height="75%" width="75%" src=\"'height="75%"
 
         $(document).ready(function () {
-            dataTable = $('#Btable').DataTable({
+            dataTable = $('#Htable').DataTable({
                 "ajax": {
-                    url: '/BulletinBoards/LoadData',
+                    url: '@Url.Action("LoadData", "MeetingRooms")',
                     method: 'GET',
                     dataType: 'json'
                 },
                 "columnDefs": [
-
+                    { "targets": 0, "data": "meetingID", "width": "75px" },
+                    { "targets": 1, "data": "meetingName", "width": "75px"},
+                    { "targets": 2, "data": "max_member", "width": "75px"},
+                    { "targets": 3, "data": "officeID" },
+                    { "targets": 4, "data": "RoomAddress" },
                     {
-                        "targets": 0, "data": "Photo", "render": function (url, type, full) {
-                            return '<img height="60px" src="' + url + '"/>';
-                        },
-                        "orderable": false,
-                        "searchable": false,
-                        "width": "65px"
-                    },
-                    { "targets": 1, "data": "EmployeeName", "width": "60px" },
-                    { "targets": 2, "data": "name", "width": "60px" },
-                    { "targets": 3, "data": "Content" },
-                    { "targets": 4, "data": "PostTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px"  },
-                    {
-                        "targets": 5, "data": "Num", "render": function (data) {
-                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/BulletinBoards/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
+                        "targets": 5, "data": "meetingID", "render": function (data) {
+                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/MeetingRooms/AddOrEdit/" + data + `')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete("${data}")><i class='fa fa-trash'></i> 刪除</a>`
                         },
                         "orderable": false,
                         "searchable": false,
                         "width": "150px"
                     }
 
+
                 ],
                 "language": {
 
-                    "emptyTable": "目前無貼文，請點選<b>新增貼文</b>"
+                    "emptyTable": "目前無會議室，請點選<b>新增會議室</b>"
                 }
 
             });
@@ -94,17 +90,17 @@
         });
 
         function PopupForm(url) {
+            console.log(this.id)
             var formDiv = $('<div/>');
             $.get(url)
                 .done(function (response) {
                     formDiv.html(response);
-
                     Popup = formDiv.dialog({
                         autoOpen: true,
                         resizable: false,
-                        title: '撰寫公佈欄貼文',
-                        height: 400,
-                        width: 700,
+                        title: '借車事由',
+                        height: 800,
+                        width: 400,
                         close: function () {
                             Popup.dialog('destroy').remove();
                         }
@@ -139,10 +135,11 @@
         }
 
         function Delete(id) {
+            console.log(id)
             if (confirm('確定要刪除此筆貼文嗎?')) {
                 $.ajax({
                     type: "POST",
-                    url: '/BulletinBoards/Delete/' + id,
+                    url: '@Url.Action("Delete","MeetingRooms")/'+id ,
                     success: function (data) {
                         if (data.success) {
 
@@ -159,9 +156,8 @@
                 });
             }
         }
+
     </script>
 
 
 }
-
-

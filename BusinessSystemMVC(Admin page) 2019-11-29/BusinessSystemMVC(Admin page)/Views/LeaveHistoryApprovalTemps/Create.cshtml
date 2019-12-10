@@ -1,84 +1,68 @@
 ﻿@model BusinessSystemMVC_Admin_page_.ViewModels.LeaveHistoryApprovalTempViewModel
 @{
-    ViewBag.Title = "Create";
     Layout = null;
 }
 
 @using (Html.BeginForm("Create", "LeaveHistoryApprovalTemps", FormMethod.Post, new { onsubmit = "return SubmitLeaveForm(this)" }))
 {
     @Html.AntiForgeryToken()
-
-    @*@Html.HiddenFor(model => model.employeeID)*@
-
-
-<div class="form-horizontal">
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.Label("假別")
-        <div class="col-md-10">
-            @Html.DropDownList("leaveID", null, new { @class = "form-control" ,@style="width: 90px" })
-            @Html.ValidationMessageFor(model => model.leaveID, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("假別")
+            <div class="col-md-10">
+                @Html.DropDownList("leaveID", null,"-請選擇-",new { @class = "form-control", @style = "width: 120px" })
+                @Html.ValidationMessageFor(model => model.leaveID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("起始時間")
+            <div class="col-md-10">
+                <p>年／月／日／時</p>
+                @Html.DropDownList("StartYear", null, new { })/
+                @Html.DropDownList("StartMonth", null, new { @style = "width: 50px" })/
+                @Html.DropDownList("StartDay", null, new { @style = "width: 50px" })/
+                @Html.DropDownList("StartHour", null, new { @style = "width: 50px" })
+                @Html.ValidationMessageFor(model => model.StartYear, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.StartMonth, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.StartDay, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.StartHour, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("結束時間")
+            <div class="col-md-10">
+                <p>年／月／日／時</p>
+                @Html.DropDownList("EndYear", null, new {  })/
+                @Html.DropDownList("EndMonth", null, new { @style = "width: 50px" })/
+                @Html.DropDownList("EndDay", null, new { @style = "width: 50px" })/
+                @Html.DropDownList("EndHour", null, new { @style = "width: 50px" })
+                @Html.ValidationMessageFor(model => model.EndYear, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.EndMonth, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.EndDay, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.EndHour, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("事由")
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description, new { rows = "3", cols = "150", @class = "form-control", @MaxLength = "200", @style = "resize : none" })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("附件")
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Appendix, new { rows = "3", cols = "150", @class = "form-control", @MaxLength = "200", @style = "resize : none" })
+                @Html.ValidationMessageFor(model => model.Appendix, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group" style="float:right">
+            <div >
+                <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
+                <input type="submit" value="送出申請" class="btn btn-success" style="margin-right:10px" />
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.Label("起始時間")
-        <div class="col-md-10">
-            <p>年／月／日／時</p>
-            @Html.DropDownList("StartYear", null, new { })/
-            @Html.DropDownList("StartMonth", null, new { })/
-            @Html.DropDownList("StartDay", null, new { })/
-            @Html.DropDownList("StartHour", null, new { })
-            @Html.ValidationMessageFor(model => model.StartYear, "", new { @class = "text-danger" })
-            @Html.ValidationMessageFor(model => model.StartMonth, "", new { @class = "text-danger" })
-            @Html.ValidationMessageFor(model => model.StartDay, "", new { @class = "text-danger" })
-            @Html.ValidationMessageFor(model => model.StartHour, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("起始時間")
-        <div class="col-md-10">
-            <p>年／月／日／時</p>
-            @Html.DropDownList("EndYear", null, new { }) /
-            @Html.DropDownList("EndMonth", null, new { }) /
-            @Html.DropDownList("EndDay", null, new { }) /
-            @Html.DropDownList("EndHour", null, new { })
-            @Html.ValidationMessageFor(model => model.EndYear, "", new { @class = "text-danger" })
-            @Html.ValidationMessageFor(model => model.EndMonth, "", new { @class = "text-danger" })
-            @Html.ValidationMessageFor(model => model.EndDay, "", new { @class = "text-danger" })
-            @Html.ValidationMessageFor(model => model.EndHour, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("事由")
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.Description, new { rows = "3", cols = "150", @class = "form-control", @MaxLength = "200" ,@style= "resize : none" })
-            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("附件")
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.Appendix, new { rows = "3", cols = "150", @class = "form-control", @MaxLength = "200", @style = "resize : none" })
-            @Html.ValidationMessageFor(model => model.Appendix, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
-</div>
 }
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts{
-          
-    
-    }
+   

@@ -336,17 +336,17 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         [HttpGet]
         public ActionResult LoadDataSign()
         {
-            var data = from OD in db.OrderDetails.AsEnumerable()
+            var report = from OD in db.OrderDetails.AsEnumerable()
                        join RM in db.RequisitionMains.AsEnumerable() on OD.OrderID equals RM.OrderID
                        join AS in db.Approvals.AsEnumerable() on RM.OrderID equals AS.OrderID
                        where AS.FirstSignerID == EmployeeDetail.EmployeeID || AS.SecondSignerID == EmployeeDetail.EmployeeID || AS.ThirdSignerID == EmployeeDetail.EmployeeID || AS.FourthSignerID == EmployeeDetail.EmployeeID
                        select new
-                       {
+                       {  
                            OD.ProductName,
                            OD.UnitPrice,
                            OD.Quantity,
                            OD.TotalPrice,
-                           OD.Note,
+                           OD.Note,            
                            AS.OrderID,
                            AS.FirstSignerName,                           
                            AS.FirstSignStatus,
@@ -358,9 +358,48 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                            AS.FourthSignStatus
                        };
 
-            var datas = data.ToList();
+            if(EmployeeDetail.PositionID == 3)
+            {
+                report = report.Where(x => x.FirstSignStatus == "未審核").Select(x => x);
+            }
+            if (EmployeeDetail.PositionID == 2)
+            {
+                report = report.Where(x => x.FirstSignStatus == "已審核" && x.SecondSignStatus == "未審核").Select(x => x);
+            }
+            if (EmployeeDetail.PositionID == 1)
+            {
+                report = report.Where(x => x.SecondSignStatus == "已審核" && x.ThirdSignStatus == "未審核").Select(x => x);
+            }
+            if (EmployeeDetail.PositionID == 3 && EmployeeDetail.GroupID == 1)
+            {
+                report = report.Where(x => x.ThirdSignStatus == "已審核" && x.FourthSignStatus == "未審核").Select(x => x);
+            }                        
+
+            var datas = report.ToList();
 
             return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Submit(int? id)
+        {
+            var q = db.OrderDetails.Find(id);
+
+            q.Quantity = 2;
+
+            //if (approval.FirstSignerID == EmployeeDetail.EmployeeID)
+            //{
+            //    approval.FirstSignDate = DateTime.Now;
+            //    approval.FirstSignStatus = "已審核";
+
+
+            //}
+
+            db.SaveChanges();
+
+            return Json(new { success = true, message = "簽核成功" }, JsonRequestBehavior.AllowGet);
+            
         }
 
         [HttpGet]
@@ -399,6 +438,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
             }
         }
+
+
 
         protected override void Dispose(bool disposing)
         {

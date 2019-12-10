@@ -210,7 +210,8 @@
           <Property Name="serial" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="MaxPassenger" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="officeID" Type="int" Nullable="false" />
-          <Property Name="VehiclePhoto" Type="varbinary(max)" Nullable="false" />
+          <Property Name="VehiclePhoto" Type="varbinary(max)" />
+          <Property Name="VehiclePhoto2" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="CompanyVehicleHistory">
           <Key>
@@ -298,8 +299,8 @@
           <Property Name="EndTime" Type="datetime" Nullable="false" />
           <Property Name="Location" Type="nvarchar" MaxLength="20" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
-          <Property Name="IsImportant" Type="bit" />
-          <Property Name="IsFullday" Type="bit" />
+          <Property Name="IsImportant" Type="bit" Nullable="false" />
+          <Property Name="ThemeColor" Type="nvarchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="File">
           <Key>
@@ -371,17 +372,18 @@
           <Key>
             <PropertyRef Name="meetingID" />
           </Key>
-          <Property Name="meetingID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="meetingID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="meetingName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="officeID" Type="int" />
           <Property Name="max member" Type="int" />
+          <Property Name="RoomAddress" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'BusinessDataBase.dbo.MeetingRoomHistory' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="MeetingRoomHistory">
           <Key>
-            <PropertyRef Name="end_date_time" />
+            <PropertyRef Name="MeetingRoomID" />
           </Key>
-          <Property Name="meetingID" Type="nchar" MaxLength="10" />
+          <Property Name="MeetingRoomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="meetingID" Type="nvarchar" MaxLength="50" />
           <Property Name="start_date_time" Type="datetime" />
           <Property Name="end_date_time" Type="datetime" Nullable="false" />
           <Property Name="employeeID" Type="int" />
@@ -1404,6 +1406,7 @@
           <EntitySet Name="LeaveHistory" EntityType="Self.LeaveHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LeaveHistoryApprovalTemp" EntityType="Self.LeaveHistoryApprovalTemp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MeetingRoom" EntityType="Self.MeetingRoom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeetingRoomHistory" EntityType="Self.MeetingRoomHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Office" EntityType="Self.Office" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
@@ -1416,14 +1419,6 @@
           <EntitySet Name="RewardandPunishment" EntityType="Self.RewardandPunishment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suggestion" EntityType="Self.Suggestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MeetingRoomHistory" EntityType="Self.MeetingRoomHistory" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [MeetingRoomHistory].[meetingID] AS [meetingID], 
-    [MeetingRoomHistory].[start_date_time] AS [start_date_time], 
-    [MeetingRoomHistory].[end_date_time] AS [end_date_time], 
-    [MeetingRoomHistory].[employeeID] AS [employeeID]
-    FROM [dbo].[MeetingRoomHistory] AS [MeetingRoomHistory]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="SuggestionHistory" EntityType="Self.SuggestionHistory" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [SuggestionHistory].[num] AS [num], 
@@ -1741,6 +1736,7 @@
           <EntitySet Name="LeaveHistories" EntityType="BusinessDataBaseModel.LeaveHistory" />
           <EntitySet Name="LeaveHistoryApprovalTemps" EntityType="BusinessDataBaseModel.LeaveHistoryApprovalTemp" />
           <EntitySet Name="MeetingRooms" EntityType="BusinessDataBaseModel.MeetingRoom" />
+          <EntitySet Name="MeetingRoomHistories" EntityType="BusinessDataBaseModel.MeetingRoomHistory" />
           <EntitySet Name="Messages" EntityType="BusinessDataBaseModel.Message" />
           <EntitySet Name="Offices" EntityType="BusinessDataBaseModel.Office" />
           <EntitySet Name="OrderDetails" EntityType="BusinessDataBaseModel.OrderDetail" />
@@ -1753,7 +1749,6 @@
           <EntitySet Name="RewardandPunishments" EntityType="BusinessDataBaseModel.RewardandPunishment" />
           <EntitySet Name="Suggestions" EntityType="BusinessDataBaseModel.Suggestion" />
           <EntitySet Name="sysdiagrams" EntityType="BusinessDataBaseModel.sysdiagram" />
-          <EntitySet Name="MeetingRoomHistories" EntityType="BusinessDataBaseModel.MeetingRoomHistory" />
           <EntitySet Name="SuggestionHistories" EntityType="BusinessDataBaseModel.SuggestionHistory" />
           <EntitySet Name="SurveyMains" EntityType="BusinessDataBaseModel.SurveyMain" />
           <AssociationSet Name="FK_ActivitiesChild_ActivitiesMain" Association="BusinessDataBaseModel.FK_ActivitiesChild_ActivitiesMain">
@@ -2251,7 +2246,8 @@
           <Property Name="serial" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="MaxPassenger" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="officeID" Type="Int32" Nullable="false" />
-          <Property Name="VehiclePhoto" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="VehiclePhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="VehiclePhoto2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CompanyVehicleHistories" Relationship="BusinessDataBaseModel.FK_Company_vehicle_history_Company_vehicle" FromRole="CompanyVehicle" ToRole="CompanyVehicleHistory" />
           <NavigationProperty Name="Office" Relationship="BusinessDataBaseModel.FK_Company_vehicle_Office" FromRole="CompanyVehicle" ToRole="Office" />
         </EntityType>
@@ -2391,8 +2387,8 @@
           <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Location" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsImportant" Type="Boolean" />
-          <Property Name="IsFullday" Type="Boolean" />
+          <Property Name="IsImportant" Type="Boolean" Nullable="false" />
+          <Property Name="ThemeColor" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Department" Relationship="BusinessDataBaseModel.FK_EventCalendar_Department" FromRole="EventCalendar" ToRole="Department" />
           <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_EventCalendar_Employee" FromRole="EventCalendar" ToRole="Employee" />
         </EntityType>
@@ -2482,11 +2478,25 @@
           <Key>
             <PropertyRef Name="meetingID" />
           </Key>
-          <Property Name="meetingID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="meetingID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="meetingName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="officeID" Type="Int32" />
           <Property Name="max_member" Type="Int32" />
+          <Property Name="RoomAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MeetingRoomHistories" Relationship="BusinessDataBaseModel.FK_Meeting_room_history_Meeting_room" FromRole="MeetingRoom" ToRole="MeetingRoomHistory" />
           <NavigationProperty Name="Office" Relationship="BusinessDataBaseModel.FK_Meeting_room_Office" FromRole="MeetingRoom" ToRole="Office" />
+        </EntityType>
+        <EntityType Name="MeetingRoomHistory">
+          <Key>
+            <PropertyRef Name="MeetingRoomID" />
+          </Key>
+          <Property Name="MeetingRoomID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="meetingID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="start_date_time" Type="DateTime" Precision="3" />
+          <Property Name="end_date_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="employeeID" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_Meeting_room_history_Employee" FromRole="MeetingRoomHistory" ToRole="Employee" />
+          <NavigationProperty Name="MeetingRoom" Relationship="BusinessDataBaseModel.FK_Meeting_room_history_Meeting_room" FromRole="MeetingRoomHistory" ToRole="MeetingRoom" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -2623,17 +2633,6 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="MeetingRoomHistory">
-          <Key>
-            <PropertyRef Name="end_date_time" />
-          </Key>
-          <Property Name="meetingID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="start_date_time" Type="DateTime" Precision="3" />
-          <Property Name="end_date_time" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="employeeID" Type="Int32" />
-          <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_Meeting_room_history_Employee" FromRole="MeetingRoomHistory" ToRole="Employee" />
-          <NavigationProperty Name="MeetingRoom" Relationship="BusinessDataBaseModel.FK_Meeting_room_history_Meeting_room" FromRole="MeetingRoomHistory" ToRole="MeetingRoom" />
         </EntityType>
         <EntityType Name="SuggestionHistory">
           <Key>
@@ -3665,6 +3664,7 @@
           <EntitySetMapping Name="CompanyVehicles">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.CompanyVehicle">
               <MappingFragment StoreEntitySet="CompanyVehicle">
+                <ScalarProperty Name="VehiclePhoto2" ColumnName="VehiclePhoto2" />
                 <ScalarProperty Name="VehiclePhoto" ColumnName="VehiclePhoto" />
                 <ScalarProperty Name="officeID" ColumnName="officeID" />
                 <ScalarProperty Name="MaxPassenger" ColumnName="MaxPassenger" />
@@ -3758,7 +3758,7 @@
           <EntitySetMapping Name="EventCalendars">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.EventCalendar">
               <MappingFragment StoreEntitySet="EventCalendar">
-                <ScalarProperty Name="IsFullday" ColumnName="IsFullday" />
+                <ScalarProperty Name="ThemeColor" ColumnName="ThemeColor" />
                 <ScalarProperty Name="IsImportant" ColumnName="IsImportant" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
@@ -3845,9 +3845,22 @@
           <EntitySetMapping Name="MeetingRooms">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.MeetingRoom">
               <MappingFragment StoreEntitySet="MeetingRoom">
+                <ScalarProperty Name="RoomAddress" ColumnName="RoomAddress" />
                 <ScalarProperty Name="max_member" ColumnName="max member" />
                 <ScalarProperty Name="officeID" ColumnName="officeID" />
+                <ScalarProperty Name="meetingName" ColumnName="meetingName" />
                 <ScalarProperty Name="meetingID" ColumnName="meetingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MeetingRoomHistories">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.MeetingRoomHistory">
+              <MappingFragment StoreEntitySet="MeetingRoomHistory">
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="end_date_time" ColumnName="end_date_time" />
+                <ScalarProperty Name="start_date_time" ColumnName="start_date_time" />
+                <ScalarProperty Name="meetingID" ColumnName="meetingID" />
+                <ScalarProperty Name="MeetingRoomID" ColumnName="MeetingRoomID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3974,16 +3987,6 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MeetingRoomHistories">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.MeetingRoomHistory">
-              <MappingFragment StoreEntitySet="MeetingRoomHistory">
-                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
-                <ScalarProperty Name="end_date_time" ColumnName="end_date_time" />
-                <ScalarProperty Name="start_date_time" ColumnName="start_date_time" />
-                <ScalarProperty Name="meetingID" ColumnName="meetingID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

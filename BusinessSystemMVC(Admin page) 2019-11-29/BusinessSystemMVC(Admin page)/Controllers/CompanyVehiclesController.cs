@@ -22,6 +22,160 @@ namespace EIPBussinessSystem_MVC.Controllers
             return View(companyVehicles.ToList());
         }
 
+
+
+
+
+        public ActionResult LoadData()
+        {//.OrderBy(b => b.PostTime).ToList();
+
+            var data = from b in db.CompanyVehicles
+                       select new
+                       {
+                           b.VehiclePhoto2,
+                           b.VehicleYear,
+                           b.LicenseNumber,
+                           b.PurchaseDate,
+                           b.brand,
+                           b.serial,
+                           b.MaxPassenger,
+                           officename = b.Office.office_name
+                       };
+
+            var datas = data.ToList();
+
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+            //return Json(data, JsonRequestBehavior.AllowGet);
+        }
+        //id=0
+
+        [HttpGet]
+        public ActionResult AddOrEdit(string id)
+        {
+
+            if (id == null)
+            {
+                return View(new CompanyVehicle());
+            }
+            else
+            {
+                using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+                {
+
+                    return View(db.CompanyVehicles.Where(x => x.LicenseNumber == id).FirstOrDefault<CompanyVehicle>());
+                }
+            }
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddOrEdit(CompanyVehicle b)
+        {
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+                
+                db.Entry(b).State = EntityState.Modified;
+                db.SaveChanges();
+               
+                return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
+
+                //var saveCars = new BusinessSystemMVC_Admin_page_.Models.CompanyVehicleHistory
+                //{
+                //    VehicleHistoryID = b.VehicleHistoryID,
+                //    StartDateTime = b.StartDateTime,
+                //    EndDateTime = b.EndDateTime,
+                //    employeeID = b.employeeID,
+                //    purpose = b.purpose
+                //};
+                //return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+
+        [HttpGet]
+        public ActionResult AddOrEdit2(string id)
+        {
+
+            if (id == null)
+            {
+                return View(new CompanyVehicle());
+            }
+            else
+            {
+                using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+                {
+
+                    return View(db.CompanyVehicles.Where(x => x.LicenseNumber == id).FirstOrDefault<CompanyVehicle>());
+                }
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddOrEdit2(CompanyVehicle b)
+        {
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+                db.CompanyVehicles.Add(new CompanyVehicle()
+                {
+                    LicenseNumber = b.LicenseNumber,
+                    VehicleYear = b.VehicleYear,
+                    PurchaseDate = b.PurchaseDate,
+                    brand = b.brand,
+                    serial = b.serial,
+                    MaxPassenger = b.MaxPassenger,
+                    officeID = b.officeID,
+                    VehiclePhoto = b.VehiclePhoto,
+                    VehiclePhoto2 = b.VehiclePhoto2
+                });
+                db.SaveChanges();
+
+                return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        
+
+        [HttpPost]
+        public ActionResult Delete(string LNnum)
+        {
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+                CompanyVehicle b = db.CompanyVehicles.Where(x => x.LicenseNumber == LNnum).FirstOrDefault<CompanyVehicle>();
+                db.CompanyVehicles.Remove(b);
+                db.SaveChanges();
+
+                return Json(new { success = true, message = "刪除成功" }, JsonRequestBehavior.AllowGet);
+
+
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // GET: CompanyVehicles/Details/5
         public ActionResult Details(string id)
         {
@@ -132,30 +286,30 @@ namespace EIPBussinessSystem_MVC.Controllers
         }
 
         // GET: CompanyVehicles/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CompanyVehicle companyVehicle = db.CompanyVehicles.Find(id);
-            if (companyVehicle == null)
-            {
-                return HttpNotFound();
-            }
-            return View(companyVehicle);
-        }
+        //public ActionResult Delete(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    CompanyVehicle companyVehicle = db.CompanyVehicles.Find(id);
+        //    if (companyVehicle == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(companyVehicle);
+        //}
 
-        // POST: CompanyVehicles/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            CompanyVehicle companyVehicle = db.CompanyVehicles.Find(id);
-            db.CompanyVehicles.Remove(companyVehicle);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: CompanyVehicles/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(string id)
+        //{
+        //    CompanyVehicle companyVehicle = db.CompanyVehicles.Find(id);
+        //    db.CompanyVehicles.Remove(companyVehicle);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

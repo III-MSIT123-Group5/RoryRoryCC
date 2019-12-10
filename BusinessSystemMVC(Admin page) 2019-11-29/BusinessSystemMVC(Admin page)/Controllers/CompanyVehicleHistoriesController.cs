@@ -67,7 +67,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             
             if (id == 0)
             {
-                return View(new BulletinBoard());
+                return View(new CompanyVehicleHistory());
             }
             else
             {
@@ -107,6 +107,10 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 //return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        
+
+
 
 
 
