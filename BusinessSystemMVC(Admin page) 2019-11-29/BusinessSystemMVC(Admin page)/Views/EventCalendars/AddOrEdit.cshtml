@@ -123,7 +123,20 @@
     @Html.ValidationMessageFor(model => model.Description)
     <br />
 
+    <div class="taglabel">
+        @Html.LabelFor(model => model.ThemeColor, new { @class = "control-label" })
+
+        
+
+
+    </div>
     
+
+
+
+    <br />
+
+
     <div class="taglabel" style="display:inline-block">
 
         @*@Html.TextBoxFor(model => model.IsImportant, new { rows = "8", cols = "100", @class = "form-control", @MaxLength = "1000", @style = "width:300px" })*@
@@ -136,12 +149,12 @@
 
 
     @*<script>
-        document.addEventListener('DOMContentLoaded', function () {
-            $('.taglabel').hover(function () {
-                $(this).css('cursor', 'pointer')
+            document.addEventListener('DOMContentLoaded', function () {
+                $('.taglabel').hover(function () {
+                    $(this).css('cursor', 'pointer')
+                })
             })
-        })
-    </script>*@
+        </script>*@
 </div>
 
     <div class="form-group" style="float:right">

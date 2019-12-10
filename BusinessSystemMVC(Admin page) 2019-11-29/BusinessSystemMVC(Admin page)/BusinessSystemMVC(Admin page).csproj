@@ -657,6 +657,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaveHistoryApprovalTempsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MeetingRoomsController.cs" />
     <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Controllers\RecipientsController.cs" />
     <Compile Include="Controllers\Test.cs" />
@@ -1337,6 +1338,13 @@
     <Content Include="Views\OrderDetails\AddOrEditSign.cshtml" />
     <Content Include="Views\CompanyVehicles\AddOrEdit.cshtml" />
     <Content Include="Views\CompanyVehicles\AddOrEdit2.cshtml" />
+    <Content Include="Views\MeetingRooms\Create.cshtml" />
+    <Content Include="Views\MeetingRooms\Delete.cshtml" />
+    <Content Include="Views\MeetingRooms\Details.cshtml" />
+    <Content Include="Views\MeetingRooms\Edit.cshtml" />
+    <Content Include="Views\MeetingRooms\Index.cshtml" />
+    <Content Include="Views\MeetingRooms\AddOrEdit.cshtml" />
+    <Content Include="Views\MeetingRooms\AddOrEdit2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
