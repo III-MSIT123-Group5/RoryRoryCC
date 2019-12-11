@@ -76,8 +76,8 @@
                         "width":"150px",
                         "className": "text-center align-middle",
                         "render": function (data) {
-                            return `<a class='btn btn-warning btn-sm' onclick=Submit("@Url.Action("Submit", "OrderDetails")/${data}")><i class='fa fa-pencil'></i> 簽核</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Reject("@Url.Action("Reject", "OrderDetails")/${data}")><i class='fa fa-trash'></i> 駁回</a>`
-                            //return "<a class='btn btn-warning btn-sm' onclick=Submit(" + data + ")><i class='fa fa-pencil'></i> 簽核</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=PopupForm('/OrderDetails/AddOrEditSign/" + data + "')>"
+                            return `<a class='btn btn-warning btn-sm' onclick=Submit("@Url.Action("ApprovalSubmit", "OrderDetails")/${data}")><i class='fa fa-pencil'></i> 簽核</a>
+                                        <a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Reject("@Url.Action("ApprovalReject", "OrderDetails")/${data}")><i class='fa fa-trash'></i> 駁回</a>`
                         },
                         "orderable": false,
                         "searchable": false,
@@ -125,6 +125,9 @@
                             if (data == "未審核") {
                                 color = "orange";
                             }
+                            else if (data == "已審核") {
+                                color = "black";
+                            }
                             else{
                                 color = "red"
                             }
@@ -143,6 +146,9 @@
                         "render": function (data) {
                             if (data == "未審核") {
                                 color = "orange";
+                            }
+                            else if (data == "已審核") {
+                                color = "black";
                             }
                             else {
                                 color = "red"
@@ -164,7 +170,7 @@
                             if (data == "未審核") {
                                 color = "orange";
                             }
-                            else if (data == "免審核") {
+                            else if (data == "已審核" || data == "免審核") {
                                 color = "black";
                             }
                             else{
@@ -186,6 +192,9 @@
                             if (data == "未審核") {
                                 color = "orange";
                             }
+                            else if (data == "已審核") {
+                                color = "black";
+                            }
                             else {
                                 color = "red"
                             }
@@ -199,26 +208,26 @@
             });
         });
 
-        //function Submit(id) {
-        //    if (confirm('確定要簽核此筆請購嗎?')) {
-        //        $.ajax({
-        //            type: "POST",
-        //            url: '/OrderDetails/Submit/' + id,
-        //            success: function (data) {
-        //                if (data.success) {
-        //                    dataTable.ajax.reload();
-        //                    $.notify(data.message, {
-        //                        globalPosition: "top center",
-        //                        className: "success"
-        //                    })
-        //                }
-        //            }
-        //        });
-        //    }
-        //}
-
         function Submit(Url) {
             if (confirm('確定要簽核此筆請購嗎?')) {
+                $.ajax({
+                    type: "POST",
+                    url: Url,
+                    success: function (data) {
+                        if (data.success) {
+                            dataTable.ajax.reload();
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            })
+                        }
+                    }
+                });
+            }
+        }
+
+        function Reject(Url) {
+            if (confirm('確定要駁回此筆請購嗎?')) {
                 $.ajax({
                     type: "POST",
                     url: Url,
@@ -254,29 +263,29 @@
                 });
         }
 
-        function SubmitForm(form) {
-            $.validator.unobtrusive.parse(form);
-            if ($(form).valid()) {
-                $.ajax({
-                    type: "POST",
-                    url: form.action,
-                    data: $(form).serialize(),
-                    success: function (data) {
-                        if (data.success) {
+        //function SubmitForm(form) {
+        //    $.validator.unobtrusive.parse(form);
+        //    if ($(form).valid()) {
+        //        $.ajax({
+        //            type: "POST",
+        //            url: form.action,
+        //            data: $(form).serialize(),
+        //            success: function (data) {
+        //                if (data.success) {
 
-                            Popup.dialog("close");
-                            dataTable.ajax.reload();
+        //                    Popup.dialog("close");
+        //                    dataTable.ajax.reload();
 
-                            $.notify(data.message, {
-                                globalPosition: "top center",
-                                className: "success"
-                            })
-                        }
-                    }
-                });
-            }
-            return false;
-        }
+        //                    $.notify(data.message, {
+        //                        globalPosition: "top center",
+        //                        className: "success"
+        //                    })
+        //                }
+        //            }
+        //        });
+        //    }
+        //    return false;
+        //}
 
 
     </script>

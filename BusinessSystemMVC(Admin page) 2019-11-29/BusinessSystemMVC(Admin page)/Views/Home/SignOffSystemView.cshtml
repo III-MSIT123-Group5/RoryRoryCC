@@ -147,10 +147,13 @@
                         "width": "150px",
                         "className": "text-center align-middle",
                         "render": function (data) {
-                            if (data = "未審核") {
+                            if (data == "未審核") {
                                 color = "orange";
                             }
-                            else if (data = "審核駁回") {
+                            else if (data == "已審核") {
+                                color = "black";
+                            }
+                            else {
                                 color = "red"
                             }
                             return `<span style="color: ${color}">${data}</span>`;
@@ -162,10 +165,13 @@
                         "width": "150px",
                         "className": "text-center align-middle",
                         "render": function (data) {
-                            if (data = "未審核") {
+                            if (data == "未審核") {
                                 color = "orange";
                             }
-                            else if (data = "審核駁回") {
+                            else if (data == "已審核") {
+                                color = "black";
+                            }
+                            else {
                                 color = "red"
                             }
                             return `<span style="color: ${color}">${data}</span>`;
@@ -177,11 +183,15 @@
                         "width": "150px",
                         "className": "text-center align-middle",
                         "render": function (data) {
-                            if (data = "未審核") {
+
+                            if (data == "未審核") {
                                 color = "orange";
                             }
-                            else if (data = "審核駁回") {
-                                color = "red"
+                            else if (data == "已審核" || data == "免審核") {
+                                color = "black";
+                            }
+                            else {
+                                color = "red";
                             }
                             return `<span style="color: ${color}">${data}</span>`;
                         }
@@ -192,10 +202,13 @@
                         "width": "150px",
                         "className": "text-center align-middle",
                         "render": function (data) {
-                            if (data = "未審核") {
+                            if (data == "未審核") {
                                 color = "orange";
                             }
-                            else if (data = "審核駁回") {
+                            else if (data == "已審核") {
+                                color = "black";
+                            }
+                            else {
                                 color = "red"
                             }
                             return `<span style="color: ${color}">${data}</span>`;

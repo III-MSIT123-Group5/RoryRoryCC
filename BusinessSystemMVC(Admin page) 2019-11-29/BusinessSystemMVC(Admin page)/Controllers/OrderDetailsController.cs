@@ -15,7 +15,7 @@ using Microsoft.Office.Interop.Excel;
 namespace BusinessSystemMVC_Admin_page_.Controllers
 {
     public class OrderDetailsController : Controller
-    {
+    {        
         private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
 
         int EmpID = 0;
@@ -126,7 +126,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 }
 
                 var GA = from EGA in db.Employees
-                         where EGA.employeeID == 1008
+                         where EGA.employeeID == 1060
                          select new { EGA.EmployeeName };
 
                 string Signer4Name = "";
@@ -166,7 +166,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                                 ThirdSignerID = null,
                                 ThirdSignerName = "-----",
                                 ThirdSignStatus = "免審核",
-                                FourthSignerID = 1008,
+                                FourthSignerID = 1060,
                                 FourthSignerName = Signer4Name,
                                 FourthSignStatus = "未審核"
                             })
@@ -200,7 +200,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                                 ThirdSignerID = 1004,
                                 ThirdSignerName = Signer3Name,
                                 ThirdSignStatus = "未審核",
-                                FourthSignerID = 1008,
+                                FourthSignerID = 1060,
                                 FourthSignerName = Signer4Name,
                                 FourthSignStatus = "未審核"
                             })
@@ -346,60 +346,197 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                            OD.UnitPrice,
                            OD.Quantity,
                            OD.TotalPrice,
-                           OD.Note,            
+                           OD.Note,
                            AS.OrderID,
+                           AS.FirstSignerID,
                            AS.FirstSignerName,                           
                            AS.FirstSignStatus,
+                           AS.SecondSignerID,
                            AS.SecondSignerName,
                            AS.SecondSignStatus,
+                           AS.ThirdSignerID,
                            AS.ThirdSignerName,
                            AS.ThirdSignStatus,
+                           AS.FourthSignerID,
                            AS.FourthSignerName,
                            AS.FourthSignStatus
                        };
 
-            if(EmployeeDetail.PositionID == 3)
+            //查詢RequisitionMain Employee的上司ID
+            var RMemployee = from RM in db.RequisitionMains
+                             join E in db.Employees on RM.EmployeeID equals E.employeeID
+                             select new { E.ManagerID };
+
+            int empManager=0;
+
+            foreach (var e in RMemployee)
             {
-                report = report.Where(x => x.FirstSignStatus == "未審核").Select(x => x);
+                empManager = e.ManagerID;
             }
-            if (EmployeeDetail.PositionID == 2)
+
+            //查詢上司的positionID(職位=>組長、部長)
+            var MPositon = from E in db.Employees
+                           where E.employeeID == empManager
+                           select new { E.PositionID };
+
+            int magPosition = 0;
+
+            foreach (var e in MPositon)
             {
-                report = report.Where(x => x.FirstSignStatus == "已審核" && x.SecondSignStatus == "未審核").Select(x => x);
+                magPosition = e.PositionID;
             }
-            if (EmployeeDetail.PositionID == 1)
+
+            //查詢第三層簽核狀態(已簽核、免簽核)
+            var ThirdSign = from A in db.Approvals
+                            select new { A.ThirdSignStatus };
+
+            string SignStatus = "";
+
+            foreach(var e in ThirdSign)
             {
-                report = report.Where(x => x.SecondSignStatus == "已審核" && x.ThirdSignStatus == "未審核").Select(x => x);
+                SignStatus = e.ThirdSignStatus;
             }
-            if (EmployeeDetail.PositionID == 3 && EmployeeDetail.GroupID == 1)
+
+            //查詢RequisitionMain Employee的上司的positionID=3 =>組長
+            if (magPosition == 3)
             {
-                report = report.Where(x => x.ThirdSignStatus == "已審核" && x.FourthSignStatus == "未審核").Select(x => x);
-            }                        
+                if (EmployeeDetail.PositionID == 3)
+                {
+                    report = report.Where(x => x.FirstSignStatus == "未審核" && x.FirstSignerID == EmployeeDetail.EmployeeID).Select(x => x);
+                }
+                else if (EmployeeDetail.PositionID == 2)
+                {
+                    report = report.Where(x => x.FirstSignStatus == "已審核" && x.SecondSignStatus == "未審核" && x.SecondSignerID == EmployeeDetail.EmployeeID).Select(x => x);
+                }
+                else if (EmployeeDetail.PositionID == 1)
+                {
+                    report = report.Where(x => x.SecondSignStatus == "已審核" && x.ThirdSignStatus == "未審核" && x.ThirdSignerID == EmployeeDetail.EmployeeID).Select(x => x);
+                }
+                else if (EmployeeDetail.PositionID == 3 && EmployeeDetail.GroupID == 1)
+                {
+                    //第三層已簽核、免簽核
+                    if (SignStatus == "已簽核" || SignStatus == "免簽核")
+                    {
+                        report = report.Where(x => x.SecondSignStatus == "已審核"&& x.FourthSignStatus == "未審核" && x.FourthSignerID == EmployeeDetail.EmployeeID).Select(x => x);
+                    }                    
+                }
+            }
+
+            //查詢RequisitionMain Employee的上司的positionID=2 =>部長
+            if (magPosition == 2)
+            {
+                if (EmployeeDetail.PositionID == 2)
+                {
+                    report = report.Where(x => x.FirstSignStatus == "未審核" && x.FirstSignerID == EmployeeDetail.EmployeeID).Select(x => x);
+                }
+                else if (EmployeeDetail.PositionID == 1)
+                {
+                    report = report.Where(x => x.FirstSignStatus == "已審核" && x.SecondSignStatus == "未審核" && x.SecondSignerID == EmployeeDetail.EmployeeID).Select(x => x);
+                }
+                else if (EmployeeDetail.PositionID == 1) //可不寫，總經理簽核時，第二、三層已簽署
+                {
+                    report = report.Where(x => x.SecondSignStatus == "已審核" && x.ThirdSignStatus == "未審核" && x.ThirdSignerID == EmployeeDetail.EmployeeID).Select(x => x);
+                }
+                else if (EmployeeDetail.PositionID == 3 && EmployeeDetail.GroupID == 1)
+                {
+                    //第三層已簽核、免簽核
+                    if (SignStatus == "已簽核" || SignStatus == "免簽核")
+                    {
+                        report = report.Where(x => x.SecondSignStatus == "已審核" && x.FourthSignStatus == "未審核" && x.FourthSignerID == EmployeeDetail.EmployeeID).Select(x => x);
+                    }
+                }
+            }
+
+            //if (EmployeeDetail.PositionID == 3)
+            //{
+            //    report = report.Where(x => x.FirstSignStatus == "未審核" && x.FirstSignerID == EmployeeDetail.EmployeeID).Select(x => x);
+            //}
+            //else if (EmployeeDetail.PositionID == 2)
+            //{
+            //    report = report.Where(x => x.FirstSignStatus == "已審核" && x.SecondSignStatus == "未審核" && x.SecondSignerID == EmployeeDetail.EmployeeID).Select(x => x);
+            //}
+            //if (EmployeeDetail.PositionID == 1)
+            //{
+            //    report = report.Where(x => x.SecondSignStatus == "已審核" && x.ThirdSignStatus == "未審核" && x.ThirdSignerID == EmployeeDetail.EmployeeID).Select(x => x);
+            //}
+            //else if (EmployeeDetail.PositionID == 3 && EmployeeDetail.GroupID == 1)
+            //{
+            //    report = report.Where(x => x.SecondSignStatus == "已審核" && x.ThirdSignStatus == "已審核" && x.FourthSignStatus == "未審核" && x.FourthSignerID == EmployeeDetail.EmployeeID).Select(x => x);
+            //}
 
             var datas = report.ToList();
 
             return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
         }
-
+                
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Submit(int? id)
+        //[ValidateAntiForgeryToken]
+        public ActionResult ApprovalSubmit(int? id)
         {
-            var q = db.OrderDetails.Find(id);
+            var approval = db.Approvals.Find(id);
 
-            q.Quantity = 2;
+            if (approval.FirstSignerID == EmployeeDetail.EmployeeID)
+            {
+                approval.FirstSignDate = DateTime.Now;
+                approval.FirstSignStatus = "已審核";
+            }
 
-            //if (approval.FirstSignerID == EmployeeDetail.EmployeeID)
-            //{
-            //    approval.FirstSignDate = DateTime.Now;
-            //    approval.FirstSignStatus = "已審核";
+            if (approval.SecondSignerID == EmployeeDetail.EmployeeID && approval.FirstSignStatus == "已審核")
+            {
+                approval.SecondSignDate = DateTime.Now;
+                approval.SecondSignStatus = "已審核";
+            }
 
+            if (approval.ThirdSignerID == EmployeeDetail.EmployeeID && approval.SecondSignStatus == "已審核")
+            {
+                approval.ThirdSignDate = DateTime.Now;
+                approval.ThirdSignStatus = "已審核";
+            }
 
-            //}
+            if (approval.FourthSignerID == EmployeeDetail.EmployeeID && approval.ThirdSignStatus == "已審核")
+            {
+                approval.ForthSignDate = DateTime.Now;
+                approval.FourthSignStatus = "已審核";
+            }
 
             db.SaveChanges();
 
             return Json(new { success = true, message = "簽核成功" }, JsonRequestBehavior.AllowGet);
-            
+        }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult ApprovalReject(int? id)
+        {
+            var approval = db.Approvals.Find(id);
+
+            if (approval.FirstSignerID == EmployeeDetail.EmployeeID)
+            {
+                approval.FirstSignDate = DateTime.Now;
+                approval.FirstSignStatus = "駁回簽核";
+            }
+
+            if (approval.SecondSignerID == EmployeeDetail.EmployeeID && approval.FirstSignStatus == "已審核")
+            {
+                approval.SecondSignDate = DateTime.Now;
+                approval.SecondSignStatus = "駁回簽核";
+            }
+
+            if (approval.ThirdSignerID == EmployeeDetail.EmployeeID && approval.SecondSignStatus == "已審核")
+            {
+                approval.ThirdSignDate = DateTime.Now;
+                approval.ThirdSignStatus = "駁回簽核";
+            }
+
+            if (approval.FourthSignerID == EmployeeDetail.EmployeeID && approval.ThirdSignStatus == "已審核")
+            {
+                approval.ForthSignDate = DateTime.Now;
+                approval.FourthSignStatus = "駁回簽核";
+            }
+
+            db.SaveChanges();
+
+            return Json(new { success = true, message = "簽核成功" }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
