@@ -48,22 +48,24 @@ namespace EIPBussinessSystem_MVC.Controllers
             //return Json(data, JsonRequestBehavior.AllowGet);
         }
         //id=0
+
         [HttpGet]
-        public ActionResult AddOrEdit(int id = 0)
+        public ActionResult AddOrEdit(string id)
         {
 
-            if (id == 0)
+            if (id == null)
             {
-                return View(new BulletinBoard());
+                return View(new CompanyVehicle());
             }
             else
             {
                 using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
                 {
 
-                    return View(db.CompanyVehicleHistories.Where(x => x.VehicleHistoryID == id).FirstOrDefault<CompanyVehicleHistory>());
+                    return View(db.CompanyVehicles.Where(x => x.LicenseNumber == id).FirstOrDefault<CompanyVehicle>());
                 }
             }
+
         }
 
         [HttpPost]
@@ -94,7 +96,7 @@ namespace EIPBussinessSystem_MVC.Controllers
 
 
         [HttpGet]
-        public ActionResult AddOrEdit2(string id = null)
+        public ActionResult AddOrEdit2(string id)
         {
 
             if (id == null)
@@ -136,32 +138,15 @@ namespace EIPBussinessSystem_MVC.Controllers
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 
         [HttpPost]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string LNnum)
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
-                CompanyVehicleHistory b = db.CompanyVehicleHistories.Where(x => x.VehicleHistoryID == id).FirstOrDefault<CompanyVehicleHistory>();
-                db.CompanyVehicleHistories.Remove(b);
+                CompanyVehicle b = db.CompanyVehicles.Where(x => x.LicenseNumber == LNnum).FirstOrDefault<CompanyVehicle>();
+                db.CompanyVehicles.Remove(b);
                 db.SaveChanges();
 
                 return Json(new { success = true, message = "刪除成功" }, JsonRequestBehavior.AllowGet);

@@ -14,6 +14,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
     
     public partial class MeetingRoomHistory
     {
+        public int MeetingRoomID { get; set; }
         public string meetingID { get; set; }
         public Nullable<System.DateTime> start_date_time { get; set; }
         public System.DateTime end_date_time { get; set; }

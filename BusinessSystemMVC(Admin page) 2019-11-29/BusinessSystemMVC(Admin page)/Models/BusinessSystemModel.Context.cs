@@ -56,6 +56,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual DbSet<LeaveHistory> LeaveHistories { get; set; }
         public virtual DbSet<LeaveHistoryApprovalTemp> LeaveHistoryApprovalTemps { get; set; }
         public virtual DbSet<MeetingRoom> MeetingRooms { get; set; }
+        public virtual DbSet<MeetingRoomHistory> MeetingRoomHistories { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Office> Offices { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
@@ -68,7 +69,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual DbSet<RewardandPunishment> RewardandPunishments { get; set; }
         public virtual DbSet<Suggestion> Suggestions { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<MeetingRoomHistory> MeetingRoomHistories { get; set; }
         public virtual DbSet<SuggestionHistory> SuggestionHistories { get; set; }
         public virtual DbSet<SurveyMain> SurveyMains { get; set; }
     }
