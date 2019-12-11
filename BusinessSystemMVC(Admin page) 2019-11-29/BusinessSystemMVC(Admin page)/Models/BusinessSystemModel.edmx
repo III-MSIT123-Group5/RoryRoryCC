@@ -5,21 +5,11 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BusinessDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-        </EntityType>
         <EntityType Name="Account">
           <Key>
-            <PropertyRef Name="account" />
+            <PropertyRef Name="account1" />
           </Key>
-          <Property Name="account" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="account1" Type="nvarchar" MaxLength="12" Nullable="false" />
           <Property Name="password" Type="varbinary" MaxLength="32" />
         </EntityType>
         <EntityType Name="ActivitiesChild">
@@ -145,15 +135,16 @@
           <Property Name="Content" Type="nvarchar" MaxLength="50" />
           <Property Name="PostTime" Type="datetime" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.BusinessTrip' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="BusinessTrip">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="start_date_time" Type="datetime" />
-          <Property Name="end_date_time" Type="datetime" />
-          <Property Name="adress" Type="nchar" MaxLength="10" />
-          <Property Name="description" Type="nvarchar(max)" />
-        </EntityType>-->
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
         <EntityType Name="CommentChild">
           <Key>
             <PropertyRef Name="Num" />
@@ -170,7 +161,7 @@
             <PropertyRef Name="CommentContentID" />
           </Key>
           <Property Name="CommentContentID" Type="int" Nullable="false" />
-          <Property Name="CommentContent" Type="nvarchar" MaxLength="50" />
+          <Property Name="CommentContent1" Type="nvarchar" MaxLength="50" />
           <Property Name="CommentOptionID" Type="int" />
         </EntityType>
         <EntityType Name="CommentMain">
@@ -189,7 +180,7 @@
             <PropertyRef Name="CommentOptionID" />
           </Key>
           <Property Name="CommentOptionID" Type="int" Nullable="false" />
-          <Property Name="CommentOption" Type="nvarchar" MaxLength="50" />
+          <Property Name="CommentOption1" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CommentQuestion">
           <Key>
@@ -205,7 +196,7 @@
           </Key>
           <Property Name="LicenseNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="VehicleYear" Type="int" Nullable="false" />
-          <Property Name="PurchaseDate" Type="date" Nullable="false" />
+          <Property Name="PurchaseDate" Type="datetime" Nullable="false" />
           <Property Name="brand" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="serial" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="MaxPassenger" Type="nchar" MaxLength="10" Nullable="false" />
@@ -238,7 +229,7 @@
           <Property Name="employeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Gender" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="Birth" Type="date" Nullable="false" />
+          <Property Name="Birth" Type="datetime" Nullable="false" />
           <Property Name="HireDate" Type="datetime" Nullable="false" />
           <Property Name="Account" Type="nvarchar" MaxLength="12" Nullable="false" />
           <Property Name="OfficeID" Type="int" Nullable="false" />
@@ -259,7 +250,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Gender" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="Birth" Type="date" Nullable="false" />
+          <Property Name="Birth" Type="datetime" Nullable="false" />
           <Property Name="HireDate" Type="datetime" Nullable="false" />
           <Property Name="Account" Type="nvarchar" MaxLength="12" Nullable="false" />
           <Property Name="OfficeID" Type="int" Nullable="false" />
@@ -326,7 +317,7 @@
           <Key>
             <PropertyRef Name="leaveID" />
           </Key>
-          <Property Name="leaveID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="leaveID" Type="int" Nullable="false" />
           <Property Name="leave_name" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="LeaveHistory">
@@ -375,7 +366,7 @@
           <Property Name="meetingID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="meetingName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="officeID" Type="int" />
-          <Property Name="max member" Type="int" />
+          <Property Name="max_member" Type="int" />
           <Property Name="RoomAddress" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="MeetingRoomHistory">
@@ -415,9 +406,9 @@
           <Property Name="OrderID" Type="int" />
           <Property Name="Note" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="UnitPrice" Type="money" Nullable="false" />
+          <Property Name="UnitPrice" Type="decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="TotalPrice" Type="money" StoreGeneratedPattern="Computed" />
+          <Property Name="TotalPrice" Type="decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -426,14 +417,6 @@
           <Property Name="positionID" Type="int" Nullable="false" />
           <Property Name="position" Type="nchar" MaxLength="30" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.PurchasingOrder' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="PurchasingOrder">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="items" Type="nchar" MaxLength="10" />
-          <Property Name="quantity" Type="int" />
-          <Property Name="unit price" Type="money" />
-        </EntityType>-->
         <EntityType Name="Recipient">
           <Key>
             <PropertyRef Name="MessageID" />
@@ -484,34 +467,23 @@
           <Property Name="ReportID" Type="int" />
           <Property Name="EmployeeID" Type="int" />
           <Property Name="RequisitionDate" Type="datetime" />
-          <Property Name="Price" Type="money" />
+          <Property Name="Price" Type="decimal" Precision="19" Scale="4" />
           <Property Name="ApprovalStatusID" Type="int" />
         </EntityType>
         <EntityType Name="RewardandPunishment">
           <Key>
-            <PropertyRef Name="Reward/PunishmentID" />
+            <PropertyRef Name="Reward_PunishmentID" />
           </Key>
-          <Property Name="Reward/PunishmentID" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Reward/PunishmentName" Type="nchar" MaxLength="10" />
+          <Property Name="Reward_PunishmentID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Reward_PunishmentName" Type="nchar" MaxLength="10" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.RewardandPunishmentHistory' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="RewardandPunishmentHistory">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="Date" Type="datetime" />
-          <Property Name="Reward/Punishment" Type="nchar" MaxLength="10" />
-          <Property Name="managerID" Type="nchar" MaxLength="10" />
-          <Property Name="Description" Type="nvarchar(max)" />
-        </EntityType>-->
         <EntityType Name="Suggestion">
           <Key>
             <PropertyRef Name="suggestionID" />
           </Key>
           <Property Name="suggestionID" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="suggestion" Type="nchar" MaxLength="30" />
+          <Property Name="suggestion1" Type="nchar" MaxLength="30" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'BusinessDataBase.dbo.SuggestionHistory' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="SuggestionHistory">
           <Key>
             <PropertyRef Name="num" />
@@ -522,14 +494,6 @@
           <Property Name="suggestionID" Type="nchar" MaxLength="10" />
           <Property Name="content" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.SurveyChild' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="SurveyChild">
-          <Property Name="SurveyID" Type="int" />
-          <Property Name="Survey" Type="nvarchar" MaxLength="50" />
-        </EntityType>-->
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'BusinessDataBase.dbo.SurveyMain' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="SurveyMain">
           <Key>
             <PropertyRef Name="QuestionID" />
@@ -538,7 +502,7 @@
           <Property Name="QuestionID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Question" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
+        <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -548,14 +512,6 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'BusinessDataBase.dbo.WorkingHours' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="WorkingHours">
-          <Property Name="employeeID" Type="int" />
-          <Property Name="clock_in_time" Type="datetime" />
-          <Property Name="clock_out_time" Type="datetime" />
-          <Property Name="leaveID" Type="int" />
-        </EntityType>-->
         <Association Name="FK_ActivitiesChild_ActivitiesMain">
           <End Role="ActivitiesMain" Type="Self.ActivitiesMain" Multiplicity="0..1" />
           <End Role="ActivitiesChild" Type="Self.ActivitiesChild" Multiplicity="*" />
@@ -616,7 +572,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Bulletin board_Department">
+        <Association Name="FK_Bulletin_board_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
           <End Role="BulletinBoard" Type="Self.BulletinBoard" Multiplicity="*" />
           <ReferentialConstraint>
@@ -628,7 +584,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Bulletin board_Employee">
+        <Association Name="FK_Bulletin_board_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="BulletinBoard" Type="Self.BulletinBoard" Multiplicity="*" />
           <ReferentialConstraint>
@@ -640,7 +596,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Bulletin board_Group">
+        <Association Name="FK_Bulletin_board_Group">
           <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
           <End Role="BulletinBoard" Type="Self.BulletinBoard" Multiplicity="*" />
           <ReferentialConstraint>
@@ -664,9 +620,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.BusinessTrip' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_Business Trip_Employee" />-->
         <Association Name="FK_CommentChild_CommentMain1">
           <End Role="CommentMain" Type="Self.CommentMain" Multiplicity="0..1" />
           <End Role="CommentChild" Type="Self.CommentChild" Multiplicity="*" />
@@ -763,7 +716,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Company vehicle history_Company vehicle">
+        <Association Name="FK_Company_vehicle_history_Company_vehicle">
           <End Role="CompanyVehicle" Type="Self.CompanyVehicle" Multiplicity="1" />
           <End Role="CompanyVehicleHistory" Type="Self.CompanyVehicleHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -775,7 +728,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Company vehicle history_Employee">
+        <Association Name="FK_Company_vehicle_history_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="CompanyVehicleHistory" Type="Self.CompanyVehicleHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -787,7 +740,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Company vehicle_Office">
+        <Association Name="FK_Company_vehicle_Office">
           <End Role="Office" Type="Self.Office" Multiplicity="1" />
           <End Role="CompanyVehicle" Type="Self.CompanyVehicle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1167,7 +1120,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Meeting room history_Employee">
+        <Association Name="FK_Meeting_room_history_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="MeetingRoomHistory" Type="Self.MeetingRoomHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1179,7 +1132,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Meeting room history_Meeting room">
+        <Association Name="FK_Meeting_room_history_Meeting_room">
           <End Role="MeetingRoom" Type="Self.MeetingRoom" Multiplicity="0..1" />
           <End Role="MeetingRoomHistory" Type="Self.MeetingRoomHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1191,7 +1144,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Meeting room_Office">
+        <Association Name="FK_Meeting_room_Office">
           <End Role="Office" Type="Self.Office" Multiplicity="0..1" />
           <End Role="MeetingRoom" Type="Self.MeetingRoom" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1227,9 +1180,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.PurchasingOrder' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_Purchasing Order_Employee" />-->
         <Association Name="FK_Recipient_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Recipient" Type="Self.Recipient" Multiplicity="*" />
@@ -1326,13 +1276,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.RewardandPunishmentHistory' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_RewardandPunishmentHistory_Employee" />-->
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.RewardandPunishmentHistory' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_RewardandPunishmentHistory_RewardandPunishment" />-->
-        <Association Name="FK_Suggestion history_Department">
+        <Association Name="FK_Suggestion_history_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
           <End Role="SuggestionHistory" Type="Self.SuggestionHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1344,7 +1288,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Suggestion history_Employee">
+        <Association Name="FK_Suggestion_history_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="SuggestionHistory" Type="Self.SuggestionHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1356,7 +1300,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Suggestion history_Suggestion">
+        <Association Name="FK_Suggestion_history_Suggestion">
           <End Role="Suggestion" Type="Self.Suggestion" Multiplicity="0..1" />
           <End Role="SuggestionHistory" Type="Self.SuggestionHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1368,14 +1312,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.WorkingHours' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_Working hours_Employee" />-->
-        <!--產生期間發現錯誤:
-錯誤 6004: 資料表 'BusinessDataBase.dbo.WorkingHours' 被某個關聯性參考，但是找不到。
-        <Association Name="FK_Working hours_Leave" />-->
         <EntityContainer Name="BusinessDataBaseModelStoreContainer">
-          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActivitiesChild" EntityType="Self.ActivitiesChild" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActivitiesMain" EntityType="Self.ActivitiesMain" Schema="dbo" store:Type="Tables" />
@@ -1388,6 +1325,7 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BulletinBoard" EntityType="Self.BulletinBoard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CommentChild" EntityType="Self.CommentChild" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CommentContent" EntityType="Self.CommentContent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CommentMain" EntityType="Self.CommentMain" Schema="dbo" store:Type="Tables" />
@@ -1418,23 +1356,9 @@
           <EntitySet Name="RequisitionMain" EntityType="Self.RequisitionMain" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RewardandPunishment" EntityType="Self.RewardandPunishment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suggestion" EntityType="Self.Suggestion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SuggestionHistory" EntityType="Self.SuggestionHistory" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [SuggestionHistory].[num] AS [num], 
-    [SuggestionHistory].[employeeID] AS [employeeID], 
-    [SuggestionHistory].[departmentID] AS [departmentID], 
-    [SuggestionHistory].[suggestionID] AS [suggestionID], 
-    [SuggestionHistory].[content] AS [content]
-    FROM [dbo].[SuggestionHistory] AS [SuggestionHistory]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="SurveyMain" EntityType="Self.SurveyMain" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [SurveyMain].[SurveyID] AS [SurveyID], 
-    [SurveyMain].[QuestionID] AS [QuestionID], 
-    [SurveyMain].[Question] AS [Question]
-    FROM [dbo].[SurveyMain] AS [SurveyMain]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="SuggestionHistory" EntityType="Self.SuggestionHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SurveyMain" EntityType="Self.SurveyMain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagram" EntityType="Self.sysdiagram" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ActivitiesChild_ActivitiesMain" Association="Self.FK_ActivitiesChild_ActivitiesMain">
             <End Role="ActivitiesMain" EntitySet="ActivitiesMain" />
             <End Role="ActivitiesChild" EntitySet="ActivitiesChild" />
@@ -1455,15 +1379,15 @@
             <End Role="RequisitionMain" EntitySet="RequisitionMain" />
             <End Role="Approval" EntitySet="Approval" />
           </AssociationSet>
-          <AssociationSet Name="FK_Bulletin board_Department" Association="Self.FK_Bulletin board_Department">
+          <AssociationSet Name="FK_Bulletin_board_Department" Association="Self.FK_Bulletin_board_Department">
             <End Role="Department" EntitySet="Department" />
             <End Role="BulletinBoard" EntitySet="BulletinBoard" />
           </AssociationSet>
-          <AssociationSet Name="FK_Bulletin board_Employee" Association="Self.FK_Bulletin board_Employee">
+          <AssociationSet Name="FK_Bulletin_board_Employee" Association="Self.FK_Bulletin_board_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="BulletinBoard" EntitySet="BulletinBoard" />
           </AssociationSet>
-          <AssociationSet Name="FK_Bulletin board_Group" Association="Self.FK_Bulletin board_Group">
+          <AssociationSet Name="FK_Bulletin_board_Group" Association="Self.FK_Bulletin_board_Group">
             <End Role="Group" EntitySet="Group" />
             <End Role="BulletinBoard" EntitySet="BulletinBoard" />
           </AssociationSet>
@@ -1503,15 +1427,15 @@
             <End Role="CommentContent" EntitySet="CommentContent" />
             <End Role="CommentQuestion" EntitySet="CommentQuestion" />
           </AssociationSet>
-          <AssociationSet Name="FK_Company vehicle history_Company vehicle" Association="Self.FK_Company vehicle history_Company vehicle">
+          <AssociationSet Name="FK_Company_vehicle_history_Company_vehicle" Association="Self.FK_Company_vehicle_history_Company_vehicle">
             <End Role="CompanyVehicle" EntitySet="CompanyVehicle" />
             <End Role="CompanyVehicleHistory" EntitySet="CompanyVehicleHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK_Company vehicle history_Employee" Association="Self.FK_Company vehicle history_Employee">
+          <AssociationSet Name="FK_Company_vehicle_history_Employee" Association="Self.FK_Company_vehicle_history_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="CompanyVehicleHistory" EntitySet="CompanyVehicleHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK_Company vehicle_Office" Association="Self.FK_Company vehicle_Office">
+          <AssociationSet Name="FK_Company_vehicle_Office" Association="Self.FK_Company_vehicle_Office">
             <End Role="Office" EntitySet="Office" />
             <End Role="CompanyVehicle" EntitySet="CompanyVehicle" />
           </AssociationSet>
@@ -1635,15 +1559,15 @@
             <End Role="Leave" EntitySet="Leave" />
             <End Role="LeaveHistoryApprovalTemp" EntitySet="LeaveHistoryApprovalTemp" />
           </AssociationSet>
-          <AssociationSet Name="FK_Meeting room history_Employee" Association="Self.FK_Meeting room history_Employee">
+          <AssociationSet Name="FK_Meeting_room_history_Employee" Association="Self.FK_Meeting_room_history_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="MeetingRoomHistory" EntitySet="MeetingRoomHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK_Meeting room history_Meeting room" Association="Self.FK_Meeting room history_Meeting room">
+          <AssociationSet Name="FK_Meeting_room_history_Meeting_room" Association="Self.FK_Meeting_room_history_Meeting_room">
             <End Role="MeetingRoom" EntitySet="MeetingRoom" />
             <End Role="MeetingRoomHistory" EntitySet="MeetingRoomHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK_Meeting room_Office" Association="Self.FK_Meeting room_Office">
+          <AssociationSet Name="FK_Meeting_room_Office" Association="Self.FK_Meeting_room_Office">
             <End Role="Office" EntitySet="Office" />
             <End Role="MeetingRoom" EntitySet="MeetingRoom" />
           </AssociationSet>
@@ -1687,15 +1611,15 @@
             <End Role="ReportCategory" EntitySet="ReportCategory" />
             <End Role="RequisitionMain" EntitySet="RequisitionMain" />
           </AssociationSet>
-          <AssociationSet Name="FK_Suggestion history_Department" Association="Self.FK_Suggestion history_Department">
+          <AssociationSet Name="FK_Suggestion_history_Department" Association="Self.FK_Suggestion_history_Department">
             <End Role="Department" EntitySet="Department" />
             <End Role="SuggestionHistory" EntitySet="SuggestionHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK_Suggestion history_Employee" Association="Self.FK_Suggestion history_Employee">
+          <AssociationSet Name="FK_Suggestion_history_Employee" Association="Self.FK_Suggestion_history_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="SuggestionHistory" EntitySet="SuggestionHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK_Suggestion history_Suggestion" Association="Self.FK_Suggestion history_Suggestion">
+          <AssociationSet Name="FK_Suggestion_history_Suggestion" Association="Self.FK_Suggestion_history_Suggestion">
             <End Role="Suggestion" EntitySet="Suggestion" />
             <End Role="SuggestionHistory" EntitySet="SuggestionHistory" />
           </AssociationSet>
@@ -1705,7 +1629,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="BusinessDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="BusinessDataBaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__MigrationHistory" EntityType="BusinessDataBaseModel.C__MigrationHistory" />
           <EntitySet Name="Accounts" EntityType="BusinessDataBaseModel.Account" />
           <EntitySet Name="ActivitiesChilds" EntityType="BusinessDataBaseModel.ActivitiesChild" />
           <EntitySet Name="ActivitiesMains" EntityType="BusinessDataBaseModel.ActivitiesMain" />
@@ -1718,6 +1641,7 @@
           <EntitySet Name="AspNetUserRoles" EntityType="BusinessDataBaseModel.AspNetUserRole" />
           <EntitySet Name="AspNetUsers" EntityType="BusinessDataBaseModel.AspNetUser" />
           <EntitySet Name="BulletinBoards" EntityType="BusinessDataBaseModel.BulletinBoard" />
+          <EntitySet Name="C__MigrationHistory" EntityType="BusinessDataBaseModel.C__MigrationHistory" />
           <EntitySet Name="CommentChilds" EntityType="BusinessDataBaseModel.CommentChild" />
           <EntitySet Name="CommentContents" EntityType="BusinessDataBaseModel.CommentContent" />
           <EntitySet Name="CommentMains" EntityType="BusinessDataBaseModel.CommentMain" />
@@ -1748,9 +1672,9 @@
           <EntitySet Name="RequisitionMains" EntityType="BusinessDataBaseModel.RequisitionMain" />
           <EntitySet Name="RewardandPunishments" EntityType="BusinessDataBaseModel.RewardandPunishment" />
           <EntitySet Name="Suggestions" EntityType="BusinessDataBaseModel.Suggestion" />
-          <EntitySet Name="sysdiagrams" EntityType="BusinessDataBaseModel.sysdiagram" />
           <EntitySet Name="SuggestionHistories" EntityType="BusinessDataBaseModel.SuggestionHistory" />
           <EntitySet Name="SurveyMains" EntityType="BusinessDataBaseModel.SurveyMain" />
+          <EntitySet Name="sysdiagrams" EntityType="BusinessDataBaseModel.sysdiagram" />
           <AssociationSet Name="FK_ActivitiesChild_ActivitiesMain" Association="BusinessDataBaseModel.FK_ActivitiesChild_ActivitiesMain">
             <End Role="ActivitiesMain" EntitySet="ActivitiesMains" />
             <End Role="ActivitiesChild" EntitySet="ActivitiesChilds" />
@@ -2016,16 +1940,6 @@
             <End Role="SuggestionHistory" EntitySet="SuggestionHistories" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="account1" />
@@ -2177,6 +2091,16 @@
           <NavigationProperty Name="Group" Relationship="BusinessDataBaseModel.FK_Bulletin_board_Group" FromRole="BulletinBoard" ToRole="Group" />
           <NavigationProperty Name="Employee1" Relationship="BusinessDataBaseModel.FK_BulletinBoard_Employee" FromRole="BulletinBoard" ToRole="Employee" />
         </EntityType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="CommentChild">
           <Key>
             <PropertyRef Name="Num" />
@@ -2241,7 +2165,7 @@
           </Key>
           <Property Name="LicenseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="VehicleYear" Type="Int32" Nullable="false" />
-          <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="brand" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="serial" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="MaxPassenger" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
@@ -2284,7 +2208,7 @@
           <Property Name="employeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Birth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Birth" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="HireDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Account" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
           <Property Name="OfficeID" Type="Int32" Nullable="false" />
@@ -2338,7 +2262,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Birth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Birth" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="HireDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Account" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
           <Property Name="OfficeID" Type="Int32" Nullable="false" />
@@ -2421,7 +2345,7 @@
           <Key>
             <PropertyRef Name="leaveID" />
           </Key>
-          <Property Name="leaveID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="leaveID" Type="Int32" Nullable="false" />
           <Property Name="leave_name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LeaveHistories" Relationship="BusinessDataBaseModel.FK_LeaveHistory_Leave" FromRole="Leave" ToRole="LeaveHistory" />
           <NavigationProperty Name="LeaveHistoryApprovalTemps" Relationship="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_Leave" FromRole="Leave" ToRole="LeaveHistoryApprovalTemp" />
@@ -2533,7 +2457,7 @@
           <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="RequisitionMain" Relationship="BusinessDataBaseModel.FK_OrderDetail_RequisitionMain1" FromRole="OrderDetail" ToRole="RequisitionMain" />
         </EntityType>
         <EntityType Name="Position">
@@ -2624,16 +2548,6 @@
           <Property Name="suggestion1" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="SuggestionHistories" Relationship="BusinessDataBaseModel.FK_Suggestion_history_Suggestion" FromRole="Suggestion" ToRole="SuggestionHistory" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="SuggestionHistory">
           <Key>
             <PropertyRef Name="num" />
@@ -2654,6 +2568,16 @@
           <Property Name="SurveyID" Type="Int32" />
           <Property Name="QuestionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Question" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <Association Name="FK_ActivitiesChild_ActivitiesMain">
           <End Type="BusinessDataBaseModel.ActivitiesMain" Role="ActivitiesMain" Multiplicity="0..1" />
@@ -3461,21 +3385,11 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BusinessDataBaseModelStoreContainer" CdmEntityContainer="BusinessDataBaseEntities">
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.Account">
               <MappingFragment StoreEntitySet="Account">
                 <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="account1" ColumnName="account" />
+                <ScalarProperty Name="account1" ColumnName="account1" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3611,6 +3525,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="C__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CommentChilds">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.CommentChild">
               <MappingFragment StoreEntitySet="CommentChild">
@@ -3627,7 +3551,7 @@
             <EntityTypeMapping TypeName="BusinessDataBaseModel.CommentContent">
               <MappingFragment StoreEntitySet="CommentContent">
                 <ScalarProperty Name="CommentOptionID" ColumnName="CommentOptionID" />
-                <ScalarProperty Name="CommentContent1" ColumnName="CommentContent" />
+                <ScalarProperty Name="CommentContent1" ColumnName="CommentContent1" />
                 <ScalarProperty Name="CommentContentID" ColumnName="CommentContentID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3647,7 +3571,7 @@
           <EntitySetMapping Name="CommentOptions">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.CommentOption">
               <MappingFragment StoreEntitySet="CommentOption">
-                <ScalarProperty Name="CommentOption1" ColumnName="CommentOption" />
+                <ScalarProperty Name="CommentOption1" ColumnName="CommentOption1" />
                 <ScalarProperty Name="CommentOptionID" ColumnName="CommentOptionID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3846,7 +3770,7 @@
             <EntityTypeMapping TypeName="BusinessDataBaseModel.MeetingRoom">
               <MappingFragment StoreEntitySet="MeetingRoom">
                 <ScalarProperty Name="RoomAddress" ColumnName="RoomAddress" />
-                <ScalarProperty Name="max_member" ColumnName="max member" />
+                <ScalarProperty Name="max_member" ColumnName="max_member" />
                 <ScalarProperty Name="officeID" ColumnName="officeID" />
                 <ScalarProperty Name="meetingName" ColumnName="meetingName" />
                 <ScalarProperty Name="meetingID" ColumnName="meetingID" />
@@ -3966,27 +3890,16 @@
           <EntitySetMapping Name="RewardandPunishments">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.RewardandPunishment">
               <MappingFragment StoreEntitySet="RewardandPunishment">
-                <ScalarProperty Name="Reward_PunishmentName" ColumnName="Reward/PunishmentName" />
-                <ScalarProperty Name="Reward_PunishmentID" ColumnName="Reward/PunishmentID" />
+                <ScalarProperty Name="Reward_PunishmentName" ColumnName="Reward_PunishmentName" />
+                <ScalarProperty Name="Reward_PunishmentID" ColumnName="Reward_PunishmentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Suggestions">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.Suggestion">
               <MappingFragment StoreEntitySet="Suggestion">
-                <ScalarProperty Name="suggestion1" ColumnName="suggestion" />
+                <ScalarProperty Name="suggestion1" ColumnName="suggestion1" />
                 <ScalarProperty Name="suggestionID" ColumnName="suggestionID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="BusinessDataBaseModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4007,6 +3920,17 @@
                 <ScalarProperty Name="Question" ColumnName="Question" />
                 <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
                 <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagram">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
