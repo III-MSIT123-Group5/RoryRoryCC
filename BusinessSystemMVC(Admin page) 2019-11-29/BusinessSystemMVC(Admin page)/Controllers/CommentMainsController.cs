@@ -46,8 +46,19 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return Json(q1, JsonRequestBehavior.AllowGet);
         }
 
-            // GET: CommentMains/Create
-            public ActionResult Create(int id = 0)
+        //get
+        public ActionResult LoadQuestion()
+        {
+            var q1 = from cc in db.CommentContents
+                     join q in db.CommentQuestions
+                     on cc.CommentContentID equals q.CommentContentID
+                     select new { cc.CommentContentID,q.CommentQuestionID,q.Question};
+
+            return Json(q1, JsonRequestBehavior.AllowGet);
+        }
+
+        // GET: CommentMains/Create
+        public ActionResult Create(int id = 0)
         {
             int EmpID = EmployeeDetail.EmployeeID;
 

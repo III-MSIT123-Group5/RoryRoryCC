@@ -88,7 +88,7 @@
                     { "targets": 7, "data": "officename" },
                     {
                         "targets": 8, "data": "LicenseNumber", "render": function (data) {
-                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/CompanyVehicles/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
+                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/CompanyVehicles/AddOrEdit/" + data + `')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete("${data}")><i class='fa fa-trash'></i> 刪除</a>`
                         },
                         "orderable": false,
                         "searchable": false,
@@ -107,7 +107,7 @@
         });
 
         function PopupForm(url) {
-            console.log(this.id)
+            console.log(this.url)
             var formDiv = $('<div/>');
             $.get(url)
                 .done(function (response) {
@@ -151,12 +151,13 @@
 
         }
 
-        function Delete(id) {
-            console.log(id)
+        function Delete(LNnum) {
+            console.log(LNnum)
             if (confirm('確定要刪除此筆貼文嗎?')) {
                 $.ajax({
                     type: "POST",
-                    url: '/CompanyVehicles/Delete/' + id,
+                    url: '/CompanyVehicles/Delete/' + LNnum,
+                    
                     success: function (data) {
                         if (data.success) {
 

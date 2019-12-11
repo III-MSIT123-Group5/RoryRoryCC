@@ -1,4 +1,4 @@
-﻿@model BusinessSystemMVC_Admin_page_.Models.CompanyVehicle
+﻿@model BusinessSystemMVC_Admin_page_.Models.MeetingRoom
 @{
     Layout = null;
 }
@@ -6,7 +6,6 @@
 {
 
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(Model => Model.VehiclePhoto)
 
 
 
@@ -14,38 +13,25 @@
     <div>
 
 
-        @Html.LabelFor(Model => Model.LicenseNumber, "車牌號碼", new { @class = "control-label" })
-        @Html.TextBoxFor(Model => Model.LicenseNumber, new { rows = "1", cols = "150", @class = "form-control", @MaxLength = "8" })
-        @Html.ValidationMessageFor(model => model.LicenseNumber)
+        @Html.LabelFor(Model => Model.meetingID, "會議室ID", new { @class = "control-label" })
+        @Html.TextBoxFor(Model => Model.meetingID, new { rows = "1", cols = "150", @class = "form-control", @MaxLength = "8" })
+        @Html.ValidationMessageFor(model => model.meetingID)
 
-        @Html.LabelFor(Model => Model.VehicleYear, "車輛年份", new { @class = "control-label" })
-        @Html.TextBoxFor(Model => Model.VehicleYear, new { rows = "1", cols = "150", @class = "form-control", @MaxLength = "4" })
-        @Html.ValidationMessageFor(model => model.VehicleYear)
+        @Html.LabelFor(Model => Model.meetingName, "會議室名稱", new { @class = "control-label" })
+        @Html.TextBoxFor(Model => Model.meetingName, new { rows = "1", cols = "150", @class = "form-control", @MaxLength = "10" })
+        @Html.ValidationMessageFor(model => model.meetingName)
 
-        @Html.LabelFor(Model => Model.PurchaseDate, "購入時間", new { @class = "control-label" })
-        <br />
-        @Html.EditorFor(Model => Model.PurchaseDate, new { htmlAttributes = new { @class = "form-control", Type = "date" } })
-        @Html.ValidationMessageFor(model => model.PurchaseDate, "", new { @class = "text-danger" })
+        @Html.LabelFor(Model => Model.max_member, "容納人數", new { @class = "control-label" })
+        @Html.TextBoxFor(Model => Model.max_member, new { rows = "1", cols = "150", @class = "form-control", @MaxLength = "20" })
+        @Html.ValidationMessageFor(model => model.max_member)
 
-        @Html.LabelFor(Model => Model.brand, "車輛廠牌", new { @class = "control-label" })
-        @Html.TextBoxFor(Model => Model.brand, new { rows = "1", cols = "150", @class = "form-control", @MaxLength = "20" })
-        @Html.ValidationMessageFor(model => model.brand)
-
-        @Html.LabelFor(Model => Model.serial, "車輛型號", new { @class = "control-label" })
-        @Html.TextBoxFor(Model => Model.serial, new { rows = "1", cols = "150", @class = "form-control", @MaxLength = "20" })
-        @Html.ValidationMessageFor(model => model.serial)
-
-        @Html.LabelFor(Model => Model.MaxPassenger, "乘客數", new { @class = "control-label" })
-        @Html.TextBoxFor(Model => Model.MaxPassenger, new { rows = "1", cols = "150", @class = "form-control", @MaxLength = "20", Type = "" })
-        @Html.ValidationMessageFor(model => model.MaxPassenger)
-
-        @Html.LabelFor(Model => Model.officeID, "辦公室編號", new { @class = "control-label" })
+        @Html.LabelFor(Model => Model.officeID, "辦公室ID", new { @class = "control-label" })
         @Html.TextBoxFor(Model => Model.officeID, new { rows = "1", cols = "150", @class = "form-control", @MaxLength = "20" })
         @Html.ValidationMessageFor(model => model.officeID)
 
-        @Html.LabelFor(Model => Model.VehiclePhoto2, "照片", new { @class = "control-label" })
-        @Html.DisplayFor(Model => Model.VehiclePhoto2, new { @class = "form-control", Width = "200px", Height = "120px" })
-        @Html.ValidationMessageFor(model => model.VehiclePhoto2)
+        @Html.LabelFor(Model => Model.RoomAddress, "辦公室位置", new { @class = "control-label" })
+        @Html.TextBoxFor(Model => Model.RoomAddress, new { rows = "1", cols = "150", @class = "form-control", @MaxLength = "40", Type = "" })
+        @Html.ValidationMessageFor(model => model.RoomAddress)
     </div>
 
     <div class="form-group" style="float:right;margin-top:20px">

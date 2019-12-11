@@ -138,31 +138,14 @@ namespace EIPBussinessSystem_MVC.Controllers
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 
         [HttpPost]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(string LNnum)
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
-                CompanyVehicle b = db.CompanyVehicles.Where(x => x.LicenseNumber == id).FirstOrDefault<CompanyVehicle>();
+                CompanyVehicle b = db.CompanyVehicles.Where(x => x.LicenseNumber == LNnum).FirstOrDefault<CompanyVehicle>();
                 db.CompanyVehicles.Remove(b);
                 db.SaveChanges();
 

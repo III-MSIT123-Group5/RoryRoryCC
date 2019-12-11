@@ -92,29 +92,24 @@
                         close: function () {
                             Popup.dialog('destroy').remove();
                         }
-                    });
-
-                    var StartYearLab = $("#StartYear");
-                    var EndYearLab = $("#EndYear");
-                    var StartMonthLab = $("#StartMonth");
-                    var EndMonthLab = $("#EndMonth");
-                    var StartDayLab = $("#StartDay");
-                    var EndDayLab = $("#EndDay");
-
-                    $("#StartMonth").bind("change", function () {         //$
-                        GetNewDays($("#StartYear"), $("#StartMonth"), $("#StartDay"));
-                    });
-                    $("#EndMonth").bind("change", function () {
-                        GetNewDays($("#EndYear"), $("#EndMonth"), $("#EndDay"));
-                    });
+                    });                   
                     $("#leaveID").bind("change", function () {
-                        if (this.value != 2) {
-                            //$("#StartYear").bind("change", function () { GetNewMonthTimes($("#StartYear").val(), $("#StartMonth")); });
-                            //$("#EndYear").bind("change", function () { GetNewMonthTimes($("#EndYear").val(), $("#EndMonth")); });
-                            GetNewYearTimes();
-                            //GetNewDayTimes();
+                        if (this.value == 0 || this.value == 1) {
+                            GetNewYearTimes();           
+                            $("#StartYear").bind("change", GetNewMonthTimes($("#StartYear"), $("#StartMonth")));
+                            $("#EndYear").bind("change", GetNewMonthTimes($("#EndYear"), $("#EndMonth")));
+                            $("#StartMonth").bind("change", GetNewDayTimes($("#StartYear"), $("#StartMonth"), $("#StartDay")));
+                            $("#EndMonth").bind("change", GetNewDayTimes($("#EndYear"), $("#EndMonth"), $("#EndDay")));                            
                         }                        
                     })
+                    $("#StartMonth").bind("change", function () {
+                        GetNewDayTimes($("#StartYear"), $("#StartMonth"), $("#StartDay"));
+                    });
+                    $("#EndMonth").bind("change", function () {
+                        GetNewDayTimes($("#EndYear"), $("#EndMonth"), $("#EndDay"));
+                    });
+                    $("#StartYear").bind("change", GetNewMonthTimes($("#StartYear"), $("#StartMonth")));
+                    $("#EndYear").bind("change", GetNewMonthTimes($("#EndYear"), $("#EndMonth")));
                 });
         }
 
@@ -141,7 +136,7 @@
         }
     //新增Popup裡的Scripts================
 
-
+        //大小月
         function GetNewDays(yearlab , monthlab , daylab) {
             daylab.empty();
             for (let i = 1; i <= getDays(yearlab.val(), monthlab.val()); i++) {
@@ -150,37 +145,54 @@
             }
         }
        function getDays(year , month) {
-        var yy = year;     /*year.val();*/
+        var yy = year;              /*year.val();*/
         var mm = month;      /*month.val();*/
         var dd = new Date(yy, mm, 0);
         var days = dd.getDate();
          return days;
        }
         //依假別給時間
+        function GetNewDayTimes(yearlab , monthlab ,daylab ) {
+            $.ajax({
+                type: "post",
+                url: "@Url.Action("GetNewDayTime", "LeaveHistoryApprovalTemps")", 
+                data: {
+                    thisYEAR: yearlab.val(),
+                    thisMONTH: monthlab.val()
+                },
+            }).done(function(data){
+                    daylab.empty();
+                for (let i = data; i <= getDays(yearlab.val(), yearlab.val()); i++) {
+                       var ops = new Option(i, i);
+                        daylab.append(ops);
+                    }
+                }).fail({})
+        }
+
         function GetNewYearTimes() {
             $.ajax({
                 type: "Post",
-            url: "@Url.Action("GetNewYearTime", "LeaveHistoryApprovalTemps")",
+                url: "@Url.Action("GetNewYearTime", "LeaveHistoryApprovalTemps")",
+                dataType: "Json",
             }).done(function (datas) {
                 $("#StartYear").empty();
                 $("#EndYear").empty();
                 datas.forEach(function (item) {
-                    var ops = new Option(item, item);
-                    $("#StartYear").append(ops);
-                    $("#EndYear").append(ops);
+                    $("#EndYear").append(new Option(item.tx, item.va));
+                    $("#StartYear").append(new Option(item.tx, item.va));
                 });
                 }).fail();
         }
-        function GetNewMonthTimes(thisyearval , monthLab) {
+        function GetNewMonthTimes(thisyearlab , monthLab) {
             $.ajax({
             type: "GET",
                 url: "@Url.Action("GetNewMonthTime", "LeaveHistoryApprovalTemps")",
-                data: { thisYEAR: thisyearval  }
+                data: { thisYEAR: thisyearlab.val() },
+                dataType: "Json",
             }).done(function (datas) {
                 monthLab.empty();
                 datas.forEach(function (item) {
-                    var ops = new Option(item.Txt, item.Val);
-                    monthLab.append(ops);
+                    monthLab.append(new Option(item.Tx, item.Va));
                 });
                 }).fail();
         }

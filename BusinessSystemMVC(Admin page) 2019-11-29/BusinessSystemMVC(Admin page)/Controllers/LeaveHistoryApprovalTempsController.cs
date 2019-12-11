@@ -76,9 +76,20 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 SDList.Add(i);
                 EDList.Add(i);
             }
-            for (int i = 9; i <= 17; i++)
+            for(int i = 9; i < 12; i++)
             {
                 SHList.Add(i);
+            }
+            for(int i=13; i < 17; i++)
+            {
+                SHList.Add(i);
+            }
+            for(int i =10; i <= 12; i++)
+            {
+                EHList.Add(i);
+            }
+            for( int i = 14; i <= 17;i++ )
+            {
                 EHList.Add(i);
             }
             ViewBag.leaveID = new SelectList(db.Leaves, "leaveID", "leave_name");
@@ -90,7 +101,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             ViewBag.EndMonth = new SelectList(EMList.Select(p => new { EMtxt = p.ToString(), EMval = p }), "EMval", "EMtxt");
             ViewBag.EndDay = new SelectList(EDList.Select(p => new { EDtxt = p.ToString(), EDval = p }), "EDval", "EDtxt");
             ViewBag.EndHour = new SelectList(EHList.Select(p => new { EHtxt = p.ToString(), EHval = p }), "EHval", "EHtxt");
-
             return View();
         }
         //新增請假
@@ -99,18 +109,62 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(LeaveHistoryApprovalTempViewModel leaveHistoryApprovalTemp)
-        {
+        [AllowAnonymous]
+        public ActionResult Create(LeaveHistoryApprovalTempViewModel VM)
+        {   
             if (ModelState.IsValid)
             {
+                var emp = db.Employees.Find(EmployeeDetail.EmployeeID);
+                var NewLeave = new LeaveHistoryApprovalTemp();
+                NewLeave.StartTime = new DateTime(VM.StartYear, VM.StartMonth, VM.StartDay, VM.StartHour, 0, 0);
+                NewLeave.EndTime = new DateTime(VM.EndYear, VM.EndMonth, VM.EndDay, VM.EndHour, 0, 0);
+                var LeaveHours = (NewLeave.EndTime - NewLeave.StartTime).Hours;
+                var HoursDeRest = LeaveHours;
+                //======時數邏輯>>>>>>>>>>>>>
+                if (VM.StartHour<12 && VM.EndHour > 13)
+                {
+                    if (LeaveHours >= 24)
+                    {
+                        HoursDeRest = LeaveHours / 24 * 7 + LeaveHours % 24-1;
+                    }
+                    else
+                    {
+                        HoursDeRest--;
+                    }
+                }
+                else if(VM.StartHour>12 && VM.EndHour <= 17)
+                {
+                    if (LeaveHours >= 24)
+                    {
+                        HoursDeRest = LeaveHours / 24 * 7 + LeaveHours % 24;
+                    }
+                }
+                else
+                {
+                    if (LeaveHours >= 24)
+                    {
+                        HoursDeRest = LeaveHours / 24 * 7 + LeaveHours % 24;
+                    }
+                }
+                //======時數邏輯<<<<<<<<<<<<<<<
+                NewLeave.employeeID = EmployeeDetail.EmployeeID;
+                NewLeave.leaveID = VM.leaveID;
+                NewLeave.ReleaseTime = DateTime.Now;
+                NewLeave.Description = VM.Description;
+                NewLeave.Appendix = VM.Appendix;
+                NewLeave.SignState = false;
+                NewLeave.Reject = false;
 
 
-              
+
+
+
+
+
+
                 return RedirectToAction("Index");
             }
-
-           
-            return View(leaveHistoryApprovalTemp);
+            return View(VM);
         }
 
         [HttpPost]
@@ -119,13 +173,15 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         {
             DateTime dt = DateTime.Now.AddDays(3);
             List<int> L = new List<int>();
-          for(int i = dt.Year; i <= dt.Year + 1; i++)
+          for(int i = dt.Year ; i<= dt.Year+1; i++)
             {
                 L.Add(i);
             }
             var q = L.Select(p => new { tx = p.ToString(), va = p });
             return Json(q, JsonRequestBehavior.AllowGet);
         }
+
+
         [AllowAnonymous]
         public ActionResult GetNewMonthTime(int thisYEAR)
         {
@@ -145,8 +201,21 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     List.Add(i);
                 }
             }
-            return Json(List.Select(p => new { Txt = p.ToString(), Val = p }), JsonRequestBehavior.AllowGet);
+            return Json(List.Select(p => new { Tx = p.ToString(), Va = p }), JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public int GetNewDayTime(int thisYEAR , int thisMONTH)
+        {
+            DateTime dt = DateTime.Now.AddDays(3);
+            int data =1;
+            if (thisYEAR == dt.Year && thisMONTH == dt.Month)
+            {
+                data =dt.Day;
+            }
+            return data;
+        } 
 
 
         // GET: LeaveHistoryApprovalTemps/Edit/5
