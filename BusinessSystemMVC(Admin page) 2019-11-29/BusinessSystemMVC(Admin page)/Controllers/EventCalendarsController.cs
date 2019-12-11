@@ -104,8 +104,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
-                EventCalendar b = db.EventCalendars.Where(x => x.employeeID == id).FirstOrDefault<EventCalendar>();
-                db.EventCalendars.Remove(b);
+                EventCalendar ca = db.EventCalendars.Where(x => x.employeeID == id).FirstOrDefault<EventCalendar>();
+                db.EventCalendars.Remove(ca);
                 db.SaveChanges();
 
                 return Json(new { success = true, message = "刪除成功" }, JsonRequestBehavior.AllowGet);
@@ -115,14 +115,16 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         }
 
-
+        [HttpGet]
         public JsonResult Getevent()
         {
-            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
-            {
-                var events = db.EventCalendars;
-                return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-            }
+            BusinessDataBaseEntities db = new BusinessDataBaseEntities();
+            
+                var events = db.EventCalendars.Select(n=>new {n.CalendarID,n.employeeID, n.Subject,n.DepartmentID,n.StartTime,n.EndTime,n.Location,n.Description,n.IsImportant,n.ThemeColor }).ToList();
+            //return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+
+            return Json(events, JsonRequestBehavior.AllowGet);
+
         }
 
         //    // GET: EventCalendars/Create
@@ -199,39 +201,39 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         //        return View(eventCalendar);
         //    }
 
-        //    // GET: EventCalendars/Delete/5
-        //    public ActionResult Delete(int? id)
-        //    {
-        //        if (id == null)
-        //        {
-        //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //        }
-        //        EventCalendar eventCalendar = db.EventCalendars.Find(id);
-        //        if (eventCalendar == null)
-        //        {
-        //            return HttpNotFound();
-        //        }
-        //        return View(eventCalendar);
-        //    }
+        // GET: EventCalendars/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            EventCalendar eventCalendar = db.EventCalendars.Find(id);
+            if (eventCalendar == null)
+            {
+                return HttpNotFound();
+            }
+            return View(eventCalendar);
+        }
 
-        //    // POST: EventCalendars/Delete/5
-        //    [HttpPost, ActionName("Delete")]
-        //    [ValidateAntiForgeryToken]
-        //    public ActionResult DeleteConfirmed(int id)
-        //    {
-        //        EventCalendar eventCalendar = db.EventCalendars.Find(id);
-        //        db.EventCalendars.Remove(eventCalendar);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
+        // POST: EventCalendars/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            EventCalendar eventCalendar = db.EventCalendars.Find(id);
+            db.EventCalendars.Remove(eventCalendar);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
-        //    protected override void Dispose(bool disposing)
-        //    {
-        //        if (disposing)
-        //        {
-        //            db.Dispose();
-        //        }
-        //        base.Dispose(disposing);
-        //    }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

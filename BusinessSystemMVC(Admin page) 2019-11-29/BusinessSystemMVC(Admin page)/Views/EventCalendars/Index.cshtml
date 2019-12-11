@@ -174,10 +174,11 @@
             $.ajax({
                 type: "GET",
                 url: "/EventCalendars/Getevent",
-                success: function (datas) {
-                    $.each(datas, function (i, v) {
+                success: function (data) {
+                    console.log(data)
+                    $.each(data, function (i, v) {
                         events.push({
-                            employeeID: EmployeeDetail.EmployeeID,
+                            employeeID: v.EmployeeID,
                             title: v.Subject,
                             DepartmentID: v.DepartmentID,
                             StartTime: moment(v.StartTime),
@@ -190,13 +191,14 @@
 
                     })
 
-                    GenerateCalender(events);
+                    //GenerateCalender(events);
                 },
                 error: function (error) {
                     alert('failed');
+                    console.log(error)
                 }
             })
-
+            /*
             function GenerateCalender(events) {
                 $('#calender').fullCalendar('destroy');
                 $('#calender').fullCalendar({
@@ -224,7 +226,7 @@
                         $('#myModal').modal();
                     }
                 })
-            }
+            }*/
         })
 
         //            {
