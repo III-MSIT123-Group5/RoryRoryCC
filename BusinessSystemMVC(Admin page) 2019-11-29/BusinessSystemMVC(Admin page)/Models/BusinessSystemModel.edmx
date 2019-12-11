@@ -187,7 +187,7 @@
             <PropertyRef Name="CommentQuestionID" />
           </Key>
           <Property Name="CommentContentID" Type="int" />
-          <Property Name="CommentQuestionID" Type="int" Nullable="false" />
+          <Property Name="CommentQuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Question" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CompanyVehicle">
@@ -406,9 +406,9 @@
           <Property Name="OrderID" Type="int" />
           <Property Name="Note" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="UnitPrice" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="UnitPrice" Type="money" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="TotalPrice" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="TotalPrice" Type="money" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -467,8 +467,9 @@
           <Property Name="ReportID" Type="int" />
           <Property Name="EmployeeID" Type="int" />
           <Property Name="RequisitionDate" Type="datetime" />
-          <Property Name="Price" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="Price" Type="money" />
           <Property Name="ApprovalStatusID" Type="int" />
+          <Property Name="ApprovaStatus" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="RewardandPunishment">
           <Key>
@@ -503,6 +504,16 @@
           <Property Name="Question" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -1359,6 +1370,7 @@
           <EntitySet Name="SuggestionHistory" EntityType="Self.SuggestionHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SurveyMain" EntityType="Self.SurveyMain" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagram" EntityType="Self.sysdiagram" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ActivitiesChild_ActivitiesMain" Association="Self.FK_ActivitiesChild_ActivitiesMain">
             <End Role="ActivitiesMain" EntitySet="ActivitiesMain" />
             <End Role="ActivitiesChild" EntitySet="ActivitiesChild" />
@@ -1675,6 +1687,7 @@
           <EntitySet Name="SuggestionHistories" EntityType="BusinessDataBaseModel.SuggestionHistory" />
           <EntitySet Name="SurveyMains" EntityType="BusinessDataBaseModel.SurveyMain" />
           <EntitySet Name="sysdiagrams" EntityType="BusinessDataBaseModel.sysdiagram" />
+          <EntitySet Name="sysdiagrams1" EntityType="BusinessDataBaseModel.sysdiagram1" />
           <AssociationSet Name="FK_ActivitiesChild_ActivitiesMain" Association="BusinessDataBaseModel.FK_ActivitiesChild_ActivitiesMain">
             <End Role="ActivitiesMain" EntitySet="ActivitiesMains" />
             <End Role="ActivitiesChild" EntitySet="ActivitiesChilds" />
@@ -2154,7 +2167,7 @@
             <PropertyRef Name="CommentQuestionID" />
           </Key>
           <Property Name="CommentContentID" Type="Int32" />
-          <Property Name="CommentQuestionID" Type="Int32" Nullable="false" />
+          <Property Name="CommentQuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Question" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CommentChilds" Relationship="BusinessDataBaseModel.FK_CommentChild_CommentQuestion" FromRole="CommentQuestion" ToRole="CommentChild" />
           <NavigationProperty Name="CommentContent" Relationship="BusinessDataBaseModel.FK_CommentQuestion_CommentContent" FromRole="CommentQuestion" ToRole="CommentContent" />
@@ -2457,7 +2470,7 @@
           <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="RequisitionMain" Relationship="BusinessDataBaseModel.FK_OrderDetail_RequisitionMain1" FromRole="OrderDetail" ToRole="RequisitionMain" />
         </EntityType>
         <EntityType Name="Position">
@@ -2527,6 +2540,7 @@
           <Property Name="RequisitionDate" Type="DateTime" Precision="3" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="ApprovalStatusID" Type="Int32" />
+          <Property Name="ApprovaStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Approval" Relationship="BusinessDataBaseModel.FK_Approval_RequisitionMain" FromRole="RequisitionMain" ToRole="Approval" />
           <NavigationProperty Name="ApprovalStatu" Relationship="BusinessDataBaseModel.FK_RequisitionMain_ApprovalStatus" FromRole="RequisitionMain" ToRole="ApprovalStatu" />
           <NavigationProperty Name="Employee" Relationship="BusinessDataBaseModel.FK_RequisitionMain_Employee" FromRole="RequisitionMain" ToRole="Employee" />
@@ -2570,6 +2584,16 @@
           <Property Name="Question" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="sysdiagram1">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -3878,6 +3902,7 @@
           <EntitySetMapping Name="RequisitionMains">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.RequisitionMain">
               <MappingFragment StoreEntitySet="RequisitionMain">
+                <ScalarProperty Name="ApprovaStatus" ColumnName="ApprovaStatus" />
                 <ScalarProperty Name="ApprovalStatusID" ColumnName="ApprovalStatusID" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="RequisitionDate" ColumnName="RequisitionDate" />
@@ -3926,6 +3951,17 @@
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="BusinessDataBaseModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagram">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams1">
+            <EntityTypeMapping TypeName="BusinessDataBaseModel.sysdiagram1">
+              <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="definition" ColumnName="definition" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />

@@ -6,11 +6,11 @@
     <edmx:Diagrams>
       <Diagram DiagramId="a983fed1d51c40af9ae72a9a0720573a" Name="Diagram1" ZoomLevel="73">
         <EntityTypeShape EntityType="BusinessDataBaseModel.Account" Width="1.5" PointX="5.75" PointY="1.5" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.ActivitiesChild" Width="1.5" PointX="12.75" PointY="41.75" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.ActivitiesMain" Width="1.5" PointX="7.5" PointY="48.125" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.Approval" Width="1.5" PointX="15.75" PointY="49.5" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.ApprovalProcedure" Width="1.5" PointX="13.5" PointY="53.5" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.ApprovalStatu" Width="1.5" PointX="11.25" PointY="55.125" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.ActivitiesChild" Width="1.5" PointX="9.75" PointY="63.25" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.ActivitiesMain" Width="1.5" PointX="7.5" PointY="85.375" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.Approval" Width="1.5" PointX="12.75" PointY="34.5" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.ApprovalProcedure" Width="1.5" PointX="10.5" PointY="29.5" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.ApprovalStatu" Width="1.5" PointX="5.25" PointY="52.125" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetRole" Width="1.5" PointX="3.75" PointY="0.75" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetUserClaim" Width="1.5" PointX="3" PointY="3.375" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetUserLogin" Width="1.5" PointX="3" PointY="8.625" />
@@ -18,39 +18,40 @@
         <EntityTypeShape EntityType="BusinessDataBaseModel.AspNetUser" Width="1.5" PointX="0.75" PointY="3.625" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.BulletinBoard" Width="1.5" PointX="7.5" PointY="44.375" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="7.5" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.CommentChild" Width="1.5" PointX="18" PointY="44.5" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.CommentContent" Width="1.5" PointX="10.5" PointY="30.75" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.CommentMain" Width="1.5" PointX="12.75" PointY="45.375" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.CommentOption" Width="1.5" PointX="8.25" PointY="31" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.CommentQuestion" Width="1.5" PointX="15.75" PointY="37.875" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.CompanyVehicle" Width="1.5" PointX="8.25" PointY="55.25" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.CompanyVehicleHistory" Width="1.5" PointX="10.5" PointY="44.5" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.CommentChild" Width="1.5" PointX="16" PointY="53.375" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.CommentContent" Width="1.5" PointX="10.5" PointY="60.25" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.CommentMain" Width="1.5" PointX="12.75" PointY="63.875" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.CommentOption" Width="1.5" PointX="8.25" PointY="60.5" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.CommentQuestion" Width="1.5" PointX="13.75" PointY="56.75" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.CompanyVehicle" Width="1.5" PointX="11.25" PointY="52.25" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.CompanyVehicleHistory" Width="1.5" PointX="13.5" PointY="44.5" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Department" Width="1.5" PointX="0.75" PointY="36.5" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Employee" Width="1.5" PointX="5.25" PointY="40.75" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.EmployeeApprovalTemp" Width="1.5" PointX="15.5" PointY="41.375" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.Event" Width="1.5" PointX="11.25" PointY="34" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.EventCalendar" Width="1.5" PointX="7.5" PointY="40.125" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.File" Width="1.5" PointX="7.5" PointY="60.125" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.EmployeeApprovalTemp" Width="1.5" PointX="13.5" PointY="48.375" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.Event" Width="1.5" PointX="8.25" PointY="56" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.EventCalendar" Width="1.5" PointX="13.5" PointY="40.125" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.File" Width="1.5" PointX="7.5" PointY="71.75" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Group" Width="1.5" PointX="3" PointY="52.75" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.Leave" Width="1.5" PointX="8.25" PointY="33.875" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.LeaveHistory" Width="1.5" PointX="10.5" PointY="48.375" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.LeaveHistoryApprovalTemp" Width="1.5" PointX="10.5" PointY="36.75" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.MeetingRoom" Width="1.5" PointX="5.25" PointY="51.625" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.MeetingRoomHistory" Width="1.5" PointX="7.5" PointY="51.625" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.Message" Width="1.5" PointX="7.5" PointY="91.25" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.Office" Width="1.5" PointX="3" PointY="43.375" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.OrderDetail" Width="1.5" PointX="15.75" PointY="55" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.Position" Width="1.5" PointX="3" PointY="46.5" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.Recipient" Width="1.5" PointX="9.75" PointY="66.25" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.Reply" Width="1.5" PointX="7.5" PointY="88.375" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.ReportCategory" Width="1.5" PointX="11.25" PointY="52.875" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.ReportTimeSystem" Width="1.5" PointX="13.5" PointY="37.125" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.RequisitionMain" Width="1.5" PointX="13.5" PointY="49.25" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.Leave" Width="1.5" PointX="8.25" PointY="30.875" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.LeaveHistory" Width="1.5" PointX="7.5" PointY="48.375" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.LeaveHistoryApprovalTemp" Width="1.5" PointX="10.5" PointY="37.75" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.MeetingRoom" Width="1.5" PointX="8.25" PointY="52.625" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.MeetingRoomHistory" Width="1.5" PointX="10.5" PointY="44.625" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.Message" Width="1.5" PointX="7.5" PointY="88.625" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.Office" Width="1.5" PointX="3" PointY="45.875" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.OrderDetail" Width="1.5" PointX="9.75" PointY="33.5" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.Position" Width="1.5" PointX="3" PointY="43.375" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.Recipient" Width="1.5" PointX="9.75" PointY="66.875" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.Reply" Width="1.5" PointX="7.5" PointY="91.75" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.ReportCategory" Width="1.5" PointX="5.25" PointY="33.875" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.ReportTimeSystem" Width="1.5" PointX="10.5" PointY="48.125" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.RequisitionMain" Width="1.5" PointX="7.5" PointY="40.125" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.RewardandPunishment" Width="1.5" PointX="7.75" PointY="1.5" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Suggestion" Width="1.5" PointX="5.25" PointY="36.875" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.SuggestionHistory" Width="1.5" PointX="7.5" PointY="36.5" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.SurveyMain" Width="1.5" PointX="7.75" PointY="7.5" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.sysdiagram" Width="1.5" PointX="8.75" PointY="4.5" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.sysdiagram1" Width="1.5" PointX="9.75" PointY="1.5" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_ActivitiesChild_ActivitiesMain" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_ActivitiesChild_Employee" />
         <AssociationConnector Association="BusinessDataBaseModel.FK_ActivitiesMain_Employee" />
