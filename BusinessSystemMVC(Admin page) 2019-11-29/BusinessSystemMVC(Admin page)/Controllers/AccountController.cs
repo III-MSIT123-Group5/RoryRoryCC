@@ -149,7 +149,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         //
         // GET: /Account/Register  註冊
-        [Authorize(Roles = "HRGroup")]
+        [AllowAnonymous]
         public ActionResult Register()
         {
             ViewBag.Gender = new List<SelectListItem>()
@@ -270,7 +270,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [Authorize(Roles = "HRGroup")]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {

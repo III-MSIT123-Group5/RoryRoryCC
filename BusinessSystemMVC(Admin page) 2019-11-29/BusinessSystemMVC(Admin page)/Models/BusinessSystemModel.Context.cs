@@ -25,7 +25,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<ActivitiesChild> ActivitiesChilds { get; set; }
         public virtual DbSet<ActivitiesMain> ActivitiesMains { get; set; }
@@ -38,6 +37,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<BulletinBoard> BulletinBoards { get; set; }
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<CommentChild> CommentChilds { get; set; }
         public virtual DbSet<CommentContent> CommentContents { get; set; }
         public virtual DbSet<CommentMain> CommentMains { get; set; }
@@ -68,8 +68,8 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual DbSet<RequisitionMain> RequisitionMains { get; set; }
         public virtual DbSet<RewardandPunishment> RewardandPunishments { get; set; }
         public virtual DbSet<Suggestion> Suggestions { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<SuggestionHistory> SuggestionHistories { get; set; }
         public virtual DbSet<SurveyMain> SurveyMains { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }
