@@ -38,6 +38,32 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
         //Get
+        public ActionResult LoadCommentContent()
+        {
+            var q1 = from cc in db.CommentContents
+                     select new
+                     {
+                         cc.CommentContentID,
+                         cc.CommentContent1,
+                         cc.CommentOptionID
+                     };
+
+            var items = new List<SelectListItem>();
+
+            foreach (var n in q1)
+            {
+                items.Add(new SelectListItem()
+                {
+                    Text = n.CommentContent1,
+                    Value = n.CommentContentID.ToString()
+                });
+
+            }
+
+            return Json(items, JsonRequestBehavior.AllowGet);
+        }
+
+        //Get
         public ActionResult LoadEmployee()
         {
             var q1 = from d in db.Departments
@@ -59,6 +85,60 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         // GET: CommentMains/Create
         public ActionResult Create(int id = 0)
+        {
+            int EmpID = EmployeeDetail.EmployeeID;
+
+            var result = from cc in db.CommentContents
+                         join co in db.CommentOptions
+                         on cc.CommentOptionID equals co.CommentOptionID
+                         select new
+                         {
+                             cc.CommentOptionID,
+                             co.CommentOption1,
+                             cc.CommentContent1,
+                             cc.CommentContentID
+                         };
+
+            var items = new List<GroupedSelectListItem>();
+
+            foreach (var n in result)
+            {
+                items.Add(new GroupedSelectListItem()
+                {
+                    Value = n.CommentContentID.ToString(),
+                    Text = string.Format("{0} {1}", n.CommentContentID.ToString(), n.CommentContent1),
+                    GroupKey = n.CommentOptionID.ToString(),
+                    GroupName = n.CommentOption1
+
+                });
+            }
+
+            ViewBag.CommentContentItems = items;
+
+
+
+            if (id == 0)
+            {
+                return View(new CommentMain());
+
+            }
+            else
+            {
+                using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+                {
+
+                    return View(db.CommentMains.Where(x => x.CommentMainID == id).FirstOrDefault<CommentMain>());
+                }
+            }
+
+
+            //ViewBag.ActivityMainID = new SelectList(db.ActivitiesMains, "ActivityMainID", "ActivityName");
+            //ViewBag.CommentContentID = new SelectList(db.CommentContents, "CommentContentID", "CommentContent1");
+            //ViewBag.EmployeeID = new SelectList(db.Employees, "employeeID", "EmployeeName");
+            //return View();
+        }
+
+        public ActionResult ViewContent(int id = 0)
         {
             int EmpID = EmployeeDetail.EmployeeID;
 
