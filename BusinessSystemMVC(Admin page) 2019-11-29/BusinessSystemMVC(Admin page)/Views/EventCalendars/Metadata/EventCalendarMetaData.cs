@@ -40,8 +40,10 @@ namespace BusinessSystemMVC_Admin_page_.Models
         [StringLength(10, ErrorMessage = "{0}最多{1}個字")]
         public string Description { get; set; }
 
+        [Display(Name = "IsImportant", ResourceType = typeof(Resource1))]
         public bool IsImportant { get; set; }
 
+        [Display(Name = "ThemeColor", ResourceType = typeof(Resource1))]
         public string ThemeColor { get; set; }
 
         public virtual Department Department { get; set; }
