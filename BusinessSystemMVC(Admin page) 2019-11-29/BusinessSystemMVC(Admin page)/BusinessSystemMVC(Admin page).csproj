@@ -1350,6 +1350,7 @@
     <Content Include="Views\MeetingRooms\AddOrEdit2.cshtml" />
     <Content Include="Views\CommentMains\ViewContent2.cshtml" />
     <Content Include="Views\CommentMains\ViewContent.cshtml" />
+    <Content Include="Views\OrderDetails\ApprovalReject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
