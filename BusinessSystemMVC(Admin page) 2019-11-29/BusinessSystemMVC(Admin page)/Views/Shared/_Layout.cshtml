@@ -318,13 +318,14 @@
         })
         //每隔15秒刷新一次小鈴鐺
         function funcTimer() {
-            window.setInterval("getlocation()", 150000);
+            window.setInterval("getlocation()", 60000);
         }
 
         window.onload = funcTimer;
 
         //<><><><><><><><><把需要刷新的方法放在這><><><><><><><><><><
         function getlocation() {
+            $("#appendnews").empty();
             getVehicleData();
             getMeetingData()
             //.....
