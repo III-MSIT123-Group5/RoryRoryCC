@@ -28,10 +28,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public Nullable<System.DateTime> DepartmentLeaderSignTime { get; set; }
         public Nullable<int> GeneralManager { get; set; }
         public Nullable<System.DateTime> GeneralManagerSignTime { get; set; }
-        public Nullable<int> HREmployee { get; set; }
-        public Nullable<System.DateTime> HREmployeeSignTime { get; set; }
-        public Nullable<int> HRGroupLeader { get; set; }
-        public Nullable<System.DateTime> HRGroupLeaderSignTime { get; set; }
         public string Status { get; set; }
         public bool SignState { get; set; }
         public bool Reject { get; set; }
@@ -40,8 +36,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual Employee Employee1 { get; set; }
         public virtual Employee Employee2 { get; set; }
         public virtual Employee Employee3 { get; set; }
-        public virtual Employee Employee4 { get; set; }
-        public virtual Employee Employee5 { get; set; }
         public virtual Leave Leave { get; set; }
     }
 }

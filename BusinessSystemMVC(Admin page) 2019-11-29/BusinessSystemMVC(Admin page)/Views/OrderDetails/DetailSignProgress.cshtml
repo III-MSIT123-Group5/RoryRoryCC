@@ -4,8 +4,45 @@
     Layout = null;
 }
 
+<style>
+    dt {
+        text-align: center;
+        font-family: 'NotoSansCJKtc-Bold';
+    }
+
+    dd {
+        text-align: center;
+        font-family: '微軟正黑體';        
+    }
+</style>
+
 <div>
     <dl class="dl-horizontal">
+        <dt style="font-size:25px">
+            @Html.Label("審核狀態")
+        </dt>
+
+        @if (Model.RequisitionMain.ApprovaStatus == "審核中")
+        {
+            <dd style="font-size:25px; font-weight:600; color:orange">
+                @Html.DisplayFor(model => model.RequisitionMain.ApprovaStatus)
+            </dd>
+        }
+        else if (Model.RequisitionMain.ApprovaStatus == "審核完成")
+        {
+            <dd style="font-size:25px; font-weight:600; color:mediumseagreen">
+                @Html.DisplayFor(model => model.RequisitionMain.ApprovaStatus)
+            </dd>
+        }
+        else
+        {
+            <dd style="font-size:25px; font-weight:600; color:red">
+                @Html.DisplayFor(model => model.RequisitionMain.ApprovaStatus)
+            </dd>
+        }
+
+        <dd><hr /></dd>
+
         <dt>
             @Html.Label("組長簽核人")
         </dt>

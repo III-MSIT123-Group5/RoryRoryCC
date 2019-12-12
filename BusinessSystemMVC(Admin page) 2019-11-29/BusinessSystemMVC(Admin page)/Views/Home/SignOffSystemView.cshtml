@@ -4,8 +4,13 @@
             font-family: 'NotoSansCJKtc-Bold';
         }
 
-        th, td {
+        th {
             font-family: 'NotoSansCJKtc-Bold';
+        }
+
+        td {
+            font-family:'微軟正黑體';
+            font-weight:600;
         }
     </style>
     @*<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />*@
@@ -111,58 +116,71 @@
                     method: 'GET',
                     dataType: 'json'
                 },
-                "columnDefs": [
+                "columnDefs": [       
                     {
                         "targets": 0,
-                        "data": "OrderID",
-                        "width": "100px",
-                        "className": "text-center align-middle"
-                    },
-                    {
-                        "targets": 1,
-                        "data": "ProductName",
-                        "className": "text-center align-middle",
-                    },
-                    {
-                        "targets": 2,
-                        "data": "UnitPrice",
-                        "width": "50px",
-                        "className": "text-center align-middle",
-                    },
-                    {
-                        "targets": 3,
-                        "data": "Quantity",
-                        "width": "50px",
-                        "className": "text-center align-middle",
-                    },
-                    {
-                        "targets": 4,
-                        "data": "TotalPrice",
-                        "width": "50px",
-                        "className": "text-center align-middle",
-                    },
-                    {
-                        "targets": 5,
-                        "data": "FirstSignStatus",
-                        "width": "150px",
+                        "data": "StatusName",
+                        "width": "80px",
                         "className": "text-center align-middle",
                         "render": function (data) {
-                            if (data == "未審核") {
+                            if (data == "審核中") {
                                 color = "orange";
                             }
-                            else if (data == "已審核") {
-                                color = "black";
+                            else if (data == "審核完成") {
+                                color = "mediumseagreen";
                             }
                             else {
                                 color = "red"
                             }
                             return `<span style="color: ${color}">${data}</span>`;
-                        }
+                        },
+                        ////背景顏色
+                        //"createdCell": function (td, cellData) {
+                        //    if (cellData == "審核中") {
+                        //        $(td).css('background-color', 'orange');
+                        //    }
+                        //    else if (cellData == "審核完成") {
+                        //        $(td).css('background-color', '#00DD00');
+                        //    }
+                        //    else {
+                        //        $(td).css('background-color', 'red');
+                        //    }
+                        //}
+                    },
+                    {
+                        "targets": 1,
+                        "data": "OrderID",
+                        "width": "90px",
+                        "className": "text-center align-middle"
+                    },
+                    {
+                        "targets": 2,
+                        "data": "ProductName",
+                        "width": "90px",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 3,
+                        "data": "UnitPrice",
+                        "width": "70px",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 4,
+                        "data": "Quantity",
+                        "width": "70px",
+                        "className": "text-center align-middle",
+                    },
+                    {
+                        "targets": 5,
+                        "data": "TotalPrice",
+                        "width": "70px",
+                        "className": "text-center align-middle",
                     },
                     {
                         "targets": 6,
-                        "data": "SecondSignStatus",
-                        "width": "150px",
+                        "data": "FirstSignStatus",
+                        "width": "130px",
                         "className": "text-center align-middle",
                         "render": function (data) {
                             if (data == "未審核") {
@@ -179,8 +197,26 @@
                     },
                     {
                         "targets": 7,
+                        "data": "SecondSignStatus",
+                        "width": "130px",
+                        "className": "text-center align-middle",
+                        "render": function (data) {
+                            if (data == "未審核") {
+                                color = "orange";
+                            }
+                            else if (data == "已審核") {
+                                color = "black";
+                            }
+                            else {
+                                color = "red"
+                            }
+                            return `<span style="color: ${color}">${data}</span>`;
+                        }
+                    },
+                    {
+                        "targets": 8,
                         "data": "ThirdSignStatus",
-                        "width": "150px",
+                        "width": "130px",
                         "className": "text-center align-middle",
                         "render": function (data) {
 
@@ -197,9 +233,9 @@
                         }
                     },
                     {
-                        "targets": 8,
+                        "targets": 9,
                         "data": "FourthSignStatus",
-                        "width": "150px",
+                        "width": "130px",
                         "className": "text-center align-middle",
                         "render": function (data) {
                             if (data == "未審核") {
@@ -215,7 +251,7 @@
                         }
                     },
                     {
-                        "targets": 9,
+                        "targets": 10,
                         "data": "OrderID",
                         "className": "text-center align-middle",
                         "render": function (data) {
@@ -223,9 +259,8 @@
                         },
                         "orderable": false,
                         "searchable": false,
-                        "width": "100px"
-                    }
-
+                    },
+                    
                 ],
                 "language": {
                     "emptyTable": "目前無未簽核請購單"
@@ -242,7 +277,7 @@
                     Popup = formDiv.dialog({
                         autoOpen: true,
                         resizable: false,
-                        title: '詳細簽核',
+                        title: '詳細內容',
                         height: 600,
                         width: 400,
                         close: function () {

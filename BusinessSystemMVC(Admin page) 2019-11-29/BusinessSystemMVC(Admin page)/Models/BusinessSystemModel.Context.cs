@@ -71,5 +71,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual DbSet<SuggestionHistory> SuggestionHistories { get; set; }
         public virtual DbSet<SurveyMain> SurveyMains { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<sysdiagram1> sysdiagrams1 { get; set; }
     }
 }
