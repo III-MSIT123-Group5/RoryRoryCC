@@ -657,6 +657,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaveHistoryApprovalTempsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MeetingRoomHistoriesController.cs" />
+    <Compile Include="Controllers\MeetingRoomsBorrowController.cs" />
     <Compile Include="Controllers\MeetingRoomsController.cs" />
     <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Controllers\RecipientsController.cs" />
@@ -1345,6 +1347,18 @@
     <Content Include="Views\MeetingRooms\Index.cshtml" />
     <Content Include="Views\MeetingRooms\AddOrEdit.cshtml" />
     <Content Include="Views\MeetingRooms\AddOrEdit2.cshtml" />
+    <Content Include="Views\MeetingRoomsBorrow\Create.cshtml" />
+    <Content Include="Views\MeetingRoomsBorrow\Delete.cshtml" />
+    <Content Include="Views\MeetingRoomsBorrow\Details.cshtml" />
+    <Content Include="Views\MeetingRoomsBorrow\Edit.cshtml" />
+    <Content Include="Views\MeetingRoomsBorrow\Index.cshtml" />
+    <Content Include="Views\MeetingRoomHistories\Create.cshtml" />
+    <Content Include="Views\MeetingRoomHistories\Delete.cshtml" />
+    <Content Include="Views\MeetingRoomHistories\Details.cshtml" />
+    <Content Include="Views\MeetingRoomHistories\Edit.cshtml" />
+    <Content Include="Views\MeetingRoomHistories\Index.cshtml" />
+    <Content Include="Views\Shared\_CompanyVehicleChangePartial.cshtml" />
+    <Content Include="Views\Shared\_MeetingRoomChangePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

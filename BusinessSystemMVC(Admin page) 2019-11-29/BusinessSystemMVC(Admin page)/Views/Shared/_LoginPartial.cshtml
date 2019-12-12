@@ -43,9 +43,14 @@
                     <a class="dropdown-item small" href="#">View all messages</a>
                 </div>
             </li>
-
+            @*//
+                //
+                //
+                //
+                //
+                //*@
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-fw fa-bell"></i>
                     <span class="d-lg-none">
                         Alerts
@@ -55,9 +60,10 @@
                         <i class="fa fa-fw fa-circle"></i>
                     </span>
                 </a>
-                <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+                @*/////////////*@
+                <div class="dropdown-menu" id="appendnews" aria-labelledby="alertsDropdown">
                     <h6 class="dropdown-header">New Alerts:</h6>
-                    <div class="dropdown-divider"></div>
+                    @*<div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">
                         <span class="text-success">
                             <strong>
@@ -66,8 +72,9 @@
                         </span>
                         <span class="small float-right text-muted">11:21 AM</span>
                         <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
-                    </a>
-                    <div class="dropdown-divider"></div>
+                    </a>*@
+                    @*//////////////////////////*@
+                    @*<div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">
                         <span class="text-danger">
                             <strong>
@@ -88,7 +95,7 @@
                         <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item small" href="#">View all alerts</a>
+                    <a class="dropdown-item small" href="#">View all alerts</a>*@
                 </div>
             </li>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -120,5 +127,98 @@ else
             <li>@Html.ActionLink("登入", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
         </ul>*@
 }
-      
 
+@section scripts{
+    @*alertsDropdown*@
+    @*var Stim = parseInt(String(p[j].StartDateTime).substring(6, 19));
+    var Etim = parseInt(String(p[j].EndDateTime).substring(6, 19));*@
+    @*<script>
+        var LicenseArray = [];
+        var Stime ;
+        var Dtime ;
+        var count = 0;
+        var timing;
+        function funcTimer() {
+
+            //每隔3秒執行一次timelyFun方法
+
+            window.setInterval("gettimer()", 3000);
+
+        }
+
+        window.onload = funcTimer;
+
+        function gettimer() {
+            window.location.reload();
+            getVehicleData();
+            $("#appendnews").append(
+                `<div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">
+                        <span class="text-success">
+                            <strong>
+                                <i class="fa fa-long-arrow-up fa-fw"></i>公務車預約通知
+                            </strong>
+                        </span>
+                        <span class="small float-right text-muted">${Date.parse(new Date())}</span>
+                        <div class="dropdown-message small">您的公務車預約時間為${timestampToTime(Stime)}，請準時取車。</div>
+                    </a>`
+            )
+            //..
+        }
+        //公務車通知
+        function getVehicleData() {
+            $.ajax({
+                url: '@Url.Action("test1", "CompanyVehicleHistories")',
+                type: "GET",
+                dataType: "json"
+            }).done(function (data) {
+                    timing = Date.parse(new Date());
+                for (var i = 0; i < data.length; i++) {
+                    var License= data[i].LicenseNumber;
+                    Stime = parseInt(String(data[i].StartDateTime).substring(6, 19));
+                    Dtime = parseInt(String(data[i].StartDateTime).substring(6, 19));
+                    if (timing >= (Stime - 86400) && timing < Stime ) {
+                        $("#appendnews").append(
+                            `<div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">
+                        <span class="text-success">
+                            <strong>
+                                <i class="fa fa-long-arrow-up fa-fw"></i>公務車預約通知
+                            </strong>
+                        </span>
+                        <span class="small float-right text-muted">${Date.parse(new Date())}</span>
+                        <div class="dropdown-message small">您的公務車(${License})預約時間為${timestampToTime(Stime)}，請準時取車。</div>
+                    </a>`
+                        )
+                    }
+                }
+                
+            })
+        }
+
+        function timestampToTime(timestamp) {
+
+            var date = new Date(timestamp);//時間戳為10位數需*1000，時間戳為13位數則不需*1000
+
+            var Y = date.getFullYear() + '-';
+
+            var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+
+            var D = date.getDate() + ' ';
+
+            var h = date.getHours() + ':';
+
+            var m = date.getMinutes() + ':';
+
+            var s = date.getSeconds();
+
+            return Y + M + D + h + m + s;
+
+        }
+
+    </script>*@
+
+
+
+
+}

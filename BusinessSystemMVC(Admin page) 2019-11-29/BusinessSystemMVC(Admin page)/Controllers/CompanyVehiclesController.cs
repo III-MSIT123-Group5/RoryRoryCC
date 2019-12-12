@@ -93,6 +93,58 @@ namespace EIPBussinessSystem_MVC.Controllers
         }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Upload(IEnumerable<HttpPostedFileBase> files)
+        {
+            //var UserID = User.Identity.GetUserId();
+            //var Acc = db.AspNetUsers.Find(UserID);
+            //var Empquery = db.Employees.Where(f => f.Account.Equals(Acc.UserName)).Select(f => new { f.employeeID });
+            //int EmpID = 0;
+            //foreach (var e in Empquery)
+            //{
+            //    EmpID = e.employeeID;
+            //}
+
+            if (files.First() != null)
+            {
+                foreach (HttpPostedFileBase file in files)
+                {
+                    string SourceFilename = Path.GetFileName(file.FileName);
+                    string TargetFilename = Path.Combine(Server.MapPath(
+                        "~/Uploads"), SourceFilename);
+                    file.SaveAs(TargetFilename);
+
+
+                    db.CompanyVehicles.Add(new BusinessSystemMVC_Admin_page_.Models.CompanyVehicle
+                    {
+                        
+                        VehiclePhoto2 = TargetFilename,
+                        
+                    });
+                    //儲存修改
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         [HttpGet]
