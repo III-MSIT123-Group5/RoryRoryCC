@@ -40,15 +40,21 @@ namespace EIPBussinessSystem_MVC.Controllers
                 foreach (HttpPostedFileBase file in files)
                 {
                     string SourceFilename = Path.GetFileName(file.FileName);
-                    string TargetFilename = Path.Combine(Server.MapPath(
-                        "~/Uploads"), SourceFilename);
-                    file.SaveAs(TargetFilename);
+                    //string TargetFilename = Path.Combine(Server.MapPath(
+                    //    "~/Uploads"), SourceFilename);
+
+                    string saveDir = "\\Uploads\\";
+                    string appPath = Request.PhysicalApplicationPath;
+                    string savePath = appPath + saveDir+ SourceFilename;
+
+
+                    file.SaveAs(savePath);
 
 
                     db.Files.Add(new BusinessSystemMVC_Admin_page_.Models.File
                     {
                         FileName = SourceFilename,
-                        Data = TargetFilename,
+                        Data = savePath,
                         FileSize = file.ContentLength.ToString(),
                         EmployeeID = EmployeeDetail.EmployeeID,
                         /* LoginID,*/
@@ -64,7 +70,9 @@ namespace EIPBussinessSystem_MVC.Controllers
 
         public FileResult Download(string FileName)
         {
-            string DownloadFileName = Path.Combine(Server.MapPath("~/Uploads"), FileName);
+            string saveDir = "\\Uploads\\";
+            string appPath = Request.PhysicalApplicationPath;
+            string DownloadFileName = appPath + saveDir + FileName;
             ContentDisposition cd = new ContentDisposition
             {
                 FileName = FileName,
@@ -78,9 +86,11 @@ namespace EIPBussinessSystem_MVC.Controllers
         public FileResult DownloadAll()
         {
             string ZipFileName = "All.zip";
-            string UploadsFolder = Server.MapPath("~/Uploads");
-            string DownloadFileName =
-                Path.Combine(Server.MapPath("~"), ZipFileName);
+
+            string saveDir = "\\Uploads\\";
+            string appPath = Request.PhysicalApplicationPath;
+            string UploadsFolder = appPath + saveDir;
+            string DownloadFileName = appPath+ZipFileName;
             if (System.IO.File.Exists(DownloadFileName))
             {
                 System.IO.File.Delete(DownloadFileName);
@@ -109,7 +119,10 @@ namespace EIPBussinessSystem_MVC.Controllers
                 {
                     var q = db.Files.AsEnumerable().Where(f => f.FileID.ToString() == Cheak.ElementAt(i));
                     FileName = q.Select(f => f.FileName).FirstOrDefault();
-                    DownloadFileName = Path.Combine(Server.MapPath("~/Uploads"), FileName);
+
+                    string saveDir = "\\Uploads\\";
+                    string appPath = Request.PhysicalApplicationPath;
+                    DownloadFileName = appPath + saveDir+ FileName;
                     //壓縮檔案
                     zip.AddFile(DownloadFileName, "");
                     zip.Save(DownloadFileName);
@@ -161,7 +174,9 @@ namespace EIPBussinessSystem_MVC.Controllers
             BusinessSystemMVC_Admin_page_.Models.File file = db.Files.Find(id);
             db.Files.Remove(file);
             string FileName = db.Files.Where(f => f.FileID == id).Select(f => f.FileName).FirstOrDefault();
-            string DeleteFileName = Path.Combine(Server.MapPath("~/Uploads"), FileName);
+            string saveDir = "\\Uploads\\";
+            string appPath = Request.PhysicalApplicationPath;
+            string DeleteFileName = appPath + saveDir + FileName;
             System.IO.File.Delete(DeleteFileName);
             db.SaveChanges();
             return RedirectToAction("Index");
