@@ -25,7 +25,7 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-        <a class="navbar-brand" href="@Url.Action("Index", "Home")" style="line-height:50px; margin-left:5px">Business System</a>
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")" . style="line-height:50px; margin-left:5px">Business System</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -45,14 +45,12 @@
                         <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">公務車</span>
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseBussinessCar">
+                        @Html.Partial("_CompanyVehicleChangePartial")
                         <li class="color hover">
-                            <a href="@Url.Action("Index","CompanyVehicles")" style="font-family:'NotoSansCJKtc-Bold'">公務車管理</a>
+                            <a href="@Url.Action("Index","CompanyVehicleBorrow")" style="font-family:'NotoSansCJKtc-Bold'">公務車預約</a>
                         </li>
                         <li class="color hover">
-                            <a href="@Url.Action("Index","CompanyVehicleBorrow")" style="font-family:'NotoSansCJKtc-Bold'">公務車租借</a>
-                        </li>
-                        <li class="color hover">
-                            <a href="@Url.Action("Index","CompanyVehicleHistories")" style="font-family:'NotoSansCJKtc-Bold'">公務車租借紀錄</a>
+                            <a href="@Url.Action("Index","CompanyVehicleHistories")" style="font-family:'NotoSansCJKtc-Bold'">公務車預約紀錄</a>
                         </li>
                     </ul>
                 </li>
@@ -63,11 +61,12 @@
                         <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">會議室</span>
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseMeetingRoom">
+                        @Html.Partial("_MeetingRoomChangePartial")
                         <li class="color hover">
-                            <a href="@Url.Action("Index","MeetingRooms")" style="font-family:'NotoSansCJKtc-Bold'">會議室管理</a>
+                            <a href="@Url.Action("Index","MeetingRoomsBorrow")" style="font-family:'NotoSansCJKtc-Bold'">會議室預約</a>
                         </li>
                         <li class="color hover">
-                            <a href="@Url.Action("Index","CompanyVehicleBorrow")" style="font-family:'NotoSansCJKtc-Bold'">會議室租借</a>
+                            <a href="@Url.Action("Index","MeetingRoomHistories")" style="font-family:'NotoSansCJKtc-Bold'">會議室預約紀錄</a>
                         </li>
                     </ul>
                 </li>
@@ -97,7 +96,7 @@
                 <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="意見調查">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseCommentMains" data-parent="#exampleAccordion">
                         <i class="fa fa-fw fa-clipboard"></i>
-                    <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">意見調查</span>
+                        <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">意見調查</span>
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseCommentMains">
                         <li class="color hover">
@@ -110,10 +109,19 @@
                 </li>
                 @*內部訊息*@
                 <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="內部訊息">
-                    <a class="nav-link" href="@Url.Action("Index", "Recipients")">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMessage" data-parent="#exampleAccordion">
                         <i class="fa fa-fw fa-comment"></i>
                         <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">內部訊息</span>
                     </a>
+                    <ul class="sidenav-second-level collapse" id="collapseMessage">
+                        <li class="color hover">
+                            <a href="@Url.Action("Index", "Recipients")" style="font-family:'NotoSansCJKtc-Bold'">收件夾</a>
+                        </li>
+                        <li class="color hover">
+                            <a href="@Url.Action("MessageIndex", "Recipients")" style="font-family:'NotoSansCJKtc-Bold'">寄件夾</a>
+                        </li>
+                    </ul>
+
                 </li>
                 @*請假系統*@
                 <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="請假系統">
@@ -134,62 +142,62 @@
 
 
                 @*<li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="Tables">
-            <a class="nav-link" href="tables.html">
-                <i class="fa fa-fw fa-table"></i>
-                <span class="nav-link-text">Tables</span>
-            </a>
-        </li>
-        <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="Example Pages">
-            <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
-                <i class="fa fa-fw fa-file"></i>
-                <span class="nav-link-text">Example Pages</span>
-            </a>
-            <ul class="sidenav-second-level collapse" id="collapseExamplePages">
-                <li class="color hover">
-                    <a href="login.html">Login Page</a>
-                </li>
-                <li class="color hover">
-                    <a href="register.html">Registration Page</a>
-                </li>
-                <li class="color hover">
-                    <a href="forgot-password.html">Forgot Password Page</a>
-                </li>
-                <li class="color hover">
-                    <a href="blank.html">Blank Page</a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="Menu Levels">
-            <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
-                <i class="fa fa-fw fa-sitemap"></i>
-                <span class="nav-link-text">Menu Levels</span>
-            </a>
-            <ul class="sidenav-second-level collapse" id="collapseMulti">
-                <li class="color hover">
-                    <a href="#">Second Level Item</a>
-                </li>
-                <li class="color hover">
-                    <a href="#">Second Level Item</a>
-                </li>
-                <li class="color hover">
-                    <a href="#">Second Level Item</a>
-                </li>
-                <li class="color hover">
-                    <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">Third Level</a>
-                    <ul class="sidenav-third-level collapse" id="collapseMulti2">
-                        <li class="color hover">
-                            <a href="#">Third Level Item</a>
-                        </li>
-                        <li class="color hover">
-                            <a href="#">Third Level Item</a>
-                        </li>
-                        <li class="color hover">
-                            <a href="#">Third Level Item</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>*@
+                        <a class="nav-link" href="tables.html">
+                            <i class="fa fa-fw fa-table"></i>
+                            <span class="nav-link-text">Tables</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="Example Pages">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
+                            <i class="fa fa-fw fa-file"></i>
+                            <span class="nav-link-text">Example Pages</span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="collapseExamplePages">
+                            <li class="color hover">
+                                <a href="login.html">Login Page</a>
+                            </li>
+                            <li class="color hover">
+                                <a href="register.html">Registration Page</a>
+                            </li>
+                            <li class="color hover">
+                                <a href="forgot-password.html">Forgot Password Page</a>
+                            </li>
+                            <li class="color hover">
+                                <a href="blank.html">Blank Page</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
+                            <i class="fa fa-fw fa-sitemap"></i>
+                            <span class="nav-link-text">Menu Levels</span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="collapseMulti">
+                            <li class="color hover">
+                                <a href="#">Second Level Item</a>
+                            </li>
+                            <li class="color hover">
+                                <a href="#">Second Level Item</a>
+                            </li>
+                            <li class="color hover">
+                                <a href="#">Second Level Item</a>
+                            </li>
+                            <li class="color hover">
+                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">Third Level</a>
+                                <ul class="sidenav-third-level collapse" id="collapseMulti2">
+                                    <li class="color hover">
+                                        <a href="#">Third Level Item</a>
+                                    </li>
+                                    <li class="color hover">
+                                        <a href="#">Third Level Item</a>
+                                    </li>
+                                    <li class="color hover">
+                                        <a href="#">Third Level Item</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>*@
             </ul>
             <ul class="navbar-nav sidenav-toggler">
                 <li class="nav-item color hover">
@@ -299,6 +307,151 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="~/Scripts/notify.min.js"></script>
+    <script>
+        //取得現在時間以及現在時間的小時，分鐘
+        var timing = new Date();
+        var hour = timing.getHours();
+        var mins = timing.getMinutes();
+        var apm;
+        //
+        $(document).ready(function () {
+            getlocation()
+        })
+        //每隔15秒刷新一次小鈴鐺
+        function funcTimer() {
+            window.setInterval("getlocation()", 150000);
+        }
+
+        window.onload = funcTimer;
+
+        //<><><><><><><><><把需要刷新的方法放在這><><><><><><><><><><
+        function getlocation() {
+            getVehicleData();
+            getMeetingData()
+            //.....
+        }
+        //判斷上午還是下午
+        function ampm() {
+            if (hour > 12) {
+                apm = " PM"
+            }
+            else {
+                apm=" AM"
+            }
+        }
+        
+        //
+        //timestampToTime(*可放入時間戳*)，此方法可將時間戳13位數形式轉為正常時間格式
+        //時間戳為10位數需*1000，時間戳為13位數則不需*1000 !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        function timestampToTime(timestamp) {
+
+            var date = new Date(timestamp);//時間戳為10位數需*1000，時間戳為13位數則不需*1000
+
+            var Y = date.getFullYear() + '-';
+
+            var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+
+            var D = date.getDate() + ' ';
+
+            var h = date.getHours() + ':';
+
+            var m = date.getMinutes() + ':';
+
+            var s = date.getSeconds();
+
+            return Y + M + D + h + m + s;
+        }
+
+        //------------
+        //公務車預約，判斷是否在24小時內，方法。
+        function getVehicleData() {
+            $.ajax({
+                url: '@Url.Action("test1", "CompanyVehicleHistories")',
+                type: "GET",
+                dataType: "json"
+            }).done(function (data) {
+                //把現在時間轉成時間戳形式
+                var timetroll = timing.getTime()
+                //建立迴圈
+                for (var i = 0; i < data.length; i++) {
+                    //取得車牌號碼
+                    var License = data[i].LicenseNumber;;
+                    //(data[i].StartDateTime)取得資料庫起始時間的時間戳--數字形式(13位數)，只需修改(data[i].StartDateTime)
+                    var Stime = parseInt(String(data[i].StartDateTime).substring(6, 19)); 
+                    //---------------------------------
+                    //  timetroll : 現在時間時間戳
+                    //  Stime : 資料庫車輛預約起始時間
+                    //  86400000 : 24小時的時間戳形式
+                    //  &&
+                    //  timetroll < Stime : 現在時間不能大於車輛預約起始時間
+                    //  &&
+                    //  判斷紀錄是否為登入者本人的紀錄
+                    if (timetroll >= (Stime - 86400000) && timetroll < Stime && @EmployeeDetail.EmployeeID == data[i].employeeID) {
+                        ampm();
+                        //以下形式未標記(可修改)請勿修改
+                        //(公務車預約通知)為通知標題，可修改。!!!!!!!!!!
+                        //(${hour}:${mins}${apm})，為取得現在時間，請勿修改。XXXXXX
+                        //(公務車(${License})預約時間為:${timestampToTime(Stime)}，請準時取車。)可以修改
+                        //timestampToTime(*可放入時間戳*)，此方法可將時間戳13位數形式轉為正常時間格式
+                            $("#appendnews").append('<div class="dropdown - divider"></div>')
+                            $("#appendnews").append(`<a class="dropdown-item" href="#"><span class="text-success"><strong>
+<i class= "fa fa-long-arrow-up fa-fw" ></i> 公務車預約通知</strong></span>
+<span class="small float-right text-muted">${hour}:${mins}${apm}</span>
+<div class="dropdown-message small">公務車(${License})預約時間為:${timestampToTime(Stime)}，請準時取車。</div></a>`)
+                        $("#appendnews").click(function () {
+
+                        })
+                        }
+                }
+
+            })
+        }
+        //------------
+        //會議室預約，判斷是否在24小時內，方法。
+        function getMeetingData() {
+            $.ajax({
+                url: '@Url.Action("test1", "MeetingRoomHistories")',
+                type: "GET",
+                dataType: "json"
+            }).done(function (data) {
+                //把現在時間轉成時間戳形式
+                var timetroll = timing.getTime()
+                //建立迴圈
+                for (var i = 0; i < data.length; i++) {
+                    //取得車牌號碼
+                    var meetID = data[i].meetingID;
+                    var meetName = data[i].RoomName;
+                    //(data[i].StartDateTime)取得資料庫起始時間的時間戳--數字形式(13位數)，只需修改(data[i].StartDateTime)
+                    var Stime = parseInt(String(data[i].start_date_time).substring(6, 19)); 
+                    //---------------------------------
+                    //  timetroll : 現在時間時間戳
+                    //  Stime : 資料庫車輛預約起始時間
+                    //  86400000 : 24小時的時間戳形式
+                    //  &&
+                    //  timetroll < Stime : 現在時間不能大於車輛預約起始時間
+                    //  &&
+                    //  判斷紀錄是否為登入者本人的紀錄
+                    if (timetroll >= (Stime - 86400000) && timetroll < Stime && @EmployeeDetail.EmployeeID == data[i].employeeID) {
+                        ampm();
+                        //以下形式未標記(可修改)請勿修改
+                        //(公務車預約通知)為通知標題，可修改。!!!!!!!!!!
+                        //(${hour}:${mins}${apm})，為取得現在時間，請勿修改。XXXXXX
+                        //(公務車(${License})預約時間為:${timestampToTime(Stime)}，請準時取車。)可以修改
+                        //timestampToTime(*可放入時間戳*)，此方法可將時間戳13位數形式轉為正常時間格式
+                            $("#appendnews").append('<div class="dropdown - divider"></div>')
+                            $("#appendnews").append(`<a class="dropdown-item" href="#"><span class="text-success"><strong>
+<i class= "fa fa-long-arrow-up fa-fw" ></i> 會議室預約通知</strong></span>
+<span class="small float-right text-muted">${hour}:${mins}${apm}</span>
+<div class="dropdown-message small">會議室(${meetID}_${meetName})預約時間為:${timestampToTime(Stime)}，請通知與會人員。</div></a>`)
+                        $("#appendnews").click(function () {
+
+                        })
+                        }
+                }
+
+            })
+        }
+    </script>
     @RenderSection("scripts", required: false)
 
 </body>

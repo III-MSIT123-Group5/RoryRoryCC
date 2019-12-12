@@ -23,28 +23,24 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
         public ActionResult test1()
         {
-            var data = from b in db.CompanyVehicleHistories
-                       select new
-                       {
-                           b.VehicleHistoryID,
-                           b.LicenseNumber,
-                           b.StartDateTime,
-                           b.EndDateTime,
-                           b.purpose,
-                           b.employeeID
-                       };
-
-            var datas = data.ToList();
-
-            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+            var items = from p in db.CompanyVehicleHistories
+                        select new
+                        {
+                            p.employeeID,
+                            p.LicenseNumber,
+                            p.StartDateTime,
+                            p.EndDateTime
+                        };
+            var jsonitems = Json(items);
+            return Json(items, JsonRequestBehavior.AllowGet);
         }
 
-
+        [HttpGet]
         public ActionResult LoadData()
         {//.OrderBy(b => b.PostTime).ToList();
 
             var data = from b in db.CompanyVehicleHistories
-                       where b.employeeID == 1032/*EmployeeDetail.EmployeeID*/
+                       where b.employeeID == EmployeeDetail.EmployeeID
                        select new
                        {
                            b.VehicleHistoryID,
