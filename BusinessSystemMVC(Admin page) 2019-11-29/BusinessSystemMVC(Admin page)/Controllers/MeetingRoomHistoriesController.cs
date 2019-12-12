@@ -21,7 +21,19 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(meetingRoomHistories.ToList());
         }
 
-
+        public ActionResult test1()
+        {
+            var items = from b in db.MeetingRoomHistories
+                       select new
+                       {
+                           b.meetingID,
+                           RoomName = b.MeetingRoom.meetingName,
+                           b.start_date_time,
+                           b.employeeID
+                       };
+            var jsonitems = Json(items);
+            return Json(items, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult LoadData()
         {//.OrderBy(b => b.PostTime).ToList();
 
