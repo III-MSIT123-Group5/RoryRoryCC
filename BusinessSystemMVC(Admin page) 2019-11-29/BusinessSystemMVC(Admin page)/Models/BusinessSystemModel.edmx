@@ -351,10 +351,6 @@
           <Property Name="DepartmentLeaderSignTime" Type="datetime" />
           <Property Name="GeneralManager" Type="int" />
           <Property Name="GeneralManagerSignTime" Type="datetime" />
-          <Property Name="HREmployee" Type="int" />
-          <Property Name="HREmployeeSignTime" Type="datetime" />
-          <Property Name="HRGroupLeader" Type="int" />
-          <Property Name="HRGroupLeaderSignTime" Type="datetime" />
           <Property Name="Status" Type="nvarchar" MaxLength="16" />
           <Property Name="SignState" Type="bit" Nullable="false" />
           <Property Name="Reject" Type="bit" Nullable="false" />
@@ -1095,30 +1091,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_LeaveHistoryApprovalTemp_EmployeeByHREmployee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="LeaveHistoryApprovalTemp" Type="Self.LeaveHistoryApprovalTemp" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="LeaveHistoryApprovalTemp">
-              <PropertyRef Name="HREmployee" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LeaveHistoryApprovalTemp_EmployeeByHRGroupLeader">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="LeaveHistoryApprovalTemp" Type="Self.LeaveHistoryApprovalTemp" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="LeaveHistoryApprovalTemp">
-              <PropertyRef Name="HRGroupLeader" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_LeaveHistoryApprovalTemp_Leave">
           <End Role="Leave" Type="Self.Leave" Multiplicity="1" />
           <End Role="LeaveHistoryApprovalTemp" Type="Self.LeaveHistoryApprovalTemp" Multiplicity="*" />
@@ -1559,14 +1531,6 @@
             <End Role="Employee" EntitySet="Employee" />
             <End Role="LeaveHistoryApprovalTemp" EntitySet="LeaveHistoryApprovalTemp" />
           </AssociationSet>
-          <AssociationSet Name="FK_LeaveHistoryApprovalTemp_EmployeeByHREmployee" Association="Self.FK_LeaveHistoryApprovalTemp_EmployeeByHREmployee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="LeaveHistoryApprovalTemp" EntitySet="LeaveHistoryApprovalTemp" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LeaveHistoryApprovalTemp_EmployeeByHRGroupLeader" Association="Self.FK_LeaveHistoryApprovalTemp_EmployeeByHRGroupLeader">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="LeaveHistoryApprovalTemp" EntitySet="LeaveHistoryApprovalTemp" />
-          </AssociationSet>
           <AssociationSet Name="FK_LeaveHistoryApprovalTemp_Leave" Association="Self.FK_LeaveHistoryApprovalTemp_Leave">
             <End Role="Leave" EntitySet="Leave" />
             <End Role="LeaveHistoryApprovalTemp" EntitySet="LeaveHistoryApprovalTemp" />
@@ -1865,14 +1829,6 @@
             <End Role="LeaveHistoryApprovalTemp" EntitySet="LeaveHistoryApprovalTemps" />
           </AssociationSet>
           <AssociationSet Name="FK_LeaveHistoryApprovalTemp_EmployeeByGroupLeader" Association="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_EmployeeByGroupLeader">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="LeaveHistoryApprovalTemp" EntitySet="LeaveHistoryApprovalTemps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LeaveHistoryApprovalTemp_EmployeeByHREmployee" Association="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_EmployeeByHREmployee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="LeaveHistoryApprovalTemp" EntitySet="LeaveHistoryApprovalTemps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LeaveHistoryApprovalTemp_EmployeeByHRGroupLeader" Association="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_EmployeeByHRGroupLeader">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="LeaveHistoryApprovalTemp" EntitySet="LeaveHistoryApprovalTemps" />
           </AssociationSet>
@@ -2258,8 +2214,6 @@
           <NavigationProperty Name="LeaveHistoryApprovalTemps1" Relationship="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_EmployeeByDepartmentLeader" FromRole="Employee" ToRole="LeaveHistoryApprovalTemp" />
           <NavigationProperty Name="LeaveHistoryApprovalTemps2" Relationship="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_EmployeeByGM" FromRole="Employee" ToRole="LeaveHistoryApprovalTemp" />
           <NavigationProperty Name="LeaveHistoryApprovalTemps3" Relationship="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_EmployeeByGroupLeader" FromRole="Employee" ToRole="LeaveHistoryApprovalTemp" />
-          <NavigationProperty Name="LeaveHistoryApprovalTemps4" Relationship="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_EmployeeByHREmployee" FromRole="Employee" ToRole="LeaveHistoryApprovalTemp" />
-          <NavigationProperty Name="LeaveHistoryApprovalTemps5" Relationship="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_EmployeeByHRGroupLeader" FromRole="Employee" ToRole="LeaveHistoryApprovalTemp" />
           <NavigationProperty Name="MeetingRoomHistories" Relationship="BusinessDataBaseModel.FK_Meeting_room_history_Employee" FromRole="Employee" ToRole="MeetingRoomHistory" />
           <NavigationProperty Name="Messages" Relationship="BusinessDataBaseModel.FK_Message_Employee" FromRole="Employee" ToRole="Message" />
           <NavigationProperty Name="Recipients" Relationship="BusinessDataBaseModel.FK_Recipient_Employee" FromRole="Employee" ToRole="Recipient" />
@@ -2396,10 +2350,6 @@
           <Property Name="DepartmentLeaderSignTime" Type="DateTime" Precision="3" />
           <Property Name="GeneralManager" Type="Int32" />
           <Property Name="GeneralManagerSignTime" Type="DateTime" Precision="3" />
-          <Property Name="HREmployee" Type="Int32" />
-          <Property Name="HREmployeeSignTime" Type="DateTime" Precision="3" />
-          <Property Name="HRGroupLeader" Type="Int32" />
-          <Property Name="HRGroupLeaderSignTime" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
           <Property Name="SignState" Type="Boolean" Nullable="false" />
           <Property Name="Reject" Type="Boolean" Nullable="false" />
@@ -2407,8 +2357,6 @@
           <NavigationProperty Name="Employee1" Relationship="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_EmployeeByDepartmentLeader" FromRole="LeaveHistoryApprovalTemp" ToRole="Employee" />
           <NavigationProperty Name="Employee2" Relationship="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_EmployeeByGM" FromRole="LeaveHistoryApprovalTemp" ToRole="Employee" />
           <NavigationProperty Name="Employee3" Relationship="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_EmployeeByGroupLeader" FromRole="LeaveHistoryApprovalTemp" ToRole="Employee" />
-          <NavigationProperty Name="Employee4" Relationship="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_EmployeeByHREmployee" FromRole="LeaveHistoryApprovalTemp" ToRole="Employee" />
-          <NavigationProperty Name="Employee5" Relationship="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_EmployeeByHRGroupLeader" FromRole="LeaveHistoryApprovalTemp" ToRole="Employee" />
           <NavigationProperty Name="Leave" Relationship="BusinessDataBaseModel.FK_LeaveHistoryApprovalTemp_Leave" FromRole="LeaveHistoryApprovalTemp" ToRole="Leave" />
         </EntityType>
         <EntityType Name="MeetingRoom">
@@ -3151,30 +3099,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_LeaveHistoryApprovalTemp_EmployeeByHREmployee">
-          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
-          <End Type="BusinessDataBaseModel.LeaveHistoryApprovalTemp" Role="LeaveHistoryApprovalTemp" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="LeaveHistoryApprovalTemp">
-              <PropertyRef Name="HREmployee" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LeaveHistoryApprovalTemp_EmployeeByHRGroupLeader">
-          <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
-          <End Type="BusinessDataBaseModel.LeaveHistoryApprovalTemp" Role="LeaveHistoryApprovalTemp" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeID" />
-            </Principal>
-            <Dependent Role="LeaveHistoryApprovalTemp">
-              <PropertyRef Name="HRGroupLeader" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Meeting_room_history_Employee">
           <End Type="BusinessDataBaseModel.Employee" Role="Employee" Multiplicity="0..1" />
           <End Type="BusinessDataBaseModel.MeetingRoomHistory" Role="MeetingRoomHistory" Multiplicity="*" />
@@ -3769,10 +3693,6 @@
                 <ScalarProperty Name="Reject" ColumnName="Reject" />
                 <ScalarProperty Name="SignState" ColumnName="SignState" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="HRGroupLeaderSignTime" ColumnName="HRGroupLeaderSignTime" />
-                <ScalarProperty Name="HRGroupLeader" ColumnName="HRGroupLeader" />
-                <ScalarProperty Name="HREmployeeSignTime" ColumnName="HREmployeeSignTime" />
-                <ScalarProperty Name="HREmployee" ColumnName="HREmployee" />
                 <ScalarProperty Name="GeneralManagerSignTime" ColumnName="GeneralManagerSignTime" />
                 <ScalarProperty Name="GeneralManager" ColumnName="GeneralManager" />
                 <ScalarProperty Name="DepartmentLeaderSignTime" ColumnName="DepartmentLeaderSignTime" />

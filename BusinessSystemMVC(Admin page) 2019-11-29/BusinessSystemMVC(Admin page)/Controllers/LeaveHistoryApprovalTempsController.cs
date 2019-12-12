@@ -234,8 +234,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             ViewBag.DepartmentLeader = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.DepartmentLeader);
             ViewBag.GeneralManager = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.GeneralManager);
             ViewBag.GroupLeader = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.GroupLeader);
-            ViewBag.HREmployee = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.HREmployee);
-            ViewBag.HRGroupLeader = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.HRGroupLeader);
             return View(leaveHistoryApprovalTemp);
         }
 
@@ -256,8 +254,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             ViewBag.DepartmentLeader = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.DepartmentLeader);
             ViewBag.GeneralManager = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.GeneralManager);
             ViewBag.GroupLeader = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.GroupLeader);
-            ViewBag.HREmployee = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.HREmployee);
-            ViewBag.HRGroupLeader = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.HRGroupLeader);
             return View(leaveHistoryApprovalTemp);
         }
 
