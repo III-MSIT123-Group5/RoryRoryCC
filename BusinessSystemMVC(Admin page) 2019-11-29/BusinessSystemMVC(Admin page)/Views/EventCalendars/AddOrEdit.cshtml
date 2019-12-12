@@ -29,7 +29,7 @@
 
 
     <div class="taglabel">
-        @Html.LabelFor(model => model.Department.name, new { @class = "control-label" })
+        @Html.LabelFor(model => model.DepartmentID, new { @class = "control-label" })
         @Html.DropDownList("DepartmentID", null, htmlAttributes: new { @class = "form-control", rows = "8", cols = "100", @style = "width:300px" })
         @Html.ValidationMessageFor(model => model.DepartmentID)
     </div>
@@ -37,11 +37,17 @@
 
 
 
-
     <div class="taglabel">
-        @Html.LabelFor(model => model.StartTime, new { @class = "control-label" })
+
+        @Html.LabelFor(model => model.StartTime, "StartTime", new { @class = "control-label" })
+        
         <div class="input-group date" id="datepickerstart" data-target-input="nearest" style="width:300px">
-            <input type="text" class="form-control datetimepicker-input" data-target="#datepickerstart" style="padding-left:0px; text-indent:10px;" rows="8" cols="100" data-toggle="datetimepicker" />
+            @Html.TextBoxFor(model => model.StartTime,null, new{
+               @class = "form-control datetimepicker-input",
+               @style = "padding-left:0px;text-indent:10px;",
+               data_target = "#datepickerstart",
+               data_toggle = "datetimepicker"
+       })
             <div class="input-group-append" data-target="#datepickerstart" data-toggle="datetimepicker">
                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
             </div>
@@ -68,9 +74,15 @@
 
 
     <div class="taglabel">
-        @Html.LabelFor(model => model.EndTime, new { @class = "control-label" })
+        @Html.LabelFor(model => model.EndTime, "EndTime", new { @class = "control-label" })
         <div class="input-group date" id="datepickerend" data-target-input="nearest" style="width:300px">
-            <input type="text" class="form-control datetimepicker-input" data-target="#datepickerend" style="padding-left:0px; text-indent:10px;" rows="8" cols="100" data-toggle="datetimepicker" />
+           @Html.TextBoxFor(model => model.EndTime,null, new{
+               @class = "form-control datetimepicker-input",
+               @style = "padding-left:0px;text-indent:10px;",
+               data_target = "#datepickerend",
+               data_toggle = "datetimepicker"
+       })
+            @*<input type="text" class="form-control datetimepicker-input" data-target="#datepickerend" style="padding-left:0px; text-indent:10px;" rows="8" cols="100" data-toggle="datetimepicker" value="@Model.EndTime" />*@
             <div class="input-group-append" data-target="#datepickerend" data-toggle="datetimepicker">
                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
             </div>

@@ -827,6 +827,13 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\BulletinBoardEmployeeViewModel.cs" />
     <Compile Include="ViewModels\LeaveHistoryApprovalTempViewModel.cs" />
+    <Compile Include="Views\EventCalendars\Metadata\EventCalendarMetaData.cs" />
+    <Compile Include="Views\EventCalendars\Metadata\EventCalendar.cs" />
+    <Compile Include="Views\EventCalendars\Metadata\Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\2013.2.611\Black\editor.png" />
@@ -1592,6 +1599,12 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>EditorLocalization.bg-BG.designer.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EventCalendars\Metadata\Resource1.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
