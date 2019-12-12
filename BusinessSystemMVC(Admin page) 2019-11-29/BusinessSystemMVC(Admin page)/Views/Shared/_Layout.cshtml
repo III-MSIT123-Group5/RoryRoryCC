@@ -109,10 +109,19 @@
                 </li>
                 @*內部訊息*@
                 <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="內部訊息">
-                    <a class="nav-link" href="@Url.Action("Index", "Recipients")">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMessage" data-parent="#exampleAccordion">
                         <i class="fa fa-fw fa-comment"></i>
                         <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">內部訊息</span>
                     </a>
+                    <ul class="sidenav-second-level collapse" id="collapseMessage">
+                        <li class="color hover">
+                            <a href="@Url.Action("Index", "Recipients")" style="font-family:'NotoSansCJKtc-Bold'">收件夾</a>
+                        </li>
+                        <li class="color hover">
+                            <a href="@Url.Action("MessageIndex", "Recipients")" style="font-family:'NotoSansCJKtc-Bold'">寄件夾</a>
+                        </li>
+                    </ul>
+
                 </li>
                 @*請假系統*@
                 <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="請假系統">

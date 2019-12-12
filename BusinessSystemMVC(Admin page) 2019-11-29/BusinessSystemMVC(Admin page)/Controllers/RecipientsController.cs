@@ -1,8 +1,8 @@
 ﻿using BusinessSystemMVC_Admin_page_.Models;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -16,8 +16,11 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         // GET: Recipients
         public ActionResult Index()
         {
-            var recipients = db.Recipients.Include(r => r.Employee).Include(r => r.Message);
-            return View(recipients.ToList());
+            return View();
+        }
+        public ActionResult MessageIndex()
+        {
+            return View();
         }
 
         public IEnumerator GetEnumerator()
@@ -48,9 +51,33 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return Json(new { data = recipients }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult MessageLoadData()
+        {
+            //顯示
+            var recipient = from r in db.Recipients
+                            join emp in db.Employees
+                            on r.EmployeeID equals emp.employeeID
+                            join m in db.Messages
+                            on r.MessageID equals m.MessageID
+                            where r.Message.EmployeeID == EmployeeDetail.EmployeeID && r.Message.Status.Equals("true")
+                            select new
+                            {
+                                m.MessageID,
+                                emp.EmployeeName,
+                                m.Title,
+                                m.Data,
+                                m.MailingDate
+                            };
+
+            var recipients = recipient.ToList();
+
+            return Json(new { data = recipients }, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpGet]
         public ActionResult AddOrEdit(int id = 0)
         {
+            ViewBag.EmployeeID = new SelectList(db.Employees, "employeeID", "EmployeeName");
             return View(new Recipient());
         }
 
@@ -58,6 +85,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddOrEdit(Recipient r)
         {
+            ViewBag.EmployeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", r.EmployeeID);
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
 
@@ -109,6 +137,20 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
                 var recipient = db.Recipients.Where(r => r.RecipientID == id && r.Status.Equals("true")).FirstOrDefault();
                 recipient.Status = "false";
+                db.SaveChanges();
+
+                return Json(new { success = true, message = "刪除成功" }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        // GET: Recipients/Delete/5
+        [HttpPost]
+        public ActionResult DeleteMessage(int id)
+        {
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+                var message = db.Messages.Where(m => m.MessageID == id && m.Status.Equals("true")).FirstOrDefault();
+                message.Status = "false";
                 db.SaveChanges();
 
                 return Json(new { success = true, message = "刪除成功" }, JsonRequestBehavior.AllowGet);
