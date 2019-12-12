@@ -648,6 +648,7 @@
     <Compile Include="Controllers\ApprovalsController.cs" />
     <Compile Include="Controllers\BulletinBoardsController.cs" />
     <Compile Include="Controllers\CommentMainsController.cs" />
+    <Compile Include="Controllers\CommentQuestionsController.cs" />
     <Compile Include="Controllers\CompanyVehicleBorrowController.cs" />
     <Compile Include="Controllers\CompanyVehicleHistoriesController.cs" />
     <Compile Include="Controllers\CompanyVehiclesController.cs" />
@@ -1347,6 +1348,12 @@
     <Content Include="Views\MeetingRooms\AddOrEdit2.cshtml" />
     <Content Include="Views\CommentMains\ViewContent2.cshtml" />
     <Content Include="Views\CommentMains\ViewContent.cshtml" />
+    <Content Include="Views\CommentQuestions\Create.cshtml" />
+    <Content Include="Views\CommentQuestions\Delete.cshtml" />
+    <Content Include="Views\CommentQuestions\Details.cshtml" />
+    <Content Include="Views\CommentQuestions\Edit.cshtml" />
+    <Content Include="Views\CommentQuestions\Index.cshtml" />
+    <Content Include="Views\CommentQuestions\AddOrEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
