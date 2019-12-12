@@ -31,6 +31,13 @@
     <p>
         <button class="btn btn-success" style="margin-bottom:10px" onclick="PopupForm('/CommentMains/AddOrEdit')"><i class="fa fa-plus" aria-hidden="true"></i> 新增調查</button>
     </p>
+    <div>
+        @Html.Label("意見調查項目");
+        <select id="commentContent">
+
+        </select>
+        
+    </div>
     <div style="width:92%">
         <table id="Ctable" class="table table-striped table-bordered">
             <thead>
@@ -62,6 +69,25 @@
             var Popup, dataTable; //height="75%" width="75%" src=\"'height="75%"
 
             $(document).ready(function () {
+
+                    $.ajax({
+                        url:'@Url.Action("LoadCommentContent", "CommentMains")',
+                        method: 'GET',
+                        dataType: 'json'
+                    })
+                    .done(function(datas) {
+
+                        for (var i = 0; i < datas.length; i++) {
+
+                            $('#commentContent').append("<option value='" + datas[i] + "'>" + datas[i] +"</option>");
+
+                            //$('.multiselect-container').append("<li><a><label class='checkbox'><input type='checkbox' value='" + datas[i].name +"'>  " + datas[i].name +" </label></a></li>");
+
+                        }
+
+                    })
+
+
                 dataTable = $('#Ctable').DataTable({
                     "ajax": {
                         url: '/CommentMains/LoadData',

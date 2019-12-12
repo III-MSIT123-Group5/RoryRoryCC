@@ -126,7 +126,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 }
 
                 var GA = from EGA in db.Employees
-                         where EGA.employeeID == 1060
+                         where EGA.employeeID == 1013
                          select new { EGA.EmployeeName };
 
                 string Signer4Name = "";
@@ -154,6 +154,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                             EmployeeID = EmpID,
                             RequisitionDate = DateTime.Now,
                             Price = TemporaryTotalPrice,
+                            ApprovaStatus = "審核中",
                             Approval = (new Models.Approval
                             {
                                 ApprovalProcedureID = 5,
@@ -166,7 +167,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                                 ThirdSignerID = null,
                                 ThirdSignerName = "-----",
                                 ThirdSignStatus = "免審核",
-                                FourthSignerID = 1060,
+                                FourthSignerID = 1013,
                                 FourthSignerName = Signer4Name,
                                 FourthSignStatus = "未審核"
                             })
@@ -188,6 +189,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                             EmployeeID = EmpID,
                             RequisitionDate = DateTime.Now,
                             Price = TemporaryTotalPrice,
+                            ApprovaStatus = "審核中",
                             Approval = (new Models.Approval
                             {
                                 ApprovalProcedureID = 6,
@@ -200,7 +202,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                                 ThirdSignerID = 1004,
                                 ThirdSignerName = Signer3Name,
                                 ThirdSignStatus = "未審核",
-                                FourthSignerID = 1060,
+                                FourthSignerID = 1013,
                                 FourthSignerName = Signer4Name,
                                 FourthSignStatus = "未審核"
                             })
@@ -284,7 +286,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return Json(new { success = true, message = "下載成功" }, JsonRequestBehavior.AllowGet);
         }
 
-        //簽核流程查詢
+        //簽核流程查詢--------------------------------------------------------------------------------------------------------
 
         [HttpGet]
         public ActionResult LoadDataSignProgress()
@@ -299,6 +301,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                            OD.UnitPrice,
                            OD.Quantity,
                            OD.TotalPrice,
+                           RM.ApprovaStatus,
                            AS.OrderID,
                            AS.FirstSignerID,
                            AS.FirstSignDate,
@@ -325,8 +328,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(db.OrderDetails.Where(x => x.OrderID == id).FirstOrDefault<OrderDetail>());
         }
 
-        //簽核
-
+        //簽核---------------------------------------------------------------------------------------------------------------------
         [HttpGet]
         public ActionResult IndexSign()
         {
@@ -399,8 +401,17 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             //查詢RequisitionMain Employee的上司的positionID=3 =>組長
             if (magPosition == 3)
-            {
-                if (EmployeeDetail.PositionID == 3)
+            { 
+                if (EmployeeDetail.PositionID == 3 && EmployeeDetail.GroupID == 1)
+                {
+                    //第三層已簽核、免簽核
+                    //if (SignStatus == "已簽核" || SignStatus == "免簽核")
+                    if (!(SignStatus=="駁回簽核"))
+                    {
+                        report = report.Where(x => x.SecondSignStatus == "已審核" && x.FourthSignStatus == "未審核" && x.FourthSignerID == EmployeeDetail.EmployeeID).Select(x => x);
+                    }                    
+                }
+                else if (EmployeeDetail.PositionID == 3)
                 {
                     report = report.Where(x => x.FirstSignStatus == "未審核" && x.FirstSignerID == EmployeeDetail.EmployeeID).Select(x => x);
                 }
@@ -411,15 +422,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 else if (EmployeeDetail.PositionID == 1)
                 {
                     report = report.Where(x => x.SecondSignStatus == "已審核" && x.ThirdSignStatus == "未審核" && x.ThirdSignerID == EmployeeDetail.EmployeeID).Select(x => x);
-                }
-                else if (EmployeeDetail.PositionID == 3 && EmployeeDetail.GroupID == 1)
-                {
-                    //第三層已簽核、免簽核
-                    if (SignStatus == "已簽核" || SignStatus == "免簽核")
-                    {
-                        report = report.Where(x => x.SecondSignStatus == "已審核"&& x.FourthSignStatus == "未審核" && x.FourthSignerID == EmployeeDetail.EmployeeID).Select(x => x);
-                    }                    
-                }
+                }               
             }
 
             //查詢RequisitionMain Employee的上司的positionID=2 =>部長
@@ -473,6 +476,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult ApprovalSubmit(int? id)
         {
+            var requisition = db.RequisitionMains.Find(id);
             var approval = db.Approvals.Find(id);
 
             if (approval.FirstSignerID == EmployeeDetail.EmployeeID)
@@ -495,6 +499,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             if (approval.FourthSignerID == EmployeeDetail.EmployeeID && approval.ThirdSignStatus == "已審核")
             {
+                requisition.ApprovaStatus = "簽核完成";
                 approval.ForthSignDate = DateTime.Now;
                 approval.FourthSignStatus = "已審核";
             }
@@ -502,6 +507,19 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             db.SaveChanges();
 
             return Json(new { success = true, message = "簽核成功" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ApprovalReject(int id)
+        {
+            if (id == 0)
+            {
+                return View();
+            }
+            else
+            {
+                return View(db.OrderDetails.Where(x => x.RequisitionMain.OrderID == id).FirstOrDefault<OrderDetail>());
+            }
         }
 
         [HttpPost]
