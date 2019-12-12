@@ -28,6 +28,7 @@ namespace BusinessSystemMVC_Admin_page_
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
+                      "~/Content/bootstrap-grid.css",
                       "~/Content/dataTables.bootstrap4.css",
                       "~/Content/font-awesome.css"));
 
