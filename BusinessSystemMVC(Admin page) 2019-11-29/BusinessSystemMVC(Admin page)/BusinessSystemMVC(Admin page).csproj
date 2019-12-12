@@ -1351,6 +1351,7 @@
     <Content Include="Views\CommentMains\ViewContent2.cshtml" />
     <Content Include="Views\CommentMains\ViewContent.cshtml" />
     <Content Include="Views\OrderDetails\ApprovalReject.cshtml" />
+    <Content Include="Views\Recipients\MessageIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
