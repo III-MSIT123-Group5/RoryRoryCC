@@ -36,8 +36,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
             this.LeaveHistoryApprovalTemps1 = new HashSet<LeaveHistoryApprovalTemp>();
             this.LeaveHistoryApprovalTemps2 = new HashSet<LeaveHistoryApprovalTemp>();
             this.LeaveHistoryApprovalTemps3 = new HashSet<LeaveHistoryApprovalTemp>();
-            this.LeaveHistoryApprovalTemps4 = new HashSet<LeaveHistoryApprovalTemp>();
-            this.LeaveHistoryApprovalTemps5 = new HashSet<LeaveHistoryApprovalTemp>();
             this.MeetingRoomHistories = new HashSet<MeetingRoomHistory>();
             this.Messages = new HashSet<Message>();
             this.Recipients = new HashSet<Recipient>();
@@ -107,10 +105,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual ICollection<LeaveHistoryApprovalTemp> LeaveHistoryApprovalTemps2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LeaveHistoryApprovalTemp> LeaveHistoryApprovalTemps3 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LeaveHistoryApprovalTemp> LeaveHistoryApprovalTemps4 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LeaveHistoryApprovalTemp> LeaveHistoryApprovalTemps5 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MeetingRoomHistory> MeetingRoomHistories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

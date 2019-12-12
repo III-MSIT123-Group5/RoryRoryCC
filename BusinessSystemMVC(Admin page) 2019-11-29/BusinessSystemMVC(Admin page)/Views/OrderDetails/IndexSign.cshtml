@@ -77,7 +77,8 @@
                         "className": "text-center align-middle",
                         "render": function (data) {
                             return `<a class='btn btn-warning btn-sm' onclick=Submit("@Url.Action("ApprovalSubmit", "OrderDetails")/${data}")><i class='fa fa-pencil'></i> 簽核</a>
-                                        <a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Reject("@Url.Action("ApprovalReject", "OrderDetails")/${data}")><i class='fa fa-trash'></i> 駁回</a>`
+                                        <a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Reject("@Url.Action("ApprovalReject", "OrderDetails")/${data}")><i class='fa fa-trash'></i> 駁回</a>
+                                        <a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Reject("@Url.Action("ApprovalReject", "OrderDetails")/${data}")><i class='fa fa-trash'></i> 駁回Form</a>`
                         },
                         "orderable": false,
                         "searchable": false,
@@ -226,6 +227,25 @@
             }
         }
 
+        function RejectForm(url) {
+            var formDiv = $('<div/>');
+            $.get(url)
+                .done(function (response) {
+                    formDiv.html(response);
+
+                    Popup = formDiv.dialog({
+                        autoOpen: true,
+                        resizable: false,
+                        title: '駁回請購原因',
+                        height: 400,
+                        width: 700,
+                        close: function () {
+                            Popup.dialog('destroy').remove();
+                        }
+                    });
+                });
+        }
+
         function Reject(Url) {
             if (confirm('確定要駁回此筆請購嗎?')) {
                 $.ajax({
@@ -262,32 +282,6 @@
                     });
                 });
         }
-
-        //function SubmitForm(form) {
-        //    $.validator.unobtrusive.parse(form);
-        //    if ($(form).valid()) {
-        //        $.ajax({
-        //            type: "POST",
-        //            url: form.action,
-        //            data: $(form).serialize(),
-        //            success: function (data) {
-        //                if (data.success) {
-
-        //                    Popup.dialog("close");
-        //                    dataTable.ajax.reload();
-
-        //                    $.notify(data.message, {
-        //                        globalPosition: "top center",
-        //                        className: "success"
-        //                    })
-        //                }
-        //            }
-        //        });
-        //    }
-        //    return false;
-        //}
-
-
     </script>
 }
 

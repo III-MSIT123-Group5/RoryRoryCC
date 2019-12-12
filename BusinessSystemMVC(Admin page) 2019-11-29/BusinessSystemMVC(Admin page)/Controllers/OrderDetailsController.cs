@@ -286,7 +286,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return Json(new { success = true, message = "下載成功" }, JsonRequestBehavior.AllowGet);
         }
 
-        //簽核流程查詢
+        //簽核流程查詢--------------------------------------------------------------------------------------------------------
 
         [HttpGet]
         public ActionResult LoadDataSignProgress()
@@ -328,7 +328,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(db.OrderDetails.Where(x => x.OrderID == id).FirstOrDefault<OrderDetail>());
         }
 
-        //簽核
+        //簽核---------------------------------------------------------------------------------------------------------------------
         [HttpGet]
         public ActionResult IndexSign()
         {
@@ -507,6 +507,19 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             db.SaveChanges();
 
             return Json(new { success = true, message = "簽核成功" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ApprovalReject(int id)
+        {
+            if (id == 0)
+            {
+                return View();
+            }
+            else
+            {
+                return View(db.OrderDetails.Where(x => x.RequisitionMain.OrderID == id).FirstOrDefault<OrderDetail>());
+            }
         }
 
         [HttpPost]
