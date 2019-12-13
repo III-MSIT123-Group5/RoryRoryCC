@@ -77,15 +77,24 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         [HttpGet]
         public ActionResult AddOrEdit(int id = 0)
         {
-            ViewBag.EmployeeID = new SelectList(db.Employees, "employeeID", "EmployeeName");
+            SelectList selectList = new SelectList(this.GetDepartments(), "departmentID", "name");
+            ViewBag.SelectList = selectList;
             return View(new Recipient());
+        }
+
+        private IEnumerable<Department> GetDepartments()
+        {
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+                var query = db.Departments.OrderBy(x => x.departmentID);
+                return query.ToList();
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddOrEdit(Recipient r)
         {
-            ViewBag.EmployeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", r.EmployeeID);
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
 
@@ -110,6 +119,31 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             }
         }
+
+
+        [HttpPost]
+        public JsonResult GetEmployee(int departmentID)
+        {
+            List<KeyValuePair<string, string>> items = new List<KeyValuePair<string, string>>();
+
+            if (!string.IsNullOrWhiteSpace(departmentID.ToString()))
+            {
+                var query = db.Employees.Where(x => x.DepartmentID==(departmentID)).ToList();
+                if (query.Count() > 0)
+                {
+                    foreach (var Employee in query)
+                    {
+                        items.Add(new KeyValuePair<string, string>(
+                            Employee.employeeID.ToString(), Employee.EmployeeName));
+                    }
+                }
+            }
+            return this.Json(items);
+        }
+
+
+
+
 
         // GET: Recipients/Details/5
         public ActionResult Details(long? id)
