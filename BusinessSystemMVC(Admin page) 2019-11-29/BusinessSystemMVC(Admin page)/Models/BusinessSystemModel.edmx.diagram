@@ -34,7 +34,7 @@
         <EntityTypeShape EntityType="BusinessDataBaseModel.Group" Width="1.5" PointX="3" PointY="48.75" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Leave" Width="1.5" PointX="11.25" PointY="34.75" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.LeaveHistory" Width="1.5" PointX="13.5" PointY="36.125" />
-        <EntityTypeShape EntityType="BusinessDataBaseModel.LeaveHistoryApprovalTemp" Width="1.5" PointX="13.5" PointY="48" />
+        <EntityTypeShape EntityType="BusinessDataBaseModel.LeaveHistoryApprovalTemp" Width="1.875" PointX="13.5" PointY="48" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.MeetingRoom" Width="1.5" PointX="5.25" PointY="34.5" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.MeetingRoomHistory" Width="1.5" PointX="7.5" PointY="34.5" />
         <EntityTypeShape EntityType="BusinessDataBaseModel.Message" Width="1.5" PointX="7.5" PointY="88.5" />
