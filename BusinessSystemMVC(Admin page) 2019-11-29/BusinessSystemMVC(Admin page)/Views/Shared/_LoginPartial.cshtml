@@ -105,7 +105,8 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <li style="margin:auto">
         <span style="color:white" id="spanHelloLink">
-            @Html.ActionLink("Hello " + EmployeeDetail.Name + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", style = "color:white;font-size:larger;font-family:NotoSansCJKtc-Bold" })
+            <a href="@Url.Action("Index","Manage")"title = "Manage"  style = "color:white;font-size:larger;font-family:NotoSansCJKtc-Bold" ><img src="@EmployeeDetail.PhotoAdress" style="width:40px ; height:40px"> @EmployeeDetail.Name</a>
+            @*@Html.ActionLink( EmployeeDetail.Name , "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", style = "color:white;font-size:larger;font-family:NotoSansCJKtc-Bold" })*@
         </span>
     </li>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
