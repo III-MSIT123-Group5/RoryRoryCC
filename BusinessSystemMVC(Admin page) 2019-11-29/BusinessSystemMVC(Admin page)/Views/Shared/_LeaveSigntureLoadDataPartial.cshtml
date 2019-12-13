@@ -1,0 +1,24 @@
+﻿@using System.Web.Security
+@if (User.IsInRole("GeneralManager") || User.IsInRole("DepartmentLeader") || User.IsInRole("GroupLeader"))
+{
+    <br /><br />
+    <hr />
+    <h3>待簽核假單</h3>
+    <div style="width:92%">
+        <table id="LeaveSigntable" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>員工姓名</th>
+                    <th>假別</th>
+                    <th>部門</th>
+                    <th>組別</th>
+                    <th>職稱</th>
+                    <th>申請時間</th>
+                    <th>起始時間</th>
+                    <th>結束時間</th>
+                    <th>詳細資料/核准/駁回</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+}

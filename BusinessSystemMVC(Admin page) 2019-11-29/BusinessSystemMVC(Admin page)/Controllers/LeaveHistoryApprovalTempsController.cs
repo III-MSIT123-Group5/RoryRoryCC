@@ -22,12 +22,54 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(/*leaveHistoryApprovalTemps*/);
         }
 
+        //請假簽核
+        public ActionResult LeaveSigntureIndex()
+        {
+            return View();
+        }
+
+        //請假簽核LoadData
+        [Authorize(Roles = "DepartmentLeader,GroupLeader,GeneralManager")]
+        [HttpGet]
+        public ActionResult LeaveSigntureLoadData()
+        {
+            var q = db.LeaveHistoryApprovalTemps.Where(p => p.SignState == false && p.Reject == false).Select(p=> p   );
+            //.Select(p => new { p.Employee.EmployeeName, p.Leave.leave_name, p.Employee.Department.name, p.Employee.Group.GroupName, p.Employee.Position.position1, p.ReleaseTime, p.StartTime, p.EndTime, p.ID })
+             if(EmployeeDetail.PositionID == 3)
+            {
+                q.Where(p => p.GroupLeader == null && p.Employee.ManagerID == EmployeeDetail.EmployeeID).Select(p => new { p.Employee.EmployeeName, p.Leave.leave_name, p.Employee.Department.name, p.Employee.Group.GroupName, p.Employee.Position.position1, p.ReleaseTime, p.StartTime, p.EndTime, p.ID });
+            }
+
+
+
+            var datas = q.ToList();
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+        }
+
+        //取消申請
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult CancelLeave(int ID)
+        {
+            db.LeaveHistoryApprovalTemps.Remove(db.LeaveHistoryApprovalTemps.Where(p => p.ID == ID).FirstOrDefault());
+            db.SaveChanges();
+            return Json(new { success = true, message = "成功取消申請！" }, JsonRequestBehavior.AllowGet);
+        }
+
+        //載入申請中的假詳細資料
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult LeaveLoadDataDetail(int ID)
+        {
+            return View(db.LeaveHistoryApprovalTemps.Where(p => p.ID == ID).FirstOrDefault());
+        }
+
         //載入申請中的假
         [AllowAnonymous]
         [HttpGet]
         public ActionResult LeaveLoadData()
         {
-            var q = db.LeaveHistoryApprovalTemps.Where(p => p.employeeID == EmployeeDetail.EmployeeID).Select(p => new { p.ID  , p.Leave.leave_name , p.ReleaseTime,p.StartTime,p.EndTime,p.Status });
+            var q = db.LeaveHistoryApprovalTemps.Where(p => p.employeeID == EmployeeDetail.EmployeeID).Select(p => new { p.ID, p.Leave.leave_name, p.ReleaseTime, p.StartTime, p.EndTime, p.Status });
             var datas = q.ToList();
             return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
         }
@@ -61,34 +103,34 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             List<int> EMList = new List<int>();
             List<int> EDList = new List<int>();
             List<int> EHList = new List<int>();
-            for(int i = ThisYear-1 ; i<= ThisYear+1; i++)
+            for (int i = ThisYear - 1; i <= ThisYear + 1; i++)
             {
                 SYList.Add(i);
                 EYList.Add(i);
             }
-            for (int i = 1 ; i <= 12; i++)
+            for (int i = 1; i <= 12; i++)
             {
                 SMList.Add(i);
                 EMList.Add(i);
             }
-            for (int i = 1 ; i <= 31; i++)
+            for (int i = 1; i <= 31; i++)
             {
                 SDList.Add(i);
                 EDList.Add(i);
             }
-            for(int i = 9; i < 12; i++)
+            for (int i = 9; i < 12; i++)
             {
                 SHList.Add(i);
             }
-            for(int i=13; i < 17; i++)
+            for (int i = 13; i < 17; i++)
             {
                 SHList.Add(i);
             }
-            for(int i =10; i <= 12; i++)
+            for (int i = 10; i <= 12; i++)
             {
                 EHList.Add(i);
             }
-            for( int i = 14; i <= 17;i++ )
+            for (int i = 14; i <= 17; i++)
             {
                 EHList.Add(i);
             }
@@ -111,28 +153,38 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
         public ActionResult Create(LeaveHistoryApprovalTempViewModel VM)
-        {   
+        {
             if (ModelState.IsValid)
             {
                 var emp = db.Employees.Find(EmployeeDetail.EmployeeID);
                 var NewLeave = new LeaveHistoryApprovalTemp();
                 NewLeave.StartTime = new DateTime(VM.StartYear, VM.StartMonth, VM.StartDay, VM.StartHour, 0, 0);
                 NewLeave.EndTime = new DateTime(VM.EndYear, VM.EndMonth, VM.EndDay, VM.EndHour, 0, 0);
-                var LeaveHours = (NewLeave.EndTime - NewLeave.StartTime).Hours;
-                var HoursDeRest = LeaveHours;
+                int  LeaveHours = Convert.ToInt32((NewLeave.EndTime - NewLeave.StartTime).TotalHours);  //總時數
+                var HoursDeRest = LeaveHours;   //請假時數
+                var qLeaveList = db.LeaveHistories.Where(p => p.employeeID == EmployeeDetail.EmployeeID && ((NewLeave.StartTime >= p.StartTime && NewLeave.StartTime < p.EndTime) || (NewLeave.EndTime > p.StartTime && NewLeave.EndTime <= p.EndTime))).Select(p=>p.employeeID);
+                var qLeaveTemp = db.LeaveHistoryApprovalTemps.Where(p => p.employeeID == EmployeeDetail.EmployeeID && ((NewLeave.StartTime >= p.StartTime && NewLeave.StartTime < p.EndTime) || (NewLeave.EndTime > p.StartTime && NewLeave.EndTime <= p.EndTime))).Select(p => p.employeeID);
+                if (qLeaveList.Any() || qLeaveTemp.Any())  //驗證請假日期衝突   *popup要開著
+                {
+                    return Json(new { fail = true, message = "選擇的日期已請假或己申請，請再次確認。" }, JsonRequestBehavior.AllowGet);
+                }
+                if (LeaveHours < 0)   //驗證日期   *popup要開著
+                {
+                    return Json(new { fail = true, message = "日期選擇無效，結束日期不可大於起始日期。" }, JsonRequestBehavior.AllowGet);
+                }
                 //======時數邏輯>>>>>>>>>>>>>
-                if (VM.StartHour<12 && VM.EndHour > 13)
+                if (VM.StartHour < 12 && VM.EndHour > 13)
                 {
                     if (LeaveHours >= 24)
                     {
-                        HoursDeRest = LeaveHours / 24 * 7 + LeaveHours % 24-1;
+                        HoursDeRest = LeaveHours / 24 * 7 + LeaveHours % 24 - 1;
                     }
                     else
                     {
                         HoursDeRest--;
                     }
                 }
-                else if(VM.StartHour>12 && VM.EndHour <= 17)
+                else if (VM.StartHour > 12 && VM.EndHour <= 17)
                 {
                     if (LeaveHours >= 24)
                     {
@@ -154,15 +206,48 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 NewLeave.Appendix = VM.Appendix;
                 NewLeave.SignState = false;
                 NewLeave.Reject = false;
-
-
-
-
-
-
-
-
-                return RedirectToAction("Index");
+                if (EmployeeDetail.PositionID == 2)  //部長
+                {
+                    NewLeave.GroupLeader = 1022;
+                    NewLeave.GroupLeaderSignTime = NewLeave.ReleaseTime;
+                    NewLeave.DepartmentLeader = 1022;
+                    NewLeave.DepartmentLeaderSignTime = NewLeave.ReleaseTime;
+                    NewLeave.Status = "待總經理簽核";
+                }
+                else if (EmployeeDetail.PositionID == 4 || EmployeeDetail.PositionID == 3) //員工或組長
+                {
+                    if (EmployeeDetail.PositionID == 3) //組長
+                    {
+                        NewLeave.GroupLeader = 1022;
+                        NewLeave.GroupLeaderSignTime = NewLeave.ReleaseTime;
+                    }
+                    if (HoursDeRest < 21)  //小於三天(21小時) GM無須簽核
+                    {
+                        NewLeave.GeneralManager = 1022;
+                        NewLeave.GeneralManagerSignTime = NewLeave.ReleaseTime;
+                        if (EmployeeDetail.PositionID == 3)
+                            NewLeave.Status = "待部長簽核";
+                        else   //員工
+                            NewLeave.Status = "待組長簽核";
+                    }
+                    else
+                    {
+                        NewLeave.Status = "待總經理簽核";
+                    }
+                }
+                else   //總經理
+                {
+                    NewLeave.GroupLeader = 1022;
+                    NewLeave.GroupLeaderSignTime = NewLeave.ReleaseTime;
+                    NewLeave.DepartmentLeader = 1022;
+                    NewLeave.DepartmentLeaderSignTime = NewLeave.ReleaseTime;
+                    NewLeave.GeneralManager = EmployeeDetail.EmployeeID;
+                    NewLeave.GeneralManagerSignTime = NewLeave.ReleaseTime;
+                    NewLeave.Status = "簽核完成";
+                }
+                db.LeaveHistoryApprovalTemps.Add(NewLeave);
+                db.SaveChanges();
+                return Json(new { success = true, message = "成功送出申請！" }, JsonRequestBehavior.AllowGet);
             }
             return View(VM);
         }
@@ -173,7 +258,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         {
             DateTime dt = DateTime.Now.AddDays(3);
             List<int> L = new List<int>();
-          for(int i = dt.Year ; i<= dt.Year+1; i++)
+            for (int i = dt.Year; i <= dt.Year + 1; i++)
             {
                 L.Add(i);
             }
@@ -187,7 +272,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         {
             DateTime dt = DateTime.Now.AddDays(3);
             List<int> List = new List<int>();
-            if(thisYEAR == dt.Year)
+            if (thisYEAR == dt.Year)
             {
                 for (int i = dt.Month; i <= 12; i++)
                 {
@@ -206,16 +291,16 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public int GetNewDayTime(int thisYEAR , int thisMONTH)
+        public int GetNewDayTime(int thisYEAR, int thisMONTH)
         {
             DateTime dt = DateTime.Now.AddDays(3);
-            int data =1;
+            int data = 1;
             if (thisYEAR == dt.Year && thisMONTH == dt.Month)
             {
-                data =dt.Day;
+                data = dt.Day;
             }
             return data;
-        } 
+        }
 
 
         // GET: LeaveHistoryApprovalTemps/Edit/5
