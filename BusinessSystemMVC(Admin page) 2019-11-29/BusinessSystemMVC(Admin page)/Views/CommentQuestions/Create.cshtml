@@ -6,183 +6,190 @@
     var commentContentItems = ViewBag.CommentContentItems as List<GroupedSelectListItem>;
 }
 
-<!DOCTYPE html>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>建立意見調查</title>
-    <style>
 
-        h2, label, span, optgroup, select, th {
-            font-family: 'NotoSansCJKtc-Bold';
-        }
-
-        /*th {
-            background-color: #77C9D4;
-            color: white;
-        }*/
-
-        td {
-            font-family: 'NotoSansCJKtc-Light';
-        }
-
-        .multiselect-selected-text {
-            color: orange;
-        }
-    </style>
+    <!DOCTYPE html>
 
 
 
-</head>
-<body>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>建立意見調查</title>
+        <style>
 
-        @*@Html.HiddenFor(model => model.CommentMainID)
-        @Html.HiddenFor(model => model.EmployeeID)
-        @Html.HiddenFor(model => model.SendTime)*@
+            h2, label, span, optgroup, select, th {
+                font-family: 'NotoSansCJKtc-Bold';
+            }
 
-        <h2>建立意見調查</h2>
-        <br />
-        <div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.CommentContentID, "意見類型", htmlAttributes: new { @class = "control-label col-md-2 label" })
-                <div class="col-md-10">
-                    @Html.DropDownGroupList("CommentContent", commentContentItems, "請選擇意見類型", htmlAttributes: new { @class = "label", style = "Width:400px;height:40px" })
+            /*th {
+                background-color: #77C9D4;
+                color: white;
+            }*/
 
+            td {
+                font-family: 'NotoSansCJKtc-Light';
+            }
+
+            .multiselect-selected-text {
+                color: orange;
+            }
+        </style>
+
+
+
+    </head>
+    <body>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            @*@Html.HiddenFor(model => model.CommentMainID)
+                @Html.HiddenFor(model => model.EmployeeID)
+                @Html.HiddenFor(model => model.SendTime)*@
+
+            <h2>建立意見調查</h2>
+            <br />
+            <div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CommentContentID, "意見類型", htmlAttributes: new { @class = "control-label col-md-2 label" })
+                    <div class="col-md-10">
+                        @Html.DropDownGroupList("CommentContent", commentContentItems, "請選擇意見類型", htmlAttributes: new { @class = "label", style = "Width:400px;height:40px" })
+
+                    </div>
                 </div>
-            </div>
 
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.CommentName, "意見名稱", htmlAttributes: new { @class = "control-label col-md-2" })
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.CommentName, "意見名稱", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CommentName, new { htmlAttributes = new { @class = "form-control", style = "Width:400px" } })
+                            @Html.ValidationMessageFor(model => model.CommentName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.Employee.Department, "發送部門", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <select id="mul" multiple="multiple" style="display:none;">
+                                <option value="multiselect-all">select all</option>
+                            </select>
+                        </div>
+                    </div>*@
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CommentContent.CommentQuestions, "調查題目", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.CommentName, new { htmlAttributes = new { @class = "form-control", style = "Width:400px" } })
-                        @Html.ValidationMessageFor(model => model.CommentName, "", new { @class = "text-danger" })
+                        <table class="table table-bordered" id="tableQ" style="width:600px">
+                            @*<tr>
+                                <th>@Html.CheckBox("CheckAll", false, new { id = "select_all" })</th>*@
+
+                            @*@for (int i = 0; i < Model.additionalCustomerInfoListView.Count; i++)
+                                {
+                                <tr>
+                                    <td>@Html.CheckBoxFor(model => model.additionalCustomerInfoListView[i].IsSelected, new { id = "someDivId" })</td>
+                                </tr>
+                                }*@
+                        </table>
                     </div>
-                </div>*@
-
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.Employee.Department, "發送部門", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <select id="mul" multiple="multiple" style="display:none;">
-                            <option value="multiselect-all">select all</option>
-                        </select>
-                    </div>
-                </div>*@
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CommentContent.CommentQuestions, "調查題目", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <table class="table table-bordered" id="tableQ" style="width:600px">
-                        @*<tr>
-                            <th>@Html.CheckBox("CheckAll", false, new { id = "select_all" })</th>*@
-
-                        @*@for (int i = 0; i < Model.additionalCustomerInfoListView.Count; i++)
-                            {
+                </div>
+                <div style="width:92%" id="createCtable">
+                    <table id="Ctable" class="table table-striped table-bordered">
+                        <thead>
                             <tr>
-                                <td>@Html.CheckBoxFor(model => model.additionalCustomerInfoListView[i].IsSelected, new { id = "someDivId" })</td>
+                                <th>調查內容</th>
+                                <th>選項編號</th>
+                                <th>選項</th>
+                                <th>編輯/刪除</th>
                             </tr>
-                            }*@
+                        </thead>
+                        <tbody></tbody>
                     </table>
+
+                </div>
+
+                @*<select class="multiselect" multiple="multiple"></select>*@
+
+
+                @*<div class="form-horizontal">
+                    <h4>CommentMain</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CommentMainID, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CommentMainID, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CommentMainID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CommentName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CommentName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CommentName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EmployeeID, "EmployeeID", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("EmployeeID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.EmployeeID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SendTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.SendTime, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SendTime, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CommentContentID, "CommentContentID", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("CommentContentID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CommentContentID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ActivityMainID, "ActivityMainID", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("ActivityMainID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ActivityMainID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
+                        <input type="submit" value="送出貼文" class="btn btn-success" style="margin-right:10px" />
+                    </div>
                 </div>
             </div>
-            <div style="width:92%">
-                <table id="Ctable" class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>調查內容</th>
-                            <th>選項編號</th>
-                            <th>選項</th>
-                            <th>編輯/刪除</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+        }
 
-            </div>
-
-            @*<select class="multiselect" multiple="multiple"></select>*@
-
-
-            @*<div class="form-horizontal">
-                <h4>CommentMain</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CommentMainID, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.CommentMainID, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CommentMainID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CommentName, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.CommentName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CommentName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.EmployeeID, "EmployeeID", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("EmployeeID", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.EmployeeID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.SendTime, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.SendTime, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.SendTime, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CommentContentID, "CommentContentID", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("CommentContentID", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.CommentContentID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ActivityMainID, "ActivityMainID", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("ActivityMainID", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.ActivityMainID, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
-                    <input type="submit" value="送出貼文" class="btn btn-success" style="margin-right:10px" />
-                </div>
-            </div>
+        <div>
+            @Html.ActionLink("回上一頁", "Index")
         </div>
-    }
 
-    <div>
-        @Html.ActionLink("回上一頁", "Index")
-    </div>
+        @*<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />*@
+        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/Content/bootstrap-multiselect.css" type="text/css">
 
-    @*<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />*@
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/Content/bootstrap-multiselect.css" type="text/css">
+        @section scripts{
 
-    @section scripts{
+            <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+            <script src="/Scripts/moment.js"></script>
+            <script src="~/Scripts/bootstrap-multiselect.js"></script>
 
-        <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-        <script src="/Scripts/moment.js"></script>
-        <script src="~/Scripts/bootstrap-multiselect.js"></script>
-
-        <script>
+            <script>
             var Popup, dataTable;
 
             $(document).ready(function () {
@@ -343,15 +350,30 @@
 
 
 
-                
 
 
-            
-            
+
+
+
 
             $("#CommentContent").change(function () {
                 ChangeTable();
+                $("#createCtable").empty();
+                $("#createCtable").append(
+                    `<table id="Ctable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>調查內容</th>
+                                <th>選項編號</th>
+                                <th>選項</th>
+                                <th>編輯/刪除</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>`
+                )
                 ChangeDataTable();
+
             });
 
                 function ChangeTable() {
@@ -394,24 +416,24 @@
                 }
 
             function ChangeDataTable() {
-                @*var s = $('#CommentContent').val();
-                $.ajax({
-                    url: '@Url.Action("LoadCommentContent", "CommentQuestions")',
-                    method: 'GET',
-                    dataType: 'json',
-                }).done(function (datas) {
-                    $('#Ctable').empty();
-                    $('#Ctable').append("<tr><th>提問項目</th><th>提問編號</th><th>題目</th></tr>");
-                    for (var i = 0; i < datas.length; i++)
-                        if (datas[i].CommentContentID == s) {
-                                $('#Ctable').append("<tr>");
-                                $('#Ctable').append("<td>" + datas[i].CommentContent1 + "</td>");
-                                $('#Ctable').append("<td>" + datas[i].CommentQuestionID + "</td>");
-                                $('#Ctable').append("<td>" + datas[i].Question + "</td>");
-                                $('#Ctable').append("</tr>");
-                        }
-                })*@
-           
+                //$('#Ctable').empty();
+                //var s = $('#CommentContent').val();
+                //$.ajax({
+                //    url: '@Url.Action("LoadCommentContent", "CommentQuestions")',
+                //    method: 'GET',
+                //    dataType: 'json',
+                //}).done(function (datas) {
+                //    $('#Ctable').append("<tr><th>提問項目</th><th>提問編號</th><th>題目</th></tr>");
+                //    for (var i = 0; i < datas.length; i++)
+                //        if (datas[i].CommentContentID == s) {
+                //                $('#Ctable').append("<tr>");
+                //                $('#Ctable').append("<td>" + datas[i].CommentContent1 + "</td>");
+                //                $('#Ctable').append("<td>" + datas[i].CommentQuestionID + "</td>");
+                //                $('#Ctable').append("<td>" + datas[i].Question + "</td>");
+                //                $('#Ctable').append("</tr>");
+                //        }
+                //})
+
                     //$("#Ctable").dataTable().fnDestroy();
 
 
@@ -437,27 +459,27 @@
                     //});
 
 
-                    @*$.ajax({
-                        url: '@Url.Action("LoadCommentContent", "CommentQuestions")',
-                        method: 'GET',
-                        dataType: 'json'
-                    })
-                        .done(function (datas) {
+                    //$.ajax({
+                    //    url: '@Url.Action("LoadCommentContent", "CommentQuestions")',
+                    //    method: 'GET',
+                    //    dataType: 'json'
+                    //})
+                    //    .done(function (datas) {
 
-                            var dtable = $('#Ctable tbody');
-                            dtable.empty();
+                    //        var dtable = $('#Ctable tbody');
+                    //        dtable.empty();
 
-                            $(datas).each(function (cq) {
+                    //        $(datas).each(function (cq) {
 
-                                if (cq.CommentContentID == s) {
+                    //            if (cq.CommentContentID == s) {
 
-                                    dtable.append('<tr><td>' + cq.CommentContent1 + '</td><td>'
-                                        + dtable.CommentQuestionID + '</td><td>' + cq.Question + '</td>');
-                                }
+                    //                dtable.append('<tr><td>' + cq.CommentContent1 + '</td><td>'
+                    //                    + dtable.CommentQuestionID + '</td><td>' + cq.Question + '</td>');
+                    //            }
 
-                            }
-                            );
-                        });*@
+                    //        }
+                    //        );
+                    //    });
 
 
                     //$("#Ctable").dataTable();
@@ -490,18 +512,14 @@
                     //    "scrollY": "500px",
                     //    "scrollCollapse": true
                     //});
-
-
-
                 var DropccID = $('#CommentContent').val();
-
-                $('#Ctable').DataTable({   
-                     
+                console.log(DropccID)
+                dataTable = $('#Ctable').DataTable({
                     "ajax": {
                         url: '@Url.Action("LoadCommentContent", "CommentQuestions")',
                         method: 'POST',
                         dataType: 'json',
-                        data: { cid: DropccID }
+                        data: { cid:DropccID }
                     },
                     "columnDefs": [
 
@@ -529,15 +547,16 @@
 
             }
 
- 
+
 
                     //$('#HeaderCheckbox').click(function () {
                     //    $('input[name="checkbox"]').prop('checked', this.checked)
                     //});
 
-                
-        </script>
 
-    }
-</body>
+            </script>
+
+        }
+    </body>
 </html>
+}

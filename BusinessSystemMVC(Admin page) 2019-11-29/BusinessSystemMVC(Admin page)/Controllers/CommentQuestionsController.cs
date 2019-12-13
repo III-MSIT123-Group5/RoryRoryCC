@@ -42,7 +42,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         //Get
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult LoadCommentContent(/*FormCollection formCollection*/int cid)
         {
             //    int ccid = Convert.ToInt32(formCollection["CommentContent"]);

@@ -1384,6 +1384,12 @@
     <Content Include="Views\CommentChilds\Edit.cshtml" />
     <Content Include="Views\CommentChilds\Index.cshtml" />
     <Content Include="Views\CommentChilds\Reply.cshtml" />
+    <Content Include="Views\CommentQuestions\AddOrEdit.cshtml" />
+    <Content Include="Views\CommentQuestions\Create.cshtml" />
+    <Content Include="Views\CommentQuestions\Delete.cshtml" />
+    <Content Include="Views\CommentQuestions\Details.cshtml" />
+    <Content Include="Views\CommentQuestions\Edit.cshtml" />
+    <Content Include="Views\CommentQuestions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
