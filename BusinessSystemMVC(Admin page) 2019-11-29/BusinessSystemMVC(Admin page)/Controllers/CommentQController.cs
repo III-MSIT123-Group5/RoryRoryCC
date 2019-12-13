@@ -10,12 +10,40 @@ using BusinessSystemMVC_Admin_page_.Models;
 
 namespace BusinessSystemMVC_Admin_page_.Controllers
 {
-    public class CommentQuestionsController : Controller
+    public class CommentQController : Controller
     {
         private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
 
+        // GET: CommentQuestions
         public ActionResult Index()
         {
+            var result = from cc in db.CommentContents
+                         join co in db.CommentOptions
+                         on cc.CommentOptionID equals co.CommentOptionID
+                         select new
+                         {
+                             cc.CommentOptionID,
+                             co.CommentOption1,
+                             cc.CommentContent1,
+                             cc.CommentContentID
+                         };
+
+            var items = new List<GroupedSelectListItem>();
+
+            foreach (var n in result)
+            {
+                items.Add(new GroupedSelectListItem()
+                {
+                    Value = n.CommentContentID.ToString(),
+                    Text = string.Format("{0} {1}", n.CommentContentID.ToString(), n.CommentContent1),
+                    GroupKey = n.CommentOptionID.ToString(),
+                    GroupName = n.CommentOption1
+
+                });
+            }
+
+            ViewBag.CommentContentItems = items;
+
 
             var commentQuestions = db.CommentQuestions.Include(c => c.CommentContent);
             return View(commentQuestions.ToList());
@@ -45,9 +73,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         public ActionResult LoadCommentContent(/*FormCollection formCollection*/int cid)
         {
             //    int ccid = Convert.ToInt32(formCollection["CommentContent"]);
-
+        
             var data = from cq in db.CommentQuestions
-                       join cc in db.CommentContents
+                       join cc in db.CommentContents 
                        on cq.CommentContentID equals cc.CommentContentID
                        where cq.CommentContentID == cid
                        select new
@@ -194,32 +222,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         {
             int EmpID = EmployeeDetail.EmployeeID;
 
-            var result = from cc in db.CommentContents
-                         join co in db.CommentOptions
-                         on cc.CommentOptionID equals co.CommentOptionID
-                         select new
-                         {
-                             cc.CommentOptionID,
-                             co.CommentOption1,
-                             cc.CommentContent1,
-                             cc.CommentContentID
-                         };
 
-            var items = new List<GroupedSelectListItem>();
-
-            foreach (var n in result)
-            {
-                items.Add(new GroupedSelectListItem()
-                {
-                    Value = n.CommentContentID.ToString(),
-                    Text = string.Format("{0} {1}", n.CommentContentID.ToString(), n.CommentContent1),
-                    GroupKey = n.CommentOptionID.ToString(),
-                    GroupName = n.CommentOption1
-
-                });
-            }
-
-            ViewBag.CommentContentItems = items;
 
 
 
@@ -363,119 +366,3 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
     }
 }
-//        // GET: CommentQuestions
-//        public ActionResult Index()
-//        {
-//            var commentQuestions = db.CommentQuestions.Include(c => c.CommentContent);
-//            return View(commentQuestions.ToList());
-//        }
-
-//        // GET: CommentQuestions/Details/5
-//        public ActionResult Details(int? id)
-//        {
-//            if (id == null)
-//            {
-//                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-//            }
-//            CommentQuestion commentQuestion = db.CommentQuestions.Find(id);
-//            if (commentQuestion == null)
-//            {
-//                return HttpNotFound();
-//            }
-//            return View(commentQuestion);
-//        }
-
-//        // GET: CommentQuestions/Create
-//        public ActionResult Create()
-//        {
-//            ViewBag.CommentContentID = new SelectList(db.CommentContents, "CommentContentID", "CommentContent1");
-//            return View();
-//        }
-
-//        // POST: CommentQuestions/Create
-//        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-//        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-//        [HttpPost]
-//        [ValidateAntiForgeryToken]
-//        public ActionResult Create([Bind(Include = "CommentContentID,CommentQuestionID,Question")] CommentQuestion commentQuestion)
-//        {
-//            if (ModelState.IsValid)
-//            {
-//                db.CommentQuestions.Add(commentQuestion);
-//                db.SaveChanges();
-//                return RedirectToAction("Index");
-//            }
-
-//            ViewBag.CommentContentID = new SelectList(db.CommentContents, "CommentContentID", "CommentContent1", commentQuestion.CommentContentID);
-//            return View(commentQuestion);
-//        }
-
-//        // GET: CommentQuestions/Edit/5
-//        public ActionResult Edit(int? id)
-//        {
-//            if (id == null)
-//            {
-//                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-//            }
-//            CommentQuestion commentQuestion = db.CommentQuestions.Find(id);
-//            if (commentQuestion == null)
-//            {
-//                return HttpNotFound();
-//            }
-//            ViewBag.CommentContentID = new SelectList(db.CommentContents, "CommentContentID", "CommentContent1", commentQuestion.CommentContentID);
-//            return View(commentQuestion);
-//        }
-
-//        // POST: CommentQuestions/Edit/5
-//        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-//        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-//        [HttpPost]
-//        [ValidateAntiForgeryToken]
-//        public ActionResult Edit([Bind(Include = "CommentContentID,CommentQuestionID,Question")] CommentQuestion commentQuestion)
-//        {
-//            if (ModelState.IsValid)
-//            {
-//                db.Entry(commentQuestion).State = EntityState.Modified;
-//                db.SaveChanges();
-//                return RedirectToAction("Index");
-//            }
-//            ViewBag.CommentContentID = new SelectList(db.CommentContents, "CommentContentID", "CommentContent1", commentQuestion.CommentContentID);
-//            return View(commentQuestion);
-//        }
-
-//        // GET: CommentQuestions/Delete/5
-//        public ActionResult Delete(int? id)
-//        {
-//            if (id == null)
-//            {
-//                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-//            }
-//            CommentQuestion commentQuestion = db.CommentQuestions.Find(id);
-//            if (commentQuestion == null)
-//            {
-//                return HttpNotFound();
-//            }
-//            return View(commentQuestion);
-//        }
-
-//        // POST: CommentQuestions/Delete/5
-//        [HttpPost, ActionName("Delete")]
-//        [ValidateAntiForgeryToken]
-//        public ActionResult DeleteConfirmed(int id)
-//        {
-//            CommentQuestion commentQuestion = db.CommentQuestions.Find(id);
-//            db.CommentQuestions.Remove(commentQuestion);
-//            db.SaveChanges();
-//            return RedirectToAction("Index");
-//        }
-
-//        protected override void Dispose(bool disposing)
-//        {
-//            if (disposing)
-//            {
-//                db.Dispose();
-//            }
-//            base.Dispose(disposing);
-//        }
-//    }
-//}
