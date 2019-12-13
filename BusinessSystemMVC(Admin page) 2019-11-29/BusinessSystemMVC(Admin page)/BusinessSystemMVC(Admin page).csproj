@@ -1384,10 +1384,14 @@
     <Content Include="Views\CommentChilds\Edit.cshtml" />
     <Content Include="Views\CommentChilds\Index.cshtml" />
     <Content Include="Views\CommentChilds\Reply.cshtml" />
+    <Content Include="Views\LeaveHistoryApprovalTemps\SignLeaveLoadDataDetail.cshtml" />
+    <Content Include="Views\LeaveHistoryApprovalTemps\FinishSignLeaveLoadDataDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="imgcar\" />
+    <Folder Include="imgLeaveAppendix\" />
+    <Folder Include="imgProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

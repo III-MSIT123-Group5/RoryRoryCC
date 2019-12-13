@@ -34,21 +34,133 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         public ActionResult LeaveSigntureLoadData()
         {
             var q = db.LeaveHistoryApprovalTemps.Where(p => p.SignState == false && p.Reject == false);
-             if(EmployeeDetail.PositionID == 3) //組長
+            if (EmployeeDetail.PositionID == 3) //組長
             {
-                q.Where(p => p.GroupLeader == null && p.Employee.ManagerID == EmployeeDetail.EmployeeID);
+               q= q.Where(p => p.GroupLeader == null && p.Employee.ManagerID == EmployeeDetail.EmployeeID && p.Employee.GroupID == EmployeeDetail.GroupID && p.Employee.DepartmentID == EmployeeDetail.DepartmentID);
             }
-             else if(EmployeeDetail.PositionID == 2) //部長
+            else if (EmployeeDetail.PositionID == 2) //部長
             {
-                q.Where(p => p.Employee3.ManagerID == EmployeeDetail.EmployeeID && p.GroupLeader != null && p.DepartmentLeader == null );
+                q = q.Where(p =>  p.GroupLeader !=null && p.DepartmentLeader == null && p.Employee.DepartmentID == EmployeeDetail.DepartmentID);
             }
             else  //總仔
             {
-                q.Where(p => p.Employee1.ManagerID == EmployeeDetail.EmployeeID && p.GroupLeader != null && p.DepartmentLeader != null && p.GeneralManager ==null);
+                q = q.Where(p =>  p.GroupLeader != null && p.DepartmentLeader != null && p.GeneralManager == null);
             }
             var datas = q.Select(p => new { p.Employee.EmployeeName, p.Leave.leave_name, p.Employee.Department.name, p.Employee.Group.GroupName, p.Employee.Position.position1, p.ReleaseTime, p.StartTime, p.EndTime, p.ID }).ToList();
             return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
         }
+
+        //核准
+        [HttpPost]
+        [Authorize(Roles = "DepartmentLeader,GroupLeader,GeneralManager")]
+        public ActionResult AcceptLeave(int ID)
+        {
+            var q = db.LeaveHistoryApprovalTemps.Find(ID);
+            if (q.SignState == false && q.Reject == false)
+            {
+                //組長
+                if (EmployeeDetail.PositionID == 3 && q.GroupLeader == null && q.Employee.GroupID == EmployeeDetail.GroupID && q.Employee.DepartmentID == EmployeeDetail.DepartmentID)
+                {
+                    q.GroupLeader = EmployeeDetail.EmployeeID;
+                    q.GroupLeaderSignTime = DateTime.Now;
+                    q.Status = "待部長簽核";
+                    db.SaveChanges();
+                }
+                //部長
+                if (EmployeeDetail.PositionID == 2 && q.GroupLeader != null && q.DepartmentLeader == null && q.Employee.DepartmentID == EmployeeDetail.DepartmentID)
+                {
+                    q.DepartmentLeader = EmployeeDetail.EmployeeID;
+                    q.DepartmentLeaderSignTime = DateTime.Now;
+                    q.Status = "待總經理簽核";
+                    db.SaveChanges();
+                }
+                //總仔
+                if (EmployeeDetail.PositionID == 1 && q.GroupLeader != null && q.DepartmentLeader != null && q.GeneralManager == null )
+                {
+                    q.GeneralManager = EmployeeDetail.EmployeeID;
+                    q.GeneralManagerSignTime = DateTime.Now;
+                    db.SaveChanges();
+                }
+                //簽核完成(都簽了且為核准)
+                if (q.GroupLeader != null && q.DepartmentLeader != null && q.GeneralManager != null)
+                {
+                    q.SignState = true;
+                    q.Reject = false;
+                    q.Status = "簽核完成";
+                    var addFormalLeave = new LeaveHistory()
+                    {
+                        employeeID = q.employeeID,
+                        leaveID = q.leaveID,
+                        ReleaseTime = q.ReleaseTime,
+                        StartTime = q.StartTime,
+                        EndTime = q.EndTime,
+                        Description = q.Description,
+                        Appendix = q.Appendix,
+                        LeaveHours = q.LeaveHours
+                    };
+                    //將時數更新到Employee裡
+                    var qEmp = db.Employees.Find(q.employeeID);
+                    switch (q.leaveID)
+                    {
+                        case 0:     //特休
+                            qEmp.SpecialLeaveHours -= (int)q.LeaveHours;
+                            break;
+                        case 1:    //事假
+                            qEmp.PersonalLeaveHours -= (int)q.LeaveHours;
+                            break;
+                        case 2:    //病假
+                            qEmp.SickLeaveHours -= (int)q.LeaveHours;
+                            break;
+                    }
+                    db.LeaveHistories.Add(addFormalLeave);
+                    db.SaveChanges();
+                }
+            }
+            return Json(new { success = true, message = "簽核成功" }, JsonRequestBehavior.AllowGet);
+        }
+
+        //駁回
+        [HttpPost]
+        [Authorize(Roles = "DepartmentLeader,GroupLeader,GeneralManager")]
+        public ActionResult RejectLeave(int ID)
+        {
+            var q = db.LeaveHistoryApprovalTemps.Find(ID);
+            if(q.SignState == false && q.Reject == false)
+            {
+                //組長
+                if(EmployeeDetail.PositionID == 3 && q.Employee.ManagerID == EmployeeDetail.EmployeeID && q.GroupLeader == null && q.Employee.GroupID == EmployeeDetail.GroupID && q.Employee.DepartmentID == EmployeeDetail.DepartmentID)
+                {
+                    q.GroupLeader = EmployeeDetail.EmployeeID;
+                    q.GroupLeaderSignTime = DateTime.Now;
+                    q.SignState = false;
+                    q.Reject = true;
+                    q.Status = "已遭組長駁回";
+                    db.SaveChanges();
+                }
+                //部長
+                if(EmployeeDetail.PositionID == 2 && q.GroupLeader != null && q.DepartmentLeader == null &&  q.Employee.DepartmentID == EmployeeDetail.DepartmentID)
+                {
+                    q.DepartmentLeader = EmployeeDetail.EmployeeID;
+                    q.DepartmentLeaderSignTime = DateTime.Now;
+                    q.SignState = false;
+                    q.Reject = true;
+                    q.Status = "已遭部長駁回";
+                    db.SaveChanges();
+                }
+                //總仔
+                if (EmployeeDetail.PositionID == 1 && q.GroupLeader != null && q.DepartmentLeader != null && q.GeneralManager == null)
+                {
+                    q.DepartmentLeader = EmployeeDetail.EmployeeID;
+                    q.DepartmentLeaderSignTime = DateTime.Now;
+                    q.SignState = false;
+                    q.Reject = true;
+                    q.Status = "已遭部長駁回";
+                    db.SaveChanges();
+                }
+            }
+            return Json(new { success = true, message = "簽核已駁回" }, JsonRequestBehavior.AllowGet);
+        }
+
 
         //取消申請
         [HttpPost]
@@ -67,32 +179,37 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         {
             return View(db.LeaveHistoryApprovalTemps.Where(p => p.ID == ID).FirstOrDefault());
         }
+        //載入簽核的假詳細資料
+        public ActionResult SignLeaveLoadDataDetail(int ID)
+        {
+            return View(db.LeaveHistoryApprovalTemps.Where(p => p.ID == ID).FirstOrDefault());
+        }
+
+        //載入完成簽核的假詳細資料
+        public ActionResult FinishSignLeaveLoadDataDetail(int ID)
+        {
+            return View(db.LeaveHistoryApprovalTemps.Where(p => p.ID == ID).FirstOrDefault());
+        }
 
         //載入申請中的假
         [AllowAnonymous]
         [HttpGet]
         public ActionResult LeaveLoadData()
         {
-            var q = db.LeaveHistoryApprovalTemps.Where(p => p.employeeID == EmployeeDetail.EmployeeID).Select(p => new { p.ID, p.Leave.leave_name, p.ReleaseTime, p.StartTime, p.EndTime, p.Status });
+            var q = db.LeaveHistoryApprovalTemps.Where(p => p.employeeID == EmployeeDetail.EmployeeID && p.SignState == false && p.Reject == false).Select(p => new { p.ID, p.Leave.leave_name, p.ReleaseTime, p.StartTime, p.EndTime, p.Status });
+            var datas = q.ToList();
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+        }
+        //載入完成的假
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult FinishLeaveLoadData()
+        {
+            var q = db.LeaveHistoryApprovalTemps.Where(p => p.employeeID == EmployeeDetail.EmployeeID && p.SignState == true && p.Reject == false).Select(p => new { p.ID, p.Leave.leave_name, p.ReleaseTime, p.StartTime, p.EndTime, p.Status });
             var datas = q.ToList();
             return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
         }
 
-
-        // GET: LeaveHistoryApprovalTemps/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            LeaveHistoryApprovalTemp leaveHistoryApprovalTemp = db.LeaveHistoryApprovalTemps.Find(id);
-            if (leaveHistoryApprovalTemp == null)
-            {
-                return HttpNotFound();
-            }
-            return View(leaveHistoryApprovalTemp);
-        }
 
         //新增請假
         // GET: LeaveHistoryApprovalTemps/Create
@@ -164,9 +281,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 var NewLeave = new LeaveHistoryApprovalTemp();
                 NewLeave.StartTime = new DateTime(VM.StartYear, VM.StartMonth, VM.StartDay, VM.StartHour, 0, 0);
                 NewLeave.EndTime = new DateTime(VM.EndYear, VM.EndMonth, VM.EndDay, VM.EndHour, 0, 0);
-                int  LeaveHours = Convert.ToInt32((NewLeave.EndTime - NewLeave.StartTime).TotalHours);  //總時數
+                int LeaveHours = Convert.ToInt32((NewLeave.EndTime - NewLeave.StartTime).TotalHours);  //總時數
                 var HoursDeRest = LeaveHours;   //請假時數
-                var qLeaveList = db.LeaveHistories.Where(p => p.employeeID == EmployeeDetail.EmployeeID && ((NewLeave.StartTime >= p.StartTime && NewLeave.StartTime < p.EndTime) || (NewLeave.EndTime > p.StartTime && NewLeave.EndTime <= p.EndTime))).Select(p=>p.employeeID);
+                var qLeaveList = db.LeaveHistories.Where(p => p.employeeID == EmployeeDetail.EmployeeID && ((NewLeave.StartTime >= p.StartTime && NewLeave.StartTime < p.EndTime) || (NewLeave.EndTime > p.StartTime && NewLeave.EndTime <= p.EndTime))).Select(p => p.employeeID);
                 var qLeaveTemp = db.LeaveHistoryApprovalTemps.Where(p => p.employeeID == EmployeeDetail.EmployeeID && ((NewLeave.StartTime >= p.StartTime && NewLeave.StartTime < p.EndTime) || (NewLeave.EndTime > p.StartTime && NewLeave.EndTime <= p.EndTime))).Select(p => p.employeeID);
                 if (qLeaveList.Any() || qLeaveTemp.Any())  //驗證請假日期衝突   *popup要開著
                 {
@@ -176,17 +293,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 {
                     return Json(new { fail = true, message = "日期選擇無效，結束日期不可大於起始日期。" }, JsonRequestBehavior.AllowGet);
                 }
-
-                foreach (var hrs in db.LeaveHistoryApprovalTemps)
-                {
-
-                }
-
-                //if(VM.leaveID == 0 && emp.SickLeaveHours +  )
-                //{
-
-                //}
-
                 //======時數邏輯>>>>>>>>>>>>>
                 if (VM.StartHour < 12 && VM.EndHour > 13)
                 {
@@ -214,11 +320,30 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     }
                 }
                 //======時數邏輯<<<<<<<<<<<<<<<
+                int SickL = 0, SpeL = 0, PerL = 0;
+                var qhrs = db.LeaveHistoryApprovalTemps.Where(p => p.StartTime.Year == DateTime.Now.Year).Select(p => new { p.leaveID, p.LeaveHours });
+                foreach (var hrs in qhrs.Where(p => p.leaveID == 0).Select(p => new { p.LeaveHours }))
+                {
+                    SpeL += hrs.LeaveHours.Value;
+                }
+                foreach (var hrs in qhrs.Where(p => p.leaveID == 1).Select(p => new { p.LeaveHours }))
+                {
+                    PerL += hrs.LeaveHours.Value;
+                }
+                foreach (var hrs in qhrs.Where(p => p.leaveID == 2).Select(p => new { p.LeaveHours }))
+                {
+                    SickL += hrs.LeaveHours.Value;
+                }
+                if ((VM.leaveID == 0 && emp.SpecialLeaveHours + SpeL < HoursDeRest) || (VM.leaveID == 1 && emp.PersonalLeaveHours + PerL < HoursDeRest) || VM.leaveID == 2 && emp.SickLeaveHours + SickL < HoursDeRest)
+                {
+                    return Json(new { fail = true, message = "選擇的假別已無剩餘時數，請再次確認。" }, JsonRequestBehavior.AllowGet);
+                }
                 NewLeave.employeeID = EmployeeDetail.EmployeeID;
                 NewLeave.leaveID = VM.leaveID;
                 NewLeave.ReleaseTime = DateTime.Now;
                 NewLeave.Description = VM.Description;
                 NewLeave.Appendix = VM.Appendix;
+                NewLeave.LeaveHours = HoursDeRest;
                 NewLeave.SignState = false;
                 NewLeave.Reject = false;
                 if (EmployeeDetail.PositionID == 2)  //部長
@@ -247,7 +372,10 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     }
                     else
                     {
-                        NewLeave.Status = "待總經理簽核";
+                        if (EmployeeDetail.PositionID == 3)
+                            NewLeave.Status = "待部長簽核";
+                        else   //員工
+                            NewLeave.Status = "待組長簽核";
                     }
                 }
                 else   //總經理
@@ -318,70 +446,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
 
-        // GET: LeaveHistoryApprovalTemps/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            LeaveHistoryApprovalTemp leaveHistoryApprovalTemp = db.LeaveHistoryApprovalTemps.Find(id);
-            if (leaveHistoryApprovalTemp == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.employeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.employeeID);
-            ViewBag.DepartmentLeader = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.DepartmentLeader);
-            ViewBag.GeneralManager = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.GeneralManager);
-            ViewBag.GroupLeader = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.GroupLeader);
-            return View(leaveHistoryApprovalTemp);
-        }
 
-        // POST: LeaveHistoryApprovalTemps/Edit/5
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,employeeID,leaveID,StartTime,EndTime,Description,Appendix,GroupLeader,GroupLeaderSignTime,DepartmentLeader,DepartmentLeaderSignTime,GeneralManager,GeneralManagerSignTime,HREmployee,HREmployeeSignTime,HRGroupLeader,HRGroupLeaderSignTime,Status,SignState,Reject")] LeaveHistoryApprovalTemp leaveHistoryApprovalTemp)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(leaveHistoryApprovalTemp).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.employeeID = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.employeeID);
-            ViewBag.DepartmentLeader = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.DepartmentLeader);
-            ViewBag.GeneralManager = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.GeneralManager);
-            ViewBag.GroupLeader = new SelectList(db.Employees, "employeeID", "EmployeeName", leaveHistoryApprovalTemp.GroupLeader);
-            return View(leaveHistoryApprovalTemp);
-        }
 
-        // GET: LeaveHistoryApprovalTemps/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            LeaveHistoryApprovalTemp leaveHistoryApprovalTemp = db.LeaveHistoryApprovalTemps.Find(id);
-            if (leaveHistoryApprovalTemp == null)
-            {
-                return HttpNotFound();
-            }
-            return View(leaveHistoryApprovalTemp);
-        }
-
-        // POST: LeaveHistoryApprovalTemps/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            LeaveHistoryApprovalTemp leaveHistoryApprovalTemp = db.LeaveHistoryApprovalTemps.Find(id);
-            db.LeaveHistoryApprovalTemps.Remove(leaveHistoryApprovalTemp);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {
