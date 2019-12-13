@@ -22,6 +22,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public System.DateTime EndTime { get; set; }
         public string Description { get; set; }
         public string Appendix { get; set; }
+        public Nullable<int> LeaveHours { get; set; }
         public Nullable<int> GroupLeader { get; set; }
         public Nullable<System.DateTime> GroupLeaderSignTime { get; set; }
         public Nullable<int> DepartmentLeader { get; set; }

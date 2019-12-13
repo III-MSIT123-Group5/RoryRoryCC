@@ -45,11 +45,11 @@
     <script src="/Scripts/moment.js"></script>
 
     <script>
-        var Popup, dataTable, PopupSign , SigndataTable; //height="75%" width="75%" src=\"'height="75%"
+        var Popup, dataTable; //height="75%" width="75%" src=\"'height="75%"
 
         //請假進度&簽核
         $(document).ready(function () {
-            SigndataTable = $('#Leavetable').DataTable({
+            dataTable = $('#Leavetable').DataTable({
                 "ajax": {
                     url: '@Url.Action("LeaveLoadData", "LeaveHistoryApprovalTemps")',
                     method: 'GET',
@@ -74,38 +74,10 @@
                     "emptyTable": "無待簽核申請。"
                 }
             });
+        });
             //<<<<<<<<申請
             //>>>>>>>>簽核
-            SigndataTable = $('#LeaveSigntable').DataTable({
-                "ajax": {
-                    url: '@Url.Action("LeaveSigntureLoadData", "LeaveHistoryApprovalTemps")',
-                    method: 'GET',
-                    dataType: 'json'
-                },
-                "columnDefs": [
-                    { "targets": 0, "data": "EmployeeName", "width": "65px" },
-                    { "targets": 1, "data": "leave_name", "width": "65px" },
-                    { "targets": 2, "data": "name", "width": "65px" },
-                    { "targets": 3, "data": "GroupName", "width": "65px" },
-                    { "targets": 4, "data": "position1", "width": "65px" },
-                    { "targets": 5, "data": "ReleaseTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
-                    { "targets": 6, "data": "StartTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
-                    { "targets": 7, "data": "EndTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
-                   {
-                       "targets": 8, "data": "ID", "render": function (data) {
-                           return `<a class='btn btn-warning btn-sm' onclick=PopupDetail("@Url.Action("LoadDataDetail", "EmployeeApprovalTemps")/${data}")><i class="fa fa-align-left"></i> 詳細資料</a><a class='btn btn-warning btn-sm'  style='margin-left:5px' onclick=AcceptSign("@Url.Action("AcceptRegister", "EmployeeApprovalTemps")/${data}")><i class="fa fa-check-square-o"></i> 核准</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=RejectSign("@Url.Action("RejectRegister", "EmployeeApprovalTemps")/${data}")><i class='fa fa-hand-paper-o'></i> 駁回</a>`
-                        },
-                        "orderable": false,
-                        "searchable": false,
-                        "width": "150px"
-                    }
-                ],
-                "language": {
-                    "emptyTable": "無待簽核申請。"
-                }
-            });
-
-        });
+            
        //>>>>>>>>>>>>>簽核>>>>>>>>>>>>>
     //新增Popup裡的Scripts================
         function SubmitLeaveForm(form) {
