@@ -10,11 +10,9 @@
 
 
 
-@using (Html.BeginForm("AddOrEdit", "CommentQuestions", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+@using (Html.BeginForm("AddOrEdit2", "CommentQuestions", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
 {
     @Html.AntiForgeryToken()
-
-
     @Html.HiddenFor(model => model.CommentQuestionID)
     @Html.HiddenFor(model => model.CommentContentID)
 
