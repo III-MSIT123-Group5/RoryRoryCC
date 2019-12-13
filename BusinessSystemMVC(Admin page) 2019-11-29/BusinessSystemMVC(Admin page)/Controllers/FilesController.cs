@@ -39,12 +39,16 @@ namespace EIPBussinessSystem_MVC.Controllers
             {
                 foreach (HttpPostedFileBase file in files)
                 {
+                    //不含路徑的檔名及附檔名
                     string SourceFilename = Path.GetFileName(file.FileName);
                     //string TargetFilename = Path.Combine(Server.MapPath(
                     //    "~/Uploads"), SourceFilename);
 
+                    //所在資料夾
                     string saveDir = "\\Uploads\\";
+                    //根目錄
                     string appPath = Request.PhysicalApplicationPath;
+                    //完整路徑(包含檔名)
                     string savePath = appPath + saveDir+ SourceFilename;
 
 

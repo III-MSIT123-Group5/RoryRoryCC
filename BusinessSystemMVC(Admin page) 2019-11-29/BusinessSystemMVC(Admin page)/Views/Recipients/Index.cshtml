@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<BusinessSystemMVC_Admin_page_.Models.Recipient>
 
 @{
-    ViewBag.Title = "Index";
+                /**/
+
+                ViewBag.Title = "Index";
 }
 
 <style>
@@ -50,7 +52,7 @@
     <script src="/Scripts/moment.js"></script>
 
     <script>
-        var Popup, dataTable; 
+        var Popup, dataTable;
 
         $(document).ready(function () {
             dataTable = $('#Btable').DataTable({
@@ -63,7 +65,7 @@
 
                     { "targets": 0, "data": "EmployeeName", "width": "60px" },
                     { "targets": 1, "data": "Title", "width": "60px" },
-                    { "targets": 2, "data": "Data" }, 
+                    { "targets": 2, "data": "Data" },
                     { "targets": 3, "data": "MailingDate","render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
                     { "targets": 4, "data": "RecipientID", "render": function (data) {
                         return "<a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
@@ -99,7 +101,33 @@
                             Popup.dialog('destroy').remove();
                         }
                     });
+                    $('#department').bind("change", function () {
+                        ChangeDepartment();
+                    });
                 });
+        }
+        function ChangeDepartment() {
+            var selectedValue = $('#department option:selected').val();
+            GetEmployee(selectedValue);
+        }
+        function GetEmployee(departmentID) {
+            $.ajax({
+                url: '@Url.Action("GetEmployee", "Recipients")',
+                data: { departmentID: departmentID },
+                type: 'post',
+                cache: false,
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.length > 0) {
+                        $('#EmployeeID').empty();
+                        $('#EmployeeID').append($('<option></option>').val('').text('--收件人--'));
+                        $.each(data, function (i, item) {
+                            $('#EmployeeID').append($('<option></option>').val(item.Key).text(item.Value));
+                        });
+                    }
+                }
+            });
         }
 
         function SubmitForm(form) {
