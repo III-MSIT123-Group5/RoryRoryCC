@@ -9,7 +9,7 @@
 
 
 
-@using (Html.BeginForm("AddOrEdit", "EventCalendarsController", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+@using (Html.BeginForm("AddOrEdit", "EventCalendars", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
 {
     @Html.AntiForgeryToken()
 
@@ -40,13 +40,14 @@
     <div class="taglabel">
 
         @Html.LabelFor(model => model.StartTime, new { @class = "control-label" })
-
+        
         <div class="input-group date" id="datepickerstart" data-target-input="nearest" style="width:300px">
             @Html.TextBoxFor(model => model.StartTime,null, new{
                @class = "form-control datetimepicker-input",
                @style = "padding-left:0px;text-indent:10px;",
                data_target = "#datepickerstart",
-               data_toggle = "datetimepicker"
+               data_toggle = "datetimepicker",
+               
        })
             <div class="input-group-append" data-target="#datepickerstart" data-toggle="datetimepicker">
                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -56,7 +57,10 @@
 
         <script type="text/javascript">
             $(function () {
-                $('#datepickerstart').datetimepicker();
+                $('#datepickerstart').datetimepicker({
+                    
+                });
+
             });
         </script>
 
@@ -137,7 +141,8 @@
 
     <div class="taglabel">
         @Html.LabelFor(model => model.ThemeColor, new { @class = "control-label" })
-
+        @Html.TextBoxFor(model => model.ThemeColor, new { @class = "form-control", @MaxLength = "1000" ,type="color" ,width="20",height="20"})
+        
 
         @Html.ValidationMessageFor(model => model.IsImportant)
 
@@ -172,7 +177,7 @@
 
         <div>
             <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
-            <input type="submit" value="送出貼文" class="btn btn-success" style="margin-right:10px" />
+            <input type="submit" value="送出貼文" class="btn btn-success" style="margin-right:10px" id="sent"/>
 
         </div>
     </div>

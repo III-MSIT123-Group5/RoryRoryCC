@@ -1,0 +1,83 @@
+﻿@model BusinessSystemMVC_Admin_page_.Models.LeaveHistoryApprovalTemp
+
+@{
+    Layout = null;
+}
+<div>
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.Label("員工姓名")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.Label("假別")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Leave.leave_name)
+        </dd>
+
+        <dt>
+            @Html.Label("申請時間")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseTime)
+        </dd>
+
+        <dt>
+            @Html.Label("起始時間")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.Label("結束時間")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+        <dt>
+            @Html.Label("請假時數")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeaveHours)
+        </dd>
+
+        <dt>
+            @Html.Label("事由")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.Label("附件")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Appendix)         @*要變成圖片*@
+        </dd>
+
+        <dt>
+            @Html.Label("簽核狀態")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+    </dl>
+</div>
+
+
