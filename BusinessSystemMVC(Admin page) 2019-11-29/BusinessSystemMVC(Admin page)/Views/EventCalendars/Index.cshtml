@@ -80,35 +80,33 @@
     <script>
         var Popup, dataTable;
 
-        var events = []      
+              
         $(document).ready(function () {
-
+            var events = []
             $.ajax({
                 type: "GET",
                 url: "/EventCalendars/Getevent",
+                
                 success: function (data) {
-                    console.log(data)
+                    console.log(data);
                     $.each(data, function (i, v) {
                         events.push({
-                            employeeID: v.EmployeeID,
-                            title: v.Subject,
-                            DepartmentID: v.DepartmentID,
-                            StartTime: v.StartTime,
-                            EndTime: v.EndTime != null ? moment(v.EndTime) : null,
-                            Location: v.Location,
-                            Description: v.Description,
-                            color: v.ThemeColor,
-                            IsImportant: v.IsImportant
-                        })
-
+                            title: `${v.Subject}`,
+                            start:`${v.StartTime}`,
+                            end:`${v.EndTime}`,
+                            
+                            })
+                        
                     })
 
                     GenerateCalender(events);
+                    console.log(events);
                 },
                 error: function (error) {
                     alert('failed');
                     console.log(error)
                 }
+
             })
             /*
             function GenerateCalender(events) {
@@ -150,7 +148,7 @@
 
             function GenerateCalender(events) {
 
-
+                console.log(events);
 
                 var calendarEl = document.getElementById('evecalendar');
 
@@ -169,13 +167,20 @@
                     businessHours: true, // display business hours
                     editable: true,
                     //events: events
-                    events:
-                        [
-                            {
-                                title: 'Business Lunch',
-                                start: '2019-08-03T13:00:00',
-                                constraint: 'businessHours'
-                            },
+                    //events:
+                        //[
+                          
+                        //    {
+                        //        title: 'Business Lunch',
+                        //        start: '2019-12-03T13:00:00',
+                        //        constraint: 'businessHours'
+                        //    },
+                        //    ]
+                            //{
+                            //    title: 'Business Lunch',
+                            //    start: '2019-08-03T13:00:00',
+                            //    constraint: 'businessHours'
+                            //},
                     //        {
                     //            title: 'Meeting',
                     //            start: '2019-08-13T11:00:00',
@@ -221,20 +226,13 @@
                     //            rendering: 'background',
                     //            color: '#ff9f89'
                     //        }
-                        ]
+                        //],
+                    
                 });
 
                 calendar.render();
 
-                var containerEl = document.getElementById('external-events-list');
-                new Draggable(containerEl, {
-                    itemSelector: '.fc-event',
-                    eventData: function (eventEl) {
-                        return {
-                            title: eventEl.innerText.trim()
-                        }
-                    }
-                });
+                
 
             }
             
