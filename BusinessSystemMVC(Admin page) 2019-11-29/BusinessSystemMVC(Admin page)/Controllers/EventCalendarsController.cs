@@ -22,6 +22,26 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(eventCalendars.ToList());
         }
 
+        public ActionResult LoadData()
+        {//.OrderBy(b => b.PostTime).ToList();
+
+            var data = from ecal in db.EventCalendars
+                       join emp in db.Employees
+                       on ecal.employeeID equals emp.employeeID
+                       join dep in db.Departments
+                       on ecal.DepartmentID equals dep.departmentID
+                       select ecal;
+
+            var datas = data.ToList();
+
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+            //return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
         // GET: EventCalendars/Details/5
         public ActionResult Details(int? id)
         {
@@ -69,21 +89,24 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
                 if (ecal.CalendarID == 0)
                 {
+                                        
                     db.EventCalendars.Add(new EventCalendar()
                     {
                         employeeID = EmployeeDetail.EmployeeID,
                         Subject = ecal.Subject,
                         DepartmentID =ecal.DepartmentID,
-                        StartTime = DateTime.Now,
+                        StartTime = ecal.StartTime,
                         EndTime = ecal.EndTime,
                         Location = ecal.Location,
                         Description = ecal.Description,
-                        IsImportant = ecal.IsImportant
+                        IsImportant = ecal.IsImportant,
+                        ThemeColor = ecal.ThemeColor
 
                     });
                     db.SaveChanges();
 
                     return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
+                    
                 }
                 else
                 {
@@ -120,7 +143,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         {
             BusinessDataBaseEntities db = new BusinessDataBaseEntities();
             
-                var events = db.EventCalendars.Select(n=>new {n.CalendarID,n.employeeID, n.Subject,n.DepartmentID,n.StartTime,n.EndTime,n.Location,n.Description,n.IsImportant,n.ThemeColor }).ToList();
+            var events = db.EventCalendars.AsEnumerable().Select(n=>new {n.CalendarID,n.employeeID, n.Subject,n.DepartmentID,StartTime = n.StartTime.ToString("yyyy-MM-dd hh:ss"),EndTime= n.EndTime.ToString("yyyy-MM-dd hh:ss"),n.Location,n.Description,n.IsImportant,n.ThemeColor }).ToList();
             //return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
 
             return Json(events, JsonRequestBehavior.AllowGet);
