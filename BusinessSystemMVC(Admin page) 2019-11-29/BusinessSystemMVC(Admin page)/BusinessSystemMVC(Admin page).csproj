@@ -1373,6 +1373,9 @@
     <Content Include="Views\Shared\_MeetingRoomChangePartial.cshtml" />
     <Content Include="Views\CommentMains\ViewContent2.cshtml" />
     <Content Include="Views\CommentMains\ViewContent.cshtml" />
+    <Content Include="Views\LeaveHistoryApprovalTemps\LeaveSigntureIndex.cshtml" />
+    <Content Include="Views\LeaveHistoryApprovalTemps\LeaveLoadDataDetail.cshtml" />
+    <Content Include="Views\Shared\_LeaveSigntureLoadDataPartial.cshtml" />
     <Content Include="Views\OrderDetails\ApprovalReject.cshtml" />
     <Content Include="Views\Recipients\MessageIndex.cshtml" />
     <Content Include="Views\CommentChilds\Create.cshtml" />
