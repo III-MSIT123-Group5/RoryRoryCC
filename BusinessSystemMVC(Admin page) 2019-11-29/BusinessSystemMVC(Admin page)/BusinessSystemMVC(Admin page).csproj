@@ -647,7 +647,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApprovalsController.cs" />
     <Compile Include="Controllers\BulletinBoardsController.cs" />
+    <Compile Include="Controllers\CommentChildsController.cs" />
     <Compile Include="Controllers\CommentMainsController.cs" />
+    <Compile Include="Controllers\CommentQuestionsController.cs" />
     <Compile Include="Controllers\CompanyVehicleBorrowController.cs" />
     <Compile Include="Controllers\CompanyVehicleHistoriesController.cs" />
     <Compile Include="Controllers\CompanyVehiclesController.cs" />
@@ -657,6 +659,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaveHistoryApprovalTempsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MeetingRoomHistoriesController.cs" />
+    <Compile Include="Controllers\MeetingRoomsBorrowController.cs" />
     <Compile Include="Controllers\MeetingRoomsController.cs" />
     <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Controllers\RecipientsController.cs" />
@@ -827,6 +831,13 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\BulletinBoardEmployeeViewModel.cs" />
     <Compile Include="ViewModels\LeaveHistoryApprovalTempViewModel.cs" />
+    <Compile Include="Views\EventCalendars\Metadata\EventCalendarMetaData.cs" />
+    <Compile Include="Views\EventCalendars\Metadata\EventCalendar.cs" />
+    <Compile Include="Views\EventCalendars\Metadata\Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\2013.2.611\Black\editor.png" />
@@ -1348,11 +1359,31 @@
     <Content Include="Views\MeetingRooms\Index.cshtml" />
     <Content Include="Views\MeetingRooms\AddOrEdit.cshtml" />
     <Content Include="Views\MeetingRooms\AddOrEdit2.cshtml" />
+    <Content Include="Views\MeetingRoomsBorrow\Create.cshtml" />
+    <Content Include="Views\MeetingRoomsBorrow\Delete.cshtml" />
+    <Content Include="Views\MeetingRoomsBorrow\Details.cshtml" />
+    <Content Include="Views\MeetingRoomsBorrow\Edit.cshtml" />
+    <Content Include="Views\MeetingRoomsBorrow\Index.cshtml" />
+    <Content Include="Views\MeetingRoomHistories\Create.cshtml" />
+    <Content Include="Views\MeetingRoomHistories\Delete.cshtml" />
+    <Content Include="Views\MeetingRoomHistories\Details.cshtml" />
+    <Content Include="Views\MeetingRoomHistories\Edit.cshtml" />
+    <Content Include="Views\MeetingRoomHistories\Index.cshtml" />
+    <Content Include="Views\Shared\_CompanyVehicleChangePartial.cshtml" />
+    <Content Include="Views\Shared\_MeetingRoomChangePartial.cshtml" />
     <Content Include="Views\CommentMains\ViewContent2.cshtml" />
     <Content Include="Views\CommentMains\ViewContent.cshtml" />
     <Content Include="Views\LeaveHistoryApprovalTemps\LeaveSigntureIndex.cshtml" />
     <Content Include="Views\LeaveHistoryApprovalTemps\LeaveLoadDataDetail.cshtml" />
     <Content Include="Views\Shared\_LeaveSigntureLoadDataPartial.cshtml" />
+    <Content Include="Views\OrderDetails\ApprovalReject.cshtml" />
+    <Content Include="Views\Recipients\MessageIndex.cshtml" />
+    <Content Include="Views\CommentChilds\Create.cshtml" />
+    <Content Include="Views\CommentChilds\Delete.cshtml" />
+    <Content Include="Views\CommentChilds\Details.cshtml" />
+    <Content Include="Views\CommentChilds\Edit.cshtml" />
+    <Content Include="Views\CommentChilds\Index.cshtml" />
+    <Content Include="Views\CommentChilds\Reply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1595,6 +1626,12 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>EditorLocalization.bg-BG.designer.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EventCalendars\Metadata\Resource1.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

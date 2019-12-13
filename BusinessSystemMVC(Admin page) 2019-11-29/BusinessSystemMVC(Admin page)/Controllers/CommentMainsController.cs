@@ -37,30 +37,27 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(commentMain);
         }
 
-        //Get
+        //Get //no use
         public ActionResult LoadCommentContent()
         {
-            var q1 = from cc in db.CommentContents
-                     select new
-                     {
-                         cc.CommentContentID,
-                         cc.CommentContent1,
-                         cc.CommentOptionID
-                     };
+            var data = from b in db.BulletinBoards
+                       join emp in db.Employees
+                       on b.EmployeeID equals emp.employeeID
+                       join d in db.Departments
+                       on b.DepartmentID equals d.departmentID
+                       select new
+                       {
+                          b.Content,
+                          b.PostTime,
+                          d.name,
+                          emp.EmployeeName,
+                          b.Num,
+                          emp.Photo
+                       };
 
-            var items = new List<SelectListItem>();
+            var datas = data.ToList();
 
-            foreach (var n in q1)
-            {
-                items.Add(new SelectListItem()
-                {
-                    Text = n.CommentContent1,
-                    Value = n.CommentContentID.ToString()
-                });
-
-            }
-
-            return Json(items, JsonRequestBehavior.AllowGet);
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
         }
 
         //Get
