@@ -15,8 +15,11 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
 
         // GET: CommentQuestions
-        public ActionResult Index()
+        public ActionResult Index(int id = 0)
         {
+            int EmpID = EmployeeDetail.EmployeeID;
+
+
             var result = from cc in db.CommentContents
                          join co in db.CommentOptions
                          on cc.CommentOptionID equals co.CommentOptionID
@@ -43,10 +46,22 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             }
 
             ViewBag.CommentContentItems = items;
+            if (id == 0)
+            {
+                return View(new CommentQuestion());
 
+            }
+            else
+            {
+                using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+                {
 
-            var commentQuestions = db.CommentQuestions.Include(c => c.CommentContent);
-            return View(commentQuestions.ToList());
+                    return View(db.CommentQuestions.Where(x => x.CommentQuestionID == id).FirstOrDefault<CommentQuestion>());
+                }
+            }
+
+            //var commentQuestions = db.CommentQuestions.Include(c => c.CommentContent);
+            //return View(commentQuestions.ToList());
         }
 
         //Get
@@ -110,13 +125,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             return Json(q1, JsonRequestBehavior.AllowGet);
         }
-
-
         [HttpGet]
         public ActionResult AddOrEdit(int id = 0)
         {
-
-
             int EmpID = EmployeeDetail.EmployeeID;
 
             var result = from cc in db.CommentContents
@@ -131,7 +142,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                          };
 
             var items = new List<GroupedSelectListItem>();
-
             foreach (var n in result)
             {
                 items.Add(new GroupedSelectListItem()
@@ -143,11 +153,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
                 });
             }
-
-            ViewBag.CommentContentItems = items;
-
-
-
+            //ViewBag.CommentContentItems = items;
             if (id == 0)
             {
                 return View(new CommentQuestion());
@@ -161,6 +167,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     return View(db.CommentQuestions.Where(x => x.CommentQuestionID == id).FirstOrDefault<CommentQuestion>());
                 }
             }
+
         }
 
         [HttpPost]
@@ -173,20 +180,17 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 {
 
                     int EmpID = EmployeeDetail.EmployeeID;
-
                     int ccID = 102;
-
                     ccID = Convert.ToInt32(formCollection["CommentContent"]);
 
                     db.CommentQuestions.Add(new CommentQuestion()
                     {
-                        Question = c.Question,
-                        //CommentQuestionID = c.CommentQuestionID,
+                        Question = c.Question, 
+                        CommentQuestionID = c.CommentQuestionID,
                         CommentContentID = ccID,
 
                     });
                     db.SaveChanges();
-
                     return Json(new { success = true, message = "成功新建調查項目" }, JsonRequestBehavior.AllowGet);
                 }
                 else
@@ -199,6 +203,76 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             }
         }
+
+        //[HttpGet]
+        //public ActionResult AddOrEdit2(int id = 0)
+        //{
+        //    int EmpID = EmployeeDetail.EmployeeID;
+
+        //    var result = from cc in db.CommentContents
+        //                 join co in db.CommentOptions
+        //                 on cc.CommentOptionID equals co.CommentOptionID
+        //                 select new
+        //                 {
+        //                     cc.CommentOptionID,
+        //                     co.CommentOption1,
+        //                     cc.CommentContent1,
+        //                     cc.CommentContentID
+        //                 };
+
+        //    var items = new List<GroupedSelectListItem>();
+        //    foreach (var n in result)
+        //    {
+        //        items.Add(new GroupedSelectListItem()
+        //        {
+        //            Value = n.CommentContentID.ToString(),
+        //            Text = string.Format("{0} {1}", n.CommentContentID.ToString(), n.CommentContent1),
+        //            GroupKey = n.CommentOptionID.ToString(),
+        //            GroupName = n.CommentOption1
+
+        //        });
+        //    }
+        //    ViewBag.CommentContentItems = items;
+        //    if (id == 0)
+        //    {
+        //        return View(new CommentQuestion());
+
+        //    }
+        //    else
+        //    {
+        //        using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+        //        {
+
+        //            return View(db.CommentQuestions.Where(x => x.CommentQuestionID == id).FirstOrDefault<CommentQuestion>());
+        //        }
+        //    }
+            
+        //}
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult AddOrEdit2(CommentQuestion c, FormCollection formCollection)
+        //{
+        //    using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+        //    {
+        //            int EmpID = EmployeeDetail.EmployeeID;
+        //            int ccID = 102;
+        //            ccID = Convert.ToInt32(formCollection["CommentContent"]);
+
+        //            db.CommentQuestions.Add(new CommentQuestion()
+        //            {
+        //                Question = c.Question,
+        //                //CommentQuestionID = c.CommentQuestionID,
+        //                CommentContentID = ccID,
+
+        //            });
+        //            db.SaveChanges();
+        //            return Json(new { success = true, message = "成功新建調查項目" }, JsonRequestBehavior.AllowGet);
+                
+                
+        //    }
+        //}
+
 
         [HttpPost]
         public ActionResult Delete(int id)
