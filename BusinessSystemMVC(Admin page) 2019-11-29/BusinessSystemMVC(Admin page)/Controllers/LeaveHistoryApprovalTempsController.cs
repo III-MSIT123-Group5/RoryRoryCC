@@ -33,16 +33,20 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         [HttpGet]
         public ActionResult LeaveSigntureLoadData()
         {
-            var q = db.LeaveHistoryApprovalTemps.Where(p => p.SignState == false && p.Reject == false).Select(p=> p   );
-            //.Select(p => new { p.Employee.EmployeeName, p.Leave.leave_name, p.Employee.Department.name, p.Employee.Group.GroupName, p.Employee.Position.position1, p.ReleaseTime, p.StartTime, p.EndTime, p.ID })
-             if(EmployeeDetail.PositionID == 3)
+            var q = db.LeaveHistoryApprovalTemps.Where(p => p.SignState == false && p.Reject == false);
+             if(EmployeeDetail.PositionID == 3) //組長
             {
-                q.Where(p => p.GroupLeader == null && p.Employee.ManagerID == EmployeeDetail.EmployeeID).Select(p => new { p.Employee.EmployeeName, p.Leave.leave_name, p.Employee.Department.name, p.Employee.Group.GroupName, p.Employee.Position.position1, p.ReleaseTime, p.StartTime, p.EndTime, p.ID });
+                q.Where(p => p.GroupLeader == null && p.Employee.ManagerID == EmployeeDetail.EmployeeID);
             }
-
-
-
-            var datas = q.ToList();
+             else if(EmployeeDetail.PositionID == 2) //部長
+            {
+                q.Where(p => p.Employee3.ManagerID == EmployeeDetail.EmployeeID && p.GroupLeader != null && p.DepartmentLeader == null );
+            }
+            else  //總仔
+            {
+                q.Where(p => p.Employee1.ManagerID == EmployeeDetail.EmployeeID && p.GroupLeader != null && p.DepartmentLeader != null && p.GeneralManager ==null);
+            }
+            var datas = q.Select(p => new { p.Employee.EmployeeName, p.Leave.leave_name, p.Employee.Department.name, p.Employee.Group.GroupName, p.Employee.Position.position1, p.ReleaseTime, p.StartTime, p.EndTime, p.ID }).ToList();
             return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
         }
 
@@ -172,6 +176,17 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 {
                     return Json(new { fail = true, message = "日期選擇無效，結束日期不可大於起始日期。" }, JsonRequestBehavior.AllowGet);
                 }
+
+                foreach (var hrs in db.LeaveHistoryApprovalTemps)
+                {
+
+                }
+
+                //if(VM.leaveID == 0 && emp.SickLeaveHours +  )
+                //{
+
+                //}
+
                 //======時數邏輯>>>>>>>>>>>>>
                 if (VM.StartHour < 12 && VM.EndHour > 13)
                 {
