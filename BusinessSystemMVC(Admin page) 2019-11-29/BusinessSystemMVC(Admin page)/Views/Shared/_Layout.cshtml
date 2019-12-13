@@ -8,6 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <style>
+        i {
+            vertical-align:middle;
+        }
+    </style>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", required: false)
@@ -101,7 +106,7 @@
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseCommentMains">
                         <li class="color hover">
-                            <a href="@Url.Action("Create","CommentQuestions")" style="font-family:'NotoSansCJKtc-Bold'">編寫調查</a>
+                            <a href="@Url.Action("Index","CommentQ")" style="font-family:'NotoSansCJKtc-Bold'">編寫調查</a>
                         </li>
                         <li class="color hover">
                             <a href="@Url.Action("Index","CompanyVehicleBorrow")" style="font-family:'NotoSansCJKtc-Bold'">回覆調查</a>
@@ -127,7 +132,7 @@
                 @*請假系統*@
                 <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="請假系統">
                     <a class="nav-link" href="@Url.Action("Index", "LeaveHistoryApprovalTemps")">
-                        <i class="fa fa-plane" aria-hidden="true"></i>
+                        <i class="fa fa-fw fa-plane" aria-hidden="true"></i>
                         <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'"> 請假系統</span>
                     </a>
                 </li>
@@ -137,7 +142,7 @@
                 @Html.Partial("_SignOffSystemPartial")
                 @*只有HR可看見HRsystem*@
                 @Html.Partial("_HRSystemPartial")
-                @*只有IT可看見HRsystem*@
+                @*只有IT可看見ITsystem*@
                 @Html.Partial("_ITSystemPartial")
             </ul>
             <ul class="navbar-nav sidenav-toggler" style=" border-right: 1px solid lightgray">
@@ -267,6 +272,7 @@
         //<><><><><><><><><把需要刷新的方法放在這><><><><><><><><><><
         function getlocation() {
             $("#appendnews").empty();
+            $("#oldnews").empty();
             getVehicleData();
             getMeetingData()
             //.....
@@ -327,14 +333,14 @@
                     //  timetroll < Stime : 現在時間不能大於車輛預約起始時間
                     //  &&
                     //  判斷紀錄是否為登入者本人的紀錄
-                    if (timetroll >= (Stime - 86400000) && timetroll < Stime && @EmployeeDetail.EmployeeID == data[i].employeeID) {
+                    if (timetroll >= (Stime - 1800000) && timetroll < Stime && @EmployeeDetail.EmployeeID == data[i].employeeID) {
                         ampm();
                         //以下形式未標記(可修改)請勿修改
                         //(公務車預約通知)為通知標題，可修改。!!!!!!!!!!
                         //(${hour}:${mins}${apm})，為取得現在時間，請勿修改。XXXXXX
                         //(公務車(${License})預約時間為:${timestampToTime(Stime)}，請準時取車。)可以修改
                         //timestampToTime(*可放入時間戳*)，此方法可將時間戳13位數形式轉為正常時間格式
-                            $("#appendnews").append('<div class="dropdown - divider"></div>')
+                            $("#appendnews").append('<div class="dropdown - divider" value="1"></div>')
                             $("#appendnews").append(`<a class="dropdown-item" href="#"><span class="text-success"><strong>
 <i class= "fa fa-long-arrow-up fa-fw" ></i> 公務車預約通知</strong></span>
 <span class="small float-right text-muted">${hour}:${mins}${apm}</span>
@@ -385,13 +391,28 @@
 <span class="small float-right text-muted">${hour}:${mins}${apm}</span>
 <div class="dropdown-message small">會議室(${meetID}_${meetName})預約時間為:${timestampToTime(Stime)}，請通知與會人員。</div></a>`)
                         $("#appendnews").click(function () {
-
+                            $('#appendnews').attr('id', 'oldnews');
                         })
+                        $("oldnews").append('<div class="dropdown - divider"></div>')
+                        $("oldnews").append(`<a class="dropdown-item" href="#"><span class="text-success"><strong>
+<i class= "fa fa-long-arrow-up fa-fw" ></i> 會議室預約通知</strong></span>
+<span class="small float-right text-muted">${hour}:${mins}${apm}</span>
+<div class="dropdown-message small">會議室(${meetID}_${meetName})預約時間為:${timestampToTime(Stime)}，請通知與會人員。</div></a>`)
+
                         }
                 }
 
             })
         }
+        function readornotread() {
+            if()
+        }
+
+
+
+
+
+
     </script>
     @RenderSection("scripts", required: false)
 

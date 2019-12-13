@@ -22,6 +22,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public System.DateTime EndTime { get; set; }
         public string Description { get; set; }
         public string Appendix { get; set; }
+        public Nullable<int> LeaveHours { get; set; }
     
         public virtual Employee Employee { get; set; }
         public virtual Leave Leave { get; set; }

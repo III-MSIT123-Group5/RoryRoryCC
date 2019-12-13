@@ -1,4 +1,5 @@
-﻿@model BusinessSystemMVC_Admin_page_.Models.LeaveHistoryApprovalTemp
+﻿
+@model BusinessSystemMVC_Admin_page_.Models.LeaveHistoryApprovalTemp
 
 @{
     Layout = null;
@@ -80,5 +81,7 @@
     </dl>
 </div>
 <p>
-    <a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=PopupCancel("@Url.Action("CancelLeave", "LeaveHistoryApprovalTemps" )/@Model.ID")><i class="fa fa-ban" aria-hidden="true"></i></i> 取消申請</a>
+    <a class='btn btn-warning btn-sm' style='margin-left:5px' onclick=PopupAcceptSign("@Url.Action("AcceptLeave", "LeaveHistoryApprovalTemps" )/@Model.ID")><i class="fa fa-check-square-o"></i> 核准</a>
+    <a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=PopupRejectSign("@Url.Action("RejectLeave", "LeaveHistoryApprovalTemps" )/@Model.ID")><i class='fa fa-hand-paper-o'></i> 駁回</a>
 </p>
+
