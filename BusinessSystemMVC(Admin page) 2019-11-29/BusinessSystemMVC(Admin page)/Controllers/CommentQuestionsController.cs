@@ -320,13 +320,100 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
 
 
+        public ActionResult Display()
+        {
+            ViewBag.Message = "編輯分類、主題、調查選項";
+
+            SelectList selectList = new SelectList(this.GetOptions(), "CommentOptionID", "CommentOption1");
+            ViewBag.SelectList = selectList;
+
+            return View();
+        }
+
+
+        private IEnumerable<CommentOption> GetOptions()
+        {
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+                var query = db.CommentOptions.OrderBy(x => x.CommentOptionID);
+                return query.ToList();
+            }
+        }
+
+
+        [HttpPost]
+        public JsonResult DisplayContents(int commentOptionID)
+        {
+            List<KeyValuePair<string, string>> items = new List<KeyValuePair<string, string>>();
+
+            if (commentOptionID != 0)
+            {
+                var contents = this.GetContents(commentOptionID);
+                if (contents.Count() > 0)
+                {
+                    foreach (var c in contents)
+                    {
+                        items.Add(new KeyValuePair<string, string>(
+                            c.CommentContentID.ToString(),
+                            string.Format("{0} {1}", c.CommentContentID, c.CommentContent1)));
+                    }
+                }
+            }
+            return this.Json(items);
+        }
+
+
+        private IEnumerable<CommentContent> GetContents(int commentOptionID)
+        {
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+                var query = db.CommentContents.Where(x => x.CommentOptionID == commentOptionID).OrderBy(x => x.CommentOptionID);
+                return query.ToList();
+            }
+        }
 
 
 
+        [HttpPost]
+        public JsonResult DisplayQuestions(string commentContentID)
+        {
+            //List<string> items = new List<string>();
+
+            List<KeyValuePair<string, string>> items = new List<KeyValuePair<string, string>>();
 
 
+            //if (commentContentID != 0)
+            int id = 0;
+
+            if (!string.IsNullOrWhiteSpace(commentContentID) && int.TryParse(commentContentID, out id))
+            {
+                var questions = this.GetQuestions(id);
+
+                if (questions.Count() > 0)
+                {
+                    foreach (var question in questions)
+                    {
+                        //items.Add(question.Question);
+
+                        items.Add(new KeyValuePair<string, string>(
+                        question.CommentQuestionID.ToString(),
+                        question.Question
+                        ));
+                    }
+                }                
+            }
+            return this.Json(items);
+        }
 
 
+        private IEnumerable<CommentQuestion> GetQuestions(int commentContentID)
+        {
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+                var query = db.CommentQuestions.Where(x => x.CommentContentID == commentContentID).OrderBy(x=>x.CommentQuestionID);
+                return query.ToList();
+            }
+        }
 
 
 
@@ -345,6 +432,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             }
             return View(commentQuestion);
         }
+
+
 
         // GET: CommentQuestions/Create
         //public ActionResult Create()
@@ -405,30 +494,30 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
         // GET: CommentQuestions/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CommentQuestion commentQuestion = db.CommentQuestions.Find(id);
-            if (commentQuestion == null)
-            {
-                return HttpNotFound();
-            }
-            return View(commentQuestion);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    CommentQuestion commentQuestion = db.CommentQuestions.Find(id);
+        //    if (commentQuestion == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(commentQuestion);
+        //}
 
         // POST: CommentQuestions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            CommentQuestion commentQuestion = db.CommentQuestions.Find(id);
-            db.CommentQuestions.Remove(commentQuestion);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    CommentQuestion commentQuestion = db.CommentQuestions.Find(id);
+        //    db.CommentQuestions.Remove(commentQuestion);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {
