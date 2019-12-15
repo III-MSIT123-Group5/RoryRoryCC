@@ -1398,6 +1398,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="CarUpload\" />
     <Folder Include="imgcar\" />
     <Folder Include="imgLeaveAppendix\" />
     <Folder Include="imgProfiles\" />
