@@ -648,7 +648,6 @@
     <Compile Include="Controllers\BulletinBoardsController.cs" />
     <Compile Include="Controllers\CommentChildsController.cs" />
     <Compile Include="Controllers\CommentMainsController.cs" />
-    <Compile Include="Controllers\CommentQController.cs" />
     <Compile Include="Controllers\CommentQuestionsController.cs" />
     <Compile Include="Controllers\CompanyVehicleBorrowController.cs" />
     <Compile Include="Controllers\CompanyVehicleHistoriesController.cs" />
