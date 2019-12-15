@@ -1401,6 +1401,7 @@
     <Folder Include="imgcar\" />
     <Folder Include="imgLeaveAppendix\" />
     <Folder Include="imgProfiles\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

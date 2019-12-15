@@ -10,7 +10,7 @@
     @Html.AntiForgeryToken()
 <fieldset>
     <legend>多檔上傳</legend>
-    @Html.TextBox("files", null, new { @type = "file", @multiple = "multiple" })
+    @Html.TextBox("files", null, new { @type = "file", @multiple = "multiple" })    
     <br />
     <br />
     <button type="submit" title="執行多檔上傳" class="btn btn-primary">
