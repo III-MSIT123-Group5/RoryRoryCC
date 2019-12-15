@@ -338,7 +338,7 @@
                     //  timetroll < Stime : 現在時間不能大於車輛預約起始時間
                     //  &&
                     //  判斷紀錄是否為登入者本人的紀錄
-                    if (timetroll >= (Stime - 1800000) && timetroll < Stime && @EmployeeDetail.EmployeeID == data[i].employeeID) {
+                    if (timetroll >= (Stime - 86400000) && timetroll < Stime && @EmployeeDetail.EmployeeID == data[i].employeeID) {
                         ampm();
                         //以下形式未標記(可修改)請勿修改
                         //(公務車預約通知)為通知標題，可修改。!!!!!!!!!!
@@ -403,6 +403,8 @@
 
             })
         }
+
+        
        
 
 
