@@ -11,7 +11,7 @@ namespace BusinessSystemMVC_Admin_page_.ViewModels
         [Required]
         public int leaveID { get; set; }
         public string Description { get; set; }
-        public string Appendix { get; set; }
+        public IEnumerable<HttpPostedFileBase> AppendixFile { get; set; }
         [Required]
         public int StartYear { get; set; }
         [Required]
