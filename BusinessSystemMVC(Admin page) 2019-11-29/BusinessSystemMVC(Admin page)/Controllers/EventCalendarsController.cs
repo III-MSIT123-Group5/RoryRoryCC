@@ -22,41 +22,27 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(eventCalendars.ToList());
         }
 
-        public ActionResult LoadData()
-        {//.OrderBy(b => b.PostTime).ToList();
+        //public ActionResult LoadData()
+        //{//.OrderBy(b => b.PostTime).ToList();
 
-            var data = from ecal in db.EventCalendars
-                       join emp in db.Employees
-                       on ecal.employeeID equals emp.employeeID
-                       join dep in db.Departments
-                       on ecal.DepartmentID equals dep.departmentID
-                       select ecal;
+        //    var data = from ecal in db.EventCalendars
+        //               join emp in db.Employees
+        //               on ecal.employeeID equals emp.employeeID
+        //               join dep in db.Departments
+        //               on ecal.DepartmentID equals dep.departmentID
+        //               select ecal;
 
-            var datas = data.ToList();
+        //    var datas = data.ToList();
 
-            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
-            //return Json(data, JsonRequestBehavior.AllowGet);
-        }
-
-
+        //    return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+        //    //return Json(data, JsonRequestBehavior.AllowGet);
+        //}
 
 
 
-        // GET: EventCalendars/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            EventCalendar eventCalendar = db.EventCalendars.Find(id);
-            if (eventCalendar == null)
-            {
-                return HttpNotFound();
-            }
-            return View(eventCalendar);
-        }
 
+
+       
         [HttpGet]
         public ActionResult AddOrEdit(int id = 0)
         {
@@ -105,12 +91,15 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     });
                     db.SaveChanges();
 
+                    
                     return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
                     
                 }
                 else
                 {
+
                     db.Entry(ecal).State = EntityState.Modified;
+                    
                     db.SaveChanges();
 
                     
@@ -143,12 +132,32 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         {
             BusinessDataBaseEntities db = new BusinessDataBaseEntities();
             
-            var events = db.EventCalendars.AsEnumerable().Select(n=>new {n.CalendarID,n.employeeID, n.Subject,n.DepartmentID,StartTime = n.StartTime.ToString("yyyy-MM-dd hh:ss"),EndTime= n.EndTime.ToString("yyyy-MM-dd hh:ss"),n.Location,n.Description,n.IsImportant,n.ThemeColor }).ToList();
+            var events = db.EventCalendars.AsEnumerable().Select(n=>new {n.CalendarID,n.employeeID, n.Subject,n.DepartmentID,StartTime = n.StartTime.ToString("yyyy-MM-dd hh:ss"),EndTime= n.EndTime.ToString("yyyy-MM-dd hh:ss"),n.Location,n.Description,n.IsImportant,n.ThemeColor }).Where(n=>n.employeeID ==EmployeeDetail.EmployeeID).ToList();
             //return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
 
             return Json(events, JsonRequestBehavior.AllowGet);
 
         }
+
+
+        //GET: EventCalendars/Details/5
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    EventCalendar eventCalendar = db.EventCalendars.Find(id);
+        //    if (eventCalendar == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(eventCalendar);
+        //}
+
+
+
+
 
         //    // GET: EventCalendars/Create
         //    public ActionResult Create()
