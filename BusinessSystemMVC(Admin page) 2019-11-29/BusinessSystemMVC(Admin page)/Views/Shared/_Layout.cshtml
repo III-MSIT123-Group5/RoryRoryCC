@@ -108,7 +108,10 @@
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseCommentMains">
                         <li class="color hover">
-                            <a href="@Url.Action("Index","CommentQ")" style="font-family:'NotoSansCJKtc-Bold'">編寫調查</a>
+                            <a href="@Url.Action("Display","CommentQuestions")" style="font-family:'NotoSansCJKtc-Bold'">編寫調查</a>
+                        </li>
+                        <li class="color hover">
+                            <a href="@Url.Action("Index","CommentQuestions")" style="font-family:'NotoSansCJKtc-Bold'">編寫調查</a>
                         </li>
                         <li class="color hover">
                             <a href="@Url.Action("Index","CompanyVehicleBorrow")" style="font-family:'NotoSansCJKtc-Bold'">回覆調查</a>
@@ -335,7 +338,7 @@
                     //  timetroll < Stime : 現在時間不能大於車輛預約起始時間
                     //  &&
                     //  判斷紀錄是否為登入者本人的紀錄
-                    if (timetroll >= (Stime - 1800000) && timetroll < Stime && @EmployeeDetail.EmployeeID == data[i].employeeID) {
+                    if (timetroll >= (Stime - 86400000) && timetroll < Stime && @EmployeeDetail.EmployeeID == data[i].employeeID) {
                         ampm();
                         //以下形式未標記(可修改)請勿修改
                         //(公務車預約通知)為通知標題，可修改。!!!!!!!!!!
@@ -400,6 +403,8 @@
 
             })
         }
+
+        
        
 
 

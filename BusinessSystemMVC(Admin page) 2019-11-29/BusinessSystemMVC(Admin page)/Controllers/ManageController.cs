@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BusinessSystemMVC_Admin_page_.Models;
+using System.IO;
 
 namespace BusinessSystemMVC_Admin_page_.Controllers
 {
@@ -67,10 +68,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             var userId = User.Identity.GetUserId();
             var acc = db.AspNetUsers.Find(userId);
-       
-
-          
-
+            string appPath = Request.PhysicalApplicationPath;
+            
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
@@ -92,7 +91,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 PositionID = EmployeeDetail.PositionName,
                 ManagerID = EmployeeDetail.ManagerName,
                 Employed = EmployeeDetail.Employed,
-                Photo = EmployeeDetail.PhotoAdress,
+                Photo = appPath + EmployeeDetail.PhotoAdress ,
             };
             return View(model);
         }
@@ -426,12 +425,23 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
         //update photo
+        [HttpPost]
         [AllowAnonymous]
-        public void UpdatePhoto(string PhotoAdress)
+        public ActionResult UpdatePhoto(HttpPostedFileBase PhotoAdress)
         {
             var upPhoto = db.Employees.Find(EmployeeDetail.EmployeeID);
-            upPhoto.Photo = PhotoAdress;
-            db.SaveChanges();
+            if (PhotoAdress != null)
+            {
+                string SourceFilename = Path.GetDirectoryName(PhotoAdress.FileName);
+                string saveDir = "\\imgProfiles\\";
+                string appPath = Request.PhysicalApplicationPath;
+                string savePath = appPath + saveDir + SourceFilename;
+                PhotoAdress.SaveAs(savePath);
+                
+                upPhoto.Photo = saveDir + SourceFilename;
+                db.SaveChanges();
+            }
+            return Json(upPhoto.Photo, JsonRequestBehavior.AllowGet);
          }
 
     #endregion

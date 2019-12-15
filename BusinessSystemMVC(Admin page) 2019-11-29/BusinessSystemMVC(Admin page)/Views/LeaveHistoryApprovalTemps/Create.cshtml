@@ -11,7 +11,7 @@
         <div class="form-group">
             @Html.Label("假別")
             <div class="col-md-10">
-                @Html.DropDownList("leaveID", null,"-請選擇-",new { @class = "form-control", @style = "width: 120px" })
+                @Html.DropDownList("leaveID", null, "-請選擇-", new { @class = "form-control", @style = "width: 120px" })
                 @Html.ValidationMessageFor(model => model.leaveID, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -33,7 +33,7 @@
             @Html.Label("結束時間")
             <div class="col-md-10">
                 <p>年／月／日／時</p>
-                @Html.DropDownList("EndYear", null, new {  })/
+                @Html.DropDownList("EndYear", null, new { })/
                 @Html.DropDownList("EndMonth", null, new { @style = "width: 50px" })/
                 @Html.DropDownList("EndDay", null, new { @style = "width: 50px" })/
                 @Html.DropDownList("EndHour", null, new { @style = "width: 50px" })
@@ -53,16 +53,17 @@
         <div class="form-group">
             @Html.Label("附件")
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Appendix, new { rows = "3", cols = "150", @class = "form-control", @MaxLength = "200", @style = "resize : none" })
-                @Html.ValidationMessageFor(model => model.Appendix, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.AppendixFile, new { @class = "form-control", @type = "file", @multiple = "multiple" })
+                @*@Html.TextBox("AppendixFiles", null, new { @type = "file", @multiple = "multiple" })*@
+                @Html.ValidationMessageFor(model => model.AppendixFile, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group" style="float:right">
-            <div >
+            <div>
                 <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
                 <input type="submit" value="送出申請" class="btn btn-success" style="margin-right:10px" />
             </div>
         </div>
     </div>
 }
-   
+
