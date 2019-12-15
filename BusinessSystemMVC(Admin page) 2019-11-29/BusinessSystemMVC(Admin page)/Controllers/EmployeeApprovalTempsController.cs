@@ -93,7 +93,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     PersonalLeaveHours = 98 ,
                     SickLeaveHours = 210
                 };
-                db.Employees.Add(addFormalEmployee);
+                db.Employees.Add(addFormalEmployee);                
                 db.SaveChanges();
             }
             return Json(new { success = true, message = "簽核成功" }, JsonRequestBehavior.AllowGet);
@@ -122,7 +122,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 q.StatusDescript = "已遭部長駁回";
                 db.SaveChanges();
             }
-            return Json(new { success = true, message = "駁回簽核成功" }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, message = "簽核已駁回" }, JsonRequestBehavior.AllowGet);
         }
 
         //簽核進度
@@ -159,113 +159,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(q);
         }
 
-        // GET: EmployeeApprovalTemps/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            EmployeeApprovalTemp employeeApprovalTemp = db.EmployeeApprovalTemps.Find(id);
-            if (employeeApprovalTemp == null)
-            {
-                return HttpNotFound();
-            }
-            return View(employeeApprovalTemp);
-        }
+       
 
-        // GET: EmployeeApprovalTemps/Create
-        public ActionResult Create()
-        {
-            ViewBag.Editor = new SelectList(db.Employees, "employeeID", "EmployeeName");
-            ViewBag.GroupLeaderID = new SelectList(db.Employees, "employeeID", "EmployeeName");
-            ViewBag.DepartmentLeaderID = new SelectList(db.Employees, "employeeID", "EmployeeName");
-            return View();
-        }
-
-        // POST: EmployeeApprovalTemps/Create
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,EmployeeName,Gender,Birth,HireDate,Account,OfficeID,DepartmentID,PositionID,ManagerID,Employed,GroupID,Photo,CreateOrUpdate,Editor,EditorTime,GroupLeaderID,GroupLeaderSignTime,DepartmentLeaderID,DepartmentLeaderSignTime,SignState")] EmployeeApprovalTemp employeeApprovalTemp)
-        {
-            if (ModelState.IsValid)
-            {
-                db.EmployeeApprovalTemps.Add(employeeApprovalTemp);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.Editor = new SelectList(db.Employees, "employeeID", "EmployeeName", employeeApprovalTemp.Editor);
-            ViewBag.GroupLeaderID = new SelectList(db.Employees, "employeeID", "EmployeeName", employeeApprovalTemp.GroupLeaderID);
-            ViewBag.DepartmentLeaderID = new SelectList(db.Employees, "employeeID", "EmployeeName", employeeApprovalTemp.DepartmentLeaderID);
-            return View(employeeApprovalTemp);
-        }
-
-        // GET: EmployeeApprovalTemps/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            EmployeeApprovalTemp employeeApprovalTemp = db.EmployeeApprovalTemps.Find(id);
-            if (employeeApprovalTemp == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Editor = new SelectList(db.Employees, "employeeID", "EmployeeName", employeeApprovalTemp.Editor);
-            ViewBag.GroupLeaderID = new SelectList(db.Employees, "employeeID", "EmployeeName", employeeApprovalTemp.GroupLeaderID);
-            ViewBag.DepartmentLeaderID = new SelectList(db.Employees, "employeeID", "EmployeeName", employeeApprovalTemp.DepartmentLeaderID);
-            return View(employeeApprovalTemp);
-        }
-
-        // POST: EmployeeApprovalTemps/Edit/5
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,EmployeeName,Gender,Birth,HireDate,Account,OfficeID,DepartmentID,PositionID,ManagerID,Employed,GroupID,Photo,CreateOrUpdate,Editor,EditorTime,GroupLeaderID,GroupLeaderSignTime,DepartmentLeaderID,DepartmentLeaderSignTime,SignState")] EmployeeApprovalTemp employeeApprovalTemp)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(employeeApprovalTemp).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.Editor = new SelectList(db.Employees, "employeeID", "EmployeeName", employeeApprovalTemp.Editor);
-            ViewBag.GroupLeaderID = new SelectList(db.Employees, "employeeID", "EmployeeName", employeeApprovalTemp.GroupLeaderID);
-            ViewBag.DepartmentLeaderID = new SelectList(db.Employees, "employeeID", "EmployeeName", employeeApprovalTemp.DepartmentLeaderID);
-            return View(employeeApprovalTemp);
-        }
-
-        // GET: EmployeeApprovalTemps/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            EmployeeApprovalTemp employeeApprovalTemp = db.EmployeeApprovalTemps.Find(id);
-            if (employeeApprovalTemp == null)
-            {
-                return HttpNotFound();
-            }
-            return View(employeeApprovalTemp);
-        }
-
-        // POST: EmployeeApprovalTemps/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            EmployeeApprovalTemp employeeApprovalTemp = db.EmployeeApprovalTemps.Find(id);
-            db.EmployeeApprovalTemps.Remove(employeeApprovalTemp);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
+       
         protected override void Dispose(bool disposing)
         {
             if (disposing)

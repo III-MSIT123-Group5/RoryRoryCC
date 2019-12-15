@@ -24,12 +24,12 @@ namespace BusinessSystemMVC_Admin_page_.Models
 
         //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm aa}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "請輸入{0}")]
-        [Display(Name = "StartTime")]
+        [Display(Name = "StartTime", ResourceType = typeof(Resource1))]
         public System.DateTime StartTime { get; set; }
 
         //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm aa}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "請輸入{0}")]
-        [Display(Name = "EndTime")]
+        [Display(Name = "EndTime", ResourceType = typeof(Resource1))]
         public System.DateTime EndTime { get; set; }
 
         [Display(Name = "Location", ResourceType = typeof(Resource1))]

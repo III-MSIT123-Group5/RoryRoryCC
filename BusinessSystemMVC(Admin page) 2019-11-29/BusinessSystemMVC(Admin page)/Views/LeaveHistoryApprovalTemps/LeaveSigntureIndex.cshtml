@@ -40,9 +40,9 @@
     <script src="/Scripts/moment.js"></script>
 
     <script>
-
+        var Popup, dataTable;
         $(document).ready(function () {
-              SigndataTable = $('#LeaveSigntable').DataTable({
+            dataTable = $('#LeaveSigntable').DataTable({
                 "ajax": {
                     url: '@Url.Action("LeaveSigntureLoadData", "LeaveHistoryApprovalTemps")',
                     method: 'GET',
@@ -59,7 +59,7 @@
                     { "targets": 7, "data": "EndTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "120px" },
                    {
                        "targets": 8, "data": "ID", "render": function (data) {
-                           return `<a class='btn btn-warning btn-sm' onclick=PopupDetail("@Url.Action("LoadDataDetail", "EmployeeApprovalTemps")/${data}")><i class="fa fa-align-left"></i> 詳細資料</a><a class='btn btn-warning btn-sm'  style='margin-left:5px' onclick=AcceptSign("@Url.Action("AcceptRegister", "EmployeeApprovalTemps")/${data}")><i class="fa fa-check-square-o"></i> 核准</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=RejectSign("@Url.Action("RejectRegister", "EmployeeApprovalTemps")/${data}")><i class='fa fa-hand-paper-o'></i> 駁回</a>`
+                           return `<a class='btn btn-warning btn-sm' onclick=PopupDetail("@Url.Action("SignLeaveLoadDataDetail", "LeaveHistoryApprovalTemps")/${data}")><i class="fa fa-align-left"></i> 詳細資料</a><a class='btn btn-warning btn-sm'  style='margin-left:5px' onclick=AcceptSign("@Url.Action("AcceptLeave", "LeaveHistoryApprovalTemps")/${data}")><i class="fa fa-check-square-o"></i> 核准</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=RejectSign("@Url.Action("RejectLeave", "LeaveHistoryApprovalTemps")/${data}")><i class='fa fa-hand-paper-o'></i> 駁回</a>`
                         },
                         "orderable": false,
                         "searchable": false,
@@ -67,7 +67,7 @@
                     }
                 ],
                 "language": {
-                    "emptyTable": "無待簽核申請。"
+                    "emptyTable": "無待簽核假單。"
                 }
             });
         });
@@ -91,9 +91,76 @@
                     });
                 });
         }
+        //核准
+        function AcceptSign(Url) {
+            if (confirm('確定簽核此筆假單嗎?')) {
+                $.ajax({
+                    type: "POST",
+                    url: Url,
+                }).done(function (data) {
+                    if (data.success) {
+                        dataTable.ajax.reload();
+                        $.notify(data.message, {
+                            globalPosition: "top center",
+                            className: "success"
+                        })
+                    }
+                });
+            }
+        }
 
+        function PopupAcceptSign(Url) {
+            if (confirm('確定簽核此筆假單嗎?')) {
+                $.ajax({
+                    type: "POST",
+                    url: Url,
+                }).done(function (data) {
+                    if (data.success) {
+                        Popup.dialog('destroy').remove();
+                        dataTable.ajax.reload();
+                        $.notify(data.message, {
+                            globalPosition: "top center",
+                            className: "success"
+                        })
+                    }
+                });
+            }
+        }
 
+        function RejectSign(Url) {
+            if (confirm('確定駁回此筆假單嗎?')) {
+                $.ajax({
+                    type: "POST",
+                    url: Url,
+                }).done(function (data) {
+                    if (data.success) {
+                        dataTable.ajax.reload();
+                        $.notify(data.message, {
+                            globalPosition: "top center",
+                            className: "success"
+                        })
+                    }
+                });
+            }
+        }
 
+        function PopupRejectSign(Url) {
+            if (confirm('確定駁回此筆假單嗎?')) {
+                $.ajax({
+                    type: "POST",
+                    url: Url,
+                }).done(function (data) {
+                    if (data.success) {
+                        Popup.dialog('destroy').remove();
+                        dataTable.ajax.reload();
+                        $.notify(data.message, {
+                            globalPosition: "top center",
+                            className: "success"
+                        })
+                    }
+                });
+            }
+        }
     </script>
 }
 

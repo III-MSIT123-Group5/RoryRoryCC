@@ -15,7 +15,7 @@
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 }
 
-    <h2>請假系統</h2>
+<h2>請假系統</h2>
 <br /><br />
 <h3>已送出的請假申請進度</h3>
 <button class="btn btn-success" style="margin-bottom:10px" onclick="PopupLeaveForm('@Url.Action("Create","LeaveHistoryApprovalTemps")')"><i class="fa fa-plus" aria-hidden="true"></i> 請假申請</button>
@@ -35,8 +35,24 @@
     </table>
 </div>
 
-@*簽核(組級以上)*@
-@Html.Partial("_LeaveSigntureLoadDataPartial")
+<br /><br />
+<hr />
+<h3>已送出的請假申請進度</h3>
+<br />
+<div style="width:92%">
+    <table id="FinishLeavetable" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>假別</th>
+                <th>申請時間</th>
+                <th>起始時間</th>
+                <th>結束時間</th>
+                <th>簽核進度</th>
+                <th>詳細資料</th>
+            </tr>
+        </thead>
+    </table>
+</div>
 
 
 @section scripts{
@@ -45,7 +61,7 @@
     <script src="/Scripts/moment.js"></script>
 
     <script>
-        var Popup, dataTable; //height="75%" width="75%" src=\"'height="75%"
+        var Popup, dataTable ,FdataTable ; //height="75%" width="75%" src=\"'height="75%"
 
         //請假進度&簽核
         $(document).ready(function () {
@@ -76,8 +92,35 @@
             });
         });
             //<<<<<<<<申請
-            //>>>>>>>>簽核
-            
+            //>>>>>>>>完成的
+         $(document).ready(function () {
+             FdataTable = $('#FinishLeavetable').DataTable({
+                "ajax": {
+                    url: '@Url.Action("FinishLeaveLoadData", "LeaveHistoryApprovalTemps")',
+                    method: 'GET',
+                    dataType: 'json'
+                },
+                "columnDefs": [
+                    { "targets": 0, "data": "leave_name","width": "65px" },
+                    { "targets": 1, "data": "ReleaseTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
+                    { "targets": 2, "data": "StartTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
+                    { "targets": 3, "data": "EndTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
+                    { "targets": 4, "data": "Status", "width": "100px" },
+                    {
+                        "targets": 5, "data": "ID", "render": function (data) {
+                            return "<a class='btn btn-warning btn-sm' onclick=PopupLeaveForm('@Url.Action("FinishSignLeaveLoadDataDetail", "LeaveHistoryApprovalTemps")/" + data + "')><i class='fa fa - align - left'></i> 詳細資料</a>"
+                        },
+                        "orderable": false,
+                        "searchable": false,
+                        "width": "150px"
+                    }
+                ],
+                "language": {
+                    "emptyTable": "無待簽核申請。"
+                }
+            });
+        });
+
        //>>>>>>>>>>>>>簽核>>>>>>>>>>>>>
     //新增Popup裡的Scripts================
         function SubmitLeaveForm(form) {
@@ -107,7 +150,7 @@
             }
             return false;
         }
-    
+
         //新增Popup裡的Scripts================
 
 
@@ -147,6 +190,8 @@
                     $("#StartYear").bind("change", GetNewMonthTimes($("#StartYear"), $("#StartMonth")));
                     $("#EndYear").bind("change", GetNewMonthTimes($("#EndYear"), $("#EndMonth")));
 
+                    $("#EndYear").bind("change", GetNewMonthTimes($("#EndYear"), $("#EndMonth")));
+
                 });
         }
         //大小月
@@ -168,7 +213,7 @@
         function GetNewDayTimes(yearlab , monthlab ,daylab ) {
             $.ajax({
                 type: "post",
-                url: "@Url.Action("GetNewDayTime", "LeaveHistoryApprovalTemps")", 
+                url: "@Url.Action("GetNewDayTime", "LeaveHistoryApprovalTemps")",
                 data: {
                     thisYEAR: yearlab.val(),
                     thisMONTH: monthlab.val()
@@ -210,7 +255,7 @@
                 });
                 }).fail();
         }
-    
+
       //新增Popup裡的Scripts================
 
 

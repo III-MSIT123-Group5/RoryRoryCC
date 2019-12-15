@@ -258,12 +258,14 @@ body {
 
 body.sidenav-toggled #mainNav.fixed-top .sidenav-toggler {
     overflow-x: hidden;
-    width: 55px;
+    /*width: 55px;*/
+    width: 75px;
 }
 
     body.sidenav-toggled #mainNav.fixed-top .sidenav-toggler .nav-item,
     body.sidenav-toggled #mainNav.fixed-top .sidenav-toggler .nav-link {
-        width: 55px !important;
+        /*width: 55px !important;*/
+        width: 75px !important;
     }
 
 body.sidenav-toggled #mainNav.fixed-top #sidenavToggler i {
@@ -315,12 +317,14 @@ body.sidenav-toggled #mainNav.static-top #sidenavToggler i {
 
 @media (min-width: 992px) {
     body.sidenav-toggled .content-wrapper {
-        margin-left: 55px;
+        /*margin-left: 55px;*/
+        margin-left: 75px;
     }
 }
 
 body.sidenav-toggled .navbar-sidenav {
-    width: 55px;
+    /*width: 55px;*/
+    width: 75px;
 }
 
     body.sidenav-toggled .navbar-sidenav .nav-link-text {
@@ -329,7 +333,8 @@ body.sidenav-toggled .navbar-sidenav {
 
     body.sidenav-toggled .navbar-sidenav .nav-item,
     body.sidenav-toggled .navbar-sidenav .nav-link {
-        width: 55px !important;
+        /*width: 55px !important;*/
+        width: 75px !important;
     }
 
         body.sidenav-toggled .navbar-sidenav .nav-item:after,
@@ -499,7 +504,8 @@ footer.sticky-footer {
 
 @media (min-width: 992px) {
     body.sidenav-toggled footer.sticky-footer {
-        width: calc(100% - 55px);
+        /*width: calc(100% - 55px);*/
+        width: calc(100% - 75px);
     }
 }
 
@@ -511,7 +517,6 @@ footer.sticky-footer {
     background-color: #abe0e4;
 }
 
-
 @font-face {
     font-family: 'HanaMinA';
     src: url('../fonts/HanaMinA.ttf') format('truetype');
@@ -521,14 +526,11 @@ footer.sticky-footer {
 
     font-family: 'NotoSansCJKtc-Bold';
     src: url('../fonts/Noto/NotoSansCJKtc-Bold.otf') format('opentype');
-
 }
-
 
 .field-validation-error{
     color:#e80c4d;
     font-weight:bold;
-
 }
 
 input.input-validation-error{
@@ -544,14 +546,10 @@ tr.details td.details-control {
     background: url('../images/details_close.png') no-repeat center center;
 }
 
-
-.taglabel {
-    
-    
+.taglabel {   
     border:25px,thick,#e80c4d;
     border-top-right-radius:5px;
     border-top-left-radius:5px;
     border-bottom:none;
     width:130px;
 }
-

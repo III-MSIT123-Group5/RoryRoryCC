@@ -99,7 +99,33 @@
                             Popup.dialog('destroy').remove();
                         }
                     });
+                    $('#department').bind("change", function () {
+                        ChangeDepartment();
+                    });
                 });
+        }
+        function ChangeDepartment() {
+            var selectedValue = $('#department option:selected').val();
+            GetEmployee(selectedValue);
+        }
+        function GetEmployee(departmentID) {
+            $.ajax({
+                url: '@Url.Action("GetEmployee", "Recipients")',
+                data: { departmentID: departmentID },
+                type: 'post',
+                cache: false,
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.length > 0) {
+                        $('#EmployeeID').empty();
+                        $('#EmployeeID').append($('<option></option>').val('').text('--收件人--'));
+                        $.each(data, function (i, item) {
+                            $('#EmployeeID').append($('<option></option>').val(item.Key).text(item.Value));
+                        });
+                    }
+                }
+            });
         }
 
         function SubmitForm(form) {

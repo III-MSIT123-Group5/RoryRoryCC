@@ -82,19 +82,19 @@
 
               
         $(document).ready(function () {
+            
             var events = []
             $.ajax({
                 type: "GET",
-                url: "/EventCalendars/Getevent",
-                
+                url:"/EventCalendars/Getevent",
                 success: function (data) {
                     console.log(data);
                     $.each(data, function (i, v) {
                         events.push({
-                            title: `${v.Subject}`,
-                            start:`${v.StartTime}`,
-                            end:`${v.EndTime}`,
-                            
+                            title: v.Subject,
+                            start:v.StartTime,
+                            end: v.EndTime != null ? v.EndTime : null,
+                            color: v.ThemeColor,
                             })
                         
                     })
@@ -146,9 +146,9 @@
 
                 });
 
-            function GenerateCalender(events) {
+            function GenerateCalender(events1) {
 
-                console.log(events);
+                console.log(events1);
 
                 var calendarEl = document.getElementById('evecalendar');
 
@@ -166,16 +166,16 @@
                     navLinks: true, // can click day/week names to navigate views
                     businessHours: true, // display business hours
                     editable: true,
-                    //events: events
+                    events: events1                
                     //events:
-                        //[
+                    //    [
                           
-                        //    {
-                        //        title: 'Business Lunch',
-                        //        start: '2019-12-03T13:00:00',
-                        //        constraint: 'businessHours'
-                        //    },
-                        //    ]
+                    //        {
+                    //            title: 'Business Lunch',
+                    //            start: '2019-12-03T13:00:00',
+                    //            constraint: 'businessHours'
+                    //        },
+                    //        ]
                             //{
                             //    title: 'Business Lunch',
                             //    start: '2019-08-03T13:00:00',
@@ -287,6 +287,8 @@
                         close: function () {
                             Popup.dialog('destroy').remove();
                         }
+
+
                     });
                 });
         }
@@ -308,10 +310,12 @@
                                 globalPosition: "top center",
                                 className: "success"
                             })
+                            
                         }
-
+                        
                     }
                 });
+                $("#evecalendar").fullCalendar('refresh');
             }
             return false;
 

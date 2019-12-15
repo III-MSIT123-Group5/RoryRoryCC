@@ -8,11 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <style>
-        i {
-            vertical-align:middle;
-        }
-    </style>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", required: false)
@@ -31,23 +26,30 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-        <a class="navbar-brand" href="@Url.Action("Index", "Home")" . style="line-height:50px; margin-left:5px">Business System</a>
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")" style="font-family:'NotoSansCJKtc-Bold'; font-size:22px; line-height:50px; margin-left:10px">春 沐 股 份 有 限 公 司</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav navbar-sidenav" id="exampleAccordion" style="background-color:white; overflow-y:auto; padding-bottom:28px">
+                @*首頁*@
+                <li class="nav-item color hover" data-toggle="tooltip" data-placement="right" title="首頁">
+                    <a class="nav-link" href="@Url.Action("Index", "Home")">
+                        <i class="fa fa-fw fa-home" style="font-size: 1.6em; vertical-align: middle;"></i>
+                        <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">首頁</span>
+                    </a>
+                </li>
                 @*公佈欄*@
                 <li class="nav-item color hover" data-toggle="tooltip" data-placement="right" title="公佈欄">
                     <a class="nav-link" href="@Url.Action("Index", "BulletinBoards")">
-                        <i class="fa fa-fw fa-bullhorn"></i>
+                        <i class="fa fa-fw fa-bullhorn" style="font-size: 1.6em; vertical-align: middle;"></i>
                         <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">公佈欄</span>
                     </a>
                 </li>
                 @*公務車*@
                 <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="公務車">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseBussinessCar" data-parent="#exampleAccordion">
-                        <i class="fa fa-fw fa-car"></i>
+                        <i class="fa fa-fw fa-car" style="font-size: 1.6em; vertical-align: middle;"></i>
                         <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">公務車</span>
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseBussinessCar">
@@ -63,7 +65,7 @@
                 @*會議室*@
                 <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="會議室">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMeetingRoom" data-parent="#exampleAccordion">
-                        <i class="fa fa-fw fa-users"></i>
+                        <i class="fa fa-fw fa-users" style="font-size: 1.6em; vertical-align: middle;"></i>
                         <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">會議室</span>
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseMeetingRoom">
@@ -79,7 +81,7 @@
                 @*行事曆*@
                 <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="行事曆">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseCalendar" data-parent="#exampleAccordion">
-                        <i class="fa fa-fw fa-calendar"></i>
+                        <i class="fa fa-fw fa-calendar" style="font-size: 1.6em; vertical-align: middle;"></i>
                         <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">行事曆</span>
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseCalendar">
@@ -94,14 +96,14 @@
                 @*檔案管理*@
                 <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="檔案管理">
                     <a class="nav-link" href="@Url.Action("Index", "Files")">
-                        <i class="fa fa-fw fa-file"></i>
+                        <i class="fa fa-fw fa-file" style="font-size: 1.6em; vertical-align: middle;"></i>
                         <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">檔案管理</span>
                     </a>
                 </li>
                 @*意見調查*@
                 <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="意見調查">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseCommentMains" data-parent="#exampleAccordion">
-                        <i class="fa fa-fw fa-clipboard"></i>
+                        <i class="fa fa-fw fa-clipboard" style="font-size: 1.6em; vertical-align: middle;"></i>
                         <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">意見調查</span>
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseCommentMains">
@@ -116,7 +118,7 @@
                 @*內部訊息*@
                 <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="內部訊息">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMessage" data-parent="#exampleAccordion">
-                        <i class="fa fa-fw fa-comment"></i>
+                        <i class="fa fa-fw fa-comment" style="font-size: 1.6em; vertical-align: middle;"></i>
                         <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">內部訊息</span>
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseMessage">
@@ -132,7 +134,7 @@
                 @*請假系統*@
                 <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="請假系統">
                     <a class="nav-link" href="@Url.Action("Index", "LeaveHistoryApprovalTemps")">
-                        <i class="fa fa-fw fa-plane" aria-hidden="true"></i>
+                        <i class="fa fa-fw fa-plane" aria-hidden="true" style="font-size: 1.6em; vertical-align: middle;"></i>
                         <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'"> 請假系統</span>
                     </a>
                 </li>
@@ -145,7 +147,7 @@
                 @*只有IT可看見ITsystem*@
                 @Html.Partial("_ITSystemPartial")
             </ul>
-            <ul class="navbar-nav sidenav-toggler" style=" border-right: 1px solid lightgray">
+            <ul class="navbar-nav sidenav-toggler" style="border-top: 1px solid lightgray; border-right: 1px solid lightgray">
                 <li class="nav-item color hover">
                     <a class="nav-link text-center color hover" id="sidenavToggler">
                         <i class="fa fa-fw fa-angle-left"></i>
@@ -169,7 +171,7 @@
         <footer class="sticky-footer color">
             <div class="container">
                 <div class="text-center">
-                    <small>Copyright © Your Website 2018</small>
+                    <small>Copyright © Wood Spring Co., Ltd. All Rights Reserved.</small>
                 </div>
             </div>
         </footer>
@@ -272,6 +274,7 @@
         //<><><><><><><><><把需要刷新的方法放在這><><><><><><><><><><
         function getlocation() {
             $("#appendnews").empty();
+            $("#oldnews").empty();
             getVehicleData();
             getMeetingData()
             //.....
@@ -332,14 +335,14 @@
                     //  timetroll < Stime : 現在時間不能大於車輛預約起始時間
                     //  &&
                     //  判斷紀錄是否為登入者本人的紀錄
-                    if (timetroll >= (Stime - 86400000) && timetroll < Stime && @EmployeeDetail.EmployeeID == data[i].employeeID) {
+                    if (timetroll >= (Stime - 1800000) && timetroll < Stime && @EmployeeDetail.EmployeeID == data[i].employeeID) {
                         ampm();
                         //以下形式未標記(可修改)請勿修改
                         //(公務車預約通知)為通知標題，可修改。!!!!!!!!!!
                         //(${hour}:${mins}${apm})，為取得現在時間，請勿修改。XXXXXX
                         //(公務車(${License})預約時間為:${timestampToTime(Stime)}，請準時取車。)可以修改
                         //timestampToTime(*可放入時間戳*)，此方法可將時間戳13位數形式轉為正常時間格式
-                            $("#appendnews").append('<div class="dropdown - divider"></div>')
+                            $("#appendnews").append('<div class="dropdown - divider" value="1"></div>')
                             $("#appendnews").append(`<a class="dropdown-item" href="#"><span class="text-success"><strong>
 <i class= "fa fa-long-arrow-up fa-fw" ></i> 公務車預約通知</strong></span>
 <span class="small float-right text-muted">${hour}:${mins}${apm}</span>
@@ -384,19 +387,25 @@
                         //(${hour}:${mins}${apm})，為取得現在時間，請勿修改。XXXXXX
                         //(公務車(${License})預約時間為:${timestampToTime(Stime)}，請準時取車。)可以修改
                         //timestampToTime(*可放入時間戳*)，此方法可將時間戳13位數形式轉為正常時間格式
-                            $("#appendnews").append('<div class="dropdown - divider"></div>')
-                            $("#appendnews").append(`<a class="dropdown-item" href="#"><span class="text-success"><strong>
+                        $(`#appendnews`).append(`<div class="dropdown - divider" value="1"></div>`)
+                        $(`#appendnews`).append(`<a class="dropdown-item" href="#"><span class="text-success"><strong>
 <i class= "fa fa-long-arrow-up fa-fw" ></i> 會議室預約通知</strong></span>
 <span class="small float-right text-muted">${hour}:${mins}${apm}</span>
 <div class="dropdown-message small">會議室(${meetID}_${meetName})預約時間為:${timestampToTime(Stime)}，請通知與會人員。</div></a>`)
-                        $("#appendnews").click(function () {
+                        $(`#appendnews`).click(function () {
 
-                        })
+                            })
                         }
                 }
 
             })
         }
+       
+
+
+
+
+
     </script>
     @RenderSection("scripts", required: false)
 
