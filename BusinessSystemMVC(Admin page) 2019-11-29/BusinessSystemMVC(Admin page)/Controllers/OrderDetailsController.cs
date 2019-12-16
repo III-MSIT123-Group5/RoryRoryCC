@@ -240,7 +240,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         public ActionResult Export(int? id)
         {
-            var report = from RM in this.db.RequisitionMains.AsEnumerable()
+            var report = from AS in this.db.Approvals.AsEnumerable()
+                         join RM in this.db.RequisitionMains.AsEnumerable() on AS.OrderID equals RM.OrderID
+                         join E in this.db.Employees.AsEnumerable() on RM.EmployeeID equals E.employeeID
                          join OD in this.db.OrderDetails.AsEnumerable() on RM.OrderID equals OD.OrderID
                          where OD.OrderDetailID == id
                          select new
@@ -250,30 +252,83 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                              OD.UnitPrice,
                              OD.Quantity,
                              OD.TotalPrice,
-                             OD.Note
+                             OD.Note,
+                             E.EmployeeName,
+                             RM.RequisitionDate,
+                             AS.FirstSignerName,
+                             AS.SecondSignerName,
+                             AS.ThirdSignerName,
+                             AS.FourthSignerName
                          };
 
             Application application = new Application();
             Workbook workbook = application.Workbooks.Add(Missing.Value);
             Worksheet worksheet = workbook.ActiveSheet;
-            worksheet.Cells[1, 1] = "OrderID";
-            worksheet.Cells[1, 2] = "ProductName";
-            worksheet.Cells[1, 3] = "UnitPrice";
-            worksheet.Cells[1, 4] = "Quantity";
-            worksheet.Cells[1, 5] = "TotalPrice";
-            worksheet.Cells[1, 6] = "Note";
+            worksheet.Cells[1, 1] = "請購單號：";
+            worksheet.Cells[2, 1] = "請購人：";
+            worksheet.Cells[1, 6] = "請購日期：";
+            worksheet.Cells[2, 6] = "原由：";
 
-            int row = 2;
+            worksheet.Cells[4, 1] = "產品名稱";
+            worksheet.Cells[4, 3] = "單價";
+            worksheet.Cells[4, 5] = "數量";
+            worksheet.Cells[4, 7] = "總價";
+
+            worksheet.Cells[7, 1] = "第一層簽核";
+            worksheet.Cells[7, 3] = "第二層簽核";
+            worksheet.Cells[7, 5] = "第三層簽核";
+            worksheet.Cells[7, 7] = "第四層簽核";
+
             foreach (var e in report)
             {
-                worksheet.Cells[row, 1] = e.OrderID;
-                worksheet.Cells[row, 2] = e.ProductName;
-                worksheet.Cells[row, 3] = e.UnitPrice;
-                worksheet.Cells[row, 4] = e.Quantity;
-                worksheet.Cells[row, 5] = e.TotalPrice;
-                worksheet.Cells[row, 6] = e.Note;
-                row++;
+                worksheet.Cells[1, 2] = e.OrderID;
+                worksheet.Cells[2, 2] = e.EmployeeName;
+                worksheet.Cells[1, 7] = e.RequisitionDate;
+                worksheet.Cells[2, 7] = e.Note;
+                worksheet.Cells[5, 1] = e.ProductName;
+                worksheet.Cells[5, 3] = e.UnitPrice;
+                worksheet.Cells[5, 5] = e.Quantity;
+                worksheet.Cells[5, 7] = e.TotalPrice;
+                worksheet.Cells[8, 1] = e.FirstSignerName;
+                worksheet.Cells[8, 3] = e.SecondSignerName;
+                worksheet.Cells[8, 5] = e.ThirdSignerName;
+                worksheet.Cells[8, 7] = e.FourthSignerName;
             }
+
+            worksheet.get_Range("G1", "H1").Merge();
+            worksheet.get_Range("G2", "H2").Merge();
+
+            worksheet.get_Range("A4", "B4").Merge();
+            worksheet.get_Range("C4", "D4").Merge();
+            worksheet.get_Range("E4", "F4").Merge();
+            worksheet.get_Range("G4", "H4").Merge();
+
+            worksheet.get_Range("A5", "B5").Merge();
+            worksheet.get_Range("C5", "D5").Merge();
+            worksheet.get_Range("E5", "F5").Merge();
+            worksheet.get_Range("G5", "H5").Merge();
+
+            worksheet.get_Range("A7", "B7").Merge();
+            worksheet.get_Range("C7", "D7").Merge();
+            worksheet.get_Range("E7", "F7").Merge();
+            worksheet.get_Range("G7", "H7").Merge();
+
+            worksheet.get_Range("A1", "H8").Font.Name = "標楷體";
+
+            worksheet.get_Range("A1", "H2").Cells.HorizontalAlignment = XlHAlign.xlHAlignLeft;
+            worksheet.get_Range("A4", "H8").Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+
+            worksheet.get_Range("A1", "H8").Font.Size = 14;
+
+            worksheet.get_Range("A1", "H8").EntireColumn.ColumnWidth = 15.8;
+
+            worksheet.get_Range("A1", "H2").Columns.RowHeight = 20;
+            worksheet.get_Range("A4", "H5").Columns.RowHeight = 25;
+            worksheet.get_Range("A7", "H7").Columns.RowHeight = 25;
+            worksheet.get_Range("A8", "H8").Columns.RowHeight = 70;
+
+            worksheet.get_Range("A4", "H5").Borders.LineStyle = XlLineStyle.xlContinuous;
+            worksheet.get_Range("A7", "H8").Borders.LineStyle = XlLineStyle.xlContinuous;
 
             workbook.SaveAs("D:\\ExportToExcel.xls");
             workbook.Close();
@@ -385,10 +440,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             foreach (var e in ThirdSign)
             {
                 SignStatus = e.ThirdSignStatus;
-            }
-
-            
-
+            }        
 
             if (EmployeeDetail.PositionID == 3 && EmployeeDetail.GroupID == 1)
             {

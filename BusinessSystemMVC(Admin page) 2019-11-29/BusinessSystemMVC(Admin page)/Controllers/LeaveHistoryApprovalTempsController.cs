@@ -19,8 +19,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         // GET: LeaveHistoryApprovalTemps
         public ActionResult Index()
         {
-            //var leaveHistoryApprovalTemps = db.LeaveHistoryApprovalTemps.Include(l => l.Employee).Include(l => l.Employee1).Include(l => l.Employee2).Include(l => l.Employee3).Include(l => l.Employee4).Include(l => l.Employee5);
-            return View(/*leaveHistoryApprovalTemps*/);
+            return View();
         }
 
         //請假簽核
