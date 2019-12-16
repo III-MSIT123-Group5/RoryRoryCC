@@ -48,7 +48,6 @@
 
 </div>
 
-<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
 
@@ -70,9 +69,9 @@
                 "columnDefs": [
 
                     { "targets": 0, "data": "EmployeeName", "width": "60px" },
-                    { "targets": 1, "data": "Title", "width": "60px" },
+                    { "targets": 1, "data": "Title", "width": "150px" },
                     { "targets": 2, "data": "Data" },
-                    { "targets": 3, "data": "MailingDate","render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
+                    { "targets": 3, "data": "MailingDate","render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "200px" },
                     { "targets": 4, "data": "RecipientID", "render": function (data) {
                         return "<a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
                         },
@@ -173,7 +172,6 @@
                                 className: "success"
                             })
                         }
-
                     }
                 });
             }
@@ -195,10 +193,8 @@
                                 globalPosition: "top center",
                                 className: "success"
                             })
-
                         }
                     }
-
                 });
             }
         }

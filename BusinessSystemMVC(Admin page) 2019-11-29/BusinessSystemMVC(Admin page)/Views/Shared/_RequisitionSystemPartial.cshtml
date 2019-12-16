@@ -1,18 +1,10 @@
 ﻿@*只有員工才有使用權限*@
 @if (!(User.IsInRole("GeneralManager") || User.IsInRole("GroupLeader") || User.IsInRole("DepartmentLeader")))
 {
-    <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="請購系統">
-        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseRequisition" data-parent="#exampleAccordion">
-            <i class="fa fa-fw fa-th-list" style="font-size: 1.6em; vertical-align: middle;"></i>
-            <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">請購系統</span>
-        </a>
-        <ul class="sidenav-second-level collapse" id="collapseRequisition">
-            <li class="color hover">
-                <a href="@Url.Action("Index", "OrderDetails")" style="font-family:'NotoSansCJKtc-Bold'">進入請購</a>
-            </li>
-            <li class="color hover">
-                <a href="forgot-password.html" style="font-family:'NotoSansCJKtc-Bold'">統計分析</a>
-            </li>
-        </ul>
-    </li>
+<li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="請購系統">
+    <a class="nav-link" href="@Url.Action("Index", "OrderDetails")">
+        <i class="fa fa-fw fa-th-list" aria-hidden="true" style="font-size: 1.6em; vertical-align: middle;"></i>
+        <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'"> 請購系統</span>
+    </a>
+</li>
 }

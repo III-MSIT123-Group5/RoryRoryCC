@@ -48,8 +48,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                              c.brand,
                              c.serial,
                              c.MaxPassenger,
-                             c.officeID
-
+                              c.Office.office_name
                          };
             return Json(Canuse, JsonRequestBehavior.AllowGet);
         }

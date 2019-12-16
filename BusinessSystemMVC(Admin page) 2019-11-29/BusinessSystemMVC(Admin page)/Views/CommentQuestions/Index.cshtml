@@ -21,7 +21,7 @@
         <title>建立意見調查</title>
         <style>
 
-            button, h2, label, span, optgroup, select, th {
+            button, h2, span, optgroup, th {
                 font-family: 'NotoSansCJKtc-Bold';
             }
 
@@ -52,9 +52,9 @@
             <br />
             <div>
                 <div @*class="form-group"*@>
-                    @Html.LabelFor(model => model.CommentContentID, "意見類型", htmlAttributes: new { @class = "control-label col-md-2 label" , style = "font-size:26px" })
+                    @Html.LabelFor(model => model.CommentContentID, "意見類型", htmlAttributes: new { @class = "control-label col-md-2 label", style = "font-size:26px; font-family:'NotoSansCJKtc-Bold'" })
                     <div class="col-md-10">
-                        @Html.DropDownGroupList("CommentContent", commentContentItems, "請選擇意見類型", htmlAttributes: new { @class = "label", style = "Width:400px;height:40px"})
+                        @Html.DropDownGroupList("CommentContent", commentContentItems, "請選擇意見類型", htmlAttributes: new { @class = "label", style = "Width:400px; height:40px; font-family:'NotoSansCJKtc-Bold'" })
 
                     </div>
                 </div>
@@ -78,7 +78,7 @@
 
                 <br />
                 <div @*class="form-group"*@>
-                    @Html.LabelFor(model => model.CommentContent.CommentQuestions, "調查題目", htmlAttributes: new { @class = "control-label col-md-2", style = "font-size:26px" })
+                    @Html.LabelFor(model => model.CommentContent.CommentQuestions, "調查題目", htmlAttributes: new { @class = "control-label col-md-2", style = "font-size:26px; font-family:'NotoSansCJKtc-Bold'" })
                     <br />
                     <div class="col-md-10">
                         <button type="button" class="btn btn-success" style="margin-bottom:10px" onclick="PopupForm('@Url.Action("AddOrEdit", "CommentQuestions")')"><i class="fa fa-plus" aria-hidden="true"></i> 新增調查項目</button>
