@@ -222,8 +222,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             }
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        
         public ActionResult Delete(int id)
         {
             OrderDetail orderDetail = db.OrderDetails.Find(id);
@@ -478,8 +477,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]       
         public ActionResult ApprovalSubmit(int? id)
         {
             var requisition = db.RequisitionMains.Find(id);
@@ -537,8 +535,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             }
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        
         public ActionResult ApprovalReject(RequisitionMain requisitionMain)
         {
             if (requisitionMain.OrderID == 0)
