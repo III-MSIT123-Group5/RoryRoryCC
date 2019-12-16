@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<BusinessSystemMVC_Admin_page_.Models.Employee>
+
 @{
     ViewBag.Title = "修改人員資料";
 }
@@ -7,9 +8,11 @@
         button, h2 {
             font-family: 'NotoSansCJKtc-Bold';
         }
+
         th {
             font-family: 'NotoSansCJKtc-Bold';
         }
+
         td {
             font-family: '微軟正黑體';
             font-weight: 600;
@@ -49,7 +52,7 @@
         $(document).ready(function () {
             dataTable = $('#EditEmpStable').DataTable({
                 "ajax": {
-                    url: '@Url.Action("EditLoadData", "EmployeeApprovalTemps")',
+                    url: '@Url.Action("EditLoadData", "Employees")',
                     method: 'GET',
                     dataType: 'json'
                 },
@@ -63,7 +66,7 @@
                     { "targets": 6, "data": "ManagerName", "width": "60px" },
                     {
                         "targets": 7, "data": "employeeID", "render": function (data) {
-                            return `<a class='btn btn-warning btn-sm' onclick=PopupDetail("@Url.Action("LoadDataDetail", "EmployeeApprovalTemps")/${data}")><i class="fa fa-align-left"></i> 詳細資料</a>`
+                            return `<a class='btn btn-warning btn-sm' onclick=PopupDetail("@Url.Action("EditLoadDataDetail", "Employees")/${data}")><i class="fa fa-pencil" aria-hidden="true"></i> 編輯資料</a>`
                         },
                         "orderable": false,
                         "searchable": false,
@@ -104,7 +107,7 @@
                     Popup = formDiv.dialog({
                         autoOpen: true,
                         resizable: false,
-                        title: '詳細資料',
+                        title: '編輯資料',
                         height: 700,
                         width: 400,
                         close: function () {
@@ -113,8 +116,7 @@
                     });
                 });
         }
-        
+
     </script>
 
 }
-

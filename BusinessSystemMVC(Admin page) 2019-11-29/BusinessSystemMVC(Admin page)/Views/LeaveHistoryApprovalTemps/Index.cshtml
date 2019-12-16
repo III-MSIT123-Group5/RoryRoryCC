@@ -80,7 +80,7 @@
                     { "targets": 1, "data": "ReleaseTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
                     { "targets": 2, "data": "StartTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
                     { "targets": 3, "data": "EndTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
-                    { "targets": 4, "data": "Status", "width": "100px" },
+                    { "targets": 4, "data": "Status", "width": "100px" , "color":"mediumseagreen" },
                     {
                         "targets": 5, "data": "ID", "render": function (data) {
                             return "<a class='btn btn-warning btn-sm' onclick=PopupLeaveForm('@Url.Action("LeaveLoadDataDetail", "LeaveHistoryApprovalTemps")/" + data + "')><i class='fa fa - align - left'></i> 詳細資料</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Cancel('@Url.Action("CancelLeave", "LeaveHistoryApprovalTemps")/" + data + "')><i class='fa fa - ban' aria-hidden='true'></i></i> 取消申請</a>"

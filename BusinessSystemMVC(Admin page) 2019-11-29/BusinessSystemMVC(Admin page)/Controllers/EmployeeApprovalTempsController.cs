@@ -21,20 +21,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(/*employeeApprovalTemps*/);
         }
 
-        //EditEmployeeIndex
-        public ActionResult EditEmployeeIndex()
-        {
-            return View();
-        }
+ 
 
-        //編輯Employee LoadData
-        [HttpGet]
-        [Authorize(Roles = "HRGroup")]
-        public ActionResult EditLoadData()
-        {
-            var datas = db.Employees.Where(p=>p.employeeID != 1022).Select(p => new { p.employeeID, p.EmployeeName, p.Account, p.Department.name, p.Group.GroupName, p.Position.position1, ManagerName = p.Employee2.EmployeeName }).ToList(); 
-            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
-        }
 
         //HR簽核LoadData
         [HttpGet]
