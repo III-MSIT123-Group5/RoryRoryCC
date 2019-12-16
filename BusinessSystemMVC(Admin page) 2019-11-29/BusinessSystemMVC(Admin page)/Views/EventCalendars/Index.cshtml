@@ -16,16 +16,18 @@
 <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.css" rel="stylesheet" media="print" />
 
 <style>
-
-
     button, h2 {
         font-family: 'NotoSansCJKtc-Bold';
     }
 
-    th, td {
+    th {
         font-family: 'NotoSansCJKtc-Bold';
     }
 
+    td {
+        font-family: '微軟正黑體';
+        font-weight: 600;
+    }
 
     .color-box {
         display: inline-block;
@@ -35,7 +37,7 @@
     }
 </style>
 
-
+<br />
 
 <h2>行事曆</h2>
 <script>
@@ -43,14 +45,13 @@
 
 </script>
 <br />
-<br />
 
 <div>
     <button class="btn btn-success" style="margin-bottom:10px" id='UpdateEvent' onclick="PopupForm('@Url.Action("AddOrEdit","EventCalendars")')"><i class="fa fa-plus" aria-hidden="true"></i> 新增貼文</button>
 
 </div>
 
-<br />
+<br /><br />
 <div class="col-8" style="float:left">
     <div id='evecalendar'></div>
 </div>

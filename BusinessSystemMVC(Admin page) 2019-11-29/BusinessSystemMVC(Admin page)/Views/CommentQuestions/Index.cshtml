@@ -21,22 +21,19 @@
         <title>建立意見調查</title>
         <style>
 
-            h2, label, span, optgroup, select, th {
+            button, h2, label, span, optgroup, select, th {
                 font-family: 'NotoSansCJKtc-Bold';
-            }
-
-            /*th {
-                background-color: #77C9D4;
-                color: white;
-            }*/
-
-            td {
-                font-family: '微軟正黑體';
             }
 
             .multiselect-selected-text {
                 color: orange;
+            }            
+
+            td {
+                font-family: '微軟正黑體';
+                font-weight: 600;
             }
+
         </style>
 
 
@@ -86,6 +83,7 @@
                     <div class="col-md-10">
                         <button type="button" class="btn btn-success" style="margin-bottom:10px" onclick="PopupForm('@Url.Action("AddOrEdit", "CommentQuestions")')"><i class="fa fa-plus" aria-hidden="true"></i> 新增調查項目</button>
                     </div>
+                    <br />
                         <div @*class="col-md-10"*@ id="createCtable" style="width:82%;margin-left:20px">
                             <table id="Ctable" class="table table-striped table-bordered">
                                 <thead>

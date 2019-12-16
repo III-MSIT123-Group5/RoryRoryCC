@@ -1,13 +1,13 @@
 ﻿@if (User.IsInRole("HRGroup"))
 {
     @model IEnumerable<BusinessSystemMVC_Admin_page_.Models.EmployeeApprovalTemp>
-    <hr />
+    <br />
     <h2>新進人員註冊簽核進度查詢</h2>
-    <br /><br />
-          <h3>簽核進度查詢</h3>
+    <br />
+          <h4>簽核進度查詢</h4>
           <br />
-          <div style="width:92%">
-              <table id="NewEmpSateTable" class="table table-striped table-bordered">
+          <div style="width:97%">
+              <table id="NewEmpSateTable" class="table table-striped table-bordered" style="width:100%">
                   <thead>
                       <tr>
                           <th>員工姓名</th>
@@ -21,9 +21,10 @@
                       </tr>
                   </thead>
               </table>
-              <h3>已駁回的簽核</h3>
               <br />
-              <table id="RejectEmpStable" class="table table-striped table-bordered">
+              <h4>已駁回的簽核</h4>
+              <br />
+              <table id="RejectEmpStable" class="table table-striped table-bordered" style="width:100%">
                   <thead>
                       <tr>
                           <th>員工姓名</th>
