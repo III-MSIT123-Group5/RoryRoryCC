@@ -22,27 +22,19 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(eventCalendars.ToList());
         }
 
-        //public ActionResult LoadData()
-        //{//.OrderBy(b => b.PostTime).ToList();
+        [HttpGet]
+        public JsonResult Getevent()
+        {
+            BusinessDataBaseEntities db = new BusinessDataBaseEntities();
 
-        //    var data = from ecal in db.EventCalendars
-        //               join emp in db.Employees
-        //               on ecal.employeeID equals emp.employeeID
-        //               join dep in db.Departments
-        //               on ecal.DepartmentID equals dep.departmentID
-        //               select ecal;
+            var events = db.EventCalendars.AsEnumerable().Select(n => new { n.CalendarID, n.employeeID, n.Subject, n.DepartmentID, StartTime = n.StartTime.ToString("yyyy-MM-dd hh:ss"), EndTime = n.EndTime.ToString("yyyy-MM-dd hh:ss"), n.Location, n.Description, n.IsImportant, n.ThemeColor }).Where(n => n.employeeID == EmployeeDetail.EmployeeID).ToList();
+            //return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
 
-        //    var datas = data.ToList();
+            return Json(events, JsonRequestBehavior.AllowGet);
 
-        //    return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
-        //    //return Json(data, JsonRequestBehavior.AllowGet);
-        //}
+        }
 
 
-
-
-
-       
         [HttpGet]
         public ActionResult AddOrEdit(int id = 0)
         {
@@ -127,17 +119,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         }
 
-        [HttpGet]
-        public JsonResult Getevent()
-        {
-            BusinessDataBaseEntities db = new BusinessDataBaseEntities();
-            
-            var events = db.EventCalendars.AsEnumerable().Select(n=>new {n.CalendarID,n.employeeID, n.Subject,n.DepartmentID,StartTime = n.StartTime.ToString("yyyy-MM-dd hh:ss"),EndTime= n.EndTime.ToString("yyyy-MM-dd hh:ss"),n.Location,n.Description,n.IsImportant,n.ThemeColor }).Where(n=>n.employeeID ==EmployeeDetail.EmployeeID).ToList();
-            //return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-
-            return Json(events, JsonRequestBehavior.AllowGet);
-
-        }
+        
 
 
         //GET: EventCalendars/Details/5

@@ -117,16 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DepartmentID" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
   <data name="EndTime" xml:space="preserve">
-    <value>結束時間</value>
+    <value>EndTime</value>
   </data>
-  <data name="ReportName" xml:space="preserve">
-    <value>報表名稱</value>
+  <data name="IsImportant" xml:space="preserve">
+    <value>IsImportant</value>
   </data>
-  <data name="ReportNameEmpty" xml:space="preserve">
-    <value>請輸入報表名稱</value>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
   </data>
   <data name="StartTime" xml:space="preserve">
-    <value>開始時間</value>
+    <value>StartTime</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="ThemeColor" xml:space="preserve">
+    <value>Color</value>
   </data>
 </root>

@@ -179,7 +179,7 @@
           <Key>
             <PropertyRef Name="CommentOptionID" />
           </Key>
-          <Property Name="CommentOptionID" Type="int" Nullable="false" />
+          <Property Name="CommentOptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CommentOption1" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CommentQuestion">
@@ -197,9 +197,9 @@
           <Property Name="LicenseNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="VehicleYear" Type="int" Nullable="false" />
           <Property Name="PurchaseDate" Type="datetime" Nullable="false" />
-          <Property Name="brand" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="serial" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="MaxPassenger" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="brand" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="serial" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MaxPassenger" Type="nvarchar(max)" Nullable="false" />
           <Property Name="officeID" Type="int" Nullable="false" />
           <Property Name="VehiclePhoto" Type="varbinary(max)" />
           <Property Name="VehiclePhoto2" Type="nvarchar(max)" />
@@ -2137,9 +2137,9 @@
           <Property Name="LicenseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="VehicleYear" Type="Int32" Nullable="false" />
           <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="brand" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="serial" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="MaxPassenger" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="brand" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="serial" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MaxPassenger" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="officeID" Type="Int32" Nullable="false" />
           <Property Name="VehiclePhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="VehiclePhoto2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />

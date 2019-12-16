@@ -1,9 +1,10 @@
-﻿using EIPBussinessSystem_MVC.Views.ReportTimeSystems.Metadata;
+﻿
+using BusinessSystemMVC_Admin_page_.Views.ReportTimeSystems.MetaData;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace EIPBussinessSystem_MVC.Models
+namespace BusinessSystemMVC_Admin_page_.Models
 {
     public class ReportTimeSystemsMetadata
     {
@@ -15,7 +16,7 @@ namespace EIPBussinessSystem_MVC.Models
         [StringLength(10,ErrorMessage ="{0}最多{1}個字")]
         public string ReportName { get; set; }
 
-        [Display(Name = "EmployeeName")]
+        
         public int employeeID { get;}
 
         [Required(ErrorMessage = "請輸入{0}")]
@@ -29,16 +30,21 @@ namespace EIPBussinessSystem_MVC.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
         public System.DateTime EndTime { get; set; }
 
-        
+        [Display(Name = "EventHours", ResourceType = typeof(Resource1))]
         public double EventHours { get; set; }
 
+        [Display(Name = "EventID", ResourceType = typeof(Resource1))]
         public int EventID { get; set; }
+
+        [Display(Name = "Note", ResourceType = typeof(Resource1))]
         public string Note { get; set; }
 
         [Required(ErrorMessage = "請輸入{0}")]
-        [Display(Name = "送出表單時間", ResourceType = typeof(Resource1)))]
+        [Display(Name = "ApplyDateTime", ResourceType = typeof(Resource1))]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd tt hh:mm}",ApplyFormatInEditMode =true)]
         public System.DateTime ApplyDateTime { get; set; }
+
+
         public Nullable<bool> Discontinue { get; set; }
 
         public virtual Employee Employee { get; set; }

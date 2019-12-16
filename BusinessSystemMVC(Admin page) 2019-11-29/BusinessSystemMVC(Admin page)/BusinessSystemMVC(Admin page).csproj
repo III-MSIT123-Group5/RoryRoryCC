@@ -663,6 +663,7 @@
     <Compile Include="Controllers\MeetingRoomsController.cs" />
     <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Controllers\RecipientsController.cs" />
+    <Compile Include="Controllers\ReportTimeSystemsController.cs" />
     <Compile Include="Controllers\Test.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -832,7 +833,24 @@
     <Compile Include="ViewModels\LeaveHistoryApprovalTempViewModel.cs" />
     <Compile Include="Views\EventCalendars\Metadata\EventCalendarMetaData.cs" />
     <Compile Include="Views\EventCalendars\Metadata\EventCalendar.cs" />
+    <Compile Include="Views\EventCalendars\Metadata\Resource1.en-US.Designer.cs">
+      <DependentUpon>Resource1.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Views\EventCalendars\Metadata\Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportTimeSystems\MetaData\ReportTimeSystems.cs" />
+    <Compile Include="Views\ReportTimeSystems\MetaData\ReportTimeSystemsMetadata.cs" />
+    <Compile Include="Views\ReportTimeSystems\MetaData\Resource1.en-US.Designer.cs">
+      <DependentUpon>Resource1.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\ReportTimeSystems\MetaData\Resource1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
@@ -1394,6 +1412,12 @@
     <Content Include="Views\CommentQuestions\AddOrEdit.cshtml" />
     <Content Include="Views\CommentQ\AddOrEdit2.cshtml" />
     <Content Include="Views\CommentQuestions\Display.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Create.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Delete.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Details.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Edit.cshtml" />
+    <Content Include="Views\ReportTimeSystems\Index.cshtml" />
+    <Content Include="Views\ReportTimeSystems\AddOrEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1642,7 +1666,19 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Views\EventCalendars\Metadata\Resource1.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\EventCalendars\Metadata\Resource1.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReportTimeSystems\MetaData\Resource1.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReportTimeSystems\MetaData\Resource1.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
     </EmbeddedResource>

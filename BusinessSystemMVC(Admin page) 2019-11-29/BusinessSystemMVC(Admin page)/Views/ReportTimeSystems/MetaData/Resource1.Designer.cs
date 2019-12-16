@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EIPBussinessSystem_MVC.Views.ReportTimeSystems.Metadata {
+namespace BusinessSystemMVC_Admin_page_.Views.ReportTimeSystems.MetaData {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace EIPBussinessSystem_MVC.Views.ReportTimeSystems.Metadata {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EIPBussinessSystem_MVC.Views.ReportTimeSystems.Metadata.Resource1", typeof(Resource1).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BusinessSystemMVC_Admin_page_.Views.ReportTimeSystems.MetaData.Resource1", typeof(Resource1).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

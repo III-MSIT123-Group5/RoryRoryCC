@@ -117,10 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EndTime" xml:space="preserve">
+    <value>EndTime</value>
+  </data>
+  <data name="EventHours" xml:space="preserve">
+    <value>EventHours</value>
+  </data>
   <data name="ReportName" xml:space="preserve">
     <value>ReportName</value>
   </data>
   <data name="ReportNameEmpty" xml:space="preserve">
     <value>Please input ReportName.</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>StartTime</value>
   </data>
 </root>

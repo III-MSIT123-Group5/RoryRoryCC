@@ -107,7 +107,7 @@
                 type: "GET",
                 url:'@Url.Action("Getevent", "EventCalendars")',
                 success: function (data) {
-                    console.log(data);
+                    
 
                     $.each(data, function (i, v) {
 
@@ -126,7 +126,7 @@
                     })
 
                     GenerateCalender(events);
-                    console.log(events);
+                    
                 },
                 error: function (error) {
                     alert('failed');
@@ -168,6 +168,19 @@
                         PopupEditForm('@Url.Action("AddOrEdit","EventCalendars")/'+calID);
 
                     }
+                    //eventDragStop: function (calEvent, jsEvent, view) {
+                    //    if
+                    //}
+                    //eventDrop: function (calEvent, jsEvent) {
+                    //    var calID = calEvent.event.id;
+                    //    if ()
+                    //    {
+                    //        Delete(calID);
+                    //    }
+                        
+
+                    //}
+               
 
 
 
@@ -175,6 +188,11 @@
                 });
 
                 calendar.render();
+                //var calpt = $("#evecalendar").position;
+                
+                //console.log(calpt);
+
+
 
             }
 
@@ -240,16 +258,39 @@
                             $.notify(data.message, {
                                 globalPosition: "top center",
                                 className: "success"
+                                
                             })
-                            document.execCommand('Refresh')
+                            
                         }
-                        //$("#evecalendar").empty();
+                        
                     }
-                 })
-                        //.done(
+                })
+                location.reload();   
 
-                //    GenerateCalender(events)
-                //)
+                    @*type: "GET",
+                    url:'@Url.Action("Getevent", "EventCalendars")',
+                    success: function (data) {
+                    
+                        $.each(data, function (i, v) {
+                            events.push({
+                                id: v.CalendarID,
+                                DepartmentID: v.DepartmentID,
+                                title: v.Subject,
+                                start:v.StartTime,
+                                end: v.EndTime != null ? v.EndTime : null,
+                                color: v.ThemeColor,
+                                Location: v.Location,
+                                IsImportant: v.IsImportant,
+                                Description: v.Description
+                                })
+                            console.log(data);
+                        })
+
+                    GenerateCalender(events);*@
+                    
+                    
+                
+                   
 
             }
             return false;
@@ -264,8 +305,6 @@
                     success: function (data) {
                         if (data.success) {
 
-                            dataTable.ajax.reload();
-
                             $.notify(data.message, {
                                 globalPosition: "top center",
                                 className: "success"
@@ -274,8 +313,20 @@
                         }
                     }
 
-                });
+                })
+                location.reload(); 
             }
+        }
+        function drag(id) {
+
+        }
+
+
+        function dragout(id) {
+            
+
+
+
         }
     </script>
 
