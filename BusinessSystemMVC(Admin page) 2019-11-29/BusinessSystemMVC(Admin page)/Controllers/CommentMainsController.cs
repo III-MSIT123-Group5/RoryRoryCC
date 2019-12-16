@@ -82,6 +82,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
         // GET: CommentMains/Create
+        [HttpGet]
         public ActionResult Create(int id = 0)
         {
             int EmpID = EmployeeDetail.EmployeeID;
