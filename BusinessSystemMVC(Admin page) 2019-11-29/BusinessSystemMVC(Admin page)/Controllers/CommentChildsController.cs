@@ -43,7 +43,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                        on cm.CommentMainID equals cc.CommentMainID
                        select new
                        {
-                           cc.Num,
+                           cc.ChildNum,
                            cm.CommentMainID,
                            postperson = cm.EmployeeID,
                            cm.CommentName,
@@ -84,7 +84,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
                 {
 
-                    return View(db.CommentChilds.Where(x => x.Num == id).FirstOrDefault<CommentChild>());
+                    return View(db.CommentChilds.Where(x => x.ChildNum == id).FirstOrDefault<CommentChild>());
                 }
             }
         }
