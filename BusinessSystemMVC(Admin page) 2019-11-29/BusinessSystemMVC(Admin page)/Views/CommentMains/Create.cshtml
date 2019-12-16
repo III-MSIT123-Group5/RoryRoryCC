@@ -45,129 +45,89 @@
 
         <h2>建立意見調查</h2>
         <br/>
-    <div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.CommentContentID, "意見類型", htmlAttributes: new { @class = "control-label col-md-2 label" })
-            <div class="col-md-10">
-                @Html.DropDownGroupList("CommentContent", commentContentItems, "請選擇意見類型", htmlAttributes: new { @class = "label", style = "Width:400px;height:40px" })
+        <div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CommentContentID, "意見類型", htmlAttributes: new { @class = "control-label col-md-2 label" })
+                        <div @*class="col-md-10"*@>
+                            @Html.DropDownGroupList("CommentContent", commentContentItems, "請選擇意見類型", htmlAttributes: new { @class = "label", style = "Width:400px;height:40px" })
 
-            </div>
-        </div>
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CommentName, "意見名稱", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CommentName, new { htmlAttributes = new { @class = "form-control", style = "Width:400px" } })
-                @Html.ValidationMessageFor(model => model.CommentName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CommentName, "意見名稱", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div @*class="col-md-10"*@>
+                            @Html.EditorFor(model => model.CommentName, new { htmlAttributes = new { @class = "form-control", style = "Width:400px" } })
+                            @Html.ValidationMessageFor(model => model.CommentName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Employee.Department, "發送部門", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <select id="mul" multiple="multiple" style="display:none;">
-                    <option value="multiselect-all">select all</option>
-                </select>
-            </div>
-        </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Employee.Department, "發送部門", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div @*class="col-md-10"*@>
+                            <select id="mul" multiple="multiple" style="display:none;">
+                                <option value="multiselect-all">select all</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+</div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CommentContent.CommentQuestions, "調查題目", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <table class="table table-bordered" id="tableQ" style="width:600px">
-                    @*<tr>
+
+
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CommentContent.CommentQuestions, "調查題目", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div @*class="col-md-10"*@>
+                            <table class="table table-bordered" id="tableQ" style="width:600px">
+                                @*<tr>
                         <th>@Html.CheckBox("CheckAll", false, new { id = "select_all" })</th>*@
-                        
-                        @*@for (int i = 0; i < Model.additionalCustomerInfoListView.Count; i++)
+
+                                @*@for (int i = 0; i < Model.additionalCustomerInfoListView.Count; i++)
                         {
                         <tr>
                             <td>@Html.CheckBoxFor(model => model.additionalCustomerInfoListView[i].IsSelected, new { id = "someDivId" })</td>
                         </tr>
                         }*@
                             </table>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div @*class="col-md-offset-2 col-md-10"*@>
+                            <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
+                            @*<input type="submit" value="送出貼文" class="btn btn-success" style="margin-right:10px" />*@
+                            <input type="button" id="test" value="test" class="btn btn-success" style="margin-right:10px" />
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
-        </div>
-
-
-        @*<select class="multiselect" multiple="multiple"></select>*@
-
-
-        @*<div class="form-horizontal">
-        <h4>CommentMain</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.CommentMainID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CommentMainID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CommentMainID, "", new { @class = "text-danger" })
             </div>
-        </div>
+            }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CommentName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CommentName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CommentName, "", new { @class = "text-danger" })
+            <div>
+                @Html.ActionLink("回上一頁", "Index")
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.EmployeeID, "EmployeeID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("EmployeeID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.EmployeeID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <link rel="stylesheet" href="~/Content/bootstrap-multiselect.css" type="text/css">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.SendTime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SendTime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SendTime, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            @section scripts{
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CommentContentID, "CommentContentID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CommentContentID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CommentContentID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ActivityMainID, "ActivityMainID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ActivityMainID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ActivityMainID, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
-                <input type="submit" value="送出貼文" class="btn btn-success" style="margin-right:10px" />
-            </div>
-        </div>
-    </div>
-    }
-
-    <div>
-        @Html.ActionLink("回上一頁", "Index")
-    </div>
-
-    <link rel="stylesheet" href="~/Content/bootstrap-multiselect.css" type="text/css">
-
-    @section scripts{
-
-        <script src="~/Scripts/bootstrap-multiselect.js"></script>
-        <script>
+            <script src="~/Scripts/bootstrap-multiselect.js"></script>
+            <script>
 
 
-            $(document).ready(function () {
+                $(document).ready(function () {
 
-                $('#mul').multiselect({
+                    $('#mul').multiselect({
                     buttonText: function (options, select) {
                         if (options.length == 0) {
                             return this.nonSelectedText;
@@ -204,7 +164,7 @@
                 });
 
 
-                 $.ajax({
+                        $.ajax({
                         url:'@Url.Action("LoadEmployee", "CommentMains")',
                         method: 'GET',
                         dataType: 'json'
@@ -213,9 +173,9 @@
 
                         for (var i = 0; i < datas.length; i++) {
 
-                            $('#mul').append("<option value='" + datas[i].name + "'>" + datas[i].name+"</option>");
+                            $('#mul').append("<option value='" + datas[i].departmentID + "'>" + datas[i].name+"</option>");
 
-                            $('.multiselect-container').append("<li><a><label class='checkbox'><input type='checkbox' value='" + datas[i].name +"'>  " + datas[i].name +" </label></a></li>");
+                            $('.multiselect-container').append("<li><a><label class='checkbox'><input type='checkbox' value='" + datas[i].departmentID +"'>  " + datas[i].name +" </label></a></li>");
 
                         }
 
@@ -234,7 +194,7 @@
 
                 function ChangeTable() {
 
-                    
+
 
                     $('#tableQ').empty();
 
@@ -276,8 +236,73 @@
 
 
             $('#HeaderCheckbox').click(function () {
-                $('input[name="checkbox"]').prop('checked', this.checked)
-            });
+                $('input[name="checkbox"]').prop('checked', this.checked) });
+
+
+                    
+
+                    $('#test').click(function () {
+
+                        var DropccID = $('#CommentContent').val();
+
+
+                        var oldselected = [];
+                      
+                        var arr = [];
+                        var count = 0;
+
+                        var commentname = $('#CommentName').text();
+
+                        $('#mul :selected').each(function () {
+                            oldselected[$(this).val()] = $(this).val();
+                        });
+
+                        var selected = oldselected.filter(function (v) { return v !== '' });
+
+                        console.log(DropccID);
+                        console.log(oldselected);
+                        console.log(selected);
+
+                        $.ajax({
+                            url: '@Url.Action("GetDepartmentID", "CommentMains")',
+                            method: 'GET',
+                            dataType: 'json'
+
+                        }).done(function (datas) {
+                            console.log(datas);
+                            for (var i = 0; i < datas.length;i++) {
+                                if ($.inArray(String(datas[i].DepartmentID), selected) >=0) {
+                                    arr[count] = datas[i].employeeID;
+                                    count++;
+                                }
+                            }
+                            console.log(arr);
+                            console.log(count);
+                        });
+
+                        $.ajax({
+                            url: '@Url.Action("Create", "CommentMains")',
+                            method: "POST",
+                            dataType: 'json',
+                            data: {
+                                array: arr,
+                                cid: DropccID,
+                                cname:commentname
+                            }
+                        }).done(function () {
+                            alert("OK")
+                        })
+
+                    });
+
+
+
+
+
+
+
+
+
 
             //$('#HeaderCheckbox').click(function (event) {
             //    if (this.checked) {
@@ -301,7 +326,7 @@
 
             //$('#HeaderCheckbox').change(function () {
             //        $('.cq').prop('checked', $('.cq:checked').length == $('#HeaderCheckbox').length);
-                    
+
             //});
 
             //};
@@ -315,8 +340,8 @@
             //    $('td input:checkbox').prop('checked', $('td input:checkbox:checked').length == $('td input:checkbox').length);
 
             //});
-        </script>
+                </script>
 
-    }
+            }
 </body>
 </html>

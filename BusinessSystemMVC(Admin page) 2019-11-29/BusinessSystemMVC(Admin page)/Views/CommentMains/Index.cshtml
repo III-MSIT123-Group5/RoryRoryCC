@@ -29,7 +29,7 @@
     <br />
     <a href="@Url.Action("Create","CommentMains")">新增</a>
     <p>
-        <button class="btn btn-success" style="margin-bottom:10px" onclick="PopupForm('/CommentMains/AddOrEdit')"><i class="fa fa-plus" aria-hidden="true"></i> 新增調查</button>
+        <button class="btn btn-success" style="margin-bottom:10px" onclick="PopupForm('/CommentMains/AddOrEdit')"><i class="fa fa-plus" aria-hidden="true"></i> 發起調查</button>
     </p>
     <div>
         @Html.Label("意見調查項目");
@@ -53,6 +53,8 @@
         </table>
 
     </div>
+
+
     @*@Scripts.Render("~/bundles/jquery")
     @RenderSection("scriptsAdd", required: false)*@
 
@@ -129,7 +131,7 @@
                         Popup = formDiv.dialog({
                             autoOpen: true,
                             resizable: false,
-                            title: '新增意見調查',
+                            title: '發起意見調查',
                             height: 700,
                             width: 1000,
                             close: function () {

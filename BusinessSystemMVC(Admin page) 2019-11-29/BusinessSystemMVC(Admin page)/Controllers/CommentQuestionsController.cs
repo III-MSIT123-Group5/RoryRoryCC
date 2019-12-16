@@ -434,6 +434,211 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
 
+        //調查分類
+        [HttpGet]
+        public ActionResult DisplayCommentOptions()
+        {
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult LoadCommentOptions()
+        {
+
+            var data = from co in db.CommentOptions
+                       select new
+                       {
+                           co.CommentOptionID,
+                           co.CommentOption1
+                       };
+
+            var datas = data.ToList();
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpGet]
+        public ActionResult AddOrEditCO(int id = 0)
+        {
+
+            if (id == 0)
+            {
+                return View(new CommentOption());
+            }
+            else
+            {
+                using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+                {
+
+                    return View(db.CommentOptions.Where(x => x.CommentOptionID == id).FirstOrDefault<CommentOption>());
+                }
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddOrEditCO(CommentOption c)
+        {
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+                if (c.CommentOptionID == 0)
+                {
+
+                    db.CommentOptions.Add(new CommentOption()
+                    {
+                        //CommentOptionID = c.CommentOptionID,
+                        CommentOption1 = c.CommentOption1,
+
+                    });
+                    db.SaveChanges();
+
+                    return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    db.Entry(c).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteCO(int id)
+        {
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+                CommentOption c = db.CommentOptions.Where(x => x.CommentOptionID == id).FirstOrDefault<CommentOption>();
+                db.CommentOptions.Remove(c);
+                db.SaveChanges();
+
+                return Json(new { success = true, message = "刪除成功" }, JsonRequestBehavior.AllowGet);
+
+
+            }
+
+        }
+
+        //調查主題
+        [HttpGet]
+        public ActionResult DisplayCommentContents()
+        {
+            ViewBag.Message = "編輯分類、主題、調查選項";
+
+            SelectList selectList = new SelectList(this.GetOptions(), "CommentOptionID", "CommentOption1");
+            ViewBag.SelectList = selectList;
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult LoadCommentContents()
+        {
+
+            var data = from cc in db.CommentContents
+                       join co in db.CommentOptions
+                       on cc.CommentOptionID equals co.CommentOptionID
+                       select new
+                       {
+                           cc.CommentContentID,
+                           cc.CommentContent1,
+                           cc.CommentOptionID,
+                           co.CommentOption1
+                       };
+
+            var datas = data.ToList();
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+        public ActionResult LoadAndChangeCommentContent(int cid)
+        {
+
+            var data = from cc in db.CommentContents
+                       join co in db.CommentOptions
+                       on cc.CommentOptionID equals co.CommentOptionID
+                       where cc.CommentOptionID == cid
+                       select new
+                       {
+                           cc.CommentContentID,
+                           cc.CommentContent1,
+                           cc.CommentOptionID,
+                           co.CommentOption1
+                       };
+
+            var datas = data.ToList();
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult AddOrEditCC(int id = 0)
+        {
+
+            if (id == 0)
+            {
+                return View(new CommentContent());
+            }
+            else
+            {
+                using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+                {
+
+                    return View(db.CommentContents.Where(x => x.CommentContentID == id).FirstOrDefault<CommentContent>());
+                }
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddOrEditCC(CommentContent c)
+        {
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+                if (c.CommentContentID == 0)
+                {
+
+                    db.CommentContents.Add(new CommentContent()
+                    {
+                        CommentOptionID = c.CommentOptionID,
+                        CommentContent1 = c.CommentContent1,
+                        CommentContentID = c.CommentContentID,
+
+                    });
+                    db.SaveChanges();
+
+                    return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    db.Entry(c).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteCC(int id)
+        {
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+                CommentContent c = db.CommentContents.Where(x => x.CommentContentID == id).FirstOrDefault<CommentContent>();
+                db.CommentContents.Remove(c);
+                db.SaveChanges();
+
+                return Json(new { success = true, message = "刪除成功" }, JsonRequestBehavior.AllowGet);
+
+
+            }
+
+        }
+
 
         // GET: CommentQuestions/Create
         //public ActionResult Create()

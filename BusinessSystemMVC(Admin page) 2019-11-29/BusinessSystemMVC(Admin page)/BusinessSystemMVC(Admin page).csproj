@@ -1395,6 +1395,10 @@
     <Content Include="Views\CommentQuestions\AddOrEdit.cshtml" />
     <Content Include="Views\CommentQ\AddOrEdit2.cshtml" />
     <Content Include="Views\CommentQuestions\Display.cshtml" />
+    <Content Include="Views\CommentQuestions\DisplayCommentOptions.cshtml" />
+    <Content Include="Views\CommentQuestions\AddOrEditCO.cshtml" />
+    <Content Include="Views\CommentQuestions\AddOrEditCC.cshtml" />
+    <Content Include="Views\CommentQuestions\DisplayCommentContents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

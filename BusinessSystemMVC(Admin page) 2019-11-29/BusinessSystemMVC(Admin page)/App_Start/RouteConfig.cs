@@ -42,6 +42,12 @@ namespace BusinessSystemMVC_Admin_page_
             url: "{controller}/{action}/{id}",
             defaults: new { controller = "BulletinBoards", action = "Index", id = UrlParameter.Optional }
             );
+
+            //routes.MapRoute(
+            //name: "CommentQuestions",
+            //url: "{controller}/{action}/{id}",
+            //defaults: new { controller = "CommentQuestions", action = "AddOrEditCO", id = UrlParameter.Optional }
+            //);
         }
     }
 }

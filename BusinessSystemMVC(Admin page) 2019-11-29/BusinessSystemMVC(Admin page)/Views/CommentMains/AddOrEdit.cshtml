@@ -7,35 +7,28 @@
     var commentContentItems = ViewBag.CommentContentItems as List<GroupedSelectListItem>;
 }
 
-<style>
 
-    label {
-        font-family: 'NotoSansCJKtc-Bold';
-    }
-</style>
+<html>
+<head>
+    <style>
 
-@using (Html.BeginForm("AddOrEdit", "CommentMains", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
-{
-    @Html.AntiForgeryToken()
+        label {
+            font-family: 'NotoSansCJKtc-Bold';
+        }
+    </style>
+</head>
+<body>
+        @using (Html.BeginForm("AddOrEdit", "CommentMains", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+        {
 
-    @Html.HiddenFor(model => model.CommentMainID)
-    @Html.HiddenFor(model => model.EmployeeID)
-    @Html.HiddenFor(model => model.SendTime)
 
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.CommentContentID, "CommentOptionID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CommentOptionID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CommentContentID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CommentContentID, "CommentContentID", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("CommentContentID", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.CommentContentID, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(model => model.CommentMainID)
+            @Html.HiddenFor(model => model.EmployeeID)
+            @Html.HiddenFor(model => model.SendTime)
+
+
     <div>
         <div class="form-group">
             @Html.LabelFor(model => model.CommentContentID, "意見類型", htmlAttributes: new { @class = "control-label col-md-2 label" })
@@ -53,36 +46,208 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.CommentContentID, "CommentContentID", htmlAttributes: new { @class = "control-label col-md-2 label" })
-                <div class="col-md-10">
-                    @Html.DropDownGroupList("CommentContent", commentContentItems, "請選擇活動")
+        <div class="form-group">
+            @Html.LabelFor(model => model.Employee.Department, "發送部門", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="mul" multiple="multiple" style="display:none;">
+                    <option value="multiselect-all">select all</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CommentContent.CommentQuestions, "調查題目", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <table class="table table-bordered" id="tableQ" style="width:600px">
+                    @*<tr>
+                    <th>@Html.CheckBox("CheckAll", false, new { id = "select_all" })</th>*@
+
+                    @*@for (int i = 0; i < Model.additionalCustomerInfoListView.Count; i++)
+                    {
+                    <tr>
+                        <td>@Html.CheckBoxFor(model => model.additionalCustomerInfoListView[i].IsSelected, new { id = "someDivId" })</td>
+                    </tr>
+                    }*@
+                </table>
+            </div>
+        </div>
+
+        <div style="float:right">
+            <div class="form-group" style="float:right">
+                @*<button type="submit" class="btn btn-success">送出貼文</button>
+                <button type="reset" class="btn btn-warning">清除</button>*@
+                <div>
+                    <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
+                    <input type="submit" value="送出貼文" class="btn btn-success" style="margin-right:10px" />
 
                 </div>
-            </div>*@
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.Content, new { @class = "control-label" })
-
-                @Html.TextAreaFor(model => model.Content, new { rows = "8", cols = "150", @class = "form-control", @MaxLength = "1000" })
-                @Html.ValidationMessageFor(model => model.Content)
-
-            </div>*@
-
-
-    </div>
-    <div style="float:right">
-        <div class="form-group" style="float:right">
-            @*<button type="submit" class="btn btn-success">送出貼文</button>
-                <button type="reset" class="btn btn-warning">清除</button>*@
-            <div>
-                <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
-                <input type="submit" value="送出貼文" class="btn btn-success" style="margin-right:10px" />
-
             </div>
         </div>
     </div>
+        }
 
-}
+        <link rel="stylesheet" href="~/Content/bootstrap-multiselect.css" type="text/css">
+
+        @section scripts{
+
+            <script src="~/Scripts/bootstrap-multiselect.js"></script>
+            <script>
+
+
+            $(document).ready(function () {
+
+                $('#mul').multiselect({
+                    buttonText: function (options, select) {
+                        if (options.length == 0) {
+                            return this.nonSelectedText;
+                        }
+                        else {
+                            if (options.length - this.numberDisplayed>0) {
+                                return this.nSelectedText + ' ' + (options.length-1) +" 項";
+                            }
+                            else if (options.length - (this.numberDisplayed+1)==0) {
+                                return "已全選(7)";
+                            }
+                            else {
+                                var selected = '';
+                                options.each(function () {
+                                    var label = ($(this).attr('label') !== undefined) ? $(this).attr('label') : $(this).html();
+
+                                    selected += label + ', ';
+                                });
+                                return selected.substr(0, selected.length - 2) ;
+                            }
+
+                        }
+
+
+
+                    },
+
+                    nonSelectedText: '- - - - - - - -   請選擇   - - - - - - - -',
+                    nSelectedText: '已選擇',
+                    selectAllText: ' 全選',
+                    includeSelectAllOption: true,
+                    buttonWidth: '400px',
+                    numberDisplayed: 6
+                });
+
+
+                 $.ajax({
+                        url:'@Url.Action("LoadEmployee", "CommentMains")',
+                        method: 'GET',
+                        dataType: 'json'
+                    })
+                    .done(function(datas) {
+
+                        for (var i = 0; i < datas.length; i++) {
+
+                            $('#mul').append("<option value='" + datas[i].name + "'>" + datas[i].name+"</option>");
+
+                            $('.multiselect-container').append("<li><a><label class='checkbox'><input type='checkbox' value='" + datas[i].name +"'>  " + datas[i].name +" </label></a></li>");
+
+                        }
+
+                    })
+
+
+
+
+                });
+
+
+            $("#CommentContent").change(function () {
+                ChangeTable();
+
+            });
+
+                function ChangeTable() {
+
+
+
+                    $('#tableQ').empty();
+
+                    //存下拉式選單選到的值
+                    var s = $('#CommentContent').val();
+
+                    $.ajax({
+                        url: '@Url.Action("LoadQuestion", "CommentMains")',
+                        method: 'GET',
+                        dataType: 'json'
+                    })
+                        .done(function (datas) {
+                            //<th><input type='checkbox' name='HeaderCheckbox' id='HeaderCheckbox'></th>
+                            $('#tableQ').append("<tr><th><input type='checkbox' name='HeaderCheckbox' id='HeaderCheckbox'></th><th>提問編號</th><th>題目</th></tr>");
+                            for (var j = 0; j < datas.length; j++) {
+
+                                if (datas[j].CommentContentID == s) {
+
+                                $('#tableQ').append("<tr>");
+                                $('#tableQ').append("<td><input type='checkbox' class='cq' name='checkbox' value='" + datas[j].CommentQuestionID + "'></td>");
+                                $('#tableQ').append("<td>" + datas[j].CommentQuestionID + "</td>");
+                                $('#tableQ').append("<td>" + datas[j].Question + "</td>");
+                                $('#tableQ').append("</tr>");
+                                }
+
+                                $('#HeaderCheckbox').click(function () {
+                                    $('input[name="checkbox"]').prop('checked', this.checked)
+                                });
+
+                        }
+                        })
+
+                    //CheckBoxesEventHandler();
+
+
+                }
+
+
+
+
+            $('#HeaderCheckbox').click(function () {
+                $('input[name="checkbox"]').prop('checked', this.checked)
+            });
+
+            //$('#HeaderCheckbox').click(function (event) {
+            //    if (this.checked) {
+            //        // Iterate each checkbox
+            //        $(':checkbox').each(function () {
+            //            this.checked = true;
+            //        });
+            //    } else {
+            //        $(':checkbox').each(function () {
+            //            this.checked = false;
+            //        });
+            //    }
+            //});
+
+            //var CheckBoxesEventHandler = function () {
+
+            //$('#HeaderCheckbox').click(function () {
+            //        $('.cq').prop('checked', $('th input: checkbox').is(':checked'));
+
+            //    });
+
+            //$('#HeaderCheckbox').change(function () {
+            //        $('.cq').prop('checked', $('.cq:checked').length == $('#HeaderCheckbox').length);
+
+            //});
+
+            //};
+
+
+            //$('td input:checkbox').prop('checked', $('th input: checkbox').is(':checked'));
+
+            //    });
+
+            //$('th input:checkbox').change(function () {
+            //    $('td input:checkbox').prop('checked', $('td input:checkbox:checked').length == $('td input:checkbox').length);
+
+            //});
+            </script>
+
+        }
+        </body>
+</html>
 
 
