@@ -68,7 +68,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             var userId = User.Identity.GetUserId();
             var acc = db.AspNetUsers.Find(userId);
-            
+
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
@@ -90,7 +90,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 PositionID = EmployeeDetail.PositionName,
                 ManagerID = EmployeeDetail.ManagerName,
                 Employed = EmployeeDetail.Employed,
-                Photo =  Request.PhysicalApplicationPath + "\\imgProfiles\\" + EmployeeDetail.PhotoAdress ,
+                Photo = "~/imgProfiles/" + EmployeeDetail.PhotoAdress  , 
             };
             return View(model);
         }
@@ -429,19 +429,18 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         public ActionResult UpdatePhoto(HttpPostedFileBase PhotoAdress)
         {
             var upPhoto = db.Employees.Find(EmployeeDetail.EmployeeID);
+            string appPath = Request.PhysicalApplicationPath;
+            string saveDir = "\\imgProfiles\\";
             if (PhotoAdress != null)
             {
                 string SourceFilename = Path.GetFileName(PhotoAdress.FileName);
-                string saveDir = "\\imgProfiles\\";
-                string appPath = Request.PhysicalApplicationPath;
                 string savePath = appPath + saveDir + SourceFilename;
                 PhotoAdress.SaveAs(savePath);
-                
                 upPhoto.Photo =  SourceFilename;
                 db.SaveChanges();
             }
-            return Json(upPhoto.Photo, JsonRequestBehavior.AllowGet);
-         }
+            return RedirectToAction("Index", "Home");
+        }
 
     #endregion
 }

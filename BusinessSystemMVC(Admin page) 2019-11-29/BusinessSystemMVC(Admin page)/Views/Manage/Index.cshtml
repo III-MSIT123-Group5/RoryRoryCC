@@ -1,32 +1,27 @@
 ﻿@model BusinessSystemMVC_Admin_page_.Models.IndexViewModel
-@{
-    ViewBag.Title = "管理";
-}
 
-<h2>@ViewBag.Title</h2>
+
+<h2>個人檔案</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>變更帳戶設定</h4>
     <hr />
 
-    <dl class="dl-horizontal">
-        <dt></dt>
-        <dd></dd>
+    <dl class="dl-horizontal"  style="float:left ; width:500px ; margin-left:100px">      
         <dt>@Html.DisplayNameFor(m => m.Photo)</dt>
         <dd>
             <div>
-                <img id="imgPhoto" src="@Model.Photo" style="height: 250px ; width:auto" />
+                <img id="imgPhoto" src="@Url.Content(Model.Photo) "  style="height:250px" />
             </div>
             @using (Html.BeginForm("UpdatePhoto", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", @enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
                 @*@Html.TextBoxFor(model => model.Photo, new {  @type = "file", @id="txtPhoto" })*@
                 @*@Html.TextBox("txtPhoto", @Html.DisplayFor(m => m.Photo), new { @class = "col-md-2 control-label", @disabled = "disabled" })*@
-                @Html.TextBox("PhotoAdress", null, new { @type = "file" })
+                @Html.TextBox("PhotoAdress", null, new { @type = "file" ,@style="width:200px"})
                 @*@Html.TextBox("btnChangePhoto", "變更", new { @type = "button", @class = "btn btn-primary" })*@
                 @*@Html.TextBox("btnSavePhoto", "儲存", new { @type = "button", @class = "btn btn-primary" })*@
-                <button type="submit" title="執行多檔上傳" class="btn btn-primary">儲存</button>
+                <button type="submit" title="執行多檔上傳" class="btn btn-primary" id="savePhoto" style="visibility:hidden">儲存並回首頁</button>
             }
         </dd>
         <dt>@Html.DisplayNameFor(m => m.EmployeeID)</dt>
@@ -54,95 +49,41 @@
             }
             ]
         </dd>
-        <dt>@Html.DisplayNameFor(m => m.Email)</dt>
-        <dd>
-            @Html.DisplayFor(m => m.Email)
-        </dd>
-        <dt>@Html.DisplayNameFor(m => m.Gender)</dt>
-        <dd>
-            @Html.DisplayFor(m => m.Gender)
-        </dd>
-        <dt>@Html.DisplayNameFor(m => m.OfficeName)</dt>
-        <dd>
-            @Html.DisplayFor(m => m.OfficeName)
-        </dd>
-        <dt>@Html.DisplayNameFor(m => m.DepartmentName)</dt>
-        <dd>
-            @Html.DisplayFor(m => m.DepartmentName)
-        </dd>
-        <dt>@Html.DisplayNameFor(m => m.GroupID)</dt>
-        <dd>
-            @Html.DisplayFor(m => m.GroupID)
-        </dd>
-        <dt>@Html.DisplayNameFor(m => m.PositionID)</dt>
-        <dd>
-            @Html.DisplayFor(m => m.PositionID)
-        </dd>
-        <dt>@Html.DisplayNameFor(m => m.ManagerID)</dt>
-        <dd>
-            @Html.DisplayFor(m => m.ManagerID)
-        </dd>
-        <dt>@Html.DisplayNameFor(m => m.Employed)</dt>
-        <dd>
-            @Html.DisplayFor(m => m.Employed)
-        </dd>
-
-        @*
-            電話號碼可用作為雙重要素驗證系統中的第二項驗證要素。
-
-             請參閱<a href="https://go.microsoft.com/fwlink/?LinkId=403804">此文章</a>
-                以取得設定此 ASP.NET 應用程式使用簡訊來支援雙重要素驗證的詳細資料。
-
-             設定了雙重驗證之後，請取消對下列區塊的註解
-        *@
-        @*
-            <dt>電話號碼:</dt>
+        </dl>
+        <dl class="dl-horizontal">
+            <dt>@Html.DisplayNameFor(m => m.Email)</dt>
             <dd>
-                @(Model.PhoneNumber ?? "None")
-                @if (Model.PhoneNumber != null)
-                {
-                    <br />
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
-                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>[<input type="submit" value="移除" class="btn-link" />]</text>
-                    }
-                }
-                else
-                {
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
-                }
+                @Html.DisplayFor(m => m.Email)
             </dd>
-        *@
-        @*<dt>雙因素驗證:</dt>
+            <dt>@Html.DisplayNameFor(m => m.Gender)</dt>
             <dd>
-                <p>
-                    未設定任何雙重要素驗證提供者。請參閱<a href="https://go.microsoft.com/fwlink/?LinkId=403804">此文章</a>
-                    以取得設定此 ASP.NET 應用程式以支援雙重要素驗證的詳細資料。
-                </p>*@
-        @*@if (Model.TwoFactor)
-            {
-                using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <text>已啟用
-                    <input type="submit" value="停用" class="btn btn-link" />
-                    </text>
-                }
-            }
-            else
-            {
-                using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <text>已停用
-                    <input type="submit" value="啟用" class="btn btn-link" />
-                    </text>
-                }
-            }*@
-        @*</dd>*@
-    </dl>
+                @Html.DisplayFor(m => m.Gender)
+            </dd>
+            <dt>@Html.DisplayNameFor(m => m.OfficeName)</dt>
+            <dd>
+                @Html.DisplayFor(m => m.OfficeName)
+            </dd>
+            <dt>@Html.DisplayNameFor(m => m.DepartmentName)</dt>
+            <dd>
+                @Html.DisplayFor(m => m.DepartmentName)
+            </dd>
+            <dt>@Html.DisplayNameFor(m => m.GroupID)</dt>
+            <dd>
+                @Html.DisplayFor(m => m.GroupID)
+            </dd>
+            <dt>@Html.DisplayNameFor(m => m.PositionID)</dt>
+            <dd>
+                @Html.DisplayFor(m => m.PositionID)
+            </dd>
+            <dt>@Html.DisplayNameFor(m => m.ManagerID)</dt>
+            <dd>
+                @Html.DisplayFor(m => m.ManagerID)
+            </dd>
+            <dt>@Html.DisplayNameFor(m => m.Employed)</dt>
+            <dd>
+                @Html.DisplayFor(m => m.Employed)
+            </dd>
+        </dl>
 
 </div>
 
@@ -150,27 +91,12 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script type="text/javascript">
-        var txtPhoto = $("#txtPhoto");
+        var savePhoto = document.getElementById("savePhoto");
 
-        $("#btnChangePhoto").click(function () {
-            txtPhoto.removeAttr("disabled");
-            txtPhoto.select;
+        $("#PhotoAdress").click(function () {
+            //savePhoto.attr("visibility","visible");
+                        //savePhoto.remove(visibility);
+            savePhoto.style.visibility = "visible";
         })
-
-        $("#btnSavePhoto").click(function () {
-            var txtPadress = txtPhoto.val();
-            //txtPhoto.attr("disabled", "disabled");
-            $.ajax({
-                url: "@Url.Action("UpdatePhoto","Manage")/" + txtPhoto.value,
-                type: "post",
-                //data: { PhotoAdress: txtPadress},
-            }).done(function (data) {
-                $("#imgPhoto").attr("src", "@Request.PhysicalApplicationPath/imgProfiles/"+ data);
-                alert("照片儲存成功");
-                }).fail(function () {
-                    alert("照片儲存失敗");
-                })
-        })
-
     </script>
 }
