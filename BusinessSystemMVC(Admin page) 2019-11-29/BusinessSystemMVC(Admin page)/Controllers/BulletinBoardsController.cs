@@ -98,7 +98,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             {
                 if (b.Num == 0)
                 {
-                    //db.BulletinBoards.Add(b);
 
                     var userid = User.Identity.GetUserId();
                     var account = db.AspNetUsers.Find(userid);
