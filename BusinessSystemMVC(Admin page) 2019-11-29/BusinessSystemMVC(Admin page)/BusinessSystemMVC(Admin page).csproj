@@ -829,6 +829,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\BulletinBoardEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\CompanyVehicleViewModel.cs" />
     <Compile Include="ViewModels\LeaveHistoryApprovalTempViewModel.cs" />
     <Compile Include="Views\EventCalendars\Metadata\EventCalendarMetaData.cs" />
     <Compile Include="Views\EventCalendars\Metadata\EventCalendar.cs" />
@@ -1395,6 +1396,7 @@
     <Content Include="Views\CommentQ\AddOrEdit2.cshtml" />
     <Content Include="Views\CommentQuestions\Display.cshtml" />
     <Content Include="Views\EmployeeApprovalTemps\EditEmployeeIndex.cshtml" />
+    <Content Include="Views\CompanyVehicles\AddOrEdit3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
