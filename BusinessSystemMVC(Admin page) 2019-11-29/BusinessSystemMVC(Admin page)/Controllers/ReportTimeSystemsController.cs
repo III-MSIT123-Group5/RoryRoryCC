@@ -29,7 +29,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 n.ReportID,
                 n.ReportName,
                 n.employeeID,
-                n.ApplyDateTime,
+                ApplyDateTime=n.ApplyDateTime.ToString("yyyy-MM-dd hh:ss"),
                 StartTime = n.StartTime.ToString("yyyy-MM-dd hh:ss"),
                 EndTime = n.EndTime.ToString("yyyy-MM-dd hh:ss"),
                 n.EventHours,
