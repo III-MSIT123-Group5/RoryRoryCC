@@ -41,27 +41,6 @@
                 <th>數量</th>
                 <th>總價</th>
                 <th>原由</th>
-                @*<th rowspan="2">簽核/駁回</th>
-            <th rowspan="2">請購單編號</th>
-            <th rowspan="2">產品</th>
-            <th rowspan="2">單價</th>
-            <th rowspan="2">數量</th>
-            <th rowspan="2">總價</th>
-            <th rowspan="2">原由</th>
-            <th colspan="2">第一層簽核狀態</th>
-            <th colspan="2">第二層簽核狀態</th>
-            <th colspan="2">第三層簽核狀態</th>
-            <th colspan="2">第四層簽核狀態</th>
-        </tr>
-        <tr>
-            <th>簽核人</th>
-            <th>簽核狀態</th>
-            <th>簽核人</th>
-            <th>簽核狀態</th>
-            <th>簽核人</th>
-            <th>簽核狀態</th>
-            <th>簽核人</th>
-            <th>簽核狀態</th>*@
             </tr>
         </thead>
     </table>
@@ -74,12 +53,12 @@
     <script src="/Scripts/moment.js"></script>
 
     <script>
-        var Popup, dataTable; //height="75%" width="75%" src=\"'height="75%"
+        var Popup, dataTable; 
 
         $(document).ready(function () {
             dataTable = $('#ApprovalTable').DataTable({
                 "ajax": {
-                    url: '/OrderDetails/LoadDataSign',
+                    url: '@Url.Action("LoadDataSign", "OrderDetails")',
                     method: 'GET',
                     dataType: 'json'
                 },            
@@ -220,24 +199,6 @@
             return false;
         }
 
-        //function Reject(Url) {
-        //    if (confirm('確定要駁回此筆請購嗎?')) {
-        //        $.ajax({
-        //            type: "POST",
-        //            url: Url,
-        //            success: function (data) {
-        //                if (data.success) {
-        //                    dataTable.ajax.reload();
-        //                    $.notify(data.message, {
-        //                        globalPosition: "top center",
-        //                        className: "success"
-        //                    })
-        //                }
-        //            }
-        //        });
-        //    }
-        //}
-
         function PopupForm(url) {
             var formDiv = $('<div/>');
             $.get(url)
@@ -258,61 +219,3 @@
         }
     </script>
 }
-
-
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Note)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UnitPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RequisitionMain.OrderID)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Note)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RequisitionMain.OrderID)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.OrderDetailID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.OrderDetailID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.OrderDetailID })
-            </td>
-        </tr>
-    }
-
-</table>*@

@@ -22,7 +22,6 @@
         }
     </style>
 
-    @*<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />*@
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 }
 
@@ -62,7 +61,7 @@
         $(document).ready(function () {
             dataTable = $('#ApprovalProgressTable').DataTable({
                 "ajax": {
-                    url: '/OrderDetails/LoadDataSignProgress',
+                    url: '@Url.Action("LoadDataSignProgress", "OrderDetails")',
                     method: 'GET',
                     dataType: 'json'
                 },
@@ -84,18 +83,6 @@
                             }
                             return `<span style="color: ${color}">${data}</span>`;
                         },
-                        ////背景顏色
-                        //"createdCell": function (td, cellData) {
-                        //    if (cellData == "審核中") {
-                        //        $(td).css('background-color', 'orange');
-                        //    }
-                        //    else if (cellData == "審核完成") {
-                        //        $(td).css('background-color', '#00DD00');
-                        //    }
-                        //    else {
-                        //        $(td).css('background-color', 'red');
-                        //    }
-                        //}
                     },
                     {
                         "targets": 1,
@@ -205,7 +192,7 @@
                         "data": "OrderID",
                         "className": "text-center align-middle",
                         "render": function (data) {
-                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/OrderDetails/DetailSignProgress/" + data + "')><i class='fa fa-list-alt'></i> 內容</a>"
+                            return `<a class='btn btn-warning btn-sm' onclick=PopupForm('@Url.Action("DetailSignProgress", "OrderDetails")/${ data }')><i class='fa fa-list-alt'></i> 內容</a>`
                         },
                         "orderable": false,
                         "searchable": false,
@@ -263,62 +250,3 @@
         }
     </script>
 }
-
-
-
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Note)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UnitPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RequisitionMain.OrderID)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Note)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RequisitionMain.OrderID)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.OrderDetailID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.OrderDetailID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.OrderDetailID })
-            </td>
-        </tr>
-    }
-
-</table>*@
