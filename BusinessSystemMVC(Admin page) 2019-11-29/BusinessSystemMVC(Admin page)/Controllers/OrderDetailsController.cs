@@ -364,8 +364,19 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                              A.FourthSignerName,
                              A.FourthSignStatus
                          };
+            
+            //查詢TotalPrice<10000，<=10000
+            var TotalPrice = from RM in db.RequisitionMains
+                             select new { RM.Price };
 
-            //查詢第三層簽核狀態(已簽核、免簽核)
+            decimal? totalprice = 0;
+
+            foreach (var e in TotalPrice)
+            {
+                totalprice = e.Price;
+            }
+
+            //查詢第三層簽核狀態(已審核、免審核)
             var ThirdSign = from A in db.Approvals
                             select new { A.ThirdSignStatus };
 
@@ -376,13 +387,25 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 SignStatus = e.ThirdSignStatus;
             }
 
+            
+
+
             if (EmployeeDetail.PositionID == 3 && EmployeeDetail.GroupID == 1)
             {
-                //第三層已簽核、免簽核
-                if (!(SignStatus == "駁回簽核"))
-                {
-                    report = report.Where(x => x.SecondSignStatus == "已審核" && x.FourthSignStatus == "未審核" && x.FourthSignerID == EmployeeDetail.EmployeeID).Select(x => x);
-                }
+                report = report.Where(x => x.SecondSignStatus == "已審核" && (x.ThirdSignStatus== "免審核" || x.ThirdSignStatus == "已審核") && x.FourthSignStatus == "未審核" && x.FourthSignerID == EmployeeDetail.EmployeeID).Select(x => x);
+
+                //if (!(SignStatus == "駁回簽核"))
+                //{
+                //if (SignStatus == "免審核")
+                //{
+                //    report = report.Where(x =>x.TotalPrice<10000 && x.SecondSignStatus == "已審核" && x.FourthSignStatus == "未審核" && x.FourthSignerID == EmployeeDetail.EmployeeID).Select(x => x);
+                //}
+                //else if (SignStatus == "已審核")
+                //{
+                //    report = report.Where(x => !(x.TotalPrice < 10000) && x.SecondSignStatus == "已審核" && x.FourthSignStatus == "未審核" && x.FourthSignerID == EmployeeDetail.EmployeeID).Select(x => x);
+                //}
+
+                //}
             }
             else if (EmployeeDetail.PositionID == 3)
             {
@@ -403,7 +426,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
         public ActionResult ApprovalSubmit(int? id)
         {
             var requisition = db.RequisitionMains.Find(id);
@@ -427,7 +449,15 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 approval.ThirdSignStatus = "已審核";
             }
 
-            if (approval.FourthSignerID == EmployeeDetail.EmployeeID && approval.SecondSignStatus == "已審核" && approval.ThirdSignStatus == "已審核" || approval.ThirdSignStatus == "免審核")
+            if (approval.FourthSignerID == EmployeeDetail.EmployeeID && approval.SecondSignStatus == "已審核" && approval.ThirdSignStatus == "免審核")
+            {
+                requisition.ApprovalStatusID = 3;
+                requisition.ApprovaStatus = "審核完成";
+                approval.ForthSignDate = DateTime.Now;
+                approval.FourthSignStatus = "已審核";
+            }
+
+            if (approval.FourthSignerID == EmployeeDetail.EmployeeID && approval.SecondSignStatus == "已審核" && approval.ThirdSignStatus == "已審核")
             {
                 requisition.ApprovalStatusID = 3;
                 requisition.ApprovaStatus = "審核完成";
@@ -496,42 +526,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
                 return Json(new { success = true, message = "填寫成功" }, JsonRequestBehavior.AllowGet);
             }
-        }
-
-        //[HttpPost]
-        ////[ValidateAntiForgeryToken]
-        //public ActionResult ApprovalReject(int? id)
-        //{
-        //    var approval = db.Approvals.Find(id);
-
-        //    if (approval.FirstSignerID == EmployeeDetail.EmployeeID)
-        //    {
-        //        approval.FirstSignDate = DateTime.Now;
-        //        approval.FirstSignStatus = "駁回簽核";
-        //    }
-
-        //    if (approval.SecondSignerID == EmployeeDetail.EmployeeID && approval.FirstSignStatus == "已審核")
-        //    {
-        //        approval.SecondSignDate = DateTime.Now;
-        //        approval.SecondSignStatus = "駁回簽核";
-        //    }
-
-        //    if (approval.ThirdSignerID == EmployeeDetail.EmployeeID && approval.SecondSignStatus == "已審核")
-        //    {
-        //        approval.ThirdSignDate = DateTime.Now;
-        //        approval.ThirdSignStatus = "駁回簽核";
-        //    }
-
-        //    if (approval.FourthSignerID == EmployeeDetail.EmployeeID && approval.ThirdSignStatus == "已審核")
-        //    {
-        //        approval.ForthSignDate = DateTime.Now;
-        //        approval.FourthSignStatus = "駁回簽核";
-        //    }
-
-        //    db.SaveChanges();
-
-        //    return Json(new { success = true, message = "簽核成功" }, JsonRequestBehavior.AllowGet);
-        //}
+        }       
 
         [HttpGet]
         public ActionResult AddOrEditSign(int id = 0)
@@ -570,7 +565,30 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             }
         }
 
+        //通知-----------------------------------------------------------------------------------------------------------------------------
+        [HttpGet]
+        public ActionResult LoadDataApproval()
+        {
+            var report = from  A in db.Approvals
+                         where A.FirstSignerID == EmployeeDetail.EmployeeID || A.SecondSignerID == EmployeeDetail.EmployeeID || A.ThirdSignerID == EmployeeDetail.EmployeeID || A.FourthSignerID == EmployeeDetail.EmployeeID
+                         select new
+                         {                            
+                             A.FirstSignerID,
+                             A.FirstSignerName,
+                             A.FirstSignStatus,
+                             A.SecondSignerID,
+                             A.SecondSignerName,
+                             A.SecondSignStatus,
+                             A.ThirdSignerID,
+                             A.ThirdSignerName,
+                             A.ThirdSignStatus,
+                             A.FourthSignerID,
+                             A.FourthSignerName,
+                             A.FourthSignStatus
+                         };
 
+            return Json(report, JsonRequestBehavior.AllowGet);
+        }
 
         protected override void Dispose(bool disposing)
         {
