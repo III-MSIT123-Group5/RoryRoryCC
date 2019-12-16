@@ -21,6 +21,15 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(/*employeeApprovalTemps*/);
         }
 
+        //編輯Employee LoadData
+        [Authorize(Roles = "HRLeaders")]
+        public ActionResult EditLoadData()
+        {
+            var datas = db.Employees.Select(p => new { p.employeeID, p.EmployeeName, p.Department.name, p.Group.GroupName, p.Position.position1,ManagerName= p.Employee2.EmployeeName});
+            return Json(new { data = datas.ToList() }, JsonRequestBehavior.AllowGet);
+        }
+
+        //HR簽核LoadData
         [HttpGet]
         [Authorize(Roles = "HRLeaders")]
         public ActionResult LoadData()

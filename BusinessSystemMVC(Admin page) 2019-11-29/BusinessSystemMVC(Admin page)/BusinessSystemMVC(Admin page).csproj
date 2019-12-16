@@ -648,7 +648,6 @@
     <Compile Include="Controllers\BulletinBoardsController.cs" />
     <Compile Include="Controllers\CommentChildsController.cs" />
     <Compile Include="Controllers\CommentMainsController.cs" />
-    <Compile Include="Controllers\CommentQController.cs" />
     <Compile Include="Controllers\CommentQuestionsController.cs" />
     <Compile Include="Controllers\CompanyVehicleBorrowController.cs" />
     <Compile Include="Controllers\CompanyVehicleHistoriesController.cs" />
@@ -1297,7 +1296,6 @@
     <Content Include="Views\CompanyVehicles\Edit.cshtml" />
     <Content Include="Views\CompanyVehicles\Index.cshtml" />
     <Content Include="Views\CompanyVehicles\_ShowPhotoPartial.cshtml" />
-    <Content Include="Views\Files\Delete.cshtml" />
     <Content Include="Views\Files\Index.cshtml" />
     <Content Include="Views\Files\Upload.cshtml" />
     <Content Include="Views\EventCalendars\Create.cshtml" />
@@ -1395,12 +1393,15 @@
     <Content Include="Views\CommentQuestions\Index.cshtml" />
     <Content Include="Views\CommentQuestions\AddOrEdit.cshtml" />
     <Content Include="Views\CommentQ\AddOrEdit2.cshtml" />
+    <Content Include="Views\CommentQuestions\Display.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="CarUpload\" />
     <Folder Include="imgcar\" />
     <Folder Include="imgLeaveAppendix\" />
     <Folder Include="imgProfiles\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
