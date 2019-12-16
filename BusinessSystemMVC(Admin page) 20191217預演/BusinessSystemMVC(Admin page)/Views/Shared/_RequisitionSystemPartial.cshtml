@@ -1,0 +1,10 @@
+﻿@*只有員工才有使用權限*@
+@if (!(User.IsInRole("GeneralManager") || User.IsInRole("GroupLeader") || User.IsInRole("DepartmentLeader")))
+{
+    <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="請購系統">
+        <a class="nav-link" href="@Url.Action("Index", "OrderDetails")">
+            <i class="fa fa-fw fa-th-list" aria-hidden="true" style="font-size: 1.6em; vertical-align: middle;"></i>
+            <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'"> 請購系統</span>
+        </a>
+    </li>
+}

@@ -1,0 +1,514 @@
+﻿@model BusinessSystemMVC_Admin_page_.Models.CommentQuestion
+@{
+    ViewBag.Title = "Display";
+    //Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Display</title>
+    <style>
+
+        button, th, h2, label, span, select, option {
+            font-family: 'NotoSansCJKtc-Bold';
+        }
+
+        label, select, option {
+            font-family: '微軟正黑體';
+        }
+
+        td {
+            font-family: '微軟正黑體';
+            font-weight: 600;
+        }
+
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <h2>意見調查</h2>
+        <br />
+        <div style="font-size:24px">
+            <div class="form-group">
+                <label>調查分類：</label>@Html.DropDownList("CommentOptions", (SelectList)ViewBag.SelectList, "請選擇分類", new { id = "CommentOptions1" })
+            </div>
+            <div class="form-group">
+                <label>調查主題：</label><select id="CommentContent" name="commentContent"><option>------</option></select>
+            </div>
+            <div class="form-group">
+                <label>調查項目：</label><select id="CommentQuestion" name="commentQuestion"><option>------</option></select>
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            <button type="button" class="btn btn-success" style="margin-bottom:10px" onclick="PopupForm('@Url.Action("AddOrEdit", "CommentQuestions")')"><i class="fa fa-plus" aria-hidden="true"></i> 新增調查項目</button>
+        </div>
+        <br />
+        <div @*class="col-md-10"*@ id="createCtable" style="width:82%;margin-left:20px">
+            <table id="Ctable" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>編號</th>
+                        <th>調查類別</th>
+                        <th>項目</th>
+                        <th>編輯/刪除</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+
+    }
+
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/bootstrap-multiselect.css" type="text/css">
+
+    @section scripts{
+
+        <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+        <script src="/Scripts/moment.js"></script>
+        <script src="~/Scripts/bootstrap-multiselect.js"></script>
+
+        <script>
+
+                $(document).ready(function () {
+                    $('#CommentOptions1').change(function () {
+                        $('#CommentQuestion').empty();
+                        $('#CommentQuestion').append($('<option></option>').val('').text('請選擇項目'));
+                        ChangeOptions();
+                    });
+                    $('#CommentContent').change(function () { ChangeContents(); });
+    });
+
+            function ChangeOptions() {
+                var selectedValue = $('#CommentOptions1 option:selected').val();
+                if ($.trim(selectedValue).length > 0) {
+                    GetContents(selectedValue);
+                    }
+            }
+
+
+            function GetContents(CommentOptionID) {
+
+            $.ajax({
+            url: '@Url.Action("DisplayContents", "CommentQuestions")',
+            data: { commentOptionID: CommentOptionID },
+            type: 'post',
+            cache: false,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#CommentContent').empty();
+                    $('#CommentContent').append($('<option></option>').val('').text('請選擇主題'));
+                    $.each(data, function (i, item) {
+                        $('#CommentContent').append($('<option></option>').val(item.Key).text(item.Value));
+                    });
+                }
+            }
+        });
+    }
+
+
+            function ChangeContents() {
+                var selectedValue = $('#CommentContent option:selected').val();
+                if ($.trim(selectedValue).length > 0) {
+                    GetQuestions(selectedValue);
+                }
+            }
+
+
+            function GetQuestions(CommentContentID) {
+
+            $.ajax({
+            url: '@Url.Action("DisplayQuestions", "CommentQuestions")',
+            data: { commentContentID: CommentContentID },
+            type: 'post',
+            cache: false,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#CommentQuestion').empty();
+                    $('#CommentQuestion').append($('<option></option>').val('').text('請選擇項目'));
+                    $.each(data, function (i, item) {
+                        $('#CommentQuestion').append($('<option></option>').val(item.Key).text(item.Value));
+                    });
+                }
+            }
+        });
+    }
+
+
+                        var Popup, dataTable;
+
+            $(document).ready(function () {
+
+                dataTable = $('#Ctable').DataTable({
+                    "ajax": {
+                        url: '@Url.Action("ReadyLoadCommentContent", "CommentQuestions")',
+                        method: 'GET',
+                        dataType: 'json',
+                    },
+                    "columnDefs": [
+
+                        {
+                            "targets": 0, "data": null,
+                            "width": "60px",
+                            "searchable": false,
+                            "orderable": false,
+                            "targets": 0
+                        },
+                        { "targets": 1, "data": "CommentContent1", "width": "60px" },
+                        { "targets": 2, "data": "Question", "width": "400px" },
+                        {
+                            "targets": 3, "data": "CommentQuestionID", "render": function (data) {
+                                return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/CommentQuestions/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
+                            },
+                            "orderable": false,
+                            "searchable": false,
+                            "width": "100px"
+                        }
+
+                    ],
+                    "order": [[2, 'asc']],
+                    "language": {
+
+                        "emptyTable": "目前無任何意見調查，請點選 <b>新增調查</b>",
+                        "processing": "處理中...",
+                        "loadingRecords": "載入中...",
+                        "lengthMenu": "顯示 _MENU_ 項結果",
+                        "zeroRecords": "沒有符合的結果",
+                        "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+                        "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+                        "infoFiltered": "(從 _MAX_ 項結果中過濾)",
+                        "infoPostFix": "",
+                        "search": "搜尋:",
+                        "paginate": {
+                            "first": "第一頁",
+                            "previous": "上一頁",
+                            "next": "下一頁",
+                            "last": "最後一頁"
+                        },
+                        "aria": {
+                            "sortAscending": ": 升冪排列",
+                            "sortDescending": ": 降冪排列"
+                        }
+                    }
+                    
+
+                });
+
+                dataTable.on('order.dt search.dt', function () {
+                    dataTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                }).draw();
+
+
+                $('#mul').multiselect({
+                    buttonText: function (options, select) {
+                        if (options.length == 0) {
+                            return this.nonSelectedText;
+                        }
+                        else {
+                            if (options.length - this.numberDisplayed>0) {
+                                return this.nSelectedText + ' ' + (options.length-1) +" 項";
+                            }
+                            else if (options.length - (this.numberDisplayed+1)==0) {
+                                return "已全選(7)";
+                            }
+                            else {
+                                var selected = '';
+                                options.each(function () {
+                                    var label = ($(this).attr('label') !== undefined) ? $(this).attr('label') : $(this).html();
+
+                                    selected += label + ', ';
+                                });
+                                return selected.substr(0, selected.length - 2) ;
+                            }
+
+                        }
+
+
+
+                    },
+
+                    nonSelectedText: '- - - - - - - -   請選擇   - - - - - - - -',
+                    nSelectedText: '已選擇',
+                    selectAllText: ' 全選',
+                    includeSelectAllOption: true,
+                    buttonWidth: '400px',
+                    numberDisplayed: 6
+                });
+
+
+                 @*$.ajax({
+                        url:'@Url.Action("LoadEmployee", "CommentQuestions")',
+                        method: 'GET',
+                        dataType: 'json'
+                    })
+                    .done(function(datas) {
+
+                        for (var i = 0; i < datas.length; i++) {
+
+                            $('#mul').append("<option value='" + datas[i].name + "'>" + datas[i].name+"</option>");
+
+                            $('.multiselect-container').append("<li><a><label class='checkbox'><input type='checkbox' value='" + datas[i].name +"'>  " + datas[i].name +" </label></a></li>");
+
+                        }
+
+                    })*@
+
+            });
+
+            function PopupForm(url) {
+                var formDiv = $('<div/>');
+                $.get(url)
+                    .done(function (response) {
+                        formDiv.html(response);
+
+                        Popup = formDiv.dialog({
+                            autoOpen: true,
+                            resizable: false,
+                            title: '新增意見調查',
+                            height: 700,
+                            width: 1000,
+                            close: function () {
+                                Popup.dialog('destroy').remove();
+                            }
+                        });
+                    });
+                }
+
+                
+
+
+
+
+
+                function SubmitForm(form) {
+                    var data = new Formdata();
+                    data.append("c", form.serialize())
+                    data.append("id", $('#CommentContent').val())
+                    var ccid = $('#CommentContent').val()
+                $.validator.unobtrusive.parse(form);
+                if ($(form).valid()) {
+                    $.ajax({
+                        type: "POST",
+                        url: form.action,
+                        //data: form.serialize() + '&' + $('#CommentContent').val(),
+                        //data: form.serialize() + '&' + $.param({ 'id': ccid }),
+                        data: data,  
+                        //data: {
+                        //    c:form.serialize(),
+                        //    id: $('#CommentContent').val()
+                        //},
+                        success: function (data) {
+                            if (data.success) {
+
+                                Popup.dialog("close");
+                                dataTable.ajax.reload();
+
+                                $.notify(data.message, {
+                                    globalPosition: "top center",
+                                    className: "success"
+                                })
+                            }
+
+                        }
+                    });
+                }
+                return false;
+
+            }
+
+            function Delete(id) {
+                if (confirm('確定要刪除此項目嗎?')) {
+                    $.ajax({
+                        type: "POST",
+                        url: '/CommentQuestions/Delete/' + id,
+                        success: function (data) {
+                            if (data.success) {
+
+                                dataTable.ajax.reload();
+
+                                $.notify(data.message, {
+                                    globalPosition: "top center",
+                                    className: "success"
+                                })
+
+                            }
+                        }
+
+                    });
+                }
+            }
+
+
+
+
+
+
+
+
+
+            $("#CommentContent").change(function () {
+                //ChangeTable();
+                $("#createCtable").empty();
+                $("#createCtable").append(
+                    `<table id="Ctable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>編號</th>
+                                <th>調查類別</th>
+                                <th>選項</th>
+                                <th>編輯/刪除</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>`
+                )
+                ChangeDataTable();
+                
+
+                @*var DropccID1 = $('#CommentContent').val()
+                //var opt = $(this).find('selected');
+                //var sel = opt.val();
+                var data = new FormData();
+                data.append("id", DropccID1);
+                console.log(DropccID1);
+
+                $.ajax({
+                    url: '@Url.Action("test", "CommentQuestions")',
+                    type: "GET",
+                    //contentType: false,
+                    data: { id: $('#CommentContent').val()},
+                    //processData:false
+                }).done(function () {
+                    alert("成功");
+                })*@
+
+            });
+                
+
+                function ChangeTable() {
+
+
+
+                    $('#tableQ').empty();
+
+                    //存下拉式選單選到的值
+                    var s = $('#CommentContent').val();
+
+                    $.ajax({
+                        url: '@Url.Action("LoadQuestion", "CommentQuestions")',
+                        method: 'GET',
+                        dataType: 'json'
+                    })
+                        .done(function (datas) {
+                            //<th><input type='checkbox' name='HeaderCheckbox' id='HeaderCheckbox'></th>
+                            $('#tableQ').append("<tr><th><input type='checkbox' name='HeaderCheckbox' id='HeaderCheckbox'></th><th>提問編號</th><th>題目</th></tr>");
+                            for (var j = 0; j < datas.length; j++) {
+
+                                if (datas[j].CommentContentID == s) {
+
+                                $('#tableQ').append("<tr>");
+                                $('#tableQ').append("<td><input type='checkbox' class='cq' name='checkbox' value='" + datas[j].CommentQuestionID + "'></td>");
+                                $('#tableQ').append("<td>" + datas[j].CommentQuestionID + "</td>");
+                                $('#tableQ').append("<td>" + datas[j].Question + "</td>");
+                                $('#tableQ').append("</tr>");
+                                }
+
+                                $('#HeaderCheckbox').click(function () {
+                                    $('input[name="checkbox"]').prop('checked', this.checked)
+                                });
+
+                        }
+                        })
+
+                    //CheckBoxesEventHandler();
+
+                }
+
+            function ChangeDataTable() {
+
+                var DropccID = $('#CommentContent').val();
+                console.log(DropccID)
+                dataTable = $('#Ctable').DataTable({
+                    "ajax": {
+                        url: '@Url.Action("LoadCommentContent", "CommentQuestions")',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: { cid:DropccID }
+                    },
+                    "columnDefs": [
+
+                        {
+                            "targets": 0, "data": null,
+                            "width": "60px",
+                            "searchable": false,
+                            "orderable": false,
+                            "targets": 0
+                        },
+                        { "targets": 1, "data": "CommentContent1", "width": "60px" },
+                        { "targets": 2, "data": "Question", "width": "400px" },
+                        {
+                            "targets": 3, "data": "CommentQuestionID", "render": function (data) {
+                                return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/CommentQuestions/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
+                            },
+                            "orderable": false,
+                            "searchable": false,
+                            "width": "100px"
+                        },
+
+
+                    ],
+                    "order": [[2, 'asc']],
+                    "language": {
+
+                        "emptyTable": "目前無任何意見調查，請點選 <b>新增調查</b>",
+                        "processing": "處理中...",
+                        "loadingRecords": "載入中...",
+                        "lengthMenu": "顯示 _MENU_ 項結果",
+                        "zeroRecords": "沒有符合的結果",
+                        "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+                        "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+                        "infoFiltered": "(從 _MAX_ 項結果中過濾)",
+                        "infoPostFix": "",
+                        "search": "搜尋:",
+                        "paginate": {
+                            "first": "第一頁",
+                            "previous": "上一頁",
+                            "next": "下一頁",
+                            "last": "最後一頁"
+                        },
+                        "aria": {
+                            "sortAscending": ": 升冪排列",
+                            "sortDescending": ": 降冪排列"
+                        }
+                    }
+                    
+
+                });
+
+                dataTable.on('order.dt search.dt', function () {
+                    dataTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                }).draw();
+
+            }
+
+
+        </script>
+    }
+</body>
+</html>

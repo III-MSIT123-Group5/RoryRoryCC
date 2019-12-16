@@ -1,0 +1,30 @@
+﻿@model BusinessSystemMVC_Admin_page_.Models.CompanyVehicleHistory
+@{
+    Layout = null;
+}
+@using (Html.BeginForm("AddOrEdit", "CompanyVehicleHistories", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(Model => Model.VehicleHistoryID)
+    @Html.HiddenFor(Model => Model.LicenseNumber)
+    @Html.HiddenFor(Model => Model.StartDateTime)
+    @Html.HiddenFor(Model => Model.EndDateTime)
+    @Html.HiddenFor(Model => Model.employeeID)
+
+    
+
+
+    <div>
+        
+        @Html.LabelFor(Model => Model.purpose, "事由", new { @class = "control-label" })
+        @Html.TextAreaFor(Model => Model.purpose, new { rows = "1", cols = "150", @class = "form-control", @MaxLength = "40" })
+        @Html.ValidationMessageFor(model => model.purpose)
+    </div>
+
+    <div class="form-group" style="float:right;margin-top:20px">
+        <div>
+            <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
+            <input type="submit" value="確認修改" class="btn btn-success" style="margin-right:10px" />
+        </div>
+    </div>
+}

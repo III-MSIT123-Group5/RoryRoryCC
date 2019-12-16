@@ -1,0 +1,23 @@
+﻿@*下拉式功能*@
+@using System.Web.Security
+    <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="簽核系統">
+        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseSignsystem" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-pencil" style="font-size: 1.6em; vertical-align: middle;"></i>
+            <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">簽核系統</span>
+        </a>
+        <ul class="sidenav-second-level collapse" id="collapseSignsystem">
+            <li class="color hover">
+                @Html.ActionLink("簽核進度查詢", "SignOffSystemView", "Home", null, new { Style = "font-family:'NotoSansCJKtc-Bold'" })
+            </li>            
+            <li class="color hover">
+                @Html.Partial("_RequisitionSignSystemPartial")
+            </li>
+            <li class="color hover">
+                @Html.Partial("_HRSignSystemPartail")
+            </li>
+            <li class="color hover">
+                @Html.Partial("_LeaveSigntureLoadDataPartial")
+            </li>
+        </ul>
+    </li>
+

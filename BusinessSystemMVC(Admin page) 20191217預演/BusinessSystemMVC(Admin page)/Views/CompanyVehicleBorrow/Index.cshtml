@@ -1,0 +1,346 @@
+﻿@model IEnumerable<BusinessSystemMVC_Admin_page_.Models.CompanyVehicle>
+
+@section styles
+{
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+}
+@{
+    ViewBag.Title = "公務車租借";
+}
+
+<div id="addForm" action="Useradd.action" typeof="post" style="background-color:yellow;width:500px;float:left" >
+    <div style="width:500px;border:1px solid black; margin-bottom:30px">
+        <div>
+            <h3>起始時間 : <a><input type="date" id="date1" class="datepicker-decades" /></a></h3>
+
+        </div>
+        <div>
+            <select id="firstLevel" style="width:100px" class="form-control"></select>
+        </div>
+        <div>
+            <select id="secondLevel" style="width:100px" class="form-control"></select>
+        </div>
+    </div>
+
+    <div style="width:500px;border:1px solid black" >
+        <div>
+            <h3>結束時間 : <a><input type="date" id="date2" class="datepicker-decades" /></a></h3>
+
+        </div>
+        <div>
+            <select id="firstLevel1" style="width:100px" class="form-control"></select>
+        </div>
+        <div>
+            <select id="secondLevel1" style="width:100px" class="form-control"></select>
+        </div>
+        <div>
+            <input type="button" id="btn1" class="btn-success" value="查詢" />
+        </div>
+    </div>
+</div>
+<div style="float:left; background-color:red;width:800px;height:300px;margin-left:30px" ></div>
+<table id="test2" class="table"></table>
+
+
+
+
+
+
+@section scripts
+{
+    <script>
+        //
+        //各種變數
+        //
+        var firL = document.querySelector("#firstLevel")
+        var secL = document.querySelector("#secondLevel")
+        //
+        //
+        //
+        $(document).ready(function () {
+            selecttime();
+        })
+        $("#firstLevel").change(function () {
+            changeLevel();
+
+        })
+        $("#firstLevel1").change(function () {
+            changeLevel1();
+        })
+        $("#btn1").click(function () {
+            getDate();
+        })
+
+        //
+        //抓取年月日
+        //
+        function getDate() {
+            var line1 = "-";
+            var pik1 = ":";
+            //成功取起始時間的年分,月份,日期
+            var dt = $("#date1").val();
+            var d = new Date(dt);
+            var yearObj = d.getFullYear();
+            var monthObj = d.getMonth() + 1;
+            var dateObj = d.getDate();
+            var ht = $("#secondLevel").val();
+            //成功取結束時間的年分,月份,日期
+            var dt = $("#date2").val();
+            var d1 = new Date(dt);
+            var yearObj1 = d1.getFullYear();
+            var monthObj1 = d1.getMonth() + 1;
+            var dateObj1 = d1.getDate();
+            var ht1 = $("#secondLevel1").val();
+            //
+            //需要的時間格式
+            //
+            var dtS = yearObj + line1 + monthObj + line1 + dateObj + " " + ht + pik1 + 0 + pik1 + 0;
+            var dtE = yearObj1 + line1 + monthObj1 + line1 + dateObj1 + " " + ht1 + pik1 + 0 + pik1 + 0;
+            //
+            //送入資料庫
+            //
+            //
+            //創建變數===================
+            //
+            var pur;
+            var UseLN = [];
+            var NoUseLN = [];
+            var StimeU = [];
+            var EtimeU = [];
+            var countarray = [];
+            var count = 0;
+            //
+            //============================
+            //
+            //
+            //取所有車牌========================
+            //
+            $.ajax({
+                url: '@Url.Action("Finded1","CompanyVehicleBorrow")',
+                type: "GET",
+                dataType: "json",
+            }).done(function (u) {
+                for (var i = 0, max = u.length; i < max; i++) {
+                    UseLN[i] = u[i].LicenseNumber;
+                }
+                console.log(UseLN);
+            })
+            //
+            //===================================
+            //
+            //
+            //取HisTory的車牌，起始時間，歸還時間
+            //
+            $.ajax({
+                url: '@Url.Action("Finded", "CompanyVehicleBorrow")',
+                type: "GET",
+                dataType: "json",
+            }).done(function (p) {
+                for (var j = 0, max = p.length; j < max; j++) {
+                    var Stim = parseInt(String(p[j].StartDateTime).substring(6, 19));
+                    var Etim = parseInt(String(p[j].EndDateTime).substring(6, 19));
+                    var Stime = timestampToTime(Stim);
+                    var Etime = timestampToTime(Etim);
+                    NoUseLN[j] = p[j].LicenseNumber;
+                    StimeU[j] = Stime;
+                    EtimeU[j] = Etime;
+                }
+                console.log(StimeU)
+                console.log(EtimeU)
+                console.log(NoUseLN)
+                for (var q = 0; q < StimeU.length; q++)
+                    if ((dtS >= StimeU[q] && dtE <= EtimeU[q]) ||
+                        ((dtS >= StimeU[q] && dtS < EtimeU[q]) && dtE > EtimeU[q]) ||
+                        (dtS < StimeU[q] && (dtE > StimeU[q] && dtE<=EtimeU[q])) ||
+                        (dtS < StimeU[q] && dtE > EtimeU[q])) {
+                        countarray[count] = NoUseLN[q];
+                        count++;
+                    }
+                console.log(countarray);
+            })
+            $.ajax({
+                url: '@Url.Action("Finded1","CompanyVehicleBorrow")',
+                type: "GET",
+                dataType: "json",
+            }).done(function (r) {
+                $("#test2").append('<tr></tr>')
+                $("#test2").append(`<th>車牌號碼</th>`)
+                $("#test2").append(`<th>車輛廠牌</th>`)
+                $("#test2").append(`<th>車輛型號</th>`)
+                $("#test2").append(`<th>載客人數</th>`)
+                $("#test2").append(`<th>辦公室編號</th>`)
+                $("#test2").append(`<th>外出事由</th>`)
+                $("#test2").append(`<th>確認訂車</th>`)
+                for (var o = 0; o < r.length; o++) {
+                    console.log(r[o].LicenseNumber)
+                    if ($.inArray(r[o].LicenseNumber, countarray) == -1) {
+                        $("#test2").append(`<tr>
+        <td ">${r[o].LicenseNumber}</td>
+        <td>${r[o].brand}</td>
+        <td>${r[o].serial}</td>
+        <td>${r[o].MaxPassenger}</td>
+        <td>${r[o].officeID}</td>
+        <td><input type="text" id = "${r[o].LicenseNumber}t" ></td>
+        <td><input type="button" id="${ r[o].LicenseNumber}" class = 'btn btn-primary' value="選擇車輛"></td>
+        </tr>`)
+                        $(`#${r[o].LicenseNumber}`).click(function () {
+                            console.log($(`#${this.id}t`).val());
+                            getLNfunc(this.id, dtS, dtE, $(`#${this.id}t`).val())
+                        })
+
+                    }
+                }
+                })
+            //
+            //=============================================
+            //
+            }
+
+
+            //
+            //找到需要的資料
+            //
+        function getLNfunc(id, dts, dte, purpose) {
+            console.log(dts,dte,purpose,id)
+            //var jsonData = JSON.stringify({ dtS: dts, dtE: dte,LNid:id, purpose:purpose});
+            $.ajax({
+                url: '@Url.Action("Post1", "CompanyVehicleBorrow")',
+                type: "get",
+                //contentType: "application/json; chartset-utf-8",
+                data: {
+                    dtS: dts,
+                    dtE: dte,
+                    LNid: id,
+                    purpose:purpose
+                }
+            }).done(function () {
+                alert("save");
+            })
+        }
+
+
+
+
+        function getLNfunc1(id) {
+                $.ajax({
+                    url: '@Url.Action("Finded1","CompanyVehicleBorrow")',
+                    type: "POST",
+                    dataType: "json",
+                }).done(function (data) {
+                    for (var j = 0, max = data.length; j < max; j++) {
+                        if (data[j].LicenseNumber == id) {
+                            $("#test2").append(`<tr>
+        <td>${data[j].LicenseNumber}</td>
+        <td>${data[j].brand}</td>
+        <td>${data[j].serial}</td>
+        <td>${data[j].MaxPassenger}</td>
+        <td>${data[j].officeID}</td>
+        <td><input type="text" id = "${data[j].LicenseNumber}t" ></td>
+        <td><input type="button" id="${ data[j].LicenseNumber}" class = 'btn btn-primary' value="確認申請"></td>
+        <td><input type="button" id="${ data[j].LicenseNumber}back" class = 'btn btn-success' value="返回"></td>
+        </tr>`)
+                                (`#${data[j].LicenseNumber}back`).click(function () {
+
+                                })
+                        }
+                    }
+                })
+            }
+        //
+        //紀錄傳回資料庫
+        //
+        
+
+
+        function timestampToTime(timestamp) {
+            
+            var date = new Date(timestamp);//時間戳為10位數需*1000，時間戳為13位數則不需*1000
+
+            var Y = date.getFullYear() + '-';
+
+            var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+
+            var D = date.getDate() + ' ';
+
+            var h = date.getHours() + ':';
+
+            var m = date.getMinutes() + ':';
+
+            var s = date.getSeconds();
+
+            return Y + M + D + h + m + s;
+
+        }
+
+        //if ((dtS >= p[i].StartDateTime && dtE <= p[i].EndDateTime) || ((dtS >= p[i].StartDateTime && dtS < p[i].EndDateTime) && dtE > p[i].EndDateTime) || (dtS < p[i].StartDateTime && (dtE > p[i].StartDateTime && dtE <= p[i].EndDateTime)) || (dtS < p[i].StartDateTime && dtE > p[i].EndDateTime)) {
+
+        //
+        //產生起始時間
+        //
+        function selecttime() {
+            //時段產生
+            $("#firstLevel").append('<option value="0">上午</option>')
+            $("#firstLevel").append('<option value="1">下午</option>')
+            $("#firstLevel1").append('<option value="0">上午</option>')
+            $("#firstLevel1").append('<option value="1">下午</option>')
+            //時間產生
+            for (var i = 8; i <= 12; i++) {
+                $("#secondLevel").append(`<option value = "${i}">${i}:00</option>`)
+                $("#secondLevel1").append(`<option value = "${i}">${i}:00</option>`)
+            }
+        }
+        //
+        //起始時間的firstLevel的Change事件
+        //
+        function changeLevel() {
+            //
+            //起始時間change事件===========================================
+            //
+            if ($("#firstLevel option:selected").text() == "上午") {
+                $("#secondLevel").empty();
+                for (var i = 8; i <= 12; i++) {
+                    $("#secondLevel").append(`<option value = "${i}">${i}:00</option>`)
+                }
+            }
+            else if ($("#firstLevel option:selected").text() == "下午") {
+                $("#secondLevel").empty();
+                for (var i = 13; i <= 17; i++) {
+                    $("#secondLevel").append(`<option value = "${i}">${i}:00</option>`)
+                }
+            }
+            //
+            //===============================================================
+            //
+        }
+        //
+        //結束時間的firstLevel的Change事件
+        //
+        function changeLevel1() {
+            //
+            //結束時間change事件===========================================
+            //
+            if ($("#firstLevel1 option:selected").text() == "上午") {
+                $("#secondLevel1").empty();
+                for (var i = 8; i <= 12; i++) {
+                    $("#secondLevel1").append(`<option value = "${i}">${i}:00</option>`)
+                }
+            }
+            else if ($("#firstLevel1 option:selected").text() == "下午") {
+                $("#secondLevel1").empty();
+                for (var i = 13; i <= 17; i++) {
+                    $("#secondLevel1").append(`<option value = "${i}">${i}:00</option>`)
+                }
+            }
+            //
+            //===============================================================
+            //
+        }
+
+    </script>
+
+
+
+
+
+
+}

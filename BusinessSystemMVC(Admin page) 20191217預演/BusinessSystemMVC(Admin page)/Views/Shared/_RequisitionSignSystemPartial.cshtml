@@ -1,0 +1,5 @@
+﻿@*只有組級以上才有使用權限*@
+@if (User.IsInRole("GeneralManager") || User.IsInRole("GroupLeader") || User.IsInRole("DepartmentLeader"))
+{
+    @Html.ActionLink("請購簽核", "IndexSign", "OrderDetails", null, new { Style = "font-family:'NotoSansCJKtc-Bold'" })
+}

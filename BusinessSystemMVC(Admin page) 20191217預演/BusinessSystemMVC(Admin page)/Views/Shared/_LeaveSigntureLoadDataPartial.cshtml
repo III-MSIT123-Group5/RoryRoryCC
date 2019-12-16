@@ -1,0 +1,5 @@
+﻿@using System.Web.Security
+@if (User.IsInRole("GeneralManager") || User.IsInRole("DepartmentLeader") || User.IsInRole("GroupLeader"))
+{
+    @Html.ActionLink("請假簽核", "LeaveSigntureIndex", "LeaveHistoryApprovalTemps", null, new { Style = "font-family:'NotoSansCJKtc-Bold'" })
+}

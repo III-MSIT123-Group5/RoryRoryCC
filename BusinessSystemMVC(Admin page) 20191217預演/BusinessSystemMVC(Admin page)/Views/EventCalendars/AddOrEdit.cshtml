@@ -1,0 +1,187 @@
+﻿@model BusinessSystemMVC_Admin_page_.Models.EventCalendar
+
+@{
+
+
+    Layout = null;
+
+}
+
+
+
+@using (Html.BeginForm("AddOrEdit", "EventCalendars", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.CalendarID)
+    @Html.HiddenFor(model => model.employeeID)
+
+
+<div class="form-group" style="float:left">
+
+    <div class="taglabel">
+        @Html.LabelFor(model => model.Subject, new { @class = "control-label" })
+
+        @Html.TextBoxFor(model => model.Subject, new { rows = "8", cols = "100", @class = "form-control", @MaxLength = "1000", style = "width:300px" })
+        @Html.ValidationMessageFor(model => model.Subject)
+    </div>
+    <br />
+
+
+    <div class="taglabel">
+        @Html.LabelFor(model => model.DepartmentID, new { @class = "control-label" })
+        @Html.DropDownList("DepartmentID", null, htmlAttributes: new { @class = "form-control", rows = "8", cols = "100", @style = "width:300px" })
+        @Html.ValidationMessageFor(model => model.DepartmentID)
+    </div>
+    <br />
+
+
+
+    <div class="taglabel">
+
+        @Html.LabelFor(model => model.StartTime, new { @class = "control-label" })
+        
+        <div class="input-group date" id="datepickerstart" data-target-input="nearest" style="width:300px">
+            @Html.TextBoxFor(model => model.StartTime,null, new{
+               @class = "form-control datetimepicker-input",
+               @style = "padding-left:0px;text-indent:10px;",
+               data_target = "#datepickerstart",
+               data_toggle = "datetimepicker",
+               
+       })
+            <div class="input-group-append" data-target="#datepickerstart" data-toggle="datetimepicker">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+        </div>
+
+
+        <script type="text/javascript">
+            $(function () {
+                $('#datepickerstart').datetimepicker({
+                    
+                });
+
+            });
+        </script>
+
+    </div>
+    @*@Html.TextBoxFor(model => model.StartTime, new { rows = "8", cols = "150", @class = "form-control", @MaxLength = "1000", @id = "datetimepicker2" })
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker2').datetimepicker();
+            });
+        </script>*@
+
+
+    @Html.ValidationMessageFor(model => model.StartTime)
+    <br />
+
+
+    <div class="taglabel">
+        @Html.LabelFor(model => model.EndTime, new { @class = "control-label" })
+        <div class="input-group date" id="datepickerend" data-target-input="nearest" style="width:300px">
+            @Html.TextBoxFor(model => model.EndTime,null, new{
+                @class = "form-control datetimepicker-input",
+                @style = "padding-left:0px;text-indent:10px;",
+                data_target = "#datepickerend",
+                data_toggle = "datetimepicker"
+        })
+            @*<input type="text" class="form-control datetimepicker-input" data-target="#datepickerend" style="padding-left:0px; text-indent:10px;" rows="8" cols="100" data-toggle="datetimepicker" value="@Model.EndTime" />*@
+            <div class="input-group-append" data-target="#datepickerend" data-toggle="datetimepicker">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+        </div>
+
+
+        <script type="text/javascript">
+            $(function () {
+                $('#datepickerend').datetimepicker();
+
+            });
+
+        </script>
+        @Html.ValidationMessageFor(model => model.EndTime)
+    </div>
+    
+    @*<div class="taglabel">
+
+        </div>
+        @Html.TextBoxFor(model => model.EndTime, new { rows = "8", cols = "150", @class = "form-control", @MaxLength = "1000" })*@
+
+    <br />
+
+    @*<div id="map"></div>
+        <script>
+            var map;
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: -34.397, lng: 150.644 },
+                    zoom: 8
+                });
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+                async defer></script>*@
+
+
+
+    <div class="taglabel">
+        @Html.LabelFor(model => model.Location, new { @class = "control-label" })
+    </div>
+    @Html.TextBoxFor(model => model.Location, new { rows = "8", cols = "100", @class = "form-control", @MaxLength = "1000", @style = "width:300px" })
+    @Html.ValidationMessageFor(model => model.Location)
+    <br />
+
+    <div class="taglabel">
+        @Html.LabelFor(model => model.Description, new { @class = "control-label" })
+    </div>
+    @Html.TextAreaFor(model => model.Description, new { rows = "8", cols = "100", @class = "form-control", @MaxLength = "1000" })
+    @Html.ValidationMessageFor(model => model.Description)
+    <br />
+
+    <div class="taglabel">
+        @Html.LabelFor(model => model.ThemeColor, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.ThemeColor, new { @class = "form-control", @MaxLength = "1000" ,type="color" ,width="20",height="20"})
+        
+
+        @Html.ValidationMessageFor(model => model.IsImportant)
+
+    </div>
+    
+
+
+
+    <br />
+
+
+    <div class="taglabel" style="display:inline-block">
+
+        @*@Html.TextBoxFor(model => model.IsImportant, new { rows = "8", cols = "100", @class = "form-control", @MaxLength = "1000", @style = "width:300px" })*@
+
+        @Html.CheckBoxFor(model => model.IsImportant)
+        @Html.LabelFor(model => model.IsImportant, new { @class = "control-label" })
+        @Html.ValidationMessageFor(model => model.IsImportant)
+    </div>
+
+
+    @*<script>
+            document.addEventListener('DOMContentLoaded', function () {
+                $('.taglabel').hover(function () {
+                    $(this).css('cursor', 'pointer')
+                })
+            })
+        </script>*@
+</div>
+
+    <div class="form-group" style="float:right">
+
+        <div>
+            <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
+            <input type="submit" value="送出貼文" class="btn btn-success" style="margin-right:10px" id="sent"/>
+
+        </div>
+    </div>
+
+
+
+}
