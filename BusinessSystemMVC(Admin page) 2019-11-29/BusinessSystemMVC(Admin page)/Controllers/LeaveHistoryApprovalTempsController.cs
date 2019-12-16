@@ -339,16 +339,16 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 {
                     return Json(new { fail = true, message = "選擇的假別已無剩餘時數，請再次確認。" }, JsonRequestBehavior.AllowGet);
                 }
-                //附件上傳
-                if(VM.AppendixFile.First() != null)
-                {
-                    foreach(var file in VM.AppendixFile)
-                    {
-                        string SavePath = $"{Request.PhysicalApplicationPath}\\imgLeaveAppendix\\{Path.GetFileName(file.FileName)}";
-                        file.SaveAs(SavePath);
-                        NewLeave.Appendix += SavePath+",";
-                    }
-                }
+                //todo 附件上傳
+                //if(VM.AppendixFile.First() != null)
+                //{
+                //    foreach(var file in VM.AppendixFile)
+                //    {
+                //        string SavePath = $"{Request.PhysicalApplicationPath}\\imgLeaveAppendix\\{Path.GetFileName(file.FileName)}";
+                //        file.SaveAs(SavePath);
+                //        NewLeave.Appendix += SavePath+",";
+                //    }
+                //}
                 NewLeave.employeeID = EmployeeDetail.EmployeeID;
                 NewLeave.leaveID = VM.leaveID;
                 NewLeave.ReleaseTime = DateTime.Now;
