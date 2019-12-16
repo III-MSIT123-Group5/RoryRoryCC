@@ -1394,6 +1394,7 @@
     <Content Include="Views\CommentQuestions\AddOrEdit.cshtml" />
     <Content Include="Views\CommentQ\AddOrEdit2.cshtml" />
     <Content Include="Views\CommentQuestions\Display.cshtml" />
+    <Content Include="Views\EmployeeApprovalTemps\EditEmployeeIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

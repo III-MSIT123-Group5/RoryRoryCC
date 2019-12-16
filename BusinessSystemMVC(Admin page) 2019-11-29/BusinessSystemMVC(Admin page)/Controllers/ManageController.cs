@@ -68,7 +68,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             var userId = User.Identity.GetUserId();
             var acc = db.AspNetUsers.Find(userId);
-            string appPath = Request.PhysicalApplicationPath;
             
             var model = new IndexViewModel
             {
@@ -91,7 +90,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 PositionID = EmployeeDetail.PositionName,
                 ManagerID = EmployeeDetail.ManagerName,
                 Employed = EmployeeDetail.Employed,
-                Photo = appPath + EmployeeDetail.PhotoAdress ,
+                Photo =  Request.PhysicalApplicationPath + "\\imgProfiles\\" + EmployeeDetail.PhotoAdress ,
             };
             return View(model);
         }
@@ -432,13 +431,13 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             var upPhoto = db.Employees.Find(EmployeeDetail.EmployeeID);
             if (PhotoAdress != null)
             {
-                string SourceFilename = Path.GetDirectoryName(PhotoAdress.FileName);
+                string SourceFilename = Path.GetFileName(PhotoAdress.FileName);
                 string saveDir = "\\imgProfiles\\";
                 string appPath = Request.PhysicalApplicationPath;
                 string savePath = appPath + saveDir + SourceFilename;
                 PhotoAdress.SaveAs(savePath);
                 
-                upPhoto.Photo = saveDir + SourceFilename;
+                upPhoto.Photo =  SourceFilename;
                 db.SaveChanges();
             }
             return Json(upPhoto.Photo, JsonRequestBehavior.AllowGet);

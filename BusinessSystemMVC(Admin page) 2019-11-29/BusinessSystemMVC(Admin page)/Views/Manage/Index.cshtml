@@ -16,7 +16,7 @@
         <dt>@Html.DisplayNameFor(m => m.Photo)</dt>
         <dd>
             <div>
-                <img id="imgPhoto" src="@Html.DisplayFor(m => m.Photo)" style="height: 250px ; width:auto" />
+                <img id="imgPhoto" src="@Model.Photo" style="height: 250px ; width:auto" />
             </div>
             @using (Html.BeginForm("UpdatePhoto", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", @enctype = "multipart/form-data" }))
             {
@@ -165,7 +165,7 @@
                 type: "post",
                 //data: { PhotoAdress: txtPadress},
             }).done(function (data) {
-                $("#imgPhoto").attr("src", data);
+                $("#imgPhoto").attr("src", "@Request.PhysicalApplicationPath/imgProfiles/"+ data);
                 alert("照片儲存成功");
                 }).fail(function () {
                     alert("照片儲存失敗");
