@@ -194,10 +194,10 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(/*CommentMain c,*/int cid,string cname, string [] array)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Create(CommentMain c, int cid,string cname, List<string> array)
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
@@ -229,12 +229,12 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                          select new { cq.CommentQuestionID };
 
                 var q3 = q2.ToList();
-            
 
 
 
-                //if (c.CommentMainID == 0)
-                //{
+
+                if (c.CommentMainID == 0)
+                {
 
                     int EmpID = EmployeeDetail.EmployeeID;
 
@@ -271,14 +271,14 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     db.SaveChanges();
 
                     return Json(new { success = true, message = "調查發布成功" }, JsonRequestBehavior.AllowGet);
-                //}
-                //else
-                //{
-                //    db.Entry(c).State = EntityState.Modified;
-                //    db.SaveChanges();
+                }
+                else
+                {
+                    db.Entry(c).State = EntityState.Modified;
+                    db.SaveChanges();
 
-                //    return Json(new { success = true, message = "調查修改成功" }, JsonRequestBehavior.AllowGet);
-                //}
+                    return Json(new { success = true, message = "調查修改成功" }, JsonRequestBehavior.AllowGet);
+                }
 
             }
         }

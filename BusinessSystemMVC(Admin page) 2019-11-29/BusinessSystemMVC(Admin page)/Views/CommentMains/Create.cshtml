@@ -193,9 +193,6 @@
             });
 
                 function ChangeTable() {
-
-
-
                     $('#tableQ').empty();
 
                     //存下拉式選單選到的值
@@ -232,26 +229,18 @@
 
                 }
 
-
-
-
             $('#HeaderCheckbox').click(function () {
                 $('input[name="checkbox"]').prop('checked', this.checked) });
 
 
-                    
 
                     $('#test').click(function () {
 
                         var DropccID = $('#CommentContent').val();
-
-
                         var oldselected = [];
-                      
                         var arr = [];
                         var count = 0;
-
-                        var commentname = $('#CommentName').text();
+                        var commentname = $('#CommentName').val();
 
                         $('#mul :selected').each(function () {
                             oldselected[$(this).val()] = $(this).val();
@@ -278,17 +267,18 @@
                             }
                             console.log(arr);
                             console.log(count);
+                            console.log(commentname);
                         });
 
                         $.ajax({
                             url: '@Url.Action("Create", "CommentMains")',
-                            method: "POST",
-                            dataType: 'json',
+                            type: "POST",
                             data: {
                                 array: arr,
                                 cid: DropccID,
-                                cname:commentname
-                            }
+                                cname: commentname
+                            },
+                            dataType: 'json',
                         }).done(function () {
                             alert("OK")
                         })
