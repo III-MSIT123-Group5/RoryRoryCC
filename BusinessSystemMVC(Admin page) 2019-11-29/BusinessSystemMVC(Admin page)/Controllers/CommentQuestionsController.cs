@@ -128,31 +128,35 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         [HttpGet]
         public ActionResult AddOrEdit(int id = 0)
         {
+            SelectList selectList = new SelectList(this.GetOptions(), "CommentOptionID", "CommentOption1");
+            ViewBag.SelectList = selectList;
+
             int EmpID = EmployeeDetail.EmployeeID;
 
-            var result = from cc in db.CommentContents
-                         join co in db.CommentOptions
-                         on cc.CommentOptionID equals co.CommentOptionID
-                         select new
-                         {
-                             cc.CommentOptionID,
-                             co.CommentOption1,
-                             cc.CommentContent1,
-                             cc.CommentContentID
-                         };
+            //var result = from cc in db.CommentContents
+            //             join co in db.CommentOptions
+            //             on cc.CommentOptionID equals co.CommentOptionID
+            //             select new
+            //             {
+            //                 cc.CommentOptionID,
+            //                 co.CommentOption1,
+            //                 cc.CommentContent1,
+            //                 cc.CommentContentID
+            //             };
 
-            var items = new List<GroupedSelectListItem>();
-            foreach (var n in result)
-            {
-                items.Add(new GroupedSelectListItem()
-                {
-                    Value = n.CommentContentID.ToString(),
-                    Text = string.Format("{0} {1}", n.CommentContentID.ToString(), n.CommentContent1),
-                    GroupKey = n.CommentOptionID.ToString(),
-                    GroupName = n.CommentOption1
+            //var items = new List<GroupedSelectListItem>();
+            //foreach (var n in result)
+            //{
+            //    items.Add(new GroupedSelectListItem()
+            //    {
+            //        Value = n.CommentContentID.ToString(),
+            //        Text = string.Format("{0} {1}", n.CommentContentID.ToString(), n.CommentContent1),
+            //        GroupKey = n.CommentOptionID.ToString(),
+            //        GroupName = n.CommentOption1
 
-                });
-            }
+            //    });
+            //}
+
             //ViewBag.CommentContentItems = items;
             if (id == 0)
             {

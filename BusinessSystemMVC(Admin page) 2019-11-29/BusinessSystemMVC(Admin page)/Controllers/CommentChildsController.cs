@@ -53,7 +53,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             var datas = data.ToList();
 
             return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
-            //return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         //id=0

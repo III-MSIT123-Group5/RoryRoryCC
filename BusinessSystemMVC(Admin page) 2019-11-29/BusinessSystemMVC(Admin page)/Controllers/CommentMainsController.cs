@@ -249,23 +249,21 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                         //CommentMainID = c.CommentMainID,
                     });
 
-                    //for (int j = 0; j < array.Count();j++)
-                    //{
-                    //    for (int i = 1; i <= q3.Count; i++)
-                    //    {
+                    for (int j = 0; j < array.Count(); j++)
+                    {
+                        for (int i = 1; i <= countQ; i++)
+                        {
 
-                    //        db.CommentChilds.Add(new CommentChild()
-                    //        {
-                    //            //CommentMainID = c.CommentMainID,
-                    //            EmployeeID = int.Parse(array[j]), //接收者
-                    //            CommentQuestionID = q3[i].CommentQuestionID,
+                            db.CommentChilds.Add(new CommentChild()
+                            {
+                                CommentMainID = c.CommentMainID,
+                                EmployeeID = int.Parse(array[j]), //接收者
+                                CommentQuestionID = q3[i].CommentQuestionID,
 
-                    //        });
+                            });
 
-                    //    }
-
-
-                    //}
+                        }
+                    }
 
 
                     db.SaveChanges();

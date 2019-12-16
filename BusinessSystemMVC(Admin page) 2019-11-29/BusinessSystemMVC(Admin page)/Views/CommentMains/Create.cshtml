@@ -279,8 +279,17 @@
                                 cname: commentname
                             },
                             dataType: 'json',
-                        }).done(function () {
-                            alert("OK")
+                        }).done(function (data) {
+                            //alert("OK")
+                            if (data.success) {
+
+
+                                $.notify(data.message, {
+                                    globalPosition: "top center",
+                                    className: "success"
+                                })
+
+                            }
                         })
 
                     });

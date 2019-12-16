@@ -8,8 +8,8 @@
     var commentContentItems = ViewBag.CommentContentItems as List<GroupedSelectListItem>;
 }
 
-
-
+<html>
+<body>
 @using (Html.BeginForm("AddOrEdit", "CommentQuestions", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
 {
     @Html.AntiForgeryToken()
@@ -18,19 +18,20 @@
     @Html.HiddenFor(model => model.CommentQuestionID)
     @Html.HiddenFor(model => model.CommentContentID)
 
+    <div style="font-size:20px">
+        <div class="form-group">
+            <label>調查分類：</label>@Html.DropDownList("CommentOptions", (SelectList)ViewBag.SelectList, "請選擇分類", new { id = "CommentOptions1", style = "width:250px" })
 
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.EmployeesCollection.EmployeeName, new { @class = "control-label" })
-            @Html.TextBoxFor(model => model.EmployeesCollection.EmployeeName, new { @disabled = "disabled" })
+        </div>
+        <div class="form-group">
+            <label>調查主題：</label><select id="CommentContent" name="commentContent" style="width:250px"><option>------</option></select>
+        </div>
+        <div class="form-group">
+            <label>調查項目：</label><select id="CommentQuestion" name="commentQuestion" style="width:250px"><option>------</option></select>
 
-        </div>*@
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.CommentContentID, "意見類型", htmlAttributes: new { @class = "control-label col-md-2 label" })
-            <div class="col-md-10">
-                @Html.DropDownGroupList("CommentContent", commentContentItems, "請選擇意見類型", htmlAttributes: new { @class = "label" })
+        </div>
+    </div>
 
-            </div>
-        </div>*@
 
     <div class="form-group">
         @Html.LabelFor(model => model.Question, "選項", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -57,3 +58,86 @@
     </div>
 
 }
+
+
+<link rel="stylesheet" href="~/Content/bootstrap-multiselect.css" type="text/css">
+
+@section scripts{
+
+    <script src="/Scripts/moment.js"></script>
+    <script src="~/Scripts/notify.min.js"></script>
+    <script src="~/Scripts/bootstrap-multiselect.js"></script>
+
+    <script>
+
+                $(document).ready(function () {
+                    $('#CommentOptions1').change(function () {
+                        $('#CommentQuestion').empty();
+                        $('#CommentQuestion').append($('<option></option>').val('').text('請選擇項目'));
+                        ChangeOptions();
+                    });
+                    $('#CommentContent').change(function () { ChangeContents(); });
+    });
+
+            function ChangeOptions() {
+                var selectedValue = $('#CommentOptions1 option:selected').val();
+                if ($.trim(selectedValue).length > 0) {
+                    GetContents(selectedValue);
+                    }
+            }
+
+
+            function GetContents(CommentOptionID) {
+
+            $.ajax({
+            url: '@Url.Action("DisplayContents", "CommentQuestions")',
+            data: { commentOptionID: CommentOptionID },
+            type: 'post',
+            cache: false,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#CommentContent').empty();
+                    $('#CommentContent').append($('<option></option>').val('').text('請選擇主題'));
+                    $.each(data, function (i, item) {
+                        $('#CommentContent').append($('<option></option>').val(item.Key).text(item.Value));
+                    });
+                }
+            }
+        });
+    }
+
+
+            function ChangeContents() {
+                var selectedValue = $('#CommentContent option:selected').val();
+                if ($.trim(selectedValue).length > 0) {
+                    GetQuestions(selectedValue);
+                }
+            }
+
+
+            function GetQuestions(CommentContentID) {
+
+            $.ajax({
+            url: '@Url.Action("DisplayQuestions", "CommentQuestions")',
+            data: { commentContentID: CommentContentID },
+            type: 'post',
+            cache: false,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#CommentQuestion').empty();
+                    $('#CommentQuestion').append($('<option></option>').val('').text('請選擇項目'));
+                    $.each(data, function (i, item) {
+                        $('#CommentQuestion').append($('<option></option>').val(item.Key).text(item.Value));
+                    });
+                }
+            }
+        });
+    }
+    </script>
+}
+</body>
+</html>
