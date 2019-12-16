@@ -82,6 +82,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
         // GET: CommentMains/Create
+        [HttpGet]
         public ActionResult Create(int id = 0)
         {
             int EmpID = EmployeeDetail.EmployeeID;
@@ -197,7 +198,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         //[AllowAnonymous]
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Create(CommentMain c, int cid,string cname, List<string> array)
+        public ActionResult Create(CommentMain c, int cid,string cname, string [] array )
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
@@ -253,6 +254,18 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     {
                         for (int i = 1; i <= countQ; i++)
                         {
+                    //for (int j = 0; j < array.Count(); j++)
+                    //{
+                    //    for (int i = 0; i < q3.Count; i++)
+                    //    {
+
+                    //        db.CommentChilds.Add(new CommentChild()
+                    //        {
+                    //            CommentMainID = c.CommentMainID,
+                    //            EmployeeID = int.Parse(array[j]), //接收者
+                    //            CommentQuestionID = q3[i].CommentQuestionID,
+
+                    //        });
 
                             db.CommentChilds.Add(new CommentChild()
                             {
@@ -280,6 +293,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             }
         }
+        
 
         public ActionResult LoadData()
         {
