@@ -16,17 +16,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         // GET: EmployeeApprovalTemps
         public ActionResult Index()
-        {
-            //var employeeApprovalTemps = db.EmployeeApprovalTemps.Include(e => e.Employee).Include(e => e.Employee1).Include(e => e.Employee2);
-            return View(/*employeeApprovalTemps*/);
-        }
-
-        //編輯Employee LoadData
-        [Authorize(Roles = "HRLeaders")]
-        public ActionResult EditLoadData()
-        {
-            var datas = db.Employees.Select(p => new { p.employeeID, p.EmployeeName, p.Department.name, p.Group.GroupName, p.Position.position1,ManagerName= p.Employee2.EmployeeName});
-            return Json(new { data = datas.ToList() }, JsonRequestBehavior.AllowGet);
+        {            
+            return View();
         }
 
         //HR簽核LoadData

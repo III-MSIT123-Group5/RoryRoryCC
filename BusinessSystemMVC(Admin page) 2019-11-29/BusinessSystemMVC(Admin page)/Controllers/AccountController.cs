@@ -288,14 +288,14 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "確認您的帳戶", "請按一下此連結確認您的帳戶 <a href=\"" + callbackUrl + "\">這裏</a>");
 
-                    string m_address = "https://www.freeiconspng.com/uploads/male-icon-4.jpg";
+                    string m_address = "maleDefault.jpg";
                    if(model.Gender == "F")
                     {
-                        m_address = "https://www.freeiconspng.com/uploads/female-icon-23.png";
+                        m_address = "femaleDefault.png";
                     }
                     else
                     {
-                        m_address = "https://www.freeiconspng.com/uploads/male-icon-4.jpg";
+                        m_address = "maleDefault.jpg";
                     }
 
                     var addEmployee = new EmployeeApprovalTemp
