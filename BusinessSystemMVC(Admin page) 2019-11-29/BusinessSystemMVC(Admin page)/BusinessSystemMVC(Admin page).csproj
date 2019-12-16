@@ -653,6 +653,7 @@
     <Compile Include="Controllers\CompanyVehicleHistoriesController.cs" />
     <Compile Include="Controllers\CompanyVehiclesController.cs" />
     <Compile Include="Controllers\EmployeeApprovalTempsController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\EventCalendarsController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1395,7 +1396,9 @@
     <Content Include="Views\CommentQuestions\AddOrEdit.cshtml" />
     <Content Include="Views\CommentQ\AddOrEdit2.cshtml" />
     <Content Include="Views\CommentQuestions\Display.cshtml" />
-    <Content Include="Views\EmployeeApprovalTemps\EditEmployeeIndex.cshtml" />
+    <Content Include="Views\EmployeeApprovalTemps\EditLoadDataDetail.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Employees\EditLoadDataDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
