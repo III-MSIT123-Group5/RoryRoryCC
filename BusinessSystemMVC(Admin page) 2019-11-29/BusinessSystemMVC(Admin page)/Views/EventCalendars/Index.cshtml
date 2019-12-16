@@ -5,6 +5,7 @@
 }
 
 
+
 <link href='~/package/calendar/core/main.css' rel='stylesheet' />
 <link href='~/package/calendar/daygrid/main.css' rel='stylesheet' />
 <link href='~/package/calendar/timegrid/main.css' rel='stylesheet' />
@@ -15,27 +16,28 @@
 <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.css" rel="stylesheet" media="print" />
 
 <style>
-
-
     button, h2 {
         font-family: 'NotoSansCJKtc-Bold';
     }
 
-    th, td {
+    th {
         font-family: 'NotoSansCJKtc-Bold';
     }
 
-    
+    td {
+        font-family: '微軟正黑體';
+        font-weight: 600;
+    }
+
     .color-box {
         display: inline-block;
         width: 20px;
         height: 20px;
         cursor: pointer;
     }
-
 </style>
 
-
+<br />
 
 <h2>行事曆</h2>
 <script>
@@ -43,17 +45,33 @@
 
 </script>
 <br />
-<br />
 
 <div>
-    <button class="btn btn-success" style="margin-bottom:10px" id='UpdateEvent' onclick="PopupForm('/EventCalendars/AddOrEdit' )"><i class="fa fa-plus" aria-hidden="true"></i> 新增貼文</button>
+    <button class="btn btn-success" style="margin-bottom:10px" id='UpdateEvent' onclick="PopupForm('@Url.Action("AddOrEdit","EventCalendars")')"><i class="fa fa-plus" aria-hidden="true"></i> 新增貼文</button>
 
 </div>
 
-<br />
+<br /><br />
 <div class="col-8" style="float:left">
     <div id='evecalendar'></div>
 </div>
+
+@*<div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><span id="eventTitle"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <p id="pDetails"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>*@
 
 <div class="col-4" style="float:right">
 
@@ -75,32 +93,40 @@
 
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/Scripts/moment.js"></script>
 
 
     <script>
         var Popup, dataTable;
 
-              
+        var events = [];
         $(document).ready(function () {
-            
-            var events = []
+
+
             $.ajax({
                 type: "GET",
-                url:"/EventCalendars/Getevent",
+                url:'@Url.Action("Getevent", "EventCalendars")',
                 success: function (data) {
-                    console.log(data);
+                    
+
                     $.each(data, function (i, v) {
+
                         events.push({
+                            id: v.CalendarID,
+                            DepartmentID: v.DepartmentID,
                             title: v.Subject,
                             start:v.StartTime,
                             end: v.EndTime != null ? v.EndTime : null,
                             color: v.ThemeColor,
+                            Location: v.Location,
+                            IsImportant: v.IsImportant,
+                            Description: v.Description
                             })
-                        
+
                     })
 
                     GenerateCalender(events);
-                    console.log(events);
+                    
                 },
                 error: function (error) {
                     alert('failed');
@@ -108,35 +134,6 @@
                 }
 
             })
-            /*
-            function GenerateCalender(events) {
-                $('#calender').fullCalendar('destroy');
-                $('#calender').fullCalendar({
-                    contentHeight: 400,
-                    defaultDate: new Date(),
-                    timeFormat: 'h(:mm)a',
-                    header: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'month,basicWeek,basicDay,agenda'
-                    },
-                    eventLimit: true,
-                    eventColor: '#378006',
-                    events: events,
-                    eventClick: function (calEvent, jsEvent, view) {
-                        $('#myModal #eventTitle').text(calEvent.title);
-                        var $description = $('<div/>');
-                        $description.append($('<p/>').html('<b>Start:</b>' + calEvent.start.format("DD-MMM-YYYY HH:mm a")));
-                        if (calEvent.end != null) {
-                            $description.append($('<p/>').html('<b>End:</b>' + calEvent.end.format("DD-MMM-YYYY HH:mm a")));
-                        }
-                        $description.append($('<p/>').html('<b>Description:</b>' + calEvent.description));
-                        $('#myModal #pDetails').empty().html($description);
-
-                        $('#myModal').modal();
-                    }
-                })
-            }*/
 
             $("#UpdateEvent").hover(function () {
                     //$(this).css('color', '#b4c9ef');
@@ -148,11 +145,11 @@
 
             function GenerateCalender(events1) {
 
-                console.log(events1);
+
 
                 var calendarEl = document.getElementById('evecalendar');
 
-                
+
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     plugins: ['interaction', 'dayGrid', 'timeGrid', 'list'],
                     header: {
@@ -164,113 +161,42 @@
                     eventColor: '#378006',
                     defaultDate: new Date(),
                     navLinks: true, // can click day/week names to navigate views
-                    businessHours: true, // display business hours
                     editable: true,
-                    events: events1                
-                    //events:
-                    //    [
-                          
-                    //        {
-                    //            title: 'Business Lunch',
-                    //            start: '2019-12-03T13:00:00',
-                    //            constraint: 'businessHours'
-                    //        },
-                    //        ]
-                            //{
-                            //    title: 'Business Lunch',
-                            //    start: '2019-08-03T13:00:00',
-                            //    constraint: 'businessHours'
-                            //},
-                    //        {
-                    //            title: 'Meeting',
-                    //            start: '2019-08-13T11:00:00',
-                    //            constraint: 'availableForMeeting', // defined below
-                    //            color: '#257e4a'
-                    //        },
-                    //        {
-                    //            title: 'Conference',
-                    //            start: '2019-08-18',
-                    //            end: '2019-08-20'
-                    //        },
-                    //        {
-                    //            title: 'Party',
-                    //            start: '2019-08-29T20:00:00'
-                    //        },
+                    events: events1,
+                    eventClick: function (calEvent, jsEvent, view) {
+                        var calID = calEvent.event.id;
+                        PopupEditForm('@Url.Action("AddOrEdit","EventCalendars")/'+calID);
 
-                    //        // areas where "Meeting" must be dropped
-                    //        {
-                    //            groupId: 'availableForMeeting',
-                    //            start: '2019-08-11T10:00:00',
-                    //            end: '2019-08-11T16:00:00',
-                    //            rendering: 'background'
-                    //        },
-                    //        {
-                    //            groupId: 'availableForMeeting',
-                    //            start: '2019-08-13T10:00:00',
-                    //            end: '2019-08-13T16:00:00',
-                    //            rendering: 'background'
-                    //        },
+                    }
+                    //eventDragStop: function (calEvent, jsEvent, view) {
+                    //    if
+                    //}
+                    //eventDrop: function (calEvent, jsEvent) {
+                    //    var calID = calEvent.event.id;
+                    //    if ()
+                    //    {
+                    //        Delete(calID);
+                    //    }
+                        
 
-                    //        // red areas where no events can be dropped
-                    //        {
-                    //            start: '2019-08-24',
-                    //            end: '2019-08-28',
-                    //            overlap: false,
-                    //            rendering: 'background',
-                    //            color: '#ff9f89'
-                    //        },
-                    //        {
-                    //            start: '2019-08-06',
-                    //            end: '2019-08-08',
-                    //            overlap: false,
-                    //            rendering: 'background',
-                    //            color: '#ff9f89'
-                    //        }
-                        //],
-                    
+                    //}
+               
+
+
+
+
                 });
 
                 calendar.render();
-
+                //var calpt = $("#evecalendar").position;
                 
+                //console.log(calpt);
+
+
 
             }
-            
-
-
 
         })
-
-        //            {
-        //                "targets": 0, "data": "Photo", "render": function (url, type, full) {
-        //                    return '<img height="60px" src="' + url + '"/>';
-        //                },
-        //                "orderable": false,
-        //                "searchable": false,
-        //                "width": "65px"
-        //            },
-        //            { "targets": 1, "data": "EmployeeName", "width": "60px" },
-        //            { "targets": 2, "data": "name", "width": "60px" },
-        //            { "targets": 3, "data": "Content" },
-        //            { "targets": 4, "data": "PostTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
-        //            {
-        //                "targets": 5, "data": "Num", "render": function (data) {
-        //                    return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/BulletinBoards/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
-        //                },
-        //                "orderable": false,
-        //                "searchable": false,
-        //                "width": "150px"
-        //            }
-
-        //        ],
-        //        "language": {
-
-        //            "emptyTable": "目前無貼文，請點選<b>新增貼文</b>"
-        //        }
-
-        //    });
-
-        //});
 
         function PopupForm(url) {
             var formDiv = $('<div/>');
@@ -293,6 +219,29 @@
                 });
         }
 
+
+        function PopupEditForm(url) {
+            var formDiv = $('<div/>');
+            $.get(url)
+                .done(function (response) {
+                    formDiv.html(response);
+
+                    Popup = formDiv.dialog({
+                        autoOpen: true,
+                        resizable: false,
+                        title: '修改事件',
+                        height: 600,
+                        width: 400,
+                        close: function () {
+                            Popup.dialog('destroy').remove();
+                        }
+
+
+                    });
+                });
+        }
+
+
         function SubmitForm(form) {
             $.validator.unobtrusive.parse(form);
             if ($(form).valid()) {
@@ -304,18 +253,45 @@
                         if (data.success) {
 
                             Popup.dialog("close");
-                            dataTable.ajax.reload();
+
 
                             $.notify(data.message, {
                                 globalPosition: "top center",
                                 className: "success"
+                                
                             })
                             
                         }
                         
                     }
-                });
-                $("#evecalendar").fullCalendar('refresh');
+                })
+                location.reload();   
+
+                    @*type: "GET",
+                    url:'@Url.Action("Getevent", "EventCalendars")',
+                    success: function (data) {
+                    
+                        $.each(data, function (i, v) {
+                            events.push({
+                                id: v.CalendarID,
+                                DepartmentID: v.DepartmentID,
+                                title: v.Subject,
+                                start:v.StartTime,
+                                end: v.EndTime != null ? v.EndTime : null,
+                                color: v.ThemeColor,
+                                Location: v.Location,
+                                IsImportant: v.IsImportant,
+                                Description: v.Description
+                                })
+                            console.log(data);
+                        })
+
+                    GenerateCalender(events);*@
+                    
+                    
+                
+                   
+
             }
             return false;
 
@@ -329,8 +305,6 @@
                     success: function (data) {
                         if (data.success) {
 
-                            dataTable.ajax.reload();
-
                             $.notify(data.message, {
                                 globalPosition: "top center",
                                 className: "success"
@@ -339,8 +313,20 @@
                         }
                     }
 
-                });
+                })
+                location.reload(); 
             }
+        }
+        function drag(id) {
+
+        }
+
+
+        function dragout(id) {
+            
+
+
+
         }
     </script>
 

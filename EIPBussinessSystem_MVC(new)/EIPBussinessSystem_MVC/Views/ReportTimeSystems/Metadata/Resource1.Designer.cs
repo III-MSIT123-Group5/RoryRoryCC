@@ -61,6 +61,51 @@ namespace EIPBussinessSystem_MVC.Views.ReportTimeSystems.Metadata {
         }
         
         /// <summary>
+        ///   查詢類似 送出表單時間 的當地語系化字串。
+        /// </summary>
+        public static string ApplyDateTime {
+            get {
+                return ResourceManager.GetString("ApplyDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 結束時間 的當地語系化字串。
+        /// </summary>
+        public static string EndTime {
+            get {
+                return ResourceManager.GetString("EndTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 總時數 的當地語系化字串。
+        /// </summary>
+        public static string EventHours {
+            get {
+                return ResourceManager.GetString("EventHours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 事件類別 的當地語系化字串。
+        /// </summary>
+        public static string EventID {
+            get {
+                return ResourceManager.GetString("EventID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 備註 的當地語系化字串。
+        /// </summary>
+        public static string Note {
+            get {
+                return ResourceManager.GetString("Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 報表名稱 的當地語系化字串。
         /// </summary>
         public static string ReportName {
@@ -75,6 +120,15 @@ namespace EIPBussinessSystem_MVC.Views.ReportTimeSystems.Metadata {
         public static string ReportNameEmpty {
             get {
                 return ResourceManager.GetString("ReportNameEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 開始時間 的當地語系化字串。
+        /// </summary>
+        public static string StartTime {
+            get {
+                return ResourceManager.GetString("StartTime", resourceCulture);
             }
         }
     }

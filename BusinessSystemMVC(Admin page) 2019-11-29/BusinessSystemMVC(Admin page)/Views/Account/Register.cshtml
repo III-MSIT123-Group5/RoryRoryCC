@@ -1,11 +1,28 @@
 ﻿@model BusinessSystemMVC_Admin_page_.Models.RegisterViewModel
 @{
-    /**/
-
     ViewBag.Title = "新增員工帳號";
 }
 
+<style>
+    button, h2, h4 {
+        font-family: 'NotoSansCJKtc-Bold';
+    }
+
+    th {
+        font-family: 'NotoSansCJKtc-Bold';
+    }
+
+    td {
+        font-family: '微軟正黑體';
+        font-weight: 600;
+    }
+</style>
+
+<br />
+
 <h2>@ViewBag.Title</h2>
+
+<br />
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
@@ -59,8 +76,8 @@
         @Html.Label("生日", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.DropDownList("BirthYear", null, new { @style = "width:90px" })
-            @Html.DropDownList("BirthMonth", null, new {  @style = "width:70px" })
-            @Html.DropDownList("BirthDate", null, new {  @style = "width:70px" })
+            @Html.DropDownList("BirthMonth", null, new { @style = "width:70px" })
+            @Html.DropDownList("BirthDate", null, new { @style = "width:70px" })
         </div>
     </div>
     <div class="form-group">

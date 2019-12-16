@@ -2,14 +2,13 @@
 @{
     Layout = null;
 }
-@using (Html.BeginForm("AddOrEdit2", "CompanyVehicles", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
-{
 
+@using (Html.BeginForm("AddOrEdit2", "CompanyVehicles", FormMethod.Post, new { @onsubmit = "return SubmitForm(this)"@*, @enctype = "multipart/form-data"*@ }))
+{
     @Html.AntiForgeryToken()
     @Html.HiddenFor(Model => Model.VehiclePhoto)
-
-
-
+    @*@Html.TextBox("files", null, new { @type = "file", @multiple = "multiple" });*@
+    @*@Html.TextBoxFor(Model=>Model.VehiclePhoto2 , new { @type = "file"})*@
 
     <div>
 
@@ -42,18 +41,52 @@
         @Html.LabelFor(Model => Model.officeID, "辦公室編號", new { @class = "control-label" })
         @Html.EditorFor(Model => Model.officeID, new { htmlAttributes = new { @class = "form-control", @Value = "" } })
         @Html.ValidationMessageFor(model => model.officeID)
-
         @*@Html.LabelFor(Model => Model.VehiclePhoto2, "照片", new { @class = "control-label" })
-        @Html.DisplayFor(Model => Model.VehiclePhoto2, new { @class = "form-control", Width = "200px", Height = "120px" })
-        @Html.ValidationMessageFor(model => model.VehiclePhoto2)*@
+            @Html.DisplayFor(Model => Model.VehiclePhoto2, new { @class = "form-control", Width = "200px", Height = "120px" })
+            @Html.ValidationMessageFor(model => model.VehiclePhoto2)*@
+
+
+
     </div>
-    
-    @Html.TextBox("files", null, new { @type = "file", @multiple = "multiple" })
 
     <div class="form-group" style="float:right;margin-top:20px">
         <div>
-            <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
+            @*<input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
+                @*<button type="submit" title="執行多檔上傳" class="btn btn-success">*@
+            @*<span class="glyphicon glyphicon-upload"></span>
+                    上傳
+                </button>*@
             <input type="submit" value="確認修改" class="btn btn-success" style="margin-right:10px" />
         </div>
     </div>
+
+
+
+
+    @*@section scripts{
+        <script>
+            function PopupForm(url) {
+                console.log(this.url)
+                var formDiv = $('<div/>');
+                $.get(url)
+                    .done(function (response) {
+                        formDiv.html(response);
+                        Popup = formDiv.dialog({
+                            autoOpen: true,
+                            resizable: false,
+                            title: '圖片上傳',
+                            height:400,
+                            width: 400,
+                            close: function () {
+                                Popup.dialog('destroy').remove();
+                            }
+                        });
+                    });
+            }
+        </script>
+
+
+        }*@
 }
+
+
