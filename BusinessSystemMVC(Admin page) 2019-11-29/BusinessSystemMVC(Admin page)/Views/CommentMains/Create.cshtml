@@ -270,15 +270,20 @@
                             console.log(commentname);
                         });
 
+                        
+
                         $.ajax({
                             url: '@Url.Action("Create", "CommentMains")',
                             type: "POST",
+                            traditional: true,
+                            cache: false,
                             data: {
                                 array: arr,
                                 cid: DropccID,
                                 cname: commentname
                             },
                             dataType: 'json',
+                            
                         }).done(function () {
                             alert("OK")
                         })

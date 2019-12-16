@@ -198,7 +198,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         //[AllowAnonymous]
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Create(CommentMain c, int cid,string cname, List<string> array)
+        public ActionResult Create(CommentMain c, int cid,string cname, string [] array )
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
@@ -250,14 +250,14 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                         //CommentMainID = c.CommentMainID,
                     });
 
-                    //for (int j = 0; j < array.Count();j++)
+                    //for (int j = 0; j < array.Count(); j++)
                     //{
-                    //    for (int i = 1; i <= q3.Count; i++)
+                    //    for (int i = 0; i < q3.Count; i++)
                     //    {
 
                     //        db.CommentChilds.Add(new CommentChild()
                     //        {
-                    //            //CommentMainID = c.CommentMainID,
+                    //            CommentMainID = c.CommentMainID,
                     //            EmployeeID = int.Parse(array[j]), //接收者
                     //            CommentQuestionID = q3[i].CommentQuestionID,
 
@@ -283,6 +283,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             }
         }
+        
 
         public ActionResult LoadData()
         {
