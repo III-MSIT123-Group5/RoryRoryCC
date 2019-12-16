@@ -1,0 +1,16 @@
+﻿@model BusinessSystemMVC_Admin_page_.Models.CompanyVehicle
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("AddOrEdit3", "CompanyVehicles", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(Model => Model.VehiclePhoto2)
+    @Html.TextBox("files", null, new { @type = "file", @multiple = "multiple" })
+    <button type="submit" title="執行多檔上傳" class="btn btn-success">
+        <span class="glyphicon glyphicon-upload"></span>
+        上傳
+    </button>
+}
+

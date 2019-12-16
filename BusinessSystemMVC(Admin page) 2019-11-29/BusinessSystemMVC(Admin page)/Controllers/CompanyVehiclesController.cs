@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BusinessSystemMVC_Admin_page_.Models;
+using BusinessSystemMVC_Admin_page_.ViewModels;
 
 namespace EIPBussinessSystem_MVC.Controllers
 {
@@ -118,7 +119,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                 });
                 //儲存修改
                 db.SaveChanges();
-                
+
             }
             return RedirectToAction("Index");
         }
@@ -144,35 +145,87 @@ namespace EIPBussinessSystem_MVC.Controllers
                 }
             }
         }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult AddOrEdit3( HttpPostedFileBase file)
+        //{
+        //    if (file != null)
+        //    {
+        //        string SourceFilename = Path.GetFileName(file.FileName);
+        //        string saveDir = "\\CarUpload\\";
+        //        //根目錄
+        //        string appPath = Request.PhysicalApplicationPath;
+        //        //完整路徑(包含檔名)
+        //        string savePath = appPath + saveDir + SourceFilename;
+        //        file.SaveAs(savePath);
+        //        SavePath = savePath;
+        //    }
+        //    return View();
+        //}
+
+
+        //string SavePath;
+        //[HttpGet]
+        //public ActionResult AddOrEdit3()
+        //{
+        //    var b = from d in db.CompanyVehicles
+        //            select new
+        //            {
+        //                d.VehiclePhoto2
+        //            };
+        //        return View(b);
+        //}
+
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult AddOrEdit3( HttpPostedFileBase file)
+        //{
+        //    string SourceFilename = Path.GetFileName(file.FileName);
+        //    string saveDir = "\\CarUpload\\";
+        //    //根目錄
+        //    string appPath = Request.PhysicalApplicationPath;
+        //    //完整路徑(包含檔名)
+        //    string savePath = appPath + saveDir + SourceFilename;
+        //    file.SaveAs(savePath);
+        //    SavePath = savePath;
+        //    return Json(new { success = true, message = SavePath }, JsonRequestBehavior.AllowGet);
+        //}
+
+        //string SavePath;
+
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public void AddOrEdit3(CompanyVehicleViewModel b)
+        //{
+        //    string SourceFilename = Path.GetFileName(b.PhotoCar.FileName);
+        //    string appPath = Request.PhysicalApplicationPath;
+        //    string saveDir = "\\CarUpload\\";
+        //    string savePath = appPath + saveDir + SourceFilename;
+        //    string SavePath = savePath;
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddOrEdit2(CompanyVehicle b, HttpPostedFileBase file)
+        public ActionResult AddOrEdit2(CompanyVehicle b)
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
-
-                if (file != null)
+                db.CompanyVehicles.Add(new CompanyVehicle()
                 {
-                    string SourceFilename = Path.GetFileName(file.FileName);
-                    string saveDir = "\\CarUpload\\";
-                    //根目錄
-                    string appPath = Request.PhysicalApplicationPath;
-                    //完整路徑(包含檔名)
-                    string savePath = appPath + saveDir + SourceFilename;
-                    db.CompanyVehicles.Add(new CompanyVehicle()
-                    {
-                        LicenseNumber = b.LicenseNumber,
-                        VehicleYear = b.VehicleYear,
-                        PurchaseDate = b.PurchaseDate,
-                        brand = b.brand,
-                        serial = b.serial,
-                        MaxPassenger = b.MaxPassenger,
-                        officeID = b.officeID,
-                        VehiclePhoto2 = savePath
-                    });
-                    db.SaveChanges();
-                }
+                    LicenseNumber = b.LicenseNumber,
+                    VehicleYear = b.VehicleYear,
+                    PurchaseDate = b.PurchaseDate,
+                    brand = b.brand,
+                    serial = b.serial,
+                    MaxPassenger = b.MaxPassenger,
+                    officeID = b.officeID
+                    //VehiclePhoto2 = SavePath
+                });
+                db.SaveChanges();
                 return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -181,17 +234,15 @@ namespace EIPBussinessSystem_MVC.Controllers
 
 
         [HttpPost]
-        public ActionResult Delete(string LNnum)
+        public ActionResult Delete(string id)
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
-                CompanyVehicle b = db.CompanyVehicles.Where(x => x.LicenseNumber == LNnum).FirstOrDefault<CompanyVehicle>();
+                CompanyVehicle b = db.CompanyVehicles.Where(x => x.LicenseNumber == id).FirstOrDefault<CompanyVehicle>();
                 db.CompanyVehicles.Remove(b);
                 db.SaveChanges();
 
                 return Json(new { success = true, message = "刪除成功" }, JsonRequestBehavior.AllowGet);
-
-
             }
 
         }

@@ -34,7 +34,7 @@
     <table id="Htable" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
-                <th>公務車照片</th>
+                @*<th>公務車照片</th>*@
                 <th>車牌號碼</th>
                 <th>車輛年份</th>
                 <th>購入日期</th>
@@ -77,24 +77,24 @@
                 },
                 "columnDefs": [
 
+                    //{
+                    //    "targets": 0, "data": "VehiclePhoto2", "render": function (url, type, full) {
+                    //        return '<img height="60px" src="' + url + '"/>';
+                    //    },
+                    //    "orderable": false,
+                    //    "searchable": false,
+                    //    "width": "300px"
+                    //},
+                    { "targets": 0, "data": "LicenseNumber", "width": "75px" },
+                    { "targets": 1, "data": "VehicleYear", "width": "75px"},
+                    { "targets": 2, "data": "PurchaseDate", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD") }, "width": "135px"  },
+                    { "targets": 3, "data": "brand" },
+                    { "targets": 4, "data": "serial" },
+                    { "targets": 5, "data": "MaxPassenger" },
+                    { "targets": 6, "data": "officename" },
                     {
-                        "targets": 0, "data": "VehiclePhoto2", "render": function (url, type, full) {
-                            return '<img height="60px" src="' + url + '"/>';
-                        },
-                        "orderable": false,
-                        "searchable": false,
-                        "width": "300px"
-                    },
-                    { "targets": 1, "data": "LicenseNumber", "width": "75px" },
-                    { "targets": 2, "data": "VehicleYear", "width": "75px"},
-                    { "targets": 3, "data": "PurchaseDate", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD") }, "width": "135px"  },
-                    { "targets": 4, "data": "brand" },
-                    { "targets": 5, "data": "serial" },
-                    { "targets": 6, "data": "MaxPassenger" },
-                    { "targets": 7, "data": "officename" },
-                    {
-                        "targets": 8, "data": "LicenseNumber", "render": function (data) {
-                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/CompanyVehicles/AddOrEdit/" + data + `')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete("${data}")><i class='fa fa-trash'></i> 刪除</a>`
+                        "targets":7, "data": "LicenseNumber", "render": function (data) {
+                            return `<a class='btn btn-warning btn-sm' onclick=PopupForm('/CompanyVehicles/AddOrEdit/${data}')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete("${data}")><i class='fa fa-trash'></i> 刪除</a>`
                         },
                         "orderable": false,
                         "searchable": false,
