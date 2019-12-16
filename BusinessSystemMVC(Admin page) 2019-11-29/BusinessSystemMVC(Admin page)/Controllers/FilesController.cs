@@ -52,17 +52,18 @@ namespace EIPBussinessSystem_MVC.Controllers
                         db.Files.Add(new BusinessSystemMVC_Admin_page_.Models.File
                         {
                             FileName = SourceFilename,
-                            Data = savePath,
+                            Data =savePath,
                             FileSize = file.ContentLength.ToString(),
                             EmployeeID = EmployeeDetail.EmployeeID,
                             UploadDate = DateTime.Now,
                             Extension = Path.GetExtension(file.FileName)
                         });
-                        //儲存修改
-                        db.SaveChanges();
                     }
+                    //儲存修改
+                    db.SaveChanges();
                 }
-                return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
+                return View("Index");
+                //return Json(new { success = true, message = "新增成功" }, JsonRequestBehavior.AllowGet);
             }
         }
 
