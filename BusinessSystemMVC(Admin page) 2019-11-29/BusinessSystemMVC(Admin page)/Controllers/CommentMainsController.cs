@@ -193,7 +193,13 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 return Json(q100, JsonRequestBehavior.AllowGet);
             
         }
-
+        //string[] array;
+        //int count = 0 ;
+        //public void test(string a )
+        //{
+        //    array[count] = a;
+        //    count++;
+        //}
 
         //[AllowAnonymous]
         [HttpPost]
@@ -209,20 +215,13 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
                 ArrayList question = new ArrayList();
 
-                var dup = db.CommentQuestions.GroupBy(x => new { x.CommentContentID })
-                .Select(group => new { ContentID = group.Key, Count = group.Count() })
-                .OrderByDescending(x => x.Count);
-
+                var dup = db.CommentQuestions.Where(x => x.CommentContentID == ccID)/*.GroupBy(x => new { x.CommentContentID })*/
+                .Select(p => p);
                 int countQ = 0;
-
-                foreach (var x in dup)
-                {
-                    if (x.ContentID.ToString() == ccID.ToString())
-                    {
-                        countQ = x.Count;
-
-                    }
-                }
+                countQ = dup.Count();
+                //foreach (var x in dup)
+                //{
+                //}
 
 
                 var q2 = from cq in db.CommentQuestions
@@ -249,10 +248,14 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                         CommentContentID = ccID,
                         //CommentMainID = c.CommentMainID,
                     });
+                    db.SaveChanges();
+
+                    var getid = (from cc in db.CommentMains
+                                 select cc.CommentMainID).Max();
 
                     for (int j = 0; j < array.Count(); j++)
                     {
-                        for (int i = 1; i <= countQ; i++)
+                        for (int i = 0; i < countQ; i++)
                         {
                     //for (int j = 0; j < array.Count(); j++)
                     //{
@@ -269,17 +272,14 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
                             db.CommentChilds.Add(new CommentChild()
                             {
-                                CommentMainID = c.CommentMainID,
+                                CommentMainID = getid,
                                 EmployeeID = int.Parse(array[j]), //接收者
                                 CommentQuestionID = q3[i].CommentQuestionID,
 
                             });
-
+                            db.SaveChanges();
                         }
                     }
-
-
-                    db.SaveChanges();
 
                     return Json(new { success = true, message = "調查發布成功" }, JsonRequestBehavior.AllowGet);
                 }
