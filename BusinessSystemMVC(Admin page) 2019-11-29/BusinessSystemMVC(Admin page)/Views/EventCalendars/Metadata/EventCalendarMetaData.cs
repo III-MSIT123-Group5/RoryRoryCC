@@ -37,7 +37,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public string Location { get; set; }
 
         [Display(Name = "Description", ResourceType = typeof(Resource1))]
-        [StringLength(10, ErrorMessage = "{0}最多{1}個字")]
+        [StringLength(100, ErrorMessage = "{0}最多{1}個字")]
         public string Description { get; set; }
 
         [Display(Name = "IsImportant", ResourceType = typeof(Resource1))]
