@@ -235,78 +235,90 @@
 
 
 
-                    $('#test').click(function () {
+                $('#test').click(function () {
+                    test();
+                    
+                });
 
-                        var DropccID = $('#CommentContent').val();
-                        var oldselected = [];
-                        var arr = [];
-                        var count = 0;
-                        var commentname = $('#CommentName').val();
+                function test() {
+                    var DropccID = $('#CommentContent').val();
+                    var oldselected = [];
+                    var arr = [];
+                    var count = 0;
+                    var commentname = $('#CommentName').val();
 
-                        $('#mul :selected').each(function () {
-                            oldselected[$(this).val()] = $(this).val();
-                        });
-
-                        var selected = oldselected.filter(function (v) { return v !== '' });
-
-                        console.log(DropccID);
-                        console.log(oldselected);
-                        console.log(selected);
-
-                        $.ajax({
-                            url: '@Url.Action("GetDepartmentID", "CommentMains")',
-                            method: 'GET',
-                            dataType: 'json'
-
-                        }).done(function (datas) {
-                            console.log(datas);
-                            for (var i = 0; i < datas.length;i++) {
-                                if ($.inArray(String(datas[i].DepartmentID), selected) >=0) {
-                                    arr[count] = datas[i].employeeID;
-                                    count++;
-                                }
-                            }
-                            console.log(arr);
-                            console.log(count);
-                            console.log(commentname);
-                        });
-
-                        
-
-                        $.ajax({
-                            url: '@Url.Action("Create", "CommentMains")',
-                            type: "POST",
-                            traditional: true,
-                            cache: false,
-                            data: {
-                                array: arr,
-                                cid: DropccID,
-                                cname: commentname
-                            },
-                            dataType: 'json',
-                        }).done(function (data) {
-                            //alert("OK")
-                            if (data.success) {
-
-
-                                $.notify(data.message, {
-                                    globalPosition: "top center",
-                                    className: "success"
-                                })
-
-                            }
-                        })
-
+                    $('#mul :selected').each(function () {
+                        oldselected[$(this).val()] = $(this).val();
                     });
 
+                    var selected = oldselected.filter(function (v) { return v !== '' });
+
+                    console.log(DropccID);
+                    console.log(oldselected);
+                    console.log(selected);
+                     $.ajax({
+                        url: '@Url.Action("GetDepartmentID", "CommentMains")',
+                        method: 'GET',
+                        dataType: 'json'
+                    }).done(function (datas) {
+                        console.log(datas);
+                        for (var i = 0; i < datas.length; i++) {
+                            if ($.inArray(String(datas[i].DepartmentID), selected) >= 0) {
+                                arr[count] = datas[i].employeeID;
+                                console.log(arr[count])
+                                count++;
+                            }
+                           
+                        }
+                        console.log(arr);
+                        console.log(count);
+                        console.log(commentname);
+                        test1(arr, DropccID, commentname)
+                    });
+                    
+
+                    @*$.ajax({
+                        url: '@Url.Action("Create", "CommentMains")',
+                        type: "POST",
+                        traditional: true,
+                        cache: false,
+                        data: {
+                            cid: DropccID,
+                            cname: commentname
+                        },
+                        dataType: 'json',
+                    }).done(function (data) {
+                        alert("OK")
+                        if (data.success) {
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            })
+                        }
+                    })*@
 
 
-
-
-
-
-
-
+                }
+                function test1(array, DropccID, commentname) {
+                    $.ajax({
+                        url: '@Url.Action("Create", "CommentMains")',
+                        type: "POST",
+                        data: {
+                            array: array,
+                            cid: DropccID,
+                            cname: commentname
+                        },
+                        dataType: "json"
+                    }).done(function (data) {
+                        if (data.success) {
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            })
+                        }
+                    })
+                }
+                
 
             //$('#HeaderCheckbox').click(function (event) {
             //    if (this.checked) {
