@@ -27,7 +27,19 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         {
             BusinessDataBaseEntities db = new BusinessDataBaseEntities();
 
-            var events = db.EventCalendars.AsEnumerable().Select(n => new { n.CalendarID, n.employeeID, n.Subject, n.DepartmentID, StartTime = n.StartTime.ToString("yyyy-MM-dd hh:ss"), EndTime = n.EndTime.ToString("yyyy-MM-dd hh:ss"), n.Location, n.Description, n.IsImportant, n.ThemeColor }).Where(n => n.employeeID == EmployeeDetail.EmployeeID).ToList();
+            var events = db.EventCalendars.AsEnumerable().Select(n => new
+            {
+                n.CalendarID,
+                n.employeeID,
+                n.Subject,
+                n.DepartmentID,
+                StartTime =  n.StartTime.ToString("yyyy-MM-dd hh:ss"),
+                EndTime = n.EndTime.ToString("yyyy-MM-dd hh:ss"),
+                n.Location,
+                n.Description,
+                n.IsImportant,
+                n.ThemeColor
+            }).Where(n => n.employeeID == EmployeeDetail.EmployeeID).ToList();
             //return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
 
             return Json(events, JsonRequestBehavior.AllowGet);

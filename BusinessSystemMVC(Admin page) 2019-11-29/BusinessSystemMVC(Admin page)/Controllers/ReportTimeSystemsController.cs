@@ -29,9 +29,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 n.ReportID,
                 n.ReportName,
                 n.employeeID,
-                ApplyDateTime=n.ApplyDateTime.ToString("yyyy-MM-dd hh:ss"),
-                StartTime = n.StartTime.ToString("yyyy-MM-dd hh:ss"),
-                EndTime = n.EndTime.ToString("yyyy-MM-dd hh:ss"),
+                ApplyDateTime= DateTime.Parse(n.ApplyDateTime.ToString("yyyy-MM-dd hh:ss")),
+                StartTime = DateTime.Parse(n.StartTime.ToString("yyyy-MM-dd hh:ss")),
+                EndTime = DateTime.Parse(n.EndTime.ToString("yyyy-MM-dd hh:ss")),
                 n.EventHours,
                 n.EventID,
                 n.Note,
@@ -87,6 +87,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddOrEdit(ReportTimeSystem r)
         {
+            ViewBag.employeeID = new SelectList(db.Employees, "employeeID", "EmployeeName");
+            ViewBag.eventID = new SelectList(db.Events, "eventID", "EventName");
+
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
                 if (r.ReportID == 0)
@@ -98,12 +101,13 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                         employeeID = EmployeeDetail.EmployeeID,
                         StartTime = r.StartTime,
                         EndTime = r.EndTime,
-                        EventHours = (r.EndTime - r.StartTime).Hours,
+                        EventHours = (r.EndTime - r.StartTime).TotalHours,
                         EventID = r.EventID,
                         Note = r.Note,
-                        ApplyDateTime = new DateTime(),
+                        ApplyDateTime = DateTime.Now,
                         Discontinue = true
                     });
+                    
                     db.SaveChanges();
 
                     return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
@@ -111,6 +115,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 else
                 {
                     db.Entry(r).State = EntityState.Modified;
+                    db.ReportTimeSystems.First().ApplyDateTime = DateTime.Now;
                     db.SaveChanges();
 
                     return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
@@ -136,7 +141,29 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
 
+        public ActionResult TimeControl()
+        {
+            var datas = (from r in db.ReportTimeSystems
+                        join e in db.Employees
+                        on r.employeeID equals e.employeeID
+                        where r.Employee.GroupID == EmployeeDetail.GroupID
+                         select new
+                         {
+                             r.ReportID,
+                             r.ReportName,
+                             r.employeeID,
+                             r.StartTime,
+                             r.EndTime,
+                             r.EventID,
+                             r.EventHours,
+                             r.Note,
+                             r.Discontinue,
+                             r.ApplyDateTime
+                          }).ToList();
 
+            return View(datas);
+            
+        }
 
 
 

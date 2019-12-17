@@ -67,9 +67,10 @@ namespace EIPBussinessSystem_MVC.Controllers
             }
         }
 
-        public FileResult Download(string FileName)
+        public FileResult Download(int id)
         {
-            string saveDir = "\\Uploads\\";
+            var FileName = db.Files.Where(f => f.FileID == id).Select(f=>f.FileName).FirstOrDefault();
+            string saveDir = "Uploads\\";
             string appPath = Request.PhysicalApplicationPath;
             string DownloadFileName = appPath + saveDir + FileName;
             ContentDisposition cd = new ContentDisposition
@@ -78,7 +79,6 @@ namespace EIPBussinessSystem_MVC.Controllers
                 Inline = false,
             };
             Response.AppendHeader("Content-Disposition", cd.ToString());
-            Dispose();
             return File(DownloadFileName, MediaTypeNames.Application.Octet);
         }
 
@@ -86,7 +86,7 @@ namespace EIPBussinessSystem_MVC.Controllers
         {
             string ZipFileName = "All.zip";
 
-            string saveDir = "\\Uploads\\";
+            string saveDir = "Uploads\\";
             string appPath = Request.PhysicalApplicationPath;
             string UploadsFolder = appPath + saveDir;
             string DownloadFileName = appPath+ZipFileName;
@@ -102,7 +102,6 @@ namespace EIPBussinessSystem_MVC.Controllers
                 Inline = false,
             };
             Response.AppendHeader("Content-Disposition", cd.ToString());
-            Dispose();
             return File(DownloadFileName, MediaTypeNames.Application.Octet);
         }
 
@@ -119,7 +118,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                     var q = db.Files.AsEnumerable().Where(f => f.FileID.ToString() == Cheak.ElementAt(i));
                     FileName = q.Select(f => f.FileName).FirstOrDefault();
 
-                    string saveDir = "\\Uploads\\";
+                    string saveDir = "Uploads\\";
                     string appPath = Request.PhysicalApplicationPath;
                     DownloadFileName = appPath + saveDir+ FileName;
                     //壓縮檔案
@@ -133,21 +132,9 @@ namespace EIPBussinessSystem_MVC.Controllers
                 Inline = false,
             };
             Response.AppendHeader("Content-Disposition", cd.ToString());
-            Dispose();
             return File(DownloadFileName, MediaTypeNames.Application.Octet);
         }
-        /// ///////////////////////////////////////////////////
 
-        //// GET: Files
-        //public ActionResult Index(string FileName)
-        //{
-        //    var files = db.Files.Include(f => f.Employee);
-        //    if (!String.IsNullOrEmpty(FileName))
-        //    {
-        //        files = files.Where(s => s.FileName.Contains(FileName));
-        //    }
-        //    return View(files.ToList());
-        //}
         
         public ActionResult Index()
         {
@@ -184,7 +171,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                 BusinessSystemMVC_Admin_page_.Models.File file = db.Files.Find(id);
                 db.Files.Remove(file);
                 string FileName = db.Files.Where(f => f.FileID == id).Select(f => f.FileName).FirstOrDefault();
-                string saveDir = "\\Uploads\\";
+                string saveDir = "Uploads\\";
                 string appPath = Request.PhysicalApplicationPath;
                 string DeleteFileName = appPath + saveDir + FileName;
                 System.IO.File.Delete(DeleteFileName);
@@ -193,37 +180,6 @@ namespace EIPBussinessSystem_MVC.Controllers
             }
         }
 
-
-        //// GET: Files/Delete/5
-        //public ActionResult Delete(long? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    BusinessSystemMVC_Admin_page_.Models.File file = db.Files.Find(id);
-        //    if (file == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(file);
-        //}
-
-        //// POST: Files/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(long id)
-        //{
-        //    BusinessSystemMVC_Admin_page_.Models.File file = db.Files.Find(id);
-        //    db.Files.Remove(file);
-        //    string FileName = db.Files.Where(f => f.FileID == id).Select(f => f.FileName).FirstOrDefault();
-        //    string saveDir = "\\Uploads\\";
-        //    string appPath = Request.PhysicalApplicationPath;
-        //    string DeleteFileName = appPath + saveDir + FileName;
-        //    System.IO.File.Delete(DeleteFileName);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
 
         protected override void Dispose(bool disposing)
         {

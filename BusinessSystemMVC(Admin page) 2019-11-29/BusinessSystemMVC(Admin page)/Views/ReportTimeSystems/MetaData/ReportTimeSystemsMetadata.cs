@@ -36,12 +36,14 @@ namespace BusinessSystemMVC_Admin_page_.Models
         [Display(Name = "EventID", ResourceType = typeof(Resource1))]
         public int EventID { get; set; }
 
+
         [Display(Name = "Note", ResourceType = typeof(Resource1))]
+        [StringLength(500, ErrorMessage = "{0}最多{1}個字")]
         public string Note { get; set; }
 
         [Required(ErrorMessage = "請輸入{0}")]
         [Display(Name = "ApplyDateTime", ResourceType = typeof(Resource1))]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd tt hh:mm}",ApplyFormatInEditMode =true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}",ApplyFormatInEditMode =true)]
         public System.DateTime ApplyDateTime { get; set; }
 
 

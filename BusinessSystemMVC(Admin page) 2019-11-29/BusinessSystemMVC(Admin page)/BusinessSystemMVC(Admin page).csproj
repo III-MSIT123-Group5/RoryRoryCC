@@ -1426,6 +1426,8 @@
     <Content Include="Views\EmployeeApprovalTemps\EditEmployeeIndex.cshtml" />
     <Content Include="Views\CompanyVehicles\AddOrEdit3.cshtml" />
     <Content Include="Views\EmployeeApprovalTemps\EditLoadDataDetail.cshtml" />
+    <Content Include="Views\Shared\_ReportTimeSystemPartial.cshtml" />
+    <Content Include="Views\ReportTimeSystems\TimeControl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

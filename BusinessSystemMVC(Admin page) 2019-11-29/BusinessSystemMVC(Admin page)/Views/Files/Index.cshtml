@@ -17,6 +17,9 @@
         font-family: '微軟正黑體';
         font-weight: 600;
     }
+    #form1 {
+        display: inline;
+    }
 </style>
 
 <br />
@@ -24,34 +27,36 @@
 <h2>檔案管理</h2>
 
 <br />
-@*@using (Html.BeginForm("", "Files", FormMethod.Post, new { enctype = "multipart/form-data", @name = "form1" }))
-{*@
+<div>
     <button class="btn btn-success" style="margin-bottom:10px" onclick="PopupForm('/Files/Upload')"><i class="fa fa-plus" aria-hidden="true"></i> 上傳</button>
     <button class="btn btn-success" style="margin-bottom:10px" onclick="location.href='@Url.Action("DownloadAll", "Files")'"><i class="fa fa-download" aria-hidden="true"></i> 全部下載</button>
-    @*<button class="btn btn-success" style="margin-bottom:10px" id="DownloadChoose"><i class="fa fa-plus" aria-hidden="true"></i> 下載</button>*@
+    @using (Html.BeginForm("", "Files", FormMethod.Post, new { enctype = "multipart/form-data", @name = "form1", @id = "form1" }))
+    {
+        <button class="btn btn-success" style="margin-bottom:10px" id="DownloadChoose"><i class="fa fa-check-square-o" ></i> 選取下載</button>
+    }
+</div>
+<br />
+<div style="width:97%">
+    <table id="Btable" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="CheakAll" /></th>
+                <th>檔名</th>
+                <th>檔案大小</th>
+                <th>檔案類型</th>
+                <th>上傳時間</th>
+                <th>上傳者</th>
+                <th>下載/刪除</th>
+            </tr>
+        </thead>
+    </table>
 
-    <br />
-    <div style="width:97%">
-        <table id="Btable" class="table table-striped table-bordered" style="width:100%">
-            <thead>
-                <tr>
-                    @*<th><input type="checkbox" id="CheakAll" /></th>*@
-                    <th>檔名</th>
-                    <th>檔案大小</th>
-                    <th>檔案類型</th>
-                    <th>上傳時間</th>
-                    <th>上傳者</th>
-                    <th>刪除</th>
-                </tr>
-            </thead>
-        </table>
 
 
+</div>
 
-    </div>
+<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-@*}*@
 
 @section scripts{
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
@@ -68,30 +73,24 @@
                     method: 'GET',
                     dataType: 'json'
                 },
-                //"order": [1, "asc"],
+                "order": [1, "asc"],
                 "columnDefs": [
-                    //{
-                    //    "targets": 0, "data": "FileID", "render": function (data) {
-                    //        return "<input type='checkbox' name='Cheak' id='Cheak' value=" + data + "  />"
-                    //    },
-                    //    "orderable": false,
-                    //    "searchable": false,
-                    //    "width": "10px"
-                    //},
                     {
-                        "targets": 0, "data": "FileName",
-                        //"render": function (data) {
-                        //    return "<a onclick=Download(" + data + ")></a>"
-                        //},
-                        "width": "300px"
+                        "targets": 0, "data": "FileID", "render": function (data) {
+                            return "<input type='checkbox' name='Cheak' id='Cheak' value=" + data + "  />"
+                        },
+                        "orderable": false,
+                        "searchable": false,
+                        "width": "10px"
                     },
-                    { "targets": 1, "data": "FileSize", "width": "60px" },
-                    { "targets": 2, "data": "Extension", "width": "60px" },
-                    { "targets": 3, "data": "UploadDate", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
-                    { "targets": 4, "data": "EmployeeName", "width": "60px" },
+                    { "targets": 1, "data": "FileName","width": "300px"},
+                    { "targets": 2, "data": "FileSize", "width": "60px" },
+                    { "targets": 3, "data": "Extension", "width": "60px" },
+                    { "targets": 4, "data": "UploadDate", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
+                    { "targets": 5, "data": "EmployeeName", "width": "60px" },
                     {
-                        "targets": 5, "data": "FileID", "render": function (data) {
-                            return "<a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
+                        "targets": 6, "data": "FileID", "render": function (data) {
+                            return "<a class='btn btn-warning btn-sm' style = 'margin-left:5px' onclick =location.href='@Url.Action("Download", "Files")/"+data+"'> <i class='fa fa-floppy-o'></i> 下載</a><a class='btn btn-danger btn-sm' style = 'margin-left:5px' onclick = Delete(" + data + ")> <i class='fa fa-trash'></i> 刪除</a>"
                         },
                         "orderable": false,
                         "searchable": false,
@@ -122,7 +121,7 @@
                         "sortDescending": ": 降冪排列"
                     }
                 }
-                
+
 
             });
 
@@ -171,6 +170,7 @@
             return false;
         }
 
+
         function Delete(id) {
             if (confirm('確定要刪除檔案嗎?')) {
                 $.ajax({
@@ -191,36 +191,31 @@
             }
         }
 
-        //$(document).ready(function () {
-        //    $("#CheakAll").click(function () {
-        //        if ($("#CheakAll").prop("checked")) {//如果全選按鈕有被選擇的話（被選擇是true）
-        //            $("#Btable > tbody >tr input[name='Cheak']").prop("checked", true);//把所有的核取方框的property都變成勾選
-        //        } else {
-        //            $("#Btable > tbody >tr input[name='Cheak']").prop("checked", false);//把所有的核取方框的property都取消勾選
-        //        }
-        //    });
-        //});
-        //$("#Btable > tbody >tr input[name='Cheak']").click(function () {
-        //    //全部都選到了,"全部"這個選項打勾,反之,則取消
-        //    if ($("#Btable > tbody >tr input[name='Cheak']").length == $("#Btable > tbody >tr input[name='Cheak']:checked").length) {
-        //        $("#CheakAll").prop("checked", true);
-        //    }
-        //    else {
-        //        $("#CheakAll").prop("checked", false);
-        //    }
-        //});
 
-        //$("#DownloadChoose").on("click", function () {
-        //    window.form1.action = 'DownloadChoose';
-        //    window.document.form1.submit();
-        //});
-        
+        $(document).ready(function () {
+            $("#CheakAll").click(function () {
+                if ($("#CheakAll").prop("checked")) {//如果全選按鈕有被選擇的話（被選擇是true）
+                    $("#Btable > tbody  input[name='Cheak']").prop("checked", true);//把所有的核取方框的property都變成勾選
+                } else {
+                    $("#Btable > tbody  input[name='Cheak']").prop("checked", false);//把所有的核取方框的property都取消勾選
+                }
+            });
+        });
+        $("#Btable > tbody >tr input[name='Cheak']").click(function () {
+            //全部都選到了,"全部"這個選項打勾,反之,則取消
+            if ($("#Btable > tbody >tr input[name='Cheak']").length == $("#Btable > tbody >tr input[name='Cheak']:checked").length) {
+                $("#CheakAll").prop("checked", true);
+            }
+            else {
+                $("#CheakAll").prop("checked", false);
+            }
+        });
+
+        $("#DownloadChoose").on("click", function () {
+            window.form1.action = 'DownloadChoose';
+            window.document.form1.submit();
+        });
+
     </script>
 
 }
-
-
-
-
-
-
