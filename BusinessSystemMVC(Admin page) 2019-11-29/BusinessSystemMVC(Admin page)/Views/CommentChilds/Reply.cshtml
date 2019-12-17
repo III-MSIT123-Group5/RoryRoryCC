@@ -1,9 +1,15 @@
-﻿@model BusinessSystemMVC_Admin_page_.Models.CommentChild
+﻿@model BusinessSystemMVC_Admin_page_.Models.CommentMain
 @*@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);*@
 @{
     /**/
 
     //Layout = null;
+}
+
+@section styles{
+
+
+
 }
 <html>
 <head>
@@ -26,6 +32,49 @@
             font-size: 1.5em;
             margin: 10px;
         }
+        /*//-------*/
+        /*.rating {
+            border: none;
+            float: left;
+        }
+
+            .rating > input {
+                display: none;
+            }
+
+            .rating > label:before {
+                margin: 5px;
+                font-size: 1.25em;
+                font-family: FontAwesome;
+                display: inline-block;
+                content: "\f005";
+            }
+
+            .rating > .half:before {
+                content: "\f089";
+                position: absolute;
+            }
+
+            .rating > label {
+                color: #ddd;
+                float: right;
+            }
+
+            /***** CSS Magic to Highlight Stars on Hover *****/
+
+            .rating > input:checked ~ label, /* show gold star when clicked */
+            .rating:not(:checked) > label:hover, /* hover current star */
+            .rating:not(:checked) > label:hover ~ label {
+                color: #FFD700;
+            }
+                /* hover previous stars in list */
+
+                .rating > input:checked + label:hover, /* hover current star when changing rating */
+                .rating > input:checked ~ label:hover,
+                .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+                .rating > input:checked ~ label:hover ~ label {
+                    color: #FFED85;
+                }*/
 
         /****** Style Star Rating Widget *****/
 
@@ -81,14 +130,16 @@
 
         <h2 id="topic"></h2>
 
-        <fieldset class="rating">
-            <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
-            <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
-            <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
-            <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
-            <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
+            <div id="StarArea">
+                @*<fieldset class="rating">*@
+                @*<input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
+                    <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                    <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
+                    <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                    <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>*@
 
-        </fieldset>
+                @*</fieldset>*@
+            </div>
 
 
 
@@ -124,16 +175,46 @@
     @section scripts{
 
         <script>
+            $("document").ready(function () {
 
-            $(document).ready(function () {
 
-                $.ajax({
-                    url: '@Url.Action("GetQuestion", "CommentChilds")',
+                  $.ajax({
+                    url: '@Url.Action("GetTopics", "CommentChilds")/'+@Model.CommentMainID,
                     method: 'GET',
                     dataType: 'json'
                 })
                  .done(function (data) {
 
+                     console.log(data)
+                     $('#StarArea').append(`<h2> ${data[0].CommentName} </h2><br/>`);
+
+                 })
+
+
+
+                $.ajax({
+                    url: '@Url.Action("GetQuestions", "CommentChilds")/'+@Model.CommentMainID,
+                    method: 'GET',
+                    dataType: 'json'
+                })
+                 .done(function (data) {
+
+                     //$('#StarArea').append(`<h2> ${data.CommentName} </h2><br/>`);
+
+                     for (var i = 0; i < data.length;i++) {
+                         $('#StarArea').append(`<h5> ${data[i].Question} </h5><br/>`);
+                         $('#StarArea').append(`
+                            
+                                 <fieldset class="rating" id="rate${i}">
+                                     <input type="radio" id="star5" name="rating${i}" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
+                                     <input type="radio" id="star4" name="rating${i}" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                                     <input type="radio" id="star3" name="rating${i}" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
+                                     <input type="radio" id="star2" name="rating${i}" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                                     <input type="radio" id="star1" name="rating${i}" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
+
+                                 </fieldset><br/><br/><br/>`);
+                         //}
+                     }
 
 
                  })
@@ -144,5 +225,5 @@
 
         </script>
     }
-    </body>
+</body>
 </html>
