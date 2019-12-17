@@ -126,8 +126,8 @@
                             <a href="@Url.Action("Display","CommentQuestions")" style="font-family:'NotoSansCJKtc-Bold'">編寫調查</a>
                         </li>
                         @*<li class="color hover">
-                            <a href="@Url.Action("Index","CommentQuestions")" style="font-family:'NotoSansCJKtc-Bold'">編寫調查</a>
-                        </li>*@
+                    <a href="@Url.Action("Index","CommentQuestions")" style="font-family:'NotoSansCJKtc-Bold'">編寫調查</a>
+                </li>*@
                         <li class="color hover">
                             <a href="@Url.Action("Index","CommentMains")" style="font-family:'NotoSansCJKtc-Bold'">發起調查</a>
                         </li>
@@ -153,10 +153,16 @@
                 </li>
                 @*請假系統*@
                 <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="請假系統">
-                    <a class="nav-link" href="@Url.Action("Index", "LeaveHistoryApprovalTemps")">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseLeave" data-parent="#exampleAccordion">
                         <i class="fa fa-fw fa-plane" aria-hidden="true" style="font-size: 1.6em; vertical-align: middle;"></i>
-                        <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'"> 請假系統</span>
+                        <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">請假系統</span>
                     </a>
+                    <ul class="sidenav-second-level collapse" id="collapseLeave">
+                        <li class="color hover">
+                            <a href="@Url.Action("Index", "LeaveHistoryApprovalTemps")" style="font-family:'NotoSansCJKtc-Bold'">請假申請</a>
+                        </li>
+                        @Html.Partial("_DepartmentLeaveHistoriesPartailView")   @*for部長*@                        
+                    </ul>
                 </li>
                 @*請購系統*@
                 @Html.Partial("_RequisitionSystemPartial")

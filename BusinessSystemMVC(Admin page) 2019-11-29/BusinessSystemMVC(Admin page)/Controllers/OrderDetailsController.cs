@@ -264,6 +264,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             Application application = new Application();
             Workbook workbook = application.Workbooks.Add(Missing.Value);
             Worksheet worksheet = workbook.ActiveSheet;
+
+            //標題--------------------------------
             worksheet.Cells[1, 1] = "請購單號：";
             worksheet.Cells[2, 1] = "請購人：";
             worksheet.Cells[1, 6] = "請購日期：";
@@ -278,9 +280,10 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             worksheet.Cells[7, 3] = "第二層簽核";
             worksheet.Cells[7, 5] = "第三層簽核";
             worksheet.Cells[7, 7] = "第四層簽核";
+            //--------------------------------------
 
             foreach (var e in report)
-            {
+            {   
                 worksheet.Cells[1, 2] = e.OrderID;
                 worksheet.Cells[2, 2] = e.EmployeeName;
                 worksheet.Cells[1, 7] = e.RequisitionDate;
@@ -295,6 +298,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 worksheet.Cells[8, 7] = e.FourthSignerName;
             }
 
+            //合併儲存格------------------------------------------
             worksheet.get_Range("G1", "H1").Merge();
             worksheet.get_Range("G2", "H2").Merge();
 
@@ -312,23 +316,36 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             worksheet.get_Range("C7", "D7").Merge();
             worksheet.get_Range("E7", "F7").Merge();
             worksheet.get_Range("G7", "H7").Merge();
+            //--------------------------------------------------
 
+            //字體------------------------------------------
             worksheet.get_Range("A1", "H8").Font.Name = "標楷體";
+            //--------------------------------------------------
 
+            //文字置中???------------------------------------------
             worksheet.get_Range("A1", "H2").Cells.HorizontalAlignment = XlHAlign.xlHAlignLeft;
             worksheet.get_Range("A4", "H8").Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            //--------------------------------------------------
 
+            //文大小------------------------------------------
             worksheet.get_Range("A1", "H8").Font.Size = 14;
+            //--------------------------------------------------
 
+            //欄寬------------------------------------------
             worksheet.get_Range("A1", "H8").EntireColumn.ColumnWidth = 15.8;
+            //--------------------------------------------------
 
+            //列高------------------------------------------
             worksheet.get_Range("A1", "H2").Columns.RowHeight = 20;
             worksheet.get_Range("A4", "H5").Columns.RowHeight = 25;
             worksheet.get_Range("A7", "H7").Columns.RowHeight = 25;
             worksheet.get_Range("A8", "H8").Columns.RowHeight = 70;
+            //------------------------------------------
 
+            //邊框------------------------------------------
             worksheet.get_Range("A4", "H5").Borders.LineStyle = XlLineStyle.xlContinuous;
             worksheet.get_Range("A7", "H8").Borders.LineStyle = XlLineStyle.xlContinuous;
+            //------------------------------------------
 
             workbook.SaveAs("D:\\ExportToExcel.xls");
             workbook.Close();

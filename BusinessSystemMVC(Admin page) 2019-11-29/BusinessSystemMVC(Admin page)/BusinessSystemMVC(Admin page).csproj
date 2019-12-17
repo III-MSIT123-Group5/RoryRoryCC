@@ -656,6 +656,7 @@
     <Compile Include="Controllers\EventCalendarsController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeaveHistoriesController.cs" />
     <Compile Include="Controllers\LeaveHistoryApprovalTempsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeetingRoomHistoriesController.cs" />
@@ -1426,6 +1427,8 @@
     <Content Include="Views\EmployeeApprovalTemps\EditEmployeeIndex.cshtml" />
     <Content Include="Views\CompanyVehicles\AddOrEdit3.cshtml" />
     <Content Include="Views\EmployeeApprovalTemps\EditLoadDataDetail.cshtml" />
+    <Content Include="Views\LeaveHistories\Index.cshtml" />
+    <Content Include="Views\Shared\_DepartmentLeaveHistoriesPartailView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

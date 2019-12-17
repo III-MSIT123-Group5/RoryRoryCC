@@ -1,0 +1,7 @@
+﻿@if (User.IsInRole("DepartmentLeader"))
+{
+    <li class="color hover">
+        <a href="@Url.Action("Index", "LeaveHistories")" style="font-family:'NotoSansCJKtc-Bold'">部門請假記錄</a>
+    </li>
+}
+
