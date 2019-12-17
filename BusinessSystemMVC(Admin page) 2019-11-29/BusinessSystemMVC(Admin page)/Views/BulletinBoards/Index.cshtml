@@ -70,8 +70,8 @@
 
                     {
                         "targets": 0, "data": "Photo", "render": function (url, type, full) {
-                            return '<img height="60px" src="' + url + '"/>';
-                        },
+                            return '<img height="60px" src="' + `@Url.Content("~/imgProfiles/${url}")` + '"/>';
+},
                         "orderable": false,
                         "searchable": false,
                         "width": "65px"
@@ -82,7 +82,7 @@
                     { "targets": 4, "data": "PostTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
                     {
                         "targets": 5, "data": "Num", "render": function (data) {
-                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/BulletinBoards/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
+                                    return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/BulletinBoards/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
                         },
                         "orderable": false,
                         "searchable": false,

@@ -43,14 +43,13 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                        on b.DepartmentID equals d.departmentID
                        select new
                        {
-                          b.Content,
-                          b.PostTime,
-                          d.name,
-                          emp.EmployeeName,
-                          b.Num,
+                            b.Content,
+                             b.PostTime,
+                            d.name,
+                           emp.EmployeeName,
+                         b.Num,
                           emp.Photo
                        };
-
             var datas = data.ToList();
 
             return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
