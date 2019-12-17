@@ -82,6 +82,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
         // GET: CommentMains/Create
+        [HttpGet]
         public ActionResult Create(int id = 0)
         {
             int EmpID = EmployeeDetail.EmployeeID;
@@ -192,12 +193,18 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 return Json(q100, JsonRequestBehavior.AllowGet);
             
         }
+        //string[] array;
+        //int count = 0 ;
+        //public void test(string a )
+        //{
+        //    array[count] = a;
+        //    count++;
+        //}
 
-
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(/*CommentMain c,*/int cid,string cname, string [] array)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Create(CommentMain c, int cid,string cname, string [] array )
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
@@ -208,20 +215,13 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
                 ArrayList question = new ArrayList();
 
-                var dup = db.CommentQuestions.GroupBy(x => new { x.CommentContentID })
-                .Select(group => new { ContentID = group.Key, Count = group.Count() })
-                .OrderByDescending(x => x.Count);
-
+                var dup = db.CommentQuestions.Where(x => x.CommentContentID == ccID)/*.GroupBy(x => new { x.CommentContentID })*/
+                .Select(p => p);
                 int countQ = 0;
-
-                foreach (var x in dup)
-                {
-                    if (x.ContentID.ToString() == ccID.ToString())
-                    {
-                        countQ = x.Count;
-
-                    }
-                }
+                countQ = dup.Count();
+                //foreach (var x in dup)
+                //{
+                //}
 
 
                 var q2 = from cq in db.CommentQuestions
@@ -229,12 +229,12 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                          select new { cq.CommentQuestionID };
 
                 var q3 = q2.ToList();
-            
 
 
 
-                //if (c.CommentMainID == 0)
-                //{
+
+                if (c.CommentMainID == 0)
+                {
 
                     int EmpID = EmployeeDetail.EmployeeID;
 
@@ -248,40 +248,52 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                         CommentContentID = ccID,
                         //CommentMainID = c.CommentMainID,
                     });
+                    db.SaveChanges();
 
-                    //for (int j = 0; j < array.Count();j++)
+                    var getid = (from cc in db.CommentMains
+                                 select cc.CommentMainID).Max();
+
+                    for (int j = 0; j < array.Count(); j++)
+                    {
+                        for (int i = 0; i < countQ; i++)
+                        {
+                    //for (int j = 0; j < array.Count(); j++)
                     //{
-                    //    for (int i = 1; i <= q3.Count; i++)
+                    //    for (int i = 0; i < q3.Count; i++)
                     //    {
 
                     //        db.CommentChilds.Add(new CommentChild()
                     //        {
-                    //            //CommentMainID = c.CommentMainID,
+                    //            CommentMainID = c.CommentMainID,
                     //            EmployeeID = int.Parse(array[j]), //接收者
                     //            CommentQuestionID = q3[i].CommentQuestionID,
 
                     //        });
 
-                    //    }
+                            db.CommentChilds.Add(new CommentChild()
+                            {
+                                CommentMainID = getid,
+                                EmployeeID = int.Parse(array[j]), //接收者
+                                CommentQuestionID = q3[i].CommentQuestionID,
 
-
-                    //}
-
-
-                    db.SaveChanges();
+                            });
+                            db.SaveChanges();
+                        }
+                    }
 
                     return Json(new { success = true, message = "調查發布成功" }, JsonRequestBehavior.AllowGet);
-                //}
-                //else
-                //{
-                //    db.Entry(c).State = EntityState.Modified;
-                //    db.SaveChanges();
+                }
+                else
+                {
+                    db.Entry(c).State = EntityState.Modified;
+                    db.SaveChanges();
 
-                //    return Json(new { success = true, message = "調查修改成功" }, JsonRequestBehavior.AllowGet);
-                //}
+                    return Json(new { success = true, message = "調查修改成功" }, JsonRequestBehavior.AllowGet);
+                }
 
             }
         }
+        
 
         public ActionResult LoadData()
         {

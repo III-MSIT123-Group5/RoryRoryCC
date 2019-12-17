@@ -43,6 +43,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual DbSet<CommentMain> CommentMains { get; set; }
         public virtual DbSet<CommentOption> CommentOptions { get; set; }
         public virtual DbSet<CommentQuestion> CommentQuestions { get; set; }
+        public virtual DbSet<CommentReply> CommentReplies { get; set; }
         public virtual DbSet<CompanyVehicle> CompanyVehicles { get; set; }
         public virtual DbSet<CompanyVehicleHistory> CompanyVehicleHistories { get; set; }
         public virtual DbSet<Department> Departments { get; set; }

@@ -735,6 +735,9 @@
     <Compile Include="Models\CommentQuestion.cs">
       <DependentUpon>BusinessSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CommentReply.cs">
+      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CompanyVehicle.cs">
       <DependentUpon>BusinessSystemModel.tt</DependentUpon>
     </Compile>

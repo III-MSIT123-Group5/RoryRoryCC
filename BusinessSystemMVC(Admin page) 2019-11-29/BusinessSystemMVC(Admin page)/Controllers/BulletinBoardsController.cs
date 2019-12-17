@@ -43,14 +43,13 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                        on b.DepartmentID equals d.departmentID
                        select new
                        {
-                          b.Content,
-                          b.PostTime,
-                          d.name,
-                          emp.EmployeeName,
-                          b.Num,
+                            b.Content,
+                             b.PostTime,
+                            d.name,
+                           emp.EmployeeName,
+                         b.Num,
                           emp.Photo
                        };
-
             var datas = data.ToList();
 
             return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
@@ -98,7 +97,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             {
                 if (b.Num == 0)
                 {
-                    //db.BulletinBoards.Add(b);
 
                     var userid = User.Identity.GetUserId();
                     var account = db.AspNetUsers.Find(userid);

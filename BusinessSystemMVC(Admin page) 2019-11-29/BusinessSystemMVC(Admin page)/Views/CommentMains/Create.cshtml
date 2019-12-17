@@ -20,10 +20,11 @@
         th {
             background-color: #77C9D4;
             color: white;
+            /*font-family: '微軟正黑體';*/
         }
 
-        td {
-            font-family: 'NotoSansCJKtc-Light';
+        td,input {
+            font-family: '微軟正黑體';
         }
 
         .multiselect-selected-text {
@@ -103,7 +104,7 @@
                         <div @*class="col-md-offset-2 col-md-10"*@>
                             <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
                             @*<input type="submit" value="送出貼文" class="btn btn-success" style="margin-right:10px" />*@
-                            <input type="button" id="test" value="test" class="btn btn-success" style="margin-right:10px" />
+                            <input type="button" id="test" value="送出" class="btn btn-success" style="margin-right:10px" />
                         </div>
                     </div>
 
@@ -193,9 +194,6 @@
             });
 
                 function ChangeTable() {
-
-
-
                     $('#tableQ').empty();
 
                     //存下拉式選單選到的值
@@ -232,77 +230,95 @@
 
                 }
 
-
-
-
             $('#HeaderCheckbox').click(function () {
                 $('input[name="checkbox"]').prop('checked', this.checked) });
 
 
+
+                $('#test').click(function () {
+                    test();
                     
+                });
 
-                    $('#test').click(function () {
+                function test() {
+                    var DropccID = $('#CommentContent').val();
+                    var oldselected = [];
+                    var arr = [];
+                    var count = 0;
+                    var commentname = $('#CommentName').val();
 
-                        var DropccID = $('#CommentContent').val();
-
-
-                        var oldselected = [];
-                      
-                        var arr = [];
-                        var count = 0;
-
-                        var commentname = $('#CommentName').text();
-
-                        $('#mul :selected').each(function () {
-                            oldselected[$(this).val()] = $(this).val();
-                        });
-
-                        var selected = oldselected.filter(function (v) { return v !== '' });
-
-                        console.log(DropccID);
-                        console.log(oldselected);
-                        console.log(selected);
-
-                        $.ajax({
-                            url: '@Url.Action("GetDepartmentID", "CommentMains")',
-                            method: 'GET',
-                            dataType: 'json'
-
-                        }).done(function (datas) {
-                            console.log(datas);
-                            for (var i = 0; i < datas.length;i++) {
-                                if ($.inArray(String(datas[i].DepartmentID), selected) >=0) {
-                                    arr[count] = datas[i].employeeID;
-                                    count++;
-                                }
-                            }
-                            console.log(arr);
-                            console.log(count);
-                        });
-
-                        $.ajax({
-                            url: '@Url.Action("Create", "CommentMains")',
-                            method: "POST",
-                            dataType: 'json',
-                            data: {
-                                array: arr,
-                                cid: DropccID,
-                                cname:commentname
-                            }
-                        }).done(function () {
-                            alert("OK")
-                        })
-
+                    $('#mul :selected').each(function () {
+                        oldselected[$(this).val()] = $(this).val();
                     });
 
+                    var selected = oldselected.filter(function (v) { return v !== '' });
+
+                    console.log(DropccID);
+                    console.log(oldselected);
+                    console.log(selected);
+                     $.ajax({
+                        url: '@Url.Action("GetDepartmentID", "CommentMains")',
+                        method: 'GET',
+                        dataType: 'json'
+                    }).done(function (datas) {
+                        console.log(datas);
+                        for (var i = 0; i < datas.length; i++) {
+                            if ($.inArray(String(datas[i].DepartmentID), selected) >= 0) {
+                                arr[count] = datas[i].employeeID;
+                                console.log(arr[count])
+                                count++;
+                            }
+                           
+                        }
+                        console.log(arr);
+                        console.log(count);
+                        console.log(commentname);
+                        test1(arr, DropccID, commentname)
+                    });
+                    
+
+                    @*$.ajax({
+                        url: '@Url.Action("Create", "CommentMains")',
+                        type: "POST",
+                        traditional: true,
+                        cache: false,
+                        data: {
+                            cid: DropccID,
+                            cname: commentname
+                        },
+                        dataType: 'json',
+                    }).done(function (data) {
+                        alert("OK")
+                        if (data.success) {
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            })
+                        }
+                    })*@
 
 
-
-
-
-
-
-
+                }
+                function test1(array, DropccID, commentname) {
+                    $.ajax({
+                        url: '@Url.Action("Create", "CommentMains")',
+                        type: "POST",
+                        data: {
+                            array: array,
+                            cid: DropccID,
+                            cname: commentname
+                        },
+                        dataType: "json"
+                    }).done(function (data) {
+                        if (data.success) {
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            })
+                        }
+                    })
+                }
+                
 
             //$('#HeaderCheckbox').click(function (event) {
             //    if (this.checked) {

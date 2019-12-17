@@ -1,17 +1,148 @@
-﻿
+﻿@model BusinessSystemMVC_Admin_page_.Models.CommentChild
+@*@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);*@
 @{
-    Layout = null;
+    /**/
+
+    //Layout = null;
 }
-
-<!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Reply</title>
+    <link href="@Url.Content("//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css")" rel="stylesheet" type="text/css" />
+
+    <style>
+
+
+
+        fieldset, label {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            margin: 10px;
+        }
+
+        /****** Style Star Rating Widget *****/
+
+        .rating {
+            border: none;
+            float: left;
+        }
+
+            .rating > input {
+                display: none;
+            }
+
+            .rating > label:before {
+                margin: 5px;
+                font-size: 1.25em;
+                font-family: FontAwesome;
+                display: inline-block;
+                content: "\f005";
+            }
+
+            .rating > .half:before {
+                content: "\f089";
+                position: absolute;
+            }
+
+            .rating > label {
+                color: #ddd;
+                float: right;
+            }
+
+            /***** CSS Magic to Highlight Stars on Hover *****/
+
+            .rating > input:checked ~ label, /* show gold star when clicked */
+            .rating:not(:checked) > label:hover, /* hover current star */
+            .rating:not(:checked) > label:hover ~ label {
+                color: #FFD700;
+            }
+                /* hover previous stars in list */
+
+                .rating > input:checked + label:hover, /* hover current star when changing rating */
+                .rating > input:checked ~ label:hover,
+                .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+                .rating > input:checked ~ label:hover ~ label {
+                    color: #FFED85;
+                }
+    </style>
 </head>
 <body>
-    <div> 
-    </div>
-</body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+        <h2 id="topic"></h2>
+
+        <fieldset class="rating">
+            <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
+            <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
+            <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
+            <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+            <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
+
+        </fieldset>
+
+
+
+        @*@Html.HiddenFor(model => model.PostTime)
+            @Html.HiddenFor(model => model.Num)*@
+
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.EmployeesCollection.EmployeeName, new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.EmployeesCollection.EmployeeName, new { @disabled = "disabled" })
+
+            </div>*@
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.Content, "貼文內容", new { @class = "control-label" })
+
+                @Html.TextAreaFor(model => model.Content, new { rows = "8", cols = "150", @class = "form-control", @MaxLength = "1000" })
+                @Html.ValidationMessageFor(model => model.Content)*@
+
+        </div>
+
+
+        <div class="form-group" style="float:right">
+            @*<button type="submit" class="btn btn-success">送出貼文</button>
+                <button type="reset" class="btn btn-warning">清除</button>*@
+            <div>
+                <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
+                <input type="submit" value="送出貼文" class="btn btn-success" style="margin-right:10px" />
+            </div>
+        </div>
+
+    }
+
+    @section scripts{
+
+        <script>
+
+            $(document).ready(function () {
+
+                $.ajax({
+                    url: '@Url.Action("GetQuestion", "CommentChilds")',
+                    method: 'GET',
+                    dataType: 'json'
+                })
+                 .done(function (data) {
+
+
+
+                 })
+
+
+            });
+
+
+        </script>
+    }
+    </body>
 </html>
