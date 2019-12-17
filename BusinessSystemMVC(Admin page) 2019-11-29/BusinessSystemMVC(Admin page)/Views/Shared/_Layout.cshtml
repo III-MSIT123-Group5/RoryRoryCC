@@ -88,9 +88,7 @@
                         <li class="color hover">
                             <a href="@Url.Action("Index", "ReportTimeSystems")" style="font-family:'NotoSansCJKtc-Bold'">工時回報</a>
                         </li>
-                        <li class="color hover">
-                            <a href="calendar.html" style="font-family:'NotoSansCJKtc-Bold'">統計分析</a>
-                        </li>
+                        @Html.Partial("_ReportTimeSystempartial")
                     </ul>
                 </li>
                 @*行事曆*@

@@ -67,7 +67,7 @@
         </thead>
     </table>
 </div>
-<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
 
@@ -94,12 +94,12 @@
                 },
                 "columnDefs": [
                     { "targets": 0, "data": "ReportName", "width": "75px" },
-                    { "targets": 1, "data": "StartTime", "width": "75px", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD") }, "width": "135px" },
-                    { "targets": 2, "data": "EndTime", "width": "75px", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD") }, "width": "135px" },
+                    { "targets": 1, "data": "StartTime", "width": "75px", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD hh:ss") }, "width": "135px" },
+                    { "targets": 2, "data": "EndTime", "width": "75px", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD hh:ss") }, "width": "135px" },
                     { "targets": 3, "data": "EventHours", "width": "100px"},
                     { "targets": 4, "data": "Note" },
                     { "targets": 5, "data": "EventID" },
-                    { "targets": 6, "data": "ApplyDateTime", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD") }, "width": "135px" },
+                    { "targets": 6, "data": "ApplyDateTime", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD hh:ss") }, "width": "135px" },
 
                     {
                         "targets": 7, "data": "ReportID", "render": function (data) {
@@ -125,7 +125,7 @@
                     "infoFiltered": "(從 _MAX_ 項結果中過濾)",
                     "infoPostFix": "",
                     "search": "搜尋:",
-                    "Edit / Delete":"編輯/刪除",
+                    "Edit/Delete":"編輯/刪除",
                     "paginate": {
                         "first": "第一頁",
                         "previous": "上一頁",
@@ -143,10 +143,11 @@
         });
 
         function PopupForm(url) {
-            console.log(this.url)
+            
             var formDiv = $('<div/>');
             $.get(url)
                 .done(function (response) {
+
                     formDiv.html(response);
                     Popup = formDiv.dialog({
                         autoOpen: true,

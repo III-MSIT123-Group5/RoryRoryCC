@@ -38,17 +38,37 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         public ActionResult LoadData()
         {
-            var data = from cm in db.CommentMains
-                       join cc in db.CommentChilds
-                       on cm.CommentMainID equals cc.CommentMainID
-                       select new
-                       {
-                           cc.ChildNum,
-                           cm.CommentMainID,
-                           postperson = cm.EmployeeID,
-                           cm.CommentName,
-                           replyperson = cc.EmployeeID,
-                       };
+            //var data = (from cm in db.CommentMains
+            //           join cc in db.CommentChilds
+            //           on cm.CommentMainID equals cc.CommentMainID
+            //           join emp in db.Employees
+            //           on cm.EmployeeID equals emp.employeeID
+            //           select new
+            //           {
+            //               cc.ChildNum,
+            //               cm.SendTime,
+            //               cm.CommentMainID,
+            //               postperson = emp.EmployeeName,
+            //               cm.CommentName,
+            //               replyperson = cc.EmployeeID,
+            //           }).Distinct();
+
+            var data = (from cm in db.CommentMains
+                        join cc in db.CommentChilds
+                        on cm.CommentMainID equals cc.CommentMainID
+                        join emp in db.Employees
+                        on cm.EmployeeID equals emp.employeeID
+                        select new
+                        {
+                            //cc.ChildNum,
+                            cm.CommentContentID,
+                            cm.SendTime,
+                            cm.CommentMainID,
+                            postperson = emp.EmployeeName,
+                            cm.CommentName,
+                            replyperson = cc.EmployeeID,
+
+                        }).Distinct();
 
             var datas = data.ToList();
 
@@ -57,22 +77,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         //id=0
         [HttpGet]
-        public ActionResult Reply(int id = 0)
+        public ActionResult Reply(int id)
         {
-
-
-            //var data = from cc in db.CommentChilds
-            //           join cm in db.CommentMains
-            //           on cc.CommentMainID equals cm.CommentMainID
-            //           select new
-            //           {
-            //               cm.CommentMainID,
-            //               postperson = cm.EmployeeID,
-            //               cm.CommentName,
-            //               replyperson = cc.EmployeeID,
-            //           };
-
-
 
             if (id == 0)
             {
@@ -83,7 +89,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
                 {
 
-                    return View(db.CommentChilds.Where(x => x.ChildNum == id).FirstOrDefault<CommentChild>());
+                    return View(db.CommentMains.Where(x => x.CommentMainID == id).FirstOrDefault());
                 }
             }
         }
@@ -117,6 +123,55 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 
 
             }
+        }
+
+
+        [HttpGet]
+        public ActionResult GetQuestions(int id)
+        {
+
+            var data = (from cq in db.CommentQuestions
+                       join cm in db.CommentMains
+                       on cq.CommentContentID equals cm.CommentContentID
+                       where cm.CommentMainID == id
+                       select new
+                       {
+                           //cm.CommentMainID,
+                           //cm.CommentName,
+                           //cq.CommentQuestionID,
+                           cq.Question
+                       }).Distinct();
+        
+
+
+            //var datas = data.ToList();
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+
+        }
+
+
+
+        [HttpGet]
+        public ActionResult GetTopics(int id)
+        {
+
+            var data = (from cq in db.CommentQuestions
+                        join cm in db.CommentMains
+                        on cq.CommentContentID equals cm.CommentContentID
+                        where cm.CommentMainID == id
+                        select new
+                        {
+                            cm.CommentName,
+
+                        }).Distinct();
+
+
+
+            //var datas = data.ToList();
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+
         }
 
 
