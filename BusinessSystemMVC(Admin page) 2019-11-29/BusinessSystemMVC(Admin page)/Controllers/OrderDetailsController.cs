@@ -144,7 +144,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                         ProductName = orderDetail.ProductName,
                         UnitPrice = orderDetail.UnitPrice,
                         Quantity = orderDetail.Quantity,
-                        Note = orderDetail.Note,
+                        Note = orderDetail.Note,                        
                         RequisitionMain = (new Models.RequisitionMain
                         {
                             ReportID = 2,
@@ -616,6 +616,30 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        //圖表-----------------------------------------------------------------------------------------------------------------------------
+        public ActionResult IndexChartData()
+        {
+            return View();
+        }
+
+        public ActionResult ChartData()
+        {
+            var report = from OD in db.OrderDetails
+                         join RM in db.RequisitionMains on OD.OrderID equals RM.OrderID
+                         where RM.EmployeeID == EmployeeDetail.EmployeeID
+                         group new {OD, RM} by OD into g 
+                         select new
+                         {
+                             RequisitionDate=g.Key.RequisitionMain,
+                             ProductName=g.Key.ProductName,
+                             Price=g.Key.TotalPrice,
+                             MonthPrice=g.Sum(x=>x.OD.TotalPrice),
+                         };
+
+            var data = report.ToList();
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }    
 
         //通知-----------------------------------------------------------------------------------------------------------------------------
         [HttpGet]

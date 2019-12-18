@@ -42,6 +42,8 @@ namespace BusinessSystemMVC_Admin_page_
                       "~/Content/site.css",
                       "~/Content/bootstrap - datetimepicker.css"));
 
+            bundles.Add(new StyleBundle("~/bundles/HighCharts").Include(
+                "~/Scripts/highcharts/7.1.2/highcharts.js"));
         }
     }
 }

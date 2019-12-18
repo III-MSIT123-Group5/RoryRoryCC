@@ -1,0 +1,60 @@
+﻿
+<h2>xxxx</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card" id="ColumnsChart"></div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="~/Scripts/highcharts/7.1.2/themes/dark-blue.js"></script>
+    <script>
+        $(document).ready(function () {
+            OrderdetailColumnsChart();
+        });
+
+        //公用格式
+        HighCharts.setOptions({
+
+        });
+
+        function OrderdetailColumnsChart() {
+            $getJSON(`@Url.Action("ChartData", "OrderDetails")`,
+                function (datas) {
+                    let productName = [];
+                    let totalPrice = [];
+                    let requisitionDate = [];
+                    for (let i = 0; i < datas.length; i++) {
+                        productName.push(datas[i].ProductName);
+                        totalPrice.push(datas[i].TotalPrice);
+                        requisitionDate.push(datas[i].RequisitionDate);
+                    }
+                    var columnchart = new HighCharts.chart({
+                        chart: {
+                            renderTo: 'ColumnsChart',
+                            type: 'column',
+                            height: 500,
+                        },
+                        xAxis: {
+                            categories: productName
+                        },
+                        yAxis: [
+                            {
+                                min: 0,
+                            },
+                            {
+                                title: 'totalPrice'
+                            }
+                        ],
+                        series: [
+                            {
+                                name: '價錢',
+                                data: totalPrice
+                            }
+                        ]
+                    })
+                })
+        }
+    </script>
+}

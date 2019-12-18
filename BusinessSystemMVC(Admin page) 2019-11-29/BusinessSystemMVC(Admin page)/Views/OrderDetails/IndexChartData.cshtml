@@ -1,0 +1,106 @@
+﻿<style>
+    button, h2 {
+        font-family: 'NotoSansCJKtc-Bold';
+    }
+
+    th {
+        font-family: 'NotoSansCJKtc-Bold';
+    }
+
+    td {
+        font-family: '微軟正黑體';
+        font-weight: 600;
+    }
+</style>
+
+<br />
+
+<h2>統計分析</h2>
+
+<br />
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card" id="ColumnsChart"></div>
+    </div>
+</div>
+
+@section scripts{
+    @*<script src="~/Scripts/highcharts/7.1.2/themes/avocado.js"></script>*@
+    <script src="~/Scripts/highcharts/7.1.2/themes/sand-signika.js"></script>
+    @*<script src="~/Scripts/highcharts/7.1.2/themes/sunset.js"></script>*@
+
+
+    <script>
+        $(document).ready(function () {
+            OrderdetailColumnsChart();
+        });
+
+        //公用格式
+        //HighCharts.setOptions({
+
+        //});
+
+        function OrderdetailColumnsChart() {
+            $.getJSON(`@Url.Action("ChartData", "OrderDetails")`,
+                function (datas) {
+                    let productName = [];
+                    let totalPrice = [];
+                    let requisitionDate = [];
+                    for (let i = 0; i < datas.length; i++) {
+                        productName.push(datas[i].ProductName);
+                        totalPrice.push(datas[i].TotalPrice);
+                        requisitionDate.push(datas[i].RequisitionDate);
+                    }
+                    console.log(totalPrice);
+
+                    Highcharts.chart({
+                        chart: {
+                            type: 'column',
+                            renderTo: 'ColumnsChart',
+                        },
+                        title: {
+                            text: 'Monthly Average Rainfall'
+                        },
+                        subtitle: {
+                            text: 'Source: WorldClimate.com'
+                        },
+                        xAxis: {
+                            type:'datetime',
+                            categories: requisitionDate,
+                            crosshair: true,
+                            dateTimeLabelFormats: {
+                                month:'%m'
+                            }
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: 'Rainfall (mm)'
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                            footerFormat: '</table>',
+                            shared: true,
+                            useHTML: true
+                        },
+                        plotOptions: {
+                            column: {
+                                pointPadding: 0.2,
+                                borderWidth: 0
+                            }
+                        },
+                        series: [
+                            {
+                                name: '價錢',
+                                data: totalPrice
+                            },                            
+                        ]
+                    });
+                })
+        }
+    </script>
+}
