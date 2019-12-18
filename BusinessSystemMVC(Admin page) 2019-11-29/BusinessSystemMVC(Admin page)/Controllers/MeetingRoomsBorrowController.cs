@@ -21,9 +21,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return View(meetingRooms.ToList());
         }
 
-
-        [AllowAnonymous]
-        public void Post1(DateTime dtS, DateTime dtE, string LNid)
+        [HttpPost]
+        //[AllowAnonymous]
+        public ActionResult Post1(DateTime dtS, DateTime dtE, string LNid)
         {
             var saveMeetingRoom = new BusinessSystemMVC_Admin_page_.Models.MeetingRoomHistory
             {
@@ -45,12 +45,13 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 StartTime = dtS,
                 EndTime = dtE,
                 Location = pp.meetingName,
-                Description =null,
+                Description =LNid,
                 IsImportant = false,
                 ThemeColor = "#FFEE99"
             };
             db.EventCalendars.Add(saveCalendar);
             db.SaveChanges();
+            return Json(new { success = true, message = "會議室預約成功" }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Finded1()

@@ -23,9 +23,9 @@ namespace EIPBussinessSystem_MVC.Controllers
             return View();
         }
        
-
-        [AllowAnonymous]
-        public void Post1(DateTime dtS,DateTime dtE,string LNid,string purpose)
+        [HttpPost]
+        //[AllowAnonymous]
+        public ActionResult Post1(DateTime dtS,DateTime dtE,string LNid,string purpose)
         {
             var saveCars = new BusinessSystemMVC_Admin_page_.Models.CompanyVehicleHistory
             {
@@ -36,7 +36,6 @@ namespace EIPBussinessSystem_MVC.Controllers
                 purpose = purpose
             };
             db.CompanyVehicleHistories.Add(saveCars);
-            db.SaveChanges();
             var saveCalendar = new BusinessSystemMVC_Admin_page_.Models.EventCalendar
             {
                 employeeID = EmployeeDetail.EmployeeID,
@@ -44,13 +43,14 @@ namespace EIPBussinessSystem_MVC.Controllers
                 DepartmentID = EmployeeDetail.DepartmentID,
                 StartTime = dtS,
                 EndTime = dtE,
-                //Location = ecal.Location,
+                Location = LNid,
                 Description = purpose,
                 IsImportant = false,
                 ThemeColor = "#BBFF66"
             };
             db.EventCalendars.Add(saveCalendar);
             db.SaveChanges();
+            return Json(new { success = true, message = "公務車預約成功" }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Finded1()

@@ -5,7 +5,7 @@
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 }
 @{
-    ViewBag.Title = "公務車租借";
+    ViewBag.Title = "公務車預約";
 }
 
 <style>
@@ -25,7 +25,7 @@
 
 <br />
 
-<h2>公務車租借紀錄</h2>
+<h2>公務車預約系統</h2>
 <br />
 
 <div id="addForm" action="Useradd.action" typeof="post" style="width:1000px;float:left">
@@ -258,21 +258,28 @@
             //找到需要的資料
             //
         function getLNfunc(id, dts, dte, purpose) {
-            console.log(dts,dte,purpose,id)
+            console.log(dts, dte, purpose, id)
             //var jsonData = JSON.stringify({ dtS: dts, dtE: dte,LNid:id, purpose:purpose});
             $.ajax({
                 url: '@Url.Action("Post1", "CompanyVehicleBorrow")',
-                type: "get",
+                type: "POST",
                 //contentType: "application/json; chartset-utf-8",
                 data: {
                     dtS: dts,
                     dtE: dte,
                     LNid: id,
-                    purpose:purpose
-                }
-            }).done(function () {
-                alert("save");
-            })
+                    purpose: purpose
+                },
+                dataType:"json"
+            }).done(function (data) {
+                if (data.success) {
+                    $.notify(data.message, {
+                        globalPosition: "top center",
+                        className: "success"
+                    })
+                    }
+                })
+        
         }
 
 

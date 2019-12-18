@@ -118,6 +118,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             {
                 CompanyVehicleHistory b = db.CompanyVehicleHistories.Where(x => x.VehicleHistoryID == id).FirstOrDefault<CompanyVehicleHistory>();
                 db.CompanyVehicleHistories.Remove(b);
+                //var q = db.CompanyVehicleHistories.Find(id);
+                //EventCalendar e = db.EventCalendars.Where(x => x.StartTime == q.StartDateTime && x.EndTime == q.EndDateTime && x.Location == q.LicenseNumber).FirstOrDefault<EventCalendar>();
+                //db.EventCalendars.Remove(e);
                 db.SaveChanges();
 
                 return Json(new { success = true, message = "刪除成功" }, JsonRequestBehavior.AllowGet);
