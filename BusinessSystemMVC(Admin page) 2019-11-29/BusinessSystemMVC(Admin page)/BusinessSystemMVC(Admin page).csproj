@@ -1974,7 +1974,8 @@
     <Content Include="Views\LeaveHistories\Index.cshtml" />
     <Content Include="Views\Shared\_DepartmentLeaveHistoriesPartailView.cshtml" />
     <Content Include="Views\Shared\_ReportTimeSystemPartial.cshtml" />
-    <Content Include="Views\ReportTimeSystems\TimeControl.cshtml" />
+    <Content Include="Views\ReportTimeSystems\IndexManage.cshtml" />
+    <Content Include="Views\ReportTimeSystems\IndexChart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

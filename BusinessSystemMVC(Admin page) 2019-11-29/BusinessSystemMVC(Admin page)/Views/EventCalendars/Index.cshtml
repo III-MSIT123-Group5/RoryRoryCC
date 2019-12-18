@@ -120,11 +120,12 @@
                             color: v.ThemeColor,
                             Location: v.Location,
                             IsImportant: v.IsImportant,
-                            Description: v.Description
+                            Description: v.Description,
+                            
                             })
 
                     })
-                    
+                    console.log(events);
                     GenerateCalender(events);
                     
                 },
@@ -167,7 +168,18 @@
                         var calID = calEvent.event.id;
                         PopupEditForm('@Url.Action("AddOrEdit","EventCalendars")/' + calID);
                         
-                    }
+                    },
+                    
+                    eventTimeFormat: {
+                        hour: 'numeric',
+                        //hour: '2-digit',
+                        minute: 'numeric',
+                        //minute: '2-digit',
+                        meridiem:false,
+                        //meridiem: 'short',
+                        hour12: false
+                    },
+                    displayEventEnd: true
                     //eventDragStop: function (calEvent, jsEvent, view) {
                     //    if
                     //}

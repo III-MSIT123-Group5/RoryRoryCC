@@ -81,8 +81,7 @@
     <script>
 
 
-        var Popup, dataTable; //height="75%" width="75%" src=\"'height="75%"
-
+        
         $(document).ready(function () {
 
             dataTable = $('#Rtable').DataTable({
@@ -94,16 +93,16 @@
                 },
                 "columnDefs": [
                     { "targets": 0, "data": "ReportName", "width": "75px" },
-                    { "targets": 1, "data": "StartTime", "width": "75px", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD hh:ss") }, "width": "135px" },
-                    { "targets": 2, "data": "EndTime", "width": "75px", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD hh:ss") }, "width": "135px" },
+                    { "targets": 1, "data": "StartTime", "width": "75px", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:ss") }, "width": "135px" },
+                    { "targets": 2, "data": "EndTime", "width": "75px", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:ss") }, "width": "135px" },
                     { "targets": 3, "data": "EventHours", "width": "100px"},
                     { "targets": 4, "data": "Note" },
-                    { "targets": 5, "data": "EventID" },
-                    { "targets": 6, "data": "ApplyDateTime", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD hh:ss") }, "width": "135px" },
+                    { "targets": 5, "data": "EventName" },
+                    { "targets": 6, "data": "ApplyDateTime", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:ss") }, "width": "135px" },
 
                     {
                         "targets": 7, "data": "ReportID", "render": function (data) {
-                            console.log(data);
+                            
                             return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/ReportTimeSystems/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
                         },
                         "orderable": false,
