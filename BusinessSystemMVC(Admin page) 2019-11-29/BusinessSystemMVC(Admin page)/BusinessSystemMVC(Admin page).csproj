@@ -656,6 +656,7 @@
     <Compile Include="Controllers\EventCalendarsController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeaveHistoriesController.cs" />
     <Compile Include="Controllers\LeaveHistoryApprovalTempsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeetingRoomHistoriesController.cs" />
@@ -1970,6 +1971,10 @@
     <Content Include="Views\EmployeeApprovalTemps\EditLoadDataDetail.cshtml" />
     <Content Include="Views\OrderDetails\ChartData.cshtml" />
     <Content Include="Views\OrderDetails\IndexChartData.cshtml" />
+    <Content Include="Views\LeaveHistories\Index.cshtml" />
+    <Content Include="Views\Shared\_DepartmentLeaveHistoriesPartailView.cshtml" />
+    <Content Include="Views\Shared\_ReportTimeSystemPartial.cshtml" />
+    <Content Include="Views\ReportTimeSystems\TimeControl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -47,7 +47,7 @@
 <br />
 
 <div>
-    <button class="btn btn-success" style="margin-bottom:10px" id='UpdateEvent' onclick="PopupForm('@Url.Action("AddOrEdit","EventCalendars")')"><i class="fa fa-plus" aria-hidden="true"></i> 新增貼文</button>
+    <button class="btn btn-success" style="margin-bottom:10px" id='UpdateEvent' onclick="PopupForm('@Url.Action("AddOrEdit","EventCalendars")')"><i class="fa fa-plus" aria-hidden="true"></i> 新增</button>
 
 </div>
 
@@ -124,7 +124,7 @@
                             })
 
                     })
-
+                    
                     GenerateCalender(events);
                     
                 },
@@ -146,7 +146,7 @@
             function GenerateCalender(events1) {
 
 
-
+                    
                 var calendarEl = document.getElementById('evecalendar');
 
 
@@ -165,8 +165,8 @@
                     events: events1,
                     eventClick: function (calEvent, jsEvent, view) {
                         var calID = calEvent.event.id;
-                        PopupEditForm('@Url.Action("AddOrEdit","EventCalendars")/'+calID);
-
+                        PopupEditForm('@Url.Action("AddOrEdit","EventCalendars")/' + calID);
+                        
                     }
                     //eventDragStop: function (calEvent, jsEvent, view) {
                     //    if
@@ -216,6 +216,7 @@
 
 
                     });
+                    
                 });
         }
 
