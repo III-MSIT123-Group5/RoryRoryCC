@@ -34,6 +34,23 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             };
             db.MeetingRoomHistories.Add(saveMeetingRoom);
             db.SaveChanges();
+
+            var pp = db.MeetingRooms.Find(LNid);
+
+            var saveCalendar = new BusinessSystemMVC_Admin_page_.Models.EventCalendar
+            {
+                employeeID = EmployeeDetail.EmployeeID,
+                Subject = "會議室預約",
+                DepartmentID = EmployeeDetail.DepartmentID,
+                StartTime = dtS,
+                EndTime = dtE,
+                Location = pp.meetingName,
+                Description =null,
+                IsImportant = false,
+                ThemeColor = "#FFEE99"
+            };
+            db.EventCalendars.Add(saveCalendar);
+            db.SaveChanges();
         }
 
         public ActionResult Finded1()
