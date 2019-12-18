@@ -76,7 +76,7 @@
 
             /***** CSS Magic to Highlight Stars on Hover *****/
 
-            .rating > input:checked ~ label, /* show gold star when clicked */
+            .rating > input:checked ~ label,  /*show gold star when clicked*/ 
             .rating:not(:checked) > label:hover, /* hover current star */
             .rating:not(:checked) > label:hover ~ label {
                 color: #FFD700;
@@ -227,7 +227,19 @@
 
 
             });
-
+            function stars(data) {
+                for (var i = 0; i < data.length; i++) {
+                    $('#StarArea').append(`<h5> ${data[i].Question} </h5><br/>`);
+                    $('#StarArea').append(`
+                                     <input type="radio" id="star5" name="rating${i}" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
+                                     <input type="radio" id="star4" name="rating${i}" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                                     <input type="radio" id="star3" name="rating${i}" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
+                                     <input type="radio" id="star2" name="rating${i}" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                                     <input type="radio" id="star1" name="rating${i}" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                                <br/><br/><br/>`);
+                    //}
+                }
+            }
 
         </script>
     }

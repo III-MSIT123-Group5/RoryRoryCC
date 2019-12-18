@@ -1135,6 +1135,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="imgBG\hump.png" />
     <Content Include="imgProfiles\ebed634608c1bec8e7f6c4b74210zw65.jpg" />
     <Content Include="Models\BusinessSystemModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -1430,13 +1431,13 @@
     <Content Include="Views\LeaveHistories\Index.cshtml" />
     <Content Include="Views\Shared\_DepartmentLeaveHistoriesPartailView.cshtml" />
     <Content Include="Views\Shared\_ReportTimeSystemPartial.cshtml" />
-    <Content Include="Views\ReportTimeSystems\TimeControl.cshtml" />
+    <Content Include="Views\ReportTimeSystems\IndexManage.cshtml" />
+    <Content Include="Views\ReportTimeSystems\IndexChart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="CarUpload\" />
     <Folder Include="imgcar\" />
-    <Folder Include="imgLeaveAppendix\" />
     <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>

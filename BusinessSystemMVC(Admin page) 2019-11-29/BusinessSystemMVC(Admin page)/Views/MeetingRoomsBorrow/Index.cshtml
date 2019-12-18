@@ -5,45 +5,72 @@
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 }
 @{
-    ViewBag.Title = "公務車租借";
+    ViewBag.Title = "會議室預約";
 }
 
-<div id="addForm" action="Useradd.action" typeof="post" style="background-color:yellow;width:500px;float:left">
-    <div style="width:500px;border:1px solid black; margin-bottom:30px">
-        <div>
-            <h3>起始時間 : <a><input type="date" id="date1" class="datepicker-decades" /></a></h3>
+<style>
+    button, h2 {
+        font-family: 'NotoSansCJKtc-Bold';
+    }
 
+    th {
+        font-family: 'NotoSansCJKtc-Bold';
+    }
+
+    td {
+        font-family: '微軟正黑體';
+        font-weight: 600;
+    }
+</style>
+<br />
+
+<h2>會議室預約系統</h2>
+<br />
+<div id="addForm" action="Useradd.action" typeof="post" style="width:1000px;float:left">
+    <div style="width:1000px; margin-bottom:30px">
+        <div style="float:left">
+            <h4 style="font-family:微軟正黑體">起始時間 : </h4>
         </div>
-        <div>
-            <select id="firstLevel" style="width:100px" class="form-control"></select>
+        <div style="float:left;margin-left:30px">
+            <a><input type="date" id="date1" class="form-control" style="font-family:微軟正黑體" /></a>
         </div>
-        <div>
-            <select id="secondLevel" style="width:100px" class="form-control"></select>
+        <div style="float:left;margin-left:30px">
+            <select id="firstLevel" style="width:100px;font-family:微軟正黑體" class="form-control"></select>
+        </div>
+        <div style="float:left;margin-left:30px">
+            <select id="secondLevel" style="width:100px;font-family:微軟正黑體" class="form-control"></select>
         </div>
     </div>
-
-    <div style="width:500px;border:1px solid black">
-        <div>
-            <h3>結束時間 : <a><input type="date" id="date2" class="datepicker-decades" /></a></h3>
-
+    <br />
+    <br />
+    <div style="width:1000px;">
+        <div style="float:left">
+            <h4 style="font-family:微軟正黑體">結束時間 : </h4>
         </div>
-        <div>
-            <select id="firstLevel1" style="width:100px" class="form-control"></select>
+        <div style="float:left;margin-left:30px">
+            <a><input type="date" id="date2" class="form-control" style="font-family:微軟正黑體" /></a>
         </div>
-        <div>
-            <select id="secondLevel1" style="width:100px" class="form-control"></select>
+        <div style="float:left;margin-left:30px">
+            <select id="firstLevel1" style="width:100px;font-family:微軟正黑體" class="form-control"></select>
         </div>
+        <div style="float:left;margin-left:30px">
+            <select id="secondLevel1" style="width:100px;font-family:微軟正黑體" class="form-control"></select>
+        </div>
+        <br />
         <div>
-            <input type="button" id="btn1" class="btn-success" value="查詢" />
+            <input style="width:150px" type="button" id="btn1" class="btn-success" value="查詢" />
         </div>
     </div>
 </div>
-<div style="float:left; background-color:red;width:800px;height:300px;margin-left:30px"></div>
-<table id="test2" class="table"></table>
-
-
-
-
+<table id="test2" style="margin-top:200px" class="table">
+    <tr>
+        <th>會議室ID</th>
+        <th>會議室名稱</th>
+        <th>辦公室名稱</th>
+        <th>容納人數</th>
+        <th>會議室地點</th>
+    </tr>
+</table>
 
 
 @section scripts
@@ -163,6 +190,7 @@
                 type: "GET",
                 dataType: "json",
             }).done(function (r) {
+                $("#test2").empty();
                 $("#test2").append('<tr></tr>')
                 $("#test2").append(`<th>會議室ID</th>`)
                 $("#test2").append(`<th>會議室名稱</th>`)
@@ -202,15 +230,25 @@
             //var jsonData = JSON.stringify({ dtS: dts, dtE: dte,LNid:id, purpose:purpose});
             $.ajax({
                 url: '@Url.Action("Post1", "MeetingRoomsBorrow")',
-                type: "get",
+                type: "POST",
                 //contentType: "application/json; chartset-utf-8",
                 data: {
                     dtS: dts,
                     dtE: dte,
                     LNid: id
+                },
+                dataType:"json"
+            }).done(function (data) {
+
+                if (data.success) {
+                    
+
+                    $.notify(data.message, {
+                        globalPosition: "top center",
+                        className: "success"
+                    })
+
                 }
-            }).done(function () {
-                alert("預約完成");
             })
         }
 

@@ -21,7 +21,8 @@
     <link href="~/Content/jquery-ui.structure.css" rel="stylesheet" />
     <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
 
-    <title>Business System</title>
+    <title>春沐股份有限公司</title>
+
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
     <!-- Navigation-->
@@ -162,15 +163,8 @@
                         @Html.Partial("_DepartmentLeaveHistoriesPartailView")   @*for部長*@                        
                     </ul>
                 </li>
-                @*請購簽核*@
+                @*請購系統*@
                 @Html.Partial("_RequisitionSystemPartial")
-                @*請購圖表*@
-                @*<li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="請購圖表">
-                    <a class="nav-link" href="@Url.Action("IndexChartData", "OrderDetails")">
-                        <i class="fa fa-fw fa-file" style="font-size: 1.6em; vertical-align: middle;"></i>
-                        <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">請購圖表</span>
-                    </a>
-                </li>*@
                 @*只有組級上以可看見SignOffsystem*@
                 @Html.Partial("_SignOffSystemPartial")
                 @*只有HR可看見HRsystem*@

@@ -29,11 +29,11 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 n.ReportID,
                 n.ReportName,
                 n.employeeID,
-                ApplyDateTime= DateTime.Parse(n.ApplyDateTime.ToString("yyyy-MM-dd hh:ss")),
-                StartTime = DateTime.Parse(n.StartTime.ToString("yyyy-MM-dd hh:ss")),
-                EndTime = DateTime.Parse(n.EndTime.ToString("yyyy-MM-dd hh:ss")),
+                ApplyDateTime= DateTime.Parse(n.ApplyDateTime.ToString("yyyy-MM-dd HH:ss")),
+                StartTime = DateTime.Parse(n.StartTime.ToString("yyyy-MM-dd HH:ss")),
+                EndTime = DateTime.Parse(n.EndTime.ToString("yyyy-MM-dd HH:ss")),
                 n.EventHours,
-                n.EventID,
+                n.Event.EventName,
                 n.Note,
                 n.Discontinue
             }).Where(n => n.employeeID == EmployeeDetail.EmployeeID).ToList();
@@ -140,6 +140,13 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         }
 
+        public ActionResult IndexManage()
+        {
+            var reportTimeSystems = db.ReportTimeSystems.Include(e => e.Event).Include(e => e.Employee);
+
+            return View(reportTimeSystems);
+
+        }
 
         public ActionResult TimeControl()
         {
@@ -151,21 +158,27 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                          {
                              r.ReportID,
                              r.ReportName,
-                             r.employeeID,
+                             r.Employee.EmployeeName,
                              r.StartTime,
                              r.EndTime,
-                             r.EventID,
+                             r.Event.EventName,
                              r.EventHours,
                              r.Note,
                              r.Discontinue,
                              r.ApplyDateTime
                           }).ToList();
 
-            return View(datas);
             
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult IndexChart()
+        {
+            var reportTimeSystems = db.ReportTimeSystems.Include(e => e.Event).Include(e => e.Employee);
 
+            return View(reportTimeSystems);
+
+        }
 
 
 

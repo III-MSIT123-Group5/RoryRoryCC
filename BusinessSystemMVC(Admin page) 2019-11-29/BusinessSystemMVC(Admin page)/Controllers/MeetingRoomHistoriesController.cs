@@ -112,7 +112,11 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             {
                 MeetingRoomHistory b = db.MeetingRoomHistories.Where(x => x.MeetingRoomID == id).FirstOrDefault<MeetingRoomHistory>();
                 db.MeetingRoomHistories.Remove(b);
+                //var q = db.MeetingRoomHistories.Find(id);
+                //EventCalendar e = db.EventCalendars.Where(x => x.StartTime == q.start_date_time && x.EndTime == q.end_date_time ).FirstOrDefault<EventCalendar>();
+                //db.EventCalendars.Remove(e);
                 db.SaveChanges();
+               
 
                 return Json(new { success = true, message = "刪除成功" }, JsonRequestBehavior.AllowGet);
 
