@@ -38,26 +38,15 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         public ActionResult LoadData()
         {
-            //var data = (from cm in db.CommentMains
-            //           join cc in db.CommentChilds
-            //           on cm.CommentMainID equals cc.CommentMainID
-            //           join emp in db.Employees
-            //           on cm.EmployeeID equals emp.employeeID
-            //           select new
-            //           {
-            //               cc.ChildNum,
-            //               cm.SendTime,
-            //               cm.CommentMainID,
-            //               postperson = emp.EmployeeName,
-            //               cm.CommentName,
-            //               replyperson = cc.EmployeeID,
-            //           }).Distinct();
+
+            int empid = EmployeeDetail.EmployeeID;
 
             var data = (from cm in db.CommentMains
                         join cc in db.CommentChilds
                         on cm.CommentMainID equals cc.CommentMainID
                         join emp in db.Employees
                         on cm.EmployeeID equals emp.employeeID
+                        //where cm.EmployeeID == empid 
                         select new
                         {
                             //cc.ChildNum,
@@ -69,6 +58,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                             replyperson = cc.EmployeeID,
 
                         }).Distinct();
+
+
+
 
             var datas = data.ToList();
 
@@ -174,6 +166,48 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         }
 
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult PostComment(string str ,int cid)
+        {
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+
+
+                var q = db.CommentChilds.Where(x=>x.CommentMainID==cid).Select(x => x.ChildNum).ToArray();
+
+                string [] rate = str.Split('&');
+                List <int>lastChar = new List<int>();
+
+                for (int j=1;j< rate.Length;j++)
+                {
+                    lastChar.Add(Convert.ToInt32(rate[j].Substring(rate[j].Length - 1)));
+                }
+
+
+
+                for (int i=0; i<q.Length;i++)
+                {
+
+                    db.CommentReplies.Add(new CommentReply()
+                    {
+
+                     ChildNum = q[i],
+                     Rate = lastChar[i],
+                     ReplyTime = DateTime.Now
+                                
+                     });
+
+                    db.SaveChanges();
+                }
+
+
+
+             return Json(new { success = true, message = "意見送出成功" }, JsonRequestBehavior.AllowGet);
+
+            }
+        }
 
 
         // GET: CommentChilds/Create
