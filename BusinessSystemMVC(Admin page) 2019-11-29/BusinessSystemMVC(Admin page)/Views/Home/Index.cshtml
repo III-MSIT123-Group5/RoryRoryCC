@@ -2,176 +2,276 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="container-fluid" style="padding-right:60px">
-    <!-- Breadcrumbs-->
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item active">My Dashboard</li>
-    </ol>
-    <!-- Icon Cards-->
+<style>
+    button, h2 {
+        font-family: 'NotoSansCJKtc-Bold';
+    }
+
+    th {
+        font-family: 'NotoSansCJKtc-Bold';
+    }
+
+    td {
+        font-family: '微軟正黑體';
+        font-weight: 600;
+    }
+</style>
+
+<link href='~/package/calendar/core/main.css' rel='stylesheet' />
+<link href='~/package/calendar/daygrid/main.css' rel='stylesheet' />
+<link href='~/package/calendar/timegrid/main.css' rel='stylesheet' />
+<script src='~/package/calendar/core/main.js'></script>
+<script src='~/package/calendar/interaction/main.js'></script>
+<script src='~/package/calendar/daygrid/main.js'></script>
+<script src='~/package/calendar/timegrid/main.js'></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+<div class="container-fluid" style="padding-right:60px; margin-top:30px">
     <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-primary o-hidden h-100">
-                <div class="card-body">
-                    <div class="card-body-icon">
-                        <i class="fa fa-fw fa-comments"></i>
-                    </div>
-                    <div class="mr-5">26 New Messages!</div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
-                    <span class="float-left">View Details</span>
-                    <span class="float-right">
-                        <i class="fa fa-angle-right"></i>
-                    </span>
-                </a>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-warning o-hidden h-100">
-                <div class="card-body">
-                    <div class="card-body-icon">
-                        <i class="fa fa-fw fa-list"></i>
-                    </div>
-                    <div class="mr-5">11 New Tasks!</div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
-                    <span class="float-left">View Details</span>
-                    <span class="float-right">
-                        <i class="fa fa-angle-right"></i>
-                    </span>
-                </a>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-success o-hidden h-100">
-                <div class="card-body">
-                    <div class="card-body-icon">
-                        <i class="fa fa-fw fa-shopping-cart"></i>
-                    </div>
-                    <div class="mr-5">123 New Orders!</div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
-                    <span class="float-left">View Details</span>
-                    <span class="float-right">
-                        <i class="fa fa-angle-right"></i>
-                    </span>
-                </a>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-danger o-hidden h-100">
-                <div class="card-body">
-                    <div class="card-body-icon">
-                        <i class="fa fa-fw fa-support"></i>
-                    </div>
-                    <div class="mr-5">13 New Tickets!</div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
-                    <span class="float-left">View Details</span>
-                    <span class="float-right">
-                        <i class="fa fa-angle-right"></i>
-                    </span>
-                </a>
-            </div>
-        </div>
-    </div>
-    <!-- Area Chart Example-->
-    <div class="card mb-3">
-        <div class="card-header">
-            <i class="fa fa-area-chart"></i> Area Chart Example
-        </div>
-        <div class="card-body">
-            @*<canvas id="myAreaChart" height="30" style="width:100%"></canvas>*@
-        </div>
-        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-    </div>
-    <div class="row">
-        <div class="col-lg-8">
-            <!-- Example Bar Chart Card-->
+        <div class="col-lg-7">
             <div class="card mb-3">
                 <div class="card-header">
-                    <i class="fa fa-bar-chart"></i> Bar Chart Example
+                    <i class="fa fa-calendar"></i>
+                    <a href="@Url.Action("Index", "EventCalendars")" style="font-family:'微軟正黑體'; color:black;"> 行事曆</a>  
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-8 my-auto">
-                            <canvas id="myBarChart" width="100" height="50"></canvas>
-                        </div>
-                        <div class="col-sm-4 text-center my-auto">
-                            <div class="h4 mb-0 text-primary">$34,693</div>
-                            <div class="small text-muted">YTD Revenue</div>
-                            <hr>
-                            <div class="h4 mb-0 text-warning">$18,474</div>
-                            <div class="small text-muted">YTD Expenses</div>
-                            <hr>
-                            <div class="h4 mb-0 text-success">$16,219</div>
-                            <div class="small text-muted">YTD Margin</div>
-                        </div>
-                    </div>
+                    <div id="evecalendar" style="width:100%"></div>
                 </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                <div class="card-footer small text-muted" style="height:10px">
+                    &nbsp;
+                </div>
             </div>
         </div>
-        <div class="col-lg-4">
-            <!-- Example Pie Chart Card-->
+        <div class="col-lg-5">
             <div class="card mb-3">
                 <div class="card-header">
-                    <i class="fa fa-pie-chart"></i> Pie Chart Example
+                    <i class="fa fa-fw fa-bullhorn"></i>
+                    <a href="@Url.Action("Index", "BulletinBoards")" style="font-family:'微軟正黑體'; color:black;"> 公佈欄</a> 
                 </div>
                 <div class="card-body">
-                    @*<canvas id="myPieChart" height="100" style="width:100%"></canvas>*@
+                    <table id="Btable" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>圖片</th>
+                                <th>留言內容</th>
+                                <th>張貼時間</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                <div class="card-footer small text-muted">
+                    &nbsp;
+                </div>
             </div>
-            <!-- Example Notifications Card-->
             <div class="card mb-3">
                 <div class="card-header">
-                    <i class="fa fa-bell-o"></i> Feed Example
+                    <i class="fa fa-fw fa-comment"></i>
+                    <a href="@Url.Action("Index", "Recipients")" style="font-family:'微軟正黑體'; color:black;"> 訊息收件夾</a> 
                 </div>
-                <div class="list-group list-group-flush small">
-                    <a class="list-group-item list-group-item-action" href="#">
-                        <div class="media">
-                            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
-                            <div class="media-body">
-                                <strong>David Miller</strong>posted a new article to
-                                <strong>David Miller Website</strong>.
-                                <div class="text-muted smaller">Today at 5:43 PM - 5m ago</div>
-                            </div>
-                        </div>
-                    </a>
-                    @*<a class="list-group-item list-group-item-action" href="#">
-                        <div class="media">
-                            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
-                            <div class="media-body">
-                                <strong>Samantha King</strong>sent you a new message!
-                                <div class="text-muted smaller">Today at 4:37 PM - 1hr ago</div>
-                            </div>
-                        </div>
-                    </a>*@       
-                    <a class="list-group-item list-group-item-action" href="#">View all activity...</a>
+                <div class="card-body">
+                    <table id="RecipientTable" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>寄件者</th>
+                                <th>主旨</th>                                
+                                <th>收件時間</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                <div class="card-footer small text-muted">
+                    &nbsp;
+                </div>
             </div>
-        </div>
-    </div>
-    <!-- Example DataTables Card-->
-    <div class="card mb-3">
-        <div class="card-header">
-            <i class="fa fa-calendar">
-                <a style="font-family:'微軟正黑體'">行事曆</a>
-            </i> 
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" cellspacing="0" style="width:100%">
-                    
-                </table>
-            </div>
-        </div>
-        <div class="card-footer small text-muted">
-            &nbsp;
         </div>
     </div>
 </div>
+
+
+
+@section scripts{
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/Scripts/moment.js"></script>
+
+    @*行事曆*@
+    <script>
+        var Popup, dataTable;
+        var events = [];
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url:'@Url.Action("Getevent", "EventCalendars")',
+                success: function (data) {
+                    $.each(data, function (i, v) {
+                        events.push({
+                            id: v.CalendarID,
+                            DepartmentID: v.DepartmentID,
+                            title: v.Subject,
+                            start:v.StartTime,
+                            end: v.EndTime != null ? v.EndTime : null,
+                            color: v.ThemeColor,
+                            Location: v.Location,
+                            IsImportant: v.IsImportant,
+                            Description: v.Description
+                            })
+                    })
+                    GenerateCalender(events);
+                },
+                error: function (error) {
+                    alert('failed');
+                    console.log(error)
+                }
+            })
+
+            function GenerateCalender(events1) {
+                var calendarEl = document.getElementById('evecalendar');
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+
+                    plugins: ['interaction', 'dayGrid', 'timeGrid', 'list'],
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                    },
+                    eventLimit: true,
+                    eventColor: '#378006',
+                    defaultDate: new Date(),
+                    navLinks: true, // can click day/week names to navigate views
+                    editable: true,
+                    events: events1,
+                    eventClick: function (calEvent, jsEvent, view) {
+                        var calID = calEvent.event.id;
+                        PopupEditForm('@Url.Action("AddOrEdit","EventCalendars")/' + calID);
+                    }
+                });
+                calendar.render();
+            }
+        })
+    </script>
+
+    @*公佈欄*@
+    <script>
+        var Popup, dataTable;
+        $(document).ready(function () {
+            dataTable = $('#Btable').DataTable({
+                "ajax": {
+                    url: '@Url.Action("LoadData", "BulletinBoards")',
+                    method: 'GET',
+                    dataType: 'json'
+                },
+                "pageLength": 3,
+                "dom": 'lBrtip',
+                "bLengthChange": false,
+                "bInfo": false,
+                "paging": true,
+                "order": [2, "desc"],
+                "columnDefs": [
+                    {
+                        "targets": 0,
+                        "data": "Photo",
+                        "render": function (url, type, full) { return '<img height="40px" width="40px" style="border-radius:50%" src="' + `@Url.Content("~/imgProfiles/${url}")` + '"/>';},
+                        "orderable": false,
+                        "width": "40px",
+                        "className": "text-center align-middle"
+                    },
+                    {
+                        "targets": 1,
+                        "data": "Content",
+                        "orderable": false, "className": "align-middle"
+                    },
+                    {
+                        "targets": 2,
+                        "data": "PostTime",
+                        "render": function (data) { return moment(data).format("YYYY-MM-DD") },
+                        "width": "80px",
+                        "className": "text-center align-middle"
+                    },
+
+                ],
+                "language": {
+                    "emptyTable": "目前無貼文，請點選<b>新增貼文</b>",
+                    "processing": "處理中...",
+                    "loadingRecords": "載入中...",
+                    "zeroRecords": "沒有符合的結果",
+                    "infoFiltered": "(從 _MAX_ 項結果中過濾)",
+                    "infoPostFix": "",
+                    "paginate": {
+                        "first": "第一頁",
+                        "previous": "上一頁",
+                        "next": "下一頁",
+                        "last": "最後一頁"
+                    },
+                    "aria": {
+                        "sortAscending": ": 升冪排列",
+                        "sortDescending": ": 降冪排列"
+                    }
+                }
+            });
+        });
+    </script>
+
+    @*內部訊息-收件夾*@
+    <script>
+        var Popup, dataTable;
+        $(document).ready(function () {
+            dataTable = $('#RecipientTable').DataTable({
+                "ajax": {
+                    url: '@Url.Action("LoadData", "Recipients")',
+                    method: 'GET',
+                    dataType: 'json'
+                },
+                "pageLength": 2,
+                "dom": 'lBrtip',
+                "bLengthChange": false,
+                "bInfo": false,
+                "paging": true,
+                "order": [2, "desc"],
+                "columnDefs": [
+                    {
+                        "targets": 0, 
+                        "data": "EmployeeName", 
+                        "width": "60px",
+                        "orderable": false,
+                        "className": "text-center align-middle"
+                    },
+                    {
+                        "targets": 1,
+                        "data": "Title",
+                        "orderable": false,
+                        "className": "align-middle"
+                    },                    
+                    {
+                        "targets": 2,
+                        "data": "MailingDate",
+                        "render": function (data) { return moment(data).format("YYYY-MM-DD") },
+                        "width": "80px",
+                        "className": "text-center align-middle"
+                    },
+                ],
+                "language": {
+                    "emptyTable": "目前無貼文，請點選<b>新增貼文</b>",
+                    "processing": "處理中...",
+                    "loadingRecords": "載入中...",
+                    "zeroRecords": "沒有符合的結果",
+                    "infoFiltered": "(從 _MAX_ 項結果中過濾)",
+                    "infoPostFix": "",
+                    "paginate": {
+                        "first": "第一頁",
+                        "previous": "上一頁",
+                        "next": "下一頁",
+                        "last": "最後一頁"
+                    },
+                    "aria": {
+                        "sortAscending": ": 升冪排列",
+                        "sortDescending": ": 降冪排列"
+                    }                
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+}
