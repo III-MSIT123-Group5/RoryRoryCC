@@ -1134,6 +1134,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="imgBG\hump.jpg" />
     <Content Include="imgProfiles\ebed634608c1bec8e7f6c4b74210zw65.jpg" />
     <Content Include="Models\BusinessSystemModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -1435,7 +1436,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="CarUpload\" />
     <Folder Include="imgcar\" />
-    <Folder Include="imgLeaveAppendix\" />
     <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
