@@ -43,12 +43,8 @@
             </tr>
         </thead>
     </table>
-
-
-
 </div>
 
-<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
 @section scripts{
@@ -67,26 +63,27 @@
                     dataType: 'json'
                 },
                 "columnDefs": [
-
                     {
                         "targets": 0, "data": "Photo", "render": function (url, type, full) {
-                            return '<img height="60px" src="' + `@Url.Content("~/imgProfiles/${url}")` + '"/>';
-},
+                            return '<img height="60px" width="60px" style="border-radius:50%" src="' + `@Url.Content("~/imgProfiles/${url}")` + '"/>';
+                        },
                         "orderable": false,
                         "searchable": false,
-                        "width": "65px"
+                        "width": "65px",
+                        "className": "text-center align-middle"
                     },
-                    { "targets": 1, "data": "EmployeeName", "width": "60px" },
-                    { "targets": 2, "data": "name", "width": "60px" },
-                    { "targets": 3, "data": "Content" },
-                    { "targets": 4, "data": "PostTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
+                    { "targets": 1, "data": "EmployeeName", "width": "60px", "className": "text-center align-middle" },
+                    { "targets": 2, "data": "name", "width": "60px", "className": "text-center align-middle"},
+                    { "targets": 3, "data": "Content", "className": "align-middle" },
+                    { "targets": 4, "data": "PostTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "150px", "className": "text-center align-middle"},
                     {
                         "targets": 5, "data": "Num", "render": function (data) {
                                     return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/BulletinBoards/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
                         },
                         "orderable": false,
                         "searchable": false,
-                        "width": "150px"
+                        "width": "150px",
+                        "className": "text-center align-middle"
                     }
 
                 ],

@@ -55,14 +55,14 @@
                     dataType: 'json'
                 },
                 "columnDefs": [
-                    { "targets": 0, "data": "EmployeeName", "width": "60px" },
-                    { "targets": 1, "data": "leave_name", "width": "60px" },
-                    { "targets": 2, "data": "GroupName", "width": "60px" },
-                    { "targets": 3, "data": "position1", "width": "60px"  },
-                    { "targets": 4, "data": "ReleaseTime" ,"render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
-                    { "targets": 5, "data": "StartTime" ,"render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
-                    { "targets": 6, "data": "EndTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
-                    { "targets": 7, "data": "LeaveHours", "width": "60px"  }
+                    { "targets": 0, "data": "EmployeeName", "width": "60px","className": "text-center align-middle" },
+                    { "targets": 1, "data": "leave_name", "width": "60px","className": "text-center align-middle" },
+                    { "targets": 2, "data": "GroupName", "width": "60px","className": "text-center align-middle" },
+                    { "targets": 3, "data": "position1", "width": "60px","className": "text-center align-middle"  },
+                    { "targets": 4, "data": "ReleaseTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px", "className": "text-center align-middle" },
+                    { "targets": 5, "data": "StartTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px", "className": "text-center align-middle" },
+                    { "targets": 6, "data": "EndTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px", "className": "text-center align-middle" },
+                    { "targets": 7, "data": "LeaveHours", "width": "60px", "className": "text-center align-middle" }
                 ],
                 "language": {
                     "emptyTable": "無待簽核事項。",
