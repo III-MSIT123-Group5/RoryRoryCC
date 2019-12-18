@@ -16,6 +16,21 @@
         font-family: '微軟正黑體';
         font-weight: 600;
     }
+
+    .form-control-2 {
+        width: 100%;
+        height: calc(1.5em + 0.75rem + 2px);
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
 </style>
 
 <br />
@@ -30,114 +45,123 @@
     <h4>建立新的帳戶</h4>
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <hr />
-    <div class="form-group">
-        @Html.LabelFor(m => m.EmpoyeeName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.EmpoyeeName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.EmpoyeeName, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Account, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Account, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.DropDownList("Gender", null, "--請選擇--", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.Label("生日", new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.DropDownList("BirthYear", null, new { @style = "width:90px" })
-            @Html.DropDownList("BirthMonth", null, new { @style = "width:70px" })
-            @Html.DropDownList("BirthDate", null, new { @style = "width:70px" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.HireDay, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.EditorFor(m => m.HireDay, new { htmlAttributes = new { @class = "form-control", } })
-            @Html.ValidationMessageFor(model => model.HireDay, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.OfficeID, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.DropDownList("OfficeID", null, "--請選擇--", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.OfficeID, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.DepartmentID, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.DropDownList("DepartmentID", null, "--請選擇--", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.DepartmentID, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.GroupID, new { @class = "col-md-2 control-label" })   @*//連動department*@
-        <div class="col-md-10">
-            <div id="DivGroup">
-                @Html.DropDownList("GroupID", null, "--請選擇--", new { @class = "form-control" })
+    <div class="container-fluid" style="margin-top:30px">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.EmpoyeeName, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.EmpoyeeName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.EmpoyeeName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Account, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Account, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Gender", null, "--請選擇--", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("生日", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("BirthYear", null, new { @class = "form-control-2", style = "width:90px" })
+                        @Html.DropDownList("BirthMonth", null, new { @class = "form-control-2", style = "width:70px" })
+                        @Html.DropDownList("BirthDate", null, new { @class = "form-control-2", style = "width:70px" })
+                    </div>
+                </div>
             </div>
-            @Html.ValidationMessageFor(model => model.GroupID, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.PositionID, new { @class = "col-md-2 control-label" })     @*//連動group*@
-        <div class="col-md-10">
-            <div id="DivPosition">
-                @Html.DropDownList("PositionID", null, "--請選擇--", new { @class = "form-control" })
+            <div class="col-lg-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.HireDay, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(m => m.HireDay, new { htmlAttributes = new { @class = "form-control", } })
+                        @Html.ValidationMessageFor(model => model.HireDay, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.OfficeID, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("OfficeID", null, "--請選擇--", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.OfficeID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.DepartmentID, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("DepartmentID", null, "--請選擇--", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DepartmentID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.GroupID, new { @class = "col-md-2 control-label" })   @*//連動department*@
+                    <div class="col-md-10">
+                        <div id="DivGroup">
+                            @Html.DropDownList("GroupID", null, "--請選擇--", new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.GroupID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PositionID, new { @class = "col-md-2 control-label" })     @*//連動group*@
+                    <div class="col-md-10">
+                        <div id="DivPosition">
+                            @Html.DropDownList("PositionID", null, "--請選擇--", new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.PositionID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ManagerID, new { @class = "col-md-2 control-label" })     @*//依上述查主管名*@
+                    <div class="col-md-10">
+                        <div id="DivManagerID">
+                            @Html.DropDownList("ManagerID", null, "--請選擇--", new { @class = "form-control", id = "IDManageIDst" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ManagerID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Employed, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Employed", null, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                </div>
             </div>
-            @Html.ValidationMessageFor(model => model.PositionID, "", new { @class = "text-danger" })
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ManagerID, new { @class = "col-md-2 control-label" })     @*//依上述查主管名*@
-        <div class="col-md-10">
-            <div id="DivManagerID">
-                @Html.DropDownList("ManagerID", null, "--請選擇--", new { @class = "form-control", id = "IDManageIDst" })
+            <div class="form-group" style="text-align:center">
+                <div class="col-md-11">
+                    <input id="RegisterSubmit" type="submit" class="btn btn-primary" value="註冊" />
+                </div>
             </div>
-            @Html.ValidationMessageFor(model => model.ManagerID, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Employed, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.DropDownList("Employed", null, new { @class = "form-control", @disabled = "disabled" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input id="RegisterSubmit" type="submit" class="btn btn-primary" value="註冊" />
-        </div>
+        
     </div>
 }
 
