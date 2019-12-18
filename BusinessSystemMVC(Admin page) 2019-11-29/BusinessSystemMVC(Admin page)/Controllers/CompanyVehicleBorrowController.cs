@@ -37,6 +37,20 @@ namespace EIPBussinessSystem_MVC.Controllers
             };
             db.CompanyVehicleHistories.Add(saveCars);
             db.SaveChanges();
+            var saveCalendar = new BusinessSystemMVC_Admin_page_.Models.EventCalendar
+            {
+                employeeID = EmployeeDetail.EmployeeID,
+                Subject = "公務車預約",
+                DepartmentID = EmployeeDetail.DepartmentID,
+                StartTime = dtS,
+                EndTime = dtE,
+                //Location = ecal.Location,
+                Description = purpose,
+                IsImportant = false,
+                ThemeColor = "#BBFF66"
+            };
+            db.EventCalendars.Add(saveCalendar);
+            db.SaveChanges();
         }
 
         public ActionResult Finded1()
