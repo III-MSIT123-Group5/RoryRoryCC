@@ -1437,6 +1437,7 @@
     <Content Include="Views\CommentQuestions\DisplayCommentOptions.cshtml" />
     <Content Include="Views\CommentQuestions\AddOrEditCC.cshtml" />
     <Content Include="Views\CommentQuestions\AddOrEditCO.cshtml" />
+    <Content Include="Views\Shared\_CommentQuestionsAndMainsPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

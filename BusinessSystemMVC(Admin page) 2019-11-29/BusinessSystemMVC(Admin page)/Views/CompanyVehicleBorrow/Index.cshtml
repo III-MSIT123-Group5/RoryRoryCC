@@ -65,6 +65,7 @@
         <div>
             <button class="btn btn-success" style="margin-bottom:10px;margin-left:30px" type="button" id="btn1"><i class="fa fa-search" aria-hidden="true"></i> 查詢</button>
         </div>
+
         
     </div>
 </div>
@@ -136,8 +137,7 @@
         function reset() {
             window.location.reload()
         }
-
-
+        
 
         //
         //抓取年月日
@@ -205,17 +205,21 @@
                 dataType: "json",
             }).done(function (p) {
                 for (var j = 0, max = p.length; j < max; j++) {
-                    var Stim = parseInt(String(p[j].StartDateTime).substring(6, 19));
-                    var Etim = parseInt(String(p[j].EndDateTime).substring(6, 19));
-                    var Stime = timestampToTime(Stim);
-                    var Etime = timestampToTime(Etim);
-                    NoUseLN[j] = p[j].LicenseNumber;
-                    StimeU[j] = Stime;
-                    EtimeU[j] = Etime;
+                        var Stim = parseInt(String(p[j].StartDateTime).substring(6, 19));
+                        var Etim = parseInt(String(p[j].EndDateTime).substring(6, 19));
+                        var Stime = timestampToTime(Stim);
+                        var Etime = timestampToTime(Etim);
+                        NoUseLN[j] = p[j].LicenseNumber;
+                        StimeU[j] = Stime;
+                        EtimeU[j] = Etime;
+                    
+                    
                 }
+
                 console.log(StimeU)
                 console.log(EtimeU)
                 console.log(NoUseLN)
+
                 for (var q = 0; q < StimeU.length; q++)
                     if ((dtS >= StimeU[q] && dtE <= EtimeU[q]) ||
                         ((dtS >= StimeU[q] && dtS < EtimeU[q]) && dtE > EtimeU[q]) ||
@@ -225,7 +229,8 @@
                         count++;
                     }
                 console.log(countarray);
-            })
+                })
+
             $.ajax({
                 url: '@Url.Action("Finded1","CompanyVehicleBorrow")',
                 type: "GET",

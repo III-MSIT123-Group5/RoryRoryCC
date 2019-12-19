@@ -89,7 +89,7 @@
                         { "targets": 2, "data": "CommentContent1",/* "width": "60px"*/ },
                         {
                             "targets": 3, "data": "CommentContentID", "render": function (data) {
-                                return `<a class='btn btn-warning btn-sm'  onclick=PopupForm('@Url.Action("AddOrEditCC", "CommentQuestions")/${data}')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete('@Url.Action("DeleteCC", "CommentQuestions")/${data}')><i class='fa fa-trash'></i> 刪除</a>`
+                                return `<a class='btn btn-warning btn-sm'  onclick=PopupForm("@Url.Action("AddOrEditCC", "CommentQuestions")/${data}")><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(${data})><i class='fa fa-trash'></i> 刪除</a>`
                                 @*return `<a class='btn btn-warning btn-sm' onclick=PopupForm("@Url.Action("AddOrEditCO", "CommentQuestions")/ ${data}")><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick="@Url.Action("DeleteCO", "CommentQuestions")/ ${data}"><i class='fa fa-trash'></i> 刪除</a>`*@
                             },
                             "orderable": false,
@@ -134,12 +134,12 @@
             });
 
             function PopupForm(url) {
-                var coid = $('#CommentOption1 option:selected').val();
+                var coid = $('#CommentOptions1').val();
 
                 var formDiv = $('<div/>');
                 //$.get(url)
                 $.ajax({
-                    url: url,
+                    url: url, 
                     method: "GET",
                     data: { coid: coid },
                     //dataType: dataType
@@ -186,11 +186,11 @@
 
             }
 
-            function Delete(Url) {
+            function Delete(id) {
                 if (confirm('確定要刪除此項調查主題嗎?')) {
                     $.ajax({
                         type: "POST",
-                        url: Url,/*'/CommentQuestions/DeleteCC/' + id,*/
+                        url: "@Url.Action("DeleteCC", "CommentQuestions")/"+id,  /*'/CommentQuestions/DeleteCC/' + id,*/
                         success: function (data) {
                             if (data.success) {
 
