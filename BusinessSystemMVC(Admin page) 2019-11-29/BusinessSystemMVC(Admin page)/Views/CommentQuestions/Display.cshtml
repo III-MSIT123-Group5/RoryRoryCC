@@ -273,7 +273,13 @@
 
             });
 
+            
    
+            
+
+
+
+
 
             function PopupForm(url) {
 
@@ -284,8 +290,7 @@
                 $.ajax({
                     url: url,
                     method: "GET",
-                    data: {ccid:ccid},
-                    //dataType: dataType
+                    data:{ccid:ccid}
                 })
                     .done(function (response) {
                         formDiv.html(response);
