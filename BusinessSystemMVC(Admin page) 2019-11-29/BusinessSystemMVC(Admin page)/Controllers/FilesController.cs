@@ -113,7 +113,7 @@ namespace EIPBussinessSystem_MVC.Controllers
             string FileName = null;
             using (Ionic.Zip.ZipFile zip = new Ionic.Zip.ZipFile())
             {
-                for (int i = 0; i < Cheak.Length; i++)
+                for (int i = 0; i <Cheak.Length; i++)
                 {
                     var q = db.Files.AsEnumerable().Where(f => f.FileID.ToString() == Cheak.ElementAt(i));
                     FileName = q.Select(f => f.FileName).FirstOrDefault();

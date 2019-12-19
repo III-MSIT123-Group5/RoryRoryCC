@@ -39,14 +39,14 @@
                     dataType: 'json'
                 },
                 "columnDefs": [
-                    { "targets": 0, "data": "EmployeeName", "width": "60px" },
-                    { "targets": 1, "data": "Gender", "width": "60px" },
-                    { "targets": 2, "data": "Account", "width": "60px" },
-                    { "targets": 3, "data": "name", "width": "60px"  },    /*department*/
-                    { "targets": 4, "data": "GroupName", "width": "60px" },
-                    { "targets": 5, "data": "position1", "width": "60px"  },
-                    { "targets": 6, "data": "EditorTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
-                    { "targets": 7, "data": "StatusDescript", "width": "150px"     }
+                    { "targets": 0, "data": "EmployeeName", "width": "60px", "className": "text-center align-middle" },
+                    { "targets": 1, "data": "Gender", "width": "60px", "className": "text-center align-middle" },
+                    { "targets": 2, "data": "Account", "width": "60px", "className": "text-center align-middle" },
+                    { "targets": 3, "data": "name", "width": "60px", "className": "text-center align-middle"  },    /*department*/
+                    { "targets": 4, "data": "GroupName", "width": "60px", "className": "text-center align-middle" },
+                    { "targets": 5, "data": "position1", "width": "60px", "className": "text-center align-middle" },
+                    { "targets": 6, "data": "EditorTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px", "className": "text-center align-middle" },
+                    { "targets": 7, "data": "StatusDescript", "width": "150px", "className": "text-center align-middle" }
                 ],
                 "language": {
                     "emptyTable": "無待簽核事項。",
@@ -82,20 +82,21 @@
                     dataType: 'json'
                 },
                 "columnDefs": [
-                    { "targets": 0, "data": "EmployeeName", "width": "60px" },
-                    { "targets": 1, "data": "Gender", "width": "60px" },
-                    { "targets": 2, "data": "Account", "width": "60px" },
-                    { "targets": 3, "data": "name", "width": "60px"  },    /*department*/
-                    { "targets": 4, "data": "GroupName", "width": "60px" },
-                    { "targets": 5, "data": "position1", "width": "60px"  },
-                    { "targets": 6, "data": "EditorTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
-                    { "targets": 7, "data": "StatusDescript", "width": "150px" },
+                    { "targets": 0, "data": "EmployeeName", "width": "60px", "className": "text-center align-middle" },
+                    { "targets": 1, "data": "Gender", "width": "60px", "className": "text-center align-middle" },
+                    { "targets": 2, "data": "Account", "width": "60px", "className": "text-center align-middle" },
+                    { "targets": 3, "data": "name", "width": "60px", "className": "text-center align-middle"  },    /*department*/
+                    { "targets": 4, "data": "GroupName", "width": "60px", "className": "text-center align-middle" },
+                    { "targets": 5, "data": "position1", "width": "60px", "className": "text-center align-middle"  },
+                    { "targets": 6, "data": "EditorTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px", "className": "text-center align-middle" },
+                    { "targets": 7, "data": "StatusDescript", "width": "150px", "className": "text-center align-middle" },
                     { "targets": 8, "data": "ID","render": function (data) {
                         return `<a class='btn btn-warning btn-sm' onclick=PopupRejectDetail("@Url.Action("RejectLoadDataDetail", "EmployeeApprovalTemps")/${data}")><i class="fa fa-align-left"></i> 詳細資料</a>`
                         },
                         "orderable": false,
                         "searchable": false,
-                        "width": "50px" }
+                        "width": "50px",
+                        "className": "text-center align-middle"}
                 ],
                 "language": {
                     "emptyTable": "無待簽核事項。",

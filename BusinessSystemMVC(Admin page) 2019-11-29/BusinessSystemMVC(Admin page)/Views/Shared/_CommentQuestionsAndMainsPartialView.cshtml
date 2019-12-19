@@ -1,0 +1,9 @@
+﻿@if (User.IsInRole("AdministrativeDepartment"))
+{
+    <li class="color hover">
+        <a href="@Url.Action("Display","CommentQuestions")" style="font-family:'NotoSansCJKtc-Bold'">編寫調查</a>
+    </li>
+    <li class="color hover">
+        <a href="@Url.Action("Index","CommentMains")" style="font-family:'NotoSansCJKtc-Bold'">發起調查</a>
+    </li>
+}
