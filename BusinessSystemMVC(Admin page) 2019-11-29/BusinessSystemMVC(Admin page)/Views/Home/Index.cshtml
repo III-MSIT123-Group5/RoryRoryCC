@@ -3,17 +3,17 @@
 }
 
 <style>
-    button, h2 {
-        font-family: 'NotoSansCJKtc-Bold';
-    }
-
-    th {
+    button, h2, th {
         font-family: 'NotoSansCJKtc-Bold';
     }
 
     td {
         font-family: '微軟正黑體';
         font-weight: 600;
+    }
+
+    .bgTopFooter {
+        /*background-color: #E6F6E5;*/
     }
 </style>
 
@@ -31,21 +31,21 @@
     <div class="row">
         <div class="col-lg-7">
             <div class="card mb-3">
-                <div class="card-header">
+                <div class="card-header bgTopFooter">
                     <i class="fa fa-calendar"></i>
                     <a href="@Url.Action("Index", "EventCalendars")" style="font-family:'微軟正黑體'; color:black;"> 行事曆</a>  
                 </div>
                 <div class="card-body">
                     <div id="evecalendar" style="width:100%"></div>
                 </div>
-                <div class="card-footer small text-muted" style="height:10px">
+                <div class="card-footer small text-muted bgTopFooter" style="height:10px">
                     &nbsp;
                 </div>
             </div>
         </div>
         <div class="col-lg-5">
             <div class="card mb-3">
-                <div class="card-header">
+                <div class="card-header bgTopFooter">
                     <i class="fa fa-fw fa-bullhorn"></i>
                     <a href="@Url.Action("Index", "BulletinBoards")" style="font-family:'微軟正黑體'; color:black;"> 公佈欄</a> 
                 </div>
@@ -60,12 +60,12 @@
                         </thead>
                     </table>
                 </div>
-                <div class="card-footer small text-muted">
+                <div class="card-footer small text-muted bgTopFooter" style="height:10px">
                     &nbsp;
                 </div>
             </div>
             <div class="card mb-3">
-                <div class="card-header">
+                <div class="card-header bgTopFooter">
                     <i class="fa fa-fw fa-comment"></i>
                     <a href="@Url.Action("Index", "Recipients")" style="font-family:'微軟正黑體'; color:black;"> 訊息收件夾</a> 
                 </div>
@@ -80,7 +80,7 @@
                         </thead>
                     </table>
                 </div>
-                <div class="card-footer small text-muted">
+                <div class="card-footer small text-muted bgTopFooter" style="height:10px">
                     &nbsp;
                 </div>
             </div>

@@ -19,13 +19,17 @@
     }
 </style>
 
-<h2>工時回報系統</h2>
 <style>
     th, td {
         width: 10%;
     }
 </style>
 
+<br />
+
+<h2>工時回報系統</h2>
+
+<br />
 
 <button class="btn btn-success" style="margin-bottom:10px" onclick="PopupForm('@Url.Action("AddOrEdit","ReportTimeSystems")')"><i class="fa fa-plus" aria-hidden="true"></i> 新增回報</button>
 <br /><br />
@@ -35,7 +39,7 @@
 <div style="width:97%">
     <table id="Rtable" class="table table-striped table-bordered" style="width:100%">
         <thead>
-            <tr>
+            <tr style="text-align:center">
                 <th>
 
                     @Html.DisplayNameFor(model => model.ReportName)
@@ -59,7 +63,7 @@
                     @Html.DisplayNameFor(model => model.ApplyDateTime)
                 </th>
                 <th>
-                    @Html.DisplayName("Edit/Delete")
+                    @Html.DisplayName("編輯/刪除")
                 </th>
 
 
@@ -92,22 +96,22 @@
 
                 },
                 "columnDefs": [
-                    { "targets": 0, "data": "ReportName", "width": "75px" },
-                    { "targets": 1, "data": "StartTime", "width": "75px", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:ss") }, "width": "135px" },
-                    { "targets": 2, "data": "EndTime", "width": "75px", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:ss") }, "width": "135px" },
-                    { "targets": 3, "data": "EventHours", "width": "100px"},
-                    { "targets": 4, "data": "Note" },
-                    { "targets": 5, "data": "EventName" },
-                    { "targets": 6, "data": "ApplyDateTime", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:ss") }, "width": "135px" },
+                    { "targets": 0, "data": "ReportName", "className": "text-center align-middle" },
+                    { "targets": 1, "data": "StartTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:ss") }, "className": "text-center align-middle" },
+                    { "targets": 2, "data": "EndTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:ss") }, "className": "text-center align-middle" },
+                    { "targets": 3, "data": "EventHours", "className": "text-center align-middle"},
+                    { "targets": 4, "data": "Note", "className": "align-middle" },
+                    { "targets": 5, "data": "EventName", "className": "text-center align-middle" },
+                    { "targets": 6, "data": "ApplyDateTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:ss") }, "className": "text-center align-middle" },
 
                     {
                         "targets": 7, "data": "ReportID", "render": function (data) {
                             
-                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/ReportTimeSystems/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
+                            return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/ReportTimeSystems/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px; background-color:#FF0000' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
                         },
                         "orderable": false,
                         "searchable": false,
-                        "width": "150px"
+                        "className": "text-center align-middle"
                     }
 
 

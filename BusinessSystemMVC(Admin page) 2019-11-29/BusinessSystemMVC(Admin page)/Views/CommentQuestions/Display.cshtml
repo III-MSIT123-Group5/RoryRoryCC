@@ -174,7 +174,7 @@
                         { "targets": 2, "data": "Question", "width": "400px" },
                         {
                             "targets": 3, "data": "CommentQuestionID", "render": function (data) {
-                                return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/CommentQuestions/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
+                                return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/CommentQuestions/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px; background-color:#FF0000' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
                             },
                             "orderable": false,
                             "searchable": false,

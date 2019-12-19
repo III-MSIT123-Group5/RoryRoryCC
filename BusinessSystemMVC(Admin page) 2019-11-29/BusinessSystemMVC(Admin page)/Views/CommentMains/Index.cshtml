@@ -62,7 +62,6 @@
     @*@Scripts.Render("~/bundles/jquery")
         @RenderSection("scriptsAdd", required: false)*@
 
-    <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
 
@@ -109,7 +108,7 @@
                         { "targets": 4, "data": "SendTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "100px" },
                         {
                             "targets": 5, "data": "CommentMainID", "render": function (data) {
-                                return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/CommentMains/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
+                                return "<a class='btn btn-warning btn-sm' onclick=PopupForm('/CommentMains/AddOrEdit/" + data + "')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px; background-color:#FF0000' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
                             },
                             "orderable": false,
                             "searchable": false,

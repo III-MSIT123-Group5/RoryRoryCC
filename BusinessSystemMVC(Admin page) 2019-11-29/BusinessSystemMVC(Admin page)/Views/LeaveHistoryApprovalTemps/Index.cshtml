@@ -83,7 +83,7 @@
                     { "targets": 4, "data": "Status", "width": "100px", "color": "mediumseagreen", "className": "text-center align-middle" },
                     {
                         "targets": 5, "data": "ID", "render": function (data) {
-                            return "<a class='btn btn-warning btn-sm' onclick=PopupLeaveForm('@Url.Action("LeaveLoadDataDetail", "LeaveHistoryApprovalTemps")/" + data + "')><i class='fa fa - align - left'></i> 詳細資料</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Cancel('@Url.Action("CancelLeave", "LeaveHistoryApprovalTemps")/" + data + "')><i class='fa fa - ban' aria-hidden='true'></i></i> 取消申請</a>"
+                            return "<a class='btn btn-warning btn-sm' onclick=PopupLeaveForm('@Url.Action("LeaveLoadDataDetail", "LeaveHistoryApprovalTemps")/" + data + "')><i class='fa fa - align - left'></i> 詳細資料</a><a class='btn btn-danger btn-sm' style='margin-left:5px; background-color:#FF0000' onclick=Cancel('@Url.Action("CancelLeave", "LeaveHistoryApprovalTemps")/" + data + "')><i class='fa fa - ban' aria-hidden='true'></i></i> 取消申請</a>"
                         },
                         "orderable": false,
                         "searchable": false,
