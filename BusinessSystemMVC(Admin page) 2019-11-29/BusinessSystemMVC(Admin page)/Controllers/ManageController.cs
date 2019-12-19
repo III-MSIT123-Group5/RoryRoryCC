@@ -68,6 +68,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             var userId = User.Identity.GetUserId();
             var acc = db.AspNetUsers.Find(userId);
+            var qL = db.Employees.Find(EmployeeDetail.EmployeeID);
 
             var model = new IndexViewModel
             {
@@ -90,7 +91,10 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 PositionID = EmployeeDetail.PositionName,
                 ManagerID = EmployeeDetail.ManagerName,
                 Employed = EmployeeDetail.Employed,
-                Photo = "~/imgProfiles/" + EmployeeDetail.PhotoAdress  , 
+                Photo = "~/imgProfiles/" + EmployeeDetail.PhotoAdress,
+                SpecialLeaves = qL.SpecialLeaveHours,
+                PersonalLeaves = qL.PersonalLeaveHours,
+                SickLeaves=qL.SickLeaveHours
             };
             return View(model);
         }
