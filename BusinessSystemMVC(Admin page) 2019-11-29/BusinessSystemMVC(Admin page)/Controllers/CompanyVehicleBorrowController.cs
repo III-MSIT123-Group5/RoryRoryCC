@@ -22,7 +22,11 @@ namespace EIPBussinessSystem_MVC.Controllers
 
             return View();
         }
-       
+  
+
+
+
+
         [HttpPost]
         //[AllowAnonymous]
         public ActionResult Post1(DateTime dtS,DateTime dtE,string LNid,string purpose)
@@ -62,7 +66,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                              c.brand,
                              c.serial,
                              c.MaxPassenger,
-                              c.Office.office_name
+                             c.Office.office_name
                          };
             return Json(Canuse, JsonRequestBehavior.AllowGet);
         }
@@ -75,6 +79,7 @@ namespace EIPBussinessSystem_MVC.Controllers
                             p.LicenseNumber,
                             p.StartDateTime,
                             p.EndDateTime
+                            
                         };
             var jsonitems = Json(items);
             return Json(items,JsonRequestBehavior.AllowGet);
