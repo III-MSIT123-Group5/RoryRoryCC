@@ -294,8 +294,8 @@ public ActionResult Create(LeaveHistoryApprovalTempViewModel VM)
     {
         var emp = db.Employees.Find(EmployeeDetail.EmployeeID);
         var NewLeave = new LeaveHistoryApprovalTemp();
-        NewLeave.StartTime = new DateTime(VM.StartYear, VM.StartMonth, VM.StartDay, VM.StartHour, 0, 0);
-        NewLeave.EndTime = new DateTime(VM.EndYear, VM.EndMonth, VM.EndDay, VM.EndHour, 0, 0);
+        NewLeave.StartTime = new DateTime(VM.StartDate.Year, VM.StartDate.Month, VM.StartDate.Day, VM.StartHour, 0, 0);
+        NewLeave.EndTime = new DateTime(VM.EndDate.Year, VM.EndDate.Month, VM.EndDate.Day, VM.EndHour, 0, 0);
         int LeaveHours = Convert.ToInt32((NewLeave.EndTime - NewLeave.StartTime).TotalHours);  //總時數
         var HoursDeRest = LeaveHours;   //請假時數
         var qLeaveList = db.LeaveHistories.Where(p => p.employeeID == EmployeeDetail.EmployeeID && ((NewLeave.StartTime >= p.StartTime && NewLeave.StartTime < p.EndTime) || (NewLeave.EndTime > p.StartTime && NewLeave.EndTime <= p.EndTime))).Select(p => p.employeeID);
@@ -418,57 +418,6 @@ public ActionResult Create(LeaveHistoryApprovalTempViewModel VM)
     }
     return View(VM);
 }
-
-[HttpPost]
-[AllowAnonymous]
-public ActionResult GetNewYearTime()
-{
-    DateTime dt = DateTime.Now.AddDays(3);
-    List<int> L = new List<int>();
-    for (int i = dt.Year; i <= dt.Year + 1; i++)
-    {
-        L.Add(i);
-    }
-    var q = L.Select(p => new { tx = p.ToString(), va = p });
-    return Json(q, JsonRequestBehavior.AllowGet);
-}
-
-
-[AllowAnonymous]
-public ActionResult GetNewMonthTime(int thisYEAR)
-{
-    DateTime dt = DateTime.Now.AddDays(3);
-    List<int> List = new List<int>();
-    if (thisYEAR == dt.Year)
-    {
-        for (int i = dt.Month; i <= 12; i++)
-        {
-            List.Add(i);
-        }
-    }
-    else
-    {
-        for (int i = 1; i <= 12; i++)
-        {
-            List.Add(i);
-        }
-    }
-    return Json(List.Select(p => new { Tx = p.ToString(), Va = p }), JsonRequestBehavior.AllowGet);
-}
-
-[HttpPost]
-[AllowAnonymous]
-public int GetNewDayTime(int thisYEAR, int thisMONTH)
-{
-    DateTime dt = DateTime.Now.AddDays(3);
-    int data = 1;
-    if (thisYEAR == dt.Year && thisMONTH == dt.Month)
-    {
-        data = dt.Day;
-    }
-    return data;
-}
-
 
 
 

@@ -76,6 +76,12 @@ namespace BusinessSystemMVC_Admin_page_.Models
 
         [Display(Name = "個人照片")]
         public string Photo { get; set; }
+        [Display(Name = "特休剩餘時數")]
+        public int SpecialLeaves { get; set; }
+        [Display(Name = "事假剩餘時數")]
+        public int PersonalLeaves { get; set; }
+        [Display(Name = "病假剩餘時數")]
+        public int SickLeaves { get; set; }
     }
 
     public class ManageLoginsViewModel
