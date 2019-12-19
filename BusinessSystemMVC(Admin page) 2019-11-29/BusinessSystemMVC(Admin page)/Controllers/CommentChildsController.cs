@@ -195,8 +195,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
                      ChildNum = q[i],
                      Rate = lastChar[i],
-                     ReplyTime = DateTime.Now
-                                
+                     ReplyTime = DateTime.Now,
+                     CommentMainID = cid,
+                     
                      });
 
                     db.SaveChanges();

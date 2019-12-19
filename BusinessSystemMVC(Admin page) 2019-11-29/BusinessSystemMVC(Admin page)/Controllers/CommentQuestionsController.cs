@@ -139,7 +139,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             if (id == 0)
             {
                 
-                return View(new CommentQuestion(){CommentContentID =ccid});
+                return View(new CommentQuestion(){CommentContentID = ccid});
 
             }
             else
@@ -205,8 +205,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
-                CommentQuestion c = db.CommentQuestions.Where(x => x.CommentQuestionID == id).FirstOrDefault<CommentQuestion>();
-                db.CommentQuestions.Remove(c);
+                CommentQuestion cq = db.CommentQuestions.Find(id);
+                db.CommentQuestions.Remove(cq);
                 db.SaveChanges();
 
                 return Json(new { success = true, message = "刪除成功" }, JsonRequestBehavior.AllowGet);
@@ -501,7 +501,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddOrEditCC(int coid,int id = 0)
+        public ActionResult AddOrEditCC(int coid,int id)
         {
 
             if (id == 0)
@@ -531,19 +531,19 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     {
                         CommentOptionID = c.CommentOptionID,
                         CommentContent1 = c.CommentContent1,
-                        CommentContentID = c.CommentContentID,
+                        //CommentContentID = c.CommentContentID,
 
                     });
                     db.SaveChanges();
 
-                    return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = true, message = "調查主題新增成功" }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
                     db.Entry(c).State = EntityState.Modified;
                     db.SaveChanges();
 
-                    return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = true, message = "調查主題修改成功" }, JsonRequestBehavior.AllowGet);
                 }
 
             }
@@ -554,8 +554,11 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
-                CommentContent c = db.CommentContents.Where(x => x.CommentContentID == id).FirstOrDefault<CommentContent>();
-                db.CommentContents.Remove(c);
+                //CommentContent c = db.CommentContents.Where(x => x.CommentContentID == id).FirstOrDefault<CommentContent>();
+
+                CommentContent cc = db.CommentContents.Find(id);
+
+                db.CommentContents.Remove(cc);
                 db.SaveChanges();
 
                 return Json(new { success = true, message = "刪除成功" }, JsonRequestBehavior.AllowGet);
@@ -566,30 +569,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
 
-        // GET: CommentQuestions/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.CommentContentID = new SelectList(db.CommentContents, "CommentContentID", "CommentContent1");
-        //    return View();
-        //}
-
-        // POST: CommentQuestions/Create
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "CommentContentID,CommentQuestionID,Question")] CommentQuestion commentQuestion)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.CommentQuestions.Add(commentQuestion);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    ViewBag.CommentContentID = new SelectList(db.CommentContents, "CommentContentID", "CommentContent1", commentQuestion.CommentContentID);
-        //    return View(commentQuestion);
-        //}
+       
 
         // GET: CommentQuestions/Edit/5
         public ActionResult Edit(int? id)

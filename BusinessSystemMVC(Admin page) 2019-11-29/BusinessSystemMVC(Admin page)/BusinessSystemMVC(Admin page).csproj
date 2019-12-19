@@ -1224,6 +1224,7 @@
     <Content Include="fonts\Noto\NotoSansMonoCJKtc-Bold.otf" />
     <Content Include="fonts\Noto\NotoSansMonoCJKtc-Regular.otf" />
     <Content Include="fonts\經典行楷繁.ttf" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1406,19 +1407,12 @@
     <Content Include="Views\CommentChilds\Reply.cshtml" />
     <Content Include="Views\LeaveHistoryApprovalTemps\SignLeaveLoadDataDetail.cshtml" />
     <Content Include="Views\LeaveHistoryApprovalTemps\FinishSignLeaveLoadDataDetail.cshtml" />
-    <Content Include="Views\CommentQ\AddOrEdit.cshtml" />
-    <Content Include="Views\CommentQ\Create.cshtml" />
-    <Content Include="Views\CommentQ\Delete.cshtml" />
-    <Content Include="Views\CommentQ\Details.cshtml" />
-    <Content Include="Views\CommentQ\Edit.cshtml" />
-    <Content Include="Views\CommentQ\Index.cshtml" />
     <Content Include="Views\CommentQuestions\Create.cshtml" />
     <Content Include="Views\CommentQuestions\Delete.cshtml" />
     <Content Include="Views\CommentQuestions\Details.cshtml" />
     <Content Include="Views\CommentQuestions\Edit.cshtml" />
     <Content Include="Views\CommentQuestions\Index.cshtml" />
     <Content Include="Views\CommentQuestions\AddOrEdit.cshtml" />
-    <Content Include="Views\CommentQ\AddOrEdit2.cshtml" />
     <Content Include="Views\CommentQuestions\Display.cshtml" />
     <Content Include="Views\ReportTimeSystems\Create.cshtml" />
     <Content Include="Views\ReportTimeSystems\Delete.cshtml" />
@@ -1426,7 +1420,6 @@
     <Content Include="Views\ReportTimeSystems\Edit.cshtml" />
     <Content Include="Views\ReportTimeSystems\Index.cshtml" />
     <Content Include="Views\ReportTimeSystems\AddOrEdit.cshtml" />
-    <Content Include="Views\EmployeeApprovalTemps\EditEmployeeIndex.cshtml" />
     <Content Include="Views\CompanyVehicles\AddOrEdit3.cshtml" />
     <Content Include="Views\EmployeeApprovalTemps\EditLoadDataDetail.cshtml" />
     <Content Include="Views\LeaveHistories\Index.cshtml" />
@@ -1438,6 +1431,8 @@
     <Content Include="Views\CommentQuestions\DisplayCommentOptions.cshtml" />
     <Content Include="Views\CommentQuestions\AddOrEditCC.cshtml" />
     <Content Include="Views\CommentQuestions\AddOrEditCO.cshtml" />
+    <Content Include="Views\Shared\_CommentQuestionsAndMainsPartialView.cshtml" />
+    <Content Include="Views\CommentMains\Observe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
