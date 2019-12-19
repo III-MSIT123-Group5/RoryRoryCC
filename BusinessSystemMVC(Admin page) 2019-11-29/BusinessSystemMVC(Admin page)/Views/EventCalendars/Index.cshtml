@@ -46,9 +46,11 @@
 </script>
 <br />
 
-<div>
-    <button class="btn btn-success" style="margin-bottom:10px" id='UpdateEvent' onclick="PopupForm('@Url.Action("AddOrEdit","EventCalendars")')"><i class="fa fa-plus" aria-hidden="true"></i> 新增</button>
-
+<div style="width:950px">
+    <button class="btn btn-success" style="margin-bottom:10px;float:left" id='UpdateEvent' onclick="PopupForm('@Url.Action("AddOrEdit","EventCalendars")')"><i class="fa fa-plus" aria-hidden="true"></i> 新增</button>
+    <button class="btn btn-danger" style="margin-bottom:10px;float:right" id='trash'><i class="fa fa-trash" aria-hidden="true"></i> 刪除</button>
+    
+    
 </div>
 
 <br />
@@ -101,8 +103,12 @@
 
         var events = [];
         $(document).ready(function () {
-
-
+            var mousex;
+            var mousey;
+            $(document).on('mouseup', function (e) {
+                mousex = e.pageX;
+                mousey = e.pageY;
+            })
             $.ajax({
                 type: "GET",
                 url:'@Url.Action("Getevent", "EventCalendars")',
@@ -125,16 +131,19 @@
                             })
 
                     })
-                    console.log(events);
+                    
                     GenerateCalender(events);
                     
                 },
                 error: function (error) {
                     alert('failed');
-                    console.log(error)
+                    
                 }
-
+                
             })
+            
+
+
 
             $("#UpdateEvent").hover(function () {
                     //$(this).css('color', '#b4c9ef');
@@ -169,7 +178,6 @@
                         PopupEditForm('@Url.Action("AddOrEdit","EventCalendars")/' + calID);
                         
                     },
-                    
                     eventTimeFormat: {
                         hour: 'numeric',
                         //hour: '2-digit',
@@ -179,7 +187,31 @@
                         //meridiem: 'short',
                         hour12: false
                     },
-                    displayEventEnd: true
+                    displayEventEnd: true,
+                    eventDragStop: function (calEvent, jsEvent, ui, view) {
+                        
+                            var trashL = $("#trash").offset().left;
+                            var trashT = $("#trash").offset().top;
+                            var trashR = trashL + $("#trash").width();
+                            var trashB = trashT + $("#trash").height();
+
+                            if (mousex > trashL &&
+                                mousex < trashR &&
+                                mousey > trashT &&
+                                mousey < trashB) {
+                                
+                                Delete(calEvent.event.id);
+                            }
+
+                    }
+                    //{
+                        
+
+                        //})
+                        //if (isEventOverDiv(jsEvent.x, jsEvent.y)) {
+                        //    Delete(calEvent.event.id);
+                        //}
+                    //}
                     //eventDragStop: function (calEvent, jsEvent, view) {
                     //    if
                     //}
@@ -231,7 +263,7 @@
                     
                 });
         }
-
+       
 
         function PopupEditForm(url) {
             var formDiv = $('<div/>');
@@ -314,7 +346,7 @@
             if (confirm('確定要刪除此筆嗎?')) {
                 $.ajax({
                     type: "POST",
-                    url: '/EventCalendars/Delete/' + id,
+                    url: '@Url.Action("Delete", "EventCalendars")/' + id,
                     success: function (data) {
                         if (data.success) {
 
@@ -330,17 +362,10 @@
                 location.reload(); 
             }
         }
-        function drag(id) {
-
-        }
+        
 
 
-        function dragout(id) {
-            
-
-
-
-        }
+        
     </script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
