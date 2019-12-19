@@ -28,7 +28,7 @@
         }
 
         .multiselect-selected-text {
-            color: orange;
+            color: #438496;
         }
     </style>
 
@@ -50,25 +50,25 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.CommentContentID, "意見類型", htmlAttributes: new { @class = "control-label col-md-2 label" })
+                        @Html.LabelFor(model => model.CommentContentID, "意見類型", htmlAttributes: new { @class = "control-label col-md-2 label", style="font-size:22px" })
                         <div @*class="col-md-10"*@>
-                            @Html.DropDownGroupList("CommentContent", commentContentItems, "請選擇意見類型", htmlAttributes: new { @class = "label", style = "Width:400px;height:40px" })
+                            @Html.DropDownGroupList("CommentContent", commentContentItems, "請選擇意見類型", htmlAttributes: new { @class = "label", style = "Width:400px;height:40px;margin-left:10px" })
 
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.CommentName, "意見名稱", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.CommentName, "意見名稱", htmlAttributes: new { @class = "control-label col-md-2", style = "font-size:22px" })
                         <div @*class="col-md-10"*@>
-                            @Html.EditorFor(model => model.CommentName, new { htmlAttributes = new { @class = "form-control", style = "Width:400px" } })
+                            @Html.EditorFor(model => model.CommentName, new { htmlAttributes = new { @class = "form-control", style = "Width:400px;margin-left:10px" } })
                             @Html.ValidationMessageFor(model => model.CommentName, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Employee.Department, "發送部門", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.Employee.Department, "發送部門", htmlAttributes: new { @class = "control-label col-md-2", style = "font-size:22px" })
                         <div @*class="col-md-10"*@>
-                            <select id="mul" multiple="multiple" style="display:none;">
+                            <select id="mul" multiple="multiple" style="display:none;margin-left:10px">
                                 <option value="multiselect-all">select all</option>
                             </select>
                         </div>
@@ -82,9 +82,9 @@
                 <div class="col-md-6">
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.CommentContent.CommentQuestions, "調查題目", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.CommentContent.CommentQuestions, "調查題目", htmlAttributes: new { @class = "control-label col-md-2", style = "font-size:24px" })
                         <div @*class="col-md-10"*@>
-                            <table class="table table-bordered" id="tableQ" style="width:600px">
+                            <table class="table table-bordered" id="tableQ" style="width:600px;margin-left:10px">
                                 @*<tr>
                         <th>@Html.CheckBox("CheckAll", false, new { id = "select_all" })</th>*@
 
@@ -99,12 +99,12 @@
                     </div>
 
 
-
-                    <div class="form-group">
+                    <br/>
+                    <div class="form-group" style="margin-left:20px">
                         <div @*class="col-md-offset-2 col-md-10"*@>
-                            <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
+                            <input type="reset" value="清除" class="btn btn-warning" style="margin-right:20px" />
                             @*<input type="submit" value="送出貼文" class="btn btn-success" style="margin-right:10px" />*@
-                            <input type="button" id="test" value="送出" class="btn btn-success" style="margin-right:10px" />
+                            <input type="button" id="test" value="送出調查" class="btn btn-success" style="margin-right:10px" />
                         </div>
                     </div>
 
@@ -114,9 +114,9 @@
             </div>
             }
 
-            <div>
+            @*<div>
                 @Html.ActionLink("回上一頁", "Index")
-            </div>
+            </div>*@
 
             <link rel="stylesheet" href="~/Content/bootstrap-multiselect.css" type="text/css">
 
@@ -206,13 +206,13 @@
                     })
                         .done(function (datas) {
                             //<th><input type='checkbox' name='HeaderCheckbox' id='HeaderCheckbox'></th>
-                            $('#tableQ').append("<tr><th><input type='checkbox' name='HeaderCheckbox' id='HeaderCheckbox'></th><th>提問編號</th><th>題目</th></tr>");
+                            $('#tableQ').append("<tr><th>提問編號</th><th>題目</th></tr>");
                             for (var j = 0; j < datas.length; j++) {
 
                                 if (datas[j].CommentContentID == s) {
 
                                 $('#tableQ').append("<tr>");
-                                $('#tableQ').append("<td><input type='checkbox' class='cq' name='checkbox' value='" + datas[j].CommentQuestionID + "'></td>");
+                                //$('#tableQ').append("<td><input type='checkbox' class='cq' name='checkbox' value='" + datas[j].CommentQuestionID + "'></td>");
                                 $('#tableQ').append("<td>" + datas[j].CommentQuestionID + "</td>");
                                 $('#tableQ').append("<td>" + datas[j].Question + "</td>");
                                 $('#tableQ').append("</tr>");
@@ -311,6 +311,9 @@
                         dataType: "json"
                     }).done(function (data) {
                         if (data.success) {
+
+                            setTimeout("history.back();", 2000)
+
                             $.notify(data.message, {
                                 globalPosition: "top center",
                                 className: "success"

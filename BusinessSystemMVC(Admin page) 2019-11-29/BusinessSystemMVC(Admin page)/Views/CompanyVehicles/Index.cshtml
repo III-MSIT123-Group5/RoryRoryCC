@@ -21,19 +21,19 @@
 
 <br />
 
-<h2>公務車租借紀錄</h2>
+<h2>公務車管理</h2>
 
 
 @*<button onclick="location.href='/BulletinBoards/Create'" type="button" class="btn btn-success"><i class="fa fa-comment" aria-hidden="true"></i> 新增貼文</button>*@
 
 <br />
 
-<button class="btn btn-success" style="margin-bottom:10px" onclick="PopupForm('/CompanyVehicles/AddOrEdit2')"><i class="fa fa-plus" aria-hidden="true"></i> 新增公務車</button>
+<button class="btn btn-success" style="margin-bottom:10px" onclick="PopupForm('@Url.Action("AddOrEdit2","CompanyVehicles")')"><i class="fa fa-plus" aria-hidden="true"></i> 新增公務車</button>
 <br /><br />
 <div style="width:97%">
     <table id="Htable" class="table table-striped table-bordered" style="width:100%">
         <thead>
-            <tr>
+            <tr  class="text-center align-middle">
                 @*<th>公務車照片</th>*@
                 <th>車牌號碼</th>
                 <th>車輛年份</th>
@@ -85,16 +85,16 @@
                     //    "searchable": false,
                     //    "width": "300px"
                     //},
-                    { "targets": 0, "data": "LicenseNumber", "width": "75px" },
-                    { "targets": 1, "data": "VehicleYear", "width": "75px"},
-                    { "targets": 2, "data": "PurchaseDate", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD") }, "width": "135px"  },
-                    { "targets": 3, "data": "brand" },
-                    { "targets": 4, "data": "serial" },
-                    { "targets": 5, "data": "MaxPassenger" },
-                    { "targets": 6, "data": "officename" },
+                    { "targets": 0, "data": "LicenseNumber", "width": "75px", "className": "text-center align-middle" },
+                    { "targets": 1, "data": "VehicleYear", "width": "75px", "className": "text-center align-middle"},
+                    { "targets": 2, "data": "PurchaseDate", "width": "100px", "render": function (data) { return moment(data).format("YYYY-MM-DD") }, "width": "135px", "className": "text-center align-middle" },
+                    { "targets": 3, "data": "brand", "className": "text-center align-middle" },
+                    { "targets": 4, "data": "serial", "className": "text-center align-middle"},
+                    { "targets": 5, "data": "MaxPassenger", "className": "text-center align-middle" },
+                    { "targets": 6, "data": "officename", "className": "text-center align-middle" },
                     {
-                        "targets":7, "data": "LicenseNumber", "render": function (data) {
-                            return `<a class='btn btn-warning btn-sm' onclick=PopupForm('/CompanyVehicles/AddOrEdit/${data}')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete("${data}")><i class='fa fa-trash'></i> 刪除</a>`
+                        "targets": 7, "data": "LicenseNumber", "className": "text-center align-middle", "render": function (data) {
+                            return `<a class='btn btn-warning btn-sm' onclick=PopupForm('@Url.Action("AddOrEdit","CompanyVehicles")/${data}')><i class='fa fa-pencil'></i> 編輯</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete("${data}")><i class='fa fa-trash'></i> 刪除</a>`
                         },
                         "orderable": false,
                         "searchable": false,
@@ -181,7 +181,7 @@
             if (confirm('確定要刪除此筆貼文嗎?')) {
                 $.ajax({
                     type: "POST",
-                    url: '/CompanyVehicles/Delete/' + LNnum,
+                    url: '@Url.Action("Delete", "CompanyVehicles")/'+LNnum,
 
                     success: function (data) {
                         if (data.success) {

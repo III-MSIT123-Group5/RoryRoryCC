@@ -210,10 +210,14 @@ namespace EIPBussinessSystem_MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddOrEdit2(CompanyVehicle b)
+        public ActionResult AddOrEdit2(CompanyVehicle b /*CompanyVehicleViewModel g*/)
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
+                //string appPath = Request.PhysicalApplicationPath;
+                //string saveDir = "\\CarUpload\\";
+                //string savePath = appPath + saveDir + SourceFilename;
+                //string SavePath = savePath;
                 db.CompanyVehicles.Add(new CompanyVehicle()
                 {
                     LicenseNumber = b.LicenseNumber,

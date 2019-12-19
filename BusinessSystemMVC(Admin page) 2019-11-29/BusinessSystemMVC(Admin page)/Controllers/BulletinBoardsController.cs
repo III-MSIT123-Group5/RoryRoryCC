@@ -132,14 +132,14 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     });
                     db.SaveChanges();
 
-                    return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = true, message = "貼文發布成功" }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
                     db.Entry(b).State = EntityState.Modified;
                     db.SaveChanges();
 
-                    return Json(new { success = true, message = "修改成功" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = true, message = "貼文修改成功" }, JsonRequestBehavior.AllowGet);
                 }
 
             }
@@ -154,7 +154,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 db.BulletinBoards.Remove(b);
                 db.SaveChanges();
 
-                return Json(new { success = true, message = "刪除成功" }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = true, message = "貼文刪除成功" }, JsonRequestBehavior.AllowGet);
 
 
             }

@@ -430,6 +430,27 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult Observe(int id)
+        {
+            var q = from cm in db.CommentMains
+                    join cr in db.CommentReplies
+                    on cm.CommentMainID equals cr.CommentMainID
+                    select new
+                    {
+                        cm.CommentName,
+                      cr.ReplyNum,
+                      cr.Rate,
+                      cr.ChildNum
+
+                    };
+
+
+
+            return View(new CommentMain());
+        }
+
+
         // POST: CommentMains/Create
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
