@@ -85,7 +85,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                        select new
                        {
                            m.meetingID,
-                           m.officeID,
+                           m.Office.office_name,
                            m.max_member,
                            m.RoomAddress,
                            m.meetingName
