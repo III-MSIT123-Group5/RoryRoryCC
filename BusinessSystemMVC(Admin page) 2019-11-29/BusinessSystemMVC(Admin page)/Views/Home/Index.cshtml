@@ -100,11 +100,16 @@
         var Popup, dataTable;
         var events = [];
         $(document).ready(function () {
+
+
             $.ajax({
                 type: "GET",
                 url:'@Url.Action("Getevent", "EventCalendars")',
                 success: function (data) {
+                    
+
                     $.each(data, function (i, v) {
+
                         events.push({
                             id: v.CalendarID,
                             DepartmentID: v.DepartmentID,
@@ -114,21 +119,30 @@
                             color: v.ThemeColor,
                             Location: v.Location,
                             IsImportant: v.IsImportant,
-                            Description: v.Description
+                            Description: v.Description,
+                            
                             })
+
                     })
+                    console.log(events);
                     GenerateCalender(events);
+                    
                 },
                 error: function (error) {
                     alert('failed');
                     console.log(error)
                 }
+
             })
 
             function GenerateCalender(events1) {
-                var calendarEl = document.getElementById('evecalendar');
-                var calendar = new FullCalendar.Calendar(calendarEl, {
 
+
+                    
+                var calendarEl = document.getElementById('evecalendar');
+
+
+                var calendar = new FullCalendar.Calendar(calendarEl, {
                     plugins: ['interaction', 'dayGrid', 'timeGrid', 'list'],
                     header: {
                         left: 'prev,next today',
@@ -144,9 +158,25 @@
                     eventClick: function (calEvent, jsEvent, view) {
                         var calID = calEvent.event.id;
                         PopupEditForm('@Url.Action("AddOrEdit","EventCalendars")/' + calID);
-                    }
+                        
+                    },
+                    
+                    eventTimeFormat: {
+                        hour: 'numeric',
+                        //hour: '2-digit',
+                        minute: 'numeric',
+                        //minute: '2-digit',
+                        meridiem:false,
+                        //meridiem: 'short',
+                        hour12: false
+                    },
+                    displayEventEnd: true
+                    
+
                 });
+
                 calendar.render();
+                
             }
         })
     </script>
