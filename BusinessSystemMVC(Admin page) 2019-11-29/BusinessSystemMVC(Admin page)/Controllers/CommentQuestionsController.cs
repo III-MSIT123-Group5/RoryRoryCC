@@ -491,12 +491,12 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddOrEditCC(int id = 0)
+        public ActionResult AddOrEditCC(int coid,int id = 0)
         {
 
             if (id == 0)
             {
-                return View(new CommentContent());
+                return View(new CommentContent() { CommentOptionID=coid});
             }
             else
             {

@@ -1433,6 +1433,10 @@
     <Content Include="Views\Shared\_ReportTimeSystemPartial.cshtml" />
     <Content Include="Views\ReportTimeSystems\IndexManage.cshtml" />
     <Content Include="Views\ReportTimeSystems\IndexChart.cshtml" />
+    <Content Include="Views\CommentQuestions\DisplayCommentContents.cshtml" />
+    <Content Include="Views\CommentQuestions\DisplayCommentOptions.cshtml" />
+    <Content Include="Views\CommentQuestions\AddOrEditCC.cshtml" />
+    <Content Include="Views\CommentQuestions\AddOrEditCO.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
