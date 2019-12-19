@@ -95,18 +95,18 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             worksheet.Cells[rowIndex + 1, 6] = PLhs;
             worksheet.Cells[rowIndex + 1, 7] = SickLhs;
             worksheet.Cells[rowIndex + 1, 8] = SLhs+ PLhs+ SickLhs;
-            worksheet.get_Range("A1", $"H{qLev.Count()}").Font.Name = "標楷體";
-            worksheet.get_Range("A1", $"H{qLev.Count()}").Font.Size = 14;
+            worksheet.get_Range("A1", $"H{rowIndex-2}").Font.Name = "標楷體";
+            worksheet.get_Range("A1", $"H{rowIndex-2}").Font.Size = 14;
             worksheet.get_Range("A1", "D1").Borders.LineStyle = XlLineStyle.xlContinuous;
             worksheet.get_Range("A3", "H3").Borders.LineStyle = XlLineStyle.xlContinuous;
-            worksheet.get_Range("A4", $"H{qLev.Count()}").Borders.LineStyle = XlLineStyle.xlContinuous;
+            worksheet.get_Range("A4", $"H{rowIndex - 2}").Borders.LineStyle = XlLineStyle.xlContinuous;
             workbook.SaveAs($"D:\\2019_{EmployeeDetail.DepartmentName}請假記錄");
             workbook.Close();
             Marshal.ReleaseComObject(workbook);
             application.Quit();
             Marshal.FinalReleaseComObject(application);
 
-            return Json(new { success = true, message = "下載成功" }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, message = "下載成功，檔案已載於磁碟Ｄ" }, JsonRequestBehavior.AllowGet);
         }
 
     }

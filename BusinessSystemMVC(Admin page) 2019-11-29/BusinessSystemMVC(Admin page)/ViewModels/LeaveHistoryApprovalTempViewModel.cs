@@ -12,20 +12,13 @@ namespace BusinessSystemMVC_Admin_page_.ViewModels
         public int leaveID { get; set; }
         public string Description { get; set; }
         public IEnumerable<HttpPostedFileBase> AppendixFile { get; set; }
+
         [Required]
-        public int StartYear { get; set; }
+        public DateTime StartDate { get; set; }
         [Required]
-        public int StartMonth { get; set; }
-        [Required]
-        public int StartDay { get; set; }
+        public DateTime EndDate { get; set; }
         [Required]
         public int StartHour { get; set; }
-        [Required]
-        public int EndYear { get; set; }
-        [Required]
-        public int EndMonth { get; set; }
-        [Required]
-        public int EndDay { get; set; }
         [Required]
         public int EndHour { get; set; }
     }

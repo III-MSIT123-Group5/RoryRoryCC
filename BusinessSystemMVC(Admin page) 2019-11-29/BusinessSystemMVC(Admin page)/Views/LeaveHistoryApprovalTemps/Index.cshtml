@@ -12,6 +12,7 @@
 
         td {
             font-family: '微軟正黑體';
+            font-family: '微軟正黑體';
             font-weight: 600;
         }
     </style>
@@ -201,6 +202,7 @@
 
 
         //新增的Popupform================
+        //新增請假啦
         function PopupLeaveForm(Url) {
             var formDiv = $('<div/>');
             $.get(Url)
@@ -215,93 +217,48 @@
                         close: function () {
                             Popup.dialog('destroy').remove();
                         }
-                    });
+                    });                  
                     $("#leaveID").bind("change", function () {
                         if (this.value == 0 || this.value == 1) {
-                            GetNewYearTimes();
-                            $("#StartYear").bind("change", GetNewMonthTimes($("#StartYear"), $("#StartMonth")));
-                            $("#EndYear").bind("change", GetNewMonthTimes($("#EndYear"), $("#EndMonth")));
-                            $("#StartMonth").bind("change", GetNewDayTimes($("#StartYear"), $("#StartMonth"), $("#StartDay")));
-                            $("#EndMonth").bind("change", GetNewDayTimes($("#EndYear"), $("#EndMonth"), $("#EndDay")));
+                            $("#StartDateFrom").datepicker({
+                                minDate: +3,
+                                changeMonth: true,
+                                numberOfMonths: 1,
+                                dateFormat:"yy/mm/dd",
+                                onClose: function (selectedDate) {
+                                    $("#EndDateFrom").datepicker("option", "minDate", selectedDate);
+                                }
+                            });
+                            $("#EndDateFrom").datepicker({
+                                changeMonth: true,
+                                numberOfMonths: 1,
+                                dateFormat: "yy/mm/dd",
+                                onClose: function (selectedDate) {
+                                    $("#StartDateFrom").datepicker("option", "maxDate", selectedDate);
+                                }
+                            });
+                        }
+                        else {
+                            $("#StartDateFrom").datepicker({
+                                changeMonth: true,
+                                numberOfMonths: 1,
+                                dateFormat: "yy/mm/dd",
+                                onClose: function (selectedDate) {
+                                    $("#EndDateFrom").datepicker("option", "minDate", selectedDate);
+                                }
+                            });
+                            $("#EndDateFrom").datepicker({
+                                changeMonth: true,
+                                numberOfMonths: 1,
+                                dateFormat: "yy/mm/dd",
+                                onClose: function (selectedDate) {
+                                    $("#StartDateFrom").datepicker("option", "maxDate", selectedDate);
+                                }
+                            });
                         }
                     })
-                    $("#StartMonth").bind("change", function () {
-                        GetNewDayTimes($("#StartYear"), $("#StartMonth"), $("#StartDay"));
-                    });
-                    $("#EndMonth").bind("change", function () {
-                        GetNewDayTimes($("#EndYear"), $("#EndMonth"), $("#EndDay"));
-                    });
-                    $("#StartYear").bind("change", GetNewMonthTimes($("#StartYear"), $("#StartMonth")));
-                    $("#EndYear").bind("change", GetNewMonthTimes($("#EndYear"), $("#EndMonth")));
-
-                    $("#EndYear").bind("change", GetNewMonthTimes($("#EndYear"), $("#EndMonth")));
-
                 });
         }
-        //大小月
-        function GetNewDays(yearlab , monthlab , daylab) {
-            daylab.empty();
-            for (let i = 1; i <= getDays(yearlab.val(), monthlab.val()); i++) {
-                var ops = new Option(i, i);
-                daylab.append(ops);
-            }
-        }
-       function getDays(year , month) {
-        var yy = year;              /*year.val();*/
-        var mm = month;      /*month.val();*/
-        var dd = new Date(yy, mm, 0);
-        var days = dd.getDate();
-         return days;
-       }
-        //依假別給時間
-        function GetNewDayTimes(yearlab , monthlab ,daylab ) {
-            $.ajax({
-                type: "post",
-                url: "@Url.Action("GetNewDayTime", "LeaveHistoryApprovalTemps")",
-                data: {
-                    thisYEAR: yearlab.val(),
-                    thisMONTH: monthlab.val()
-                },
-            }).done(function(data){
-                    daylab.empty();
-                for (let i = data; i <= getDays(yearlab.val(), yearlab.val()); i++) {
-                       var ops = new Option(i, i);
-                        daylab.append(ops);
-                    }
-                }).fail({})
-        }
-
-        //新增Popup裡的Scripts================
-        function GetNewYearTimes() {
-            $.ajax({
-                type: "Post",
-                url: "@Url.Action("GetNewYearTime", "LeaveHistoryApprovalTemps")",
-                dataType: "Json",
-            }).done(function (datas) {
-                $("#StartYear").empty();
-                $("#EndYear").empty();
-                datas.forEach(function (item) {
-                    $("#EndYear").append(new Option(item.tx, item.va));
-                    $("#StartYear").append(new Option(item.tx, item.va));
-                });
-                }).fail();
-        }
-        function GetNewMonthTimes(thisyearlab , monthLab) {
-            $.ajax({
-            type: "GET",
-                url: "@Url.Action("GetNewMonthTime", "LeaveHistoryApprovalTemps")",
-                data: { thisYEAR: thisyearlab.val() },
-                dataType: "Json",
-            }).done(function (datas) {
-                monthLab.empty();
-                datas.forEach(function (item) {
-                    monthLab.append(new Option(item.Tx, item.Va));
-                });
-                }).fail();
-        }
-
-      //新增Popup裡的Scripts================
-
 
         function PopupLeaveDetail(Url) {
             var formDiv = $('<div/>');
@@ -320,7 +277,6 @@
                     });
                 });
         }
-
 
         function Cancel(url) { //不要真刪，SignState && Reject為true為取消
             if (confirm('確定要取消此筆申請嗎?')) {
@@ -357,14 +313,5 @@
                 });
             }
         }
-        //<<<<<<<<<<<<<<<申請<<<<<<<<<<<<<<<
-
-        //>>>>>>>>>>>>>>簽核>>>>>>>>>>>>>>>>
-
-
-
-
-
-        //<<<<<<<<<<<<<<簽核<<<<<<<<<<<<<<<<<<<
     </script>
 }
