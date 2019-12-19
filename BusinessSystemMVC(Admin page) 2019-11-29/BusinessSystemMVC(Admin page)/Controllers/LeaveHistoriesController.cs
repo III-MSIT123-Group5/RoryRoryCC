@@ -35,13 +35,12 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         //匯出年度請假記錄到Excel
         public ActionResult ExportExcel()
         {
-            //todo GropBy
-            //var qLev = from item in db.LeaveHistories
-            //           where item.Employee.DepartmentID == EmployeeDetail.DepartmentID
-            //           group item by item.Employee into g
-            //           select new { empName =  }
-            var qLev = db.LeaveHistories.Where(p => p.Employee.DepartmentID == EmployeeDetail.DepartmentID).OrderBy(p=>p.employeeID).ToList();
-            
+            var qLev = db.LeaveHistories.Where(p => p.Employee.DepartmentID == EmployeeDetail.DepartmentID).OrderBy(p => p.employeeID).ToList();
+            var qLevByLeaveID = (from c in db.LeaveHistories
+                       group c by c.leaveID into g
+                       orderby g.Key
+                       select new { LeaveID = g.Key, Count = g.Count(), Group = g }).ToList();
+
             Application application = new Application();
             Workbook workbook = application.Workbooks.Add(Missing.Value);
             Worksheet worksheet = workbook.ActiveSheet;
@@ -60,18 +59,42 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             worksheet.Cells[3, 7] = "結束日期";
             worksheet.Cells[3, 8] = "時數";
             //--------------------------------------
+            int rowIndex = 5;
             for ( int i = 0 ;i<qLev.Count();i++)
             {
                 var item = qLev[i];
-                worksheet.Cells[i + 4, 1 ] = item.Employee.EmployeeName;
+                    worksheet.Cells[i + 4, 1] = item.Employee.EmployeeName;
                 worksheet.Cells[i + 4, 2] = item.Employee.Group.GroupName;
                 worksheet.Cells[i + 4, 3] = item.Employee.Position.position1;
                 worksheet.Cells[i + 4, 4] = item.Leave.leave_name;
                 worksheet.Cells[i + 4, 5] = item.ReleaseTime.ToString("yyyy/MM/dd HH:mm");
-                worksheet.Cells[i + 4, 6] = item.StartTime.ToString("yyyy/MM/dd HH:mm");
-                worksheet.Cells[i + 4, 7] = item.EndTime.ToString("yyyy/MM/dd HH:mm");
-                worksheet.Cells[i + 4, 8] = item.LeaveHours;
+                    worksheet.Cells[i + 4, 6] = item.StartTime.ToString("yyyy/MM/dd HH:mm");
+                    worksheet.Cells[i + 4, 7] = item.EndTime.ToString("yyyy/MM/dd HH:mm");
+                    worksheet.Cells[i + 4, 8] = item.LeaveHours;
+                rowIndex++;
             }
+            worksheet.Cells[rowIndex + 1, 4] = "時數總和";
+            worksheet.Cells[rowIndex, 5] = "特休";
+            worksheet.Cells[rowIndex, 6] = "事假";
+            worksheet.Cells[rowIndex, 7] = "病假";
+            worksheet.Cells[rowIndex, 8] = "總和";
+            int SLhs = 0, PLhs = 0, SickLhs = 0;
+            foreach (var sl in qLevByLeaveID[0].Group)
+            {
+                SLhs  += (int)sl.LeaveHours;
+            }
+            foreach (var sl in qLevByLeaveID[1].Group)
+            {
+                PLhs += (int)sl.LeaveHours;
+            }
+            foreach (var sl in qLevByLeaveID[2].Group)
+            {
+                SickLhs += (int)sl.LeaveHours;
+            }
+            worksheet.Cells[rowIndex + 1, 5] = SLhs;
+            worksheet.Cells[rowIndex + 1, 6] = PLhs;
+            worksheet.Cells[rowIndex + 1, 7] = SickLhs;
+            worksheet.Cells[rowIndex + 1, 8] = SLhs+ PLhs+ SickLhs;
             worksheet.get_Range("A1", $"H{qLev.Count()}").Font.Name = "標楷體";
             worksheet.get_Range("A1", $"H{qLev.Count()}").Font.Size = 14;
             worksheet.get_Range("A1", "D1").Borders.LineStyle = XlLineStyle.xlContinuous;
