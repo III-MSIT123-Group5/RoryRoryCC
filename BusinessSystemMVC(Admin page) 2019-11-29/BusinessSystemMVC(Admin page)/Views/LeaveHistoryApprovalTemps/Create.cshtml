@@ -16,30 +16,20 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.Label("起始時間")
+            @Html.Label("起始時間", new { @for = "StartDateFrom" })
             <div class="col-md-10">
-                <p>年／月／日／時</p>
-                @Html.DropDownList("StartYear", null, new { })/
-                @Html.DropDownList("StartMonth", null, new { @style = "width: 50px" })/
-                @Html.DropDownList("StartDay", null, new { @style = "width: 50px" })/
-                @Html.DropDownList("StartHour", null, new { @style = "width: 50px" })
-                @Html.ValidationMessageFor(model => model.StartYear, "", new { @class = "text-danger" })
-                @Html.ValidationMessageFor(model => model.StartMonth, "", new { @class = "text-danger" })
-                @Html.ValidationMessageFor(model => model.StartDay, "", new { @class = "text-danger" })
+                <p>日期與時間</p>
+                @Html.TextBoxFor(model => model.StartDate, new { @id = "StartDateFrom", @name = "StartDateFrom" })/
+            @Html.DropDownList("StartHour", null, new { @style = "width: 50px" })
                 @Html.ValidationMessageFor(model => model.StartHour, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            @Html.Label("結束時間")
+            @Html.Label("結束時間", new { @for = "EndDateFrom" })
             <div class="col-md-10">
-                <p>年／月／日／時</p>
-                @Html.DropDownList("EndYear", null, new { })/
-                @Html.DropDownList("EndMonth", null, new { @style = "width: 50px" })/
-                @Html.DropDownList("EndDay", null, new { @style = "width: 50px" })/
+                <p>日期與時間</p>
+                @Html.TextBoxFor(model => model.EndDate, new { @id = "EndDateFrom", @name = "EndDateFrom" })/
                 @Html.DropDownList("EndHour", null, new { @style = "width: 50px" })
-                @Html.ValidationMessageFor(model => model.EndYear, "", new { @class = "text-danger" })
-                @Html.ValidationMessageFor(model => model.EndMonth, "", new { @class = "text-danger" })
-                @Html.ValidationMessageFor(model => model.EndDay, "", new { @class = "text-danger" })
                 @Html.ValidationMessageFor(model => model.EndHour, "", new { @class = "text-danger" })
             </div>
         </div>

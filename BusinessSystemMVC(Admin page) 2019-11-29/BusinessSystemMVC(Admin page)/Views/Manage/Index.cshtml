@@ -1,5 +1,21 @@
 ﻿@model BusinessSystemMVC_Admin_page_.Models.IndexViewModel
 
+@section styles{
+<style>
+    h2 {
+        text-align: left;
+        font-family: 'NotoSansCJKtc-Bold';
+    }
+    dt {
+        text-align: left;
+        font-family: 'NotoSansCJKtc-Bold';
+    }
+    dd {
+        text-align: left;
+        font-family: '微軟正黑體';
+    }
+</style>
+    }
 
 <h2>個人檔案</h2>
 
@@ -7,18 +23,18 @@
 <div>
     <hr />
 
-    <dl class="dl-horizontal"  style="float:left ; width:500px ; margin-left:100px">      
+    <dl class="dl-horizontal" style="float:left ; width:500px ; margin-left:100px">
         <dt>@Html.DisplayNameFor(m => m.Photo)</dt>
         <dd>
             <div>
-                <img id="imgPhoto" src="@Url.Content(Model.Photo) "  style="height:250px" />
+                <img id="imgPhoto" src="@Url.Content(Model.Photo) " style="height:250px" />
             </div>
             @using (Html.BeginForm("UpdatePhoto", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", @enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
                 @*@Html.TextBoxFor(model => model.Photo, new {  @type = "file", @id="txtPhoto" })*@
                 @*@Html.TextBox("txtPhoto", @Html.DisplayFor(m => m.Photo), new { @class = "col-md-2 control-label", @disabled = "disabled" })*@
-                @Html.TextBox("PhotoAdress", null, new { @type = "file" ,@style="width:200px"})
+                @Html.TextBox("PhotoAdress", null, new { @type = "file", @style = "width:200px" })
                 @*@Html.TextBox("btnChangePhoto", "變更", new { @type = "button", @class = "btn btn-primary" })*@
                 @*@Html.TextBox("btnSavePhoto", "儲存", new { @type = "button", @class = "btn btn-primary" })*@
                 <button type="submit" title="執行多檔上傳" class="btn btn-primary" id="savePhoto" style="visibility:hidden">儲存並回首頁</button>
@@ -49,41 +65,53 @@
             }
             ]
         </dd>
-        </dl>
-        <dl class="dl-horizontal">
-            <dt>@Html.DisplayNameFor(m => m.Email)</dt>
-            <dd>
-                @Html.DisplayFor(m => m.Email)
-            </dd>
-            <dt>@Html.DisplayNameFor(m => m.Gender)</dt>
-            <dd>
-                @Html.DisplayFor(m => m.Gender)
-            </dd>
-            <dt>@Html.DisplayNameFor(m => m.OfficeName)</dt>
-            <dd>
-                @Html.DisplayFor(m => m.OfficeName)
-            </dd>
-            <dt>@Html.DisplayNameFor(m => m.DepartmentName)</dt>
-            <dd>
-                @Html.DisplayFor(m => m.DepartmentName)
-            </dd>
-            <dt>@Html.DisplayNameFor(m => m.GroupID)</dt>
-            <dd>
-                @Html.DisplayFor(m => m.GroupID)
-            </dd>
-            <dt>@Html.DisplayNameFor(m => m.PositionID)</dt>
-            <dd>
-                @Html.DisplayFor(m => m.PositionID)
-            </dd>
-            <dt>@Html.DisplayNameFor(m => m.ManagerID)</dt>
-            <dd>
-                @Html.DisplayFor(m => m.ManagerID)
-            </dd>
-            <dt>@Html.DisplayNameFor(m => m.Employed)</dt>
-            <dd>
-                @Html.DisplayFor(m => m.Employed)
-            </dd>
-        </dl>
+        <dt>@Html.DisplayNameFor(m => m.Email)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.Email)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">        
+        <dt>@Html.DisplayNameFor(m => m.Gender)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.Gender)
+        </dd>
+        <dt>@Html.DisplayNameFor(m => m.OfficeName)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.OfficeName)
+        </dd>
+        <dt>@Html.DisplayNameFor(m => m.DepartmentName)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.DepartmentName)
+        </dd>
+        <dt>@Html.DisplayNameFor(m => m.GroupID)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.GroupID)
+        </dd>
+        <dt>@Html.DisplayNameFor(m => m.PositionID)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.PositionID)
+        </dd>
+        <dt>@Html.DisplayNameFor(m => m.ManagerID)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.ManagerID)
+        </dd>
+        <dt>@Html.DisplayNameFor(m => m.Employed)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.Employed)
+        </dd>
+        <dt>@Html.DisplayNameFor(m => m.SpecialLeaves)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.SpecialLeaves)
+        </dd>
+        <dt>@Html.DisplayNameFor(m => m.PersonalLeaves)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.PersonalLeaves)
+        </dd>
+        <dt>@Html.DisplayNameFor(m => m.SickLeaves)</dt>
+        <dd>
+            @Html.DisplayFor(m => m.SickLeaves)
+        </dd>
+    </dl>
 
 </div>
 
