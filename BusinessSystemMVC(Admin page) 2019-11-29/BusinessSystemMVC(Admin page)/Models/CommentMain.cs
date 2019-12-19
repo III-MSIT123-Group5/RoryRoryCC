@@ -18,6 +18,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public CommentMain()
         {
             this.CommentChilds = new HashSet<CommentChild>();
+            this.CommentReplies = new HashSet<CommentReply>();
         }
     
         public int CommentMainID { get; set; }
@@ -32,5 +33,7 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public virtual ICollection<CommentChild> CommentChilds { get; set; }
         public virtual CommentContent CommentContent { get; set; }
         public virtual Employee Employee { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CommentReply> CommentReplies { get; set; }
     }
 }

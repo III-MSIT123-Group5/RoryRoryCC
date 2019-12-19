@@ -18,7 +18,7 @@
     @Html.HiddenFor(model => model.CommentQuestionID)
     @Html.HiddenFor(model => model.CommentContentID)
 
-    <div style="font-size:20px">
+    @*<div style="font-size:20px">
         <div class="form-group">
             <label>調查分類：</label>@Html.DropDownList("CommentOptions", (SelectList)ViewBag.SelectList, "請選擇分類", new { id = "CommentOptions1", style = "width:250px" })
 
@@ -30,7 +30,7 @@
             <label>調查項目：</label><select id="CommentQuestion" name="commentQuestion" style="width:250px"><option>------</option></select>
 
         </div>
-    </div>
+    </div>*@
 
 
     <div class="form-group">
@@ -62,7 +62,7 @@
 
 <link rel="stylesheet" href="~/Content/bootstrap-multiselect.css" type="text/css">
 
-@section scripts{
+@*@section scripts{
 
     <script src="/Scripts/moment.js"></script>
     <script src="~/Scripts/notify.min.js"></script>
@@ -138,6 +138,6 @@
         });
     }
     </script>
-}
+}*@
 </body>
 </html>

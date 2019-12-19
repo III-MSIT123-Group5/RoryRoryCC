@@ -18,8 +18,10 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public Nullable<int> ChildNum { get; set; }
         public Nullable<int> Rate { get; set; }
         public Nullable<System.DateTime> ReplyTime { get; set; }
+        public Nullable<int> CommentMainID { get; set; }
     
         public virtual CommentChild CommentChild { get; set; }
         public virtual CommentChild CommentChild1 { get; set; }
+        public virtual CommentMain CommentMain { get; set; }
     }
 }

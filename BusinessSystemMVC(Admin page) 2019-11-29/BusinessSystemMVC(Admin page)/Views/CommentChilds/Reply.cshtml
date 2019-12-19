@@ -6,11 +6,7 @@
     //Layout = null;
 }
 
-@section styles{
 
-
-
-}
 <html>
 <head>
     <link href="@Url.Content("//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css")" rel="stylesheet" type="text/css" />
@@ -32,51 +28,24 @@
             font-size: 1.5em;
             margin: 10px;
         }
-        /*//-------*/
-        /*.rating2 {
-            border: none;
-            float: left;
+
+        h2, h3, h5 {
+            font-family: 'NotoSansCJKtc-Bold';
+        }
+        h4 {
+            font-family: '微軟正黑體';
         }
 
-        .rating2 > input {
-            display: none;
+        #choosestar {
+            font-family: '微軟正黑體';
         }
 
-        .rating2 > label:before {
-            margin: 5px;
-            font-size: 1.25em;
-            font-family: FontAwesome;
-            display: inline-block;
-            content: "\f005";
+        #questionname {
+            border-bottom: 1px #000 solid;
+            padding-bottom: 5px;
+            font-size: 26px;
+            font-family: 'NotoSansCJKtc-Bold';
         }
-
-        .rating2 > .half:before {
-            content: "\f089";
-            position: absolute;
-        }
-
-            .rating2 > label {
-                color: #ddd;
-                float: right;
-            }*/
-
-            /***** CSS Magic to Highlight Stars on Hover *****/
-
-        /*.rating2 > input:checked ~ label, 
-        .rating2:not(:checked) > label:hover, 
-        .rating2:not(:checked) > label:hover ~ label {
-            color: #FFD700;
-        }*/
-     
-
-        /*.rating2 > input:checked + label:hover, 
-        .rating2 > input:checked ~ label:hover,
-        .rating2 > label:hover ~ input:checked ~ label, 
-        .rating2 > input:checked ~ label:hover ~ label {
-            color: #FFED85;
-        }*/
-
-        /****** Style Star Rating Widget *****/
 
         .rating {
             border: none;
@@ -123,51 +92,42 @@
     </style>
 </head>
 <body>
-    @using (Html.BeginForm())
+    @*@using (Html.BeginForm())*@
+
+
+    <h2>意見調查</h2>
+    <div id="topic"></div>
+
+    <br />
+    <h5 id="choosestar">請依照各項目的滿意度來點選星星</h5>
+    <br />
+
+    @using (Html.BeginForm("PostComment", "CommentChilds", FormMethod.Post))
     {
-        @Html.AntiForgeryToken()
 
-
-        <h2 id="topic"></h2>
-
-        <div id="StarArea" class="rating">
+        @*@Html.AntiForgeryToken()*@
+        <div id="StarArea">
             @*<fieldset class="rating">*@
-            @*<input  type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
-            <input  type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
-            <input  type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
-            <input  type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
-            <input  type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>*@
-        @*</fieldset>*@
-            <br />
+            @*<input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
+                <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
+                <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>*@
 
+            @*</fieldset>*@
         </div>
+       
 
 
 
-        @*@Html.HiddenFor(model => model.PostTime)
-            @Html.HiddenFor(model => model.Num)*@
+       
 
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.EmployeesCollection.EmployeeName, new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.EmployeesCollection.EmployeeName, new { @disabled = "disabled" })
-
-            </div>*@
-        <div class="form-group">
-            @*@Html.LabelFor(model => model.Content, "貼文內容", new { @class = "control-label" })
-
-                @Html.TextAreaFor(model => model.Content, new { rows = "8", cols = "150", @class = "form-control", @MaxLength = "1000" })
-                @Html.ValidationMessageFor(model => model.Content)*@
-
-        </div>
-
-
-        <div class="form-group" style="float:right">
-            @*<button type="submit" class="btn btn-success">送出貼文</button>
-                <button type="reset" class="btn btn-warning">清除</button>*@
+        <div class="form-group" style="float:left;margin-left:30px;margin-top:50px;margin-bottom:auto;">
+           
             <div>
-                <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
-                <input type="submit" value="送出貼文" class="btn btn-success" style="margin-right:10px" />
+                <input type="reset" value="清除" class="btn btn-warning" style="margin-right:20px" />
+                <input type="button" value="送出意見" id="postcomment" class="btn btn-success" style="margin-right:20px" />
             </div>
         </div>
 
@@ -187,7 +147,7 @@
                  .done(function (data) {
 
                      console.log(data)
-                     $('#StarArea').append(`<h2> ${data[0].CommentName} </h2><br/>`);
+                     $('#topic').append(`<span id="questionname"> ${data[0].CommentName} </span><br/>`);
 
                  })
 
@@ -201,11 +161,69 @@
                  .done(function (data) {
 
                      //$('#StarArea').append(`<h2> ${data.CommentName} </h2><br/>`);
-                     stars(data)
-                    
+
+                     for (var i = 0; i < data.length;i++) {
+                         $('#StarArea').append(`<h5 "> ${data[i].Question} </h5><br/>`);
+                         $('#StarArea').append(`
+
+                                 <fieldset class="rating" id="rate${i}">
+                                     <input type="hidden" value="${i}">
+                                     <input type="radio" id="5star${i}" name="rating${i}" value="5" /><label class="full" for="5star${i}" title="非常滿意 - 5 顆星"></label>
+                                     <input type="radio" id="4star${i}" name="rating${i}" value="4" /><label class="full" for="4star${i}" title="滿意 - 4 顆星"></label>
+                                     <input type="radio" id="3star${i}" name="rating${i}" value="3" /><label class="full" for="3star${i}" title="普通 - 3 顆星"></label>
+                                     <input type="radio" id="2star${i}" name="rating${i}" value="2" /><label class="full" for="2star${i}" title="略為不滿意 - 2 顆星"></label>
+                                     <input type="radio" id="1star${i}" name="rating${i}" value="1" /><label class="full" for="1star${i}" title="非常不滿意 - 1 顆星"></label>
+
+                                 </fieldset><br/><br/><br/>`);
+
+                     }
+
 
 
                  })
+
+
+                $(document).on('click', 'fieldset label', function () {
+                    var that = this;
+                    setTimeout(function () {
+                        console.log('hidden val=', $(that).parent().find("input[type='hidden']").val());
+                        console.log('checked val=', $(that).parent().find("input[type='radio']:checked").val());
+                    }, 1);
+                });
+
+            });
+
+
+
+            var cid = @Model.CommentMainID
+
+            $('#postcomment').click(function (){
+
+
+                    var str = $("form").serialize();
+                    console.log(str);
+
+                    $.ajax({
+                        url: '@Url.Action("PostComment", "CommentChilds")',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: { str:str,cid:cid }
+                })
+                 .done(function (data) {
+
+                     if (data.success) {
+
+                         setTimeout("history.back();",2000)
+
+                         $.notify(data.message, {
+                             globalPosition: "top center",
+                             className: "success"
+                         })
+
+                         
+                     }
+
+                 });
 
 
             });
