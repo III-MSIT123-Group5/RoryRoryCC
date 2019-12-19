@@ -26,10 +26,12 @@
 
 <h2>會議室預約系統</h2>
 <br />
+<br />
+<br />
 <div id="addForm" action="Useradd.action" typeof="post" style="width:1000px;float:left">
     <div style="width:1000px; margin-bottom:30px">
         <div style="float:left">
-            <h4 style="font-family:微軟正黑體">起始時間 : </h4>
+            <h4 style="font-family:微軟正黑體;font-weight:bold">起始時間 : </h4>
         </div>
         <div style="float:left;margin-left:30px">
             <a><input type="date" id="date1" class="form-control" style="font-family:微軟正黑體" /></a>
@@ -40,12 +42,14 @@
         <div style="float:left;margin-left:30px">
             <select id="secondLevel" style="width:100px;font-family:微軟正黑體" class="form-control"></select>
         </div>
+        <div>
+            <button class="btn btn-info" style="margin-bottom:10px;margin-left:30px" type="button" id="btn2"><i class="fa fa-refresh" aria-hidden="true"></i> 重置</button>
+        </div>
     </div>
-    <br />
     <br />
     <div style="width:1000px;">
         <div style="float:left">
-            <h4 style="font-family:微軟正黑體">結束時間 : </h4>
+            <h4 style="font-family:微軟正黑體;font-weight:bold" ">結束時間 : </h4>
         </div>
         <div style="float:left;margin-left:30px">
             <a><input type="date" id="date2" class="form-control" style="font-family:微軟正黑體" /></a>
@@ -56,10 +60,10 @@
         <div style="float:left;margin-left:30px">
             <select id="secondLevel1" style="width:100px;font-family:微軟正黑體" class="form-control"></select>
         </div>
-        <br />
         <div>
-            <input style="width:150px" type="button" id="btn1" class="btn-success" value="查詢" />
+            <button class="btn btn-success" style="margin-bottom:10px;margin-left:30px" type="button" id="btn1"><i class="fa fa-search" aria-hidden="true"></i> 查詢</button>
         </div>
+
     </div>
 </div>
 <table id="test2" style="margin-top:200px" class="table">
@@ -97,7 +101,12 @@
         $("#btn1").click(function () {
             getDate();
         })
-
+        $("#btn2").click(function () {
+            reset();
+        })
+        function reset() {
+            window.location.reload()
+        }
         //
         //抓取年月日
         //
@@ -318,7 +327,7 @@
             $("#firstLevel1").append('<option value="0">上午</option>')
             $("#firstLevel1").append('<option value="1">下午</option>')
             //時間產生
-            for (var i = 8; i <= 12; i++) {
+            for (var i = 9; i <= 12; i++) {
                 $("#secondLevel").append(`<option value = "${i}">${i}:00</option>`)
                 $("#secondLevel1").append(`<option value = "${i}">${i}:00</option>`)
             }
@@ -332,7 +341,7 @@
             //
             if ($("#firstLevel option:selected").text() == "上午") {
                 $("#secondLevel").empty();
-                for (var i = 8; i <= 12; i++) {
+                for (var i = 9; i <= 12; i++) {
                     $("#secondLevel").append(`<option value = "${i}">${i}:00</option>`)
                 }
             }
@@ -355,7 +364,7 @@
             //
             if ($("#firstLevel1 option:selected").text() == "上午") {
                 $("#secondLevel1").empty();
-                for (var i = 8; i <= 12; i++) {
+                for (var i = 9; i <= 12; i++) {
                     $("#secondLevel1").append(`<option value = "${i}">${i}:00</option>`)
                 }
             }
