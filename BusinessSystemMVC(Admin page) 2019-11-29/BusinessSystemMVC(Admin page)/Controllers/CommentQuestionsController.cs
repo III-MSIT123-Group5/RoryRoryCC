@@ -126,8 +126,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
             return Json(q1, JsonRequestBehavior.AllowGet);
         }
+
         [HttpGet]
-        public ActionResult AddOrEdit(int ccid,int id = 0)
+        public ActionResult AddOrEdit(int ccid , int id = 0)
         {
             SelectList selectList = new SelectList(this.GetOptions(), "CommentOptionID", "CommentOption1");
             ViewBag.SelectList = selectList;
@@ -137,7 +138,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
            
             if (id == 0)
             {
-                return View(new CommentQuestion());
+                
+                return View(new CommentQuestion(){CommentContentID =ccid});
 
             }
             else
@@ -145,15 +147,23 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
                 {
 
-                    return View(db.CommentQuestions.Where(x => x.CommentQuestionID == id && x.CommentContentID == ccid).FirstOrDefault<CommentQuestion>());
+                    return View(db.CommentQuestions.Where(x => x.CommentQuestionID == id /*&& x.CommentContentID == ccid*/).FirstOrDefault<CommentQuestion>());
                 }
             }
 
         }
+        
+        //[HttpGet]
+        //public void test2(int ccid)
+        //{
+        //    cid = ccid;
+        //}
+
+        //int cid;
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddOrEdit(CommentQuestion c,CommentQuestionViewModel cq)
+        public ActionResult AddOrEdit(CommentQuestion c)
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
