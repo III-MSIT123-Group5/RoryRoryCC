@@ -30,14 +30,14 @@
             <div class="logo">
                 <a style="font-family: 'Playball'; font-size:60px; text-align:center">Spring Wood</a>
                 <br />
-                <br />                
+                <br />
             </div>
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
                 <div class="form-item">
                     <p class="formLabel">UserName</p>
-                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-style", @autocomplete = "off" , @id="UserName" })
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-style", @autocomplete = "off", @id = "UserName" })
                     @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                     @*<input type="email" name="email" id="email" class="form-style" autocomplete="off" />*@
                 </div>
@@ -47,7 +47,7 @@
                     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @*<input type="password" name="password" id="password" class="form-style" />*@
-                    @*<div class="pw-view"><i class="fa fa-eye"></i></div>*@                   
+                    @*<div class="pw-view"><i class="fa fa-eye"></i></div>*@
                 </div>
                 <div class="form-item">
                     <input type="submit" class="login pull-right" value="Log In">
@@ -55,6 +55,14 @@
                 </div>
             }
         </div>
+        <button type="button" class="btn btn-warning" id="GM">總經理</button><br />
+        <button type="button" class="btn btn-info" id="DepLder">行政部長</button><br />
+        <button type="button" class="btn btn-secondary" id="GAGLer">總務組長</button>
+        <button type="button" class="btn btn-secondary" id="HRGler">人資組長</button><br />
+        <button type="button" class="btn btn-success" id="Emp">員工</button>
+        <div>
+        </div>
+
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
@@ -68,6 +76,12 @@
             $("#UserName, #Password").focusout(function () {
                 document.getElementsByTagName("body")[0].style.opacity = "0.6";
             })
+            $("#GM").bind("click", function () {
+                $("#UserName").val() = "jennifer";
+            })
+
+
+
         })
     </script>
 </body>

@@ -34,13 +34,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav navbar-sidenav" id="exampleAccordion" style="background-color:white; overflow-y:auto; padding-bottom:28px">
-                @*首頁*@
-                <li class="nav-item color hover" data-toggle="tooltip" data-placement="right" title="首頁">
-                    <a class="nav-link" href="@Url.Action("Index", "Home")">
-                        <i class="fa fa-fw fa-home" style="font-size: 1.6em; vertical-align: middle;"></i>
-                        <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">首頁</span>
-                    </a>
-                </li>
                 @*公佈欄*@
                 <li class="nav-item color hover" data-toggle="tooltip" data-placement="right" title="公佈欄">
                     <a class="nav-link" href="@Url.Action("Index", "BulletinBoards")">
@@ -425,59 +418,6 @@
                         }
                 }
 
-            })
-        }
-        var arrayorder = [];
-        var count1 = 0;
-        var count2 = 0;
-               //approval
-        function getData() {
-            $.ajax({
-                url: '@Url.Action("LoadDataApproval", "OrderDetails")',
-                type: "GET",
-                dataType: "json"
-            }).done(function (data) {
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].FirstSignStatus == "未審核" && data[i].FirstSignerID == @EmployeeDetail.EmployeeID) {
-                        //count1 = 0;
-                        count1++;
-                    }
-                    else if (data[i].FirstSignStatus == "已審核" && data[i].SecondSignStatus == "未審核" && data[i].SecondSignerID == @EmployeeDetail.EmployeeID) {
-                        //count1 = 0;
-                        count1++;
-                    }
-                    else if (data[i].FirstSignStatus == "已審核" && data[i].SecondSignStatus == "已審核" && data[i].ThirdSignStatus == "未審核" && data[i].ThirdSignerID == @EmployeeDetail.EmployeeID) {
-                        //count1 = 0;
-                        count1++;
-                    }
-                    else if (data[i].SecondSignStatus == "已審核" && data[i].ThirdSignStatus == "免審核" && data[i].FourthSignStatus == "未審核" && data[i].FourthSignerID == @EmployeeDetail.EmployeeID) {
-                        count1++;                        
-                    }
-                    @*else if (data[i].SecondSignStatus == "已審核" && data[i].FourthSignStatus == "未審核" && data[i].ThirdSignStatus == "免審核" && data[i].FourthSignerID == @EmployeeDetail.EmployeeID) {
-                        count1++;
-                    }
-                    else if (data[i].SecondSignStatus == "已審核" && data[i].FourthSignStatus == "未審核" && data[i].ThirdSignStatus == "已審核" && data[i].FourthSignerID == @EmployeeDetail.EmployeeID) {
-                        count2++;
-                    }*@
-                }
-                if (count1 != 0) {
-                    ampm();
-                    $(`#appendnews`).append(`<div class="dropdown - divider" value="1"></div>`)
-                    $(`#appendnews`).append(`<a class="dropdown-item" href="#">
-                                                                    <span class="text-success">
-                                                                        <strong>
-                                                                            <i class= "fa fa-long-arrow-up fa-fw" ></i> 通知
-                                                                        </strong>
-                                                                    </span>
-                                                                    <span class="small float-right text-muted">${hour}:${mins}${apm}</span>
-                                                                    <div class="dropdown-message small">您有${count1+count2}筆請購單未審核。</div>
-                                                                </a>`)
-                        $(`#appendnews`).click(function () {
-
-                            })
-                }
-                count1 = 0;
-                arrayorder = [];
             })
         }
     </script>
