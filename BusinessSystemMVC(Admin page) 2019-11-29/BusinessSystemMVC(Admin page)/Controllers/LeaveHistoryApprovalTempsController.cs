@@ -206,8 +206,8 @@ public ActionResult FinishSignLeaveLoadDataDetail(int ID)
     return View(db.LeaveHistoryApprovalTemps.Where(p => p.ID == ID).FirstOrDefault());
 }
 
-//載入申請中的假
-[AllowAnonymous]
+        //載入申請中的假
+        [AllowAnonymous]
 [HttpGet]
 public ActionResult LeaveLoadData()
 {
@@ -224,11 +224,21 @@ public ActionResult FinishLeaveLoadData()
     var datas = q.ToList();
     return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
 }
+        //載入駁回的假
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult RejectLeaveLoadData()
+        {
+            var q = db.LeaveHistoryApprovalTemps.Where(p => p.employeeID == EmployeeDetail.EmployeeID && p.SignState == false && p.Reject == true).Select(p => new { p.ID, p.Leave.leave_name, p.ReleaseTime, p.StartTime, p.EndTime, p.Status });
+            var datas = q.ToList();
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+        }
 
 
-//新增請假
-// GET: LeaveHistoryApprovalTemps/Create
-public ActionResult Create()
+
+        //新增請假
+        // GET: LeaveHistoryApprovalTemps/Create
+        public ActionResult Create()
 {
     int ThisYear = DateTime.Now.Year;
     List<int> SYList = new List<int>();
