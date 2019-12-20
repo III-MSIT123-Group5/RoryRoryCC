@@ -94,7 +94,14 @@
                     </ul>
                 </li>
                 @*行事曆*@
-                <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="行事曆">
+                <li class="nav-item color hover" data-toggle="tooltip" data-placement="right" title="行事曆">
+                    <a class="nav-link" href="@Url.Action("Index", "EventCalendars")">
+                        <i class="fa fa-fw fa-calendar" style="font-size: 1.6em; vertical-align: middle;"></i>
+                        <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">行事曆</span>
+                    </a>
+                </li>
+                
+                @*<li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="行事曆">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseCalendar" data-parent="#exampleAccordion">
                         <i class="fa fa-fw fa-calendar" style="font-size: 1.6em; vertical-align: middle;"></i>
                         <span class="nav-link-text" style="font-family:'NotoSansCJKtc-Bold'">行事曆</span>
@@ -106,8 +113,8 @@
                         @*<li class="color hover">
                             <a href="calendar.html" style="font-family:'NotoSansCJKtc-Bold'">統計分析</a>
                         </li>*@
-                    </ul>
-                </li>
+                    @*</ul>
+                </li>**@
                 @*檔案管理*@
                 <li class="nav-item  color hover" data-toggle="tooltip" data-placement="right" title="檔案管理">
                     <a class="nav-link" href="@Url.Action("Index", "Files")">

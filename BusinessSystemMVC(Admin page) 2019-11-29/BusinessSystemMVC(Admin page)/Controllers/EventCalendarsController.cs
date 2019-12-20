@@ -120,7 +120,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
-                EventCalendar ca = db.EventCalendars.Where(x => x.employeeID == id).FirstOrDefault<EventCalendar>();
+                EventCalendar ca = db.EventCalendars.Where(x => x.CalendarID == id).FirstOrDefault<EventCalendar>();
                 db.EventCalendars.Remove(ca);
                 db.SaveChanges();
 
@@ -228,30 +228,30 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         //    }
 
         // GET: EventCalendars/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            EventCalendar eventCalendar = db.EventCalendars.Find(id);
-            if (eventCalendar == null)
-            {
-                return HttpNotFound();
-            }
-            return View(eventCalendar);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    EventCalendar eventCalendar = db.EventCalendars.Find(id);
+        //    if (eventCalendar == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(eventCalendar);
+        //}
 
-        // POST: EventCalendars/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            EventCalendar eventCalendar = db.EventCalendars.Find(id);
-            db.EventCalendars.Remove(eventCalendar);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: EventCalendars/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    EventCalendar eventCalendar = db.EventCalendars.Find(id);
+        //    db.EventCalendars.Remove(eventCalendar);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {
