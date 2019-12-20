@@ -22,11 +22,6 @@
     @Html.TextBoxFor(Model => Model.VehicleYear, new { rows = "1", cols = "150", @class = "form-control", @MaxLength = "4" })
     @Html.ValidationMessageFor(model => model.VehicleYear)
 
-    @Html.LabelFor(Model => Model.PurchaseDate, "購入時間", new { @class = "control-label" })
-    <br />
-    @Html.EditorFor(Model => Model.PurchaseDate, new { htmlAttributes = new { @class = "form-control", Type = "date"} })
-    @Html.ValidationMessageFor(model => model.PurchaseDate, "", new { @class = "text-danger" })
-
     @Html.LabelFor(Model => Model.brand, "車輛廠牌", new { @class = "control-label" })
     @Html.TextBoxFor(Model => Model.brand, new { rows = "1", cols = "150", @class = "form-control", @MaxLength = "20" })
     @Html.ValidationMessageFor(model => model.brand)
