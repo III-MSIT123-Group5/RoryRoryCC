@@ -30,7 +30,7 @@
 
     <div class="taglabel">
         @Html.LabelFor(model => model.DepartmentID, new { @class = "control-label" })
-        @Html.DropDownList("DepartmentID",null, htmlAttributes: new { @class = "form-control", rows = "8", cols = "100", @style = "width:300px" })
+        @Html.DropDownList("DepartmentID", null, htmlAttributes: new { @class = "form-control", rows = "8", cols = "100", @style = "width:300px" })
         @Html.ValidationMessageFor(model => model.DepartmentID)
     </div>
     <br />
@@ -40,14 +40,14 @@
     <div class="taglabel">
 
         @Html.LabelFor(model => model.StartTime, new { @class = "control-label" })
-        
+
         <div class="input-group date" id="datepickerstart" data-target-input="nearest" style="width:300px">
             @Html.TextBoxFor(model => model.StartTime,null, new{
                @class = "form-control datetimepicker-input",
                @style = "padding-left:0px;text-indent:10px;",
                data_target = "#datepickerstart",
                data_toggle = "datetimepicker",
-               
+
        })
             <div class="input-group-append" data-target="#datepickerstart" data-toggle="datetimepicker">
                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -58,7 +58,7 @@
         <script type="text/javascript">
             $(function () {
                 $('#datepickerstart').datetimepicker({
-                    
+
                 });
 
             });
@@ -102,7 +102,7 @@
         </script>
         @Html.ValidationMessageFor(model => model.EndTime)
     </div>
-    
+
     @*<div class="taglabel">
 
         </div>
@@ -110,53 +110,66 @@
 
     <br />
 
+
+
+
     
-
-
-
     <div class="taglabel">
         @Html.LabelFor(model => model.Location, new { @class = "control-label" })
-        <div class="input-group date" id="textmap" data-target-input="nearest" style="width:300px">
+        <div class="input-group map" id="textmap" data-target-input="nearest" style="width:300px" data-toggle="collapse">
             @*@Html.TextBoxFor(model => model.Location, new { rows = "8", cols = "100", @class = "form-control", @MaxLength = "1000", @style = "width:300px" })*@
 
 
             @Html.TextBoxFor(model => model.Location,null, new{
-                @class = "form-control datetimepicker-input",
-                @style = "padding-left:0px;text-indent:10px;",
-                data_target = "#textmap"
-        })
+           @class = "form-control textmap-input",
+           @style = "padding-left:0px;text-indent:10px;",
+           data_target = "#textmap",
 
-            <button type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                <i class="fa fa-globe" aria-hidden="true"></i>
+       })
+
+            <button type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="border:1px solid #ced4da;border-top-right-radius:5px;border-bottom-right-radius:5px;height:38px;width:40.82px;background-color:#e9ecef">
+                <i class="fa fa-1.5x fa-globe" aria-hidden="true"></i>
             </button>
-            <div class="collapse" id="collapseExample">
+            <div class="collapse" id="collapseExample" style="margin-top:20px;border:2px solid #edecb8">
                 <div class="well">
-                    <div id="map" style="height:200px;width:200px"></div>
+                    <div id="map" style="height:400px;width:540px"></div>
 
                     <script>
                         var map;
+                        var uluru;
                         function initMap() {
-                            map = new google.maps.Map(document.getElementById('map'), {
-                                center: { lat: -34.397, lng: 150.644 },
-                                zoom: 8
+                            // The location of Uluru
+
+                            uluru = { lat: 25.033651, lng: 121.543455 };
+                            // The map, centered at Uluru
+                            var map = new google.maps.Map(
+                                document.getElementById('map'), { zoom: 16, center: uluru });
+                            // The marker, positioned at Uluru
+                            var marker = new google.maps.Marker({
+                                position: uluru,
+                                map: map,
+                                clickableIcons: true,
+
+
                             });
                         }
                     </script>
+
                     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPDAKbIRN2jD8OMxwoa53S4sboUKAG6gI&callback=initMap"
                             async defer></script>
                 </div>
             </div>
         </div>
-        
-        
-        
-        
+
+
+
+
         @Html.ValidationMessageFor(model => model.Location)
 
 
-        
+
     </div>
-    
+
     <br />
 
 
@@ -170,13 +183,13 @@
 
     <div class="taglabel">
         @Html.LabelFor(model => model.ThemeColor, new { @class = "control-label" })
-        @Html.TextBoxFor(model => model.ThemeColor, new { @class = "form-control", @MaxLength = "1000" ,type="color" ,width="20",height="20"})
-        
+        @Html.TextBoxFor(model => model.ThemeColor, new { @class = "form-control", @MaxLength = "1000", type = "color", width = "20", height = "20" })
+
 
         @Html.ValidationMessageFor(model => model.IsImportant)
 
     </div>
-    
+
 
 
 
