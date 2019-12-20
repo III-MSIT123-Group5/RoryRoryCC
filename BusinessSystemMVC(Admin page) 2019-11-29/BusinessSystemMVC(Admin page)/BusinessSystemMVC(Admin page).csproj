@@ -849,18 +849,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
-    <Compile Include="Views\ReportTimeSystems\MetaData\ReportTimeSystems.cs" />
-    <Compile Include="Views\ReportTimeSystems\MetaData\ReportTimeSystemsMetadata.cs" />
+    <Compile Include="Views\ReportTimeSystems\MetaData\Resource1.Designer.cs">
+      <DependentUpon>Resource1.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Views\ReportTimeSystems\MetaData\Resource1.en-US.Designer.cs">
       <DependentUpon>Resource1.en-US.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Views\ReportTimeSystems\MetaData\Resource1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource1.resx</DependentUpon>
-    </Compile>
+    <Compile Include="Views\ReportTimeSystems\MetaData\ReportTimeSystems.cs" />
+    <Compile Include="Views\ReportTimeSystems\MetaData\ReportTimeSystemsMetadata.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\2013.2.611\Black\editor.png" />

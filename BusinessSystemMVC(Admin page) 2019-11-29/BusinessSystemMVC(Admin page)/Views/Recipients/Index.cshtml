@@ -1,10 +1,7 @@
 ﻿@model IEnumerable<BusinessSystemMVC_Admin_page_.Models.Recipient>
 
 @{
-    /**/
-
-    /**/
-
+    var SelectList = ViewBag.SelectList;
     ViewBag.Title = "Index";
 }
 
@@ -73,7 +70,7 @@
                     { "targets": 2, "data": "Data", "className": "align-middle" },
                     { "targets": 3, "data": "MailingDate", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "200px", "className": "text-center align-middle" },
                     { "targets": 4, "data": "RecipientID", "render": function (data) {
-                        return "<a class='btn btn-danger btn-sm' style='margin-left:5px; background-color:#FF0000' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
+                        return "<a class='btn btn-danger btn-sm' style='background-color:#FF0000' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
                         },
                         "orderable": false,
                         "searchable": false,
@@ -129,8 +126,35 @@
                     $('#department').bind("change", function () {
                         ChangeDepartment();
                     });
+
+                    //$(function () {
+                    //    $("#button1").click(AddDepartment);
+                    //});
                 });
         }
+
+
+    //function AddSelect() {
+    //    var rlist1 = "<br />部門：<select id='department' class='form-control-2'><option>--部門--</option></select>員工：<select id='EmployeeID' name='EmployeeID' class='form-control-2'><option>--收件人--</option></select><br />";
+    //    $("#DropDownListDiv1").appen($("#DropDownListDiv1").each(function () { $(this).after(rlist1); }));
+    //}
+        @*function AddDepartment() {
+            $.ajax({
+                url: '@Url.Action("AddDepartment", "Recipients")',
+                type: 'get',
+                cache: false,
+                async: false,
+                dataType: 'json',
+                success: function () {
+                        $('#department').empty();
+                        $('#department').append($('<option></option>').val('').text('--收件人--'));
+                        $.each(function (item) {
+                            $('#department').append($('<option></option>').val(item.Key).text(item.Value));
+                        });
+                    }
+            });
+        }*@
+
         function ChangeDepartment() {
             var selectedValue = $('#department option:selected').val();
             GetEmployee(selectedValue);

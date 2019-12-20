@@ -116,7 +116,7 @@
                         "className": "text-center align-middle",
                         "render": function (data) {
                             return `<a class='btn btn-warning btn-sm' onclick=ExportForm("@Url.Action("Export", "OrderDetails")/${data}")><i class='fa fa-file-excel-o'></i> 下載</a>
-                                        <a class='btn btn-danger btn-sm' style='margin-left:5px; background-color:#FF0000' onclick=Delete("@Url.Action("Delete", "OrderDetails")/${data}")><i class='fa fa-trash'></i> 刪除</a>`
+                                        <a class='btn btn-danger btn-sm' style='margin-left:10px; background-color:#FF0000' onclick=Delete("@Url.Action("Delete", "OrderDetails")/${data}")><i class='fa fa-trash'></i> 刪除</a>`
                         },
                         "orderable": false,
                         "searchable": false,

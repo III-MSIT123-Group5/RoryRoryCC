@@ -81,7 +81,7 @@
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseReportTime">
                         <li class="color hover">
-                            <a href="@Url.Action("Index", "ReportTimeSystems")" style="font-family:'NotoSansCJKtc-Bold'">工時回報</a>
+                            <a href="@Url.Action("Index", "ReportTimeSystems")" style="font-family:'NotoSansCJKtc-Bold'">新增回報</a>
                         </li>
                         @Html.Partial("_ReportTimeSystempartial")
                     </ul>
@@ -265,10 +265,7 @@
                 event.preventDefault();
             });
         })(jQuery); // End of use strict
-    </script>
-
-    
-
+    </script>  
 
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
@@ -369,7 +366,8 @@
                         $("#appendnews").append(`<a class="dropdown-item" href="/CompanyVehicleHistories/Index"><span class="text-success"><strong>
 <i class="fa fa-car" aria-hidden="true"></i>  公務車預約通知</strong></span>
 <span class="small float-right text-muted">${hour}:${mins}${apm}</span>
-<div class="dropdown-message small">公務車(${License})預約時間為:${timestampToTime(Stime)}，請準時取車。</div></a>`)
+<div class="dropdown-message small">公務車(${License})預約時間為：${timestampToTime(Stime)}，</div>
+<div class="dropdown-message small">請準時取車。</div></a>`)
                         $("#appendnews").click(function () {
 
                         })
@@ -414,8 +412,11 @@
                         $(`#appendnews`).append(`<a class="dropdown-item" href="/MeetingRoomHistories/Index"><span class="text-success"><strong>
 <i class="fa fa-users" aria-hidden="true"></i> 會議室預約通知</strong></span>
 <span class="small float-right text-muted">${hour}:${mins}${apm}</span>
-<div class="dropdown-message small">會議室(${meetID}_${meetName})預約時間為:${timestampToTime(Stime)}，請通知與會人員。</div></a>`)
-                        
+<div class="dropdown-message small">會議室(${meetID}_${meetName})預約時間為：${timestampToTime(Stime)}，</div>
+<div class="dropdown-message small">請通知與會人員。</div></a>`)
+                        $(`#appendnews`).click(function () {
+
+                            })
                         }
                 }
 
