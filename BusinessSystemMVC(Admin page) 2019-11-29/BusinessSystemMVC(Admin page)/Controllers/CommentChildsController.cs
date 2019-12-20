@@ -14,6 +14,34 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
     {
         private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
 
+        [HttpGet]
+        public ActionResult test()
+        {
+            using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
+            {
+                
+                var q = (from p in db.CommentChilds
+                        where p.EmployeeID == EmployeeDetail.EmployeeID
+                        select new
+                        {
+                            p.CommentMainID,
+                        }).Distinct();
+
+                var k = q.Count();
+            
+                return Json(new{ len=k }, JsonRequestBehavior.AllowGet);
+
+            };
+        }
+
+
+
+
+
+
+
+
+
         // GET: CommentChilds
         public ActionResult Index()
         {

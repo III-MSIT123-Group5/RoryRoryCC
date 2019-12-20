@@ -296,7 +296,7 @@
 <i class="fa fa-volume-down" aria-hidden="true"></i>  訊息通知</strong></span></a>`)
             getVehicleData();
             getMeetingData();
-            getData();
+            getComment()
             //.....
         }
         //判斷上午還是下午
@@ -419,6 +419,52 @@
                             })
                         }
                 }
+
+            })
+        }
+
+
+        function getComment() {
+            $.ajax({
+                url: '@Url.Action("test", "CommentChilds")',
+                type: "GET",
+                dataType: "json"
+            }).done(function (data) {
+                console.log(data.len)
+                //把現在時間轉成時間戳形式
+                //var timetroll = timing.getTime()
+                //建立迴圈
+                //for (var i = 0; i < data.length; i++) {
+                    //取得車牌號碼
+                    //var CommentID = data[i].CommentMainID;
+                    //var empID = data[i].EmployeeID;
+                    //(data[i].StartDateTime)取得資料庫起始時間的時間戳--數字形式(13位數)，只需修改(data[i].StartDateTime)
+                    //var Stime = parseInt(String(data[i].start_date_time).substring(6, 19));
+                    //---------------------------------
+                    //  timetroll : 現在時間時間戳
+                    //  Stime : 資料庫車輛預約起始時間
+                    //  86400000 : 24小時的時間戳形式
+                    //  &&
+                    //  timetroll < Stime : 現在時間不能大於車輛預約起始時間
+                    //  &&
+                    //  判斷紀錄是否為登入者本人的紀錄
+
+                    @*if (timetroll >= (Stime - 86400000) && timetroll < Stime && @EmployeeDetail.EmployeeID == data[i].employeeID) {
+                        ampm();*@
+                        //以下形式未標記(可修改)請勿修改
+                        //(公務車預約通知)為通知標題，可修改。!!!!!!!!!!
+                        //(${hour}:${mins}${apm})，為取得現在時間，請勿修改。XXXXXX
+                        //(公務車(${License})預約時間為:${timestampToTime(Stime)}，請準時取車。)可以修改
+                        //timestampToTime(*可放入時間戳*)，此方法可將時間戳13位數形式轉為正常時間格式
+                ampm()
+                        $(`#appendnews`).append(`<div class="dropdown - divider" value="1"></div>`)
+                        $(`#appendnews`).append(`<a class="dropdown-item" href="/MeetingRoomHistories/Index"><span class="text-success"><strong>
+<i class="fa fa-users" aria-hidden="true"></i> 會議室預約通知</strong></span>
+<span class="small float-right text-muted">${hour}:${mins}${apm}</span>
+<div class="dropdown-message small">您有${data.len}筆意見調查待回復</div></a>`)
+                        
+                        //}
+                //}
 
             })
         }
