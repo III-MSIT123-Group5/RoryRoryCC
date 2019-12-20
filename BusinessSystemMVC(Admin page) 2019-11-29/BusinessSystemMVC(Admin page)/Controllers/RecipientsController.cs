@@ -141,7 +141,21 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             return this.Json(items);
         }
 
+        [HttpPost]
+        public JsonResult AddDepartment()
+        {
+            List<KeyValuePair<string, string>> items = new List<KeyValuePair<string, string>>();
 
+            foreach(var item in (SelectList)ViewBag.SelectList)
+            {
+                items.Add(new KeyValuePair<string, string>(
+                           item.Value,item.Text));
+            }
+
+                
+            
+            return this.Json(items);
+        }
 
 
 
