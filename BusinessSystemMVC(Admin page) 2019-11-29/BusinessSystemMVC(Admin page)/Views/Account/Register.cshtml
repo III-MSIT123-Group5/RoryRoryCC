@@ -34,11 +34,8 @@
 </style>
 
 <br />
-
-<h2>@ViewBag.Title</h2>
-
+    <h2>@ViewBag.Title   </h2>    
 <br />
-
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
@@ -47,7 +44,7 @@
     <hr />
     <div class="container-fluid" style="margin-top:30px">
         <div class="row">
-            <div class="col-lg-5"  >
+            <div class="col-lg-5">
                 <div class="form-group">
                     @Html.LabelFor(m => m.EmpoyeeName, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
@@ -93,15 +90,15 @@
                 <div class="form-group">
                     @Html.Label("生日", new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.BirthDay, new { @id = "BirthDay", @name = "BirthDay" , @class = "form-control" })
+                        @Html.TextBoxFor(model => model.BirthDay, new { @id = "BirthDay", @name = "BirthDay", @class = "form-control" })
                     </div>
                 </div>
             </div>
-            <div class="col-lg-5" >
+            <div class="col-lg-5">
                 <div class="form-group">
-                    @Html.LabelFor(m => m.HireDay, new {@id = "BirthDay", @name = "BirthDay" , @class = "col-md-2 control-label" })
+                    @Html.LabelFor(m => m.HireDay, new { @id = "BirthDay", @name = "BirthDay", @class = "col-md-2 control-label" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.HireDay, new { @id = "HireDay", @name = "HireDay", @class = "form-control", } )
+                        @Html.TextBoxFor(m => m.HireDay, new { @id = "HireDay", @name = "HireDay", @class = "form-control", })
                         @Html.ValidationMessageFor(model => model.HireDay, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -154,12 +151,14 @@
                 </div>
             </div>
         </div>
-            <div class="form-group" style="text-align:center">
-                <div class="col-md-11">
-                    <input id="RegisterSubmit" type="submit" class="btn btn-primary" value="註冊" />
-                </div>
+        <div class="form-group" style="text-align:center">
+            <div class="col-md-11">
+                <input id="RegisterSubmit" type="submit" class="btn btn-primary" value="註冊" />
+                <button type="button" class="btn btn-info" style="background-color:	#a5a5af; border-color:transparent" onclick="$('#EmpoyeeName').val('陳俊傑')">
+                    Demo
+                </button>
             </div>
-        
+        </div>
     </div>
 }
 
@@ -167,6 +166,7 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
+
         $(document).ready(function () {
             $("#BirthDay").datepicker({
                 maxDate: "-18y",
@@ -180,8 +180,8 @@
                 changeYear: true
             })
 
-
         });
+
 
         $("#DepartmentID").bind("change", function () {
             UpdateGroupStor();
