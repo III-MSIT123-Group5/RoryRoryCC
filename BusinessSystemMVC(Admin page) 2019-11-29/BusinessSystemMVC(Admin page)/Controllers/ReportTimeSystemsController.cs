@@ -105,7 +105,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                         EventID = r.EventID,
                         Note = r.Note,
                         ApplyDateTime = DateTime.Now,
-                        Discontinue = true
+                        Discontinue = true,
+                        
                     });
                     
                     db.SaveChanges();
@@ -278,30 +279,30 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
         // GET: ReportTimeSystems/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ReportTimeSystem reportTimeSystem = db.ReportTimeSystems.Find(id);
-            if (reportTimeSystem == null)
-            {
-                return HttpNotFound();
-            }
-            return View(reportTimeSystem);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    ReportTimeSystem reportTimeSystem = db.ReportTimeSystems.Find(id);
+        //    if (reportTimeSystem == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(reportTimeSystem);
+        //}
 
-        // POST: ReportTimeSystems/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            ReportTimeSystem reportTimeSystem = db.ReportTimeSystems.Find(id);
-            db.ReportTimeSystems.Remove(reportTimeSystem);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: ReportTimeSystems/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    ReportTimeSystem reportTimeSystem = db.ReportTimeSystems.Find(id);
+        //    db.ReportTimeSystems.Remove(reportTimeSystem);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

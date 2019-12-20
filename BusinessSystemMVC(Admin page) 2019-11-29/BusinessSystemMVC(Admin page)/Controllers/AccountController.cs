@@ -162,29 +162,29 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 new SelectListItem{Text="在職中", Value="true"},
                 new SelectListItem{Text="已離職", Value="false" },
             };
-            int ThisYear = DateTime.Now.Year;
-            List<int> birYearList = new List<int>();
-            List<int> birMonth = new List<int>();
-            List<int> birDate = new List<int>();
-            for (int i = ThisYear - 18; i > ThisYear - 65; i--)
-            {
-                birYearList.Add(i);
-            }
-            for (int i = 1; i <= 12; i++)
-            {
-                birMonth.Add(i);
-            }
-            for (int i = 1; i <= 31; i++)
-            {
-                birDate.Add(i);
-            }
-            var qYear = birYearList.Select(p => new { YearText = p.ToString(), YearValue = p });
-            var qMonth = birMonth.Select(p => new { MonthText = p.ToString(), MonthValue = p });
-            var qDate = birDate.Select(p => new { DateText = p.ToString(), DateVallue = p });
+            //int ThisYear = DateTime.Now.Year;
+            //List<int> birYearList = new List<int>();
+            //List<int> birMonth = new List<int>();
+            //List<int> birDate = new List<int>();
+            //for (int i = ThisYear - 18; i > ThisYear - 65; i--)
+            //{
+            //    birYearList.Add(i);
+            //}
+            //for (int i = 1; i <= 12; i++)
+            //{
+            //    birMonth.Add(i);
+            //}
+            //for (int i = 1; i <= 31; i++)
+            //{
+            //    birDate.Add(i);
+            //}
+            //var qYear = birYearList.Select(p => new { YearText = p.ToString(), YearValue = p });
+            //var qMonth = birMonth.Select(p => new { MonthText = p.ToString(), MonthValue = p });
+            //var qDate = birDate.Select(p => new { DateText = p.ToString(), DateVallue = p });
 
-            ViewBag.BirthYear = new SelectList(qYear, "YearValue", "YearText");
-            ViewBag.BirthMonth = new SelectList(qMonth, "MonthValue", "MonthText");
-            ViewBag.BirthDate = new SelectList(qDate, "DateVallue", "DateText");
+            //ViewBag.BirthYear = new SelectList(qYear, "YearValue", "YearText");
+            //ViewBag.BirthMonth = new SelectList(qMonth, "MonthValue", "MonthText");
+            //ViewBag.BirthDate = new SelectList(qDate, "DateVallue", "DateText");
             ViewBag.DepartmentID = new SelectList(db.Departments, "departmentID", "name");
             ViewBag.GroupID = new SelectList(db.Groups, "GroupID", "GroupName");
             ViewBag.OfficeID = new SelectList(db.Offices, "officeID", "office_name");
@@ -302,8 +302,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     {
                         EmployeeName = model.EmpoyeeName,
                         Gender = model.Gender,
-                        //todo birthday = model.BirthYear + month +day
-                        Birth = new DateTime(model.BirthYear, model.BirthMonth, Convert.ToInt32(model.BirthDate)),
+                        Birth =model.BirthDay,
                         HireDate = model.HireDay,
                         Account = model.Account,
                         OfficeID = Convert.ToInt32(model.OfficeID),
@@ -325,7 +324,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
                     TempData["message"] = $"新增 {model.EmpoyeeName} 的帳號請求已送出，待簽核完成。";
                     return RedirectToAction("Register", "Account");
-                    //return RedirectToAction("Index", "Home"); 
                 }
                 AddErrors(result);
             }
