@@ -19,13 +19,77 @@
         td, select, option {
             font-family: '微軟正黑體';
         }
+
+        th {
+            background-color: #77C9D4;
+            color: white;
+            /*font-family: '微軟正黑體';*/
+        }
     </style>
 </head>
 <body>
-    <h2>查看調查結果</h2>
-    <br/>
-    <div>
-         
+    <h2 style="margin-left:14px">查看調查結果</h2>
+    <br />
+    <div @*class="row"*@>
+        <div id="topic" style="margin-left:14px;font-size:24px">
+            <span></span>
+            <br />
+        </div>
+        <br />
+        <div>
+            @Html.LabelFor(model => model.CommentContent.CommentQuestions, "調查項目", htmlAttributes: new { @*@class = "control-label col-md-2"*@style = "font-size:24px;margin-left:15px"
+        })
+            <br />
+            <div @*class="col-md-10"*@ style="margin-top:10px">
+                <table class="table table-bordered" id="tableQ" style="width:600px;margin-left:10px"></table>
+            </div>
+        </div>
     </div>
+
+    @section scripts{
+
+
+
+        <script>
+        $(document).ready(function () {
+           
+
+             $.ajax({
+                        url: '@Url.Action("RateData", "CommentMains")',
+                        method: 'GET',
+                        dataType: 'json'
+                    })
+                 .done(function (datas) {
+                            
+                            //<th><input type='checkbox' name='HeaderCheckbox' id='HeaderCheckbox'></th><th>調查項目</th>
+                            $('#tableQ').append("<tr style='text-align:center'><th>項目編號</th><th>調查項目</th><th>平均星數</th></tr>");
+                            for (var j = 0; j < datas.length; j++) {
+
+                                
+                                $("#topic span").text(datas[j].CommentName);
+                                $('#tableQ').append("<tr>");
+                                //$('#tableQ').append("<td><input type='checkbox' class='cq' name='checkbox' value='" + datas[j].CommentQuestionID + "'></td>");
+                                $('#tableQ').append("<td style='text-align:center;width:16%'>" + datas[j].CommentQuestionID + "</td>");
+                                    $('#tableQ').append("<td>" + datas[j].Question + "</td>");
+                                $('#tableQ').append("<td style='font-weight:900;text-align:center;width:16%;'>" + datas[j].Average + "</td>");
+                                $('#tableQ').append("</tr>");
+                                
+
+                                //$('#HeaderCheckbox').click(function () {
+                                //    $('input[name="checkbox"]').prop('checked', this.checked)
+                                //});
+
+                        }
+                        })
+
+
+        });
+
+
+
+      
+        </script>
+    }
+
 </body>
 </html>

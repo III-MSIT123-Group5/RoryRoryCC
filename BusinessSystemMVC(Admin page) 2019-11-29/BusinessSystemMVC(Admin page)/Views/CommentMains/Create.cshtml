@@ -82,7 +82,7 @@
                 <div class="col-md-6">
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.CommentContent.CommentQuestions, "調查題目", htmlAttributes: new { @class = "control-label col-md-2", style = "font-size:24px" })
+                        @Html.LabelFor(model => model.CommentContent.CommentQuestions, "調查項目", htmlAttributes: new { @class = "control-label col-md-2", style = "font-size:24px" })
                         <div @*class="col-md-10"*@>
                             <table class="table table-bordered" id="tableQ" style="width:600px;margin-left:10px">
                                 @*<tr>
@@ -206,7 +206,7 @@
                     })
                         .done(function (datas) {
                             //<th><input type='checkbox' name='HeaderCheckbox' id='HeaderCheckbox'></th>
-                            $('#tableQ').append("<tr><th>提問編號</th><th>題目</th></tr>");
+                            $('#tableQ').append("<tr><th>項目編號</th><th>調查項目</th></tr>");
                             for (var j = 0; j < datas.length; j++) {
 
                                 if (datas[j].CommentContentID == s) {
@@ -218,9 +218,9 @@
                                 $('#tableQ').append("</tr>");
                                 }
 
-                                $('#HeaderCheckbox').click(function () {
-                                    $('input[name="checkbox"]').prop('checked', this.checked)
-                                });
+                                //$('#HeaderCheckbox').click(function () {
+                                //    $('input[name="checkbox"]').prop('checked', this.checked)
+                                //});
 
                         }
                         })

@@ -501,7 +501,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddOrEditCC(int coid,int id)
+        public ActionResult AddOrEditCC(int coid,int id=0)
         {
 
             if (id == 0)
@@ -531,7 +531,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                     {
                         CommentOptionID = c.CommentOptionID,
                         CommentContent1 = c.CommentContent1,
-                        //CommentContentID = c.CommentContentID,
+                        CommentContentID = c.CommentContentID,
 
                     });
                     db.SaveChanges();
