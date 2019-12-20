@@ -54,6 +54,7 @@
                         <thead>
                             <tr>
                                 <th>圖片</th>
+                                <th>部門</th>
                                 <th>留言內容</th>
                                 <th>張貼時間</th>
                             </tr>
@@ -196,7 +197,7 @@
                 "bLengthChange": false,
                 "bInfo": false,
                 "paging": true,
-                "order": [2, "desc"],
+                "order": [3, "desc"],
                 "columnDefs": [
                     {
                         "targets": 0,
@@ -208,11 +209,17 @@
                     },
                     {
                         "targets": 1,
-                        "data": "Content",
+                        "data": "name",
+                        "width": "50px",
                         "orderable": false, "className": "align-middle"
                     },
                     {
                         "targets": 2,
+                        "data": "Content",
+                        "orderable": false, "className": "align-middle"
+                    },
+                    {
+                        "targets": 3,
                         "data": "PostTime",
                         "render": function (data) { return moment(data).format("YYYY-MM-DD") },
                         "width": "80px",
