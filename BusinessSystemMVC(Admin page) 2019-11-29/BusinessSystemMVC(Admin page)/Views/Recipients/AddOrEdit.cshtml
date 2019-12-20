@@ -30,7 +30,7 @@
     @Html.HiddenFor(model => model.Message.MailingDate)
     @Html.HiddenFor(model => model.Message.Status)
     @Html.HiddenFor(model => model.Status)
-    <div class="form-group">
+    <div class="form-group" id="DropDownListDiv1">
         @Html.LabelFor(model => model.EmployeeID, "收件者", new { @class = "control-label" })
         <br />部門：
         <select id="department" class="form-control-2">
@@ -43,6 +43,7 @@
         員工：
         <select id="EmployeeID" name="EmployeeID" class="form-control-2"><option>--收件人--</option></select>
         @Html.ValidationMessageFor(model => model.EmployeeID)
+        <button  style='margin-left:10px;' id="button1"><i class="fa fa-plus"></i></button>
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.Message.Title, "標題", new { @class = "control-label" })
@@ -65,4 +66,9 @@
         </div>
     </div>
 
+}
+@section scripts{
+    <script>
+
+    </script>
 }
