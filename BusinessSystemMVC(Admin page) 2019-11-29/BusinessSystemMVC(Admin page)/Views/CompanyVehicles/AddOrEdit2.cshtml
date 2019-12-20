@@ -1,92 +1,104 @@
-﻿@model BusinessSystemMVC_Admin_page_.Models.CompanyVehicle
+﻿@model BusinessSystemMVC_Admin_page_.ViewModels.CompanyVehicleViewModel
 @{
-    Layout = null;
+
 }
 
-@using (Html.BeginForm("AddOrEdit2", "CompanyVehicles", FormMethod.Post, new { @onsubmit = "return SubmitForm(this)"@*, @enctype = "multipart/form-data"*@ }))
+@using (Html.BeginForm("AddOrEdit2", "CompanyVehicles", FormMethod.Post, new
+{@*onsubmit = "return SubmitForm(this)",*@ @enctype = "multipart/form-data"
+}))
 {
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(Model => Model.VehiclePhoto)
-    @*@Html.TextBox("files", null, new { @type = "file", @multiple = "multiple" });*@
-    @*@Html.TextBoxFor(Model=>Model.VehiclePhoto2 , new { @type = "file"})*@
 
+@Html.AntiForgeryToken()
+@*@Html.HiddenFor(Model => Model.VehiclePhoto)*@
+@*@Html.TextBox("fildes", null, new { @type = "file", @multiple = "multiple" });*@
+<div>
     <div>
+        <img style="width:500px;height:320px" id="preview_progressbarTW_img" src="@Url.Content("~/CarUpload/123321.png")" />
+    </div>
 
-
+    @Html.TextBoxFor(Model => Model.PhotoCar, "公務車照片", new { @type = "file", @multiple = "multiple", id = "imgInp", @name = "files" })
+    <div style="margin-top:20px">
         @Html.LabelFor(Model => Model.LicenseNumber, "車牌號碼", new { @class = "control-label" })
-        @Html.EditorFor(Model => Model.LicenseNumber, new { htmlAttributes = new { @class = "form-control", @Value = "", @MaxLength = "8" } })
+        @Html.EditorFor(Model => Model.LicenseNumber, new { htmlAttributes = new { @class = "form-control", @Value = "", @MaxLength = "8", @style = "width:150px" } })
         @Html.ValidationMessageFor(model => model.LicenseNumber)
 
         @Html.LabelFor(Model => Model.VehicleYear, "車輛年份", new { @class = "control-label" })
-        @Html.EditorFor(Model => Model.VehicleYear, new { htmlAttributes = new { @class = "form-control", Type = "year", @Value = "", @MaxLength = "4" } })
+        @Html.EditorFor(Model => Model.VehicleYear, new { htmlAttributes = new { @class = "form-control", Type = "year", @Value = "", @MaxLength = "4", @style = "width:150px" } })
         @Html.ValidationMessageFor(model => model.VehicleYear)
 
         @Html.LabelFor(Model => Model.PurchaseDate, "購入時間", new { @class = "control-label" })
         <br />
-        @Html.EditorFor(Model => Model.PurchaseDate, new { htmlAttributes = new { @class = "form-control", Type = "date" } })
+        @Html.EditorFor(Model => Model.PurchaseDate, new { htmlAttributes = new { @class = "form-control", Type = "date", @style = "width:230px" } })
         @Html.ValidationMessageFor(model => model.PurchaseDate, "", new { @class = "text-danger" })
 
         @Html.LabelFor(Model => Model.brand, "車輛廠牌", new { @class = "control-label" })
-        @Html.EditorFor(Model => Model.brand, new { htmlAttributes = new { @class = "form-control", @Value = "" } })
+        @Html.EditorFor(Model => Model.brand, new { htmlAttributes = new { @class = "form-control", @Value = "", @style = "width:150px" } })
         @Html.ValidationMessageFor(model => model.brand)
 
         @Html.LabelFor(Model => Model.serial, "車輛型號", new { @class = "control-label" })
-        @Html.EditorFor(Model => Model.serial, new { htmlAttributes = new { @class = "form-control", @Value = "" } })
+        @Html.EditorFor(Model => Model.serial, new { htmlAttributes = new { @class = "form-control", @Value = "", @style = "width:150px" } })
         @Html.ValidationMessageFor(model => model.serial)
 
         @Html.LabelFor(Model => Model.MaxPassenger, "乘客數", new { @class = "control-label" })
-        @Html.EditorFor(Model => Model.MaxPassenger, new { htmlAttributes = new { @class = "form-control", @Value = "", @MaxLength = "10" } })
+        @Html.EditorFor(Model => Model.MaxPassenger, new { htmlAttributes = new { @class = "form-control", @Value = "", @MaxLength = "10", @style = "width:150px" } })
         @Html.ValidationMessageFor(model => model.MaxPassenger)
 
         @Html.LabelFor(Model => Model.officeID, "辦公室編號", new { @class = "control-label" })
-        @Html.EditorFor(Model => Model.officeID, new { htmlAttributes = new { @class = "form-control", @Value = "" } })
+        @Html.EditorFor(Model => Model.officeID, new { htmlAttributes = new { @class = "form-control", @Value = "", @style = "width:150px" } })
         @Html.ValidationMessageFor(model => model.officeID)
-        @*@Html.LabelFor(Model => Model.VehiclePhoto2, "照片", new { @class = "control-label" })
-            @Html.DisplayFor(Model => Model.VehiclePhoto2, new { @class = "form-control", Width = "200px", Height = "120px" })
-            @Html.ValidationMessageFor(model => model.VehiclePhoto2)*@
-
-
-
     </div>
 
-    <div class="form-group" style="float:right;margin-top:20px">
-        <div>
-            @*<input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
-                @*<button type="submit" title="執行多檔上傳" class="btn btn-success">*@
-            @*<span class="glyphicon glyphicon-upload"></span>
-                    上傳
-                </button>*@
-            <input type="submit" value="確認修改" class="btn btn-success" style="margin-right:10px" />
-        </div>
+    @*@Html.LabelFor(Model => Model.VehiclePhoto2, "照片", new { @class = "control-label" })
+        @Html.DisplayFor(Model => Model.VehiclePhoto2, new { @class = "form-control", Width = "200px", Height = "120px" })
+        @Html.ValidationMessageFor(model => model.VehiclePhoto2)*@
+
+
+
+</div>
+
+<div class="form-group" style="float:left;margin-top:20px">
+    <div>
+        @*<input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
+            @*<button type="submit" title="執行多檔上傳" class="btn btn-success">*@
+        @*<span class="glyphicon glyphicon-upload"></span>
+                上傳
+            </button>*@
+        <input type="submit" value="確認新增公務車" class="btn btn-success" style="" />
     </div>
+</div>
 
 
 
 
-    @*@section scripts{
-        <script>
-            function PopupForm(url) {
-                console.log(this.url)
-                var formDiv = $('<div/>');
-                $.get(url)
-                    .done(function (response) {
-                        formDiv.html(response);
-                        Popup = formDiv.dialog({
-                            autoOpen: true,
-                            resizable: false,
-                            title: '圖片上傳',
-                            height:400,
-                            width: 400,
-                            close: function () {
-                                Popup.dialog('destroy').remove();
-                            }
-                        });
-                    });
+@section scripts{
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#preview_progressbarTW_img").attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
             }
+        }
+
+        $("#imgInp").change(function () {
+            //當檔案改變後，做一些事
+            readURL(this);   // this代表<input id="imgInp">
+        });
+
+
+    </script>
+    @if (TempData["message"] != null)
+    {
+        <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["message"]));
+            alert(message);
+            setTimeout("history.back();", 1000)
         </script>
+    }
 
-
-        }*@
 }
 
+}
 

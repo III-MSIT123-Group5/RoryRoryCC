@@ -134,7 +134,7 @@ namespace EIPBussinessSystem_MVC.Controllers
 
             if (id == null)
             {
-                return View(new CompanyVehicle());
+                return View(new CompanyVehicleViewModel());
             }
             else
             {
@@ -209,28 +209,35 @@ namespace EIPBussinessSystem_MVC.Controllers
         //}
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult AddOrEdit2(CompanyVehicle b /*CompanyVehicleViewModel g*/)
+        public ActionResult AddOrEdit2(CompanyVehicleViewModel b )
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
-                //string appPath = Request.PhysicalApplicationPath;
-                //string saveDir = "\\CarUpload\\";
-                //string savePath = appPath + saveDir + SourceFilename;
-                //string SavePath = savePath;
-                db.CompanyVehicles.Add(new CompanyVehicle()
-                {
-                    LicenseNumber = b.LicenseNumber,
-                    VehicleYear = b.VehicleYear,
-                    PurchaseDate = b.PurchaseDate,
-                    brand = b.brand,
-                    serial = b.serial,
-                    MaxPassenger = b.MaxPassenger,
-                    officeID = b.officeID
-                    //VehiclePhoto2 = SavePath
-                });
-                db.SaveChanges();
-                return Json(new { success = true, message = "發布成功" }, JsonRequestBehavior.AllowGet);
+                
+                    string SourceFilename = Path.GetFileName(b.PhotoCar.FileName);
+                    string appPath = Request.PhysicalApplicationPath;
+                    string saveDir = "\\CarUpload\\";
+                    string savePath = appPath + saveDir + SourceFilename;
+                    b.PhotoCar.SaveAs(savePath);
+                    db.CompanyVehicles.Add(new CompanyVehicle()
+                    {
+                        LicenseNumber = b.LicenseNumber,
+                        VehicleYear = b.VehicleYear,
+                        PurchaseDate = b.PurchaseDate,
+                        brand = b.brand,
+                        serial = b.serial,
+                        MaxPassenger = b.MaxPassenger,
+                        officeID = b.officeID,
+                        VehiclePhoto2 = SourceFilename
+                    });
+                    db.SaveChanges();
+                    TempData["message"] = $"公務車資料新增完成";
+                    return RedirectToAction("AddOrEdit2", "CompanyVehicles");
+                
+                
+                
             }
         }
 
