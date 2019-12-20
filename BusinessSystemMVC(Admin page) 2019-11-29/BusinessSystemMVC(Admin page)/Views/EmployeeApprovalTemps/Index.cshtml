@@ -63,20 +63,21 @@
                 },
                 "columnDefs": [
 
-                    { "targets": 0, "data": "EmployeeName", "width": "60px" },
-                    { "targets": 1, "data": "Gender", "width": "60px" },
-                    { "targets": 2, "data": "Account", "width": "60px" },
-                    { "targets": 3, "data": "name", "width": "60px"  },    /*department*/
-                    { "targets": 4, "data": "GroupName", "width": "60px" },
-                    { "targets": 5, "data": "position1", "width": "60px"  },
-                    { "targets": 6, "data": "EditorTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px" },
+                    { "targets": 0, "data": "EmployeeName", "width": "60px", "className": "text-center align-middle" },
+                    { "targets": 1, "data": "Gender", "width": "60px", "className": "text-center align-middle" },
+                    { "targets": 2, "data": "Account", "width": "60px", "className": "text-center align-middle" },
+                    { "targets": 3, "data": "name", "width": "60px", "className": "text-center align-middle"  },    /*department*/
+                    { "targets": 4, "data": "GroupName", "width": "60px", "className": "text-center align-middle" },
+                    { "targets": 5, "data": "position1", "width": "60px", "className": "text-center align-middle"  },
+                    { "targets": 6, "data": "EditorTime", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "135px", "className": "text-center align-middle" },
                     {
                         "targets": 7, "data": "ID", "render": function (data) {
-                            return `<a class='btn btn-warning btn-sm' onclick=PopupDetail("@Url.Action("LoadDataDetail", "EmployeeApprovalTemps")/${data}")><i class="fa fa-align-left"></i> 詳細資料</a><a class='btn btn-warning btn-sm'  style='margin-left:5px' onclick=AcceptSign("@Url.Action("AcceptRegister", "EmployeeApprovalTemps")/${data}")><i class="fa fa-check-square-o"></i> 核准</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=RejectSign("@Url.Action("RejectRegister", "EmployeeApprovalTemps")/${data}")><i class='fa fa-hand-paper-o'></i> 駁回</a>`
+                            return `<a class='btn btn-warning btn-sm' onclick=PopupDetail("@Url.Action("LoadDataDetail", "EmployeeApprovalTemps")/${data}")><i class="fa fa-align-left"></i> 詳細資料</a><a class='btn btn-warning btn-sm'  style='margin-left:10px' onclick=AcceptSign("@Url.Action("AcceptRegister", "EmployeeApprovalTemps")/${data}")><i class="fa fa-check-square-o"></i> 核准</a><a class='btn btn-danger btn-sm' style='margin-left:10px' onclick=RejectSign("@Url.Action("RejectRegister", "EmployeeApprovalTemps")/${data}")><i class='fa fa-hand-paper-o'></i> 駁回</a>`
                         },
                         "orderable": false,
                         "searchable": false,
-                        "width": "150px"
+                        "width": "150px",
+                        "className": "text-center align-middle"
                     }
                 ],
                 "language": {
