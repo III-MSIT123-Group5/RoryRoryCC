@@ -433,23 +433,71 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         [HttpGet]
         public ActionResult Observe(int id)
         {
-            var q = from cm in db.CommentMains
-                    join cr in db.CommentReplies
-                    on cm.CommentMainID equals cr.CommentMainID
-                    select new
-                    {
-                        cm.CommentName,
-                      cr.ReplyNum,
-                      cr.Rate,
-                      cr.ChildNum
-
-                    };
+          
 
 
 
-            return View(new CommentMain());
+            //return View(new CommentMain());
+            return View();
         }
 
+
+        [HttpGet]
+        public ActionResult RateData()
+        {
+
+            int empid = EmployeeDetail.EmployeeID;
+
+            var report = from cr in db.CommentReplies
+                         join cm in db.CommentMains
+                         on cr.CommentMainID equals cm.CommentMainID
+                         join cc in db.CommentChilds
+                         on cr.ChildNum equals cc.ChildNum
+                         join cq in db.CommentQuestions
+                         on cc.CommentQuestionID equals cq.CommentQuestionID
+                         group cr by new {cr.CommentMainID,cr.CommentMain.CommentName,cr.CommentChild.CommentQuestion.CommentQuestionID, cr.CommentChild.CommentQuestion.Question} into n
+                         orderby n.Key.CommentQuestionID
+                         //where n.Key.CommentMainID == empid
+                         select new
+                         {
+                             
+                             n.Key.CommentName,
+                             n.Key.CommentQuestionID,
+                             n.Key.Question,
+                             Average = Math.Round((Double)n.Average(p=>p.Rate),1)
+
+                         };
+
+            var data = report.ToList();
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        [HttpGet]
+        public ActionResult ObserveData()
+        {
+            var report = from cm in db.CommentMains
+                         join cc in db.CommentChilds
+                         on cm.CommentMainID equals cc.CommentMainID
+                         join emp in db.Employees
+                         on cc.EmployeeID equals emp.employeeID
+                         join de in db.Departments
+                         on emp.DepartmentID equals de.departmentID
+                         join cr in db.CommentReplies
+                         on cm.CommentMainID equals cr.CommentMainID
+                         select new
+                         {
+                             cm.CommentName,
+                             de.name, //部門                            
+                            cr.ReplyNum,
+                            cr.Rate,
+                            cc.ChildNum
+                         };
+
+            var data = report.ToList();
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
 
         // POST: CommentMains/Create
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需

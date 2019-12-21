@@ -86,16 +86,16 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                         on cm.CommentMainID equals cc.CommentMainID
                         join emp in db.Employees
                         on cm.EmployeeID equals emp.employeeID
-                        //where cm.EmployeeID == empid 
+                        where cc.EmployeeID == empid 
                         select new
                         {
                             //cc.ChildNum,
-                            cm.CommentContentID,
-                            cm.SendTime,
+                            //cm.CommentContentID,
+                            //cm.SendTime,
                             cm.CommentMainID,
                             postperson = emp.EmployeeName,
                             cm.CommentName,
-                            replyperson = cc.EmployeeID,
+                            //replyperson = cc.EmployeeID,
 
                         }).Distinct();
 
@@ -213,9 +213,9 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
+                int empid = EmployeeDetail.EmployeeID;
 
-
-                var q = db.CommentChilds.Where(x=>x.CommentMainID==cid).Select(x => x.ChildNum).ToArray();
+                var q = db.CommentChilds.Where(x=>x.CommentMainID==cid && x.EmployeeID == empid).Select(x => x.ChildNum).ToArray();
 
                 string [] rate = str.Split('&');
                 List <int>lastChar = new List<int>();
