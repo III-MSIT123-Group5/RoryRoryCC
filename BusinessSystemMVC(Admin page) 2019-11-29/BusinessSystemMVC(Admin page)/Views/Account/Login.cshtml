@@ -50,44 +50,37 @@
                     <p class="formLabel">UserName</p>
                     @Html.TextBoxFor(m => m.UserName, new { @class = "form-style", @autocomplete = "off", @id = "UserName" })
                     @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
-                    @*<input type="email" name="email" id="email" class="form-style" autocomplete="off" />*@
                 </div>
                 <div class="form-item">
                     <p class="formLabel">Password</p>
                     @Html.PasswordFor(m => m.Password, new { @class = "form-style", @id = "Password" })
                     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @*<input type="password" name="password" id="password" class="form-style" />*@
-                    @*<div class="pw-view"><i class="fa fa-eye"></i></div>*@
                 </div>
-                <div>
-                    <div class="form-item" style="float:left">
-                        <div style="margin-bottom:10px">
-                            <button type="button" class="btn btn-info demo" onclick="$('#UserName').val('jennifer');$('#Password').val('@("@Aa123")')">總經理</button>
-                        </div>
-                        <div style="margin-bottom:10px">
-                            <button type="button" class="btn btn-info demo" onclick="$('#UserName').val('youngshang');$('#Password').val('@("@Aa123")')">行政部部長</button>
-                            <button type="button" class="btn btn-info demo" onclick="$('#UserName').val('maeshin');$('#Password').val('@("@Aa123")')">人資組組長</button>
-                        </div>
-                        <div style="margin-bottom:10px">
-                            <button type="button" class="btn btn-info demo" onclick="$('#UserName').val('marylin');$('#Password').val('@("@Aa123")')">總務組組長</button>
-                            <button type="button" class="btn btn-info demo" onclick="$('#UserName').val('reshin');$('#Password').val('@("@Aa123")')">人資組員工</button>
-                        </div>
-                    </div>
+                <div>                   
                     <div class="form-item" style="float:right; margin-top:95px">
                         <input type="submit" class="login pull-right" value="Log In">
                     </div>
                 </div>
             }
+        </div>       
+        <div style="float:right; vertical-align:bottom; border:1px solid gray" >
+            <div class="form-item" style="float:left">
+                <div style="margin-bottom:10px">
+                    <button type="button" class="btn btn-info demo" onclick="$('#UserName').val('jennifer');$('#Password').val('@("@Aa123")')" id="GM">總經理</button>
+                </div>
+                <div style="margin-bottom:10px">
+                    <button type="button" class="btn btn-info demo" onclick="$('#UserName').val('youngshang');$('#Password').val('@("@Aa123")')" id="ASDL">行政部部長</button>
+                </div>
+                <div style="margin-bottom:10px">
+                    <button type="button" class="btn btn-info demo" onclick="$('#UserName').val('maeshin');$('#Password').val('@("@Aa123")')" id="HRGL">人資組組長</button>
+                    <button type="button" class="btn btn-info demo" onclick="$('#UserName').val('marylin');$('#Password').val('@("@Aa123")')" id="GAGL">總務組組長</button>
+                </div>
+                <div >
+                    <button type="button" class="btn btn-info demo" onclick="$('#UserName').val('reshin');$('#Password').val('@("@Aa123")')" id="HREP">人資組員工</button>
+                </div>
+            </div>
         </div>
-        <button type="button" class="btn btn-warning" id="GM">總經理</button><br />
-        <button type="button" class="btn btn-info" id="DepLder">行政部長</button><br />
-        <button type="button" class="btn btn-secondary" id="GAGLer">總務組長</button>
-        <button type="button" class="btn btn-secondary" id="HRGler">人資組長</button><br />
-        <button type="button" class="btn btn-success" id="Emp">員工</button>
-        <div>
-        </div>
-
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
@@ -95,18 +88,20 @@
     @Scripts.Render("~/Scripts/Login_jquery.js")
     <script>
         $(document).ready(function () {
-            $("#UserName, #Password").focus(function () {
+            $("#UserName, #Password" ).focus(function () {
                 document.getElementsByTagName("body")[0].style.opacity = "0.9";
             })
             $("#UserName, #Password").focusout(function () {
                 document.getElementsByTagName("body")[0].style.opacity = "0.6";
             })
-            $("#GM").bind("click", function () {
-                $("#UserName").val() = "jennifer";
+            $(" #GM, #ASDL, #HRGL, #GAGL, #HREP").click(function () {
+                document.getElementById("UserName").focus();
+                document.getElementById("Password").focus();
             })
-
-
-
+            $("#GM, #ASDL, #HRGL, #GAGL, #HREP").click(function () {
+                document.getElementById("UserName").focus();
+                document.getElementById("Password").focus();
+            })
         })
     </script>
 </body>
