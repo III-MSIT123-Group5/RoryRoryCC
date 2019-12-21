@@ -80,29 +80,36 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         {
 
             int empid = EmployeeDetail.EmployeeID;
+            
 
             var data = (from cm in db.CommentMains
                         join cc in db.CommentChilds
                         on cm.CommentMainID equals cc.CommentMainID
                         join emp in db.Employees
-                        on cm.EmployeeID equals emp.employeeID
+                        on cm.EmployeeID equals emp.employeeID                        
                         where cc.EmployeeID == empid 
                         select new
                         {
-                            //cc.ChildNum,
+                            cc.ChildNum,
                             //cm.CommentContentID,
                             //cm.SendTime,
                             cm.CommentMainID,
                             postperson = emp.EmployeeName,
-                            cm.CommentName,
+                            cm.CommentName
                             //replyperson = cc.EmployeeID,
 
                         }).Distinct();
+            var replies = data.Select(x => new
+            {
+                replied = db.CommentReplies.Any(y => y.ChildNum == x.ChildNum),                              
+                x.CommentMainID,
+                x.postperson,
+                x.CommentName
+            }).Distinct();
 
 
 
-
-            var datas = data.ToList();
+            var datas = replies.ToList();
 
             return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
         }
