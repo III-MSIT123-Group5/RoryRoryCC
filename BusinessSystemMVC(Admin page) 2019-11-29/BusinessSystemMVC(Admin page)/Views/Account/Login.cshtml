@@ -11,7 +11,7 @@
             padding: 0px;
             background: url(@Url.Content("~/imgBG/hump.png")) center center fixed no-repeat;
             background-size: cover;
-            opacity:0.8;
+            opacity:0.5;
         }
 
         .demo{
@@ -92,7 +92,7 @@
                 document.getElementsByTagName("body")[0].style.opacity = "0.9";
             })
             $("#UserName, #Password").focusout(function () {
-                document.getElementsByTagName("body")[0].style.opacity = "0.6";
+                document.getElementsByTagName("body")[0].style.opacity = "0.5";
             })
             $(" #GM, #ASDL, #HRGL, #GAGL, #HREP").click(function () {
                 document.getElementById("UserName").focus();

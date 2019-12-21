@@ -94,7 +94,7 @@
         <script type="text/javascript">
         var message = @Html.Raw(Json.Encode(TempData["message"]));
             alert(message);
-            setTimeout("history.back();", 1000)
+            location.href='@Url.Content("~/CompanyVehicles/Index")'
         </script>
     }
 
