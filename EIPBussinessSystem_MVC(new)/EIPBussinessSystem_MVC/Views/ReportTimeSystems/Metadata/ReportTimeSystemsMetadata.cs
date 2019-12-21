@@ -36,7 +36,7 @@ namespace EIPBussinessSystem_MVC.Models
         public string Note { get; set; }
 
         [Required(ErrorMessage = "請輸入{0}")]
-        [Display(Name = "送出表單時間", ResourceType = typeof(Resource1)))]
+        //[Display(Name = "送出表單時間", ResourceType = typeof(Resource1)))]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd tt hh:mm}",ApplyFormatInEditMode =true)]
         public System.DateTime ApplyDateTime { get; set; }
         public Nullable<bool> Discontinue { get; set; }

@@ -15,21 +15,33 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
         private BusinessDataBaseEntities db = new BusinessDataBaseEntities();
 
         [HttpGet]
-        public ActionResult test()
+        public ActionResult Test()
         {
             using (BusinessDataBaseEntities db = new BusinessDataBaseEntities())
             {
-                
-                var q = (from p in db.CommentChilds
-                        where p.EmployeeID == EmployeeDetail.EmployeeID
-                        select new
-                        {
-                            p.CommentMainID,
-                        }).Distinct();
 
-                var k = q.Count();
+                //var q = (from p in db.CommentChilds
+                //         join l in db.CommentReplies on p.CommentMainID equals l.CommentMainID
+                //         where p.ChildNum != l.ChildNum && p.EmployeeID == EmployeeDetail.EmployeeID
+                //         select new
+                //        {
+                //            p.CommentMainID,
+                //        }).Distinct().ToList();
+                var q = db.CommentChilds
+                    .Where(x=>x.EmployeeID == EmployeeDetail.EmployeeID)
+                    .Where(x => !db.CommentReplies.Any(y => y.CommentChild.ChildNum == x.ChildNum)).Select(z=>z.CommentMainID).Distinct().ToList();
+
+                if (q.Count() != 0)
+                {
+                    var k = q.Count();
+                    return Json(new { len = k }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                }
             
-                return Json(new{ len=k }, JsonRequestBehavior.AllowGet);
+                
 
             };
         }
