@@ -51,13 +51,18 @@
 
 
         <script>
+                 var cmid = @Model.CommentMainID
+                
+
         $(document).ready(function () {
-           
+
+                         console.log(cmid);
 
              $.ajax({
                         url: '@Url.Action("RateData", "CommentMains")',
                         method: 'GET',
-                        dataType: 'json'
+                        dataType: 'json',
+                        data: {cmid:cmid}
                     })
                  .done(function (datas) {
                             
