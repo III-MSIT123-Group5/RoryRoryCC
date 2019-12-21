@@ -62,6 +62,7 @@ namespace EIPBussinessSystem_MVC.Controllers
             var Canuse = from c in db.CompanyVehicles
                          select new
                          {
+                             c.VehiclePhoto2,
                              c.LicenseNumber,
                              c.brand,
                              c.serial,

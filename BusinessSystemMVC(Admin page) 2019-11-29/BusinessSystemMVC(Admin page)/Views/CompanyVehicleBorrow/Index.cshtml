@@ -71,6 +71,7 @@
 </div>
 <table id="test2" style="margin-top:200px" class="table">
     <tr>
+        <th>公務車照片</th>
         <th>車牌號碼</th>
         <th>車輛廠牌</th>
         <th>車輛型號</th>
@@ -238,6 +239,7 @@
             }).done(function (r) {
                 $("#test2").empty();
                 $("#test2").append('<tr></tr>')
+                $("#test2").append(`<th>公務車照片</th>`)
                 $("#test2").append(`<th>車牌號碼</th>`)
                 $("#test2").append(`<th>車輛廠牌</th>`)
                 $("#test2").append(`<th>車輛型號</th>`)
@@ -249,7 +251,8 @@
                     console.log(r[o].LicenseNumber)
                     if ($.inArray(r[o].LicenseNumber, countarray) == -1) {
                         $("#test2").append(`<tr>
-        <td ">${r[o].LicenseNumber}</td>
+        <td><img height="60px" src="@Url.Content("/CarUpload/${r[o].VehiclePhoto2}")"</td>
+        <td>${r[o].LicenseNumber}</td>
         <td>${r[o].brand}</td>
         <td>${r[o].serial}</td>
         <td>${r[o].MaxPassenger}</td>
@@ -258,8 +261,12 @@
         <td><input type="button" id="${ r[o].LicenseNumber}" class = 'btn btn-primary' value="選擇車輛"></td>
         </tr>`)
                         $(`#${r[o].LicenseNumber}`).click(function () {
-                            console.log($(`#${this.id}t`).val());
-                            getLNfunc(this.id, dtS, dtE, $(`#${this.id}t`).val())
+                            
+                                console.log($(`#${this.id}t`).val());
+                                getLNfunc(this.id, dtS, dtE, $(`#${this.id}t`).val())
+                                setTimeout("starttime();", 2000)
+                            
+                            
                         })
 
                     }
@@ -416,6 +423,17 @@
             //===============================================================
             //
         }
+        function starttime() {
+                                $("#test2").empty();
+                $("#test2").append('<tr></tr>')
+                $("#test2").append(`<th>車牌號碼</th>`)
+                $("#test2").append(`<th>車輛廠牌</th>`)
+                $("#test2").append(`<th>車輛型號</th>`)
+                $("#test2").append(`<th>乘坐人數</th>`)
+                $("#test2").append(`<th>辦公室位置</th>`)
+                $("#test2").append(`<th>外出事由</th>`)
+                $("#test2").append(`<th>確認訂車</th>`)
+                            }
 
     </script>
 
