@@ -33,7 +33,7 @@
 
             $.ajax({
                 type: "GET",
-                url: '@Url.Action("TimeControl", "ReportTimeSystems")',
+                url: '@Url.Action("TimeChart", "ReportTimeSystems")',
                 success: function (data) {
 
 
@@ -44,7 +44,7 @@
                         })
 
                     })
-                    console.log(repie);
+                    console.log(repie[0].name);
 
 
                     //Highcharts.chart('container', {
