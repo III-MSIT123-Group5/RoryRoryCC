@@ -116,6 +116,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 else
                 {
                     db.Entry(r).State = EntityState.Modified;
+
+                    db.Entry(r).OriginalValues.SetValues(r.EventHours = (r.EndTime-r.StartTime).TotalHours);
                     db.ReportTimeSystems.First().ApplyDateTime = DateTime.Now;
                     db.SaveChanges();
 
