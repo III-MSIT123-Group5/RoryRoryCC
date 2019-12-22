@@ -34,7 +34,7 @@
                 <th>收件者</th>
                 <th>主旨</th>
                 <th>內容</th>
-                <th>部門</th>
+                @*<th>部門</th>*@
                 <th>寄件時間</th>
                 <th>刪除</th>
             </tr>
@@ -68,9 +68,9 @@
                     { "targets": 0, "data": "EmployeeName", "width": "60px","className": "text-center align-middle" },
                     { "targets": 1, "data": "Title", "width": "150px","className": "text-center align-middle" },
                     { "targets": 2, "data": "Data", "className": "align-middle" },
-                    { "targets": 3, "data": "name", "className": "align-middle" },
-                    { "targets": 4, "data": "MailingDate", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "200px", "className": "text-center align-middle" },
-                    { "targets": 5, "data": "MessageID", "render": function (data) {
+                    //{ "targets": 3, "data": "name", "className": "align-middle" },
+                    { "targets": 3, "data": "MailingDate", "render": function (data) { return moment(data).format("YYYY-MM-DD HH:mm:ss") }, "width": "200px", "className": "text-center align-middle" },
+                    { "targets": 4, "data": "MessageID", "render": function (data) {
                         return "<a class='btn btn-danger btn-sm' style='margin-left:5px; background-color:#FF0000' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> 刪除</a>"
                         },
                         "orderable": false,
