@@ -33,7 +33,6 @@ namespace BusinessSystemMVC_Admin_page_.Models
         public System.DateTime EndTime { get; set; }
 
         [Display(Name = "Location", ResourceType = typeof(Resource1))]
-        [StringLength(10, ErrorMessage = "{0}最多{1}個字")]
         public string Location { get; set; }
 
         [Display(Name = "Description", ResourceType = typeof(Resource1))]
