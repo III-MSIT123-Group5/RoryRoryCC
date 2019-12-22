@@ -19,7 +19,7 @@
             @Html.Label("起始時間", new { @for = "StartDateFrom" })
             <div class="col-md-10">
                 <p>日期與時間</p>
-                @Html.TextBoxFor(model => model.StartDate, new { @id = "StartDateFrom", @name = "StartDateFrom" })/
+                @Html.TextBoxFor(model => model.StartDate, new { @id = "StartDateFrom", @name = "StartDateFrom", @style = "width: 120px" })/
             @Html.DropDownList("StartHour", null, new { @style = "width: 50px" })
                 @Html.ValidationMessageFor(model => model.StartHour, "", new { @class = "text-danger" })
             </div>
@@ -28,7 +28,7 @@
             @Html.Label("結束時間", new { @for = "EndDateFrom" })
             <div class="col-md-10">
                 <p>日期與時間</p>
-                @Html.TextBoxFor(model => model.EndDate, new { @id = "EndDateFrom", @name = "EndDateFrom" })/
+                @Html.TextBoxFor(model => model.EndDate, new { @id = "EndDateFrom", @name = "EndDateFrom", @style = "width: 120px" })/
                 @Html.DropDownList("EndHour", null, new { @style = "width: 50px" })
                 @Html.ValidationMessageFor(model => model.EndHour, "", new { @class = "text-danger" })
             </div>

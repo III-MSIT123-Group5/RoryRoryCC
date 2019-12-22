@@ -43,12 +43,13 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                        on b.DepartmentID equals d.departmentID
                        select new
                        {
-                            b.Content,
-                             b.PostTime,
-                            d.name,
+                           b.Content,
+                           b.PostTime,
+                           d.name,
                            emp.EmployeeName,
-                         b.Num,
-                          emp.Photo
+                           b.Num,
+                           emp.Photo,
+                           IsSelf = (EmployeeDetail.EmployeeID == b.EmployeeID) 
                        };
             var datas = data.ToList();
 
