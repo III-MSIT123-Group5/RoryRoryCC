@@ -4,8 +4,13 @@
     ViewBag.Title = "回報分析";
 }
 
+<div>
+    @*@Html.DisplayName("員工姓名");*@
+    @*@Html.DropDownList("employeeID", null, htmlAttributes: new { @class = "form-control", rows = "8", cols = "100", @style = "width:300px" })*@
+    <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+</div>
 
-<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
 
 @section scripts
 {
@@ -18,66 +23,68 @@
     
     <script>
 
-        var events = [];
+
+
+        var repieR = [];
+        var repie =[];
         $(document).ready(function () {
 
 
 
             $.ajax({
                 type: "GET",
-                url: '@Url.Action("TimeControl", "ReportTimeSystems")',
+                url: '@Url.Action("TimeChart", "ReportTimeSystems")',
                 success: function (data) {
 
 
                     $.each(data, function (i, v) {
-
-                        events.push({
-
-                            name: v.ReportName,
-                            y: v.EventHours
+                        repie.push({
+                            name: v.EmployeeName,                            
+                            data: v.EventHours
                         })
 
                     })
+                    console.log(repie[0].name);
 
-                    Highcharts.chart('container', {
-                        chart: {
-                            type: 'pie',
-                            options3d: {
-                                enabled: true,
-                                alpha: 45,
-                                beta: 0
-                            }
-                        },
-                        title: {
-                            text: 'Browser market shares at a specific website, 2014'
-                        },
-                        accessibility: {
-                            point: {
-                                valueSuffix: '%'
-                            }
-                        },
-                        tooltip: {
-                            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                        },
-                        plotOptions: {
-                            pie: {
-                                allowPointSelect: true,
-                                cursor: 'pointer',
-                                depth: 35,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.name}'
-                                }
-                            }
-                        },
 
-                        series: [{
-                            type: 'pie',
-                            name: 'Browser share',
-                            data: events
+                    //Highcharts.chart('container', {
+                    //    chart: {
+                    //        type: 'pie',
+                    //        options3d: {
+                    //            enabled: true,
+                    //            alpha: 45,
+                    //            beta: 0
+                    //        }
+                    //    },
+                    //    title: {
+                    //        text: 'Browser market shares at a specific website, 2014'
+                    //    },
+                    //    accessibility: {
+                    //        point: {
+                    //            valueSuffix: '%'
+                    //        }
+                    //    },
+                    //    tooltip: {
+                    //        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    //    },
+                    //    plotOptions: {
+                    //        pie: {
+                    //            allowPointSelect: true,
+                    //            cursor: 'pointer',
+                    //            depth: 35,
+                    //            dataLabels: {
+                    //                enabled: true,
+                    //                format: '{point.name}'
+                    //            }
+                    //        }
+                    //    },
+                    //    series: [{
+                    //        type: 'pie',
+                    //        name: 'Browser share',
+                    //        data: repie
 
-                        }]
-                    });
+                    //    }]
+                    //});
 
                 },
                 error: function (error) {
@@ -91,6 +98,6 @@
 
 
 
-       
+
     </script>
 }

@@ -45,10 +45,10 @@
 
             <div class="input-group date" id="datepickerstart" data-target-input="nearest" style="width:300px">
                 @Html.TextBoxFor(model => model.StartTime,null, new{
-                   @class = "form-control datetimepicker-input",
-                   @style = "padding-left:0px;text-indent:10px;",
-                   data_target = "#datepickerstart",
-                   data_toggle = "datetimepicker",
+               @class = "form-control datetimepicker-input",
+               @style = "padding-left:0px;text-indent:10px;",
+               data_target = "#datepickerstart",
+               data_toggle = "datetimepicker"
 
            })
                 <div class="input-group-append" data-target="#datepickerstart" data-toggle="datetimepicker">
@@ -59,10 +59,7 @@
 
             <script type="text/javascript">
                 $(function () {
-                    $('#datepickerstart').datetimepicker({
-
-                    });
-
+                    
                 });
             </script>
 
@@ -83,11 +80,12 @@
             @Html.LabelFor(model => model.EndTime, new { @class = "control-label" })
             <div class="input-group date" id="datepickerend" data-target-input="nearest" style="width:300px">
                 @Html.TextBoxFor(model => model.EndTime,null, new{
-                    @class = "form-control datetimepicker-input",
-                    @style = "padding-left:0px;text-indent:10px;",
-                    data_target = "#datepickerend",
-                    data_toggle = "datetimepicker"
-            })
+               @class = "form-control datetimepicker-input",
+               @style = "padding-left:0px;text-indent:10px;",
+               data_target = "#datepickerend",
+               data_toggle = "datetimepicker"
+               
+           })
                 @*<input type="text" class="form-control datetimepicker-input" data-target="#datepickerend" style="padding-left:0px; text-indent:10px;" rows="8" cols="100" data-toggle="datetimepicker" value="@Model.EndTime" />*@
                 <div class="input-group-append" data-target="#datepickerend" data-toggle="datetimepicker">
                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -98,9 +96,16 @@
             <script type="text/javascript">
                 $(function () {
                     $('#datepickerend').datetimepicker();
-
+                    $('#datepickerstart').datetimepicker()
+                    $("#datepickerend").on("change.datetimepicker", function (e) {
+                        $('#datepickerstart').datetimepicker('maxDate', e.date);
+                    });
+                    $("#datepickerstart").on("change.datetimepicker", function (e) {
+                        $('#datepickerend').datetimepicker('minDate', e.date);
+                    });
                 });
 
+                
             </script>
             @Html.ValidationMessageFor(model => model.EndTime)
         </div>

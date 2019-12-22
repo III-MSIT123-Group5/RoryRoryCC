@@ -58,24 +58,28 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 </div>
                 <div>                   
-                    <div class="form-item" style="float:right; margin-top:95px">
+                    <div class="form-item" style="float:right">
                         <input type="submit" class="login pull-right" value="Log In">
                     </div>
                 </div>
             }
         </div>       
-        <div style="float:right; vertical-align:bottom; border:1px solid gray" >
-            <div class="form-item" style="float:left">
+        <div style="float:right; border:1px solid gray; margin-right: 160px; margin-top:360px; padding-left:10px;padding-right:10px" >
+            <div class="form-item" style="text-align:center">
+                <br />
                 <div style="margin-bottom:10px">
                     <button type="button" class="btn btn-info demo" onclick="$('#UserName').val('jennifer');$('#Password').val('@("@Aa123")')" id="GM">總經理</button>
                 </div>
+                <br />
                 <div style="margin-bottom:10px">
                     <button type="button" class="btn btn-info demo" onclick="$('#UserName').val('youngshang');$('#Password').val('@("@Aa123")')" id="ASDL">行政部部長</button>
                 </div>
+                <br />
                 <div style="margin-bottom:10px">
-                    <button type="button" class="btn btn-info demo" onclick="$('#UserName').val('maeshin');$('#Password').val('@("@Aa123")')" id="HRGL">人資組組長</button>
+                    <button type="button" class="btn btn-info demo" style="margin-right:10px" onclick="$('#UserName').val('maeshin');$('#Password').val('@("@Aa123")')" id="HRGL">人資組組長</button>
                     <button type="button" class="btn btn-info demo" onclick="$('#UserName').val('marylin');$('#Password').val('@("@Aa123")')" id="GAGL">總務組組長</button>
-                </div>
+                </div> 
+                <br />
                 <div >
                     <button type="button" class="btn btn-info demo" onclick="$('#UserName').val('reshin');$('#Password').val('@("@Aa123")')" id="HREP">人資組員工</button>
                 </div>

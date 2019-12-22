@@ -116,6 +116,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 else
                 {
                     db.Entry(r).State = EntityState.Modified;
+
+                    db.Entry(r).OriginalValues.SetValues(r.EventHours = (r.EndTime-r.StartTime).TotalHours);
                     db.ReportTimeSystems.First().ApplyDateTime = DateTime.Now;
                     db.SaveChanges();
 
@@ -181,7 +183,29 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         }
 
+        public ActionResult TimeChart()
+        {
+            var datas = (from r in db.ReportTimeSystems
+                         join e in db.Employees
+                         on r.employeeID equals e.employeeID
+                         where r.Employee.GroupID == EmployeeDetail.GroupID
+                         select new
+                         {
+                             r.ReportID,
+                             r.ReportName,
+                             r.Employee.EmployeeName,
+                             r.StartTime,
+                             r.EndTime,
+                             r.Event.EventName,
+                             r.EventHours,
+                             r.Note,
+                             r.Discontinue,
+                             r.ApplyDateTime
+                         });
 
+
+            return Json(new { data = datas }, JsonRequestBehavior.AllowGet);
+        }
 
 
 

@@ -1,6 +1,7 @@
 ﻿
 using BusinessSystemMVC_Admin_page_.Views.ReportTimeSystems.MetaData;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -51,5 +52,8 @@ namespace BusinessSystemMVC_Admin_page_.Models
 
         public virtual Employee Employee { get; set; }
         public virtual Event Event { get; set; }
+
+        
+
     }
 }

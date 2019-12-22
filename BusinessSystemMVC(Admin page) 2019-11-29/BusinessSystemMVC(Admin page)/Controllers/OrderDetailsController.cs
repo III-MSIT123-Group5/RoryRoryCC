@@ -83,7 +83,6 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                 foreach (var e in empquery1)
                 {
                     Signer1ID = e.ManagerID;
-
                 }
 
                 //找登入員工的第二層上司ID(部長)
@@ -240,6 +239,17 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
         public ActionResult Export(int? id)
         {
+            var searchID = from OD in db.OrderDetails
+                          where OD.OrderID == id
+                          select new { OD.OrderID };
+
+            int? orderID = 0;
+
+            foreach (var e in searchID)
+            {
+                orderID = e.OrderID;
+            }
+
             var report = from AS in this.db.Approvals.AsEnumerable()
                          join RM in this.db.RequisitionMains.AsEnumerable() on AS.OrderID equals RM.OrderID
                          join E in this.db.Employees.AsEnumerable() on RM.EmployeeID equals E.employeeID
@@ -347,14 +357,14 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             worksheet.get_Range("A7", "H8").Borders.LineStyle = XlLineStyle.xlContinuous;
             //------------------------------------------
 
-            workbook.SaveAs("D:\\ExportToExcel.xls");
+            workbook.SaveAs("D:\\紙本請購單_單號" + orderID + ".xls");
             workbook.Close();
             Marshal.ReleaseComObject(workbook);
 
             application.Quit();
             Marshal.FinalReleaseComObject(application);
 
-            return Json(new { success = true, message = "下載成功" }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, message = "下載成功，請至D槽查看" }, JsonRequestBehavior.AllowGet);
         }
 
         //簽核流程查詢--------------------------------------------------------------------------------------------------------
