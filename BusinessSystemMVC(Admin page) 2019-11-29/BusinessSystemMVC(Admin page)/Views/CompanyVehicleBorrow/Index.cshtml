@@ -223,8 +223,8 @@
 
                 for (var q = 0; q < StimeU.length; q++)
                     if ((dtS >= StimeU[q] && dtE <= EtimeU[q]) ||
-                        ((dtS >= StimeU[q] && dtS <= EtimeU[q]) && dtE >= EtimeU[q]) ||
-                        (dtS <= StimeU[q] && (dtE >= StimeU[q] && dtE <= EtimeU[q])) ||
+                        ((dtS >= StimeU[q] && dtS < EtimeU[q]) && dtE >= EtimeU[q]) ||
+                        (dtS < StimeU[q] && (dtE > StimeU[q] && dtE <= EtimeU[q])) ||
                         (dtS < StimeU[q] && dtE > EtimeU[q])) {
                         countarray[count] = NoUseLN[q];
                         count++;
