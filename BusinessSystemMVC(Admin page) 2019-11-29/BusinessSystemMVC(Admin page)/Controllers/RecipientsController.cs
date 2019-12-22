@@ -36,6 +36,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                             on r.Message.EmployeeID equals emp.employeeID
                             join m in db.Messages
                             on r.MessageID equals m.MessageID
+                            //join Dep in db.Departments
+                            //on emp.DepartmentID equals Dep.departmentID
                             where r.EmployeeID == EmployeeDetail.EmployeeID && r.Status.Equals("true")
                             select new
                             {
@@ -43,7 +45,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                                 emp.EmployeeName,
                                 m.Title,
                                 m.Data,
-                                m.MailingDate
+                                m.MailingDate,
+                                //Dep.name
                             };
 
             var recipients = recipient.ToList();
@@ -59,6 +62,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                             on r.EmployeeID equals emp.employeeID
                             join m in db.Messages
                             on r.MessageID equals m.MessageID
+                            //join Dep in db.Departments
+                            //on emp.DepartmentID equals  Dep.departmentID
                             where r.Message.EmployeeID == EmployeeDetail.EmployeeID && r.Message.Status.Equals("true")
                             select new
                             {
@@ -66,7 +71,8 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
                                 emp.EmployeeName,
                                 m.Title,
                                 m.Data,
-                                m.MailingDate
+                                m.MailingDate,
+                                //Dep.name
                             };
 
             var recipients = recipient.ToList();
@@ -159,20 +165,30 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
 
 
 
-        // GET: Recipients/Details/5
-        public ActionResult Details(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Recipient recipient = db.Recipients.Find(id);
-            if (recipient == null)
-            {
-                return HttpNotFound();
-            }
-            return View(recipient);
-        }
+        //// GET: Recipients/Details/5
+        //public ActionResult Details(int? id)
+        //{
+        //    var recipient = from r in db.Recipients
+        //                    join emp in db.Employees
+        //                    on r.Message.EmployeeID equals emp.employeeID
+        //                    join m in db.Messages
+        //                    on r.MessageID equals m.MessageID
+        //                    join Dep in db.Departments
+        //                    on emp.DepartmentID equals Dep.departmentID
+        //                    where r.EmployeeID == EmployeeDetail.EmployeeID && r.Status.Equals("true")
+        //                    select new
+        //                    {
+        //                        r.RecipientID,
+        //                        emp.EmployeeName,
+        //                        m.Title,
+        //                        m.Data,
+        //                        m.MailingDate,
+        //                        Dep.name
+        //                    };
+
+        //    var recipients = recipient.FirstOrDefault();
+        //    return View(recipients);
+        //}
 
 
         // GET: Recipients/Delete/5
