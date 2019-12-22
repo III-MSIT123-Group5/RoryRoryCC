@@ -364,7 +364,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             application.Quit();
             Marshal.FinalReleaseComObject(application);
 
-            return Json(new { success = true, message = "下載成功" }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, message = "下載成功，請至D槽查看" }, JsonRequestBehavior.AllowGet);
         }
 
         //簽核流程查詢--------------------------------------------------------------------------------------------------------
