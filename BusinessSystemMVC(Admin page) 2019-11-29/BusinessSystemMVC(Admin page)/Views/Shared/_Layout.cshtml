@@ -283,7 +283,7 @@
         })
         //每隔15秒刷新一次小鈴鐺
         function funcTimer() {
-            window.setInterval("getlocation()", 60000);
+            window.setInterval("getlocation()", 15000);
         }
 
         window.onload = funcTimer;
@@ -421,7 +421,7 @@
             })
         }
 
-
+        //意見調查
         function getComment() {
             $.ajax({
                 url: '@Url.Action("test", "CommentChilds")',
@@ -458,7 +458,7 @@
                         ampm()
                         $(`#appendnews`).append(`<div class="dropdown - divider" value="1"></div>`)
                         $(`#appendnews`).append(`<a class="dropdown-item" href="/CommentChilds/Index"><span class="text-success"><strong>
- <i class="fa fa-fw fa-clipboard" style="font-size: 1.6em; vertical-align: middle;"></i> 意見調查通知</strong></span>
+ <i class="fa fa-clipboard" aria-hidden="true"></i> 意見調查通知</strong></span>
 <span class="small float-right text-muted">${hour}:${mins}${apm}</span>
 <div class="dropdown-message small">您有${data.len}筆意見調查待回復</div></a>`)
                         

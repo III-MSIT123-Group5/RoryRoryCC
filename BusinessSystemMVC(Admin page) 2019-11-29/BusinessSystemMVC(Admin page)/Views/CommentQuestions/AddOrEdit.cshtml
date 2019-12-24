@@ -10,134 +10,149 @@
 
 <html>
 <body>
-@using (Html.BeginForm("AddOrEdit", "CommentQuestions", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
-{
-    @Html.AntiForgeryToken()
+    @using (Html.BeginForm("AddOrEdit", "CommentQuestions", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+    {
+        @Html.AntiForgeryToken()
 
 
-    @Html.HiddenFor(model => model.CommentQuestionID)
-    @Html.HiddenFor(model => model.CommentContentID)
+        @Html.HiddenFor(model => model.CommentQuestionID)
+        @Html.HiddenFor(model => model.CommentContentID)
 
-    @*<div style="font-size:20px">
+        @*<div style="font-size:20px">
+                <div class="form-group">
+                    <label>調查分類：</label>@Html.DropDownList("CommentOptions", (SelectList)ViewBag.SelectList, "請選擇分類", new { id = "CommentOptions1", style = "width:250px" })
+
+                </div>
+                <div class="form-group">
+                    <label>調查主題：</label><select id="CommentContent" name="commentContent" style="width:250px"><option>------</option></select>
+                </div>
+                <div class="form-group">
+                    <label>調查項目：</label><select id="CommentQuestion" name="commentQuestion" style="width:250px"><option>------</option></select>
+
+                </div>
+            </div>*@
+
+
         <div class="form-group">
-            <label>調查分類：</label>@Html.DropDownList("CommentOptions", (SelectList)ViewBag.SelectList, "請選擇分類", new { id = "CommentOptions1", style = "width:250px" })
-
+            @Html.LabelFor(model => model.Question, "選項", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Question, new { htmlAttributes = new { @class = "form-control", style = "Width:400px" } })
+                @Html.ValidationMessageFor(model => model.Question, "", new { @class = "text-danger" })
+            </div>
         </div>
         <div class="form-group">
-            <label>調查主題：</label><select id="CommentContent" name="commentContent" style="width:250px"><option>------</option></select>
+            @*@Html.LabelFor(model => model.Content, new { @class = "control-label" })
+                @Html.TextAreaFor(model => model.Content, new { rows = "8", cols = "150", @class = "form-control", @MaxLength = "1000" })
+                @Html.ValidationMessageFor(model => model.Content)*@
+            @*</div>*@
         </div>
-        <div class="form-group">
-            <label>調查項目：</label><select id="CommentQuestion" name="commentQuestion" style="width:250px"><option>------</option></select>
-
-        </div>
-    </div>*@
 
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Question, "選項", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Question, new { htmlAttributes = new { @class = "form-control", style = "Width:400px" } })
-            @Html.ValidationMessageFor(model => model.Question, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @*@Html.LabelFor(model => model.Content, new { @class = "control-label" })
-            @Html.TextAreaFor(model => model.Content, new { rows = "8", cols = "150", @class = "form-control", @MaxLength = "1000" })
-            @Html.ValidationMessageFor(model => model.Content)*@
-        @*</div>*@
-    </div>
 
-
-    <div class="form-group" style="float:right">
         @*<button type="submit" class="btn btn-success">送出貼文</button>
             <button type="reset" class="btn btn-warning">清除</button>*@
-        <div>
-            <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
-            <input type="submit" value="送出貼文" class="btn btn-success" style="margin-right:10px" />
+        <div class="form-group" style="float:left;margin-left:15px">
+            <button type="button" class="btn btn-info" style="background-color:	#a5a5af; border-color:transparent" onclick="$('#Question').val('對交換金額的滿意度');">
+                Demo 1
+            </button>
+            <button type="button" class="btn btn-info" style="background-color:	#a5a5af; border-color:transparent;margin-left:10px" onclick="$('#Question').val('對活動場地的滿意度');">
+                Demo 2
+            </button>
+            <button type="button" class="btn btn-info" style="background-color:	#a5a5af; border-color:transparent;margin-left:10px" onclick="$('#Question').val('對活動主持人的滿意度');">
+                Demo 3
+            </button>
+            <button type="button" class="btn btn-info" style="background-color:	#a5a5af; border-color:transparent;margin-left:10px" onclick="$('#Question').val('對活動整體的滿意度');">
+                Demo 4
+            </button>
         </div>
-    </div>
+        <div class="form-group" style="float:right">
+            <div>
+                <input type="reset" value="清除" class="btn btn-warning" style="margin-right:10px" />
+                <input type="submit" value="送出貼文" class="btn btn-success" style="margin-right:10px" />
+            </div>
+        </div>
 
-}
+    }
 
 
-<link rel="stylesheet" href="~/Content/bootstrap-multiselect.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/bootstrap-multiselect.css" type="text/css">
 
-@*@section scripts{
+    @*@section scripts{
 
-    <script src="/Scripts/moment.js"></script>
-    <script src="~/Scripts/notify.min.js"></script>
-    <script src="~/Scripts/bootstrap-multiselect.js"></script>
+            <script src="/Scripts/moment.js"></script>
+            <script src="~/Scripts/notify.min.js"></script>
+            <script src="~/Scripts/bootstrap-multiselect.js"></script>
 
-    <script>
+            <script>
 
-                $(document).ready(function () {
-                    $('#CommentOptions1').change(function () {
-                        $('#CommentQuestion').empty();
-                        $('#CommentQuestion').append($('<option></option>').val('').text('請選擇項目'));
-                        ChangeOptions();
-                    });
-                    $('#CommentContent').change(function () { ChangeContents(); });
-    });
+                        $(document).ready(function () {
+                            $('#CommentOptions1').change(function () {
+                                $('#CommentQuestion').empty();
+                                $('#CommentQuestion').append($('<option></option>').val('').text('請選擇項目'));
+                                ChangeOptions();
+                            });
+                            $('#CommentContent').change(function () { ChangeContents(); });
+            });
 
-            function ChangeOptions() {
-                var selectedValue = $('#CommentOptions1 option:selected').val();
-                if ($.trim(selectedValue).length > 0) {
-                    GetContents(selectedValue);
+                    function ChangeOptions() {
+                        var selectedValue = $('#CommentOptions1 option:selected').val();
+                        if ($.trim(selectedValue).length > 0) {
+                            GetContents(selectedValue);
+                            }
                     }
+
+
+                    function GetContents(CommentOptionID) {
+
+                    $.ajax({
+                    url: '@Url.Action("DisplayContents", "CommentQuestions")',
+                    data: { commentOptionID: CommentOptionID },
+                    type: 'post',
+                    cache: false,
+                    async: false,
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.length > 0) {
+                            $('#CommentContent').empty();
+                            $('#CommentContent').append($('<option></option>').val('').text('請選擇主題'));
+                            $.each(data, function (i, item) {
+                                $('#CommentContent').append($('<option></option>').val(item.Key).text(item.Value));
+                            });
+                        }
+                    }
+                });
             }
 
 
-            function GetContents(CommentOptionID) {
+                    function ChangeContents() {
+                        var selectedValue = $('#CommentContent option:selected').val();
+                        if ($.trim(selectedValue).length > 0) {
+                            GetQuestions(selectedValue);
+                        }
+                    }
 
-            $.ajax({
-            url: '@Url.Action("DisplayContents", "CommentQuestions")',
-            data: { commentOptionID: CommentOptionID },
-            type: 'post',
-            cache: false,
-            async: false,
-            dataType: 'json',
-            success: function (data) {
-                if (data.length > 0) {
-                    $('#CommentContent').empty();
-                    $('#CommentContent').append($('<option></option>').val('').text('請選擇主題'));
-                    $.each(data, function (i, item) {
-                        $('#CommentContent').append($('<option></option>').val(item.Key).text(item.Value));
-                    });
-                }
+
+                    function GetQuestions(CommentContentID) {
+
+                    $.ajax({
+                    url: '@Url.Action("DisplayQuestions", "CommentQuestions")',
+                    data: { commentContentID: CommentContentID },
+                    type: 'post',
+                    cache: false,
+                    async: false,
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.length > 0) {
+                            $('#CommentQuestion').empty();
+                            $('#CommentQuestion').append($('<option></option>').val('').text('請選擇項目'));
+                            $.each(data, function (i, item) {
+                                $('#CommentQuestion').append($('<option></option>').val(item.Key).text(item.Value));
+                            });
+                        }
+                    }
+                });
             }
-        });
-    }
-
-
-            function ChangeContents() {
-                var selectedValue = $('#CommentContent option:selected').val();
-                if ($.trim(selectedValue).length > 0) {
-                    GetQuestions(selectedValue);
-                }
-            }
-
-
-            function GetQuestions(CommentContentID) {
-
-            $.ajax({
-            url: '@Url.Action("DisplayQuestions", "CommentQuestions")',
-            data: { commentContentID: CommentContentID },
-            type: 'post',
-            cache: false,
-            async: false,
-            dataType: 'json',
-            success: function (data) {
-                if (data.length > 0) {
-                    $('#CommentQuestion').empty();
-                    $('#CommentQuestion').append($('<option></option>').val('').text('請選擇項目'));
-                    $.each(data, function (i, item) {
-                        $('#CommentQuestion').append($('<option></option>').val(item.Key).text(item.Value));
-                    });
-                }
-            }
-        });
-    }
-    </script>
-}*@
+            </script>
+        }*@
 </body>
 </html>

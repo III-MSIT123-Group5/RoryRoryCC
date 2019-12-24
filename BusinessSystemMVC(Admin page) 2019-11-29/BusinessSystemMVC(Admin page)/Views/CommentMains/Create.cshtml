@@ -85,16 +85,19 @@
                         @Html.LabelFor(model => model.CommentContent.CommentQuestions, "調查項目", htmlAttributes: new { @class = "control-label col-md-2", style = "font-size:24px" })
                         <div @*class="col-md-10"*@>
                             <table class="table table-bordered" id="tableQ" style="width:600px;margin-left:10px">
-                                @*<tr>
-                        <th>@Html.CheckBox("CheckAll", false, new { id = "select_all" })</th>*@
+                                
+                                    
 
-                                @*@for (int i = 0; i < Model.additionalCustomerInfoListView.Count; i++)
-                        {
-                        <tr>
-                            <td>@Html.CheckBoxFor(model => model.additionalCustomerInfoListView[i].IsSelected, new { id = "someDivId" })</td>
-                        </tr>
-                        }*@
-                            </table>
+                                        @*<tr>
+                <th>@Html.CheckBox("CheckAll", false, new { id = "select_all" })</th>*@
+
+                                        @*@for (int i = 0; i < Model.additionalCustomerInfoListView.Count; i++)
+                {
+                <tr>
+                    <td>@Html.CheckBoxFor(model => model.additionalCustomerInfoListView[i].IsSelected, new { id = "someDivId" })</td>
+                </tr>
+                }*@
+                                </table>
                         </div>
                     </div>
 
@@ -212,8 +215,9 @@
                                 if (datas[j].CommentContentID == s) {
 
                                 $('#tableQ').append("<tr>");
+                                $('#tableQ').append("<td>" + (j + 1) + "</td>");
                                 //$('#tableQ').append("<td><input type='checkbox' class='cq' name='checkbox' value='" + datas[j].CommentQuestionID + "'></td>");
-                                $('#tableQ').append("<td>" + datas[j].CommentQuestionID + "</td>");
+                                //$('#tableQ').append("<td>" + datas[j].CommentQuestionID + "</td>");
                                 $('#tableQ').append("<td>" + datas[j].Question + "</td>");
                                 $('#tableQ').append("</tr>");
                                 }
