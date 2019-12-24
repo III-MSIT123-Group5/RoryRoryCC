@@ -187,6 +187,7 @@
             $.ajax({
                 url: '@Url.Action("Finded1","CompanyVehicleBorrow")',
                 type: "GET",
+                async: false,
                 dataType: "json",
             }).done(function (u) {
                 for (var i = 0, max = u.length; i < max; i++) {
@@ -203,6 +204,7 @@
             $.ajax({
                 url: '@Url.Action("Finded", "CompanyVehicleBorrow")',
                 type: "GET",
+                async:false,
                 dataType: "json",
             }).done(function (p) {
                 for (var j = 0, max = p.length; j < max; j++) {
@@ -235,6 +237,7 @@
             $.ajax({
                 url: '@Url.Action("Finded1","CompanyVehicleBorrow")',
                 type: "GET",
+                async: false,
                 dataType: "json",
             }).done(function (r) {
                 $("#test2").empty();
@@ -287,6 +290,7 @@
             $.ajax({
                 url: '@Url.Action("Post1", "CompanyVehicleBorrow")',
                 type: "POST",
+                async: false,
                 //contentType: "application/json; chartset-utf-8",
                 data: {
                     dtS: dts,
@@ -313,6 +317,7 @@
                 $.ajax({
                     url: '@Url.Action("Finded1","CompanyVehicleBorrow")',
                     type: "POST",
+                    async: false,
                     dataType: "json",
                 }).done(function (data) {
                     for (var j = 0, max = data.length; j < max; j++) {

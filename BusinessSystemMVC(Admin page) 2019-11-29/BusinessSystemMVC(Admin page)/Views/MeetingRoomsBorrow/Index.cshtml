@@ -154,6 +154,7 @@
             $.ajax({
                 url: '@Url.Action("Finded1","MeetingRoomsBorrow")',
                 type: "GET",
+                async:false,
                 dataType: "json",
             }).done(function (u) {
                 for (var i = 0, max = u.length; i < max; i++) {
@@ -170,6 +171,7 @@
             $.ajax({
                 url: '@Url.Action("Finded", "MeetingRoomsBorrow")',
                 type: "GET",
+                async: false,
                 dataType: "json",
             }).done(function (p) {
                 for (var j = 0, max = p.length; j < max; j++) {
@@ -220,6 +222,7 @@
                         $(`#${r[o].meetingID}`).click(function () {
                             console.log($(`#${this.id}t`).val());
                             getLNfunc(this.id, dtS, dtE)
+                            setTimeout("starttime();", 2000)
                         })
 
                     }
@@ -240,6 +243,7 @@
             $.ajax({
                 url: '@Url.Action("Post1", "MeetingRoomsBorrow")',
                 type: "POST",
+                async: false,
                 //contentType: "application/json; chartset-utf-8",
                 data: {
                     dtS: dts,
@@ -377,6 +381,15 @@
             //
             //===============================================================
             //
+        }
+        function starttime() {
+            $("#test2").empty();
+            $("#test2").append('<tr></tr>')
+            $("#test2").append(`<th>會議室ID</th>`)
+            $("#test2").append(`<th>會議室名稱</th>`)
+            $("#test2").append(`<th>辦公室名稱</th>`)
+            $("#test2").append(`<th>容納人數</th>`)
+            $("#test2").append(`<th>會議室地點</th>`)
         }
 
     </script>
