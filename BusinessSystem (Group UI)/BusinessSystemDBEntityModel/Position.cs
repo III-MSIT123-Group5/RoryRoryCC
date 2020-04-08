@@ -18,6 +18,7 @@ namespace BusinessSystemDBEntityModel
         public Position()
         {
             this.Employees = new HashSet<Employee>();
+            this.EmployeeApprovalTemps = new HashSet<EmployeeApprovalTemp>();
         }
     
         public int positionID { get; set; }
@@ -25,5 +26,7 @@ namespace BusinessSystemDBEntityModel
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeApprovalTemp> EmployeeApprovalTemps { get; set; }
     }
 }

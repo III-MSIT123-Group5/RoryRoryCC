@@ -12,16 +12,19 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class File
+    public partial class LeaveHistory
     {
-        public long FileID { get; set; }
-        public string FileName { get; set; }
-        public string FileSize { get; set; }
-        public int EmployeeID { get; set; }
-        public System.DateTime UploadDate { get; set; }
-        public string Data { get; set; }
-        public string Extension { get; set; }
+        public int ID { get; set; }
+        public int employeeID { get; set; }
+        public int leaveID { get; set; }
+        public System.DateTime ReleaseTime { get; set; }
+        public System.DateTime StartTime { get; set; }
+        public System.DateTime EndTime { get; set; }
+        public string Description { get; set; }
+        public string Appendix { get; set; }
+        public Nullable<int> LeaveHours { get; set; }
     
         public virtual Employee Employee { get; set; }
+        public virtual Leave Leave { get; set; }
     }
 }

@@ -12,16 +12,11 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class File
+    public partial class ScoresLab
     {
-        public long FileID { get; set; }
-        public string FileName { get; set; }
-        public string FileSize { get; set; }
-        public int EmployeeID { get; set; }
-        public System.DateTime UploadDate { get; set; }
-        public string Data { get; set; }
-        public string Extension { get; set; }
-    
-        public virtual Employee Employee { get; set; }
+        public int id { get; set; }
+        public string @class { get; set; }
+        public string subject { get; set; }
+        public Nullable<int> score { get; set; }
     }
 }

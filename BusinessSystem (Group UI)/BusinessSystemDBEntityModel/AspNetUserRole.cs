@@ -12,16 +12,13 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class File
+    public partial class AspNetUserRole
     {
-        public long FileID { get; set; }
-        public string FileName { get; set; }
-        public string FileSize { get; set; }
-        public int EmployeeID { get; set; }
-        public System.DateTime UploadDate { get; set; }
-        public string Data { get; set; }
-        public string Extension { get; set; }
+        public string UserId { get; set; }
+        public string RoleId { get; set; }
+        public int id { get; set; }
     
-        public virtual Employee Employee { get; set; }
+        public virtual AspNetRole AspNetRole { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

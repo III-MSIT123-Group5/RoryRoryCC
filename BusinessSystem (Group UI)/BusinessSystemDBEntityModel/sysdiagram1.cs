@@ -12,16 +12,12 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class File
+    public partial class sysdiagram1
     {
-        public long FileID { get; set; }
-        public string FileName { get; set; }
-        public string FileSize { get; set; }
-        public int EmployeeID { get; set; }
-        public System.DateTime UploadDate { get; set; }
-        public string Data { get; set; }
-        public string Extension { get; set; }
-    
-        public virtual Employee Employee { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

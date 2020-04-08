@@ -12,15 +12,13 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class File
+    public partial class Reply
     {
-        public long FileID { get; set; }
-        public string FileName { get; set; }
-        public string FileSize { get; set; }
-        public int EmployeeID { get; set; }
-        public System.DateTime UploadDate { get; set; }
-        public string Data { get; set; }
-        public string Extension { get; set; }
+        public int ReplyID { get; set; }
+        public Nullable<int> CommentTypeID { get; set; }
+        public string ReplyContent { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
+        public Nullable<System.DateTime> ReplyTime { get; set; }
     
         public virtual Employee Employee { get; set; }
     }

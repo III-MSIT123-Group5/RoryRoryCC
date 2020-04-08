@@ -12,16 +12,14 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class File
+    public partial class ActivitiesChild
     {
-        public long FileID { get; set; }
-        public string FileName { get; set; }
-        public string FileSize { get; set; }
-        public int EmployeeID { get; set; }
-        public System.DateTime UploadDate { get; set; }
-        public string Data { get; set; }
-        public string Extension { get; set; }
+        public int ActivityChildID { get; set; }
+        public Nullable<int> ActicityMainID { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
+        public string JoinOrNot { get; set; }
     
+        public virtual ActivitiesMain ActivitiesMain { get; set; }
         public virtual Employee Employee { get; set; }
     }
 }

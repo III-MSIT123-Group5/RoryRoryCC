@@ -28,6 +28,7 @@ namespace BusinessSystemDBEntityModel
         public string MaxPassenger { get; set; }
         public int officeID { get; set; }
         public byte[] VehiclePhoto { get; set; }
+        public string VehiclePhoto2 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompanyVehicleHistory> CompanyVehicleHistories { get; set; }

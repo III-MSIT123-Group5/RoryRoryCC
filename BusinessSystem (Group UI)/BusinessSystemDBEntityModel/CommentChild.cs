@@ -12,21 +12,26 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Leave
+    public partial class CommentChild
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Leave()
+        public CommentChild()
         {
-            this.LeaveHistories = new HashSet<LeaveHistory>();
-            this.LeaveHistoryApprovalTemps = new HashSet<LeaveHistoryApprovalTemp>();
+            this.CommentReplies = new HashSet<CommentReply>();
+            this.CommentReplies1 = new HashSet<CommentReply>();
         }
     
-        public int leaveID { get; set; }
-        public string leave_name { get; set; }
+        public Nullable<int> CommentMainID { get; set; }
+        public int ChildNum { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
+        public Nullable<int> CommentQuestionID { get; set; }
     
+        public virtual CommentMain CommentMain { get; set; }
+        public virtual CommentQuestion CommentQuestion { get; set; }
+        public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LeaveHistory> LeaveHistories { get; set; }
+        public virtual ICollection<CommentReply> CommentReplies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LeaveHistoryApprovalTemp> LeaveHistoryApprovalTemps { get; set; }
+        public virtual ICollection<CommentReply> CommentReplies1 { get; set; }
     }
 }

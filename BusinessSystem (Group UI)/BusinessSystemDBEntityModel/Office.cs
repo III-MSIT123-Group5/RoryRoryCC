@@ -19,6 +19,7 @@ namespace BusinessSystemDBEntityModel
         {
             this.CompanyVehicles = new HashSet<CompanyVehicle>();
             this.Employees = new HashSet<Employee>();
+            this.EmployeeApprovalTemps = new HashSet<EmployeeApprovalTemp>();
             this.MeetingRooms = new HashSet<MeetingRoom>();
         }
     
@@ -30,6 +31,8 @@ namespace BusinessSystemDBEntityModel
         public virtual ICollection<CompanyVehicle> CompanyVehicles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeApprovalTemp> EmployeeApprovalTemps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MeetingRoom> MeetingRooms { get; set; }
     }

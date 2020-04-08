@@ -12,21 +12,28 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Leave
+    public partial class CommentMain
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Leave()
+        public CommentMain()
         {
-            this.LeaveHistories = new HashSet<LeaveHistory>();
-            this.LeaveHistoryApprovalTemps = new HashSet<LeaveHistoryApprovalTemp>();
+            this.CommentChilds = new HashSet<CommentChild>();
+            this.CommentReplies = new HashSet<CommentReply>();
         }
     
-        public int leaveID { get; set; }
-        public string leave_name { get; set; }
+        public int CommentMainID { get; set; }
+        public string CommentName { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
+        public Nullable<System.DateTime> SendTime { get; set; }
+        public Nullable<int> CommentContentID { get; set; }
+        public Nullable<int> ActivityMainID { get; set; }
     
+        public virtual ActivitiesMain ActivitiesMain { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LeaveHistory> LeaveHistories { get; set; }
+        public virtual ICollection<CommentChild> CommentChilds { get; set; }
+        public virtual CommentContent CommentContent { get; set; }
+        public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LeaveHistoryApprovalTemp> LeaveHistoryApprovalTemps { get; set; }
+        public virtual ICollection<CommentReply> CommentReplies { get; set; }
     }
 }

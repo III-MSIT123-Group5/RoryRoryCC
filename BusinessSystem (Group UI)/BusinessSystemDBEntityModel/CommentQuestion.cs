@@ -12,21 +12,20 @@ namespace BusinessSystemDBEntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Leave
+    public partial class CommentQuestion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Leave()
+        public CommentQuestion()
         {
-            this.LeaveHistories = new HashSet<LeaveHistory>();
-            this.LeaveHistoryApprovalTemps = new HashSet<LeaveHistoryApprovalTemp>();
+            this.CommentChilds = new HashSet<CommentChild>();
         }
     
-        public int leaveID { get; set; }
-        public string leave_name { get; set; }
+        public Nullable<int> CommentContentID { get; set; }
+        public int CommentQuestionID { get; set; }
+        public string Question { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LeaveHistory> LeaveHistories { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LeaveHistoryApprovalTemp> LeaveHistoryApprovalTemps { get; set; }
+        public virtual ICollection<CommentChild> CommentChilds { get; set; }
+        public virtual CommentContent CommentContent { get; set; }
     }
 }

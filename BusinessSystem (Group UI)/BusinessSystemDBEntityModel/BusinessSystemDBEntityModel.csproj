@@ -53,10 +53,34 @@
     <Compile Include="Account.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ActivitiesChild.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ActivitiesMain.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Approval.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ApprovalProcedure.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ApprovalStatu.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserRole.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BSEntityModel.Context.cs">
@@ -77,10 +101,31 @@
     <Compile Include="BulletinBoard.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CommentChild.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommentContent.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommentMain.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommentOption.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommentQuestion.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommentReply.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CompanyVehicle.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CompanyVehicleHistory.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Department.cs">
@@ -89,7 +134,13 @@
     <Compile Include="Employee.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeApprovalTemp.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Event.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventCalendar.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="File.cs">
@@ -99,6 +150,12 @@
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Leave.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveHistory.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveHistoryApprovalTemp.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MeetingRoom.cs">
@@ -123,6 +180,9 @@
     <Compile Include="Recipient.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Reply.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ReportCategory.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
@@ -133,6 +193,9 @@
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RewardandPunishment.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScoresLab.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
@@ -151,6 +214,9 @@
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagram.cs">
+      <DependentUpon>BSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram1.cs">
       <DependentUpon>BSEntityModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

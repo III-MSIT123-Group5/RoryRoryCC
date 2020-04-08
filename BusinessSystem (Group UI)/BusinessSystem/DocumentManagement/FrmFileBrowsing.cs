@@ -93,7 +93,7 @@ namespace BusinessSystem.DocumentManagement
             FileStream loadFile = File.Open(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             BinaryReader filereader = new BinaryReader(loadFile);
             //存入陣列中
-            byte[] filecontent = filereader.ReadBytes(System.Convert.ToInt32(loadFile.Length));
+            //byte[] filecontent = filereader.ReadBytes(System.Convert.ToInt32(loadFile.Length));
             filereader.Close();
             loadFile.Close();
             System.IO.FileInfo fileInfo = new FileInfo(fileName);
@@ -101,7 +101,7 @@ namespace BusinessSystem.DocumentManagement
             dbContext.Files.Add(new BusinessSystemDBEntityModel.File
             {
                 FileName = Path.GetFileNameWithoutExtension(fileName),
-                Data = filecontent,
+                //Data = filecontent,
                 FileSize = fileInfo.Length.ToString(),
                 EmployeeID = LoginID,
                 UploadDate = DateTime.Now,
