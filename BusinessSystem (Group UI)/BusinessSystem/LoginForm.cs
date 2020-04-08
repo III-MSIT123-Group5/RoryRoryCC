@@ -87,7 +87,7 @@ namespace BusinessSystem.EmployeeSystem
 
         private void clsAltoButton2_Click(object sender, EventArgs e)
         {
-            this.txtLoginAccount.Text = "reshin";
+            this.txtLoginAccount.Text = "reshinfang";
             this.txtLoginPassword.Text = "123456";
         }
 
