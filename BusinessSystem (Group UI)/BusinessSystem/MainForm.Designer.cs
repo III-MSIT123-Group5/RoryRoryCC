@@ -70,10 +70,10 @@
             this.flowLayoutPanel1.Controls.Add(this.btnRequisition);
             this.flowLayoutPanel1.Controls.Add(this.btnHRSystem);
             this.flowLayoutPanel1.Controls.Add(this.btnLogOut);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 13);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(10);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(18, 20);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(835, 615);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1252, 922);
             this.flowLayoutPanel1.TabIndex = 52;
             // 
             // timeControl1
@@ -82,10 +82,11 @@
             this.timeControl1.BackgroundColor = System.Drawing.Color.Empty;
             this.timeControl1.ButtonColor = System.Drawing.Color.DarkSlateBlue;
             this.timeControl1.DateText = "2019-09-20";
-            this.timeControl1.Location = new System.Drawing.Point(3, 3);
+            this.timeControl1.Location = new System.Drawing.Point(6, 6);
+            this.timeControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.timeControl1.Name = "timeControl1";
             this.timeControl1.SecondText = "59";
-            this.timeControl1.Size = new System.Drawing.Size(403, 200);
+            this.timeControl1.Size = new System.Drawing.Size(604, 300);
             this.timeControl1.TabIndex = 54;
             this.timeControl1.TimeText = "10:00";
             this.timeControl1.TitleColor = System.Drawing.Color.White;
@@ -96,10 +97,9 @@
             this.btnCalendar.ButtonColor = System.Drawing.Color.SteelBlue;
             this.btnCalendar.image = global::BusinessSystem.Properties.Resources.calendar_3_128;
             this.btnCalendar.ImageLocation = null;
-            this.btnCalendar.Location = new System.Drawing.Point(411, 2);
-            this.btnCalendar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCalendar.Location = new System.Drawing.Point(619, 3);
             this.btnCalendar.Name = "btnCalendar";
-            this.btnCalendar.Size = new System.Drawing.Size(199, 200);
+            this.btnCalendar.Size = new System.Drawing.Size(298, 300);
             this.btnCalendar.TabIndex = 44;
             this.btnCalendar.Title = "行事曆";
             this.btnCalendar.TitleColor = System.Drawing.Color.White;
@@ -108,7 +108,6 @@
             // 
             // btnEmployee
             // 
-            this.btnEmployee.BackColor = System.Drawing.Color.Transparent;
             this.btnEmployee.BackgroundColor = System.Drawing.Color.Empty;
             this.btnEmployee.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnEmployee.ButtonColor = System.Drawing.SystemColors.ActiveCaption;
@@ -116,9 +115,10 @@
             this.btnEmployee.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.btnEmployee.image = null;
             this.btnEmployee.ImageLocation = null;
-            this.btnEmployee.Location = new System.Drawing.Point(615, 3);
+            this.btnEmployee.Location = new System.Drawing.Point(6, 318);
+            this.btnEmployee.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnEmployee.Name = "btnEmployee";
-            this.btnEmployee.Size = new System.Drawing.Size(199, 200);
+            this.btnEmployee.Size = new System.Drawing.Size(298, 300);
             this.btnEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnEmployee.TabIndex = 53;
             this.btnEmployee.Title = "label";
@@ -134,10 +134,9 @@
             this.btnBulletinBoard.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBulletinBoard.image = global::BusinessSystem.Properties.Resources.edit_property_128;
             this.btnBulletinBoard.ImageLocation = null;
-            this.btnBulletinBoard.Location = new System.Drawing.Point(2, 208);
-            this.btnBulletinBoard.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBulletinBoard.Location = new System.Drawing.Point(313, 315);
             this.btnBulletinBoard.Name = "btnBulletinBoard";
-            this.btnBulletinBoard.Size = new System.Drawing.Size(404, 200);
+            this.btnBulletinBoard.Size = new System.Drawing.Size(606, 300);
             this.btnBulletinBoard.TabIndex = 50;
             this.btnBulletinBoard.Title = "佈告欄";
             this.btnBulletinBoard.TitleColor = System.Drawing.Color.White;
@@ -152,10 +151,9 @@
             this.btnLeave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLeave.image = global::BusinessSystem.Properties.Resources.time_8_128;
             this.btnLeave.ImageLocation = null;
-            this.btnLeave.Location = new System.Drawing.Point(410, 208);
-            this.btnLeave.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLeave.Location = new System.Drawing.Point(3, 627);
             this.btnLeave.Name = "btnLeave";
-            this.btnLeave.Size = new System.Drawing.Size(200, 200);
+            this.btnLeave.Size = new System.Drawing.Size(300, 300);
             this.btnLeave.TabIndex = 46;
             this.btnLeave.Title = "請假";
             this.btnLeave.TitleColor = System.Drawing.Color.White;
@@ -169,10 +167,9 @@
             this.btnReportTime.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReportTime.image = global::BusinessSystem.Properties.Resources.briefcase_128;
             this.btnReportTime.ImageLocation = null;
-            this.btnReportTime.Location = new System.Drawing.Point(614, 208);
-            this.btnReportTime.Margin = new System.Windows.Forms.Padding(2);
+            this.btnReportTime.Location = new System.Drawing.Point(309, 627);
             this.btnReportTime.Name = "btnReportTime";
-            this.btnReportTime.Size = new System.Drawing.Size(200, 200);
+            this.btnReportTime.Size = new System.Drawing.Size(300, 300);
             this.btnReportTime.TabIndex = 48;
             this.btnReportTime.Title = "工時回報";
             this.btnReportTime.TitleColor = System.Drawing.Color.White;
@@ -188,10 +185,9 @@
             this.btnDocument.ForeColor = System.Drawing.Color.White;
             this.btnDocument.image = global::BusinessSystem.Properties.Resources.report_3_128;
             this.btnDocument.ImageLocation = null;
-            this.btnDocument.Location = new System.Drawing.Point(2, 412);
-            this.btnDocument.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDocument.Location = new System.Drawing.Point(615, 627);
             this.btnDocument.Name = "btnDocument";
-            this.btnDocument.Size = new System.Drawing.Size(200, 200);
+            this.btnDocument.Size = new System.Drawing.Size(300, 300);
             this.btnDocument.TabIndex = 41;
             this.btnDocument.Title = "文件上傳";
             this.btnDocument.TitleColor = System.Drawing.Color.Empty;
@@ -206,10 +202,9 @@
             this.btnCompanyCars.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCompanyCars.image = global::BusinessSystem.Properties.Resources.car_128;
             this.btnCompanyCars.ImageLocation = null;
-            this.btnCompanyCars.Location = new System.Drawing.Point(206, 412);
-            this.btnCompanyCars.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCompanyCars.Location = new System.Drawing.Point(921, 627);
             this.btnCompanyCars.Name = "btnCompanyCars";
-            this.btnCompanyCars.Size = new System.Drawing.Size(200, 200);
+            this.btnCompanyCars.Size = new System.Drawing.Size(300, 300);
             this.btnCompanyCars.TabIndex = 47;
             this.btnCompanyCars.Title = "公務車租借";
             this.btnCompanyCars.TitleColor = System.Drawing.Color.White;
@@ -224,10 +219,9 @@
             this.btnMeetingRoom.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMeetingRoom.image = global::BusinessSystem.Properties.Resources.chair_2_128;
             this.btnMeetingRoom.ImageLocation = null;
-            this.btnMeetingRoom.Location = new System.Drawing.Point(410, 412);
-            this.btnMeetingRoom.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMeetingRoom.Location = new System.Drawing.Point(3, 933);
             this.btnMeetingRoom.Name = "btnMeetingRoom";
-            this.btnMeetingRoom.Size = new System.Drawing.Size(200, 200);
+            this.btnMeetingRoom.Size = new System.Drawing.Size(300, 300);
             this.btnMeetingRoom.TabIndex = 49;
             this.btnMeetingRoom.Title = "會議室租借";
             this.btnMeetingRoom.TitleColor = System.Drawing.Color.White;
@@ -241,10 +235,9 @@
             this.btnRequisition.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRequisition.image = global::BusinessSystem.Properties.Resources.cart_5_128;
             this.btnRequisition.ImageLocation = null;
-            this.btnRequisition.Location = new System.Drawing.Point(614, 412);
-            this.btnRequisition.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRequisition.Location = new System.Drawing.Point(309, 933);
             this.btnRequisition.Name = "btnRequisition";
-            this.btnRequisition.Size = new System.Drawing.Size(200, 200);
+            this.btnRequisition.Size = new System.Drawing.Size(300, 300);
             this.btnRequisition.TabIndex = 43;
             this.btnRequisition.Title = "請購系統";
             this.btnRequisition.TitleColor = System.Drawing.Color.White;
@@ -259,10 +252,9 @@
             this.btnHRSystem.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnHRSystem.image = global::BusinessSystem.Properties.Resources.edit_user_128;
             this.btnHRSystem.ImageLocation = null;
-            this.btnHRSystem.Location = new System.Drawing.Point(2, 616);
-            this.btnHRSystem.Margin = new System.Windows.Forms.Padding(2);
+            this.btnHRSystem.Location = new System.Drawing.Point(615, 933);
             this.btnHRSystem.Name = "btnHRSystem";
-            this.btnHRSystem.Size = new System.Drawing.Size(200, 200);
+            this.btnHRSystem.Size = new System.Drawing.Size(300, 300);
             this.btnHRSystem.TabIndex = 55;
             this.btnHRSystem.Title = "人資管理";
             this.btnHRSystem.TitleColor = System.Drawing.Color.White;
@@ -278,10 +270,9 @@
             this.btnLogOut.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogOut.image = global::BusinessSystem.Properties.Resources.logout_128;
             this.btnLogOut.ImageLocation = null;
-            this.btnLogOut.Location = new System.Drawing.Point(206, 616);
-            this.btnLogOut.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLogOut.Location = new System.Drawing.Point(921, 933);
             this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(200, 200);
+            this.btnLogOut.Size = new System.Drawing.Size(300, 300);
             this.btnLogOut.TabIndex = 56;
             this.btnLogOut.Title = "登出";
             this.btnLogOut.TitleColor = System.Drawing.Color.White;
@@ -294,9 +285,10 @@
             this.panel1.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.panel1.Controls.Add(this.label2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 637);
+            this.panel1.Location = new System.Drawing.Point(0, 956);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(860, 31);
+            this.panel1.Size = new System.Drawing.Size(1290, 46);
             this.panel1.TabIndex = 53;
             // 
             // label2
@@ -306,23 +298,21 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Impact", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(675, 6);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(1012, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(185, 16);
+            this.label2.Size = new System.Drawing.Size(271, 22);
             this.label2.TabIndex = 3;
             this.label2.Text = "© Business System Corp. Since 2019";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(860, 668);
+            this.ClientSize = new System.Drawing.Size(1290, 1002);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.RightToLeftLayout = true;
