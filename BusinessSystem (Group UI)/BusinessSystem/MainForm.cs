@@ -30,7 +30,7 @@ namespace BusinessSystem
 
             LoginForm lf = new LoginForm();
             lf.ShowDialog();
-
+            
             if (ClassEmployee.LoginEmployeeID == 0)
             {
                 this.Close();
