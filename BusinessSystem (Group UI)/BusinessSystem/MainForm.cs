@@ -22,15 +22,25 @@ namespace BusinessSystem
         string photo;
         string name;
 
-        public MainForm(int EmployeeID)
+        public MainForm(/*int EmployeeID*/)
         {
-            InitializeComponent();
-
             //測試靜態屬性LoginID ok
 
-            ClassEmployee.LoginEmployeeID = EmployeeID;
+            //ClassEmployee.LoginEmployeeID = EmpNum = EmployeeID;
 
-            EmpNum = EmployeeID;
+            LoginForm lf = new LoginForm();
+            lf.ShowDialog();
+            
+            if (ClassEmployee.LoginEmployeeID == 0)
+            {
+                this.Close();
+            }
+            else
+            {
+                EmpNum = ClassEmployee.LoginEmployeeID;
+            }
+
+            InitializeComponent();
 
             BusinessDataBaseEntities dbContext;
             dbContext = new BusinessDataBaseEntities();
@@ -294,6 +304,8 @@ namespace BusinessSystem
         {
             this.btnCompanyCars.ButtonColor = Color.DarkSlateBlue;
         }
+
+      
 
         //主控面>>滑鼠進入登出上
         private void btnLogOut_MouseEnter(object sender, EventArgs e)

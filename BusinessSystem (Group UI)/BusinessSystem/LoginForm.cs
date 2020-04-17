@@ -59,14 +59,17 @@ namespace BusinessSystem.EmployeeSystem
                     MessageBox.Show($"歡迎回來， {EmpName}!", "登入成功", MessageBoxButtons.OK);
 
                     //MessageBox.Show(readname.EmpAcount);//測試
-                    MainForm main = new MainForm(EmpID);
-                    main.Show();
+                    //MainForm main = new MainForm(EmpID);
+                    //main.Show();
+                    ClassEmployee.LoginEmployeeID = EmpID;
+                    this.Close();
                 }
                 else
                 {
                     MessageBox.Show($"請重新登入", "登入失敗", MessageBoxButtons.OK);
                     this.txtLoginPassword.Text = "";
                     this.txtLoginPassword.Focus();
+                    ClassEmployee.LoginEmployeeID = 0;
                 }
             }
             finally

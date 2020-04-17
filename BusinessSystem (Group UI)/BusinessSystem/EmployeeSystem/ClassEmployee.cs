@@ -8,20 +8,21 @@ namespace BusinessSystem
 {
     public static class ClassEmployee
     {
-        private static  int m_LoginEmployeeID = 1011;
-        public static int LoginEmployeeID
-        {
-            get
-            {
-                return m_LoginEmployeeID;
-            }
-            set
-            {
-                m_LoginEmployeeID = value;
-            }
-        }
+        //private static  int m_LoginEmployeeID = 1011;
+        //public static int LoginEmployeeID
+        //{
+        //    get
+        //    {
+        //        return m_LoginEmployeeID;
+        //    }
+        //    set
+        //    {
+        //        m_LoginEmployeeID = value;
+        //    }
+        //}
 
-        
+        public static int LoginEmployeeID { get; set; }
+
 
         //public string EmpName { get; set; } // C# 6 or higher
     }
