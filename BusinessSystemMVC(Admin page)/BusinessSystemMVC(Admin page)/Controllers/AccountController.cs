@@ -258,7 +258,7 @@ namespace BusinessSystemMVC_Admin_page_.Controllers
             }
             else if (PositionID == 3)
             {
-                var qposiGL = db.Employees.Where(p => p.DepartmentID == DepartmentID && p.PositionID == 2).Select(p => new { p.employeeID, p.EmployeeName });
+                var qposiGL = db.Employees.Where(p => p.DepartmentID == DepartmentID && p.PositionID == 2).Select(p => new { p.employeeID, p.EmployeeName  });
                 return Json(qposiGL, JsonRequestBehavior.AllowGet);
             }
             else
