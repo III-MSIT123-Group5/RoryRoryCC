@@ -1,0 +1,97 @@
+﻿function conFirmUserName() {
+    var UserName = document.getElementById("UserName");
+    var showusername = document.getElementById("showusername");
+    var chinese = /[^\u4e00-\u9fa5]/;
+    let str = `<img src="image/wrong.png"/ >`;
+    if (UserName.value == "")
+
+{
+    str += "Error";
+}
+
+else if (UserName.value.split("").length < 2 || chinese.test(UserName.value)) {
+    str += "Error";
+}
+
+else
+str = `<img src="image/ok.png"/ > ` + "Right";
+showusername.innerHTML = str;
+}
+
+function conFirmPassWord() {
+    var PassWord = document.querySelector("#PassWord");
+    var showpassword = document.querySelector("#showpassword");
+    var num = /\d+/;
+    var eng = /[A-Za-z]+/;
+    var spec = /\W+/;
+    let str = `<img src="image/wrong.png"/ >`;
+    if (PassWord.value == "")
+
+{
+    str += "Error";
+}
+
+else if (PassWord.value.split("").length < 6 ) {
+    str += "Error";
+}
+
+else if (!num.test(PassWord.value)) {
+    str += "Error";
+}
+
+else if (!eng.test(PassWord.value)) {
+    str += "Error";
+}
+
+else if (!spec.test(PassWord.value)) {
+    str += "Error";
+}
+
+else
+str = `<img src="image/ok.png"/ > ` + "Right";
+showpassword.innerHTML = str;
+}
+
+function conFirmDate() {
+    var rge = /^[0-9]
+
+{
+    4
+}
+
+[/] {
+    1
+}
+
+\d {
+    1,2
+}
+
+[/] {
+    1
+}
+
+\d {
+    1,2
+}
+
+$/
+var date = document.querySelector("#Date");
+
+
+var datetime = new Date(date.value).getFullYear() + "/" + (new Date(date.value).getMonth()+1) + "/" + new Date(date.value).getDate();
+var checkdatetime = date.value;
+var showDate = document.querySelector("#showDate");
+
+console.log(datetime);
+console.log(checkdatetime);
+if (!rge.test(date.value)) {
+}
+
+else if (datetime != checkdatetime) {
+    showDate .innerHTML = "錯誤";
+}
+
+else
+showDate.innerHTML = "正確";
+}

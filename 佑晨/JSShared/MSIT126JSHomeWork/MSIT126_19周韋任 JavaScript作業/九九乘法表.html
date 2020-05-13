@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>九九乘法表</title>
+    <style>
+
+         td, th {
+            border: 3px solid red;
+            padding-right: 20px;
+        }
+
+        body {
+            background-color: #FFF5FF;
+            color: aquamarine;
+            text-transform: capitalize;
+        }
+        table {
+            border-collapse: collapse;
+            border: 3px solid red;
+        }
+        td
+        {
+            border-top:none;
+            
+        }
+    </style>
+</head>
+
+
+
+<div class="a1">
+        <body>
+            <div>
+                <script>
+
+                    document.write("<table>");
+
+                    for (var i = 1; i < 10; i++) {
+                        document.write("<tr>");
+
+                        for (var j = 1; j < 10; j++) {
+                            document.write("<td>");
+                            document.write(i + "* " + j + "=" + i * j);
+                        }
+                        document.write("</td>");
+
+                    }
+                    document.write("<tr>");
+                    document.write("</table>");
+
+                </script>
+            </div>
+        </body>
+
+</div>
+</html>

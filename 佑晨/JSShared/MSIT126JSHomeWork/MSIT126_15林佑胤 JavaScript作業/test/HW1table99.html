@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+
+        table {
+            /*border: 2px solid rgb(51,153,255);*/
+            /*border-collapse: collapse;*/ 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        td {
+            font-size: 200%;
+            font-weight: bold;
+            border: 2px solid rgb(51,153,255);
+            border-top: 10px solid;
+            /*color: red;*/
+            text-align: left;
+            /*background-color: white;*/
+            background-color: rgba(255,255,255,0.5);
+            padding-left: 2px;
+            padding-right: 5px;
+            border-radius: 10px;
+        }
+
+            /*td:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+                opacity: 0.7;
+            }*/
+
+        h1 {
+            color:white;
+            font-family:微軟正黑體;
+            width: 40%;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            background-image: url("../images/blackboard.png");
+            background-position: center;
+            background-size: cover;
+        }
+        body{
+            background-image:url("../images/BackMountain.png");
+
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>九九乘法表</h1>
+
+    
+
+    <script>
+        document.write("<table>");
+        document.write("<tr>");
+ 
+        for (let i = 1; i <= 9; i++) {
+            if (i <= 3) {
+                document.write(`<td style="border-color:rgb(0,180,255">`);
+            }
+            else if (i <= 6) {
+                document.write(`<td style="border-color:rgb(180,255,0">`);
+
+            }
+            else {
+                document.write(`<td style="border-color:rgb(255,0,180">`);
+
+            }
+            for (let j = 1; j <= 9; j++) {
+
+                document.write(` ${i} * ${j} = ${i * j} <br />`);
+            }
+            document.write("</td>");
+            if (i % 3 == 0) {
+                document.write("</tr>");
+                document.write("<tr>");
+            }
+        }
+        document.write("</tr>");
+        document.write("</table>");
+        
+    </script>
+</body>
+</html>

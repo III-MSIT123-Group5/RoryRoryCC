@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        fieldset {
+            border: 1px solid aqua;
+            width: 300px;
+            border-radius: 15px;
+            margin:auto;
+            margin-top:300px;
+        }
+    </style>
+</head>
+<body>
+    <input id="Button1" type="button" value="01" onclick="location.href='9981.html'" />
+    <input id="Button2" type="button" value="02" onclick="location.href='hw2.html'" />
+    <fieldset>
+        <label>NAME:</label>
+        <input type="text" id="name" size="8" autocomplete="off" placeholder="請輸入姓名" onblur="cname()" />
+        <span id="info"></span><br />
+
+        <script>
+            function cname() {
+                var nvalue = document.getElementById("name").value;
+                var chcheck = /[^\u4e00-\u9fa5]/;
+                if (nvalue == "") {  //這行
+                    document.getElementById("info").innerHTML =
+                        "必須輸入";
+                }
+                else if (chcheck.test(nvalue)) {
+                    document.getElementById("info").innerHTML =
+                        "必須輸入朱文";
+                }
+                else if (nvalue.length < 2) {
+                    document.getElementById("info").innerHTML = "請輸入兩字以上"
+                }
+                else {
+                    document.getElementById("info").innerHTML = "成功"
+                }
+            }
+
+        </script>
+        <br />
+        <label>PASSWORD:</label>
+        <input type="text" id="pw" size="8" autocomplete="off" placeholder="請輸入密碼" onblur="cpass()" />
+        <span id="info2"></span><br />
+        <script>
+            function cpass() {
+                var pvalue = document.getElementById("pw").value;
+
+                var isNum = (/[0-9]+/).test(pvalue);
+                var isEn = (/[A-Za-z]/).test(pvalue);
+                var isSpec = (/[!@#$%^&*?]/).test(pvalue);
+                if (pvalue == "") {
+                    document.getElementById("info2").innerHTML = "密碼不為空";
+                }
+                else if (pvalue.length < 6) {
+                    document.getElementById("info2").innerHTML = "密碼不得短於6"
+                }
+                else if (isNum == false) {
+                    document.getElementById("info2").innerHTML = "失敗無數字"
+                }
+                else if (isEn == false) {
+                    document.getElementById("info2").innerHTML = "失敗無英文"
+                }
+                else if (isSpec == false) {
+                    document.getElementById("info2").innerHTML = "失敗無特殊符號"
+                }
+                else {
+                    document.getElementById("info2").innerHTML = "<img src='image/下載.jpg' width=40/> success"
+                }
+
+
+            }
+        </script>
+        <br />
+        <label>日期:</label>
+        <input type="date" name="birth" size="8" />
+        <br />
+        <br />
+
+        <input type="reset" value="Reset" />
+        <input type="button" value="輸入" />
+    </fieldset>
+
+</body>
+</html>

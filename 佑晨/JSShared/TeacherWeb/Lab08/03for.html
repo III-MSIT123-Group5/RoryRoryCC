@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>03for.html</title>  
+    <style>
+        table,td{border:2px solid blue}
+    </style>
+</head>
+<body>
+    <script>        
+        //let sum = 0;
+        //for (let i = 1; i <= 5; i++) {
+        //    //sum=sum+i;
+        //    sum += i;
+        //    console.log("i="+i+",sum="+sum);
+        //}
+
+        for (i = 2; i <= 9; i++) {
+            for (j = 1; j <= 9; j++) {
+                document.write(`${i}*${j}=${i * j}<br>`);
+            }
+        }
+
+        document.write(`<table><tr><td>PName</td><td>PQty</td></tr></table>`);
+    </script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MSIT12608 鍾榮典</title>
+	<link rel="stylesheet" href="MainStyleSheet.css">
+    <!--
+        1. 不要按鈕
+        2. 事件要用 blur
+    -->
+</head>
+<body>
+    <div>
+        <ul>
+            <li><a href="九九乘法表.html">Multiplication Table</a></li>
+            <li><a href="HomePage2.html">Login</a></li>
+            <li><a href="changePicture.html">Change Picture</a></li>
+        </ul>
+    </div>
+	<div class="loginBox">
+        <div style="padding:30px 0 30px 0">
+            <div style="height:60px; width:20px; background-color:#ff8c1a; float:left; margin:0 30px 0 0"></div>
+            <h1 class="signInTitle">SIGN IN</h1>
+        </div>
+        <div style="padding-bottom:30px; text-align:center;">
+            <div style="clear:both;">
+                <input class="textBox" type="text" placeholder = "username" id="id_usernsme"/>
+                <p id="id_usernsmeMsg" class="info">輸入姓名</p>
+            </div>
+            <div>
+                <input class="textBox" type="twxt" placeholder = "password" id="id_psaaword"/>
+                <p id="id_psaawordMsg" class="info">至少6個字母, 須包含至少 1 個大小寫英文字母，及特殊字元</p>
+            </div>
+            <div>
+                <input class="textBox" type="text" placeholder = "date" id="id_date"/>
+                <p id="id_dateMsg" class="info">日期格式 yyyy/mm/dd</p>
+            </div>
+            <div>
+                <input class="button" type="button" value="CHECK"/>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    // 驗證中文
+    document.querySelector("#id_usernsme").addEventListener("blur",checkCH);
+    function checkCH()
+    {
+        var info_userName = document.getElementById("id_usernsmeMsg");
+        var theUserNameObj = document.getElementById("id_usernsme");
+
+        var re_Ch=/[\u4E00-\u9FA5]{2,}$/;
+        if (re_Ch.test(theUserNameObj.value))
+            info_userName.innerHTML="Success";
+        else
+            info_userName.innerHTML="請輸入中文姓名";
+    }
+
+    // 驗證密碼
+    document.querySelector("#id_psaaword").addEventListener("blur",checkPassword);
+    function checkPassword()
+    {
+        var info_password=document.getElementById("id_psaawordMsg");
+        var thePsdObj = document.getElementById("id_psaaword");
+
+        if (thePsdObj.value=="")
+            info_password.innerHTML="請輸入密碼";
+
+        else if (thePsdObj.value.length<6)
+            info_password.innerHTML="密碼需大於位數";
+
+        else if (thePsdObj.value.length>=6)
+        {
+            var reg_Psd = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!,@,#,$,%,^,&,*]).{6,}$/;
+            if(reg_Psd.test(thePsdObj.value))
+                info_password.innerHTML="Success";
+            else
+                info_password.innerHTML="密碼格式錯誤";
+        }
+
+        else
+            info_password.innerHTML="未知錯誤, 請聯絡系統管理員";
+    }
+    
+    // 驗證日期
+    document.querySelector("#id_date").addEventListener("blur",isValidDate);
+    function isValidDate()
+    {
+        var theDateObj =  document.querySelector("#id_date");
+        var info_Date = document.querySelector("#id_dateMsg");
+        var reg_Date = /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;
+
+        var strOfYear = theDateObj.value.substring(0,4);
+        var strOfMonth = theDateObj.value.substring(5,7);
+        var strOfDate = theDateObj.value.substring(8);
+
+        if (reg_Date.test(theDateObj.value))
+        {
+            // 4, 6, 9, 11月沒有31號
+            if (strOfDate == 31 && (strOfMonth == 4 || strOfMonth == 6 || $strOfMonth == 9 || $strOfMonth == 11))
+                info_Date.innerHTML = "4, 6, 9, 11月沒有31號";
+            // 2 月沒有 30, 31號
+            else if (strOfDate >= 30 && strOfMonth == 2)
+                info_Date.innerHTML = "2 月沒有 30, 31號";
+            // 計算閏年
+            else if (strOfMonth == 2 && strOfDate == 29 && !(strOfYear % 4 == 0 && (strOfYear % 100 != 0 || strOfYear % 400 == 0)))
+                info_Date.innerHTML = "今年不是閏年";
+            else
+                info_Date.innerHTML = "Success";
+        }
+        else
+            info_Date.innerHTML = "日期格式錯誤";
+
+        console.log("Date is good");
+    }
+
+
+/*
+    sub isvaliddate {
+  my $input = shift;
+  if ($input =~ m!^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$!)
+   {
+    # At this point, $1 holds the year, $2 the month and $3 the day of the date entered
+    if ($3 == 31 and ($2 == 4 or $2 == 6 or $2 == 9 or $2 == 11)) {
+      return 0; # 31st of a month with 30 days
+    } elsif ($3 >= 30 and $2 == 2) {
+      return 0; # February 30th or 31st
+    } elsif ($2 == 2 and $3 == 29 and not ($1 % 4 == 0 and ($1 % 100 != 0 or $1 % 400 == 0))) {
+      return 0; # February 29th outside a leap year
+    } else {
+      return 1; # Valid date
+    }
+  } else {
+    return 0; # Not a date
+  }
+}
+*/
+
+</script>
+<!-- 
+<script>
+    //判斷中文
+    document.querySelector("#id_usernsmeMsg").addEventListener("blur",checkCH);
+    function checkCH(){
+        var info_userName = document.getElementById("id_usernsmeMsg");
+        var theUserNameObj = document.getElementById("id_usernsme");
+
+        var re_Ch=/[\u4E00-\u9FA5]{2,}$/;
+        if (re_Ch.test(theUserNameObj.value))
+            info_userName.innerHTML="Success";
+        else
+            info_userName.innerHTML="姓名格式錯誤";
+
+
+        var info_Date=document.getElementById("id_dateMsg");
+    }
+
+    //判斷日期
+    function CheckDate2(strInputDate) {
+        if (strInputDate == "") return false;
+
+        strInputDate = strInputDate.replace(/-/g, "/");
+        var d = new Date(strInputDate);
+
+        if (isNaN(d)) return false;
+        
+        var arr = strInputDate.split("/");
+        return ((parseInt(arr[0], 10) == d.getFullYear()) &;&; (parseInt(arr[1], 10) == (d.getMonth() + 1)) &;&; (parseInt(arr[2], 10) ==d  getDate()));
+    }
+
+</script> 
+--> 

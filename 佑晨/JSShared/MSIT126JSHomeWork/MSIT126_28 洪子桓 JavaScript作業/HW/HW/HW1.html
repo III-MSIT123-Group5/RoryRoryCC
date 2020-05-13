@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>99乘法表</title>
+    <style>
+        table{
+            border: 2px solid red;
+            border-collapse: collapse;
+        }
+        td {
+            border: 2px solid red;
+            border-collapse: collapse;
+            background-color: #D9FFFF;
+            font-size:20px;
+        }
+        div{
+            margin:20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="div"></div>
+    <script>
+        let div = document.getElementById("div");
+        let table = document.createElement('table');
+        let tr = document.createElement('tr');
+        for (i = 2; i <= 9; i++) {
+            let td = document.createElement("td");
+            for (j = 1; j <= 9; j++) {
+                td.innerHTML += `${i}*${j}=${i * j}<br>`;
+            }
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+        div.appendChild(table);
+    </script>
+</body>
+</html>

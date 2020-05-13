@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>03for.html</title>    
+    <style>
+        #container {
+
+        }
+        td:hover{
+            color:orange;
+        }
+        .td2{
+            color:purple
+        }
+        td {
+            border: 2px solid blue;
+            background-color:lightblue;
+            color:red;
+            font-size:120%;
+        }
+        table {
+            border-collapse:collapse;
+            margin:auto;
+        }
+    </style>
+
+</head>
+<body>
+    <table id="table01">
+        <tr id="container">
+
+        </tr>
+    </table>
+    <script>        
+        //let sum = 0;
+        //for (let i = 1; i <= 5; i++) {
+        //    //sum=sum+i;
+        //    sum += i;
+        //    console.log("i="+i+",sum="+sum);
+        //}
+        let container = document.querySelector("#container");
+        let tb = document.querySelector("#table01");
+        let td, s
+        s = "";
+        for (var i = 2; i <= 9; i++)
+        {
+            for (var j = 1; j <= 9; j++) {
+               s+=(`${i}*${j}=${i * j}`)
+               s+=("<br>")
+               
+            }
+            td = document.createElement("td")
+            container.appendChild(td)
+            td.innerHTML = s;
+            s = "";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>MSIT126_趙少輝_JavaScript功課</title>
+    <link href="CSS/StyleSheet.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container text-center">
+        <h1 class="">
+            MSIT126 趙少輝
+            <span class="a">J</span><span class="b">a</span><span class="c">v</span><span class="d">a</span><span class="e">S</span><span class="f">c</span><span class="a">r</span><span class="a">i</span><span class="b">p</span><span class="c">t</span>
+        </h1>
+        <a class="rainbow rainbow-1" href="99cal.html">
+            乘法表
+        </a>
+        <a class="rainbow rainbow-2" href="Validation.html">
+            表單驗證
+        </a>
+        <a class="rainbow rainbow-3" href="Score.html">
+            評分製作
+        </a>
+        <a class="rainbow rainbow-4" href="Advertising.html">
+            廣告輪播
+        </a>
+        <a class="rainbow rainbow-5" href="Date.html">
+            日期選擇
+        </a>
+    </div>
+    <form action="#" method="get" enctype="multipart/form-data">
+        <div class="FormCheck">
+            <fieldset>
+                <legend style="color: #344ceb; font-weight: bold"> Form Check </legend>
+                <div>
+                    <label>姓名 </label>
+                    <input type="text" id="Name1" name="Name" placeholder="請輸入中文姓名" value="" /><span class="alert" id="checkNameError"></span><br /><span> (1. 不可空白 2. 至少兩個字以上 3.必須全部為中文字)</span>
+                </div>
+                <div>
+                    <label>密碼 </label>
+                    <input type="password" id="Password1" name="Password" placeholder="請輸入密碼"  /><span class="alert" id="checkPWError"></span><br /><span>(1. 不可空白 2. 至少6個字且必須包含英文字母、數字、特殊字元[!@#$%^&*])</span>
+                </div>
+                <div>
+                    <label>日期 </label>
+                    <input type="text" id="DateOfBirth1" name="DateOfBirth" placeholder="請輸入出生年月日" /><span class="alert" id="checkBirthError"></span><br /><span>格式: 西元年/月/日 yyy/MM/dd</span>
+                </div>
+                <!--<div>
+                    <input  type="submit" name="Submit"/>
+                </div>-->
+            </fieldset>
+        </div>
+    </form>
+
+    <div>
+
+    </div>
+    <script src="Script/JavaScript.js"></script>
+</body>
+</html>
+
+<footer>
+    <div class="follow">
+        <a class="rainbow-4" href="">Pako&reg </a>
+    </div>
+</footer>

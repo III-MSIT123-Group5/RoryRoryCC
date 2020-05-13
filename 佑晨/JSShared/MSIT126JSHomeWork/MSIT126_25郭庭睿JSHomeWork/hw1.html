@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>九九乘法表</title>
+    <style>
+
+        table {
+            border-collapse: collapse;
+            border: 2px dotted #984B4B;
+            margin: auto;
+            color: #484891;
+            padding: 40px;
+            padding-right: 5px;
+            padding-left: 5px;
+            background-color: #FFDCB9;
+        }
+
+        td {
+            border: 2px dotted #984B4B;
+            margin: auto;
+            color: #484891;
+            padding: 10px;
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+        h1{
+            text-align:center;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1 align="center">
+        <input type="button" class="btn1" value="HW01" onclick="location.href='hw1.html'">
+        <input type="button" class="btn2" value="HW02" onclick="location.href='hw2.html'">
+    </h1>
+    <hr/>
+    <h1>九九乘法表</h1>
+    <script>
+        document.write("<table>");
+        for (i = 1; i <= 9; i++) {
+            document.write("<td>");
+            for (j = 1; j <= 9; j++) {
+                document.write(i+"*"+j+"="+i*j+"</br>");
+            }
+            document.write("</td>");
+        }
+        document.write("</table>");
+     </script>
+</body>
+</html>

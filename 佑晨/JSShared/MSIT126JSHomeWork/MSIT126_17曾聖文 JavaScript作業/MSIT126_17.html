@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Java Script Homework</title>
+    <style>
+        body{padding:10px ;margin:auto}
+        .HW1 {
+            border: 3px solid black;
+            width: 600px;
+            background-color: aquamarine;
+            margin: auto
+        }
+        table {
+            border: 3px solid blue;
+            background-color: aqua; 
+        }
+        td{border:1px solid blue;padding-right:0;}
+    </style>
+    <script>
+        document.write("<table><tr>")
+
+        for (i = 1; i < 10; i++) {
+
+            document.write(`<td>`)
+            for (j = 1; j < 10; j++) {
+                document.write(`${i} * ${j} = ${i * j}<br >`);
+            }
+            document.write(`</td>`)
+        }
+        document.write(`</tr ></table>`)
+
+
+    </script>
+</head>
+<body>
+    <div class="mainPage">
+        <div class="HW1" id="HW1">
+
+        </div>
+    </div>
+</body>
+</html>

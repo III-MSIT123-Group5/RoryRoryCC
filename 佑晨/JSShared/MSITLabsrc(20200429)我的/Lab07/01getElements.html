@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>01getElements.html</title>
+    <style>
+            table,td{
+                border:1px solid blue;
+                width:300px
+                }
+    </style>    
+</head>
+<body>
+    <table>
+        <tr>
+            <td id="td1">A1</td>
+            <td class="myclass">B2</td>
+            <td>C3</td>
+        </tr>
+        <tr>
+            <td>D4</td>
+            <td class="myclass">E5</td>
+            <td>F6</td>
+        </tr>
+    </table>
+    <hr>
+    <div id="myDiv"></div>
+    
+    <script>
+        //使用document.getElementById()
+        
+
+        //使用document.querySelector()
+       
+        var td1 = document.querySelector("td");
+        console.log(td1);
+        var td2 = document.querySelector("#td1");
+        console.log(td2);
+        var td3 = document.querySelector(".myclass");
+        console.log(td3);
+
+        //使用document.querySelectorAll()
+        var ls1 = document.querySelectorAll("td");
+        console.log(ls1);
+        var ls2 = document.querySelectorAll("#td1");
+        console.log(ls2);
+        var ls3 = document.querySelectorAll(".myclass");
+        console.log(ls3);
+        
+    </script>
+</body>
+</html>

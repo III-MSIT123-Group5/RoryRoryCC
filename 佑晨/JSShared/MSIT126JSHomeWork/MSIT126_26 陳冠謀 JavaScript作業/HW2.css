@@ -1,0 +1,45 @@
+﻿fieldset {
+    width: 500px;
+    margin: 10px;
+    border: 1px solid green;
+    border-radius: 15px;
+}
+
+legend {
+    margin-left: 0px;
+}
+
+.st1 {
+    width: 450px;
+    margin: 10px 25px;
+    border-bottom: 1px solid #D0D0D0;
+    padding: 10px;
+}
+
+.sub {
+    width: 450px;
+    margin: 10px 25px;
+    text-align: center;
+}
+
+.st2 {
+    /*width: 100px;*/
+    float: left;
+    text-align: right;
+}
+
+.st3 {
+    color: #ADADAD;
+    font-size: small;
+    margin: 3px;
+}
+
+.info_err {
+    color: red;
+    font-style: italic;
+}
+
+.info_corr {
+    
+}
+

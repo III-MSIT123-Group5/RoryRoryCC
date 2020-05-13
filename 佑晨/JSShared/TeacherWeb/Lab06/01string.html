@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>01string.html</title>
+</head>
+<body>
+    <div id="info"></div>
+    <script>
+        //6-1:字串的標示方式
+        let userName = "Jack";
+        //console.log("Name is : Jack");
+        //console.log("Name is : " + "Jack");
+        console.log("Name is : " + userName);
+        //ES6
+        console.log(`Name is : ${userName}`);
+        document.write()
+
+        //6-2: 字串的跳脫表示
+        console.log("\\a+b\\");  //\a+b\
+        console.log("\x41");  //A  ASCII
+        console.log("\x61");   //a
+        console.log("\u4e00");  //一  unicode 
+        console.log("\u4e01");  //丁
+
+        //6-3: 字串的常用方法
+        let str2 = "java script";  //字串變數 
+        console.log(typeof str2);  //string
+
+        //字串物件
+        let strObj = new String("java script hello");
+        console.log(typeof strObj);  //object
+
+        console.log("strObj.charAt(3)=" + strObj.charAt(3));  //a
+        console.log("strObj.charCodeAt(3)=" + strObj.charCodeAt(3));  //97
+        console.log("strObj.indexOf('a')=" + strObj.indexOf('a'));  //1
+        console.log("strObj.lastIndexOf('a')=" + strObj.lastIndexOf('a'));  //3
+        console.log("strObj.lastIndexOf('@')=" + strObj.lastIndexOf('@')); //-1
+        console.log("strObj.substr(5,3)=" + strObj.substr(5, 3));  //scr
+        console.log("strObj.substr(5)=" + strObj.substr(5));  //script hello
+        console.log("strObj.substring(5,8)=" + strObj.substring(5, 8));  //scr
+        console.log("strObj.split(' ',2)=" + strObj.split(' ',2));//java,script, hello
+        let ary = strObj.split(' ',2);
+        console.log(ary);
+        console.log("strObj.toUpperCase()=" + strObj.toUpperCase());
+    </script>
+</body>
+</html>

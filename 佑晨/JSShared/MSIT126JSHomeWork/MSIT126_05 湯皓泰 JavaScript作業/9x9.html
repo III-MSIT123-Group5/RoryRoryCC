@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>03for.html</title>
+    <style>
+        .TT {
+            margin-bottom: 24px;
+        }
+
+        div {
+            margin: 30px;
+
+        }
+
+        body {
+            font-family: 微軟正黑體;
+        }
+
+        .column {
+            width: 826px;
+            height: 280px;
+            border: 2px solid black;
+            column-count: 8;
+            column-gap: 5px;
+            column-rule: 1px solid lightgray;
+            text-align: center;
+            margin: auto;
+            line-height: 31px;
+            background-color: gray;
+            color: white;
+        }
+
+        table{
+            border-collapse: collapse;
+            border: 2px solid #66B3FF;
+            margin: auto;
+        }
+
+        td /*內格線*/ {
+            border: 1px solid #66B3FF;
+            border-bottom: none;
+            border-top: none;
+            
+            width: 100px;
+            line-height: 28px;
+            text-align: center;
+            color: darkred;
+            background-color: silver
+        }
+
+        h3 {
+            text-align: center;
+            width: 1000px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <a href="03for.html">9x9</a>
+    <a href="Form Check.html">Form Check</a>
+
+    <div><h3>9x9 Column</h3></div>
+    <div class="column">
+        <script>
+
+            for (i = 2; i <= 9; i++) {
+                for (j = 1; j <= 9; j++)
+                    document.write(`${i}*${j}=${i * j}<br>`);
+            }
+
+        </script>
+    </div>
+
+    <div>
+        <div class="TT"><h3>9x9 Table</h3></div>
+        <table>
+            <script>
+                var i, j;
+                for (j = 1; j <= 9; j++) {
+                    document.write("<tr>");
+                    for (i = 2; i <= 9; i++) {
+                        document.write("<td>");
+                        document.write(i + "*" + j + "=" + (i * j));
+                        document.write("</td>");
+                    }
+
+                    document.write("</tr>");
+                }
+            </script>
+        </table>
+    </div>
+
+
+
+
+
+</body>
+</html>

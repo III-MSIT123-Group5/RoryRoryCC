@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Change Picture</title>
+        <link rel="stylesheet" href="MainStyleSheet.css">
+    </head>
+    <body class="reset">
+        <div>
+            <ul>
+                <li><a href="九九乘法表.html">Multiplication Table</a></li>
+                <li><a href="HomePage2.html">Login</a></li>
+                <li><a href="changePicture.html">Change Picture</a></li>
+            </ul>
+        </div>
+        <div class="textCenter">
+            <h1 class="pageTitle">Change Picture</h1>
+        </div>
+        <div class="Container textCenter w600">
+            <a class="prev" onclick="backSlides()" onclick="stopSlideShow()">&#10094;</a>
+            <a class="next" onclick="plusSlides()" onclick="stopSlideShow()">&#10095;</a>
+             <!-- <img id="id_pic" alt="Kawasaki" style="width:600px;"> -->
+            <img class="reset" id="id_pic" alt="Kawasaki" style="width:600px;" src="images/Kawasaki_01.jpg">
+        </div>
+    </body>
+</html>
+<script>
+/*
+    function changePic() {
+        let d = new Date();
+        let ss = d.getSeconds();
+        let i = ss % 10 + 1;
+        document.querySelector("#id_pic").src=`images/Kawasaki_0${i}.jpg`;
+        console.log(i);
+    }
+*/
+
+    var slideIndex = 1;
+    var n = 1;
+    showSlides(slideIndex);
+
+    function plusSlides() {
+        showSlides(slideIndex += n);
+        // window.clearTimeout();
+
+    }
+    function backSlides() {
+        showSlides(slideIndex -= n);
+        // window.clearTimeout();
+    }
+
+    var imgCounts = 7;
+    function showSlides(n) {
+        var i;
+        if (n > imgCounts) {slideIndex = 1}    
+        if (n < 1) {slideIndex = imgCounts}
+        document.querySelector("#id_pic").src=`images/Kawasaki_0${slideIndex}.jpg`;
+    }
+    showSlides();
+    window.setInterval(plusSlides,2500);     
+
+
+</script>

@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>homework</title>
+    <style>
+    </style>
+    <link rel="stylesheet" href="styles/style_hw.css" />
+</head>
+<body>
+    <div id="allpage">
+        <header>
+            <nav>
+                <ul class="menu">
+                    <li><a href="#section1">homework1</a></li>
+                    <li><a href="#section2">homework2</a></li>
+                    <li><a href="#section3">homework3</a></li>
+                    <li><a href="#section4">homework4</a></li>
+                    <li><a href="#section5">homework5</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div id="content">
+            <article class="article1">
+                <section id="section1">
+                    <h1>九九乘法表</h1>
+                    <script src="JsHw1.js"></script>
+                </section>
+
+                <section id="section2">
+                    <h1>表單檢查</h1>
+                    <div>
+
+                        <label>姓名 : </label>
+                        <input type="text" id="nameId" placeholder="請輸入姓名" />
+                        <span id="nameIdSpan"></span><br />
+                        <label class="lbComment">(1.不可為空白, 2.至少兩個字以上, 3.必須全部為中文字)</label><br />
+
+                        <hr />
+
+                        <label>密碼 : </label>
+                        <input type="password" id="passwordId" placeholder="請輸入密碼" />
+                        <span id="passwordIdSpan"></span><br />
+                        <label class="lbComment">(1.不可為空白, 2.至少六個字以上且必須包含英文字母、數字、特殊字元[!@#$%^&*])</label><br />
+
+                        <hr />
+
+                        <label>日期 : </label>
+                        <input type="text" id="dateId" placeholder="ex:2020/05/05" />
+                        <span id="DateIdSpan"></span><br />
+                        <label class="lbComment">(格式:西元年/月/日 yyyy/MM/dd)</label><br />
+
+                        <hr />
+
+                        <script src="JsHw2.js"></script>
+                    </div>
+                </section>
+
+                <section id="section3">
+                    <h1>評點製作</h1>
+                    <div>
+
+                        <img id="idimg1" class="s" src="Images/star.gif" />
+                        <img id="idimg2" class="s" src="Images/star.gif" />
+                        <img id="idimg3" class="s" src="Images/star.gif" />
+                        <img id="idimg4" class="s" src="Images/star.gif" />
+                        <img id="idimg5" class="s" src="Images/star.gif" />
+
+                        <script src="JsHw3.js"></script>
+                    </div>
+                </section>
+
+                <section id="section4">
+                    <h1>廣告輪播</h1>
+
+                    <div id="picture">
+                    </div>
+
+                    <div>
+                        <ul id="tips">
+                            <li class="active"></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <input id="lastPictureId" type="image" src="images/last.png" />
+                        <input id="stopPicture" type="image" src="images/play.png" />
+                        <input id="nextPictureId" type="image" src="images/next.png" />
+                    </div>
+                    <script src="JsHw4.js"></script>
+                </section>
+
+                <section id="section5">
+                    <h1>日曆</h1>
+                </section>
+            </article>
+        </div>
+    </div>
+</body>
+</html>

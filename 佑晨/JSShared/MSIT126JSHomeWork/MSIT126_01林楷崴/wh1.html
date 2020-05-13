@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>03for.html</title>
+    <style>
+        table {
+            border: 2px solid blue;
+            border-collapse: collapse;
+            background-color: aqua;
+            margin: 100px auto;
+            width: 800px;
+            height: 400px;
+            font-size: 36px;
+        }
+
+        td {
+            border: 1px solid blue;
+            border-collapse: collapse;
+            text-align: center;
+            padding: 10px
+        }
+    </style>
+</head>
+<body>
+    <table id="table"></table>
+    <script>
+        //let sum = 0;
+        //for (let i = 1; i <= 5; i++) {
+        //    //sum=sum+i;
+        //    sum += i;
+        //    console.log("i="+i+",sum="+sum);
+        //}
+        let table1 = document.querySelector("table");
+        let tr = document.createElement("tr");
+        for (i = 2; i <= 9; i++) {
+            let td = document.createElement("td")
+            for (j = 1; j <= 9; j++) {
+                td.innerHTML += (`${i}*${j}=${i * j}<br>`);
+            }
+            tr.appendChild(td);
+        } table1.appendChild(tr);
+
+    </script>
+</body>
+</html>

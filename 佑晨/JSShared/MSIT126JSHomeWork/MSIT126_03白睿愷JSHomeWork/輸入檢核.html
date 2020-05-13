@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>輸入檢核</title>
+    <style>
+        * {
+            font-family: 微軟正黑體;
+        }
+
+        fieldset {
+            width: 500px;
+            border: 2px solid black;
+            border-radius: 20px;
+            margin: auto;
+        }
+
+        legend {
+            text-align: left;
+        }
+
+        div {
+            padding: 3px;
+            border-bottom: 1px solid gray;
+            margin: auto;
+            width: 450px;
+        }
+
+        span {
+            color: darkgrey;
+            font-size: 13px;
+        }
+
+        .btnUI {
+            margin: auto;
+        }
+
+        .errUI {
+            color: red;
+            font-size: 8pt;
+            font-weight:bolder;
+            text-align: right;
+        }
+
+        .okUI {
+            color: green;
+            font-size: 8pt;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .dataUI {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>輸入檢核(ex：帳號)</legend>
+        <div class="dataUI">
+            <label>帳號：</label>
+            <input id="account" type="text" name="UserID" placeholder="請輸入帳號"  autofocus/>
+            <label id="accountCheck" class="errUI" style="text-align:left;"></label>
+            <br /><span>(1.不可空白，2.至少為兩個字，3.必須為中文)</span>
+        </div>
+        <div class="dataUI">
+            <label>密碼：</label>
+            <input id="password" type="text" name="UserPwd" placeholder="請輸入密碼" />
+            <label id="passwordCheck" class="errUI" style="text-align:left;"></label>
+            <br /><span>(1.不可空白，2.至少為六個英文、數字、特殊字元(!、@、#、$...等)所組成)</span>
+        </div>
+        <div class="dataUI">
+            <label>日期：</label>
+            <input id="date" type="text" name="UserDate" placeholder="ex:2020/05/07" />
+            <label id="dateCheck" class="errUI" style="text-align:left;"></label>
+            <br /><span>格式：西元年/月/日(ex：yyyy/mm/dd)</span>
+        </div>
+        <div style="border-bottom:0px; text-align:center;">
+            <input id="btnCheck" type="button" name="btnSend" onclick="btnclick()" value="送出" />
+            <input id="Reset" type="reset" name="btnClear" value="清除" />
+        </div>
+    </fieldset>
+
+    <script>
+        let ID = document.querySelector("#account");
+        let Pwd = document.querySelector("#password");
+        let Date = document.querySelector("#date");
+
+        let errID = document.querySelector("#accountCheck");
+        let errPwd = document.querySelector("#passwordCheck");
+        let errDate = document.querySelector("#dateCheck")
+
+        function btnclick() {
+            idErr();
+            pwdErr();
+            dateErr();
+        };
+
+        function idErr() {
+            let rex = /[^\u4e00-\u9fff]/;
+
+            if (ID.value == "" || ID.value.length < 2 || rex.test(ID.value)) {
+                errID.className = "errUI";
+                errID.innerHTML = "X 錯誤";
+            }
+            else {
+                errID.className = "okUI";
+                errID.innerHTML = "V 正確";
+            }
+        };
+
+        function pwdErr() {
+            let rexEng = /.*[A-Z,a-z]+/;
+            let rexNum = /.*\d+/;
+            let rexSpe = /.*\W+/;
+
+            let pwdVal = Pwd.value;
+
+            if (pwdVal == "" || pwdVal.length < 6) {
+                errPwd.className = "errUI";
+                errPwd.innerHTML = "X 錯誤";
+            }
+            else if (!rexEng.test(pwdVal)) {
+                errPwd.className = "errUI";
+                errPwd.innerHTML = "X 錯誤";
+            }
+            else if (!rexNum.test(pwdVal)) {
+                errPwd.className = "errUI";
+                errPwd.innerHTML = "X 錯誤";
+            }
+            else if (!rexSpe.test(pwdVal)) {
+                errPwd.className = "errUI";
+                errPwd.innerHTML = "X 錯誤";
+            }
+            else {
+                errPwd.className = "okUI";
+                errPwd.innerHTML = "V 正確";
+            }
+        };
+
+        function isExistDate(dateStr) {
+            var dateObj = dateStr.split('/'); // yyyy/mm/dd
+
+            //列出12個月，每月最大日期限制
+            var limitInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+            var theYear = parseInt(dateObj[0]);
+            var theMonth = parseInt(dateObj[1]);
+            var theDay = parseInt(dateObj[2]);
+            var isLeap = new Date(theYear, 1, 29).getDate() === 29; // 是否為閏年?
+
+            if (isLeap) {
+                // 若為閏年，最大日期限制改為 29
+                limitInMonth[1] = 29;
+            }
+
+            // 比對該日是否超過每個月份最大日期限制
+            return theDay <= limitInMonth[theMonth - 1];
+        }
+        function dateErr() {
+
+
+            var dateVal = Date.value;
+            var rexDate = /\d{4}[./]{1}(0[1-9]|1[012])[./]{1}(0[1-9]|[12][0-9]|3[01])/;
+
+            if (dateVal == "") {
+                errDate.className = "errUI";
+                errDate.innerHTML = "X 錯誤null";
+            }
+            else if (!rexDate.test(dateVal)) {
+                errDate.className = "errUI";
+                errDate.innerHTML = "X 錯誤format";
+            }
+            else if (isExistDate(dateVal)) {
+                errDate.className = "errUI";
+                errDate.innerHTML = "V 正確";
+            }
+            else {
+                errDate.className = "okUI";
+                errDate.innerHTML = "V 正確";
+            }
+        };
+       
+
+        ID.onblur = idErr;
+        Pwd.onblur = pwdErr;
+        Date.onblur = dateErr;
+    </script>
+</body>
+</html>

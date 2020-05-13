@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>01Date.html</title>
+</head>
+<body>
+    <script>
+        //建立日期物件語法 1
+        let d = new Date();
+        console.log(d);
+
+        //建立日期物件語法 2
+        let d2 = new Date("2020/05/08 10:23:05 pm");
+        d2 = new Date("2020/05/08 22:23:05");
+        console.log(d2);
+
+        //建立日期物件語法 3
+        let d3 = new Date(2020, 4, 8);
+        console.log(d3);
+
+        let theYear = d.getFullYear() - 1911;
+        let theMonth = d.getMonth() + 1;
+        let theDate = d.getDate();
+        //document.write(d);
+        document.write("民國" + theYear + "年" + theMonth + "月" + theDate + "日" + "<br>");
+
+        let d5 = new Date(2020, 2, 0);  //3月的第0天就是2月的最後一天
+        console.log(d5.getDate());
+        //change event value
+
+        let d6 = new Date("2021/2/29");
+        console.log(d6);
+    </script>
+    <select>
+        <option value="1">1</option>
+    </select>
+</body>
+</html>

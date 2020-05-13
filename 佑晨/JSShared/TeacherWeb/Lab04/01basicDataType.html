@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>01basicDataType.html</title>
+</head>
+<body>
+    <script>
+        //數字變數
+        var a = 10;
+        console.log("a=" + a+" typeof a="+typeof a); //number
+
+        //字串變數
+        a = "abc";
+        a = {};  //literal
+        var obj = new Object();
+        console.log(a);
+        console.log(obj);
+        console.log("a=" + a + " typeof a=" + typeof a); //string
+
+        //布林變數   
+        let b = true;
+        let c = b + 1;
+        console.log("c=" + c + " typeof c=" + typeof c);  //number
+
+        //if (c)
+        //    alert(true);
+        //else
+        //    alert(false);
+
+
+        //null
+        let n = null; 
+        console.log("n=" + n + " typeof n=" + typeof n);  //object
+
+        //如果沒有初始值，JavaScript會自動將變數的值初始化為undefined(預設值 default value)          
+        let u;        
+        console.log("u=" + u + " typeof u=" + typeof u);  //undefined
+
+
+        //資料類型的轉換
+        //轉換為數值number
+        //parseInt,parseFloat,Number
+        console.log("parseInt('123.45')=" + parseInt('123.45'));
+        console.log("parseInt('12a3.45')=" + parseInt('12a3.45'));
+        console.log("parseInt('a123.45')=" + parseInt('a123.45'));
+        console.log("Number('123.45')=" + Number('123.45'));
+        console.log("Number('12a3.45')=" + Number('12a3.45'));
+        console.log("Number('a123.45')=" + Number('a123.45'));
+        
+        //轉換為字串string
+        let age = 25;
+        console.log(typeof ("age=" + age));  //string
+        let strAge = age.toString();
+        console.log(typeof strAge);  //string
+
+        console.log(typeof String(age));
+    
+    
+    
+        </script>
+</body>
+</html>

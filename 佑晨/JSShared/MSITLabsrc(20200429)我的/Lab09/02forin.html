@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>02forin.html</title>
+</head>
+<body>
+    <div id="myDiv"></div>
+    <script>
+        var cars={
+            brand:"mazda",
+            "max speed":300
+        }
+
+        let strUl = "<ul>";
+        for (let p in cars) {
+            strUl+= `<li>${p} : ${cars[p]}</li>`
+        }
+        strUl += "</ul>";
+        var gM = document.getElementById("myDiv");
+        gM.innerHTML = strUl;
+        
+    </script>        
+</body>
+</html>

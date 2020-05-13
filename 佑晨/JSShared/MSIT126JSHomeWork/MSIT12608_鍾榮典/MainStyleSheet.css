@@ -1,0 +1,135 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.reset{
+  margin: 0;
+  padding: 0;
+}
+body {
+    background: linear-gradient(to left, #656565 0%, #151515 100%);
+}
+.loginBox {
+    width: 400px;
+    background-color: #151515;
+    margin: 50px auto 0 auto;
+}
+.signInTitle{
+  color: white;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 50px;
+  padding: 0;
+  margin: 0;
+}
+.pageTitle{
+    color: white;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 50px;
+    padding:30px;
+    margin:0;
+    text-align: center;
+}
+.textBox {
+    background-color: #151515;
+    color: #A9A9A9;
+    font-size: 14px;
+    border: 1px solid #ff8c1a;
+    width: 300px;
+    height: 40px;
+    margin: 10px auto;
+    padding:0 0 0 10px;
+}
+.button {
+    margin-top:30px;
+    height: 40px;
+    width: 400px;
+    color: white;
+    background-color: #ff8c1a;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 24px;
+    border: none;
+}
+.textCenter{
+    text-align: center;
+}
+.info {
+    color: #ff531a;
+    font-size:10px;
+}
+table, td{
+    border-collapse: collapse;
+    border:1px solid #ff8c1a;   
+}
+table{
+    margin: 0 auto;
+    background-color: #151515;
+}
+td{
+    padding: 15px;
+    color: white;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #151515;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 24px;
+  transition: 0.5s ease;
+
+}
+
+li a:hover {
+  background-color: #ff8c1a;
+}
+.Container{
+  position: relative;
+}
+.textCenter{
+  text-align: center;
+}
+.textLeft{
+  text-align: left;
+}
+.textRight{
+  text-align: right;
+}
+.w600{
+  width: 600px;
+  margin: 0 auto;
+}
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: calc(50% - 26px);
+  width: auto;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 30px;
+  transition: 0.5s ease;
+  user-select: none;
+  border-radius: 3px 3px 3px 3px;
+  background-color:  rgba(0, 0, 0, 0.2);
+}
+.next {
+  right: 0;
+}
+.prev {
+  left: 0;
+}
+.prev:hover, .next:hover {
+  background-color: #ff8c1a;
+}

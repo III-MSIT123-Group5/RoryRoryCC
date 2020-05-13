@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>01eventHandler1.html</title>    
+</head>
+
+<body>
+    <!-- 標籤內事件處理器 -->
+    <h1 id="id1" onclick="intag()">標籤內事件處理器</h1>
+
+    <!-- JavaScript屬性事件處理器 -->
+    <h1 id="id2">JavaScript屬性事件處理器</h1>
+
+    <!-- W3C DOM 處理器 -->
+    <h1 id="id3">W3C DOM 處理器</h1>
+
+    <script>
+        document.querySelector("#id2").onclick = jsevent
+        document.querySelector("#id3").addEventListener("click", w3cdom )
+
+            function intag() {
+                alert("標籤內事件處理器");
+            }
+        function jsevent() {
+            alert("JavaScript屬性事件處理器");
+        }
+        function w3cdom() {
+            alert("JW3C DOM 處理器");
+        }
+
+
+    </script>
+</body>
+</html>

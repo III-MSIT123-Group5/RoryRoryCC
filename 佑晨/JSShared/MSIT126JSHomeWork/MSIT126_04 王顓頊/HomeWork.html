@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="HomeWork.css">
+    <script src="HomeWork.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeWork</title>
+</head>
+<body>
+    <div class="wrapper" >
+        <nav>
+            <div>
+                <div>
+                    <ul class=" js-nav">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#HM1">HomeWork 1</a></li>
+                        <li><a href="#HM2">HomeWork 2</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section id="home" class="sec-main">
+            <h1 class="main-heading">JavaScript HomeWork</h1>
+        </section>
+
+        <section id="HM1" class="HM1">
+            <div>
+                <h1>Multiplication table</h1>
+                <hr />
+                <div class = "tableback">
+                    <button onclick="CreateTable()">Show</button>
+                <table id="table">
+                </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="HM2" class="HM2">
+            <div>
+                <h1>Sign Up!</h1>
+                <hr />
+                <div class="Log-in">
+                    <form action="" >
+                        <div class="form">
+                            <div class="user">     
+                                <input type="text" name="name" id="name" onblur="CheckName()"><span id="idsp1"></span>
+                                <label for="">Name:</label>
+                            </div>
+                            <div class="user">
+                                
+                                <input type="text" name="" id="password" onblur="passwordCheck()"><span id="idsp2"></span>
+                                <label for="">Password:</label>
+                            </div>
+                            <div class="user">
+                                
+                                <input type="text" name="" id="date" onblur="tdate()"><span id="idsp3"></span>
+                                <label for="">Date:</label>
+                            </div>
+                            <a href="http://www.google.com">Submit</a><a href="#">Cancle</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

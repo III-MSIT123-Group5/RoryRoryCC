@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>2.2.	製作表單包含下列欄位</title>
+
+    <link rel="stylesheet" type="text/css" href="HW2.css" />
+    <script src="HW2.js"></script>
+</head>
+<body>
+    <form id="form1" action="#" method="get" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Form Check</legend>
+            <div class="st1">
+                <label for="name1" class="st2">姓名: </label>
+                <input type="text" id="name1" name="account" autofocus placeholder="請輸入姓名" autocomplete="off" />
+                <label id="name_info"></label>
+                <p class="st3">(1.不可空白 2.至少兩個字以上 3.必須全部為中文字)</p>
+            </div>
+
+            <div class="st1">
+                <label for="pwd1" class="st2">密碼: </label>
+                <input type="password" id="pwd1" name="pwd" placeholder="請輸入密碼" autocomplete="off" maxlength="16" />
+                <label id="pwd_info"></label>
+                <p class="st3">(1.不可空白 2.至少6個字且必須包含英文字母、數字、特殊字元[!@#$%^&*])</p>
+            </div>
+
+            <div class="st1">
+                <label for="date1" class="st2">日期: </label>
+                <input type="text" id="date1" name="date" placeholder="ex:2000/2/29" autocomplete="off" />
+                <label id="date_info"></label>
+                <p class="st3">格式:西元年/月/日 yyyy/mm/dd</p>
+            </div>
+
+            <div class="sub">
+                <input type="button" id="submit1" value="送出" />
+                <input type="button" id="reset1" value="清除" />
+            </div>
+        </fieldset>
+
+    </form>
+    <script type="text/javascript">window.onload = attachEvents;</script>
+</body>
+</html>

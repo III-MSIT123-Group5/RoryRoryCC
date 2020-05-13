@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>作業一</title>
+    <style>
+        .tb1 {
+            width: 400px;
+            border: 3px solid #0072E3;
+            border-collapse:collapse;
+        }
+        td,th {
+            border:1px solid gray;
+        }
+        thead {
+            background-color: #005AB5;
+            color:#ffffff;
+            text-transform:capitalize;
+        }
+        tbody {
+            background-color: #46A3FF;
+            text-align:center;     /*文字水平對齊 left center right*/
+            
+        }
+            tbody tr:nth-child(2n) {
+                background-color: #97CBFF;
+            }
+            tbody tr:nth-child(2n+1) {
+                background-color: #66B3FF;
+            }
+            tbody td:hover {
+                background-color:aqua;
+                color:blue;
+            }
+    </style>
+</head>
+<body>
+    <table id="h5">
+       
+    </table>
+        <script>
+            let myh5 = document.querySelector("#h5");
+            let str = "";
+
+            for (let i = 1; i <= 9; i++) {
+                str += '<tr>';
+                for (let j = 1; j <= 9; j++) {
+                    str += `<td>${j}X${i}=${i * j}</td>`;
+                }
+                str+='</tr>'
+            }
+            //str += '</tr>';
+            myh5.innerHTML = str;
+        </script>
+</body>
+</html>

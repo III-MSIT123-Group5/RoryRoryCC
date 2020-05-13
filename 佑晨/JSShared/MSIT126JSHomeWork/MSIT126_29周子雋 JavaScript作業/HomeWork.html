@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>99乘法表</title>
+    <link rel="stylesheet" href="Style/StyleSheet.css" />
+    <link rel="stylesheet" href="Script/JavaScript.js" />
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="div1">
+        <header>
+
+            <img class="logo-img" src="image/9598o.jpg" />
+            <nav>
+                <ul class="menu">
+                    <li>
+                        <a href="">九九乘法表</a>
+                    </li>
+                    <li>
+                        <a href="FormCheck.html">Form Check</a>
+                    </li>
+                    <li>
+                        <a href="Stars.html">星星評點</a>
+                    </li>
+                    <li>
+                        <a href="">輪播牆</a>
+                    </li>
+                    <li>
+                        <a href="">日期選擇</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <article>
+            <!--<table>-->
+                <!--<caption>99乘法表</caption>-->
+                <script>
+                    document.write("<table>")
+                    document.write("<tr>");
+                    for (var i = 1; i < 10; i++) {
+                        document.write("<td>");
+                        for (var j = 1; j < 10; j++) {
+                            document.write(`${i}*${j}=${i*j}<br>`);
+                        }
+                        document.write("</td>");
+                    }
+                    document.write("</tr>");
+                    document.write("</table>");
+                </script>
+            
+            <!--</table>-->
+            
+        </article>
+    </div>
+</body>
+</html>

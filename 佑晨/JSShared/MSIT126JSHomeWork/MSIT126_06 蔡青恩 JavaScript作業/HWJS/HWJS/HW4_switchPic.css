@@ -1,0 +1,38 @@
+﻿#picbox {
+    border: 1px solid blue;
+    width: 700px;
+    height: 450px;
+    text-align: center;
+    border-radius:20px;
+    padding:1px;
+    margin:auto;
+    //margin-left:200px
+        
+}
+#picknum {margin:10px;
+}
+#switchPic {
+    height: 300px;
+    border:1px solid orange;
+    border-radius:5px;
+    
+}
+
+.smallPic {
+    height: 30px;
+    padding: 2px;
+    margin:5px 5px;
+   border:1px dotted orange;
+   border-radius:10px;
+    
+}
+
+.btn {
+    border: 1px solid darkblue;
+    background-color: darkslategrey;
+    font-family: 'Noto Sans TC', sans-serif;
+    color:white;
+    padding:5px;
+    border-radius:20px;
+}
+

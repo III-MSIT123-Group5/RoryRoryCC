@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>九九乘法表</title>    
+    <style>
+        body {
+            background-image: url(image/c2.jpg);
+            background-attachment: fixed;
+            background-repeat:no-repeat;
+            background-size:100%;
+        }
+        table{
+            border-collapse:collapse;  
+            margin:20px auto;
+        }
+        td {
+            border: 2px solid #84C1FF;
+            padding: 10px;
+            background-color: #8080C0;
+            color: #FFFF37;
+        }
+        @font-face{
+            src:url(font/HanyiSentySpringBrush.ttf);
+            font-family:hany;
+        }
+        div {
+            font-family: hany;
+            color:gold;
+            font-size: 60px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div>九九乘法表</div>
+    <script>                 
+        document.write("<table>");
+        document.write("<tr>");
+        for (let i = 2; i < 10; i++) {
+            document.write("<td>");
+            for (let j = 1; j < 10; j++) {
+                document.write(`${i} * ${j} = ${i * j}<br>`);
+            }
+            document.write("</td>")
+        }
+        document.write("</tr>");
+        document.write("</table>");
+    </script>
+</body>
+</html>

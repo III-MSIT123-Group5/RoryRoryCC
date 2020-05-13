@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>02functionHTML.html</title>
+    <script>
+        //==========方法製作==================
+        //定義物件
+        let cars = {
+            brand: "audi",
+            "max speed": 300,
+            print: function () {  //method
+                return this.brand;
+            }
+        }
+
+        //定義物件方法三(使用箭頭函數)
+
+
+
+
+        //*****************************
+        //傳統函數：依呼叫的方法而定(函數宣告,函數字面值)
+        //箭頭函數：繫結到其宣告時所在的物件
+        //箭頭函數當中的 this 是宣告時的物件，而不是呼叫時的物件        
+        //一般函數在建立時是在 window 下，
+        //所以在 window 下使用箭頭函數自然會指向 window，
+        //要確實將箭頭函數宣告在物件內部，這樣 this 才會指向該物件。        
+        //*****************************
+         //function Person(){
+         //    this.age = 10;
+         //    console.log(this);  //[Person]
+         //    function PChild() {
+         //        console.log(this);  //[window] bug
+         //    }
+         //    PChild();
+         //}
+         //let p = new Person();
+
+
+         function Person() {
+             this.age = 10;
+             console.log(this);  //[Person]
+             let PChild = () => {
+                 console.log(this);  //[Person]
+             }
+             PChild();
+         }
+         let p = new Person();
+	</script>
+</head>
+<body>
+   
+</body>
+</html>

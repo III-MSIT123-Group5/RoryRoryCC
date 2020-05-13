@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .artical{
+            width:40%;
+            float:left;
+        }
+        .aside{
+            width:50%;
+            float:right;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="Form_Check.html">表單</a></li>
+        <li><a href="ranking.html">評分</a></li>
+        <li><a href="carousel.html">圖片輪播</a></li>
+        <li><a href="calendar10-20.html">日期</a></li>
+        <li><a href="9_9table.html">乘法表</a></li>
+
+    </ul>
+    <header style="text-align:center"><h1>Welcome</h1></header>
+    <div style="line-height:60px;text-align:center" class="artical" id="S_date">
+    </div>
+    <div class="aside" id="info1"></div>
+<script>
+    var title = document.createElement("h1");
+    title.id = "title1";
+    title.innerHTML = "Information";
+    title.style.backgroundColor = "aqua";
+    title.style.width = "91%";
+    document.querySelector("#info1").appendChild(title);
+    var content = document.createElement("textarea");
+    content.style.width = "90%";
+    content.style.height = "100px";
+    content.style.resize = "none";
+    content.readOnly = "true";
+    //content.innerHTML=document.
+    document.querySelector("#info1").appendChild(content);
+
+</script>
+    <script>
+        var divS_date = document.querySelector("#S_date"); //<div>#S_date
+        let y_slt = document.createElement("select"); //year dropdown list
+        y_slt.id = "y_slt";
+        for (let i = 2010; i <= 2020; i++) {
+            let y_opt = document.createElement("option");
+            y_opt.innerHTML = i;
+            y_slt.appendChild(y_opt);
+        }
+        let y_lb = document.createElement("label");
+        y_lb.innerHTML = "年";
+        divS_date.appendChild(y_slt);
+        divS_date.appendChild(y_lb);
+
+    </script>
+    <script>
+        let m_slt = document.createElement("select"); //month dropdown list
+        m_slt.id = "m_slt";
+        for (let i = 1; i <= 12; i++) {
+            let m_opt = document.createElement("option");
+            m_opt.innerHTML = i;
+            m_slt.appendChild(m_opt);
+        }
+        let m_lb = document.createElement("label");
+        m_lb.innerHTML = "月";
+        divS_date.appendChild(m_slt);
+        divS_date.appendChild(m_lb);
+
+    </script>
+
+    <script>
+        var d_slt = document.createElement("select"); //date dorpdown list
+        d_slt.id = "d_slt";
+        document.querySelector("#y_slt").addEventListener("change", last_day_change);
+        document.querySelector("#m_slt").addEventListener("change", last_day_change);
+        //-------------------------------------
+        let y = document.querySelector("#y_slt")
+        var y_slt_index = y.selectedIndex;
+        var y_text = document.querySelector("#y_slt").options[y_slt_index].text;
+
+        let m = document.querySelector("#m_slt");
+        var m_slt_index = m.selectedIndex;
+        var m_text = document.querySelector("#m_slt").options[m_slt_index].text;
+
+        var last_day;
+        var trans_day = new Date(y_text, m_text, 0);
+        last_day = trans_day.getDate();
+        //--------------------------------------
+        //console.log(y_text);
+        //console.log(m_text);
+        //console.log(trans_day);
+        //console.log(last_day);
+
+        for (let i = 1; i <= last_day; i++) {
+            let d_opt = document.createElement("option");
+            d_opt.innerHTML = i;
+            d_slt.appendChild(d_opt);
+        }
+        let d_lb = document.createElement("label");
+        d_lb.id = "d_lb";
+        d_lb.innerHTML = "日";
+
+        divS_date.appendChild(d_slt);
+        divS_date.appendChild(d_lb);
+
+        document.querySelector("#d_slt").addEventListener("change", date_on_content); //---------add select content
+        function date_on_content() {
+            let y = document.querySelector("#y_slt")
+            var y_slt_index = y.selectedIndex;
+            var y_text = document.querySelector("#y_slt").options[y_slt_index].text; //get current year
+
+            let m = document.querySelector("#m_slt");
+            var m_slt_index = m.selectedIndex;
+            var m_text = document.querySelector("#m_slt").options[m_slt_index].text; //get current month
+
+            let d = document.querySelector("#d_slt");
+            var d_slt_index = d.selectedIndex;
+            var d_text = document.querySelector("#d_slt").options[d_slt_index].text;//get current date
+
+            content.innerText = `你選擇的日期是${y_text}年${m_text}月${d_text}日`;
+        }
+
+        function last_day_change() {
+
+            let y = document.querySelector("#y_slt")
+            var y_slt_index = y.selectedIndex;
+            var y_text = document.querySelector("#y_slt").options[y_slt_index].text; //get current year
+
+            let m = document.querySelector("#m_slt");
+            var m_slt_index = m.selectedIndex;
+            var m_text = document.querySelector("#m_slt").options[m_slt_index].text; //get current month
+
+            var last_day;
+            var trans_day = new Date(y_text, m_text, 0);
+            last_day = trans_day.getDate();
+
+            document.querySelector("#d_slt"); //focus on d_slt
+
+            var ori_d_opt = document.getElementById("d_slt").options;
+            //remove options date
+            for (i = ori_d_opt.length-1; i >=0; i--) {
+                ori_d_opt.remove(i);
+            }
+            //readd options date
+            for (let i = 1; i <= last_day; i++) {
+                let d_opt = document.createElement("option");
+                d_opt.innerHTML = i;
+                d_slt.appendChild(d_opt);
+            }
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+﻿.titel {
+    border: 1px solid #743A3A;
+    border-radius: 5px;
+    background-color: #B87070;
+    color: white;
+    margin: 100px 20px;
+    padding: 5px;
+    font-size: 20px;
+}
+div {
+    margin-top: 50px;
+    text-align: center;
+}

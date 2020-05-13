@@ -1,0 +1,17 @@
+@font-face {
+    font-family: font1;
+    src: url("font/DancingScript-Bold.ttf");
+}
+
+
+
+article{
+    text-align: center;
+    margin: auto;
+    font-family: font1;
+}
+
+.font2 {
+    font-family:'Shadows Into Light' ;
+
+}

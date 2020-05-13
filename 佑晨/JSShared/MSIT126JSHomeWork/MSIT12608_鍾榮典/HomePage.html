@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MSIT12608 鍾榮典</title>
+	<link rel="stylesheet" href="MainStyleSheet.css">
+</head>
+<body>
+    <div>
+        <ul>
+            <li><a href="九九乘法表.html">Multiplication Table</a></li>
+            <li><a href="HomePage.html">Login</a></li>
+        </ul>
+    </div>
+	<div class="loginBox">
+        <div style="padding:30px 0 30px 0">
+            <div style="height:60px; width:20px; background-color:#ff8c1a; float:left; margin:0 30px 0 0"></div>
+            <h1>SIGN IN</h1>
+        </div>
+        <div style="padding-bottom:30px; text-align:center;">
+            <div style="clear:both;">
+                <input class="textBox" type="text" placeholder="username" id="id_usernsme" name="name_password"/>
+                <p id="id_usernsmeMsg" class="info">輸入姓名</p>
+            </div>
+            <div>
+                <input class="textBox" type="password" placeholder="password" id="id_psaaword" name="name_password"/>
+                <p id="id_psaawordMsg" class="info">至少6個字母, 須包含至少 1 個大小寫英文字母，及特殊字元</p>
+            </div>
+            <div>
+                <input class="textBox" type="text" placeholder="date" id="id_date" name="name_date"/>
+                <p id="id_dateMsg" class="info">info</p>
+            </div>
+            <div>
+                <input class="button" type="button" value="CHECK" onclick="chechContent()"/>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script>
+    function chechContent() 
+    {
+        // 判斷密碼格式
+        var info_password=document.getElementById("id_psaawordMsg");
+        var thePsdObj = document.getElementById("id_psaaword");
+        // var thePsdObjVal=thePsdObj.value;
+        // var thePsdObjValLen = thePsdObjVal.length;
+
+        if (thePsdObj.value=="")
+            info_password.innerHTML="請輸入密碼";
+
+        else if (thePsdObj.value.length>=6)
+        {
+            var re_Psd = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!,@,#,$,%,^,&,*]).{6,}$/;
+            if(re_Psd.test(thePsdObj.value))
+                info_password.innerHTML="Success";
+            else
+                info_password.innerHTML="密碼格式錯誤";
+        }
+
+        else
+            info_password.innerHTML="密碼需大於六個字元";
+
+
+        //判斷中文
+        var info_userName = document.getElementById("id_usernsmeMsg");
+        var theUserNameObj = document.getElementById("id_usernsme");
+
+        var re_Ch=/[\u4E00-\u9FA5]{2,}$/;
+        if (re_Ch.test(theUserNameObj.value))
+            info_userName.innerHTML="Success";
+        else
+            info_userName.innerHTML="姓名格式錯誤";
+
+
+        var info_date=document.getElementById("id_dateMsg");
+        // var validateDate = function (originalYear, originalMonth, originalDay) {
+        //     var date = new Date(originalYear, originalMonth - 1, originalDay);
+        //     var year = date.getFullYear();
+        //     var month = date.getMonth()   1;
+        //     var day = date.getDate();
+        //     return year == originalYear && month == originalMonth && day == originalDay;
+        // } 
+    }
+
+    function CheckDate2(strInputDate) {
+        if (strInputDate == "") return false;
+
+        strInputDate = strInputDate.replace(/-/g, "/");
+        var d = new Date(strInputDate);
+
+        if (isNaN(d)) return false;
+        
+        var arr = strInputDate.split("/");
+        return ((parseInt(arr[0], 10) == d.getFullYear()) &;&; (parseInt(arr[1], 10) == (d.getMonth() + 1)) &;&; (parseInt(arr[2], 10) ==d  getDate()));
+    }
+
+</script>

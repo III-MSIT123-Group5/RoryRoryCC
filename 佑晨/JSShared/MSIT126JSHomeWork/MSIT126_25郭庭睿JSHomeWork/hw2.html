@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+          
+        fieldset {
+            width: 500px;
+            margin: auto;
+            border: 1px groove #6A6AFF;
+            border-radius: 15px;
+        }
+
+        em {
+            color: red;
+            font-weight: bolder;
+        }
+
+        legend {
+            margin-left: 300px;
+            color: #8600FF;
+        }
+        p {
+            color: gray;
+          }
+       
+    </style>
+</head>
+<body>
+    <h1 align="center">
+        <input type="button" class="btn1" value="HW01" onclick="location.href='hw1.html'">
+        <input type="button" class="btn2" value="HW02" onclick="location.href='hw2.html'">
+    </h1>
+    
+    <form action="#" method="get" enctype="multipart/form-data">
+        <fieldset>
+            <legend>個人資料1<em>必填</em></legend>
+            <div>
+                <label for="name">姓名：</label>
+                <input type="text" id="idName" autocomplete="off" placeholder="請輸入姓名" onblur="check_name()" />
+                <span id="nameCheck"></span>
+                <br />
+                <p >(1.不可空白,2.至少兩個字以上且必須全部為中文字)</p>
+            </div>
+            <div>
+                <label for="pwd">密碼：</label>
+                <input type="password" id="idPd" placeholder="請輸入密碼" onblur="check_pwd()" />
+                <span id="pwdCheck"></span>
+                <br />
+                <p>(1.不可空白,2.至少6個字且必須包含英文字母、數字、特殊字元[[!@#$%^&*])</p>
+            </div>
+            <div>
+                <label for="date">日期：</label>
+                <input type="text" id="idDate" placeholder="ex:2000/02/29" onblur="check_date()" />
+                <span id="dateCheck"></span>
+                <br />
+                <p>(格式：西元年/月/日 ex:2000/2/29)</p>
+            </div>
+            <p>
+                <input type="reset" value="送出" />
+                <input type="button" id="btnsubmit" value="清除" />
+            </p>
+        </fieldset>
+    </form>
+    
+        <script type="text/javascript">
+            function check_name()
+            //不可空白,至少兩個字且必須為中文字
+            {
+                
+                var idName = document.getElementById("idName").value;
+                var isCh = (/^[\u4E00-\u9FA5]+$/).test(idName);
+                if (idName == null || idName == "") {
+                    document.getElementById("nameCheck").innerHTML = `<img src="image/error.png"/>不可空白`;
+                    check = false;
+                } else {
+                    if (isCh && idName.length >= 2) {
+                        document.getElementById("nameCheck").innerHTML = `<img src="image/check.png"/>正確`;
+                        
+                    } else {
+                        document.getElementById("nameCheck").innerHTML = `<img src="image/error.png"/>至少兩個字且必須為中文字`;
+                        
+                    }
+                }
+                return check;
+            }
+            function check_pwd()
+            //不可空白,不包含中文字,至少6個字且必須包含英文字母、數字、特殊字元[[!@#$%^&*]
+            {
+               
+                var idPd = document.getElementById("idPd").value;
+                var isCh = (/[\u4E00-\u9FA5]|[\uFE30-\uFFA0]/gi).test(idPd);
+                var isNum = (/[0-9]+/).test(idPd);
+                var isEn = (/[A-Za-z]/).test(idPd);
+                var isSpec = (/[!@#$%^&*]/).test(idPd);
+                if (idPd == null || idPd == "" || isCh) {// 123Aa2@@
+                    console.log(idPd.length, isNum, isEn, isSpec, isCh, 'a')
+                    document.getElementById("pwdCheck").innerHTML = `<img src="image/error.png"/>不可空白`;
+                   
+                } else {
+                    console.log(idPd.length, isNum, isEn, isSpec, isCh, 'b')
+                    if (idPd.length >= 6 && isNum && isEn && isSpec) {
+                        document.getElementById("pwdCheck").innerHTML = `<img src="image/check.png"/>正確`;
+
+                        
+
+                    } else {
+                        document.getElementById("pwdCheck").innerHTML = `<img src="image/error.png"/>至少6個字且必須包含英文字母、數字、特殊字元[[!@#$%^&*]`;
+                       
+                    }
+                }
+                return check;
+            }
+            function check_date() {
+                var isDate = document.getElementById("idDate")
+                var isDateVal = isDate.value
+                var isDateValLen = isDateVal.length;
+
+                let strObj1 = document.getElementById("dateCheck");
+
+                if (isDateValLen == "")
+                    strObj1.innerHTML = "請填寫日期";
+
+                else if (isDateValLen == 10) {
+
+                    var limitinMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]//列出12個月，每月最大日期限制
+                    theYear = parseInt(isDateVal.substr(0, 4));
+                    theMonth = parseInt(isDateVal.substr(5, 2));
+                    theDay = parseInt(isDateVal.substr(8, 2));
+                    var isLeap = new Date(theYear, 1, 29).getDate() == 29;//是否為閏年
+                    if (isLeap) {
+                        limitinMonth[1] = 29;//若為閏年日期則改為29天
+                    }
+                    if (theDay <= limitinMonth[theMonth - 1]) {
+                        strObj1.innerHTML = `<img src="image/check.png"/>日期格式正確`;
+                    }
+                               
+		            else {
+                        strObj1.innerHTML = `<img src="image/error.png"/>日期格式錯誤`;
+                    }
+                return theDay <= limitInMonth[theMonth - 1];
+                }
+            }
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div id="mydiv"></div>
+    <script>
+        let strAry = '[{"districts":[{"zip":"100","name":"中正區"},{"zip":"103","name":"大同區"},{"zip":"104","name":"中山區"},{"zip":"105","name":"松山區"},{"zip":"106","name":"大安區"},{"zip":"108","name":"萬華區"},{"zip":"110","name":"信義區"},{"zip":"111","name":"士林區"},{"zip":"112","name":"北投區"},{"zip":"114","name":"內湖區"},{"zip":"115","name":"南港區"},{"zip":"116","name":"文山區"}],"name":"臺北市"}]'
+        strjson = JSON.parse(strAry);
+        console.log(strAry);
+        console.log(strjson);
+        console.log(strjson[0].districts);
+        console.log(strjson[0].name);
+
+        let mydiv = document.querySelector("#mydiv");
+        let str = "</ul>";
+        for (let i = 0; i < strjson[0].districts.length; i++) {
+            zip = strjson[0].districts[i].zip;
+            name = strjson[0].districts[i].name;
+            str += `<li>${zip},${name}</li>`;
+        }
+        str += "</ul>";
+        mydiv.innerHTML=str
+        
+
+
+       
+       
+    </script>
+</body>
+</html>

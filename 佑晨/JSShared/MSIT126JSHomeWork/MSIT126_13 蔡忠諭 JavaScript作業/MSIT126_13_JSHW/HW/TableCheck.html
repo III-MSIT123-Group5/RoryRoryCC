@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        fieldset {
+            width: 600px;
+            border: 2px dashed #ADADAD;
+            border-radius:15px;
+            margin: auto;
+            margin-top: 50px;
+            font-family: 微軟正黑體;
+        }
+        p {
+            font-size: 9px;
+            color: #BEBEBE;
+            font-style:italic;
+        }
+        span {
+            font-size: 10px;
+            color: #FF7575;
+            font-style: italic;
+        }
+        .spanO {
+            font-size: 16px;
+            color: #9D9D9D;
+            font-style:normal;
+        }
+        .divst{
+            margin:20px;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>FormCheck</legend>
+        <div class="divst">
+            <label>姓名：</label>
+            <input type="text" id="name" placeholder="邱雲宏" autocomplete="off" onchange="CheckName()" value="" />
+            <img src="" id="imgN" />
+            <span id="spN"></span>
+            <p>(1.不可空白，2.至少兩個字以上，3.必須全部為中文字)</p>
+            <hr />
+        </div>
+        <div class="divst">
+            <label>密碼：</label>
+            <input type="password" id="pw" placeholder="請輸入密碼" autocomplete="off" onchange="CheckPassword()" />
+            <img src="" id="imgP"/>
+            <span id="spP"></span>
+            <p>(1.不可為空白，2.至少6個字且包含英文字母、數字、特殊符號[!@#$%^&*])</p>
+            <hr />
+        </div>
+        <div class="divst">
+            <label>生日：</label>
+            <input type="text" id="date" placeholder="ex:2000/2/29" autocomplete="off" onchange="CheckDate()" />
+            <img src="" id="imgD">
+            <span id="spD"></span>
+            <p>(格式:西元年/月/日 yyyy/MM/dd)</p>
+            <hr />
+        </div>
+        <div style="text-align:center">
+            <input type="submit" value="submit" />
+            <input type="reset" value="reset" />
+        </div>
+    </fieldset>
+
+    <script>
+        function CheckName() {
+            let q = document.querySelector("#name");
+            let qVal = q.value;
+            let spN = document.querySelector("#spN");
+            let imgN = document.getElementById("imgN");
+            if (qVal == "") {
+                spN.innerHTML = "姓名不可空白!"
+                imgN.src = "../images/Error.png"
+            }
+            else {
+                if (qVal.length < 2) {
+                    spN.innerHTML = "姓名至少兩個字!"
+                    imgN.src = "../images/Error.png"
+                }
+                else {
+                    for (var i = 0; i < qVal.length; i++) {
+                        let char = qVal.charAt(i);
+                        let chNum = qVal.charCodeAt(i);
+
+                        if (chNum <= 40959 && chNum >= 19968) {
+                            //console.log(chNum);
+                            spN.innerHTML = "正確!";
+                            spN.className = "spanO";
+                            imgN.src ="../images/Check.png"
+                            break;
+                        }
+                        else {
+                            spN.innerHTML = "請輸入中文字!"
+                            imgN.src ="../images/Error.png"
+                        }
+
+                    }
+                }
+
+            }
+
+        }
+
+        function CheckPassword() {
+            let pw = document.querySelector("#pw").value;
+            let imgP = document.querySelector("#imgP");
+            let spP = document.querySelector("#spP");
+            var pwdRegex = new RegExp('(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{6,30}');
+
+            if (pw == "") {
+                spP.innerHTML = "密碼不可空白!"
+                imgP.src = "../images/Error.png"
+            }
+            else {
+                if (pwdRegex.test(pw)) {
+                    spP.innerHTML = "正確!"
+                    spP.className = "spanO";
+                    imgP.src = "../images/Check.png"
+                }
+                else {
+                    spP.innerHTML = "密碼格式不正確!"
+                    imgP.src = "../images/Error.png"
+                }
+            }
+
+        }
+
+        function CheckDate() {
+            let date = document.querySelector("#date").value;
+            let d = new Date(date);
+            console.log(d);
+            var charD = `${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}`;
+            var charM = (d.getMonth() + 1)
+            console.log(charD);
+            var dateRegex = new RegExp('([0-9]{4})[/]([0-9]{2})[/]([0-9]{1,2})');
+
+            if (charM < 10) {
+                charD = `${d.getFullYear()}/0${d.getMonth() + 1}/${d.getDate()}`;
+            }
+            else
+                charD = `${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}`;
+            console.log(charD);
+            if (dateRegex.test(date)) {
+                if (d != "Invalid Date") {
+                    if (date == charD) {
+                        spD.innerHTML = "正確!"
+                        spD.className = "spanO";
+                        imgD.src = "../images/Check.png"
+                    }
+                    else {
+                        spD.innerHTML = "日期不正確!"
+                        imgD.src = "../images/Error.png"
+                    }
+                }
+                else {
+                    spD.innerHTML = "日期格式不正確!"
+                    imgD.src = "../images/Error.png"
+                }
+            }
+            else {
+                spD.innerHTML = "日期格式不正確!"
+                imgD.src = "../images/Error.png"
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>

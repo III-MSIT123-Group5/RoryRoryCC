@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>星級評分</title>
+    <style>
+        body {
+            background-image: url(image/c2.jpg);
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+        @font-face {
+            src: url(font/HanyiSentySpringBrush.ttf);
+            font-family: hany;
+        }
+        div{
+            margin:20px auto;
+            text-align:center;
+            font-size:150px;
+            font-family:hany;
+            color:gold;
+        }
+    </style>
+</head>
+<body>
+    <div>星級評分</div>
+    <div>
+        <img id="idimg" class="s" src="image/star.gif" />
+        <img id="idimg2" class="s" src="image/star.gif" />
+        <img id="idimg3" class="s" src="image/star.gif" />
+        <img id="idimg4" class="s" src="image/star.gif" />
+        <img id="idimg5" class="s" src="image/star.gif" /><br />
+        <span id="idsp"></span>
+    </div>
+    <script type="text/javascript">
+        let imgs = document.querySelectorAll(".s");
+        let imgslen = imgs.length;
+        let temp = 0;
+        for (let i = 0; i < imgslen; i++) {
+            imgs[i].index = i;
+            imgs[i].onmouseover = function () {
+                clear();
+                for (let j = 0; j < this.index + 1; j++) {
+                    document.images[j].src = "image/chngstar.gif";
+                }
+            }
+            imgs[i].onmouseout = function () {
+                for (var j = 0; j < this.index + 1; j++) {
+                    document.images[j].src = "image/star.gif";
+                }
+                current(temp);
+            }
+            imgs[i].onclick = function () {
+                temp = this.index + 1;
+                document.getElementById("idsp").innerHTML = temp + ' 顆星';
+                current(temp);
+            }
+        }
+        function current(temp) { //顯示第幾顆星
+            for (var i = 0; i < temp; i++) {
+                document.images[i].src = "image/chngstar.gif";
+            }
+        }
+        function clear() { //清除
+            for (var i = 0; i < imgslen; i++) {
+                document.images[i].src = "image/star.gif";
+            }
+        }
+
+    </script>
+</body>
+</html>

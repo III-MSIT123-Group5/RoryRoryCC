@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>02Mouseoverout.html</title>
+</head>
+<body>
+    <img id="idimg1" class="s" src="Images/star.gif" />
+    <img id="idimg2" class="s" src="Images/star.gif" />
+    <script>
+        //document.querySelector("#idimg1").onmouseover = mouseover;
+        //document.querySelector("#idimg1").onmouseout = mouseout;
+        //document.querySelector("#idimg2").onmouseover = mouseover;
+        //document.querySelector("#idimg2").onmouseout = mouseout;
+
+        let imgs = document.querySelectorAll(".s");
+        let imgsLen = imgs.length;
+        //alert(imgsLen);
+        for (let i = 0; i < imgsLen; i++) {
+            imgs[i].onmouseover = mouseover;
+            imgs[i].onmouseout = mouseout;           
+        }
+
+        function mouseover() {
+            //document.querySelector("#idimg").src = "Images/chngstar.gif";
+            console.log(this);
+            this.src = "Images/chngstar.gif";
+        }
+
+
+        function mouseout() {
+            //document.querySelector("#idimg").src = "Images/star.gif";
+            this.src = "Images/star.gif";
+        }
+    </script>
+</body>
+</html>

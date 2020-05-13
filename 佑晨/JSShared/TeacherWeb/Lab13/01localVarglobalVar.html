@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>01localVarglobalVar.html</title>
+</head>
+<body>
+    <script>
+        //廣域(全域)變數
+        var a = 10; //global variable
+
+        //函數宣告定義
+        function f() {
+            var a = 100;  //local variable
+            console.log(`function in a=${a}`); 
+            console.log(`window.a=${window.a}`);
+            console.log(`this.a=${this.a}`)
+        }
+
+        //呼叫函數
+        f();
+    </script>        
+</body>
+</html>

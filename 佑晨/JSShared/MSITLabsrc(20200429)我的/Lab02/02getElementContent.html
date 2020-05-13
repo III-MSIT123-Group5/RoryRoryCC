@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>01getElementContent.html</title>
+</head>
+<body>
+    
+    <div id="myDiv">div</div>
+    <script>
+        document.write('123<h2>document.write</h2>321');
+        var idmyDiv = document.getElementById('myDiv');
+        idmyDiv.innerHTML = "<h2>id.innerHTML</h2>";
+        idmyDiv.innerHTML += "<h2>id.innerHTML +=</h2>";
+
+    </script>
+</body>
+</html>

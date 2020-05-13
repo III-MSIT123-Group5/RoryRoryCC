@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Check.html</title>
+    <style>
+        .remind {
+            font-size:smaller;
+            color:gray;
+
+        }
+        div {
+            margin: 40px;
+            font-family: 微軟正黑體;
+        }
+        fieldset {
+            border-radius: 15px;
+            border: 2px solid #0066CC;
+            float: none;
+            width: 450px;
+            margin: auto;
+            font-family: 微軟正黑體;
+            padding:0;
+            margin-top:50px;
+            
+
+        }
+        em {
+            font-weight: bold;
+            margin-left: 15px;
+            color: red;
+        }
+        .zero
+        {
+            margin:0;
+        }
+
+        .diff {
+            float:left;
+            width: 450px;
+            border-bottom: 2px double lightgray;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            margin-left: 23px;
+            padding-left: 15px;
+        }
+        .btn
+        {
+            text-align:center;
+        }
+
+        legend
+        {
+            margin-left:35px;
+            font-size:120%;
+        }
+    </style>
+</head>
+<body>
+   
+        <div class="zero">
+            <a href="9x9.html">9x9</a>
+            <a href="Form Check.html">Form Check</a>
+            
+        </div><fieldset>
+                  <legend>Form Check<em>(必填)</em></legend>
+    <div class="diff">
+        <label>姓名:</label>
+        <input type="text" id="id" size="10" />
+        <span id="idsp2"></span><br />
+        <label class="remind">(1.不可空白，2.至少兩個字以上，3.必須為中文字)</label>
+    </div>
+
+    <div class="diff">
+        <label>密碼:</label>
+        <input type="password" id="idPwd" size="20" /><!-- 瀏覽器執行到此標籤會建立一個物件-->
+        <span id="idsp"></span><br />
+        <label class="remind">(1.不可空白，2.至少6個字且必須包含英文、數字、特殊字元[!@#$%^&*])</label>
+    </div>
+
+    <div class="diff">
+        <label>日期:</label>
+        <input type="text" id="iddateStr" size="20" />
+        <span id="idsp3"></span><br />
+        <label class="remind">格式:西元年/月/日 yyyy/MM/dd</label>
+    </div>
+    <div class="btn">
+        <input type="button" value="送出" onclick="checkPwd(), checkID(), isExistDate();" />
+        <input type="button" value="消除" onclick="Clear();" />
+    </div>
+
+</fieldset>
+
+    <script>
+        function Clear() {
+
+            document.getElementById("id").value = ""
+            document.getElementById("idPwd").value = ""
+        }
+
+        function isExistDate() {
+            var theDateObj = document.getElementById("iddateStr");
+            var theDateObjVal = theDateObj.value
+            var theDateObjValLen = theDateObjVal.length;
+            let strObj3 = document.getElementById("idsp3");
+
+            if (theDateObjValLen == "")
+                strObj3.innerHTML = "請填寫日期";
+            else if (theDateObjValLen == 10) {
+
+                var limitInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; //列出12個月，每月最大日期限制
+
+                theYear = parseInt(theDateObjVal.substr(0, 4));
+                theMonth = parseInt(theDateObjVal.substr(5, 2));
+                theDay = parseInt(theDateObjVal.substr(8, 2));
+                var isLeap = new Date(theYear, 1, 29).getDate() == 29; // 是否為閏年?
+
+                if (isLeap) {
+
+                    limitInMonth[1] = 29; // 若為閏年，最大日期限制改為 29
+                }
+
+                if (theDay <= limitInMonth[theMonth - 1]) // 比對該日是否超過每個月份最大日期限制
+                    strObj3.innerHTML = "日期格式正確"
+                else
+                    strObj3.innerHTML = "日期格式錯誤"
+
+            }
+            else
+                strObj3.innerHTML = "日期長度必須等於 10"
+        }
+
+        function checkID() {
+            var theIDObj = document.getElementById("id")
+   
+            var theIDObjVal = theIDObj.value;
+   
+            let strObj2 = document.getElementById("idsp2");
+            let theIDObjValLen = theIDObjVal.length;
+            var chinese = /[\u4E00-\u9FA5]{2,}$/
+
+
+            if (theIDObj == "")
+                strObj2.innerHTML = "請填寫姓名";
+   
+            else if (theIDObjValLen >= 2) {
+                var re1 = chinese;
+                if (re1.test(theIDObjVal)) {
+                    strObj2.innerHTML = "姓名格式正確"
+                }
+                else
+                    strObj2.innerHTML = "姓名必須為中文"
+            }
+            else {
+                strObj2.innerHTML = "姓名長度必須大於 1";
+            }
+        }
+    </script>
+
+    <script>
+        function checkPwd() {
+            //取得idPwd元素
+            var thePwdObj = document.getElementById("idPwd");
+
+            //取得idPwd元素值
+            var thePwdObjVal = thePwdObj.value;
+            console.log(typeof thePwdObjVal); //string
+            console.log(thePwdObjVal);
+
+            //HW
+            //判斷元素值是否為空白，密碼長度是否大於 6
+            let strObj = document.getElementById("idsp");
+            let thePwdObjValLen = thePwdObjVal.length;
+            var special = /^(?=.*[A-Za-z])(?=.*\W)(?=.*\d).{6,}$/
+
+            //thePwdObjVal.value == "" ? strObj.innerHTML = "Please enter" : false
+
+            if (thePwdObj == "")
+                strObj.innerHTML = "請填寫密碼";
+
+            else if (thePwdObjValLen >= 6) //1 by 1 catch
+            {
+
+                var re2 = special;
+                if (re2.test(thePwdObjVal)) {
+                    strObj.innerHTML = "密碼格式正確"
+                }
+                else
+                    strObj.innerHTML = "密碼格式錯誤"
+            }
+            else {
+                strObj.innerHTML = "密碼長度必須大於 5";
+            }
+        }
+        
+    </script>
+</body>
+</html>

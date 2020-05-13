@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        table{
+            border:1px solid black;
+            border-collapse:collapse;
+            margin:auto;
+            margin-top:200px;
+        }
+        *{
+            color:aquamarine
+        }
+        tr {
+           
+            background-color:deepskyblue;          
+        }
+        td {
+            margin: 15px;
+            padding: 15px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <input id="Button1" type="button" value="01" onclick="location.href='9981.html'" />
+    <input id="Button2" type="button" value="02" onclick="location.href='hw2.html'" />
+    <script>
+        document.write("<table>");
+        for (i = 2; i < 10; i++) {
+            document.write("<td>");
+            for (j = 1; j < 10; j++) {
+                document.write(`${i}x${j}=${i * j}<br>`);
+            }
+            document.write("</td>");
+        }
+        document.write("</table>");
+    </script>
+</body>
+</html>

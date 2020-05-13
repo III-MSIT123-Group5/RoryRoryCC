@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>03for.html</title>
+    <style>
+        table {
+            border: 3px solid rgb(255, 0, 0);
+            border-collapse: collapse; /*表格欄位邊框合併*/
+            background-color: rgb(190, 290, 135);
+            color: rgb(0, 4, 255);
+            
+            margin: 0 auto;
+        }
+
+        td {
+            border: 2px solid rgb(255, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <h1 Align=center>
+        <input type="button" class="btn btn-info position-relative" value="HW01" onclick="location.href='homework01.html'">
+        <input type="button" class="btn btn-info position-relative" value="HW02" onclick="location.href='homework02.html'">
+        <input type="button" class="btn btn-info position-relative" value="HW03" onclick="location.href='homework03.html'">
+        <input type="button" class="btn btn-info position-relative" value="HW04" onclick="location.href='homework04.html'">
+        <input type="button" class="btn btn-info position-relative" value="HW05" onclick="location.href='homework05.html'">
+    </h1><br>
+    <script>
+        document.write("<table>")
+
+        for (i = 2; i <= 9; i++) {
+            document.write("<td>")
+            for (j = 1; j < 10; j++) {
+                var k = i * j
+                document.write(i + "*" + j + "=" + k + "<br>")
+            }
+        }
+        var i = 2, k;  //var宣告i從2開始，變數k
+        //while (i < 10) {
+        //    document.write("<td>"); //輸出td
+        //    var j = 1;    //var宣告j從1開始
+        //    while (j < 10) {
+        //        k = i * j;  //將i乘j存放變數k中
+        //        document.write(i + "*" + j + "=" + k + "<br>");   //i*j=i乘j
+        //        j++;
+        //    }
+        //    document.write("</td>");
+        //    i++;
+        //}
+        document.write("</table>");
+    </script>
+</body>
+</html>

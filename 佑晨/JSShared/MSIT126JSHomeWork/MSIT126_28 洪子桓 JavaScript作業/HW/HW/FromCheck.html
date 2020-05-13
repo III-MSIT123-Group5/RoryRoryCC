@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        fieldset {
+            width: 500px;
+            border: 1px solid blue;
+            margin: 15px;
+            border-radius: 20px;
+        }
+        .st1 {
+            width: 450px;
+            border-bottom: 1px solid;
+            margin: 10px;
+            padding-bottom: 10px;
+        }
+        .t1 {
+            width: 100px;
+            float: left;
+            text-align: right;
+        }
+        .st2 {
+            width: 500px;
+            text-align: center;
+        }
+        .t2{
+            font-size:8px;
+            color:#BEBEBE;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend>Form Check</legend>
+            <div class="st1">
+                <label class="t1">姓名:</label><input type="text" id="idname" onkeyup="checkName()" /> <span id="namesp"></span><br />
+                <span class="t2">(1.不可空白，2.至少兩個字以上，3.必須全部為中文字)</span>
+            </div>
+            <div class="st1">
+                <label class="t1">密碼:</label><input id="idPwd" type="password" onkeyup="checkPwd()" />  <span id="pwdsp"></span><br />
+                <span class="t2">(1.不可空白，2.至少6個字且必須包含英文字母、數字、特殊字元[!@#$%^&*])</span>
+            </div>
+            <div class="st1">
+                <label class="t1">日期:</label><input id="iddate" onkeyup="checkDate()" type="text" /> <span id="datesp"></span><br />
+                <span class="t2">(格式:西元年/月/日 yyyy/MM/dd)</span>
+            </div>
+        </fieldset>
+        <div class="st2">
+            <input type="submit" value="送出" />
+            <input type="reset" value="清除" />
+        </div>
+    </form>
+    <script>
+        function checkDate() {
+            var dateVal = document.getElementById("iddate").value
+            var datesp = document.getElementById("datesp");
+            console.log(dateVal.split('/'));
+            var date = dateVal.split('/');
+            var year = date[0];
+            var month = date[1];
+            var day = date[2];
+            if (year >= 1900 && year <= 2200) {
+                if (validate(year, month, day)) {
+                    datesp.innerHTML = "日期格式正確";
+                }
+                else {
+                    datesp.innerHTML = "日期格式錯誤";
+                }
+            }
+            else {
+                datesp.innerHTML = "日期格式錯誤";
+            }
+        }
+        var originalYear;
+        var originalMonth;
+        var originalDay;
+        var date = new Date(originalYear, originalMonth - 1, originalDay);
+        var year = date.getFullYear();
+        var month = date.getMonth()+1;
+        var day = date.getDate();
+        function validate(originalYear, originalMonth, originalDay) {
+            var date = new Date(originalYear, originalMonth - 1, originalDay);
+            var year = date.getFullYear();
+            var month = date.getMonth()+1;
+            var day = date.getDate();
+            return year == originalYear && month == originalMonth && day == originalDay;
+        }
+
+        function checkName() {
+            //取得idname元素
+            var NameObj = document.getElementById("idname");
+            //取得idPwd元素值
+            var NameObjVal = NameObj.value;
+            var namesp = document.getElementById("namesp");
+            let chCK = 0;
+            let reg = /^[\u4E00-\u9FA5]+$/;
+            //for (i = 0; i < NameObjVal.length; i++) {
+            //    let a = NameObjVal.charCodeAt(i).toString(16);
+            //    console.log(a);
+            //    if (a >= 4e00&&a<=9fa5) {
+            //        chCK = 1;
+            //    }
+            //}
+            if (NameObjVal == "") {
+                namesp.innerHTML = "姓名不可空白";
+            }
+            else if (NameObjVal.length >= 2) {
+                if (reg.test(NameObjVal)) {
+                    namesp.innerHTML = "正確";
+                }
+                else {
+                    namesp.innerHTML = "必須全部為中文字";
+                }
+            }
+            else {
+                namesp.innerHTML = "姓名至少兩個字";
+            }
+        }
+
+
+
+        function checkPwd() {
+            //取得idPwd元素
+            var pwdObj = document.getElementById("idPwd");
+            //取得idPwd元素值
+            var pwdObjVal = pwdObj.value;
+            console.log(pwdObjVal);
+            //判斷元素值是否為空白，密碼長度是否大於6
+            //如果長度是否大於6，判斷是否包含字母、數字、特殊符號
+            var spObj = document.getElementById("pwdsp");
+            let abcCk = 0;
+            let numCK = 0;
+            let otherCK = 0;
+            for (i = 0; i < pwdObjVal.length; i++) {
+                let a = pwdObjVal.charAt(i).toUpperCase();
+                console.log(a);
+                if ((a >= "A" && a <= "Z")) {
+                    abcCk = 1;
+                }
+                if ((a >= 0)) {
+                    numCK = 1;
+                }
+                if (a == '!' || a == '@' || a == '#' || a == '$' || a == '%' || a == '^' || a == '&' || a == '*') {
+                    otherCK = 1;
+                }
+            }
+            if (pwdObjVal == "") {
+                spObj.innerHTML = "密碼不可空白";
+            }
+            else if (pwdObjVal.length >= 6) {
+                if (abcCk == 0) {
+                    spObj.innerHTML = "密碼必須含有字母";
+                }
+                else if (numCK == 0) {
+                    spObj.innerHTML = "密碼必須含有數字";
+                }
+                else if (otherCK == 0) {
+                    spObj.innerHTML = "密碼必須含有特殊字元";
+                }
+                else {
+                    spObj.innerHTML = "正確";
+                }
+            }
+            else
+                spObj.innerHTML = "字數需大於6";
+        }
+
+    </script>
+</body>
+</html>

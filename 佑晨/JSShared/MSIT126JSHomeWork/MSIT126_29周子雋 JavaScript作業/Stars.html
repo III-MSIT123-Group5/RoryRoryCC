@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>星星評點</title>
+    <link rel="stylesheet" href="Style/StyleSheet.css" />
+    <link rel="stylesheet" href="Script/JavaScript.js" />
+    <style>
+    </style>
+</head>
+<body>
+    <div class="div1">
+        <header>
+
+            <img class="logo-img" src="image/9598o.jpg" />
+            <nav>
+                <ul class="menu">
+                    <li>
+                        <a href="HomeWork.html">九九乘法表</a>
+                    </li>
+                    <li>
+                        <a href="FormCheck.html">Form Check</a>
+                    </li>
+                    <li>
+                        <a href="">星星評點</a>
+                    </li>
+                    <li>
+                        <a href="">輪播牆</a>
+                    </li>
+                    <li>
+                        <a href="">日期選擇</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <article>
+            <div class="str">
+                <img class="strImg" src="image/star.png" id="star0">
+                <img class="strImg" src="image/star.png" id="star1">
+                <img class="strImg" src="image/star.png" id="star2">
+                <img class="strImg" src="image/star.png" id="star3">
+                <img class="strImg" src="image/star.png" id="star4">
+                <img class="strImg" src="image/star.png" id="star5">
+                <span id="span1"></span>
+            </div>
+            <script>
+                var imgs = document.getElementsByClassName("strImg");
+                window.onload = function () {
+                    for (var i = 0; i <= imgs.length; i++) {
+                        imgs[i].onmouseover = function () {
+                            mouseover(this.id);
+                        }
+                        imgs[i].onmouseout = mouseout;
+                        imgs[i].onclick = function () {
+                            onclick(this.id);
+                        }
+
+                    }
+                }
+
+                function mouseover(id) {
+                    for (var i = 0; i <= imgs.length; i++) {
+                        document.getElementById("star" + i).src = "image/chngstar.png";
+                        var x = 0;
+                        if (id == ("star" + i)) {
+                            x = i + 1;
+                            break;
+                        }
+                    }
+                    document.getElementById("span1").innerHTML = "您給了" + x + "顆星";
+                }
+
+                function mouseout() {
+                    for (var i = 0; i <= imgs.length; i++) {
+                        document.getElementById("star" + i).src = "image/star.png";
+                    }
+                }
+
+                function onclick(id) {
+                    for (var i = 0; i <= imgs.length; i++) {
+                        imgs[i].onmouseover = "";
+                        imgs[i].onmouseout = "";
+                    }
+                }
+
+            </script>
+            
+        </article>
+    </div>
+</body>
+</html>

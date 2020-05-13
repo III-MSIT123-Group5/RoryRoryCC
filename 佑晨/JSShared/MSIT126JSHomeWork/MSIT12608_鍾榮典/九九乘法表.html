@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>99乘法表</title>
+		<link rel="stylesheet" href="MainStyleSheet.css">
+	</head>
+	<body class="reset">
+		<div>
+			<ul>
+				<li><a href="九九乘法表.html">Multiplication Table</a></li>
+				<li><a href="HomePage2.html">Login</a></li>
+	            <li><a href="changePicture.html">Change Picture</a></li>
+			</ul>
+		</div>
+			<h1 class="pageTitle">Multiplication Table</h1>
+		<div class="Container" id="MultiplicationTable"></div>
+	</body>
+</html>	
+
+<script>
+	var thisDiv =  document.getElementById("MultiplicationTable");
+	var str = "<table><tr>";
+
+	for (i=2;i<=9;i++){
+		str+="<td>";
+		for(j=1;j<=9;j++){
+			str += `${i}x${j}=${i*j}<br>`;
+		}
+		str += "</td>";
+	}
+
+	str += "</tr></table>"
+	thisDiv.innerHTML = str;
+</script>

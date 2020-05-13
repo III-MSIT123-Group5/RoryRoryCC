@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>04fetch_JSON.html</title>
+</head>
+<body>
+    <div id="myDiv"></div>
+    <script>
+        const uri ="taiwanJSON.json";
+
+        fetch(uri, {method:'GET'})
+        .then(res => {
+            return res.json();   
+        }).then(result => {            
+            // console.log(result); 
+            // console.log(result[0].name);
+            // console.log(result[0].districts);
+            // console.log(result[0].districts[0]);
+            // console.log(result[0].districts[0].name);
+            // console.log(result[0].districts[0].zip)
+
+            let myDiv=document.querySelector("#myDiv");
+            var str = "<ul>"; 
+            
+            for (var i=0;i<result.length;i++){ 
+               var name = result[i].name;
+            //    console.log(name);
+
+                str+=`<li>${name}<ul>`;
+              
+               for(var j=0;j<result[i].districts.length;j++){
+                //    console.log(result[i].districts[j].name);
+                //    console.log(result[i].districts[j].zip);
+
+                   var disname=result[i].districts[j].name;
+                   var diszip=result[i].districts[j].zip;
+
+                   str+=`<li>${disname},${diszip}</li>`;
+                       
+               }
+               str+=`</ul></li>`
+               
+            }
+            str += "</ul>";
+            myDiv.innerHTML=str;
+        });
+
+
+    </script>
+</body>
+</html>

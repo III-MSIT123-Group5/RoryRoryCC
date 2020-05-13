@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>作業1</title>
+    <style>
+        table {
+            border: 2px solid orange;
+            width: 600px;
+            border-collapse: collapse;
+            background-color: #F2E6E6;
+            margin: 25px auto;
+        }
+
+        td {
+            border: 1px solid red;
+            border-collapse: collapse;
+            padding: 10px;
+            font-size: 50px;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <table id="table1"></table>
+    <script>
+        //let sum = 0;
+        //for (let i = 1; i <= 5; i++) {
+        //    sum = sum + i;
+        //    sum += i;
+        //    console.log("i=" + i + ",sum=" + sum);
+        //}
+        //let table = document.querySelector("#table1");
+        //let table1 = document.querySelector("#table1");
+        let tr = document.createElement("tr");//創建tr;
+
+        for (let i = 2; i <= 9; i++) {
+            let td = document.createElement("td")//創建td
+            for (let j = 1; j<= 9; j++) {
+                td.innerHTML += `${i}*${j}=${i * j}<br>`;    //把i*j=ij的過程賦值給td里面
+            }
+            tr.appendChild(td);//把td添加到tr里面
+        }
+        document.querySelector("table").appendChild(tr);//找到table把tr添加到table里面
+
+        //let str = `<table><tr><td>`;
+        //for (i = 2; i < 10;i++) {
+        //    for (j = 1; j < 10; j++) {
+        //        str += `${i}*${j}=${i * j}<br>`;
+        //    }
+        //    str += "</td><td>";
+        //}
+        //str += "</tr></table>";
+        //document.write(str);
+    </script>
+</body>
+</html>

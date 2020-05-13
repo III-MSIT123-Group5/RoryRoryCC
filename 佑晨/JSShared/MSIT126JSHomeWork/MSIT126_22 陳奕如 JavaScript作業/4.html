@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>MSIT12622 - Carousel</title>
+    <link href="StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="header">
+        <h1>Javascript Homework</h1>
+        <h2>MSIT 126-22</h2>
+    </div>
+    <div id="navcontainer">
+        <ul id="navlist">
+            <li><a href="1.html">Times Table</a></li>
+            <li><a href="2.html">Form Check</a></li>
+            <li><a href="3.html">Score</a></li>
+            <li><a href="4.html">Carousel</a></li>
+            <li><a href="5.html">Calender</a></li>
+        </ul>
+    </div>
+    <div id="right" style="padding-top:10px">
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <div class="numbertext">1 / 4</div>
+                <img src="image/c1.jpg" style="width:100%">
+                <div class="text">Fig fromage cheese Mille-Crêpe Cake</div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="numbertext">2 / 4</div>
+                <img src="image/c2.jpg" style="width:100%">
+                <div class="text" style="color:#E2E2D4">Taiwan Oolong Tea Mille-Crêpe Cake</div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="numbertext">3 / 4</div>
+                <img src="image/c3.jpg" style="width:100%">
+                <div class="text">Shaddock Jin Xuan Tea Mille-Crêpe Cake</div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="numbertext">4 / 4</div>
+                <img src="image/c4.jpg" style="width:100%">
+                <div class="text">White Peach Mille-Crêpe Cake</div>
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <br>
+
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+        <script src="js4.js"></script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>MSIT12622 - Form Check</title>
+    <link href="StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <h1>Javascript Homework</h1>
+            <h2>MSIT 126-22</h2>
+        </div>
+        <div id="navcontainer">
+            <ul id="navlist">
+                <li><a href="1.html">Times Table</a></li>
+                <li><a href="2.html">Form Check</a></li>
+                <li><a href="3.html">Score</a></li>
+                <li><a href="4.html">Carousel</a></li>
+                <li><a href="5.html">Calender</a></li>
+            </ul>
+        </div>
+        <div id="right">
+            <form action="#" method="get" enctype="multipart/form-data">
+                <fieldset id="book2">
+                    <legend>Form Check</legend>
+                    <div class="st1">
+                        <label class="t1" for="name1">Name: </label>
+                        <input type="text" id="name1" name="account" placeholder="guest" size="10" required />
+                        <span id="spac"></span>
+                    </div>
+                    <div class="st1">
+                        <label class="t1" for="pwd1">Password:</label>
+                        <input type="password" id="pwd1" name="pwd" placeholder="請輸入密碼" maxlength="16" required />
+                        <span id="sppw"></span>
+                    </div>
+                    <div class="st1">
+                        <label class="t1">Date:</label>
+                        <input type="text" id="date1" name="date" placeholder="yyyy/mm/dd" maxlength="10" required />
+                        <span id="spd"></span>
+                    </div>
+                    <div class="sub">
+                        <input type="submit" value="Submit" />
+                        <input type="reset" value="Reset" />
+                    </div>
+                </fieldset>
+            </form>
+            <script src="js2.js"></script>
+        </div>
+    </div>
+</body>
+</html>

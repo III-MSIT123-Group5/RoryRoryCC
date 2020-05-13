@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>01varDeclarationTypeTransfer.html</title>
+</head>
+<body>   
+    <script>
+        //literal(字面值)
+        console.log(0x4e00);
+        
+        //1.var變數宣告
+        var a;  //variant  變種
+        //定義初始值
+        a = 10;
+        //2.變數宣告時可以同時賦予初始值
+        var a = 10;
+
+        //3.不宣告變數，直接賦予初始值
+        a = 10;
+
+        //顯示變數值
+        console.log(a);
+        console.log(window.a);
+        //window.alert(a);
+        //alert(a);
+
+        //let變數宣告
+        let b = 100;
+        //let b = 1000;
+
+        if (true) {
+            let age = 30;
+        }
+        //console.log(age);
+
+        //const變數宣告
+        //const PI;
+        const PI = 3.1416;
+        //PI = 3.14159;
+        console.log(PI);
+            
+    </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>表單</title>
+    <style>
+        fieldset {
+            width: 600px;
+            margin: 30px auto;
+        }
+
+        .button1 {
+            text-align: center;
+        }
+
+        p {
+            font-size: 8px;
+            color: gray;
+        }
+
+        .FC_span1 {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="Form_Check.html">表單</a></li>
+        <li><a href="ranking.html">評分</a></li>
+        <li><a href="carousel.html">圖片輪播</a></li>
+        <li><a href="calendar10-20.html">日期</a></li>
+        <li><a href="9_9table.html">乘法表</a></li>
+
+    </ul>
+
+    <form action="#" method="get">
+        <fieldset>
+            <legend>Form Check</legend>
+            <div>
+                <label class="FC_lb1" for="Name">姓名:</label>
+                <input type="text" class="FC_txt1" id="tName" name="tName" placeholder="請輸入姓名" autocomplete="off" required value="" />
+                <img src="" id="imgName" width="16" height="16" />
+                <span class="FC_span1" id="mName"></span>
+                <p>(1.不可空白， 2.至少兩個字以上， 3.必須全部為中文字)</p>
+            </div>
+            <div>
+                <label class="FC_lb1" for="Pwd">密碼:</label>
+                <input type="text" class="FC_txt1" id="tPwd" name="tPwd" placeholder="請輸入密碼" autocomplete="off" required value="" />
+                <img src="" id="imgPwd" width="16" height="16" />
+                <span class="FC_span1" id="mPwd"></span>
+                <p>(1.不可空白，2.至少6個字且必須包含英文字母、數字、特殊字元[!@#$%^&*])</p>
+            </div>
+            <div>
+                <label class="FC_lb1" for="Date">日期:</label>
+                <input type="text" class="FC_txt1" id="tDate" name="tDate" placeholder="ex:2000/2/29" autocomplete="off" required value="" />
+                <img src="" id="imgDate" width="16" height="16" />
+                <span class="FC_span1" id="mDate"></span>
+                <p>格式:西元年/月/日  yyyy/MM//dd</p>
+            </div>
+            <div class="button1">
+                <input type="submit" value="送出" />
+                <input type="reset" value="清除" />
+            </div>
+        </fieldset>
+    </form>
+
+    <script>
+        var pattern_2char = /..+/i;
+        var pattern_nonChi = /[^(\u4E00-\u9FFF)]/i;
+        var pattern_hasSpace = /\s/i;
+
+        document.querySelector("#tName").addEventListener("blur", Check_Name);
+
+        function Check_Name() {
+            var C_Name = document.getElementById("tName").value;
+            var msgName = document.getElementById("mName");
+            var imgName = document.getElementById("imgName");
+            //-----------------------------------------------
+            console.log(`輸入為: ${C_Name}`);
+            console.log(`兩個字以上為:${pattern_2char.test(C_Name)}`);
+            console.log(`含中文以外字元為:${pattern_nonChi.test(C_Name)}`);
+            console.log(`含空格為:${pattern_hasSpace.test(C_Name)}`);
+
+            if (!pattern_2char.test(C_Name)) {
+                imgName.src = "image/icons8-error-16.png";
+                msgName.innerHTML = "請輸入兩個字以上!";
+            } else if (pattern_hasSpace.test(C_Name)) {
+                imgName.src = "image/icons8-error-16.png";
+                msgName.innerHTML = "不能包含空格!";
+            } else if (pattern_nonChi.test(C_Name)) {
+                imgName.src = "image/icons8-error-16.png";
+                msgName.innerHTML = "只能輸入中文字!";
+            } else {
+                imgName.src = "image/icons8-checkmark-16.png";
+                msgName.innerHTML = "";
+            }
+        }
+    </script>
+    <script>
+        var pattern_6char = /(?=^.{6,}$)(?=.*[A-z])(?=.*[0-9])(?=.*[!@#$%^&*])^.*$/i;
+        var pattern_hasSpace = /\s/i;
+
+        document.querySelector("#tPwd").addEventListener("blur", Check_Pwd);
+
+        function Check_Pwd() {
+            var C_Pwd = document.getElementById("tPwd").value;
+            var msgPwd = document.getElementById("mPwd");
+            var imgPwd = document.getElementById("imgPwd");
+            //---------------------------------------------
+            console.log(`輸入為: ${C_Pwd}`);
+            console.log(`六個字以上為:${pattern_6char.test(C_Pwd)}`);
+            console.log(`含空格為:${pattern_hasSpace.test(C_Pwd)}`);
+
+            if (!pattern_6char.test(C_Pwd)) {
+                imgPwd.src = "image/icons8-error-16.png";
+                msgPwd.innerHTML = "至少6個字且必須包含英文字母、數字、特殊字元[!@#$%^&*]";
+            } else if (pattern_hasSpace.test(C_Pwd)) {
+                imgPwd.src = "image/icons8-error-16.png";
+                msgPwd.innerHTML = "不能包含空格!";
+            } else {
+                imgPwd.src = "image/icons8-checkmark-16.png";
+                msgPwd.innerHTML = "";
+            }
+        }
+    </script>
+    <script>
+        var pattern_DateFormat = /^[0-9]{4}[/][0-9]{1,2}[/][0-9]{1,2}$/i
+        var pattern_hasSpace = /\s/i
+        //var pattern_month_nonZero = /[/]0(?=[1-9][/])/g   /*0開頭月份*/
+        var pattern_date_nonZero = /[/]0(?=[1-9]\b)/g //0開頭月日 數字結尾 2位
+
+        document.querySelector("#tDate").addEventListener("blur", Check_Date);
+
+        function Check_Date() {
+
+            var get_Date = document.getElementById("tDate").value;
+            var C_Date = get_Date.replace(/[/]0(?=[1-9]\b)/g, "/");//--除去0
+            var msgDate = document.getElementById("mDate");
+            var imgDate = document.getElementById("imgDate");
+            var parseDate = Date.parse(C_Date);//----數值
+            var msec_ToDate = new Date(parseDate); //---日期
+            var newC_Date = `${msec_ToDate.getFullYear()}/${msec_ToDate.getMonth() + 1}/${msec_ToDate.getDate()}`;
+            //----------------------------------------------
+            console.log(`輸入為${C_Date}`);
+            console.log(`含空格為:${pattern_hasSpace.test(C_Date)}`);
+            console.log(`parseDate為${Date.parse(C_Date)}`);
+            console.log(`msec_ToDate為${msec_ToDate}`);
+            console.log(`轉換後日期為${newC_Date}`);
+
+            if (!pattern_DateFormat.test(C_Date)) {
+                //imgDate.setAttribute("src", "image/icons8-error-16.png");
+                imgDate.src = "image/icons8-error-16.png";
+                msgDate.innerHTML = "格式輸入不正確";
+            } else if (pattern_hasSpace.test(C_Date)) {
+                //imgDate.setAttribute("src", "image/icons8-error-16.png");
+                imgDate.src = "image/icons8-error-16.png";
+                msgDate.innerHTML = "不能包含空格";
+            } else if (C_Date != newC_Date) {
+                //imgDate.setAttribute("src", "image/icons8-error-16.png");
+                imgDate.src = "image/icons8-error-16.png";
+
+                msgDate.innerHTML = "無此日期!";
+            } else {
+                //imgDate.setAttribute("src", "image/icons8-checkmark-16.png");
+                imgDate.src = "image/icons8-checkmark-16.png";
+                msgDate.innerHTML = "";
+            }
+
+        }
+    </script>
+</body>
+</html>

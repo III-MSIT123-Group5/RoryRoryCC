@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div id="div1">div
+        <p id="p">ppppp</p>
+    </div>
+    <script>
+        document.querySelector("#div1").onclick = fdiv;
+        document.querySelector("#p").onclick = fp;
+        //target    被觸發元素
+        //currentTarget 正在處理的程序中的元素
+
+        function fdiv(event) {
+            alert("div target=" + event.target.id + " div currentTarget=" + event.currentTarget.id);
+        }
+        function fp() {
+            alert("p target=" + event.target.id + " p currentTarget=" + event.currentTarget.id);
+        }
+    </script>
+</body>
+</html>

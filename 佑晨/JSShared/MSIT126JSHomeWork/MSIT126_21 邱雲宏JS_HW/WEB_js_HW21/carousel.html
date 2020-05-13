@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Ad Carousel</title>
+    <style>
+        .ctrl_1 {
+            margin: 5px 60px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="Form_Check.html">表單</a></li>
+        <li><a href="ranking.html">評分</a></li>
+        <li><a href="carousel.html">圖片輪播</a></li>
+        <li><a href="calendar10-20.html">日期</a></li>
+        <li><a href="9_9table.html">乘法表</a></li>
+
+    </ul>
+
+    <fieldset id="fieldset1" style="position:relative; width:1200px;margin:5px auto; ">
+        <legend style="text-align:center">Ads Carousel</legend>
+        <div>
+            <a id="img_href" href=""><img id="imgLarge" style="position:relative; border:2px solid blue;margin:10px 162px;text-align:center;" width="900" height="600" /></a><!--img_Large-->
+        </div>
+        <div id="div_sml_img" style="text-align:center;"></div>
+    </fieldset>
+    <div style="text-align:center;">
+        <img class="ctrl_1" id="icon_previous" src="image/icons8-back-to-64.png" />
+        <img class="ctrl_1" id="icon_play" src="image/icons8-play-64.png" />
+        <img class="ctrl_1" id="icon_next" src="image/icons8-next-page-64.png" />
+    </div>
+    <script>
+        for (let i = 1; i <= 7; i++) {
+            var imgidx = document.createElement("img");
+            imgidx.className = "sml_img";
+            imgidx.id = `img${i}`;
+            imgidx.style.width = "80px";
+            imgidx.style.margin = "5px 20px";
+            imgidx.src = `image/img${i}.jpg`;
+            imgidx.addEventListener("click", func_click)
+            document.querySelector("#div_sml_img").appendChild(imgidx);
+        }
+        document.querySelector("#icon_play").addEventListener("click", go_or_stop); //----icon_play click();
+        document.querySelector("#icon_previous").addEventListener("click", previous); //----icon_previous click();
+        document.querySelector("#icon_next").addEventListener("click", next); //----icon_next click();
+        var href_list = ["https://www.eminem.com/", "https://www.linkinpark.com/", "https://www.nfrealmusic.com/#home", "http://www.chrisrock.com/", "https://sunstrokeproject.net/", "https://www.jimmybarnes.com/", "https://www.nba.com/suns/rohsn"];
+        var is_playing = false;
+        var currentindex = 1;
+        var timer;
+        document.querySelector("#icon_play").click();//-------------click when load;
+        function go_or_stop() {
+            img_change();//-------------------------click when load;
+            if (is_playing == false) {
+                timer = setInterval(img_change, 3000);
+                document.querySelector("#icon_play").src = "image/icons8-pause-64.png";
+                is_playing = true;
+            }
+            else {
+                clearInterval(timer);
+                document.querySelector("#icon_play").src = "image/icons8-play-64.png";
+                is_playing = false;
+            }
+        }
+        function func_click() {
+            document.querySelector("#imgLarge").src = this.src;
+            document.querySelector("#img_href").href = href_list[this.id[3]-1];
+            var x = document.querySelectorAll(".sml_img")
+            for (let i = 0; i < x.length; i++) {
+                x[i].style.border = "2px solid white";
+            }
+            this.style.border = "2px solid lightgreen";
+            currentindex = parseInt(this.id[3]) + 1;//-------------
+        }
+        function img_change() {
+            document.querySelector(`#img${currentindex}`).click();
+            
+            //currentindex += 1;
+            if (currentindex > 7) {
+                currentindex = 1;
+            }
+        }
+        function previous() {
+            currentindex -= 2;
+            if (currentindex < 1) {
+                currentindex += 7;
+            }
+            img_change();
+        }
+        function next() {
+            img_change();
+        }
+    </script>
+</body>
+</html>

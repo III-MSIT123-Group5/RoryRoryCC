@@ -1,0 +1,1 @@
+﻿document.write("Javascript<br>MSIT126");

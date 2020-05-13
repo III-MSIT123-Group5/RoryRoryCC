@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>作業2</title>
+    <style>
+        fieldset {
+            width: 500px;
+            margin: 15px;
+            border: 1px solid #acd6ff;
+            border-radius: 15px;
+        }
+
+        .st1 {
+            width: 450px;
+            border-bottom: 1px solid #F0F0F0;
+            margin: 20px;
+            padding-bottom: 10px;
+        }
+
+        .sub {
+            width: 450px;
+            margin: 20px;
+            text-align: center;
+        }
+        .t1 {
+            width: 100px;
+            float: left;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <!--<img src="interface.png" />-->
+    <form action="#" method="get" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Form Check<em>必填</em></legend>
+            <div class="st1">
+                <label class="t1" for="account1">姓名:</label>
+                <input type="text" id="account1" name="account" autofocus autocomplete="off" placeholder="guest" size="10" onkeyup="checkID()" /><span id="f1"></span><span id="p1"></span>
+            </div>
+            <div class="st1">
+                <label class="t1">日期:</label>
+                <input type="date" name="birth" />
+            </div>
+            <div class="st1">
+                <label class="t1" for="idPwd">密碼:</label>
+                <input type="password" id="idPwd" name="pwd" required maxlength="10" onkeyup="checkPwd()" /><span id="f2"></span><span id="p2"></span>
+            </div>
+        </fieldset>
+        <div class="sub">
+            <input type="submit" value="送出" />
+            <input type="reset" value="清除" />
+        </div>
+    </form>
+
+    <script>
+        function checkID() {
+            //取得account1元素
+            var thePwdObj = document.getElementById("account1");
+            //取得account1元素值
+            var thePwdObjVal = thePwdObj.value;
+            var myp1 = document.getElementById("p1");
+            var myf1 = document.getElementById("f1");
+           
+            if (thePwdObjVal.length == 0) {
+                myp1.innerHTML = "you must  enter ";
+                myf1.innerHTML = `<img src="interface.png" />`;
+            }
+            if (thePwdObjVal.length > 0) {
+                myp1.innerHTML = "";
+                myf1.innerHTML = "";
+            }
+            if (/\W/.test(thePwdObjVal.replace(/\s*/g, ""))) {
+                myp1.innerHTML = "不能有特殊符號 ";
+                myf1.innerHTML = `<img src="interface.png" />`;
+            }
+        }
+
+
+        function checkPwd() {
+            var thePwdObj = document.getElementById("idPwd");
+            //取得account1元素值
+            var thePwdObjVal = thePwdObj.value;
+            var myp2 = document.getElementById("p2");
+            var myf2 = document.getElementById("f2");
+            if (thePwdObjVal.length == 0) {
+                myp2.innerHTML = "you must  enter ";
+                myf2.innerHTML = `<img src="interface.png" />`;
+            }
+            if (thePwdObjVal.length > 0) {
+                myp2.innerHTML = "";
+                myf2.innerHTML = "";
+            }
+            if (/\W/.test(thePwdObjVal.replace(/\s*/g, ""))) {
+                myp2.innerHTML = "不能有特殊符號 ";
+                myf2.innerHTML = `<img src="interface.png" />`;
+            }
+        }
+    </script>
+</body>
+</html>

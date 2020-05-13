@@ -1,0 +1,16 @@
+﻿body {
+}
+
+
+#myTable {
+    border-collapse: collapse;
+    border: 2px solid #00BBFF;
+    color: red;
+    background-color: #BBFFEE;
+}
+
+    #myTable td {
+        border-left: 1px solid #FF8888 /*#00BBFF*/;
+        padding: 2px 5px;
+    }
+   

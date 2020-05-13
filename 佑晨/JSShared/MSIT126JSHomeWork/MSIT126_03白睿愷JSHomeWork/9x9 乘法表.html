@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>9x9 乘法表</title>
+    <style>
+        * {
+            font-family: 微軟正黑體;
+            text-align: left;
+        }
+
+        #backColor {
+            width: 678px;
+            height:192px;
+            border: 2px solid black;
+            background-color: darkgray;
+            margin:auto;
+        }
+
+        .table9x9 {
+            position: relative;
+            border-right: 2px solid black;
+            height: auto;
+            width: 80px;
+            color:black;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="backColor"></div>
+    <script>
+        let i;
+        let j;
+        let table99;
+        let back;
+        for (i = 2; i <= 9; i++) {
+            for (j = 1; j <= 9; j++) {
+                table99 = document.createElement("div");
+                table99.className = "table9x9";
+                table99.innerHTML = (`${i} * ${j} = ${i * j}`);
+
+                let leftPX = 3;
+                let topPX = 0;
+
+                if (i == 3) {
+                    leftPX += 85;
+                    topPX -= 192;
+                }
+                if (i == 4) {
+                    leftPX += 85*2;
+                    topPX -= 192*2;
+                }
+                if (i == 5) {
+                    leftPX += 85*3;
+                    topPX -= 192*3;
+                }
+                if (i == 6) {
+                    leftPX += 85*4;
+                    topPX -= 192*4;
+                }
+                if (i == 7) {
+                    leftPX += 85*5;
+                    topPX -= 192*5;
+                }
+                if (i == 8) {
+                    leftPX += 85*6;
+                    topPX -= 192*6;
+                }
+                if (i == 9) {
+                    leftPX += 85*7;
+                    topPX -= 192 * 7;
+                    table99.style.border = "0px ";
+                }
+
+                table99.style.top = topPX + "px";
+                table99.style.left = leftPX + "px";
+
+                back = document.querySelector("#backColor")
+                back.appendChild(table99);
+
+
+            }
+        }
+
+
+    </script>
+</body>
+</html>

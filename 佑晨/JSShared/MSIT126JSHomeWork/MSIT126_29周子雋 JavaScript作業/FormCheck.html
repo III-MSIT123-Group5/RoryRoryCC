@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Form Check</title>
+    <link rel="stylesheet" href="Style/StyleSheet.css" />
+    <link rel="stylesheet" href="Script/JavaScript.js" />
+</head>
+<body>
+    <div class="div1">
+        <header>
+            <img class="logo-img" src="image/9598o.jpg" />
+            <nav>
+                <ul class="menu">
+                    <li>
+                        <a href="HomeWork.html">九九乘法表</a>
+                    </li>
+                    <li>
+                        <a href="FormCheck.html">Form Check</a>
+                    </li>
+                    <li>
+                        <a href="Stars.html">星星評點</a>
+                    </li>
+                    <li>
+                        <a href="">輪播牆</a>
+                    </li>
+                    <li>
+                        <a href="">日期選擇</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <article>
+            <form action="#" method="post">
+                <fieldset class="field">
+                    <legend>Form Check<em style="color:red;">(必填)</em></legend>
+                    <div class="st1">
+                        <label class="title" for="name">姓名:</label>
+                        <label>
+                            <input id="name" type="text" name="name" placeholder="guest" onblur="chkName()" />
+                        </label><span id="idsp"></span><br />
+                        <label class="sts">(1.不可空白 2.至少兩個字以上 3.必須全部為中文字)</label>
+
+                    </div>
+                    <div class="st1">
+                        <label class="title" for="password">密碼:</label>
+                        <label>
+                            <input id="password" type="password" name="pwd" placeholder="請輸入密碼" onblur="checkPwd()" />
+                        </label><span id="idsp2"></span><br />
+                        <label class="sts">(1.不可空白 2.至少6個字且必須包含英文字母、數字、特殊字元[!@#$%^&*])</label>
+                    </div>
+                    <div class="st1">
+                        <label class="title" for="date">日期:</label>
+                        <label>
+                            <input id="date" type="text" name="date" placeholder="ex:2000/02/29" onblur="tdate()"/>
+                        </label><span id="idsp3"></span><br />
+                        <label class="sts">(格式:西元年/月/日(yyyy/MM/dd))</label>
+                    </div>
+
+
+
+                        <!--<input id="Button1" type="button" value="checkPassword" onclick="oncheckPwd()" />-->
+                        <script>
+                            function chkName() {
+
+                                var thePwd = document.getElementById("name").value;
+                                var rex = /[^\u4e00-\u9fff]/;
+                                if (rex.test(thePwd))   //這行
+                                    document.getElementById("idsp").innerHTML =
+                                        "<img src='image/error.png'>必須輸入中文";
+                                else if (thePwd.length >= 2)
+                                    for (var i = 0; i < thePwd.length; i++) {
+                                        document.getElementById("idsp").innerHTML =
+                                            "<img src='image/correct.png'>正確"
+                                    }else 
+                                        document.getElementById("idsp").innerHTML =
+                                                "<img src='image/error.png'>至少兩個字以上";
+                                        
+                            }
+
+                            function checkPwd() {
+                                //取得idPwd元素
+                                var pwdObj = document.getElementById("password").value;
+                                //取得idPwd元素值
+
+
+                                //判斷元素值是否為空白，密碼長度是否大於6
+                                //如果長度是否大於6，判斷是否包含字母、數字、特殊符號
+                                var pwdlen = pwdObj.length;
+                                var spanVal = document.getElementById("idsp2");
+                                var str = /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*]).{6,}$/;
+                                var reg = new RegExp(str);
+                                if (pwdObj == "") {
+                                    spanVal.innerHTML = "<img src='image/error.png'>不可空白";
+                                } else if (pwdlen > 6) {
+                                    if (!reg.test(pwdObj)) {
+                                        spanVal.innerHTML = "<img src='image/error.png'>必須包含英文字母、數字、特殊字元";
+                                        console.log(pwdObj);
+                                    } else {
+                                        spanVal.innerHTML = "<img src='image/correct.png'>正確";
+                                    }
+                                } else {
+                                    spanVal.innerHTML = "<img src='image/error.png'>密碼長度需大於六";
+                                }
+
+                            }
+
+                            function tdate() {
+
+                                var timeObj = document.getElementById("date").value
+                                var idsp3 = document.getElementById("idsp3");
+                                var year = timeObj.substr(0, 4)
+                                var month = timeObj.substr(5, 2)
+                                var day = timeObj.substr(8, 2)
+
+                                if (timeObj == "") {
+                                    idsp3.innerHTML = "<img src='image/error.png'>日期不可為空白";
+
+
+                                } else if (timeObj.length == 10) {
+                                    var re3 = /^([0-9]{4})[./-]{1}([0-9]{1,2})[./]{1}([0-9]{1,2})$/;
+
+                                    if (re3.test(timeObj)) {
+                                        var d = new Date(timeObj);
+                                        var theyear = d.getFullYear();
+                                        var themonth = d.getMonth() + 1;
+                                        var date1 = d.getDate();
+
+                                        if ((day == date1) && (month == themonth) && (year == theyear)) {
+                                            idsp3.innerHTML = "<img src='image/correct.png'>日期格式正確";
+                                        } else {
+                                            idsp3.innerHTML = "<img src='image/error.png'>日期格式錯誤";
+                                        }
+                                    }
+                                }
+                                else
+                                    idsp3.innerHTML = "<img src='image/error.png'>請輸入正確格式";
+
+
+                            }
+
+                            
+                        </script>
+   
+                </fieldset>
+
+            </form>
+        </article>
+    </div>
+
+</body>
+</html>

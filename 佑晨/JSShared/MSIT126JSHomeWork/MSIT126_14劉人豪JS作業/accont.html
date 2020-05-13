@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>基本資料</title>
+    <style>
+        fieldset {
+            width: 450px;
+            margin: auto;
+            text-align: left;
+            border-radius: 20px;
+            background-color: white;
+        }
+
+        .style1 {
+            text-align: left;
+            border-bottom: 3px double #c891d0;
+            padding: 5px;
+            margin-bottom: 2px;
+        }
+
+        #divback {
+            width: 800px;
+            background-color: aliceblue;
+            padding: 20px;
+            margin: auto;
+            border-radius: 20px;
+        }
+
+        .buttom {
+            text-align: center;
+            padding: 10px;
+            margin: 10px;
+            opacity: 1;
+        }
+    </style>
+    <script>
+        //function checkname () {
+        //    var nameid1 = document.getElementById("nameid");
+        //    var nameidval = nameid1.value;
+        //    var nametext1 = document.getElementById("idsp1");
+        //    var namechk2 = /[^\u4e00-\u9fa5]/;
+        //    if (nameid1 == "") {
+        //        nametext1.innerHTML = "請輸入中文"
+        //    }
+        //    else if (nameidval.length < 3) {
+        //        nametext1.innerHTML = "請輸入三個字"
+        //    }
+        //    else if (namechk2.test(nameid1.value)) {
+        //        nametext1.innerHTML = "不是輸入中文"
+        //    }
+        //    else {
+        //        nametext1.innerHTML = "輸入正確";
+        //    };
+        //};
+        //function checkPwd() {
+        //    var pw = document.getElementById("pwd").value;
+        //        var pwcknum = /\d/;
+        //        var pwckabc = /[a-zA-Z]/;
+        //        var pwckspl = /[\W]/;
+        //        var pwtext = document.getElementById("pwdtext");
+        //        if (pw == "") {
+        //            pwtext.innerHTML = "請輸入密碼"
+        //        }
+        //        else if (pw.length < 6) {
+        //            pwtext.innerHTML = "請輸入長度大於6密碼"
+        //        }
+        //        else if (pwcknum.test(pw) == false) {
+        //            pwtext.innerHTML = "請輸入數字含英文跟特殊符號";
+        //        }
+        //        else if(pwckabc.test(pw) == false)
+        //        {
+        //            pwtext.innerHTML = "少輸入了英文";
+        //        }
+        //        else if (pwckspl.test(pw) == false) {
+        //            pwtext.innerHTML = "少輸入了特殊符號";
+        //        }
+        //        else {
+        //            pwtext.innerHTML = "輸入正確";
+        //        }
+         
+        //}
+        //function checkbithday() {
+        //    var bdval = document.getElementById("bithday").value;
+        //    var bdck = /^19|20[0-9]{2}[-/.]0|1[\d]{1}[-/.][\d]{2}$/;
+        //    var bddate = new Date(bdval);
+        //    var bdtext = document.getElementById("datetext");
+        //    if (bdval == "") {
+        //        bdtext.innerHTML = "請輸入日期";
+        //    }
+        //    else if (bdck.test(bdval) == false) {
+        //        bdtext.innerHTML = "請輸入正確格式(1900/01/01)";
+        //    }
+        //    else if (bddate.getDate() != bdval.substr(8)) {
+        //        bdtext.innerHTML ="沒有這日期"
+        //    }
+        //    else {
+        //        bdtext.innerHTML = "輸入正確";
+        //    }
+        //}
+    </script>
+</head>
+<body>
+    <div id="divback">
+        <fieldset>
+            <legend>基本資料<em>必填</em></legend>
+            <div class="style1">
+                <label class="labelstyle1">姓名:</label>
+                <input type="text" id="nameid" class="nameid" placeholder="guest" autocomplete="off" autofocus />
+                <span id="idsp1"></span><br />
+                <p>1. 不可空白 2.必須輸入兩個字以上 3.必須都中文字</p>
+            </div>
+            <div class="style1">
+                <label class="labelstyle1" for="pwd">密碼:</label>
+                <input type="password" id="pwd" class="pwd" name="pwd" maxlength="12" />
+                <span id="pwdtext"></span><br />
+                <p>1. 不可空白 2.必須輸入6個字以上 3.必須含數字英文跟特殊符號</p>
+            </div>
+            <div class="style1">
+                <label class="labelstyle1" for="pwd">生日:</label>
+                <input type="text" id="bithday" class="bithday" name="bithday" />
+                <span id="datetext"></span><br />
+                <p>格式:西元年/月/日 ex:1900/01/01</p>
+            </div>        
+            <div class="buttom">
+                <input type="submit" value="送出" onclick="checkPwd()" />
+                <input type="reset" value="清除" />
+            </div>
+        </fieldset>
+
+    </div>
+    <script>
+        document.querySelector(".nameid").onblur = function () {
+            var nameid1 = document.getElementById("nameid");
+            var nameidval = nameid1.value;
+            var nametext1 = document.getElementById("idsp1");
+            var namechk2 = /[^\u4e00-\u9fa5]/;
+            if (nameid1 == "") {
+                nametext1.innerHTML = "請輸入中文"
+            }
+            else if (nameidval.length < 3) {
+                nametext1.innerHTML = "請輸入三個字"
+            }
+            else if (namechk2.test(nameid1.value)) {
+                nametext1.innerHTML = "不是輸入中文"
+            }
+            else {
+                nametext1.innerHTML = "輸入正確";
+            };
+        } 
+        document.querySelector(".pwd").onblur = function () {
+        
+            var pw = document.getElementById("pwd").value;
+            var pwcknum = /\d/;
+            var pwckabc = /[a-zA-Z]/;
+            var pwckspl = /[\W]/;
+            var pwtext = document.getElementById("pwdtext");
+            if (pw == "") {
+                pwtext.innerHTML = "請輸入密碼"
+            }
+            else if (pw.length < 6) {
+                pwtext.innerHTML = "請輸入長度大於6密碼"
+            }
+            else if (pwcknum.test(pw) == false) {
+                pwtext.innerHTML = "請輸入數字含英文跟特殊符號";
+            }
+            else if (pwckabc.test(pw) == false) {
+                pwtext.innerHTML = "少輸入了英文";
+            }
+            else if (pwckspl.test(pw) == false) {
+                pwtext.innerHTML = "少輸入了特殊符號";
+            }
+            else {
+                pwtext.innerHTML = "輸入正確";
+            }
+
+        }
+        document.querySelector(".bithday").onblur = function () {
+            var bdval = document.getElementById("bithday").value;
+            var bdck = /^19|20[0-9]{2}[-/.]0|1[\d]{1}[-/.][\d]{2}$/;
+            var bddate = new Date(bdval);
+            var bdtext = document.getElementById("datetext");
+            if (bdval == "") {
+                bdtext.innerHTML = "請輸入日期";
+            }
+            else if (bdck.test(bdval) == false) {
+                bdtext.innerHTML = "請輸入正確格式(1900/01/01)";
+            }
+            else if (bddate.getDate() != bdval.substr(8)) {
+                bdtext.innerHTML = "沒有這日期"
+            }
+            else {
+                bdtext.innerHTML = "輸入正確";
+            }
+        }  
+    </script>
+
+</body>
+</html>
